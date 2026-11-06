@@ -572,8 +572,9 @@ class GRanges:
                 self._seq[keep], start[keep], width[keep], strand[keep],
                 _meta.take_names(names, keep), _meta.take_mcols(mcols, keep), out_si, check=True,
             )
-        hit_col = pl.DataFrame([pl.Series("hit", hit.tolist(), dtype=pl.Boolean)])
-        mc = hit_col if mcols is None else pl.concat([mcols, hit_col], how="horizontal")
+        hit_col = pl.Series("hit", hit.tolist(), dtype=pl.Boolean)
+        # an existing `hit` column is replaced in place (R), otherwise appended
+        mc = pl.DataFrame([hit_col]) if mcols is None else mcols.with_columns(hit_col)
         return self._new(self._seq, start, width, strand, names, mc, out_si, check=True)
 
     @flags("ignore_strand")

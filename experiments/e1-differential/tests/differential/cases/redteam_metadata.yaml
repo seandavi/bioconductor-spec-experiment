@@ -883,7 +883,6 @@ cases:
     kwargs:
       drop.nohit.ranges: false
   check_warnings: true
-  xfail: 'Bug: pintersect must replace the existing hit column, not append a duplicate.'
 - id: rt-meta-gr-pintersect-existing-hit-drop
   tags:
   - redteam
