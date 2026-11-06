@@ -912,6 +912,22 @@
     "warnings": []
    }
   },
+  "gr-distance-adjacent-is-one": {
+   "hash": "2ed245bcc9ac8ca204f49f85e9326bdfd9b5d52acdd7ae2fb757247a07d1fc09",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
   "gr-distance-different-seqnames-na": {
    "hash": "b39ee158d83fac8676dda46080c2bb7094303074196efe21860186a93674f520",
    "result": {

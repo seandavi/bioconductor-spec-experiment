@@ -1,6 +1,23 @@
 {
  "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
  "entries": {
+  "distance-adjacent-is-one": {
+   "hash": "7b3b9f56aa64ee86843059b0fc956de549c57f68a7e5bac8af6c95a13fbb7ca2",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      2,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
   "distance-adjacent-is-zero": {
    "hash": "5797b3f46e3e65b3c8433fac1d4c659d3a9007c1fe70743347bbd06f831ba338",
    "result": {
@@ -16,15 +33,15 @@
    }
   },
   "distance-basic": {
-   "hash": "feeb7b0178f083f01181efe468a8577050a223b1cdf864db38b347a415ccefa5",
+   "hash": "c5d090166363bb7ad53a589b9aaff7448778d308d5ef473acf5dd0847f1d47e4",
    "result": {
     "value": {
      "class": "vector",
      "type": "int",
      "values": [
-      3,
-      4,
       1,
+      2,
+      0,
       7
      ],
      "names": null
@@ -56,6 +73,22 @@
     "warnings": []
    }
   },
+  "distance-gap-width-plus-one": {
+   "hash": "441099e9c1f19493b726f8f077332be8ac32df19b6fb0cb390a5ccc5eea2a249",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      17
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
   "distance-int32-extremes": {
    "hash": "e9204ab60454bdeef77f8e883df2f3c60d042802c4791de46dec1468d2a84f0d",
    "result": {
@@ -80,6 +113,20 @@
      "type": "int",
      "values": [
       14
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-one-position-overlap-is-zero": {
+   "hash": "8c7e085ddcd60863450a9a549ae64a1ede3c33c27ed499b294bc690edbfa43ec",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0
      ],
      "names": null
     },
@@ -136,17 +183,34 @@
    }
   },
   "distance-zero-width": {
-   "hash": "b0f54dd941123b77b3350b08b85d011bbb02266c552b5643474142dad1cab48a",
+   "hash": "bef7b27131bf65c6971347198dfdec11d1ad94b76be33e891312bd30a26e804d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      1,
+      1,
+      2,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-zero-width-adjacent": {
+   "hash": "7f3587ccc5e05393bb9cce5687017ccbe9c64b91552d405eba40ae7d7e2e6a24",
    "result": {
     "value": {
      "class": "vector",
      "type": "int",
      "values": [
       1,
+      2,
       1,
-      1,
-      1,
-      2
+      1
      ],
      "names": null
     },
