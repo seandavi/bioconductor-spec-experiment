@@ -132,13 +132,13 @@ cases:
     clause: IR-FOLLOW-3
     inputs:
       x: {IRanges: {start: [20], width: [2]}}
-      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 1]}}
+      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 0]}}
     call: {op: follow, args: [x, z], kwargs: {select: all}}
   - id: ir-follow-ties-last
     clause: IR-FOLLOW-3
     inputs:
       x: {IRanges: {start: [20], width: [2]}}
-      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 1]}}
+      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 0]}}
     call: {op: follow, args: [x, z]}
   - id: ir-follow-adjacent
     clause: IR-FOLLOW-3
