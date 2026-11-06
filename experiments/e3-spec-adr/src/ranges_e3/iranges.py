@@ -6,6 +6,7 @@ from collections.abc import Sequence
 from typing import Any, Self
 
 import numpy as np
+import numpy.typing as npt
 import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
@@ -367,6 +368,31 @@ class IRanges:
         if 0 in (n, m):
             return _mcols.empty_int()
         return _kernels.distance(self._start, self._end, y._start, y._end)
+
+    # --- ordering (spec 80-order.md) ---
+
+    def _keys(self) -> list[IntArray]:
+        return [self._start, self._end]
+
+    def order(self, decreasing: bool = False) -> IntArray:
+        """ORD.2."""
+        return _kernels.order_by(self._keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        """ORD.3."""
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "average") -> IntArray | npt.NDArray[np.float64]:
+        """ORD.4."""
+        return _kernels.rank_by(self._keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> BoolArray:
+        """ORD.5."""
+        return _kernels.duplicated_by(self._keys(), from_last)
+
+    def unique(self) -> Self:
+        """ORD.5: first occurrences, original order."""
+        return self._take(np.flatnonzero(~self.duplicated()).astype(np.int64))
 
     def __repr__(self) -> str:
         shown = ", ".join(f"[{s},{e}]" for s, e in zip(self._start[:6], self.end[:6]))

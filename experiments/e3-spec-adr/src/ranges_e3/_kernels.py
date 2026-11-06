@@ -6,6 +6,7 @@ Every function is pure: arrays in, arrays out. Element indices are 0-based.
 from __future__ import annotations
 
 import numpy as np
+import numpy.typing as npt
 
 from ranges_e3._types import BoolArray, IntArray
 
@@ -476,3 +477,68 @@ def nearest_pairs(
     si = np.concatenate([s0, rs, ls]).astype(np.int64)
     srt = np.lexsort((si, qi))
     return qi[srt], si[srt]
+
+
+# --- ordering (spec 80-order.md) ---
+
+
+def order_by(keys: list[IntArray], decreasing: bool = False) -> IntArray:
+    """ORD.2: indices sorting by ``keys`` (first = most significant); ties keep index order."""
+    n = len(keys[0])
+    sign = -1 if decreasing else 1
+    cols = [sign * k for k in keys]
+    return np.lexsort((np.arange(n), *reversed(cols))).astype(np.int64)
+
+
+def _tie_groups(keys: list[IntArray], order: IntArray) -> IntArray:
+    """Group number (0-based, along ``order``) of each sorted element; equal keys share one."""
+    n = len(order)
+    new = np.zeros(n, dtype=np.bool_)
+    if n:
+        new[0] = True
+        for k in keys:
+            ks = k[order]
+            new[1:] |= ks[1:] != ks[:-1]
+    return np.cumsum(new) - 1
+
+
+def rank_by(keys: list[IntArray], method: str) -> IntArray | npt.NDArray[np.float64]:
+    """ORD.4: 1-based ranks."""
+    if method not in ("average", "min", "max", "first"):
+        raise ValueError("ties_method must be 'average', 'min', 'max' or 'first'")
+    n = len(keys[0])
+    order = order_by(keys)
+    group = _tie_groups(keys, order)
+    position = np.arange(n, dtype=np.int64)
+    first_pos = np.zeros(n, dtype=np.int64)
+    last_pos = np.zeros(n, dtype=np.int64)
+    if n:
+        starts = np.flatnonzero(np.concatenate([[True], group[1:] != group[:-1]]))
+        ends = np.append(starts[1:], n) - 1
+        first_pos, last_pos = starts[group], ends[group]
+    if method == "first":
+        sorted_rank: npt.NDArray[np.generic] = position + 1
+    elif method == "min":
+        sorted_rank = first_pos + 1
+    elif method == "max":
+        sorted_rank = last_pos + 1
+    else:
+        sorted_rank = (first_pos + last_pos) / 2 + 1
+    out = np.empty(n, dtype=sorted_rank.dtype)
+    out[order] = sorted_rank
+    return out  # type: ignore[return-value]
+
+
+def duplicated_by(keys: list[IntArray], from_last: bool) -> BoolArray:
+    """ORD.5."""
+    n = len(keys[0])
+    order = order_by(keys)
+    group = _tie_groups(keys, order)
+    dup_sorted = np.zeros(n, dtype=np.bool_)
+    if n:
+        same_as_prev = np.concatenate([[False], group[1:] == group[:-1]])
+        same_as_next = np.concatenate([group[1:] == group[:-1], [False]])
+        dup_sorted = same_as_next if from_last else same_as_prev
+    out = np.empty(n, dtype=np.bool_)
+    out[order] = dup_sorted
+    return out
