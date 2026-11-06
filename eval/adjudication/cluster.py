@@ -60,13 +60,16 @@ R_ERROR_BUCKETS: list[tuple[str, str]] = [
 
 PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
     ("rejects_names_padding", r"'names' has length \d+ but \d+ was expected"),
+    ("rejects_scalar_genome", r"genome has length 1, expected"),
     ("rejects_names_padding", r"names has length \d+, expected \d+"),
     # pintersect(resolve.empty=<invalid>) where no empty intersection arises; 'start' is a valid partial match
     ("resolve_empty_validation", r"unknown resolve_empty (?!'start')|'?resolve_empty'? must be"),
     ("mcols_type_conflict_crash", r"SchemaError|cannot combine: mcols columns differ"),
     ("rejects_recycling", r"has length \d+ but \d+ was expected|must be a single value or have the length|"
-                          r"must have length \d+ or \d+, got \d+|incompatible lengths:|requires equal lengths|"
+                          r"must have length \d+ or \d+, got \d+|incompatible lengths: \w+=|requires equal lengths|"
                           r"has \d+ rows, expected \d+|must be scalar or one per range|"
+                          r"has length \d+, expected \d+( or \d+)?|equal lengths or one of length|lengths do not match|"
+                          r"need equal lengths|"
                           r"must have length \d+ or the length|has \d+ rows but object has length|"
                           r"lengths? .* (differ|must match)|"
                           r"not a multiple|must have the same length|recycl"),

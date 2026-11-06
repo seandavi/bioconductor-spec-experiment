@@ -44,7 +44,13 @@ HF_NAN = ("runner/adapter_base.py:82,88 RVector.np() maps a dbl NA to NaN (only 
           "weight=c(NaN,3,1,NaN,4)) is NaN 3 1 NaN 4")
 R_TRIM_NAMES = "trim(x, use.names=FALSE) keeps names(x) (R ignores the argument); shift(use.names=FALSE) drops them"
 
+AF_SEQINFO_CHR = ("GRanges(seqinfo=<character>) is valid R (seqlevels given as names); every port's GRanges takes a "
+                  "Seqinfo object only, and the adapters pass the R character vector through (adapters/e0.py, e0b.py, "
+                  "e1.py, e2.py, e3.py, biocpy.py op_GRanges), so the port dereferences .seqnames on a str/RVector")
+
 RULES: list[tuple[str, str, str, str]] = [
+    (r"\|construct\|port_error:(call|project)\|AttributeError:'(str|RVector)' object has no attribute '(seqnames|_lengths)'", AF,
+     AF_SEQINFO_CHR, "adapter forwards a character seqinfo the port API cannot take (should build a Seqinfo or raise Unsupported)"),
     # ------------------------------------------------------------------ cross-port R accidents
     (r"\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA,
      "R's NA-weight coverage is not a sum here (NA leaks past the NA range / depends on order)"),
@@ -477,4 +483,95 @@ RULES: list[tuple[str, str, str, str]] = [
      "R accepts coverage(width=1.5) (truncated) and shift/weight as an mcols column name", "coverage argument forms"),
     (r"^e2\|coverage\|r_error_port_value\|other:", PB, "R rejects width=NA/TRUE, over-long shift, reordered named width",
      "missing coverage validation"),
+
+    # ------------------------------------------------------------------ e3
+    (r"^e3\|(overlaps|nearest|coverage)\|mismatch\|(equals_R_linear|diff)\|circular$", DD,
+     "e3:adr/0014-circular-metadata-only.md; README.md 'Circular sequences get no wrap-around (ADR-0014)'. " + R_CIRCULAR_PROBE,
+     "no circular wrap-around (declared)"),
+    (r"^e3\|\*\|r_error_port_value\|length_validation\|circular$", DD, "e3:adr/0014-circular-metadata-only.md",
+     "circular coverage-width check not implemented (declared)"),
+    (r"^e3\|\*\|port_error:call\|rejects_recycling", DD,
+     "e3:adr/0006-refuse-bad-lengths.md; spec/10-iranges-core.md:13 CORE.3 'other length mismatches are refused (R warns "
+     "and recycles; ADR-0006)'", "no cyclic recycling (declared)"),
+    (r"^e3\|.*\|port_error:call\|rejects_scalar_genome", PB,
+     "R recycles a scalar genome over seqnames (Seqinfo(c('a','b','c'), genome='hg')); e3's own CORE.3/ADR-0006 say "
+     "length-1 values recycle", "length-1 genome rejected (contradicts its own rule)"),
+    (r"^e3\|\*\|port_error:call\|rejects_names_padding", PB, "R pads short names with NA (not recycling)", "short names rejected"),
+    (r"^e3\|(intra|construct|setops|inter|overlaps)\|(mismatch\|diff\|int32_edge|r_error_port_value\|int32_overflow)", DD,
+     "e3:adr/0005-int64.md 'Results beyond int32 range are valid in Python and are not refused'. " + R_INT32,
+     "int64 arithmetic (declared)"),
+    (r"^e3\|\*\|r_error_port_value\|length_validation\|int32_edge$", DD, "e3:adr/0005-int64.md. " + R_INT32, "int64 (declared)"),
+    (r"^e3\|nearest\|mismatch\|diff\|int32_edge_distance$", DD, "e3:adr/0005-int64.md (R returns NA when the distance "
+     "exceeds int32)", "int64 distance (declared)"),
+    (r"^e3\|nearest\|mismatch\|diff\|(r_translation_dependent|int32_edge|coord_le0)$", RA,
+     "probe_translate.py: R's answer moves with the coordinates (2 cases on circular seqinfo unprobed; zero-width subject "
+     "at 0 / query at -2). e3 declares only the zero-width-at-1 corner (spec/95-granges.md:60). " + R_SENTINEL,
+     "R's GRanges sentinel collisions"),
+    (r"^e3\|nearest\|port_error:call\|ValueError:select must be 'first' or 'all'\|r_translation", PB,
+     "R follow(select=) is 'last'/'all'; e3 spec/70-nearest.md NEAR.4 uses 'first' for follow", "follow select vocabulary"),
+    (r"^e3\|nearest\|r_error_port_value\|na_in_logic\|coord_le0$", RA, R_SENTINEL + "; R errors on valid input",
+     "R fails on valid input with coordinates <= 0"),
+    (r"^e3\|nearest\|mismatch\|diff\|(multi_seqlevel|strand|zero_width)$", DD,
+     "e3:adr/0011-granges-nearest-ties.md (GRanges nearest(all) keeps all minimal-distance ties; R keeps only the precede "
+     "side); spec/70-nearest.md NEAR.2 (zero-width self queries implementation-defined)", "GRanges nearest ties (declared)"),
+    (r"^e3\|nearest\|mismatch\|diff\|coord_le0_r_invariant$", PB,
+     "probe_translate.py: R translation-invariant. Self nearest(x): NEAR.2 declares only zero-width self queries "
+     "implementation-defined, but positive-width queries differ too (rnd0-nearest-self q2=[2,3]: R 36, e3 5)",
+     "self-nearest candidate set differs beyond the declared zero-width corner"),
+    (r"^e3\|nearest\|port_error:call\|ValueError:select must be 'first' or 'all'\|-$", PB,
+     "R: follow(select=) is 'last'|'all' (follow 'first' errors \"'arg' should be one of last, all\"); e3 "
+     "spec/70-nearest.md NEAR.4 and adr/0010 assume R's follow takes 'first'", "follow uses the wrong select vocabulary"),
+    (r"^e3\|nearest\|r_error_port_value\|other:'arg' should be one of", PB, "R errors on follow(select='first')",
+     "accepts follow(select='first')"),
+    (r"^e3\|(nearest|overlaps|ordering)\|port_error:call\|ValueError:(select must be one of|type must be one of|ties_method must be 'average')", PB,
+     "R match.arg partial matching ('a') and rank(ties.method='last') is valid R", "choice arguments: no partial matching / no 'last'"),
+    (r"^e3\|ordering\|r_error_port_value\|rank_default_ties", RA, R_RANK, "R's rank() default errors; e3 defaults to average"),
+    (r"^e3\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY,
+     "R validates resolve.empty only when needed"),
+    (r"^e3\|\*\|r_error_port_value\|(flag_validation|scalar_validation|type_validation)", PB,
+     "R validates flags/scalars/types; e3 coerces", "missing argument validation"),
+    (r"^e3\|(intra|construct|coverage)\|r_error_port_value\|other:", PB,
+     "R requires logical-without-NA flank(start=), numeric start/width/upstream/downstream, valid coverage width",
+     "missing argument validation"),
+    (r"^e3\|(nearest|overlaps)\|r_error_port_value\|na_in_logic\|na_arg$", PB, "R errors on NA flags", "NA flag accepted"),
+    (r"^e3\|construct\|r_error_port_value\|na_input_rejected", PB,
+     "R errors on NA/empty seqnames; e3 stores NA as the string 'None'", "NA seqnames accepted as 'None'"),
+    (r"^e3\|accessors\|r_error_port_value\|na_input_rejected", PB, "R mcols(x) errors when names(x) has NA", "no error"),
+    (r"^e3\|\*\|port_error:call\|na_arg_crash", PB,
+     "R gaps(start=NA)/end=NA means 'from the data'; e3 receives a masked array (adapters/e3.md 'A length-1 NA argument "
+     "is passed as a masked array') and crashes with MaskError", "NA gap bounds crash"),
+    (r"^e3\|intra\|port_error:call\|ValueError:(start|end|width) contains NA", PB, "R narrow(start=NA) etc. means 'not given'",
+     "NA narrow arguments rejected"),
+    (r"^e3\|\*\|port_error:call\|rejects_double_arg", PB,
+     "R truncates fractional coordinates/shifts (IRanges(start=c(1.5,2.5,3.5), width=1) -> 1 2 3); e3 CORE.1 says "
+     "'integer sequences' but declares no divergence", "fractional arguments rejected"),
+    (r"^e3\|construct\|port_error:call\|ValueError:exactly two", PB,
+     "R accepts a consistent start/end/width triple and the start-only run form; e3 spec CORE.1 claims 'exactly two' "
+     "as R behaviour (no ADR)", "constructor argument sets narrower than R"),
+    (r"^e3\|construct\|port_error:call\|ValueError:strand values", PB, "R: NA strand becomes '*'", "NA strand rejected"),
+    (r"^e3\|construct\|mismatch\|(mcols|names|seqlevel_order)\|-$", PB,
+     "R keeps mcols(ranges) (e3 spec GR.1 says 'its mcols are ignored', no ADR), names whole doubles '2' / 'TRUE', "
+     "uses factor levels as seqlevels", "constructor metadata rules"),
+    (r"^e3\|accessors\|mismatch\|names\|-$", PB, "R mcols(x) rownames = names(x); ranges(<GRanges>) keeps names(x)",
+     "accessors drop names"),
+    (r"^e3\|accessors\|mismatch\|diff\|", PB, "R: mcols(<IRanges without columns>) is NULL, GRanges a 0-column frame with nrow",
+     "mcols() of an object without columns (adapters/e3.md notes the 0x0 frame)"),
+    (r"^e3\|overlaps\|mismatch\|names\|-$", PB, "R names countOverlaps by names(query)", "drops query names"),
+    (r"^e3\|setops\|mismatch\|(mcols|seqinfo\+mcols|names)\|-$", PB,
+     "R: GRanges pintersect adds a `hit` column and keeps x's seqlevels; IRanges p* take y's names when x has none",
+     "p* metadata rules"),
+    (r"^e3\|setops\|mismatch\|diff\|out_of_bounds$", PB,
+     "R clips GRanges intersect/setdiff to [1, seqlength] and drops positions < 1 even with unknown length; e3 spec "
+     "GR.12 clips only when the length is known", "no clipping below 1 / unknown lengths"),
+    (r"^e3\|subset_concat\|mismatch\|(mcols|mcol_types)", PB,
+     "R formats doubles with 15 significant digits in chr columns; a column only in an empty object is logical NA",
+     "c() mcols coercion"),
+    (r"^e3\|subset_concat\|r_error_port_value\|other:subscript contains invalid names", PB, "R: '' never matches a name",
+     "empty-string name subscript matches"),
+    (r"^e3\|inter\|port_error:call\|TypeError:Only length", PB, "R gaps(start=/end=) take per-seqlevel vectors",
+     "crash on vector gap bounds"),
+    (r"^e3\|coverage\|port_error:call\|ValueError:(The truth value|setting an array)", PB,
+     "R coverage(width=<per-seqlevel vector | NA>) works; e3 crashes", "coverage width forms crash"),
+    (r"^e3\|nearest\|port_error:call\|ValueError:sequence 'chr\w+' has incompatible", PB,
+     "R precede/follow/distance do not merge seqinfo; e3 raises", "seqinfo merge check R does not do here"),
 ]
