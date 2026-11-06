@@ -1,0 +1,1459 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "gr-pintersect": {
+   "hash": "2d058c92b9bca199595c140d4d82c07479132ddb0bdea5c8a94b9ec264f18864",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      5,
+      16,
+      8,
+      35
+     ],
+     "width": [
+      4,
+      2,
+      2,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-adjacent-pair-is-hit": {
+   "hash": "99b27d2997996eba681086218d9340829b7ec817ba8b685b313b35f49df10496",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      6
+     ],
+     "width": [
+      0
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-disjoint-pair-not-a-hit": {
+   "hash": "41f290f4b2813ebc18bd31a8ab0fd4ae88f96f40a0c1c3e7b5eb4289d1479215",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      0
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-drop-nohit": {
+   "hash": "46af1fbe8be4b2f645a0299b161857378be1ee78b1086161550c4399b489295d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      5,
+      16,
+      8,
+      35
+     ],
+     "width": [
+      4,
+      2,
+      2,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-empty": {
+   "hash": "932645de27b3debfd02cb311157fe1e76b4fa361d9a2dcfa0580b4b76b86de06",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-ignore-strand": {
+   "hash": "e066a5c9ad25169f7221d49f090dc752c0521e1394c4a14e8937e3bd1df31e3e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      5,
+      16,
+      8,
+      35
+     ],
+     "width": [
+      4,
+      2,
+      2,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-length-mismatch-error": {
+   "hash": "a61ae4cc4fc1e6a6bc740321bdba22a2cc69d02323bfa85efa5a60dcaf561f66",
+   "result": {
+    "error": "'y' must have the length of 'x' or length 1",
+    "warnings": []
+   }
+  },
+  "gr-pintersect-nohit-mixed": {
+   "hash": "03ff13a79cd3dc82bcc085b2bd2986115d33dca9085ff9fb196990cd3c6feee9",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      12,
+      8,
+      35
+     ],
+     "width": [
+      0,
+      3,
+      2,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-nohit-mixed-drop": {
+   "hash": "8ca87f305c398dfd774542f507bfcc3779ca6aa3c345f6402a5ceec5261131a4",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      12,
+      8,
+      35
+     ],
+     "width": [
+      3,
+      2,
+      5
+     ],
+     "strand": [
+      "+",
+      "-",
+      "-"
+     ],
+     "names": [
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-recycle-y": {
+   "hash": "ad65745dcce8328af22887553e8e5fffab96c5dbd1e24768849228c985a3453e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      5,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      4,
+      5,
+      0,
+      0
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        false,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-seqlength-conflict-error": {
+   "hash": "79d780fd47bdf35f1d1e8695cab32084323fca7fb98f74fd8cf68fb5a5b6bc89",
+   "result": {
+    "error": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 100\n  - in 'y': 50",
+    "warnings": []
+   }
+  },
+  "gr-pintersect-star-x-takes-y-strand": {
+   "hash": "8eeea3bab1dda4411a760d977abd839367f96f6c9b697d05e557c1ffc3e0ec08",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      3
+     ],
+     "width": [
+      3
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-strict-strand": {
+   "hash": "c1d8dba17ad8f5d4b15f0cee724f33a20302a02a28754e3afc1800631083a33d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      5,
+      10,
+      8,
+      30
+     ],
+     "width": [
+      4,
+      0,
+      2,
+      0
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-pintersect-zero-width-x": {
+   "hash": "40b6291622409ce44e66e2c0ab3de5e9faae7a1eac7d7223c75037da5ae9f2ca",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      5
+     ],
+     "width": [
+      0
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff": {
+   "hash": "6ebae0bc621d4d4c5675dbac939089d64f616487b76eabdac8dedfad6dc292e6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      4,
+      6,
+      3,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-empty": {
+   "hash": "2f89bcb4e8b036c30845bfa927d740418d89bc611dd0ef032874acc4206197bc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-ignore-strand": {
+   "hash": "3fc9efdc09b8fce30d7c622d98a8491dffc3903d57165bb5b8bc73db7a7dc2d1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      4,
+      6,
+      3,
+      5
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-incompatible-unchanged": {
+   "hash": "2f9dc7d61345a60f8a567b2a95e6cc5caa9638b07f57bf5a1d7517d17f2473b0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      5
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-recycle-y-error": {
+   "hash": "dd227ea5fe7a1a0778bc222f0d09595b946355764e178d136ebd13897446d0c5",
+   "result": {
+    "error": "'x' and 'y' must have the same length",
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-split-error": {
+   "hash": "ba11791e5233748ee05c73dc5ce1f0783ab8b1d9184cf6e0ef5666cdba2052b1",
+   "result": {
+    "error": "error in evaluating the argument 'x' in selecting a method for function 'start': some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-split-incompatible-no-error": {
+   "hash": "909b3ff9126ffcfaf23b9fb270c853484131619f2c081bd76d098bf3ad5a4a6e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      10
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-psetdiff-star-x-takes-y-strand": {
+   "hash": "3cff7e86b30729512d2271ab39a7d670298b906f530a98a34f330ea1eb366a52",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      2
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion": {
+   "hash": "25b8192a44aafef6419dace397a24414bdbf65e1f151427b4b41a1245c3a4b9b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      14,
+      9,
+      13,
+      15
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-empty": {
+   "hash": "dbc0c8762034badcca06db55ad7a59125e24fdd926c845292876168ce940994c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-fill-gap": {
+   "hash": "ee98cd11fb7f273cdd8a05831e05c31de39b5bfcfd4855f57ac3232b95b09ac7",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      24
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-gap-error": {
+   "hash": "d1984b7a1aa8227b61dfe9b1c6bd0db0a76f1cceb7d2bb72539989edb829f6a3",
+   "result": {
+    "error": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+    "warnings": []
+   }
+  },
+  "gr-punion-ignore-strand": {
+   "hash": "229277c6074d75096fc2da90bc98a69b108bed176ce6f5519ca5f1ca43b43d1b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      14,
+      9,
+      13,
+      15
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-incompatible-seqname-error": {
+   "hash": "f53efabeb947c3afa7d4fdb9c1e0fb501a35ab65cfd2bfc919f012dec3b1b95c",
+   "result": {
+    "error": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+    "warnings": []
+   }
+  },
+  "gr-punion-incompatible-strand-error": {
+   "hash": "52a3237069abd99871aa96c053a31d138ef85b47770fc55e2b48038e6a4768a4",
+   "result": {
+    "error": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+    "warnings": []
+   }
+  },
+  "gr-punion-keeps-x-strand-star": {
+   "hash": "903dd91f2e6bf0d34cc5ab8845dd453b0951092a92c53dd925bbb6b497dd3463",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      7
+     ],
+     "strand": [
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-plus-minus-ignore-strand": {
+   "hash": "813906c0bd66b0cb8afcd1a55437f73359320678daf99a2e8e100bf95a9822cb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      7
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-punion-recycle-y-error": {
+   "hash": "fac65e78c6b197a8a2526e3b3a7da42b37961dcffb527fc9b0315506a42ccfaf",
+   "result": {
+    "error": "'x' and 'y' must have the same length",
+    "warnings": []
+   }
+  },
+  "gr-punion-seqinfo-merged-warns": {
+   "hash": "8d1f8674616efd198755424b888c60337564de49367314a003a33329b4dbe934",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      100,
+      50
+     ],
+     "is_circular": [
+      null,
+      null
+     ],
+     "genome": [
+      null,
+      null
+     ]
+    },
+    "warnings": []
+   }
+  }
+ }
+}

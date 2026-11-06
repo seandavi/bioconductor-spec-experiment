@@ -464,3 +464,75 @@ class GRanges:
 
     def setdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
         return self._set_op(other, setops.setdiff, ignore_strand)
+
+    # -- parallel set operations -----------------------------------------------
+    def _pair_with(
+        self, other: GRanges, *, recycle_other: bool, ignore_strand: bool, strict_strand: bool = False
+    ) -> tuple[Seqinfo, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        """Merged seqinfo, other's (recycled) starts/widths/strands, and the pair compatibility mask."""
+        n = len(self)
+        if len(other) != n and not (recycle_other and len(other) == 1):
+            raise ValueError("'y' must have the length of 'x' or length 1" if recycle_other else "'x' and 'y' must have the same length")
+        si, sa, sb = self._merged_with(other)
+        rep = np.zeros(n, dtype=np.int64) if len(other) == 1 and n != 1 else np.arange(n)
+        sb, st_b = sb[rep], other._strand[rep]
+        same_seq = sa == sb
+        if ignore_strand:
+            ok = same_seq
+        elif strict_strand:
+            ok = same_seq & (self._strand == st_b)
+        else:
+            ok = same_seq & ((self._strand == st_b) | (self._strand == STAR) | (st_b == STAR))
+        return si, other.start[rep], other.width[rep], st_b, ok
+
+    def _merged_strand(self, st_b: np.ndarray, ok: np.ndarray, ignore_strand: bool) -> np.ndarray:
+        """Strand of a compatible pair: x's, unless x is "*" (then y's); x's when strands are ignored."""
+        if ignore_strand:
+            return self._strand
+        return np.where(ok & (self._strand == STAR), st_b, self._strand).astype(np.int8)
+
+    def punion(self, other: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
+        si, ys, yw, st_b, ok = self._pair_with(other, recycle_other=False, ignore_strand=ignore_strand)
+        if not ok.all():
+            raise ValueError("'x' and 'y' elements must have compatible 'seqnames' and 'strand' values")
+        s, w = setops.punion(self.start, self.width, ys, yw, bool(fill_gap))
+        return self._new(self._seq_in(si), s, w, self._strand, self._names, None, si, check=True)
+
+    def _seq_in(self, si: Seqinfo) -> np.ndarray:
+        """This object's seqlevel codes expressed in the (merged) seqinfo `si`."""
+        index = {s: i for i, s in enumerate(si.seqnames)}
+        return np.array([index[s] for s in self._seqinfo.seqnames], dtype=np.int32)[self._seq]
+
+    def pintersect(
+        self, other: GRanges, drop_nohit_ranges: bool = False, ignore_strand: bool = False, strict_strand: bool = False
+    ) -> Self:
+        """Pairwise intersection with a `hit` mcols column (False: incompatible or disjoint pair)."""
+        si, ys, yw, st_b, ok = self._pair_with(
+            other, recycle_other=True, ignore_strand=ignore_strand, strict_strand=strict_strand
+        )
+        s = np.maximum(self.start, ys)
+        w = np.minimum(self.end, ys + yw - 1) - s + 1
+        hit = ok & (w >= 0)
+        start = np.where(hit, s, self.start)
+        width = np.where(hit, w, 0)
+        strand = np.where(hit, self._merged_strand(st_b, ok, ignore_strand), self._strand).astype(np.int8)
+        names, mcols = self._names, self._mcols
+        if drop_nohit_ranges:
+            keep = np.flatnonzero(hit)
+            return self._new(
+                self._seq_in(si)[keep], start[keep], width[keep], strand[keep],
+                _meta.take_names(names, keep), _meta.take_mcols(mcols, keep), si, check=True,
+            )
+        hit_col = pl.DataFrame([pl.Series("hit", hit.tolist(), dtype=pl.Boolean)])
+        mc = hit_col if mcols is None else pl.concat([mcols, hit_col], how="horizontal")
+        return self._new(self._seq_in(si), start, width, strand, names, mc, si, check=True)
+
+    def psetdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
+        si, ys, yw, st_b, ok = self._pair_with(other, recycle_other=False, ignore_strand=ignore_strand)
+        start, width = self.start.copy(), self.width.copy()
+        idx = np.flatnonzero(ok)
+        if len(idx):
+            s, w = setops.psetdiff(start[idx], width[idx], ys[idx], yw[idx])
+            start[idx], width[idx] = s, w
+        strand = np.where(ok, self._merged_strand(st_b, ok, ignore_strand), self._strand).astype(np.int8)
+        return self._new(self._seq_in(si), start, width, strand, self._names, None, si, check=True)
