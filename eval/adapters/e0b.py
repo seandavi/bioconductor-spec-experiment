@@ -101,7 +101,7 @@ def _mcols_mapping(pairs: Any) -> dict[str, pl.Series] | None:
     return out
 
 
-def _invoke(obj: Any, method: str, **kw: Any) -> Any:
+def _invoke(obj: Any, method: str, /, **kw: Any) -> Any:
     """Call obj.method(**kw) with port parameter names; an R argument the port lacks is unsupported."""
     fn = getattr(obj, method, None)
     if fn is None:
@@ -117,7 +117,7 @@ def _invoke(obj: Any, method: str, **kw: Any) -> Any:
     return fn(**{k: _arg(v, k) for k, v in kw.items()})
 
 
-def _pass(obj: Any, method: str, kw: dict, **renamed: Any) -> Any:
+def _pass(obj: Any, method: str, kw: dict, /, **renamed: Any) -> Any:
     """_invoke with R arguments renamed to the port's parameter names (MISSING = absent)."""
     return _invoke(obj, method, **kw, **{k: v for k, v in renamed.items() if v is not MISSING})
 
