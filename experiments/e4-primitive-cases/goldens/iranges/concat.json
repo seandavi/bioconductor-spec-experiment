@@ -1,0 +1,69 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-cat-basic": {
+      "kind": "IRanges",
+      "start": [1, 5, 20, 1, 5],
+      "end": [2, 7, 23, 2, 7],
+      "width": [2, 3, 4, 2, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-cat-names-pad": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [2, 7, 23],
+      "width": [2, 3, 4],
+      "names": ["a", "b", ""],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-cat-names-pad-first": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [2, 7, 23],
+      "width": [2, 3, 4],
+      "names": ["", "", "z"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-cat-mcols-fill": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [2, 7, 23],
+      "width": [2, 3, 4],
+      "names": null,
+      "mcols": {
+        "s": [1, 2, 9],
+        "t": [null, null, "q"]
+      },
+      "warnings": []
+    },
+    "ir-cat-mcols-one-side": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [2, 7, 23],
+      "width": [2, 3, 4],
+      "names": null,
+      "mcols": {
+        "s": [1, 2, null]
+      },
+      "warnings": []
+    },
+    "ir-cat-with-empty": {
+      "kind": "IRanges",
+      "start": [1, 5],
+      "end": [2, 7],
+      "width": [2, 3],
+      "names": ["a", "b"],
+      "mcols": {},
+      "warnings": []
+    }
+  }
+}

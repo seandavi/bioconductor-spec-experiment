@@ -11,6 +11,11 @@ here <- dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value =
 root <- normalizePath(file.path(here, "..", ".."))
 source(file.path(here, "build.R"))
 source(file.path(here, "project.R"))
+# R's yaml follows YAML 1.1 and reads y/Y/n/N as booleans; PyYAML does not.
+# Keep them strings so both runners see the same data.
+yaml_handlers <- list(
+  "bool#yes" = function(x) if (tolower(x) == "y") x else TRUE,
+  "bool#no" = function(x) if (tolower(x) == "n") x else FALSE)
 check <- "--check" %in% commandArgs(TRUE)
 
 run_call <- function(call, inputs, kwargs_override = NULL) {
@@ -62,7 +67,7 @@ seen <- character(0)
 drift <- FALSE
 for (f in files) {
   domain <- basename(dirname(f)); group <- sub("\\.yaml$", "", basename(f))
-  cases <- yaml.load_file(f)$cases
+  cases <- yaml.load_file(f, handlers = yaml_handlers)$cases
   out <- list()
   for (case in cases) {
     if (case$id %in% seen) stop("duplicate case id: ", case$id)

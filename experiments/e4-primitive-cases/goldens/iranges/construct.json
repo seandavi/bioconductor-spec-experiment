@@ -77,6 +77,48 @@
         "flag": [true, false]
       },
       "warnings": []
+    },
+    "ir-con-recycle": {
+      "kind": "IRanges",
+      "start": [1, 2, 3],
+      "end": [2, 3, 4],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-all-three": {
+      "kind": "IRanges",
+      "start": [1, 2],
+      "end": [3, 5],
+      "width": [3, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-all-three-mismatch": {
+      "kind": "error",
+      "message": "In range 2: the supplied 'width' (3) doesn't match the width\n  inferred from the supplied 'start' and 'end' (4).",
+      "warnings": []
+    },
+    "ir-con-one-arg": {
+      "kind": "error",
+      "message": "at least two of the 'start', 'end', and 'width' arguments must be supplied",
+      "warnings": []
+    },
+    "ir-con-end-lt-start": {
+      "kind": "error",
+      "message": "each range must have an end that is greater or equal to its start minus one",
+      "warnings": []
+    },
+    "ir-con-int32-overflow": {
+      "kind": "IRanges",
+      "start": [2147483647],
+      "end": [null],
+      "width": [2],
+      "names": null,
+      "mcols": {},
+      "warnings": ["NAs introduced by coercion to integer range", "NAs produced by integer overflow"]
     }
   }
 }

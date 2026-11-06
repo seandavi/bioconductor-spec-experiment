@@ -39,3 +39,35 @@ cases:
     inputs:
       x: {IRanges: {start: [1, 2], width: [1, 1], mcols: {score: [1.5, null], tag: [a, b], flag: [true, false]}}}
     call: {op: identity, args: [x]}
+  - id: ir-con-recycle
+    clause: IR-CON-RECYCLE-1
+    inputs:
+      x: {IRanges: {start: [1, 2, 3], width: [2]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-all-three
+    clause: IR-CON-ALL3-1
+    inputs:
+      x: {IRanges: {start: [1, 2], end: [3, 5], width: [3, 4]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-all-three-mismatch
+    clause: IR-CON-ALL3-1
+    inputs:
+      x: {IRanges: {start: [1, 2], end: [3, 5], width: [3, 3]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-one-arg
+    clause: IR-CON-TWO-1
+    inputs:
+      x: {IRanges: {end: [3, 5]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-end-lt-start
+    clause: IR-CON-ENDLT-1
+    inputs:
+      x: {IRanges: {start: [5], end: [2]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-int32-overflow
+    clause: IR-CON-INT32-1
+    inputs:
+      x: {IRanges: {start: [2147483647], width: [2]}}
+    call: {op: identity, args: [x]}
+    adr: ADR-0006
+    python: {expect_error: true}
