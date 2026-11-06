@@ -117,3 +117,15 @@ def test_trim() -> None:
     assert [(a, b) for _, a, b, _ in gs(z)] == [(11, 10), (11, 10)]
     inside = gr(("a", 2, 5, "+"), seqinfo=Seqinfo(["a"], [10]), names=["n"])
     assert gs(inside.trim()) == [("a", 2, 5, "+")] and inside.trim().names == ["n"]
+
+
+@pytest.mark.spec("GR.4")
+def test_missing_and_malformed_subscripts_refused() -> None:
+    g = gr(("a", 1, 3, "+"), ("a", 5, 6, "-"))
+    with pytest.raises(IndexError):
+        g[np.ma.array([1], mask=[True])]
+    with pytest.raises(IndexError):
+        g[g.find_overlaps(gr(("a", 50, 51, "+")), select="first")]
+    with pytest.raises(IndexError):
+        g[np.array([], dtype=bool)]
+    assert len(g[np.array([], dtype=int)]) == 0

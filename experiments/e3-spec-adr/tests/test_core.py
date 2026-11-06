@@ -154,3 +154,30 @@ def test_concat_mcols_union_with_nulls() -> None:
     assert m.columns == ["x", "y"]
     assert m["x"].to_list() == [1, None] and m["y"].to_list() == [None, "q"]
     assert concat(a, ir((5, 6))).mcols["x"].to_list() == [1, None]
+
+
+@pytest.mark.spec("CORE.9")
+def test_missing_subscripts_are_refused() -> None:
+    x = ir((10, 11), (20, 21))
+    with pytest.raises(IndexError):
+        x[np.ma.array([1], mask=[True])]
+    with pytest.raises(IndexError):
+        x[np.ma.array([True, False], mask=[False, True])]
+    assert se(x[np.ma.array([1, 0], mask=[False, False])]) == [(20, 21), (10, 11)]
+    na_result = ir((1, 3)).find_overlaps(ir((50, 51)), select="first")
+    with pytest.raises(IndexError):
+        x[na_result]
+    mixed = ir((1, 3), (60, 61)).find_overlaps(ir((2, 2)), select="first")
+    with pytest.raises(IndexError):
+        x[mixed]
+
+
+@pytest.mark.spec("CORE.9")
+def test_boolean_mask_must_match_length_even_when_empty() -> None:
+    x = ir((10, 11), (20, 21))
+    with pytest.raises(IndexError):
+        x[np.array([], dtype=bool)]
+    with pytest.raises(IndexError):
+        x[np.zeros((2, 1), dtype=bool)]
+    assert len(ir()[np.array([], dtype=bool)]) == 0
+    assert len(x[np.array([], dtype=int)]) == 0 and len(x[[]]) == 0

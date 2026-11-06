@@ -18,19 +18,25 @@ def resolve(index: Any, n: int, names: Sequence[str | None] | None) -> IntArray:
         return _positions(np.array([index], dtype=np.int64), n)
     if isinstance(index, str):
         return _by_name([index], names)
-    if isinstance(index, np.ndarray):
+    if isinstance(index, np.ma.MaskedArray):
+        if np.ma.getmaskarray(index).any():
+            raise IndexError("subscript contains NA")
+        arr = np.asarray(index.data)
+    elif isinstance(index, np.ndarray):
         arr = index
     else:
         seq = list(index)
         if seq and all(isinstance(v, str) for v in seq):
             return _by_name(seq, names)
         arr = np.asarray(seq)
-    if arr.size == 0:
-        return np.empty(0, dtype=np.int64)
     if arr.dtype == np.bool_:
         if arr.shape != (n,):
             raise IndexError(f"boolean mask of length {arr.size}, expected {n}")
         return np.flatnonzero(arr).astype(np.int64)
+    if arr.size == 0:
+        return np.empty(0, dtype=np.int64)
+    if arr.ndim != 1:
+        raise IndexError("subscript must be 1-dimensional")
     if arr.dtype.kind in "US":
         return _by_name([str(v) for v in arr], names)
     if arr.dtype.kind not in "iu":
