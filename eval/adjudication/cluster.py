@@ -71,10 +71,10 @@ PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
                           r"has length \d+, expected \d+( or \d+)?|equal lengths or one of length|lengths do not match|"
                           r"need equal lengths|"
                           r"must have length \d+ or the length|has \d+ rows but object has length|"
-                          r"lengths? .* (differ|must match)|"
+                          r"lengths? (.* )?(differ|must match)|"
                           r"not a multiple|must have the same length|recycl"),
-    ("rejects_double_arg", r"whole numbers|must be integer|integer-valued|not integral|fraction"),
-    ("int32_overflow", r"2\^31|overflow|int32"),
+    ("rejects_double_arg", r"whole numbers|must be integer|integer-valued|not integral|fraction|non-integer value"),
+    ("int32_overflow", r"2\^31|overflow|int32|integer bounds"),
     ("mcols_column_name_arg", r"could not convert string to float|mcols column|column .* not found"),
     ("na_arg_crash", r"cannot convert float NaN to integer|NaN|masked"),
 ]
@@ -148,6 +148,14 @@ def _equals_linear(cid: str, p) -> bool:
     return lin is not None and lin.get("kind") != "error" and not diffs(_no_circ(lin), _no_circ(p))
 
 
+def _valid_resolve_empty(v) -> bool:
+    """A resolve.empty value R's match.arg accepts: one of the choices or a unique prefix of one."""
+    if isinstance(v, dict):
+        v = v.get("chr", [None])[0] if len(v.get("chr", [])) == 1 else None
+    choices = ("none", "max.start", "start.x")
+    return isinstance(v, str) and sum(c.startswith(v) for c in choices) == 1
+
+
 def _msg(m: str) -> str:
     return re.sub(r"\d+", "N", (m or "").split("\n")[0])[:60]
 
@@ -164,6 +172,8 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
             b = "build"
         detail = b or f"{err.get('type')}:{_msg(err.get('message', ''))}"
         cls = f"port_error:{rec.get('phase')}"
+        if detail == "resolve_empty_validation" and _valid_resolve_empty(case["call"]["kwargs"].get("resolve.empty")):
+            detail = "rejects_valid_resolve_empty"  # R accepts this value (or its unique partial match) anyway
         if err.get("origin") == "timeout":
             detail = "timeout"
     elif scored["rule"] == "row4":
