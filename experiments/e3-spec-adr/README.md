@@ -16,7 +16,7 @@ g.flank(5), g.promoters(100, 10), g.reduce(ignore_strand=True), g.sort()
 ```
 
 Element indices are 0-based; coordinates are 1-based closed (ADR-0001).
-Everything is `uv run pytest` (162 tests).
+Everything is `uv run pytest` (178 tests).
 
 ## Layout
 
@@ -78,7 +78,8 @@ minimal result types (ADR-0001..0005).
 ## Known divergences from R
 
 - `Hits` order within a query is subject-index ascending (ADR-0009).
-- GRanges `nearest(select="all")` keeps all minimal-distance ties; R drops some (ADR-0011).
+- GRanges `nearest(select="all")` keeps all minimal-gap ties; R drops some (ADR-0011).
+- `nearest` ranks by gap width, `distance` is gap width + 1 for non-overlaps (adjacent = 1); the two metrics are separate kernels (ADR-0015).
 - Circular sequences get no wrap-around (ADR-0014).
 - Self-`nearest` and `precede`/`follow` on zero-width ranges in R-quirk corners
   are implementation-defined (NEAR.2, GR.15).
