@@ -6,7 +6,8 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import inter, intra, ordering, setops
+from . import inter, intra, ordering, overlaps, setops
+from .overlaps import Hits
 from ._sew import (
     IntArray,
     empty_int,
@@ -292,3 +293,38 @@ class IRanges:
     def psetdiff(self, other: "IRanges") -> Self:
         s, e = setops.psetdiff(self._start, self.end, other._start, other.end)
         return self._replace(s, e - s + 1)
+
+    # --- overlaps ------------------------------------------------------------
+
+    def find_overlaps(
+        self,
+        subject: "IRanges | None" = None,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",
+        select: str = "all",
+    ) -> Any:
+        """Overlaps of each range (query) with `subject` (default: self).
+
+        `select="all"` returns `Hits`; "first"/"last"/"arbitrary" return an int
+        array with one 0-based subject index per query (`NO_HIT` = -1 if none).
+        "arbitrary" is deterministic: same as "first".
+        """
+        subj = self if subject is None else subject
+        qi, si = overlaps.overlap_pairs(self._start, self.end, subj._start, subj.end, type, maxgap, minoverlap)
+        if select == "all":
+            return Hits(qi, si, len(self), len(subj))
+        return overlaps.select_hits(qi, si, len(self), select)
+
+    def count_overlaps(self, subject: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any") -> IntArray:
+        hits = self.find_overlaps(subject, maxgap, minoverlap, type)
+        return hits.count_per_query()
+
+    def overlaps_any(self, subject: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any") -> Any:
+        return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
+
+    def subset_by_overlaps(
+        self, subject: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", invert: bool = False
+    ) -> Self:
+        mask = self.overlaps_any(subject, maxgap, minoverlap, type)
+        return self[~mask if invert else mask]

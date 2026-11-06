@@ -2,5 +2,6 @@
 
 from ._sew import NO_HIT
 from .iranges import IRanges
+from .overlaps import Hits
 
-__all__: list[str] = ["IRanges", "NO_HIT"]
+__all__: list[str] = ["IRanges", "Hits", "NO_HIT"]
