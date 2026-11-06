@@ -1,0 +1,43 @@
+cases:
+  - id: gr-sub-int
+    clause: GR-SUB-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {int: [3, 1]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-lgl
+    clause: GR-SUB-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {lgl: [true, false, true]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-names
+    clause: GR-SUB-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {chr: [b]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-keeps-unused-seqlevels
+    clause: GR-SUB-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {int: [2]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-oob
+    clause: GR-SUB-4
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {int: [4]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-unknown-name
+    clause: GR-SUB-4
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {chr: [zz]}
+    call: {op: "[", args: [x, i]}
+  - id: gr-sub-repeat
+    clause: GR-SUB-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+      i: {int: [1, 1, 3]}
+    call: {op: "[", args: [x, i]}

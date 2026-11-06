@@ -1,0 +1,88 @@
+cases:
+  - id: gr-cov-basic
+    clause: GR-COV-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-strand-ignored
+    clause: GR-COV-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a], start: [1, 1, 1], width: [3, 3, 3], strand: ["+", "-", "*"]}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-seqlevels-order
+    clause: GR-COV-2
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [2, 3], seqinfo: {seqnames: [z, a]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-seqlength-sets-length
+    clause: GR-COV-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-beyond-seqlength-clipped
+    clause: GR-COV-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [5], width: [10], seqinfo: {seqnames: [a], seqlengths: [8]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-no-seqlengths
+    clause: GR-COV-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [5], width: [3]}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-unused-level
+    clause: GR-COV-4
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [5, 1], width: [3, 0], seqinfo: {seqnames: [a, b, z]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-empty
+    clause: GR-COV-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-cov-shift
+    clause: GR-COV-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {shift: 1}}
+  - id: gr-cov-shift-vector
+    clause: GR-COV-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {shift: [0, 1, 2, 3, 4]}}
+  - id: gr-cov-width-scalar
+    clause: GR-COV-6
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {width: 12}}
+  - id: gr-cov-width-vector
+    clause: GR-COV-6
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {width: [5, 6, 7]}}
+  - id: gr-cov-weight-scalar
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {weight: 2}}
+  - id: gr-cov-weight-vector
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], mcols: {w: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2, 3, 4, 5]}}
+  - id: gr-cov-weight-mcols-name
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], mcols: {w: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
+    call: {op: coverage, args: [x], kwargs: {weight: w}}
+  - id: gr-cov-weight-cyclic
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, b, a], start: [1, 2, 3], width: [2, 2, 2]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2]}}
+    adr: ADR-0007
+    python: {expect_error: true}
+  - id: gr-cov-weight-too-long
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [1, 2], width: [2, 2]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2, 3]}}

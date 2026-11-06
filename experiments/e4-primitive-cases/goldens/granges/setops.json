@@ -1,0 +1,792 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-union": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "a", "b", "b"],
+      "start": [1, 10, 10, 1, 1],
+      "end": [7, 14, 14, 5, 5],
+      "width": [7, 5, 5, 5, 5],
+      "strand": ["+", "+", "-", "+", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [1, 10, 1],
+      "end": [7, 14, 5],
+      "width": [7, 5, 5],
+      "strand": ["*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-star-vs-plus": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 3],
+      "end": [10, 4],
+      "width": [10, 2],
+      "strand": ["+", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-plus-vs-star": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 3],
+      "end": [10, 4],
+      "width": [10, 2],
+      "strand": ["+", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-empty-x": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [3, 10, 1],
+      "end": [7, 14, 5],
+      "width": [5, 5, 5],
+      "strand": ["+", "+", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-empty-y": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [1, 10, 1],
+      "end": [5, 14, 5],
+      "width": [5, 5, 5],
+      "strand": ["+", "-", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-seqinfo-merged": {
+      "kind": "GRanges",
+      "seqnames": ["a", "b"],
+      "start": [1, 1],
+      "end": [5, 5],
+      "width": [5, 5],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [10, 20],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr-union-seqlevel-order": {
+      "kind": "GRanges",
+      "seqnames": ["z", "a"],
+      "start": [1, 1],
+      "end": [4, 4],
+      "width": [4, 4],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["z", "a"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [3, 10, 1],
+      "end": [5, 14, 5],
+      "width": [3, 5, 5],
+      "strand": ["*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-star-vs-plus": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-plus-vs-star": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-empty-x": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-empty-y": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-intersect-seqinfo-merged": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [10, 20],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr-intersect-seqlevel-order": {
+      "kind": "GRanges",
+      "seqnames": ["z", "a"],
+      "start": [2, 2],
+      "end": [3, 3],
+      "width": [2, 2],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["z", "a"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [1, 10, 1],
+      "end": [2, 14, 5],
+      "width": [2, 5, 5],
+      "strand": ["+", "-", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [2],
+      "width": [2],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-star-vs-plus": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [10],
+      "width": [10],
+      "strand": ["+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-plus-vs-star": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [4],
+      "width": [2],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-empty-x": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-empty-y": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [1, 10, 1],
+      "end": [5, 14, 5],
+      "width": [5, 5, 5],
+      "strand": ["+", "-", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-setdiff-seqinfo-merged": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [5],
+      "width": [5],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [10, 20],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr-setdiff-seqlevel-order": {
+      "kind": "GRanges",
+      "seqnames": ["z", "a"],
+      "start": [1, 1],
+      "end": [1, 1],
+      "width": [1, 1],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["z", "a"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-union-seqinfo-conflict": {
+      "kind": "error",
+      "message": "error in evaluating the argument 'x' in selecting a method for function 'reduce': sequence a has incompatible seqlengths:\n  - in 'x': 10\n  - in 'y': 11",
+      "warnings": []
+    },
+    "gr-punion": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [1, 5, 1],
+      "end": [7, 9, 5],
+      "width": [7, 5, 5],
+      "strand": ["+", "-", "*"],
+      "names": ["n0", "n1", "n2"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-punion-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 5],
+      "end": [7, 9],
+      "width": [7, 5],
+      "strand": ["+", "-"],
+      "names": ["n0", "n1"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-punion-star-first": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [7],
+      "width": [7],
+      "strand": ["*"],
+      "names": ["n0"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-punion-star-second": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [7],
+      "width": [7],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-punion-gap-error": {
+      "kind": "error",
+      "message": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+      "warnings": []
+    },
+    "gr-punion-fill-gap": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [14],
+      "width": [14],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-punion-diff-seqnames-error": {
+      "kind": "error",
+      "message": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+      "warnings": []
+    },
+    "gr-punion-strand-mismatch-error": {
+      "kind": "error",
+      "message": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+      "warnings": []
+    },
+    "gr-punion-length-mismatch": {
+      "kind": "error",
+      "message": "'x' and 'y' must have the same length",
+      "warnings": []
+    },
+    "gr-pintersect-hit-column": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "a", "a", "a", "b"],
+      "start": [3, 1, 3, 10, 1, 3],
+      "end": [5, 0, 5, 9, 0, 5],
+      "width": [3, 0, 3, 0, 0, 3],
+      "strand": ["+", "+", "-", "*", "*", "+"],
+      "names": ["n0", "n1", "n2", "n3", "n4", "n5"],
+      "mcols": {
+        "s": [1, 2, 3, 4, 5, 6],
+        "hit": [true, false, true, false, false, true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-adjacent": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [6],
+      "end": [5],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-zero-width-inside": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [2],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-zero-width-outside": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [30],
+      "end": [29],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [false]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-star-first": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["-"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-star-second": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["-"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-strand-mismatch": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [0],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [false]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-strand-mismatch-ignore": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [true]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-diff-seqnames": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [0],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [false]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-pintersect-diff-seqnames-ignore": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [1],
+      "end": [0],
+      "width": [0],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {
+        "hit": [false]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-psetdiff": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "b"],
+      "start": [3, 1, 3],
+      "end": [5, 2, 5],
+      "width": [3, 2, 3],
+      "strand": ["+", "-", "+"],
+      "names": ["n0", "n1", "n2"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-psetdiff-incompatible-unchanged": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 1],
+      "end": [5, 5],
+      "width": [5, 5],
+      "strand": ["+", "+"],
+      "names": ["n0", "n1"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-psetdiff-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-psetdiff-star": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [3],
+      "end": [5],
+      "width": [3],
+      "strand": ["+"],
+      "names": ["n0"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-psetdiff-split-error": {
+      "kind": "error",
+      "message": "error in evaluating the argument 'x' in selecting a method for function 'start': some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+      "warnings": []
+    }
+  }
+}

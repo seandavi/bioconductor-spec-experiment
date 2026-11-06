@@ -1,0 +1,428 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-union-basic": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [3, 12, 25],
+      "width": [3, 8, 6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-empty-y": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [3, 7, 21],
+      "width": [3, 3, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-empty-x": {
+      "kind": "IRanges",
+      "start": [2, 8, 21],
+      "end": [3, 12, 25],
+      "width": [2, 5, 5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-both-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-adjacent": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [6],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-zero-width": {
+      "kind": "IRanges",
+      "start": [7],
+      "end": [9],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-zero-inside": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [10],
+      "width": [10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-nested-multi": {
+      "kind": "IRanges",
+      "start": [1, 20, 29],
+      "end": [9, 24, 33],
+      "width": [9, 5, 5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-basic": {
+      "kind": "IRanges",
+      "start": [2, 21],
+      "end": [3, 21],
+      "width": [2, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-empty-y": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-empty-x": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-both-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-adjacent": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-zero-width": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-zero-inside": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-nested-multi": {
+      "kind": "IRanges",
+      "start": [2, 22, 30],
+      "end": [6, 22, 31],
+      "width": [5, 1, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-basic": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [1, 7, 20],
+      "width": [1, 3, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-empty-y": {
+      "kind": "IRanges",
+      "start": [1, 5, 20],
+      "end": [3, 7, 21],
+      "width": [3, 3, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-empty-x": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-both-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-adjacent": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [3],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-zero-width": {
+      "kind": "IRanges",
+      "start": [7],
+      "end": [9],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-zero-inside": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-nested-multi": {
+      "kind": "IRanges",
+      "start": [1, 20, 23],
+      "end": [1, 21, 24],
+      "width": [1, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-yx": {
+      "kind": "IRanges",
+      "start": [8, 22],
+      "end": [12, 25],
+      "width": [5, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-split": {
+      "kind": "IRanges",
+      "start": [1, 6],
+      "end": [3, 10],
+      "width": [3, 5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-all-removed": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-setdiff-zero-y": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [10],
+      "width": [10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-union-reduces-x-adjacent": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [6],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intersect-merged-cover": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [6],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-punion-gap-error": {
+      "kind": "error",
+      "message": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+      "warnings": []
+    },
+    "ir-punion-fill-gap": {
+      "kind": "IRanges",
+      "start": [1, 5, 10, 20],
+      "end": [5, 10, 12, 40],
+      "width": [5, 6, 3, 21],
+      "names": ["a", "b", "c", "d"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-punion-overlap-adjacent": {
+      "kind": "IRanges",
+      "start": [1, 1, 2],
+      "end": [5, 6, 4],
+      "width": [5, 6, 3],
+      "names": ["a", "b", "c"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-punion-zero-width-pair": {
+      "kind": "IRanges",
+      "start": [2, 3, 5],
+      "end": [4, 5, 4],
+      "width": [3, 3, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-punion-zero-gap": {
+      "kind": "error",
+      "message": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+      "warnings": []
+    },
+    "ir-punion-length-mismatch": {
+      "kind": "error",
+      "message": "'x' and 'y' must have the same length",
+      "warnings": []
+    },
+    "ir-pintersect-ambiguous-error": {
+      "kind": "error",
+      "message": "some intersections produce ambiguous empty ranges.\n  Use argument 'resolve.empty' to resolve them.",
+      "warnings": []
+    },
+    "ir-pintersect-overlap-names": {
+      "kind": "IRanges",
+      "start": [3, 6],
+      "end": [5, 7],
+      "width": [3, 2],
+      "names": ["n1", "n2"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-pintersect-adjacent-empty": {
+      "kind": "IRanges",
+      "start": [3],
+      "end": [2],
+      "width": [0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-pintersect-zero-width": {
+      "kind": "IRanges",
+      "start": [5, 1, 5],
+      "end": [4, 0, 4],
+      "width": [0, 0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-pintersect-resolve-start": {
+      "kind": "IRanges",
+      "start": [2, 5, 10, 20],
+      "end": [3, 4, 9, 19],
+      "width": [2, 0, 0, 0],
+      "names": ["a", "b", "c", "d"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-pintersect-resolve-maxstart": {
+      "kind": "IRanges",
+      "start": [2, 9, 10, 40],
+      "end": [3, 8, 9, 39],
+      "width": [2, 0, 0, 0],
+      "names": ["a", "b", "c", "d"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-pintersect-length-mismatch": {
+      "kind": "error",
+      "message": "'x' and 'y' must have the same length",
+      "warnings": []
+    },
+    "ir-psetdiff-basic": {
+      "kind": "IRanges",
+      "start": [1, 5, 10, 20],
+      "end": [1, 7, 9, 21],
+      "width": [1, 3, 0, 2],
+      "names": ["a", "b", "c", "d"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-psetdiff-table": {
+      "kind": "IRanges",
+      "start": [2, 5, 2, 3, 2, 3, 2, 2, 2],
+      "end": [1, 5, 1, 5, 3, 5, 4, 5, 5],
+      "width": [0, 1, 0, 3, 2, 3, 3, 4, 4],
+      "names": ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-psetdiff-empty-x": {
+      "kind": "IRanges",
+      "start": [2, 2, 2],
+      "end": [1, 1, 1],
+      "width": [0, 0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-psetdiff-strictly-inside": {
+      "kind": "error",
+      "message": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+      "warnings": []
+    },
+    "ir-psetdiff-zero-y-inside": {
+      "kind": "error",
+      "message": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+      "warnings": []
+    },
+    "ir-psetdiff-zero-y-edge": {
+      "kind": "IRanges",
+      "start": [2, 2],
+      "end": [5, 5],
+      "width": [4, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-psetdiff-length-mismatch": {
+      "kind": "error",
+      "message": "'x' and 'y' must have the same length",
+      "warnings": []
+    }
+  }
+}

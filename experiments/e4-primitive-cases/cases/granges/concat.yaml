@@ -1,0 +1,75 @@
+cases:
+  - id: gr-cat-merge-new-level
+    clause: GR-CAT-1
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr3], start: [1], width: [2], seqinfo: {seqnames: [chr3, chr1], seqlengths: [300, 100], isCircular: [null, null], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-merge-order
+    clause: GR-CAT-1
+    inputs:
+      x: {GRanges: {seqnames: [chr3], start: [1], width: [2], seqinfo: {seqnames: [chr3, chr1], seqlengths: [300, 100], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-na-filled-from-other
+    clause: GR-CAT-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [null], isCircular: [null], genome: [null]}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-na-filled-first
+    clause: GR-CAT-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [null], isCircular: [null], genome: [null]}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-genome-fill
+    clause: GR-CAT-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-conflict-length
+    clause: GR-CAT-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [150], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-conflict-genome
+    clause: GR-CAT-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [100], genome: hg38}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-conflict-circular
+    clause: GR-CAT-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1], seqlengths: [100], isCircular: [true], genome: hg19}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-no-seqinfo
+    clause: GR-CAT-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [1]}}
+      z: {GRanges: {seqnames: [b], start: [1], width: [1]}}
+      w: {GRanges: {seqnames: [a], start: [2], width: [1]}}
+    call: {op: c, args: [x, z, w]}
+  - id: gr-cat-strand-and-names
+    clause: GR-CAT-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [1], strand: ["+"], names: [n]}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [1]}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-mcols-fill
+    clause: GR-CAT-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [1], mcols: {s: [1]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [1], mcols: {t: [q]}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-cat-three
+    clause: GR-CAT-1
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [2], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, false], genome: hg19}}}
+      z: {GRanges: {seqnames: [chr2], start: [1], width: [2], seqinfo: {seqnames: [chr2], seqlengths: [200]}}}
+      w: {GRanges: {seqnames: [chr4], start: [1], width: [2], seqinfo: {seqnames: [chr4], seqlengths: [400]}}}
+    call: {op: c, args: [x, z, w]}

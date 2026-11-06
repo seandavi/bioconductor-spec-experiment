@@ -1,0 +1,115 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-sub-int": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr2"],
+      "start": [9, 1],
+      "end": [11, 3],
+      "width": [3, 3],
+      "strand": ["*", "+"],
+      "names": ["c", "a"],
+      "mcols": {
+        "s": [3, 1]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    },
+    "gr-sub-lgl": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr2"],
+      "start": [1, 9],
+      "end": [3, 11],
+      "width": [3, 3],
+      "strand": ["+", "*"],
+      "names": ["a", "c"],
+      "mcols": {
+        "s": [1, 3]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    },
+    "gr-sub-names": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [5],
+      "end": [7],
+      "width": [3],
+      "strand": ["-"],
+      "names": ["b"],
+      "mcols": {
+        "s": [2]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    },
+    "gr-sub-keeps-unused-seqlevels": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [5],
+      "end": [7],
+      "width": [3],
+      "strand": ["-"],
+      "names": ["b"],
+      "mcols": {
+        "s": [2]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    },
+    "gr-sub-oob": {
+      "kind": "error",
+      "message": "subscript contains out-of-bounds indices",
+      "warnings": []
+    },
+    "gr-sub-unknown-name": {
+      "kind": "error",
+      "message": "subscript contains invalid names",
+      "warnings": []
+    },
+    "gr-sub-repeat": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr2", "chr2"],
+      "start": [1, 1, 9],
+      "end": [3, 3, 11],
+      "width": [3, 3, 3],
+      "strand": ["+", "+", "*"],
+      "names": ["a", "a", "c"],
+      "mcols": {
+        "s": [1, 1, 3]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    }
+  }
+}

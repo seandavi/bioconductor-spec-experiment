@@ -1,0 +1,569 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-range-basic": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [26],
+      "width": [26],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-range-zero-width": {
+      "kind": "IRanges",
+      "start": [5],
+      "end": [5],
+      "width": [1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-range-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-range-two-args": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [11],
+      "width": [11],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-basic": {
+      "kind": "IRanges",
+      "start": [1, 10, 11, 20, 25],
+      "end": [8, 9, 13, 20, 26],
+      "width": [8, 0, 3, 1, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-adjacent": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [6],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-mg0": {
+      "kind": "IRanges",
+      "start": [1, 4],
+      "end": [3, 6],
+      "width": [3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-mg0-full": {
+      "kind": "IRanges",
+      "start": [1, 3, 10, 11, 20, 25, 25],
+      "end": [2, 8, 9, 13, 20, 24, 26],
+      "width": [2, 6, 0, 3, 1, 0, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-mg2": {
+      "kind": "IRanges",
+      "start": [1, 20, 25],
+      "end": [13, 20, 26],
+      "width": [13, 1, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-mg3": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [6],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-mg-exact-gap": {
+      "kind": "IRanges",
+      "start": [1, 5],
+      "end": [2, 6],
+      "width": [2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-zero-only": {
+      "kind": "IRanges",
+      "start": [5, 7],
+      "end": [4, 6],
+      "width": [0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-zero-inside": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [5],
+      "width": [5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-zero-touching": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [5],
+      "width": [5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-zero-touching-mg0": {
+      "kind": "IRanges",
+      "start": [1, 6],
+      "end": [5, 5],
+      "width": [5, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-zero-inside-mg0": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [5],
+      "width": [5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-drop-empty": {
+      "kind": "IRanges",
+      "start": [1, 11, 20, 25],
+      "end": [8, 13, 20, 26],
+      "width": [8, 3, 1, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-drop-empty-all": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-unsorted-dups": {
+      "kind": "IRanges",
+      "start": [1, 10],
+      "end": [6, 11],
+      "width": [6, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-drops-mcols": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [3],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-revmap": {
+      "kind": "IRanges",
+      "start": [1, 10, 11, 20, 25],
+      "end": [8, 9, 13, 20, 26],
+      "width": [8, 0, 3, 1, 2],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1, 3, 2],
+          [4],
+          [5],
+          [6],
+          [7, 8]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-reduce-revmap-drop-empty": {
+      "kind": "IRanges",
+      "start": [1, 11, 20, 25],
+      "end": [8, 13, 20, 26],
+      "width": [8, 3, 1, 2],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1, 3, 2],
+          [5],
+          [6],
+          [8]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-reduce-revmap-unsorted": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [11],
+      "width": [11],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [2, 3, 4, 1]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-reduce-revmap-mg0": {
+      "kind": "IRanges",
+      "start": [1, 4],
+      "end": [3, 6],
+      "width": [3, 3],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1, 4],
+          [3, 2]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-reduce-revmap-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {
+        "revmap": []
+      },
+      "warnings": []
+    },
+    "ir-reduce-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-reduce-negative-mg": {
+      "kind": "error",
+      "message": "'min.gapwidth' must be non-negative",
+      "warnings": []
+    },
+    "ir-gaps-default": {
+      "kind": "IRanges",
+      "start": [9, 14, 21],
+      "end": [10, 19, 24],
+      "width": [2, 6, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-single-range": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-start-end": {
+      "kind": "IRanges",
+      "start": [0, 9, 14, 21, 27],
+      "end": [0, 10, 19, 24, 30],
+      "width": [1, 2, 6, 4, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-start-end-inside": {
+      "kind": "IRanges",
+      "start": [8, 12],
+      "end": [8, 20],
+      "width": [1, 9],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-bounds-narrower": {
+      "kind": "IRanges",
+      "start": [7],
+      "end": [7],
+      "width": [1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-bounds-before": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [3],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-bounds-far": {
+      "kind": "IRanges",
+      "start": [50],
+      "end": [60],
+      "width": [11],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-negative-coords": {
+      "kind": "IRanges",
+      "start": [-3],
+      "end": [2],
+      "width": [6],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-start-only": {
+      "kind": "IRanges",
+      "start": [1, 11],
+      "end": [7, 11],
+      "width": [7, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-end-only": {
+      "kind": "IRanges",
+      "start": [7, 12],
+      "end": [8, 20],
+      "width": [2, 9],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-end-only-narrow": {
+      "kind": "IRanges",
+      "start": [7],
+      "end": [7],
+      "width": [1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-start-only-late": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-zero-width-default": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-zero-width-no-split": {
+      "kind": "IRanges",
+      "start": [3],
+      "end": [9],
+      "width": [7],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-zero-only-bounds": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [10],
+      "width": [10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-zero-only-missing-bound": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-empty-input-missing-bound": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-empty-input-bounds": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [10],
+      "width": [10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-end-before-start": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-covered": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-gaps-empty-bounds": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-basic": {
+      "kind": "IRanges",
+      "start": [1, 3, 5, 8, 11, 20, 25],
+      "end": [2, 4, 7, 8, 13, 20, 26],
+      "width": [2, 2, 3, 1, 3, 1, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-nested": {
+      "kind": "IRanges",
+      "start": [1, 5, 8],
+      "end": [4, 7, 10],
+      "width": [4, 3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-adjacent": {
+      "kind": "IRanges",
+      "start": [1, 4],
+      "end": [3, 6],
+      "width": [3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-negative": {
+      "kind": "IRanges",
+      "start": [-3, 0, 1],
+      "end": [-1, 0, 3],
+      "width": [3, 1, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-zero-ignored": {
+      "kind": "IRanges",
+      "start": [1, 3, 5],
+      "end": [2, 4, 5],
+      "width": [2, 2, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-zero-only": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-revmap": {
+      "kind": "IRanges",
+      "start": [1, 3, 6],
+      "end": [2, 5, 7],
+      "width": [2, 3, 2],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1],
+          [1, 2],
+          [2]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-disjoin-revmap-nested": {
+      "kind": "IRanges",
+      "start": [1, 5, 7, 8, 10, 11],
+      "end": [4, 6, 7, 9, 10, 11],
+      "width": [4, 2, 1, 2, 1, 1],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [2],
+          [2, 3, 4],
+          [2, 4],
+          [2],
+          [1, 2],
+          [1]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-disjoin-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-disjoin-duplicates": {
+      "kind": "IRanges",
+      "start": [2],
+      "end": [4],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    }
+  }
+}

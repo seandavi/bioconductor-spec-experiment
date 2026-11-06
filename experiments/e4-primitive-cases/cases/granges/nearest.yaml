@@ -1,0 +1,145 @@
+cases:
+  - id: gr-nearest
+    clause: GR-NEAREST-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z]}
+    compare: {fields: {values: oneof}}
+    oneof_from: {kwargs: {select: all}}
+    adr: ADR-0005
+  - id: gr-nearest-all
+    clause: GR-NEAREST-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: gr-nearest-ignore-strand-all
+    clause: GR-NEAREST-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all, ignore.strand: true}}
+  - id: gr-nearest-ignore-strand
+    clause: GR-NEAREST-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z], kwargs: {ignore.strand: true}}
+    compare: {fields: {values: oneof}}
+    oneof_from: {kwargs: {select: all}}
+    adr: ADR-0005
+  - id: gr-nearest-other-seqname-only
+    clause: GR-NEAREST-3
+    inputs:
+      x: {GRanges: {seqnames: [b], start: [1], width: [1], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [1], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z]}
+  - id: gr-nearest-empty-subject
+    clause: GR-NEAREST-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: nearest, args: [x, z]}
+  - id: gr-precede
+    clause: GR-PRECEDE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: precede, args: [x, z]}
+  - id: gr-precede-all
+    clause: GR-PRECEDE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: precede, args: [x, z], kwargs: {select: all}}
+  - id: gr-precede-ignore-strand
+    clause: GR-PRECEDE-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: precede, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-precede-star-direction-from-subject
+    clause: GR-PRECEDE-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [20], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a], start: [10, 30], width: [3, 3], strand: ["-", "+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: precede, args: [x, z], kwargs: {select: all}}
+  - id: gr-follow
+    clause: GR-FOLLOW-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: follow, args: [x, z]}
+  - id: gr-follow-all
+    clause: GR-FOLLOW-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: follow, args: [x, z], kwargs: {select: all}}
+  - id: gr-follow-ignore-strand
+    clause: GR-FOLLOW-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], names: [q1, q2, q3, q4, q5, q6], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: follow, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-follow-star-direction-from-subject
+    clause: GR-FOLLOW-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [20], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a], start: [10, 30], width: [3, 3], strand: ["+", "-"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: follow, args: [x, z], kwargs: {select: all}}
+  - id: gr-distance-parallel
+    clause: GR-DISTANCE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a, a], start: [20, 20, 20, 20, 1, 100], width: [2, 2, 2, 2, 2, 2], strand: ["+", "-", "*", "+", "*", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a, a], start: [1, 10, 30, 25, 35, 1], width: [3, 3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*", "+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-strand-incompatible-na
+    clause: GR-DISTANCE-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [20], width: [2], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-ignore-strand
+    clause: GR-DISTANCE-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [20], width: [2], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-distance-different-seqnames-na
+    clause: GR-DISTANCE-3
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [1, 1], width: [2, 2], strand: ["+", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b, b], start: [10, 10], width: [2, 2], strand: ["+", "+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-recycle-x
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [20], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 10, 30, 25, 35], width: [3, 3, 3, 3, 3], strand: ["+", "-", "+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-empty
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-empty-x-nonempty-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [a, a], start: [1, 5], width: [2, 2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-nonempty-x-empty-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 5], width: [2, 2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-empty-x-single-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}

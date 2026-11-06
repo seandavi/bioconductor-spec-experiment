@@ -1,0 +1,345 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-edge-max-end": {
+      "kind": "IRanges",
+      "start": [2147483638, 1],
+      "end": [2147483647, 3],
+      "width": [10, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-width-int-max": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [2147483647],
+      "width": [2147483647],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-min-start": {
+      "kind": "IRanges",
+      "start": [-2147483646],
+      "end": [-2147483642],
+      "width": [5],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-shift-overflow": {
+      "kind": "error",
+      "message": "invalid class “IRanges” object: \n    'start(x)', 'end(x)', and 'width(x)' cannot contain NAs",
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-shift-underflow": {
+      "kind": "error",
+      "message": "invalid class “IRanges” object: \n    'start(x)', 'end(x)', and 'width(x)' cannot contain NAs",
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-shift-to-max": {
+      "kind": "IRanges",
+      "start": [2147483638, 1],
+      "end": [2147483647, 3],
+      "width": [10, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-resize-overflow": {
+      "kind": "IRanges",
+      "start": [2147483638, 1],
+      "end": [null, 100],
+      "width": [100, 100],
+      "names": null,
+      "mcols": {},
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-resize-end-fits": {
+      "kind": "IRanges",
+      "start": [2147483548],
+      "end": [2147483647],
+      "width": [100],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-flank-end-overflow": {
+      "kind": "IRanges",
+      "start": [null, 4],
+      "end": [null, 8],
+      "width": [5, 5],
+      "names": null,
+      "mcols": {},
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-promoters-overflow": {
+      "kind": "IRanges",
+      "start": [2147483642],
+      "end": [null],
+      "width": [null],
+      "names": null,
+      "mcols": {},
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-reduce-max": {
+      "kind": "IRanges",
+      "start": [1, 2147483638],
+      "end": [3, 2147483647],
+      "width": [3, 10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-gaps-max": {
+      "kind": "IRanges",
+      "start": [4],
+      "end": [2147483637],
+      "width": [2147483634],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-gaps-to-max": {
+      "kind": "IRanges",
+      "start": [1, 8],
+      "end": [2147483647, 2147483647],
+      "width": [2147483647, 2147483640],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-range-max": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [2147483647],
+      "width": [2147483647],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-union-max": {
+      "kind": "IRanges",
+      "start": [1, 2147483638],
+      "end": [3, 2147483647],
+      "width": [3, 10],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-setdiff-max": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [2147483647],
+      "width": [2147483647],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-narrow-max": {
+      "kind": "IRanges",
+      "start": [2],
+      "end": [2147483647],
+      "width": [2147483646],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-punion-max": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [2147483647],
+      "width": [2147483647],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-fo-max": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-edge-nearest-max": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-distance-overflow-is-na": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null],
+      "names": null,
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-disjoin-end-int-max": {
+      "kind": "error",
+      "message": "'start(q)' and 'end(q)' must have the same length",
+      "warnings": ["NAs produced by integer overflow"]
+    },
+    "ir-edge-fo-maxgap-int-max": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-edge-na-start": {
+      "kind": "error",
+      "message": "'start' or 'width' cannot contain NAs",
+      "warnings": []
+    },
+    "ir-edge-na-width": {
+      "kind": "error",
+      "message": "'start' or 'width' cannot contain NAs",
+      "warnings": []
+    },
+    "ir-edge-sub-empty-name-never-matches": {
+      "kind": "error",
+      "message": "subscript contains invalid names",
+      "warnings": []
+    },
+    "ir-edge-sub-duplicate-names-first": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [1],
+      "width": [1],
+      "names": ["a"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-names-na-concat": {
+      "kind": "IRanges",
+      "start": [1, 1],
+      "end": [1, 1],
+      "width": [1, 1],
+      "names": [null, ""],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-all-zero-order": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 1, 3],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-all-zero-rank": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 1, 2],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-all-zero-duplicated": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [false, true, true],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-all-zero-self-overlaps-maxgap0": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 2, 3],
+      "query_length": 3,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "ir-edge-all-zero-nearest": {
+      "kind": "Hits",
+      "query": [1, 2],
+      "subject": [1, 2],
+      "query_length": 2,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-edge-all-zero-coverage": {
+      "kind": "Rle",
+      "values": [0],
+      "lengths": [4],
+      "warnings": []
+    },
+    "ir-edge-all-zero-reduce-drop": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-single-range-reduce": {
+      "kind": "IRanges",
+      "start": [3],
+      "end": [4],
+      "width": [2],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-edge-single-range-gaps": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-edge-single-range-disjoin": {
+      "kind": "IRanges",
+      "start": [3],
+      "end": [4],
+      "width": [2],
+      "names": null,
+      "mcols": {
+        "revmap": [
+          [1]
+        ]
+      },
+      "warnings": []
+    },
+    "ir-edge-single-range-nearest-self": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-single-range-precede-none": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-single-range-rank": {
+      "kind": "vector",
+      "type": "double",
+      "values": [1],
+      "names": null,
+      "warnings": []
+    },
+    "ir-edge-shift-zero-width-overflow": {
+      "kind": "error",
+      "message": "invalid class “IRanges” object: \n    'start(x)', 'end(x)', and 'width(x)' cannot contain NAs",
+      "warnings": ["NAs produced by integer overflow"]
+    }
+  }
+}

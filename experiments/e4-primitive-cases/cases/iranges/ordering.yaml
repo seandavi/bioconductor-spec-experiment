@@ -1,0 +1,141 @@
+cases:
+  - id: ir-order-basic
+    clause: IR-ORDER-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: order, args: [x]}
+  - id: ir-order-decreasing
+    clause: IR-ORDER-2
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: order, args: [x], kwargs: {decreasing: true}}
+  - id: ir-order-ties-by-width
+    clause: IR-ORDER-1
+    inputs:
+      x: {IRanges: {start: [1, 1, 1], width: [3, 1, 2]}}
+    call: {op: order, args: [x]}
+  - id: ir-order-stable
+    clause: IR-ORDER-3
+    inputs:
+      x: {IRanges: {start: [1, 1, 1], width: [2, 2, 2]}}
+    call: {op: order, args: [x]}
+  - id: ir-order-stable-decreasing
+    clause: IR-ORDER-3
+    inputs:
+      x: {IRanges: {start: [1, 1, 1], width: [2, 2, 2]}}
+    call: {op: order, args: [x], kwargs: {decreasing: true}}
+  - id: ir-order-negative-coords
+    clause: IR-ORDER-1
+    inputs:
+      x: {IRanges: {start: [3, -5, 0, -5], width: [1, 2, 0, 1]}}
+    call: {op: order, args: [x]}
+  - id: ir-order-empty
+    clause: IR-ORDER-4
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: order, args: [x]}
+  - id: ir-sort-basic
+    clause: IR-SORT-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: sort, args: [x]}
+  - id: ir-sort-decreasing
+    clause: IR-SORT-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: sort, args: [x], kwargs: {decreasing: true}}
+  - id: ir-sort-empty
+    clause: IR-SORT-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: sort, args: [x]}
+  - id: ir-sort-already-sorted
+    clause: IR-SORT-1
+    inputs:
+      x: {IRanges: {start: [1, 2, 3], width: [1, 1, 1], names: [a, b, c]}}
+    call: {op: sort, args: [x]}
+  - id: ir-rank-average
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: average}}
+  - id: ir-rank-first
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: first}}
+  - id: ir-rank-last
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: last}}
+  - id: ir-rank-min
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: ir-rank-max
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: max}}
+  - id: ir-rank-min-negative
+    clause: IR-RANK-1
+    inputs:
+      x: {IRanges: {start: [-5, 3, 3], width: [2, 1, 1]}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: ir-rank-empty
+    clause: IR-RANK-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: ir-rank-no-ties-method
+    clause: IR-RANK-3
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x]}
+  - id: ir-rank-bad-ties-method
+    clause: IR-RANK-3
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: foo}}
+  - id: ir-dup-basic
+    clause: IR-DUP-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: duplicated, args: [x]}
+  - id: ir-dup-from-last
+    clause: IR-DUP-2
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: duplicated, args: [x], kwargs: {fromLast: true}}
+  - id: ir-dup-ignores-names-mcols
+    clause: IR-DUP-3
+    inputs:
+      x: {IRanges: {start: [1, 1, 1], width: [3, 3, 3], names: [p, q, r], mcols: {s: [1, 2, 1]}}}
+    call: {op: duplicated, args: [x]}
+  - id: ir-dup-zero-width
+    clause: IR-DUP-3
+    inputs:
+      x: {IRanges: {start: [2, 2, 3], width: [0, 0, 0]}}
+    call: {op: duplicated, args: [x]}
+  - id: ir-dup-empty
+    clause: IR-DUP-4
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: duplicated, args: [x]}
+  - id: ir-unique-basic
+    clause: IR-UNIQUE-1
+    inputs:
+      x: {IRanges: {start: [5, 1, 5, 1, 3, 5, 1], width: [2, 3, 1, 3, 0, 2, 1], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}}}
+    call: {op: unique, args: [x]}
+  - id: ir-unique-no-dups
+    clause: IR-UNIQUE-1
+    inputs:
+      x: {IRanges: {start: [1, 2], width: [1, 1], names: [a, b]}}
+    call: {op: unique, args: [x]}
+  - id: ir-unique-empty
+    clause: IR-UNIQUE-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: unique, args: [x]}

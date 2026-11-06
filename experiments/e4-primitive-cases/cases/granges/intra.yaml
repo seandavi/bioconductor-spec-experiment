@@ -1,0 +1,151 @@
+cases:
+  - id: gr-shift
+    clause: GR-SHIFT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: shift, args: [x], kwargs: {shift: 3}}
+  - id: gr-shift-vector
+    clause: GR-SHIFT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: shift, args: [x], kwargs: {shift: [1, 2, 3, 4]}}
+  - id: gr-narrow-start
+    clause: GR-SHIFT-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: narrow, args: [x], kwargs: {start: 2}}
+  - id: gr-narrow-end
+    clause: GR-SHIFT-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: narrow, args: [x], kwargs: {end: -2}}
+  - id: gr-narrow-start-width
+    clause: GR-SHIFT-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: narrow, args: [x], kwargs: {start: 2, width: 2}}
+  - id: gr-resize-start
+    clause: GR-RESIZE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2}}
+  - id: gr-resize-end
+    clause: GR-RESIZE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, fix: end}}
+  - id: gr-resize-center
+    clause: GR-RESIZE-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, fix: center}}
+  - id: gr-resize-center-odd
+    clause: GR-RESIZE-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 3, fix: center}}
+  - id: gr-resize-vector-fix
+    clause: GR-RESIZE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, fix: [start, end, center, end]}}
+  - id: gr-resize-ignore-strand
+    clause: GR-RESIZE-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, ignore.strand: true}}
+  - id: gr-resize-no-names
+    clause: GR-RESIZE-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, use.names: false}}
+  - id: gr-resize-negative
+    clause: GR-RESIZE-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: -1}}
+  - id: gr-flank-start
+    clause: GR-FLANK-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3}}
+  - id: gr-flank-end
+    clause: GR-FLANK-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3, start: false}}
+  - id: gr-flank-both
+    clause: GR-FLANK-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3, both: true}}
+  - id: gr-flank-both-end
+    clause: GR-FLANK-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3, start: false, both: true}}
+  - id: gr-flank-negative
+    clause: GR-FLANK-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: -2}}
+  - id: gr-flank-negative-end
+    clause: GR-FLANK-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: -2, start: false}}
+  - id: gr-flank-vector
+    clause: GR-FLANK-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: [1, 2, 3, 4]}}
+  - id: gr-flank-ignore-strand
+    clause: GR-FLANK-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3, ignore.strand: true}}
+  - id: gr-flank-past-sequence-start
+    clause: GR-FLANK-5
+    inputs:
+      x: {GRanges: {seqnames: [b], start: [2], width: [3], strand: ["+"], seqinfo: {seqnames: [b], seqlengths: [500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 5}}
+  - id: gr-promoters
+    clause: GR-PROMOTERS-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 3, downstream: 1}}
+  - id: gr-promoters-zero
+    clause: GR-PROMOTERS-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 0, downstream: 0}}
+  - id: gr-promoters-default
+    clause: GR-PROMOTERS-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: promoters, args: [x]}
+  - id: gr-promoters-negative
+    clause: GR-PROMOTERS-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b], start: [10, 10, 10, 100], width: [5, 5, 5, 3], strand: ["+", "-", "*", "-"], names: [p, m, s, q], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: promoters, args: [x], kwargs: {upstream: -1, downstream: 1}}
+  - id: gr-intra-empty-resize
+    clause: GR-INTRA-1
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: resize, args: [x], kwargs: {width: 3}}
+  - id: gr-intra-empty-flank
+    clause: GR-INTRA-1
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: flank, args: [x], kwargs: {width: 3}}
+  - id: gr-intra-empty-promoters
+    clause: GR-INTRA-1
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b], seqlengths: [1000, 500]}}}
+    call: {op: promoters, args: [x]}
+  - id: gr-shift-past-sequence-end
+    clause: GR-SHIFT-3
+    inputs:
+      x: {GRanges: {seqnames: [b], start: [490], width: [3], seqinfo: {seqnames: [b], seqlengths: [500]}}}
+    call: {op: shift, args: [x], kwargs: {shift: 20}}

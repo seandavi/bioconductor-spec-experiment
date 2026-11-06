@@ -1,0 +1,301 @@
+cases:
+  - id: ir-union-basic
+    clause: IR-UNION-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-empty-y
+    clause: IR-UNION-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-empty-x
+    clause: IR-UNION-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-both-empty
+    clause: IR-UNION-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-adjacent
+    clause: IR-UNION-3
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [4], width: [3]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-zero-width
+    clause: IR-UNION-4
+    inputs:
+      x: {IRanges: {start: [5, 7], width: [0, 3]}}
+      z: {IRanges: {start: [5], width: [0]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-zero-inside
+    clause: IR-UNION-4
+    inputs:
+      x: {IRanges: {start: [5], width: [0]}}
+      z: {IRanges: {start: [1], width: [10]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-union-nested-multi
+    clause: IR-UNION-5
+    inputs:
+      x: {IRanges: {start: [1, 4, 20, 30], width: [3, 3, 5, 2]}}
+      z: {IRanges: {start: [2, 4, 22, 29], width: [8, 1, 1, 5]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-intersect-basic
+    clause: IR-INTERSECT-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-empty-y
+    clause: IR-INTERSECT-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-empty-x
+    clause: IR-INTERSECT-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-both-empty
+    clause: IR-INTERSECT-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-adjacent
+    clause: IR-INTERSECT-3
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [4], width: [3]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-zero-width
+    clause: IR-INTERSECT-4
+    inputs:
+      x: {IRanges: {start: [5, 7], width: [0, 3]}}
+      z: {IRanges: {start: [5], width: [0]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-zero-inside
+    clause: IR-INTERSECT-4
+    inputs:
+      x: {IRanges: {start: [5], width: [0]}}
+      z: {IRanges: {start: [1], width: [10]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-intersect-nested-multi
+    clause: IR-INTERSECT-5
+    inputs:
+      x: {IRanges: {start: [1, 4, 20, 30], width: [3, 3, 5, 2]}}
+      z: {IRanges: {start: [2, 4, 22, 29], width: [8, 1, 1, 5]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-setdiff-basic
+    clause: IR-SETDIFF-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-empty-y
+    clause: IR-SETDIFF-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-empty-x
+    clause: IR-SETDIFF-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-both-empty
+    clause: IR-SETDIFF-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-adjacent
+    clause: IR-SETDIFF-3
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [4], width: [3]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-zero-width
+    clause: IR-SETDIFF-4
+    inputs:
+      x: {IRanges: {start: [5, 7], width: [0, 3]}}
+      z: {IRanges: {start: [5], width: [0]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-zero-inside
+    clause: IR-SETDIFF-4
+    inputs:
+      x: {IRanges: {start: [5], width: [0]}}
+      z: {IRanges: {start: [1], width: [10]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-nested-multi
+    clause: IR-SETDIFF-5
+    inputs:
+      x: {IRanges: {start: [1, 4, 20, 30], width: [3, 3, 5, 2]}}
+      z: {IRanges: {start: [2, 4, 22, 29], width: [8, 1, 1, 5]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-yx
+    clause: IR-SETDIFF-1
+    inputs:
+      x: {IRanges: {start: [2, 8, 10, 21, 40], width: [2, 2, 3, 5, 0]}}
+      z: {IRanges: {start: [1, 5, 10, 20, 30], width: [3, 3, 0, 2, 0], names: [a, b, c, d, e], mcols: {s: [1, 2, 3, 4, 5]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-split
+    clause: IR-SETDIFF-3
+    inputs:
+      x: {IRanges: {start: [1], width: [10]}}
+      z: {IRanges: {start: [4], width: [2]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-all-removed
+    clause: IR-SETDIFF-3
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [1], width: [10]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-setdiff-zero-y
+    clause: IR-SETDIFF-4
+    inputs:
+      x: {IRanges: {start: [1], width: [10]}}
+      z: {IRanges: {start: [5], width: [0]}}
+    call: {op: setdiff, args: [x, z]}
+  - id: ir-union-reduces-x-adjacent
+    clause: IR-UNION-5
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: union, args: [x, z]}
+  - id: ir-intersect-merged-cover
+    clause: IR-INTERSECT-5
+    inputs:
+      x: {IRanges: {start: [1], width: [6]}}
+      z: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: intersect, args: [x, z]}
+  - id: ir-punion-gap-error
+    clause: IR-PUNION-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: punion, args: [x, z]}
+  - id: ir-punion-fill-gap
+    clause: IR-PUNION-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: punion, args: [x, z], kwargs: {fill.gap: true}}
+  - id: ir-punion-overlap-adjacent
+    clause: IR-PUNION-1
+    inputs:
+      x: {IRanges: {start: [1, 1, 5], width: [3, 3, 0], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+      z: {IRanges: {start: [2, 4, 2], width: [4, 3, 3]}}
+    call: {op: punion, args: [x, z]}
+  - id: ir-punion-zero-width-pair
+    clause: IR-PUNION-3
+    inputs:
+      x: {IRanges: {start: [5, 5, 5], width: [0, 0, 0]}}
+      z: {IRanges: {start: [2, 3, 5], width: [3, 3, 0]}}
+    call: {op: punion, args: [x, z]}
+  - id: ir-punion-zero-gap
+    clause: IR-PUNION-3
+    inputs:
+      x: {IRanges: {start: [5], width: [0]}}
+      z: {IRanges: {start: [7], width: [0]}}
+    call: {op: punion, args: [x, z]}
+  - id: ir-punion-length-mismatch
+    clause: IR-PUNION-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2], width: [1]}}
+    call: {op: punion, args: [x, z]}
+  - id: ir-pintersect-ambiguous-error
+    clause: IR-PINTERSECT-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: pintersect, args: [x, z]}
+  - id: ir-pintersect-overlap-names
+    clause: IR-PINTERSECT-2
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [5, 3], names: [n1, n2], mcols: {s: [1, 2]}}}
+      z: {IRanges: {start: [3, 6], width: [5, 10]}}
+    call: {op: pintersect, args: [x, z]}
+  - id: ir-pintersect-adjacent-empty
+    clause: IR-PINTERSECT-3
+    inputs:
+      x: {IRanges: {start: [1], width: [2]}}
+      z: {IRanges: {start: [3], width: [2]}}
+    call: {op: pintersect, args: [x, z]}
+  - id: ir-pintersect-zero-width
+    clause: IR-PINTERSECT-3
+    inputs:
+      x: {IRanges: {start: [5, 1, 5], width: [0, 0, 0]}}
+      z: {IRanges: {start: [1, 1, 5], width: [10, 10, 0]}}
+    call: {op: pintersect, args: [x, z]}
+  - id: ir-pintersect-resolve-start
+    clause: IR-PINTERSECT-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: pintersect, args: [x, z], kwargs: {resolve.empty: start}}
+  - id: ir-pintersect-resolve-maxstart
+    clause: IR-PINTERSECT-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: pintersect, args: [x, z], kwargs: {resolve.empty: max.start}}
+  - id: ir-pintersect-length-mismatch
+    clause: IR-PUNION-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2], width: [1]}}
+    call: {op: pintersect, args: [x, z]}
+  - id: ir-psetdiff-basic
+    clause: IR-PSETDIFF-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2, 9, 10, 40], width: [4, 2, 3, 1]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-table
+    clause: IR-PSETDIFF-2
+    inputs:
+      x: {IRanges: {start: [2, 2, 2, 2, 2, 2, 2, 2, 2], width: [4, 4, 4, 4, 4, 4, 4, 4, 4], names: [a, b, c, d, e, f, g, h, i], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9]}}}
+      z: {IRanges: {start: [1, 2, 2, 1, 4, 0, 5, 6, 2], width: [10, 3, 4, 2, 3, 3, 3, 3, 0]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-empty-x
+    clause: IR-PSETDIFF-3
+    inputs:
+      x: {IRanges: {start: [2, 2, 2], width: [0, 0, 0]}}
+      z: {IRanges: {start: [1, 2, 3], width: [3, 3, 5]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-strictly-inside
+    clause: IR-PSETDIFF-4
+    inputs:
+      x: {IRanges: {start: [1], width: [10]}}
+      z: {IRanges: {start: [4], width: [2]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-zero-y-inside
+    clause: IR-PSETDIFF-4
+    inputs:
+      x: {IRanges: {start: [2], width: [4]}}
+      z: {IRanges: {start: [3], width: [0]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-zero-y-edge
+    clause: IR-PSETDIFF-5
+    inputs:
+      x: {IRanges: {start: [2, 2], width: [4, 4]}}
+      z: {IRanges: {start: [2, 6], width: [0, 0]}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: ir-psetdiff-length-mismatch
+    clause: IR-PUNION-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 20], width: [3, 3, 0, 2], names: [a, b, c, d], mcols: {s: [1, 2, 3, 4]}}}
+      z: {IRanges: {start: [2], width: [1]}}
+    call: {op: psetdiff, args: [x, z]}

@@ -1,0 +1,63 @@
+cases:
+  - id: ir-acc-start
+    clause: IR-ACC-1
+    inputs: {x: {IRanges: {start: [4, 1], width: [2, 3]}}}
+    call: {op: start, args: [x]}
+  - id: ir-acc-end
+    clause: IR-ACC-1
+    inputs: {x: {IRanges: {start: [4, 1], width: [2, 3]}}}
+    call: {op: end, args: [x]}
+  - id: ir-acc-width
+    clause: IR-ACC-1
+    inputs: {x: {IRanges: {start: [4, 1], width: [2, 3]}}}
+    call: {op: width, args: [x]}
+  - id: ir-acc-names
+    clause: IR-ACC-1
+    inputs: {x: {IRanges: {start: [4, 1], width: [2, 3], names: [p, q]}}}
+    call: {op: names, args: [x]}
+  - id: ir-acc-length
+    clause: IR-ACC-1
+    inputs: {x: {IRanges: {start: [4, 1, 9], width: [2, 3, 1]}}}
+    call: {op: length, args: [x]}
+  - id: ir-sub-int
+    clause: IR-SUB-INT-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 9], width: [2, 3, 4]}}
+      i: {int: [3, 1, 1]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-lgl
+    clause: IR-SUB-LGL-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 9], width: [2, 3, 4]}}
+      i: {lgl: [true, false, true]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-names
+    clause: IR-SUB-NAMES-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 9], width: [2, 3, 4], names: [a, b, a]}}
+      i: {chr: [b, a]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-oob
+    clause: IR-SUB-ERR-1
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 3]}}
+      i: {int: [3]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-unknown-name
+    clause: IR-SUB-ERR-1
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 3], names: [a, b]}}
+      i: {chr: [zz]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-keeps-names-mcols
+    clause: IR-SUB-KEEP-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 9], width: [2, 3, 4], names: [a, b, c], mcols: {s: [1, 2, 3], t: [x, y, z]}}}
+      i: {int: [3, 2]}
+    call: {op: "[", args: [x, i]}
+  - id: ir-sub-empty-lgl
+    clause: IR-SUB-LGL-1
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 3]}}
+      i: {lgl: [false, false]}
+    call: {op: "[", args: [x, i]}

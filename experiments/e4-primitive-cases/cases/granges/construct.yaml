@@ -1,0 +1,157 @@
+cases:
+  - id: gr-con-basic
+    clause: GR-CON-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-default-strand
+    clause: GR-CON-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1], start: [1, 5], width: [3, 3]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-recycle-strand
+    clause: GR-CON-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1], start: [1, 5], width: [3, 3], strand: ["-"]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-recycle-seqname
+    clause: GR-CON-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1, 5], width: [3, 3]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-seqlevels-appearance
+    clause: GR-CON-3
+    inputs:
+      x: {GRanges: {seqnames: [chrB, chrA, chrB, chrC], start: [1, 2, 3, 4], width: [1, 1, 1, 1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-names-mcols
+    clause: GR-CON-4
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [1, 5], width: [3, 3], names: [n1, n2], mcols: {s: [1, 2], t: [u, v]}}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-from-start-end
+    clause: GR-CON-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 5], end: [3, 5]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-empty
+    clause: GR-CON-5
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-zero-width
+    clause: GR-CON-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [5, 1], width: [0, 0], strand: ["+", "-"]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-with-seqinfo
+    clause: GR-CON-6
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1], start: [1, 5], width: [3, 3], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-with-seqinfo-ref
+    clause: GR-CON-6
+    inputs:
+      si: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+      x: {GRanges: {seqnames: [chr3, chr1], start: [1, 5], width: [3, 3], seqinfo: si}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-seqinfo-no-lengths
+    clause: GR-CON-6
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [1], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-seqname-not-in-seqinfo
+    clause: GR-CON-7
+    inputs:
+      x: {GRanges: {seqnames: [chrZ], start: [1], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-bad-strand
+    clause: GR-CON-7
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [3], strand: ["x"]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-na-seqname
+    clause: GR-CON-7
+    inputs:
+      x: {GRanges: {seqnames: [a, null], start: [1, 5], width: [3, 3]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-length-mismatch
+    clause: GR-CON-7
+    inputs:
+      x: {GRanges: {seqnames: [a, b, c], start: [1, 5], width: [3, 3]}}
+    call: {op: identity, args: [x]}
+  - id: gr-con-negative-width
+    clause: GR-CON-7
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [-1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-acc-seqnames
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: seqnames, args: [x]}
+  - id: gr-acc-strand
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: strand, args: [x]}
+  - id: gr-acc-start
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: start, args: [x]}
+  - id: gr-acc-end
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: end, args: [x]}
+  - id: gr-acc-width
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: width, args: [x]}
+  - id: gr-acc-names
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: names, args: [x]}
+  - id: gr-acc-ranges
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: ranges, args: [x]}
+  - id: gr-acc-seqlevels
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: seqlevels, args: [x]}
+  - id: gr-acc-seqlengths
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: seqlengths, args: [x]}
+  - id: gr-acc-iscircular
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: isCircular, args: [x]}
+  - id: gr-acc-genome
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: genome, args: [x]}
+  - id: gr-acc-seqinfo
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: seqinfo, args: [x]}
+  - id: gr-acc-length
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 5, 9], width: [3, 3, 3], strand: ["+", "-", "*"], names: [a, b, c], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}}
+    call: {op: length, args: [x]}
+  - id: gr-acc-ranges-unnamed
+    clause: GR-ACC-1
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [3]}}
+    call: {op: ranges, args: [x]}

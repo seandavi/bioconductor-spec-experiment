@@ -1,0 +1,616 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-fo-any-grid": {
+      "kind": "Hits",
+      "query": [3, 4, 5, 6, 7, 8, 9, 10],
+      "subject": [1, 1, 1, 1, 1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-adjacent": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-contains": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 1, 1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-zero-query-grid": {
+      "kind": "Hits",
+      "query": [4, 5, 6, 7, 8],
+      "subject": [1, 1, 1, 1, 1],
+      "query_length": 10,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-zero-subject-grid": {
+      "kind": "Hits",
+      "query": [1, 1, 1, 1, 1],
+      "subject": [4, 5, 6, 7, 8],
+      "query_length": 1,
+      "subject_length": 10,
+      "warnings": []
+    },
+    "ir-fo-zero-vs-zero": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-zero-query-maxgap0": {
+      "kind": "Hits",
+      "query": [3, 4, 5, 6, 7, 8, 9],
+      "subject": [1, 1, 1, 1, 1, 1, 1],
+      "query_length": 10,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-zero-vs-zero-maxgap0": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-zero-query-minoverlap1": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 10,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-maxgap0": {
+      "kind": "Hits",
+      "query": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "subject": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-maxgap1": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "subject": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-maxgap2": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "subject": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-maxgap-zero-subject": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-minoverlap2": {
+      "kind": "Hits",
+      "query": [4, 5, 6, 7, 8, 9],
+      "subject": [1, 1, 1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-minoverlap3": {
+      "kind": "Hits",
+      "query": [5, 6, 7, 8],
+      "subject": [1, 1, 1, 1],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-any-minoverlap4": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 12,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-err-maxgap-and-minoverlap": {
+      "kind": "error",
+      "message": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+      "warnings": []
+    },
+    "ir-fo-err-maxgap-low": {
+      "kind": "error",
+      "message": "'maxgap' must be >= -1",
+      "warnings": []
+    },
+    "ir-fo-err-minoverlap-negative": {
+      "kind": "error",
+      "message": "'minoverlap' cannot be negative",
+      "warnings": []
+    },
+    "ir-fo-err-bad-type": {
+      "kind": "error",
+      "message": "'arg' should be one of “any”, “start”, “end”, “within”, “equal”",
+      "warnings": []
+    },
+    "ir-fo-err-bad-select": {
+      "kind": "error",
+      "message": "'arg' should be one of “all”, “first”, “last”, “arbitrary”",
+      "warnings": []
+    },
+    "ir-fo-start-grid": {
+      "kind": "Hits",
+      "query": [5],
+      "subject": [1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-start-maxgap1": {
+      "kind": "Hits",
+      "query": [4, 5, 6],
+      "subject": [1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-start-maxgap3": {
+      "kind": "Hits",
+      "query": [2, 3, 4, 5, 6, 7, 8],
+      "subject": [1, 1, 1, 1, 1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-start-disjoint-maxgap": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-start-widths": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 1, 1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-end-grid": {
+      "kind": "Hits",
+      "query": [9],
+      "subject": [1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-end-maxgap2": {
+      "kind": "Hits",
+      "query": [7, 8, 9],
+      "subject": [1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-end-maxgap5": {
+      "kind": "Hits",
+      "query": [4, 5, 6, 7, 8, 9],
+      "subject": [1, 1, 1, 1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-start-end-zero-width": {
+      "kind": "Hits",
+      "query": [1, 3],
+      "subject": [1, 1],
+      "query_length": 4,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-end-zero-width": {
+      "kind": "Hits",
+      "query": [2, 4],
+      "subject": [1, 1],
+      "query_length": 4,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-grid": {
+      "kind": "Hits",
+      "query": [3, 4, 5, 6, 7],
+      "subject": [1, 1, 1, 1, 1],
+      "query_length": 8,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-contained-only": {
+      "kind": "Hits",
+      "query": [2, 3],
+      "subject": [1, 1],
+      "query_length": 4,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-zero-width": {
+      "kind": "Hits",
+      "query": [2, 3, 4],
+      "subject": [1, 1, 1],
+      "query_length": 5,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-zero-subject": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-fo-within-maxgap0": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 1, 1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-maxgap1": {
+      "kind": "Hits",
+      "query": [3],
+      "subject": [1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-maxgap2": {
+      "kind": "Hits",
+      "query": [2, 3],
+      "subject": [1, 1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-maxgap4": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 1, 1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-within-maxgap-middle": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 5,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-equal-grid": {
+      "kind": "Hits",
+      "query": [5],
+      "subject": [1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-equal-maxgap1": {
+      "kind": "Hits",
+      "query": [2, 3, 4, 5, 6, 7, 8],
+      "subject": [1, 1, 1, 1, 1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-equal-maxgap2": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "subject": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "query_length": 9,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-equal-duplicates": {
+      "kind": "Hits",
+      "query": [1, 2, 2],
+      "subject": [2, 1, 3],
+      "query_length": 2,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "ir-fo-equal-zero-width": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-minoverlap-start": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-minoverlap-start-ok": {
+      "kind": "Hits",
+      "query": [1, 2],
+      "subject": [1, 1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-minoverlap-within": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-minoverlap-equal": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-minoverlap-end": {
+      "kind": "Hits",
+      "query": [2],
+      "subject": [1],
+      "query_length": 2,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "ir-fo-hits-sorted": {
+      "kind": "Hits",
+      "query": [1, 1, 1, 1, 2, 2],
+      "subject": [1, 2, 3, 5, 3, 5],
+      "query_length": 4,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-fo-hits-lengths": {
+      "kind": "Hits",
+      "query": [1, 1, 1, 2, 2, 2],
+      "subject": [1, 2, 3, 1, 2, 3],
+      "query_length": 2,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "ir-fo-self": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2, 3, 4],
+      "subject": [1, 2, 1, 2, 3, 4],
+      "query_length": 4,
+      "subject_length": 4,
+      "warnings": []
+    },
+    "ir-fo-empty-query": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 0,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-fo-empty-subject": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 4,
+      "subject_length": 0,
+      "warnings": []
+    },
+    "ir-fo-empty-both": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 0,
+      "subject_length": 0,
+      "warnings": []
+    },
+    "ir-fo-select-first": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 3, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-fo-select-last": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 5, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-fo-select-arbitrary": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 5, null, null],
+      "names": null,
+      "candidates": [
+        [1, 2, 3, 5],
+        [3, 5],
+        [null],
+        [null]
+      ],
+      "warnings": []
+    },
+    "ir-fo-select-first-within": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, 5, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-fo-select-empty": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-fo-select-no-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-fo-select-arbitrary-nohit": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, 5],
+      "names": null,
+      "candidates": [
+        [null],
+        [5]
+      ],
+      "warnings": []
+    },
+    "ir-count-basic": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 2, 0, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-count-within": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [0, 1, 0, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-count-maxgap": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 4, 0, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-count-empty-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [0, 0, 0, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-count-names": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 2, 0, 0],
+      "names": ["a", "b", "c", "d"],
+      "warnings": []
+    },
+    "ir-count-self": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 2, 1, 1],
+      "names": null,
+      "warnings": []
+    },
+    "ir-ovany-basic": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [true, true, false, false],
+      "names": null,
+      "warnings": []
+    },
+    "ir-ovany-within": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [false, true, false, false],
+      "names": null,
+      "warnings": []
+    },
+    "ir-ovany-empty": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-ovany-minoverlap": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [true, true, false, false],
+      "names": null,
+      "warnings": []
+    },
+    "ir-subset-basic": {
+      "kind": "IRanges",
+      "start": [1, 5],
+      "end": [10, 7],
+      "width": [10, 3],
+      "names": ["a", "b"],
+      "mcols": {
+        "s": [1, 2]
+      },
+      "warnings": []
+    },
+    "ir-subset-invert": {
+      "kind": "IRanges",
+      "start": [20, 40],
+      "end": [21, 40],
+      "width": [2, 1],
+      "names": ["c", "d"],
+      "mcols": {
+        "s": [3, 4]
+      },
+      "warnings": []
+    },
+    "ir-subset-within": {
+      "kind": "IRanges",
+      "start": [5],
+      "end": [7],
+      "width": [3],
+      "names": ["b"],
+      "mcols": {
+        "s": [2]
+      },
+      "warnings": []
+    },
+    "ir-subset-none": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": [],
+      "mcols": {
+        "s": []
+      },
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-shift-scalar": {
+      "kind": "IRanges",
+      "start": [4, 13, 23],
+      "end": [8, 13, 22],
+      "width": [5, 1, 0],
+      "names": ["a", "b", "c"],
+      "mcols": {
+        "s": [1, 2, 3]
+      },
+      "warnings": []
+    },
+    "ir-shift-negative": {
+      "kind": "IRanges",
+      "start": [-4, 5],
+      "end": [0, 5],
+      "width": [5, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-shift-vector": {
+      "kind": "IRanges",
+      "start": [2, 12, 23],
+      "end": [6, 12, 22],
+      "width": [5, 1, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-shift-cyclic": {
+      "kind": "IRanges",
+      "start": [2, 12, 21, 32],
+      "end": [6, 12, 20, 35],
+      "width": [5, 1, 0, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-start": {
+      "kind": "IRanges",
+      "start": [2, 11, 21],
+      "end": [5, 13, 22],
+      "width": [4, 3, 2],
+      "names": ["a", "b", "c"],
+      "mcols": {
+        "s": [1, 2, 3]
+      },
+      "warnings": []
+    },
+    "ir-narrow-end": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [3, 12, 22],
+      "width": [3, 3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-negative-start": {
+      "kind": "IRanges",
+      "start": [4, 12, 21],
+      "end": [5, 13, 22],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-negative-end": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [4, 12, 21],
+      "width": [4, 3, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-start-width": {
+      "kind": "IRanges",
+      "start": [2, 11, 21],
+      "end": [3, 12, 22],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-end-width": {
+      "kind": "IRanges",
+      "start": [2, 11, 21],
+      "end": [3, 12, 22],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-start-end": {
+      "kind": "IRanges",
+      "start": [2, 11, 21],
+      "end": [3, 12, 22],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-vector-args": {
+      "kind": "IRanges",
+      "start": [1, 11, 22],
+      "end": [5, 12, 22],
+      "width": [5, 2, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-empty-at-end": {
+      "kind": "IRanges",
+      "start": [6, 14],
+      "end": [5, 13],
+      "width": [0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-empty-end0": {
+      "kind": "IRanges",
+      "start": [1, 10],
+      "end": [0, 9],
+      "width": [0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-narrow-widening-start": {
+      "kind": "error",
+      "message": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied start (3) is > refwidth + 1",
+      "warnings": []
+    },
+    "ir-narrow-widening-end": {
+      "kind": "error",
+      "message": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied end (3) is > refwidth",
+      "warnings": []
+    },
+    "ir-narrow-negative-width": {
+      "kind": "error",
+      "message": "solving row 1: the supplied start/end lead to a negative width",
+      "warnings": []
+    },
+    "ir-narrow-three-args": {
+      "kind": "error",
+      "message": "solving row 1: either the supplied start or the supplied end (but not both) must be NA when the supplied width is not NA",
+      "warnings": []
+    },
+    "ir-narrow-width-only": {
+      "kind": "error",
+      "message": "solving row 1: either the supplied start or the supplied end (but not both) must be NA when the supplied width is not NA",
+      "warnings": []
+    },
+    "ir-resize-fix-start": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [3, 12, 22],
+      "width": [3, 3, 3],
+      "names": ["a", "b", "c"],
+      "mcols": {
+        "s": [1, 2, 3]
+      },
+      "warnings": []
+    },
+    "ir-resize-fix-end": {
+      "kind": "IRanges",
+      "start": [3, 8, 17],
+      "end": [5, 10, 19],
+      "width": [3, 3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-resize-fix-center-odd": {
+      "kind": "IRanges",
+      "start": [2, 9, 18, 30],
+      "end": [4, 11, 20, 32],
+      "width": [3, 3, 3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-resize-fix-center-even": {
+      "kind": "IRanges",
+      "start": [2, 9, 19, 30],
+      "end": [3, 10, 20, 31],
+      "width": [2, 2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-resize-vector-width-fix": {
+      "kind": "IRanges",
+      "start": [1, 12, 20],
+      "end": [1, 13, 22],
+      "width": [1, 2, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-resize-no-names": {
+      "kind": "IRanges",
+      "start": [1, 10],
+      "end": [2, 11],
+      "width": [2, 2],
+      "names": null,
+      "mcols": {
+        "s": [1, 2]
+      },
+      "warnings": []
+    },
+    "ir-resize-zero": {
+      "kind": "IRanges",
+      "start": [1, 10],
+      "end": [0, 9],
+      "width": [0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-resize-negative": {
+      "kind": "error",
+      "message": "'width' values must be non-negative",
+      "warnings": []
+    },
+    "ir-resize-bad-fix": {
+      "kind": "error",
+      "message": "'fix' must be a character vector or character Rle with values in \"start\", \"end\", and \"center\"",
+      "warnings": []
+    },
+    "ir-flank-start": {
+      "kind": "IRanges",
+      "start": [-1, 8, 18],
+      "end": [0, 9, 19],
+      "width": [2, 2, 2],
+      "names": ["a", "b", "c"],
+      "mcols": {
+        "s": [1, 2, 3]
+      },
+      "warnings": []
+    },
+    "ir-flank-end": {
+      "kind": "IRanges",
+      "start": [6, 11, 20],
+      "end": [7, 12, 21],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-vector-width": {
+      "kind": "IRanges",
+      "start": [0, 8, 17],
+      "end": [0, 9, 19],
+      "width": [1, 2, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-negative-start": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [2, 11, 21],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-negative-end": {
+      "kind": "IRanges",
+      "start": [4, 12, 21],
+      "end": [5, 13, 22],
+      "width": [2, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-both-start": {
+      "kind": "IRanges",
+      "start": [-1, 8, 18],
+      "end": [2, 11, 21],
+      "width": [4, 4, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-both-end": {
+      "kind": "IRanges",
+      "start": [4, 9, 18],
+      "end": [7, 12, 21],
+      "width": [4, 4, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-both-negative": {
+      "kind": "IRanges",
+      "start": [-1, 8, 18],
+      "end": [2, 11, 21],
+      "width": [4, 4, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-zero": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [0, 9, 19],
+      "width": [0, 0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-flank-zero-end": {
+      "kind": "IRanges",
+      "start": [6, 11, 20],
+      "end": [5, 10, 19],
+      "width": [0, 0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-promoters-default": {
+      "kind": "IRanges",
+      "start": [-1999, -1990, 3000],
+      "end": [200, 209, 5199],
+      "width": [2200, 2200, 2200],
+      "names": ["a", "b", "c"],
+      "mcols": {
+        "s": [1, 2, 3]
+      },
+      "warnings": []
+    },
+    "ir-promoters-custom": {
+      "kind": "IRanges",
+      "start": [-1, 8, 18],
+      "end": [1, 10, 20],
+      "width": [3, 3, 3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-promoters-zero": {
+      "kind": "IRanges",
+      "start": [1, 10, 20],
+      "end": [0, 9, 19],
+      "width": [0, 0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-promoters-negative": {
+      "kind": "error",
+      "message": "'upstream' and 'downstream' must be integers >= 0",
+      "warnings": []
+    },
+    "ir-intra-empty-shift": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intra-empty-resize": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-intra-empty-flank": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    }
+  }
+}

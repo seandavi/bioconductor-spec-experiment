@@ -1,0 +1,103 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-acc-start": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 1],
+      "names": null,
+      "warnings": []
+    },
+    "ir-acc-end": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 3],
+      "names": null,
+      "warnings": []
+    },
+    "ir-acc-width": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 3],
+      "names": null,
+      "warnings": []
+    },
+    "ir-acc-names": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["p", "q"],
+      "names": null,
+      "warnings": []
+    },
+    "ir-acc-length": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3],
+      "names": null,
+      "warnings": []
+    },
+    "ir-sub-int": {
+      "kind": "IRanges",
+      "start": [9, 1, 1],
+      "end": [12, 2, 2],
+      "width": [4, 2, 2],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-sub-lgl": {
+      "kind": "IRanges",
+      "start": [1, 9],
+      "end": [2, 12],
+      "width": [2, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-sub-names": {
+      "kind": "IRanges",
+      "start": [5, 1],
+      "end": [7, 2],
+      "width": [3, 2],
+      "names": ["b", "a"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-sub-oob": {
+      "kind": "error",
+      "message": "subscript contains out-of-bounds indices",
+      "warnings": []
+    },
+    "ir-sub-unknown-name": {
+      "kind": "error",
+      "message": "subscript contains invalid names",
+      "warnings": []
+    },
+    "ir-sub-keeps-names-mcols": {
+      "kind": "IRanges",
+      "start": [9, 5],
+      "end": [12, 7],
+      "width": [4, 3],
+      "names": ["c", "b"],
+      "mcols": {
+        "s": [3, 2],
+        "t": ["z", "y"]
+      },
+      "warnings": []
+    },
+    "ir-sub-empty-lgl": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    }
+  }
+}

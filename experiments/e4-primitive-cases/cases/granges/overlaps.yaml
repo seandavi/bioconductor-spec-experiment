@@ -1,0 +1,189 @@
+cases:
+  - id: gr-fo-strand-compat
+    clause: GR-FO-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-ignore-strand
+    clause: GR-FO-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-fo-star-matches-all
+    clause: GR-FO-1
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [6], width: [1], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a], start: [5, 5, 5], width: [3, 3, 3], strand: ["+", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-different-seqnames
+    clause: GR-FO-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-select-first
+    clause: GR-FO-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {select: first}}
+  - id: gr-fo-select-last
+    clause: GR-FO-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {select: last}}
+  - id: gr-fo-select-arbitrary
+    clause: GR-FO-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {select: arbitrary}}
+    compare: {fields: {values: oneof}}
+    oneof_from: {kwargs: {select: all}}
+    adr: ADR-0005
+  - id: gr-fo-select-ignore-strand
+    clause: GR-FO-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {select: first, ignore.strand: true}}
+  - id: gr-fo-within
+    clause: GR-FO-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {type: within}}
+  - id: gr-fo-within-none
+    clause: GR-FO-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {type: within}}
+  - id: gr-fo-start
+    clause: GR-FO-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [5], width: [5], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {type: start}}
+  - id: gr-fo-equal-star
+    clause: GR-FO-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [5], width: [3], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {type: equal}}
+  - id: gr-fo-end
+    clause: GR-FO-5
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [3, 3], width: [5, 5], strand: ["+", "-"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {type: end}}
+  - id: gr-fo-maxgap
+    clause: GR-FO-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [10], width: [3], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [1, 1, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {maxgap: 5}}
+  - id: gr-fo-maxgap-does-not-cross-seqnames
+    clause: GR-FO-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [3], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {maxgap: 100000}}
+  - id: gr-fo-minoverlap
+    clause: GR-FO-6
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {minoverlap: 3}}
+  - id: gr-fo-zero-width
+    clause: GR-FO-7
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a], start: [6, 5, 8], width: [0, 0, 0], strand: ["+", "+", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-self
+    clause: GR-FO-8
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x]}
+  - id: gr-fo-empty-query
+    clause: GR-FO-8
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-empty-subject
+    clause: GR-FO-8
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {select: first}}
+  - id: gr-fo-seqlevels-merged
+    clause: GR-FO-9
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a, c]}}}
+      z: {GRanges: {seqnames: [a, b], start: [1, 1], width: [5, 5], seqinfo: {seqnames: [b, a]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-seqlengths-conflict
+    clause: GR-FO-9
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [200]}}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-fo-no-common-seqlevels
+    clause: GR-FO-9
+    inputs:
+      x: {GRanges: {seqnames: [q], start: [1], width: [5]}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [5]}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: gr-count
+    clause: GR-COUNT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: countOverlaps, args: [x, z]}
+  - id: gr-count-ignore-strand
+    clause: GR-COUNT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: countOverlaps, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-count-within
+    clause: GR-COUNT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: countOverlaps, args: [x, z], kwargs: {type: within}}
+  - id: gr-ovany
+    clause: GR-OVANY-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: overlapsAny, args: [x, z]}
+  - id: gr-ovany-ignore-strand
+    clause: GR-OVANY-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: overlapsAny, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-subset
+    clause: GR-SUBSET-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: subsetByOverlaps, args: [x, z]}
+  - id: gr-subset-invert
+    clause: GR-SUBSET-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: subsetByOverlaps, args: [x, z], kwargs: {invert: true}}
+  - id: gr-subset-ignore-strand
+    clause: GR-SUBSET-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, b, a], start: [1, 1, 1, 1, 50], width: [10, 10, 10, 10, 5], strand: ["+", "-", "*", "+", "+"], names: [p, q, r, s, t], mcols: {s: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, b, b], start: [5, 5, 5, 5, 5], width: [3, 3, 3, 3, 3], strand: ["+", "-", "*", "-", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: subsetByOverlaps, args: [x, z], kwargs: {ignore.strand: true}}

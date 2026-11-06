@@ -1,0 +1,590 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-edge-circular-shift-no-wrap": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [10, 33],
+      "end": [12, 35],
+      "width": [3, 3],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-resize": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [5, 28],
+      "end": [14, 37],
+      "width": [10, 10],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-flank": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [-5, 18],
+      "end": [4, 27],
+      "width": [10, 10],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-promoters": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [-5, 18],
+      "end": [7, 30],
+      "width": [13, 13],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-trim-after-shift": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [10, 33],
+      "end": [12, 35],
+      "width": [3, 3],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-reduce": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [10, 33],
+      "end": [12, 35],
+      "width": [3, 3],
+      "strand": ["+", "+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-circular-coverage-wraps": {
+      "kind": "RleList",
+      "names": ["c"],
+      "elements": [
+        {
+          "values": [0, 1, 0, 1, 0],
+          "lengths": [2, 3, 4, 3, 18]
+        }
+      ],
+      "warnings": []
+    },
+    "gr-edge-circular-coverage-mixed": {
+      "kind": "RleList",
+      "names": ["c", "d"],
+      "elements": [
+        {
+          "values": [4, 2, 3, 2, 4],
+          "lengths": [2, 7, 10, 8, 3]
+        },
+        {
+          "values": [0, 1],
+          "lengths": [17, 3]
+        }
+      ],
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence d. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-circular-coverage-weight": {
+      "kind": "RleList",
+      "names": ["c", "d"],
+      "elements": [
+        {
+          "values": [9, 6, 9, 6, 9],
+          "lengths": [2, 7, 10, 8, 3]
+        },
+        {
+          "values": [0, 5],
+          "lengths": [17, 3]
+        }
+      ],
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence d. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-circular-coverage-shift": {
+      "kind": "RleList",
+      "names": ["c", "d"],
+      "elements": [
+        {
+          "values": [2, 4, 2, 3, 2],
+          "lengths": [7, 5, 7, 10, 1]
+        },
+        {
+          "values": [0],
+          "lengths": [20]
+        }
+      ],
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence d. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-circular-coverage-width-truncates": {
+      "kind": "RleList",
+      "names": ["c", "d"],
+      "elements": [
+        {
+          "values": [4, 2, 3],
+          "lengths": [2, 7, 3]
+        },
+        {
+          "values": [0],
+          "lengths": [12]
+        }
+      ],
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence d. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-circular-coverage-width-too-big": {
+      "kind": "error",
+      "message": "'width[1]' cannot be greater than length of underlying circular sequence",
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence d. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-circular-coverage-full-wraps": {
+      "kind": "RleList",
+      "names": ["c"],
+      "elements": [
+        {
+          "values": [3, 2],
+          "lengths": [5, 25]
+        }
+      ],
+      "warnings": []
+    },
+    "gr-edge-circular-coverage-wrap-end": {
+      "kind": "RleList",
+      "names": ["c"],
+      "elements": [
+        {
+          "values": [1, 0, 1],
+          "lengths": [4, 20, 6]
+        }
+      ],
+      "warnings": []
+    },
+    "gr-edge-circular-coverage-wrap-start": {
+      "kind": "RleList",
+      "names": ["c"],
+      "elements": [
+        {
+          "values": [1, 0, 1],
+          "lengths": [4, 20, 6]
+        }
+      ],
+      "warnings": []
+    },
+    "gr-edge-circular-concat-flags": {
+      "kind": "GRanges",
+      "seqnames": ["c", "c"],
+      "start": [1, 1],
+      "end": [1, 1],
+      "width": [1, 1],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": ["g1"]
+      },
+      "warnings": []
+    },
+    "gr-edge-seqname-empty-string": {
+      "kind": "error",
+      "message": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+      "warnings": []
+    },
+    "gr-edge-seqname-with-space": {
+      "kind": "GRanges",
+      "seqnames": ["chr 1"],
+      "start": [1],
+      "end": [1],
+      "width": [1],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr 1"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-seqname-unicode": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["é"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-seqname-repeats-order": {
+      "kind": "GRanges",
+      "seqnames": ["b", "a", "b"],
+      "start": [1, 2, 3],
+      "end": [1, 2, 3],
+      "width": [1, 1, 1],
+      "strand": ["*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["b", "a"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-edge-seqlength-zero": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [0],
+      "names": ["a"],
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-edge-names-na": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["x", null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-sort": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-unique": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-order": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-duplicated": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-rank": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-range-ignore": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-concat-first": {
+      "kind": "GRanges",
+      "seqnames": ["c"],
+      "start": [5],
+      "end": [7],
+      "width": [3],
+      "strand": ["+"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-count-overlaps": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-subset-by-overlaps": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-nearest": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-distance": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-setdiff": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-union-both": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-intersect-both": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-pintersect": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {
+        "hit": []
+      },
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-punion": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-psetdiff": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["c"],
+        "seqlengths": [30],
+        "isCircular": [true],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-edge-empty-coverage": {
+      "kind": "RleList",
+      "names": ["c"],
+      "elements": [
+        {
+          "values": [0],
+          "lengths": [30]
+        }
+      ],
+      "warnings": []
+    },
+    "gr-edge-empty-precede-returns-hits-in-r": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 0,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "gr-edge-empty-follow-returns-hits-in-r": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 0,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "gr-edge-empty-coverage-no-seqlevels": {
+      "kind": "RleList",
+      "names": [],
+      "elements": [],
+      "warnings": []
+    },
+    "gr-edge-empty-seqlengths-no-seqlevels": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": [],
+      "warnings": []
+    },
+    "gr-edge-empty-seqlevels-no-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-iscircular-no-seqlevels": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [],
+      "names": [],
+      "warnings": []
+    },
+    "gr-edge-empty-genome-no-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": [],
+      "names": [],
+      "warnings": []
+    }
+  }
+}
