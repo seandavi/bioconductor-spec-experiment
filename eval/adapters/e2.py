@@ -357,7 +357,8 @@ class Adapter(AdapterBase):
         return RVector("lgl", list(si.is_circular), list(si.seqnames))
 
     def op_genome(self, *, x):
-        return RVector("chr", list(_seqinfo_of(x, "genome").genome))
+        si = _seqinfo_of(x, "genome")
+        return RVector("chr", list(si.genome), list(si.seqnames))
 
     def op_set_seqinfo(self, *, x, value):
         _need_granges(x, "seqinfo<-")
