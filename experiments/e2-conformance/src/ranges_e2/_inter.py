@@ -82,13 +82,14 @@ def gaps_ranges(
 def disjoin_ranges(
     start: IntArray, width: IntArray, with_revmap: bool = False
 ) -> tuple[IntArray, IntArray, Revmap | None]:
-    """Split into non-overlapping pieces (adjacent pieces stay separate); drops zero-width input."""
+    """Split into non-overlapping pieces (adjacent pieces stay separate); zero-width ranges only split."""
     keep = np.nonzero(width > 0)[0]
     if len(keep) == 0:
         return _empty(), _empty(), ([] if with_revmap else None)
     s = start[keep]
     e1 = s + width[keep]  # exclusive end
-    points = np.unique(np.concatenate((s, e1)))
+    # zero-width ranges add no coverage but still split the pieces they sit inside (R behaviour)
+    points = np.unique(np.concatenate((s, e1, start[width == 0])))
     first = np.searchsorted(points, s)
     last = np.searchsorted(points, e1)  # interval k is [points[k], points[k+1])
     delta = np.zeros(len(points) + 1, dtype=np.int64)

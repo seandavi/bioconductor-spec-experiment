@@ -488,32 +488,26 @@ class GRanges:
         return GRanges._make(self._recode(si), self._strand, r, si)
 
     def pintersect(
-        self,
-        y: "GRanges",
-        drop_nohit_ranges: bool = False,
-        ignore_strand: bool = False,
-        resolve_empty: str = "none",
+        self, y: "GRanges", drop_nohit_ranges: bool = False, ignore_strand: bool = False
     ) -> "GRanges":
+        """Parallel intersection; adds mcols `hit` (FALSE where seqname/strand clash or no overlap).
+
+        Pairs without a hit become a zero-width range at the start of x.
+        """
         si, y, ok, strand = self._parallel_setup(y, ignore_strand, allow_recycle_y=True)
         xs, xw = self._s(), self._w()
         s = np.maximum(xs, y._s())
-        e = np.minimum(xs + xw - 1, y._s() + y._w() - 1)
-        w = e - s + 1
-        bad_overlap = ok & (w < 0)
-        if bad_overlap.any():
-            tmp = IRanges._make(xs[bad_overlap], xw[bad_overlap]).pintersect(
-                IRanges._make(y._s()[bad_overlap], y._w()[bad_overlap]), resolve_empty
-            )
-            s[bad_overlap], w[bad_overlap] = tmp._s(), tmp._w()
-        out_s = np.where(ok, s, xs)
-        out_w = np.where(ok, w, 0)
+        w = np.minimum(xs + xw - 1, y._s() + y._w() - 1) - s + 1
+        hit = ok & (w >= 0)
+        out_s = np.where(hit, s, xs)
+        out_w = np.where(hit, w, 0)
         out_strand = np.where(ok, strand, self._strand)
-        hit = pl.Series("hit", ok.tolist(), dtype=pl.Boolean)
+        hit_col = pl.Series("hit", hit.tolist(), dtype=pl.Boolean)
         base = self._ranges._mcols
-        mcols = pl.DataFrame([hit]) if base is None else base.with_columns(hit)
+        mcols = pl.DataFrame([hit_col]) if base is None else base.with_columns(hit_col)
         res = GRanges._make(self._recode(si), out_strand, IRanges._make(out_s, out_w, self._ranges._names, mcols), si)
         if drop_nohit_ranges:
-            kept = res._take(np.nonzero(ok)[0])
+            kept = res._take(np.nonzero(hit)[0])
             return kept.with_mcols(None if base is None else kept.mcols.drop("hit"))
         return res
 

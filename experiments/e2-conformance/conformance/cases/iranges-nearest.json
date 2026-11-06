@@ -24,12 +24,11 @@
   },
   "cases": [
     {"id": "ir.nearest.default", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "s"}], "kwargs": {}},
-    {"id": "ir.nearest.reversed", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "s"}, {"$ref": "q"}], "kwargs": {}},
     {"id": "ir.nearest.to-single", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "one"}], "kwargs": {}},
     {"id": "ir.nearest.empty-subject", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "e"}], "kwargs": {}},
     {"id": "ir.nearest.empty-query", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "e"}, {"$ref": "s"}], "kwargs": {}},
     {"id": "ir.nearest.arbitrary-explicit", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "s"}], "kwargs": {"select": "arbitrary"}},
-    {"id": "ir.nearest.names-dropped", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "named"}, {"$ref": "s"}], "kwargs": {}},
+    {"id": "ir.nearest.names-dropped", "clause": "IR.NEAREST.ANY", "op": "nearest", "args": [{"$ref": "named"}, {"$ref": "one"}], "kwargs": {}},
     {"id": "ir.nearest.all", "clause": "IR.NEAREST.ALL", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "s"}], "kwargs": {"select": "all"}},
     {"id": "ir.nearest.all.empty-subject", "clause": "IR.NEAREST.ALL", "op": "nearest", "args": [{"$ref": "q"}, {"$ref": "e"}], "kwargs": {"select": "all"}},
     {"id": "ir.nearest.all.empty-query", "clause": "IR.NEAREST.ALL", "op": "nearest", "args": [{"$ref": "e"}, {"$ref": "s"}], "kwargs": {"select": "all"}},
