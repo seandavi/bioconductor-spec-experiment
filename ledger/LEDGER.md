@@ -495,3 +495,18 @@ e0 79.0, e4 75.3, e3 73.2, e0b 71.4, biocpy 62.5.
   `frozen/<exp>` tag; replay work stays on `replay/<exp>` and in history.
   (Orchestrator slip: should have merged replays only as history from the
   start. Caught by checking main's content after the merge.)
+
+## 2026-11-06 — Published
+
+- Worktrees removed (all clean and merged); `harness/recreate-worktrees.sh`
+  rebuilds them from the frozen tags. Clean-checkout re-run verified:
+  `just oracle` + `selftest` + `run e1` reproduce e1's scored file exactly.
+- Added QUESTIONS.md (six contract-or-accident calls, each R snippet re-run
+  by the orchestrator), MIT LICENSE.
+- Before the first push, `background/` (verbatim Zulip posts by colleagues
+  and a ChatGPT chat) was removed from all history with `git filter-repo`
+  (Sean's call) and replaced by a paraphrased summary. Experiment/replay
+  branches and all tags predate it, so their SHAs (and eval/ports.toml)
+  are unchanged. Pre-rewrite backup bundle: /tmp/bioc-spec-experiment-prerewrite.bundle.
+- Public at https://github.com/seandavi/bioconductor-spec-experiment
+  (topics incl. u24ca289073). Secret scan across all 23 branches: clean.
