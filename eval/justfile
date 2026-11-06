@@ -12,6 +12,10 @@ convert:
 heldout:
     python3 heldout/generate.py
 
+# fail if a heldout seed value appears in any experiment worktree
+seeds:
+    uv run python -m bioc_eval.seeds
+
 # schema-check spec examples, cases, resolved, expected
 validate:
     uv run python spec/examples/validate.py
@@ -38,6 +42,10 @@ selftest:
     uv run python -m bioc_eval.run r_echo
     uv run python -m bioc_eval.run mutant
     uv run python -m bioc_eval.selftest
+    uv run pytest -q
+
+# unit + pipeline tests (needs Rscript)
+test:
     uv run pytest -q
 
 # matrix + per-case JSONL + report.md
