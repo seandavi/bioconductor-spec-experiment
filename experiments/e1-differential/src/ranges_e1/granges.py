@@ -10,7 +10,7 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import intra
+from ._kernels import inter, intra, setops
 from ._meta import Names
 from .iranges import IRanges
 from .seqinfo import Seqinfo
@@ -350,3 +350,117 @@ class GRanges:
         down = r._int_arg(downstream, "downstream", longer="truncate")
         s, w = intra.promoters(r.start, r.width, up, down, self._strand == MINUS)
         return self._moved(IRanges._new(s, w), use_names)
+
+    # -- inter-range -----------------------------------------------------------
+    def _gid(self, ignore_strand: bool) -> np.ndarray:
+        """Group id = seqlevel code * 3 + strand code (strand forced to "*" if ignored)."""
+        st = np.full(len(self), STAR, dtype=np.int64) if ignore_strand else self._strand.astype(np.int64)
+        return self._seq.astype(np.int64) * 3 + st
+
+    def _from_groups(self, gid: np.ndarray, start: np.ndarray, width: np.ndarray, mcols: pl.DataFrame | None = None,
+                     seqinfo: Seqinfo | None = None) -> Self:
+        return self._new(
+            (gid // 3).astype(np.int32), start, width, (gid % 3).astype(np.int8), None, mcols,
+            seqinfo if seqinfo is not None else self._seqinfo, check=False,
+        )
+
+    def range(self, *others: GRanges, ignore_strand: bool = False) -> Self:
+        """Smallest range per (seqname, strand) group present."""
+        x = self.concat([self, *others]) if others else self
+        red = inter.range_(x._gid(ignore_strand), x.start, x.width)
+        return x._from_groups(red.group, red.start, red.width)
+
+    def reduce(
+        self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False,
+        ignore_strand: bool = False,
+    ) -> Self:
+        if min_gapwidth < 0:
+            raise ValueError("'min.gapwidth' must be non-negative")
+        red = inter.reduce(self._gid(ignore_strand), self.start, self.width, int(min_gapwidth), bool(drop_empty_ranges))
+        mc = _meta.revmap_frame(red.members) if with_revmap else None
+        return self._from_groups(red.group, red.start, red.width, mc)
+
+    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> Self:
+        red = inter.disjoin(self._gid(ignore_strand), self.start, self.width, with_revmap)
+        mc = _meta.revmap_frame(red.members) if with_revmap else None
+        return self._from_groups(red.group, red.start, red.width, mc)
+
+    def _per_seqlevel(self, v: Any, what: str) -> list[int | None]:
+        """Scalar / dict by seqlevel / sequence of per-seqlevel values -> list (None = NA)."""
+        levels = self._seqinfo.seqnames
+        if isinstance(v, dict):
+            if list(v) != list(levels):
+                raise ValueError(f"the names of '{what}' must be identical to the seqlevels")
+            vals = list(v.values())
+        elif v is None or np.isscalar(v):
+            vals = [v] * len(levels)
+        else:
+            vals = np.ma.getdata(v).tolist() if not isinstance(v, list) else v
+            if np.ma.isMaskedArray(v):
+                vals = [None if m else x for x, m in zip(np.ma.getdata(v).tolist(), np.ma.getmaskarray(v))]
+            if not vals:
+                raise ValueError(f"'{what}' has no elements")
+            if len(levels) % len(vals):
+                warnings.warn(f"'{what}' length is not a multiple of the number of seqlevels", UserWarning, stacklevel=3)
+            vals = [vals[i % len(vals)] for i in range(len(levels))]  # R recycles
+        return [None if (x is None or (isinstance(x, float) and x != x)) else int(x) for x in vals]
+
+    def gaps(self, start: Any = 1, end: Any = "seqlengths", ignore_strand: bool = False) -> Self:
+        """Uncovered stretches per (seqlevel, strand) within [start, end].
+
+        `end="seqlengths"` (default) uses the sequence lengths. A bound that is None (NA) falls
+        back, per group, to the extent of its non-empty ranges; a group with neither ranges
+        nor bounds yields nothing. Groups without ranges still report whole-sequence gaps.
+        """
+        if isinstance(end, str):
+            if end != "seqlengths":
+                raise ValueError("'end' must be a number, None or \"seqlengths\"")
+            end = list(self._seqinfo.seqlengths)
+        lo_l, hi_l = self._per_seqlevel(start, "start"), self._per_seqlevel(end, "end")
+        strands = [STAR] if ignore_strand else [PLUS, MINUS, STAR]
+        n_lev = len(self._seqinfo)
+        ngroups = n_lev * 3
+        gid = self._gid(ignore_strand)
+        ne = self.width > 0
+        lo = np.ones(ngroups, dtype=np.int64)
+        hi = np.zeros(ngroups, dtype=np.int64)  # lo > hi: no gaps
+        active = np.zeros(ngroups, dtype=bool)
+        for lev in range(n_lev):
+            for st in strands:
+                g = lev * 3 + st
+                sel = ne & (gid == g)
+                a, b = lo_l[lev], hi_l[lev]
+                if a is None:
+                    a = int(self.start[sel].min()) if sel.any() else None
+                if b is None:
+                    b = int(self.end[sel].max()) if sel.any() else None
+                if a is not None and b is not None:
+                    lo[g], hi[g], active[g] = a, b, True
+        g_out, s_out, w_out = inter.gaps(gid, self.start, self.width, lo, hi)
+        keep = active[g_out]
+        return self._from_groups(g_out[keep], s_out[keep], w_out[keep])
+
+    # -- set operations ------------------------------------------------------
+    def _merged_with(self, other: GRanges) -> tuple[Seqinfo, np.ndarray, np.ndarray]:
+        """Merged seqinfo and both objects' seqlevel codes remapped into it."""
+        si = self._seqinfo.merge(other._seqinfo)
+        index = {s: i for i, s in enumerate(si.seqnames)}
+        a = np.array([index[s] for s in self._seqinfo.seqnames], dtype=np.int64)
+        b = np.array([index[s] for s in other._seqinfo.seqnames], dtype=np.int64)
+        return si, a[self._seq], b[other._seq]
+
+    def _set_op(self, other: GRanges, fn: Any, ignore_strand: bool) -> Self:
+        si, sa, sb = self._merged_with(other)
+        st_a = np.full(len(self), STAR, dtype=np.int64) if ignore_strand else self._strand.astype(np.int64)
+        st_b = np.full(len(other), STAR, dtype=np.int64) if ignore_strand else other._strand.astype(np.int64)
+        g, s, w = fn(sa * 3 + st_a, self.start, self.width, sb * 3 + st_b, other.start, other.width)
+        return self._from_groups(g, s, w, None, si)
+
+    def union(self, other: GRanges, ignore_strand: bool = False) -> Self:
+        return self._set_op(other, setops.union, ignore_strand)
+
+    def intersect(self, other: GRanges, ignore_strand: bool = False) -> Self:
+        return self._set_op(other, setops.intersect, ignore_strand)
+
+    def setdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
+        return self._set_op(other, setops.setdiff, ignore_strand)

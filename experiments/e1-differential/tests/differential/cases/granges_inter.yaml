@@ -1,0 +1,99 @@
+# GRanges inter-range ops and set ops: strand-aware grouping, ignore.strand, whole-sequence gaps.
+x_def: &XY
+  x: {GRanges: {seqnames: [chr1, chr1, chr2, chr1], start: [1, 10, 5, 30], width: [8, 8, 5, 10], strand: ["+", "+", "-", "*"], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}
+  y: {GRanges: {seqnames: [chr1, chr1, chr2, chr3], start: [5, 50, 5, 1], width: [10, 5, 10, 5], strand: ["+", "*", "-", "+"], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}
+empty_def: &E {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}, seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 50]}}}
+cases:
+  - {id: gr-range, tags: [range], inputs: *XY, call: {fn: range, args: [$x]}}
+  - {id: gr-range-ignore-strand, tags: [range, strand], inputs: *XY, call: {fn: range, args: [$x], kwargs: {ignore.strand: true}}}
+  - {id: gr-range-two-args, tags: [range], inputs: *XY, call: {fn: range, args: [$x, $y]}}
+  - {id: gr-range-two-args-ignore-strand, tags: [range, strand], inputs: *XY, call: {fn: range, args: [$x, $y], kwargs: {ignore.strand: true}}}
+  - {id: gr-range-empty, tags: [range, empty], inputs: {e: *E}, call: {fn: range, args: [$e]}}
+  - {id: gr-range-drops-names-mcols, tags: [range, names, mcols], inputs: *XY, call: {fn: range, args: [$x]}}
+  - {id: gr-reduce, tags: [reduce], inputs: *XY, call: {fn: reduce, args: [$x]}}
+  - {id: gr-reduce-ignore-strand, tags: [reduce, strand], inputs: *XY, call: {fn: reduce, args: [$x], kwargs: {ignore.strand: true}}}
+  - {id: gr-reduce-min-gapwidth, tags: [reduce], inputs: *XY, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 3}}}
+  - {id: gr-reduce-min-gapwidth-ignore-strand, tags: [reduce, strand], inputs: *XY, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 30, ignore.strand: true}}}
+  - {id: gr-reduce-drop-empty, tags: [reduce, zero-width], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [5, 10, 10], width: [0, 3, 0], strand: ["+", "+", "-"]}}}, call: {fn: reduce, args: [$g], kwargs: {drop.empty.ranges: true}}}
+  - {id: gr-reduce-keep-empty, tags: [reduce, zero-width], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [5, 10, 10], width: [0, 3, 0], strand: ["+", "+", "-"]}}}, call: {fn: reduce, args: [$g]}}
+  - {id: gr-reduce-revmap, tags: [reduce, revmap], inputs: *XY, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: gr-reduce-revmap-ignore-strand, tags: [reduce, revmap, strand], inputs: *XY, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true, ignore.strand: true, min.gapwidth: 2}}}
+  - {id: gr-reduce-empty, tags: [reduce, empty], inputs: {e: *E}, call: {fn: reduce, args: [$e]}}
+  - {id: gr-reduce-drops-names-mcols, tags: [reduce, names, mcols], inputs: *XY, call: {fn: reduce, args: [$x]}}
+  - {id: gr-reduce-unsorted-seqlevels, tags: [reduce, seqinfo], inputs: {g: {GRanges: {seqnames: [chr3, chr1, chr2, chr1], start: [1, 5, 1, 1], width: [3, 3, 3, 3], strand: ["-", "-", "+", "+"], seqinfo: {seqnames: [chr3, chr2, chr1]}}}}, call: {fn: reduce, args: [$g]}}
+  - {id: gr-disjoin, tags: [disjoin], inputs: *XY, call: {fn: disjoin, args: [$x]}}
+  - {id: gr-disjoin-ignore-strand, tags: [disjoin, strand], inputs: *XY, call: {fn: disjoin, args: [$x], kwargs: {ignore.strand: true}}}
+  - {id: gr-disjoin-overlap-revmap, tags: [disjoin, revmap], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 3, 3], width: [6, 2, 5], strand: ["+", "+", "-"]}}}, call: {fn: disjoin, args: [$g], kwargs: {with.revmap: true}}}
+  - {id: gr-disjoin-overlap-revmap-ignore-strand, tags: [disjoin, revmap, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 3, 3], width: [6, 2, 5], strand: ["+", "+", "-"]}}}, call: {fn: disjoin, args: [$g], kwargs: {with.revmap: true, ignore.strand: true}}}
+  - {id: gr-disjoin-empty, tags: [disjoin, empty], inputs: {e: *E}, call: {fn: disjoin, args: [$e]}}
+  - {id: gr-gaps-default, tags: [gaps, seqinfo], inputs: *XY, call: {fn: gaps, args: [$x]}}
+  - {id: gr-gaps-ignore-strand, tags: [gaps, strand], inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {ignore.strand: true}}}
+  - {id: gr-gaps-start-end, tags: [gaps], inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {start: 5, end: 40}}}
+  - {id: gr-gaps-start-end-na, tags: [gaps, na], inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {start: null, end: null}}}
+  - {id: gr-gaps-end-na, tags: [gaps, na], inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {end: null}}}
+  - {id: gr-gaps-start-na, tags: [gaps, na], inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {start: null}}}
+  - {id: gr-gaps-per-seqlevel-bounds, tags: [gaps], inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [5, 5], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [chr1, chr2]}}}, s: {int: [1, 2]}, e: {int: [20, 30]}}, call: {fn: gaps, args: [$g], kwargs: {start: $s, end: $e}}}
+  - {id: gr-gaps-unknown-seqlength-no-trailing, tags: [gaps, seqinfo], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [6], strand: ["+"]}}}, call: {fn: gaps, args: [$g]}}
+  - {id: gr-gaps-known-seqlength-all-strands, tags: [gaps, seqinfo], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [6], strand: ["+"], seqinfo: {seqnames: [chr1, chr2], seqlengths: [20, 30]}}}}, call: {fn: gaps, args: [$g]}}
+  - {id: gr-gaps-star-strand-ranges, tags: [gaps, strand], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [6], seqinfo: {seqnames: [chr1, chr2], seqlengths: [20, 30]}}}}, call: {fn: gaps, args: [$g]}}
+  - {id: gr-gaps-empty-known-lengths, tags: [gaps, empty, seqinfo], inputs: {e: *E}, call: {fn: gaps, args: [$e]}}
+  - {id: gr-gaps-empty-ignore-strand, tags: [gaps, empty, strand], inputs: {e: *E}, call: {fn: gaps, args: [$e], kwargs: {ignore.strand: true}}}
+  - {id: gr-gaps-zero-width-covers-nothing, tags: [gaps, zero-width], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [0], strand: ["+"], seqinfo: {seqnames: [chr1], seqlengths: [10]}}}}, call: {fn: gaps, args: [$g]}}
+  - {id: gr-gaps-range-covers-whole-sequence, tags: [gaps], inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [chr1], seqlengths: [10]}}}}, call: {fn: gaps, args: [$g]}}
+  - {id: gr-gaps-drops-names-mcols, tags: [gaps, names, mcols], inputs: *XY, call: {fn: gaps, args: [$x]}}
+  - {id: gr-gaps-bound-recycled, tags: [gaps, recycle], check_warnings: true, inputs: *XY, call: {fn: gaps, args: [$x], kwargs: {start: [1, 2]}}}
+
+  - {id: gr-union, tags: [union, strand], inputs: *XY, call: {fn: union, args: [$x, $y]}}
+  - {id: gr-intersect, tags: [intersect, strand], inputs: *XY, call: {fn: intersect, args: [$x, $y]}}
+  - {id: gr-setdiff-xy, tags: [setdiff, strand], inputs: *XY, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: gr-setdiff-yx, tags: [setdiff, strand], inputs: *XY, call: {fn: setdiff, args: [$y, $x]}}
+  - {id: gr-union-ignore-strand, tags: [union, strand], inputs: *XY, call: {fn: union, args: [$x, $y], kwargs: {ignore.strand: true}}}
+  - {id: gr-intersect-ignore-strand, tags: [intersect, strand], inputs: *XY, call: {fn: intersect, args: [$x, $y], kwargs: {ignore.strand: true}}}
+  - {id: gr-setdiff-ignore-strand, tags: [setdiff, strand], inputs: *XY, call: {fn: setdiff, args: [$x, $y], kwargs: {ignore.strand: true}}}
+  - {id: gr-union-drops-names-mcols, tags: [union, names, mcols], inputs: *XY, call: {fn: union, args: [$x, $x]}}
+  - {id: gr-union-empty, tags: [union, empty], inputs: {e: *E}, call: {fn: union, args: [$e, $e]}}
+  - {id: gr-intersect-with-empty, tags: [intersect, empty], inputs: {x: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 50]}}}, e: *E}, call: {fn: intersect, args: [$x, $e]}}
+  - {id: gr-setdiff-with-empty, tags: [setdiff, empty], inputs: {x: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 50]}}}, e: *E}, call: {fn: setdiff, args: [$x, $e]}}
+  - id: gr-union-disjoint-seqinfo-merges-warns
+    tags: [union, seqinfo, warning]
+    check_warnings: true
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200]}}}
+      b: {GRanges: {seqnames: [chr3], start: [1], width: [5], seqinfo: {seqnames: [chr3, chr1], seqlengths: [300, 100]}}}
+    call: {fn: union, args: [$a, $b]}
+  - id: gr-union-disjoint-seqinfo-result
+    tags: [union, seqinfo]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200]}}}
+      b: {GRanges: {seqnames: [chr3], start: [1], width: [5], seqinfo: {seqnames: [chr3, chr1], seqlengths: [300, 100]}}}
+    call: {fn: union, args: [$a, $b]}
+  - id: gr-union-conflicting-seqlengths-error
+    tags: [union, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [200]}}}
+    call: {fn: union, args: [$a, $b]}
+  - id: gr-intersect-star-vs-plus-not-matched
+    tags: [intersect, strand]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["*"]}}
+      b: {GRanges: {seqnames: [chr1], start: [5], width: [10], strand: ["+"]}}
+    call: {fn: intersect, args: [$a, $b]}
+  - id: gr-setdiff-star-vs-plus-not-matched
+    tags: [setdiff, strand]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["*"]}}
+      b: {GRanges: {seqnames: [chr1], start: [5], width: [10], strand: ["+"]}}
+    call: {fn: setdiff, args: [$a, $b]}
+  - id: gr-intersect-zero-width
+    tags: [intersect, zero-width]
+    inputs:
+      a: {GRanges: {seqnames: [chr1, chr1], start: [5, 1], width: [0, 10], strand: ["+", "+"]}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["+"]}}
+    call: {fn: intersect, args: [$a, $b]}
+  - id: gr-union-adjacent-merge
+    tags: [union]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}
+      b: {GRanges: {seqnames: [chr1], start: [6], width: [5], strand: ["+"]}}
+    call: {fn: union, args: [$a, $b]}
