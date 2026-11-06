@@ -12,7 +12,7 @@ M = 2**31 - 1
 
 def test_disjoin_with_end_at_int_max() -> None:
     d = IRanges(start=[1, M - 5], width=[M, 6]).disjoin()
-    assert (d.start.tolist(), d.end.tolist()) == ([1], [M])
+    assert (d.start.tolist(), d.end.tolist()) == ([1, M - 5], [M - 6, M])
 
 
 def test_find_overlaps_with_maxgap_int_max_hits() -> None:
