@@ -1,0 +1,35 @@
+{
+ "e1": {
+  "read": 4515,
+  "converted": 4504,
+  "unconvertible": 11,
+  "converted_by_source": {
+   "e1": 4385,
+   "e1-redteam": 119
+  },
+  "unconvertible_by_reason": {
+   "literal:source-multi-key": 7,
+   "op-out-of-vocab:runValue": 2,
+   "op-out-of-vocab:runLength": 1,
+   "op-out-of-vocab:as.vector": 1
+  }
+ },
+ "e2": {
+  "read": 921,
+  "converted": 921,
+  "unconvertible": 0,
+  "converted_by_source": {
+   "e2": 921
+  },
+  "unconvertible_by_reason": {}
+ },
+ "e4": {
+  "read": 715,
+  "converted": 715,
+  "unconvertible": 0,
+  "converted_by_source": {
+   "e4": 715
+  },
+  "unconvertible_by_reason": {}
+ }
+}

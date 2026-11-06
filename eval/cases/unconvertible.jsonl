@@ -1,0 +1,11 @@
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/coverage.yaml","id":"cov-as-vector","tags":["coverage","rle"]},"reason":"op-out-of-vocab:as.vector","detail":""}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/coverage.yaml","id":"cov-runLength","tags":["coverage","rle"]},"reason":"op-out-of-vocab:runLength","detail":""}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/coverage.yaml","id":"cov-runValue","tags":["coverage","rle"]},"reason":"op-out-of-vocab:runValue","detail":""}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/granges_ops.yaml","id":"gr-coverage-runValue","tags":["coverage","rle"]},"reason":"op-out-of-vocab:runValue","detail":""}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/inter.yaml","id":"disjoin-zero-width-only","tags":["disjoin","zero-width"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"distance-basic","tags":["distance"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"distance-zero-width","tags":["distance","zero-width"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"nearest-far-both-sides","tags":["nearest"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"nearest-unsorted-subject","tags":["nearest"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"nearest-zero-width-subject","tags":["nearest","zero-width"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}
+{"source":"e1","origin":{"suite":"e1","file":"tests/differential/cases/nearest.yaml","id":"precede-zero-width-x","tags":["precede","zero-width"]},"reason":"literal:source-multi-key","detail":"IRanges,width"}

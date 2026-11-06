@@ -6,3 +6,5 @@
 | S4 heldout | 3510 cases (brief: "2-3k"): 30 per (op, class), 60 for findOverlaps/nearest/reduce/coverage, 90/90/60 for the IRanges/GRanges/Seqinfo constructors. Pruned only if oracle time demands. |
 | S4 heldout | `merge` is generated for `Seqinfo` only (GRanges `merge` is not Seqinfo merging); `seqinfo`, `seqlevels<-`, `seqinfo<-`, `trim` are GRanges-only (Seqinfo methods unverified blind); `sort(by=)` (a formula) is not expressible. |
 | S4 seeds | `just seeds` scans every experiment worktree for each seed (decimal and hex); python scan, not grep (BSD grep -f was >2 min). |
+| S2 converters | E1: 7 cases (`disjoin-zero-width-only`, `distance-*`, ...) have a misplaced brace in the source YAML (`{IRanges: {start: [..]}, width: [..]}`); E1's R decoder reads only the first key, so what E1 ran was not what it meant. Listed unconvertible as `literal:source-multi-key`, not silently "fixed". |
+| S2 converters | Empty `mcols` (0 columns) in a literal is dropped (projects to `[]` either way). E2 `DFrame` `nrow` is always passed to the eval DataFrame literal (mirrors `make_zero_col_DFrame`). |
