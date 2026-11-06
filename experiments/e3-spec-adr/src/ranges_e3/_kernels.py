@@ -290,3 +290,111 @@ def coverage_runs(
     change = np.flatnonzero(np.concatenate([[True], values[1:] != values[:-1]]))
     merged = np.add.reduceat(lengths, change) if len(change) else _EMPTY
     return merged.astype(np.int64), values[change].astype(np.int64)
+
+
+# --- overlaps (spec 60-overlaps.md) ---
+
+OVERLAP_TYPES = ("any", "start", "end", "within", "equal")
+_CHUNK = 2_000_000  # max candidate pairs materialised at once
+
+
+def check_overlap_args(max_gap: int, min_overlap: int, kind: str) -> None:
+    """OVL.2-3 argument rules."""
+    if kind not in OVERLAP_TYPES:
+        raise ValueError(f"type must be one of {OVERLAP_TYPES}")
+    if max_gap < -1 or min_overlap < 0:
+        raise ValueError("max_gap must be >= -1 and min_overlap >= 0")
+    if kind == "any" and max_gap >= 0 and min_overlap > 0:
+        raise ValueError("type 'any' accepts max_gap >= 0 or min_overlap > 0, not both")
+
+
+def find_overlaps(
+    qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, max_gap: int, min_overlap: int, kind: str
+) -> tuple[IntArray, IntArray]:
+    """OVL.2-7: hit pairs ``(query, subject)`` sorted by query then subject."""
+    check_overlap_args(max_gap, min_overlap, kind)
+    nq, ns = len(qs), len(ss)
+    if nq == 0 or ns == 0:
+        return _EMPTY, _EMPTY
+    order = np.argsort(ss, kind="stable")
+    ss_sorted = ss[order]
+    max_width = int((se - ss + 1).max())
+    g = max(max_gap, 0)
+    if kind == "any":
+        lo, hi = qs - max_gap - max_width, qe + max_gap + 1
+    elif kind in ("start", "equal"):
+        lo, hi = qs - g, qs + g
+    elif kind == "end":
+        lo, hi = qe - g - max_width + 1, qe + g + 1
+    else:  # within
+        lo, hi = qe - max_width + 1, qs
+    first = np.searchsorted(ss_sorted, lo, "left")
+    count = np.maximum(np.searchsorted(ss_sorted, hi, "right") - first, 0)
+    ends = np.cumsum(count)
+    out_q: list[IntArray] = []
+    out_s: list[IntArray] = []
+    done = 0
+    while done < nq:
+        base = ends[done - 1] if done else 0
+        stop = int(np.searchsorted(ends, base + _CHUNK, "right"))
+        stop = min(max(stop, done + 1), nq)
+        q_idx = np.arange(done, stop)
+        c = count[done:stop]
+        total = int(c.sum())
+        if total:
+            rep_q = np.repeat(q_idx, c)
+            within_q = np.arange(total) - np.repeat(np.cumsum(c) - c, c)
+            s_idx = order[np.repeat(first[done:stop], c) + within_q]
+            keep = _overlap_condition(
+                qs[rep_q], qe[rep_q], ss[s_idx], se[s_idx], max_gap, min_overlap, kind
+            )
+            out_q.append(rep_q[keep])
+            out_s.append(s_idx[keep])
+        done = stop
+    if not out_q:
+        return _EMPTY, _EMPTY
+    qi, si = np.concatenate(out_q).astype(np.int64), np.concatenate(out_s).astype(np.int64)
+    srt = np.lexsort((si, qi))
+    return qi[srt], si[srt]
+
+
+def _overlap_condition(
+    qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, max_gap: int, min_overlap: int, kind: str
+) -> BoolArray:
+    g = max(max_gap, 0)
+    if kind == "any":
+        ok = (np.maximum(qs - se, ss - qe) - 1) <= max_gap
+    elif kind == "start":
+        ok = np.abs(qs - ss) <= g
+    elif kind == "end":
+        ok = np.abs(qe - se) <= g
+    elif kind == "equal":
+        ok = (np.abs(qs - ss) <= g) & (np.abs(qe - se) <= g)
+    else:
+        ok = (ss <= qs) & (qe <= se)
+        if max_gap >= 1:
+            ok &= (se - ss) - (qe - qs) <= max_gap
+    if min_overlap > 0:
+        ok &= np.minimum(qe, se) - np.maximum(qs, ss) + 1 >= min_overlap
+    return ok
+
+
+def masked_ints(values: IntArray, missing: BoolArray) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+    """CONV.4: int64 array with NA positions masked."""
+    return np.ma.MaskedArray(np.where(missing, 0, values).astype(np.int64), mask=missing)
+
+
+def select_pairs(qi: IntArray, si: IntArray, nq: int, select: str) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+    """OVL.8: per-query first/last/arbitrary subject from pairs sorted by (query, subject)."""
+    if select not in ("first", "last", "arbitrary"):
+        raise ValueError("select must be 'all', 'first', 'last' or 'arbitrary'")
+    out = np.zeros(nq, dtype=np.int64)
+    has = np.zeros(nq, dtype=np.bool_)
+    if len(qi):
+        # numpy fancy assignment keeps the last write per index; order pairs so it is the wanted one
+        if select == "last":
+            out[qi] = si
+        else:
+            out[qi[::-1]] = si[::-1]
+        has[qi] = True
+    return masked_ints(out, ~has)

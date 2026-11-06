@@ -9,7 +9,8 @@ import numpy as np
 import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
-from ranges_e3._types import IntArray
+from ranges_e3._types import BoolArray, IntArray
+from ranges_e3.hits import Hits
 from ranges_e3.rle import Rle
 
 
@@ -284,6 +285,40 @@ class IRanges:
             self._start, self._end, per_range(shift, len(self), "shift"), width
         )
         return Rle(lengths, values)
+
+    # --- overlaps (spec 60-overlaps.md) ---
+
+    def _overlap_pairs(
+        self, subject: IRanges, max_gap: int, min_overlap: int, type: str
+    ) -> tuple[IntArray, IntArray]:
+        return _kernels.find_overlaps(
+            self._start, self._end, subject._start, subject._end, int(max_gap), int(min_overlap), type
+        )
+
+    def find_overlaps(
+        self, subject: IRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any", select: str = "all"
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """OVL.2-9."""
+        qi, si = self._overlap_pairs(subject, max_gap, min_overlap, type)
+        if select == "all":
+            return Hits(qi, si, len(self), len(subject))
+        return _kernels.select_pairs(qi, si, len(self), select)
+
+    def count_overlaps(self, subject: IRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any") -> IntArray:
+        """OVL.10."""
+        qi, _ = self._overlap_pairs(subject, max_gap, min_overlap, type)
+        return np.bincount(qi, minlength=len(self)).astype(np.int64)
+
+    def overlaps_any(self, subject: IRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any") -> BoolArray:
+        """OVL.10."""
+        return self.count_overlaps(subject, max_gap, min_overlap, type) > 0
+
+    def subset_by_overlaps(
+        self, subject: IRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any", invert: bool = False
+    ) -> Self:
+        """OVL.10."""
+        hit = self.overlaps_any(subject, max_gap, min_overlap, type)
+        return self._take(np.flatnonzero(~hit if invert else hit).astype(np.int64))
 
     def __repr__(self) -> str:
         shown = ", ".join(f"[{s},{e}]" for s, e in zip(self._start[:6], self.end[:6]))
