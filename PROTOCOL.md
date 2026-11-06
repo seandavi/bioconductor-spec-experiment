@@ -8,11 +8,21 @@ fidelity to R, and maintenance cost.
 
 | Dir | Approach |
 |---|---|
-| `experiments/e0-control/` | Plain port with its own pytest suite. No extra process. |
+| `experiments/e0-control/` | Plain port with its own pytest suite. No extra process. (Pilot; may consult R ad hoc.) |
+| `experiments/e0b-no-r/` | Same as E0 but with no access to R: port from knowledge alone. |
 | `experiments/e1-differential/` | Port with R normative; adversarial agents derive differential test cases (run in R and Python); divergences become discussion and ADRs. |
 | `experiments/e2-conformance/` | Formal language-neutral conformance suite first, including serialization/deserialization of inputs and outputs; R and Python both run it. |
 | `experiments/e3-spec-adr/` | Spec language and ADRs first. Implementation and tests are guided by, not defined by, the spec. What is not documented is not important. |
 | `experiments/e4-primitive-cases/` | Shared case files with primitive inputs and projected primitive outputs (no object serialization); R runner fills goldens, Python runner checks them. |
+
+## Pipeline
+
+Every experiment runs `harness/run-experiment.js` with the same models:
+plan (Opus 5.5) → implement (Sonnet 5.5) → [red team, E1 only (Sol)] →
+review (Sol, no-edit, shell allowed) → revise (Sonnet, resumed). Only the
+approach brief in `harness/approaches/` differs. E0 ran harness v1
+(read-only reviewer without shell, no terseness rule); all later
+experiments run v2.
 
 ## Isolation
 
@@ -39,6 +49,11 @@ fidelity to R, and maintenance cost.
 - Safety ceiling: an experiment stops at its done criteria or after
   ~4 hours of agent wall time, whichever comes first. Stopping at the
   ceiling is a result, not a failure.
+
+## Observations
+
+The orchestrator keeps a running ledger on branch `ledger` (`LEDGER.md`):
+observations, protocol changes and their reasons, and workflow ideas.
 
 ## Evaluation (after all experiments finish)
 
