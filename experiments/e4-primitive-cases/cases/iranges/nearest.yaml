@@ -1,0 +1,198 @@
+cases:
+  - id: ir-nearest-arbitrary
+    clause: IR-NEAREST-1
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: nearest, args: [x, z]}
+    compare: {fields: {values: oneof}}
+    oneof_from: {kwargs: {select: all}}
+    adr: ADR-0005
+  - id: ir-nearest-all
+    clause: IR-NEAREST-2
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-overlap-preferred
+    clause: IR-NEAREST-3
+    inputs:
+      x: {IRanges: {start: [5, 12], width: [10, 2]}}
+      z: {IRanges: {start: [1, 6, 30], width: [2, 3, 1]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-ties-both-sides
+    clause: IR-NEAREST-4
+    inputs:
+      x: {IRanges: {start: [10], width: [1]}}
+      z: {IRanges: {start: [5, 15, 8, 12], width: [1, 1, 1, 1]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-adjacent-ties-overlap
+    clause: IR-NEAREST-3
+    inputs:
+      x: {IRanges: {start: [22], width: [1]}}
+      z: {IRanges: {start: [20, 20], width: [5, 2]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-zero-width-query
+    clause: IR-NEAREST-5
+    inputs:
+      x: {IRanges: {start: [5, 20, 41], width: [0, 0, 0]}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-zero-width-subject
+    clause: IR-NEAREST-5
+    inputs:
+      x: {IRanges: {start: [1, 5, 9], width: [2, 2, 2]}}
+      z: {IRanges: {start: [7, 20], width: [0, 1]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-empty-subject
+    clause: IR-NEAREST-6
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: nearest, args: [x, z]}
+  - id: ir-nearest-empty-subject-all
+    clause: IR-NEAREST-6
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-nearest-empty-query
+    clause: IR-NEAREST-6
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: nearest, args: [x, z]}
+  - id: ir-nearest-bad-select
+    clause: IR-NEAREST-7
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: first}}
+  - id: ir-precede-first
+    clause: IR-PRECEDE-1
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: precede, args: [x, z]}
+  - id: ir-precede-all
+    clause: IR-PRECEDE-2
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: precede, args: [x, z], kwargs: {select: all}}
+  - id: ir-precede-explicit-first
+    clause: IR-PRECEDE-1
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: precede, args: [x, z], kwargs: {select: first}}
+  - id: ir-precede-overlapping-excluded
+    clause: IR-PRECEDE-3
+    inputs:
+      x: {IRanges: {start: [5, 5], width: [5, 1]}}
+      z: {IRanges: {start: [8, 10, 4, 5], width: [5, 1, 1, 1]}}
+    call: {op: precede, args: [x, z], kwargs: {select: all}}
+  - id: ir-precede-adjacent
+    clause: IR-PRECEDE-3
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [4, 5], width: [2, 2]}}
+    call: {op: precede, args: [x, z], kwargs: {select: all}}
+  - id: ir-precede-empty-subject
+    clause: IR-PRECEDE-4
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: precede, args: [x, z]}
+  - id: ir-precede-bad-select
+    clause: IR-PRECEDE-4
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: precede, args: [x, z], kwargs: {select: last}}
+  - id: ir-follow-last
+    clause: IR-FOLLOW-1
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: follow, args: [x, z]}
+  - id: ir-follow-all
+    clause: IR-FOLLOW-2
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: follow, args: [x, z], kwargs: {select: all}}
+  - id: ir-follow-explicit-last
+    clause: IR-FOLLOW-1
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: follow, args: [x, z], kwargs: {select: last}}
+  - id: ir-follow-ties
+    clause: IR-FOLLOW-3
+    inputs:
+      x: {IRanges: {start: [20], width: [2]}}
+      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 1]}}
+    call: {op: follow, args: [x, z], kwargs: {select: all}}
+  - id: ir-follow-ties-last
+    clause: IR-FOLLOW-3
+    inputs:
+      x: {IRanges: {start: [20], width: [2]}}
+      z: {IRanges: {start: [1, 5, 8, 12], width: [10, 6, 3, 1]}}
+    call: {op: follow, args: [x, z]}
+  - id: ir-follow-adjacent
+    clause: IR-FOLLOW-3
+    inputs:
+      x: {IRanges: {start: [4], width: [3]}}
+      z: {IRanges: {start: [1, 2], width: [3, 2]}}
+    call: {op: follow, args: [x, z], kwargs: {select: all}}
+  - id: ir-follow-empty-subject
+    clause: IR-FOLLOW-4
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: follow, args: [x, z]}
+  - id: ir-follow-bad-select
+    clause: IR-FOLLOW-4
+    inputs:
+      x: {IRanges: {start: [1, 8, 11, 14, 16, 22, 26, 38, 45, 5, 20, 41], width: [1, 2, 1, 1, 2, 1, 3, 1, 2, 0, 0, 0], names: [a, b, c, d, e, f, g, h, i, j, k, l], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}}
+      z: {IRanges: {start: [10, 20, 20, 40, 5], width: [3, 5, 2, 1, 0]}}
+    call: {op: follow, args: [x, z], kwargs: {select: first}}
+  - id: ir-distance-parallel
+    clause: IR-DISTANCE-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 10, 3, 7, 5, 1], width: [3, 3, 2, 0, 0, 0, 2, 1]}}
+      z: {IRanges: {start: [8, 8, 12, 10, 10, 7, 20, 1], width: [3, 3, 2, 0, 1, 0, 1, 1]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-symmetric
+    clause: IR-DISTANCE-1
+    inputs:
+      x: {IRanges: {start: [8, 8, 12, 10, 10, 7, 20, 1], width: [3, 3, 2, 0, 1, 0, 1, 1]}}
+      z: {IRanges: {start: [1, 5, 10, 10, 3, 7, 5, 1], width: [3, 3, 2, 0, 0, 0, 2, 1]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-recycle-one
+    clause: IR-DISTANCE-2
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      z: {IRanges: {start: [8, 8, 12, 10, 10, 7, 20, 1], width: [3, 3, 2, 0, 1, 0, 1, 1]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-recycle-one-y
+    clause: IR-DISTANCE-2
+    inputs:
+      x: {IRanges: {start: [8, 8, 12, 10, 10, 7, 20, 1], width: [3, 3, 2, 0, 1, 0, 1, 1]}}
+      z: {IRanges: {start: [1], width: [3]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-empty
+    clause: IR-DISTANCE-3
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-cyclic
+    clause: IR-DISTANCE-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10, 10, 3, 7, 5, 1], width: [3, 3, 2, 0, 0, 0, 2, 1]}}
+      z: {IRanges: {start: [8, 8, 12], width: [3, 3, 2]}}
+    call: {op: distance, args: [x, z]}
+    adr: ADR-0007
+    python: {expect_error: true}

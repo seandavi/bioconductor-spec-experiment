@@ -74,3 +74,24 @@ def test_count_and_any_and_subset_agree() -> None:
     counts = q.count_overlaps(s)
     assert (q.overlaps_any(s) == (counts > 0)).all()
     assert len(q.subset_by_overlaps(s)) + len(q.subset_by_overlaps(s, invert=True)) == len(q)
+
+
+def test_nearest_family_against_brute_force() -> None:
+    for seed in range(25):
+        q, s = rand(seed, 8), rand(seed + 300, 9)
+        dist = [[int(q[[i]].distance(s[[j]])[0]) for j in range(len(s))] for i in range(len(q))]
+        h = q.nearest(s, select="all")
+        got: dict[int, list[int]] = {}
+        for a, b in zip(h.query.tolist(), h.subject.tolist(), strict=True):
+            got.setdefault(a, []).append(b)
+        for i, row in enumerate(dist):
+            assert got[i] == [j for j, d in enumerate(row) if d == min(row)]
+        qe, qs = q.end.tolist(), q.start.tolist()
+        pre, fol = q.precede(s, select="all"), q.follow(s, select="all")
+        for i in range(len(q)):
+            c = [j for j in range(len(s)) if s.start[j] > qe[i]]
+            want = [j for j in c if s.start[j] == min(s.start[k] for k in c)] if c else []
+            assert pre.subject[pre.query == i].tolist() == want
+            c = [j for j in range(len(s)) if s.end[j] < qs[i]]
+            want = [j for j in c if s.end[j] == max(s.end[k] for k in c)] if c else []
+            assert fol.subject[fol.query == i].tolist() == want

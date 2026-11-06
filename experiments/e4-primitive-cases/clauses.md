@@ -124,3 +124,22 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-OVANY-2 | `overlapsAny` with zero-length query is zero-length | `?overlapsAny` |
 | IR-SUBSET-1 | `subsetByOverlaps` keeps queries with a hit, preserving order, names, mcols | `?subsetByOverlaps` |
 | IR-SUBSET-2 | `subsetByOverlaps(invert=TRUE)` keeps queries without a hit | `?subsetByOverlaps` |
+| IR-NEAREST-1 | `nearest` (default `select="arbitrary"`) returns one subject among the minimum-distance ones (ADR-0005) | `?nearest` |
+| IR-NEAREST-2 | `nearest(select="all")` returns every subject at the minimum distance, sorted by query then subject | `?nearest` |
+| IR-NEAREST-3 | distance is 0 for overlapping and for adjacent subjects, so they tie | `?nearest` |
+| IR-NEAREST-4 | equidistant subjects on both sides all tie | `?nearest` |
+| IR-NEAREST-5 | zero-width queries/subjects use `[s, s-1]` coordinates | `?nearest` |
+| IR-NEAREST-6 | empty subject gives NA (select arbitrary) or no hits (all); empty query gives zero-length | `?nearest` |
+| IR-NEAREST-7 | `nearest` accepts only `select` arbitrary/all; others are errors | `?nearest` |
+| IR-PRECEDE-1 | `precede` (default `select="first"`): subject with smallest start > end(x); lowest index among ties; NA if none | `?precede` |
+| IR-PRECEDE-2 | `precede(select="all")` returns all subjects tied on that start | `?precede` |
+| IR-PRECEDE-3 | overlapping subjects are excluded; adjacent ones count (start = end(x)+1) | `?precede` |
+| IR-PRECEDE-4 | empty subject gives NA; `select` other than first/all is an error | `?precede` |
+| IR-FOLLOW-1 | `follow` (default `select="last"`): subject with largest end < start(x); highest index among ties; NA if none | `?follow` |
+| IR-FOLLOW-2 | `follow(select="all")` returns all subjects tied on that end | `?follow` |
+| IR-FOLLOW-3 | ties on end; adjacent subjects count (end = start(x)-1) | `?follow` |
+| IR-FOLLOW-4 | empty subject gives NA; `select` other than last/all is an error | `?follow` |
+| IR-DISTANCE-1 | `distance` is `max(0, max(starts) - min(ends) - 1)` per pair (0 if overlapping or adjacent) | `?distance` |
+| IR-DISTANCE-2 | length-1 argument recycles | `?distance` |
+| IR-DISTANCE-3 | zero-length inputs give zero-length output | `?distance` |
+| IR-DISTANCE-4 | R recycles cyclically with a warning; Python errors (ADR-0007) | `?distance` |

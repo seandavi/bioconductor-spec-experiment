@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, inter, intra, overlaps, setops
+from . import _mcols, inter, intra, nearest, overlaps, setops
 from .hits import Hits
 from ._arrays import as_int, recycle
 
@@ -294,6 +294,33 @@ class IRanges:
     ) -> Self:
         keep = self.overlaps_any(subject, maxgap, minoverlap, type)
         return self[~keep if invert else keep]
+
+    # nearest -------------------------------------------------------------
+    def _nearest_family(self, pairs_fn: Any, subject: Self, select: str, allowed: tuple[str, str]) -> Hits | np.ndarray:
+        if select not in allowed:
+            raise ValueError(f"'select' must be one of {allowed}")
+        q, s = pairs_fn(self._start, self._width, subject._start, subject._width)
+        if select == "all":
+            return Hits(q, s, len(self), len(subject))
+        return overlaps.select_hits(q, s, len(self), "last" if select == "last" else "first")
+
+    def nearest(self, subject: Self, select: str = "arbitrary") -> Hits | np.ndarray:
+        return self._nearest_family(nearest.nearest_pairs, subject, select, ("arbitrary", "all"))
+
+    def precede(self, subject: Self, select: str = "first") -> Hits | np.ndarray:
+        return self._nearest_family(nearest.precede_pairs, subject, select, ("first", "all"))
+
+    def follow(self, subject: Self, select: str = "last") -> Hits | np.ndarray:
+        return self._nearest_family(nearest.follow_pairs, subject, select, ("last", "all"))
+
+    def distance(self, y: Self) -> np.ndarray:
+        a, b = (self, y)
+        if len(a) != len(b) and 1 not in (len(a), len(b)):
+            raise ValueError("'x' and 'y' must have the same length (or one of length 1)")
+        n = max(len(a), len(b)) if len(a) and len(b) else 0
+        sa, wa = np.broadcast_to(a._start, (n,)), np.broadcast_to(a._width, (n,))
+        sb, wb = np.broadcast_to(b._start, (n,)), np.broadcast_to(b._width, (n,))
+        return nearest.distance(sa, wa, sb, wb)
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

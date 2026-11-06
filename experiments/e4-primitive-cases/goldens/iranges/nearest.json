@@ -1,0 +1,255 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-nearest-arbitrary": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 1, 1, 1, 2, 2, 2, 4, 4, 5, 2, 4],
+      "names": null,
+      "candidates": [
+        [5],
+        [1],
+        [1],
+        [1],
+        [2, 3],
+        [2, 3],
+        [2],
+        [4],
+        [4],
+        [5],
+        [2, 3],
+        [4]
+      ],
+      "warnings": []
+    },
+    "ir-nearest-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 5, 6, 6, 7, 8, 9, 10, 11, 11, 12],
+      "subject": [5, 1, 1, 1, 2, 3, 2, 3, 2, 4, 4, 5, 2, 3, 4],
+      "query_length": 12,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-nearest-overlap-preferred": {
+      "kind": "Hits",
+      "query": [1, 2],
+      "subject": [2, 2],
+      "query_length": 2,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "ir-nearest-ties-both-sides": {
+      "kind": "Hits",
+      "query": [1, 1],
+      "subject": [3, 4],
+      "query_length": 1,
+      "subject_length": 4,
+      "warnings": []
+    },
+    "ir-nearest-adjacent-ties-overlap": {
+      "kind": "Hits",
+      "query": [1, 1],
+      "subject": [1, 2],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-nearest-zero-width-query": {
+      "kind": "Hits",
+      "query": [1, 2, 2, 3],
+      "subject": [5, 2, 3, 4],
+      "query_length": 3,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-nearest-zero-width-subject": {
+      "kind": "Hits",
+      "query": [1, 2, 3],
+      "subject": [1, 1, 1],
+      "query_length": 3,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-nearest-empty-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, null, null, null, null, null, null, null, null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-nearest-empty-subject-all": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 12,
+      "subject_length": 0,
+      "warnings": []
+    },
+    "ir-nearest-empty-query": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-nearest-bad-select": {
+      "kind": "error",
+      "message": "'arg' should be one of “arbitrary”, “all”",
+      "warnings": []
+    },
+    "ir-precede-first": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 1, 2, 2, 2, 4, 4, 4, null, 5, 2, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-precede-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8, 10, 11, 11],
+      "subject": [5, 1, 2, 3, 2, 3, 2, 3, 4, 4, 4, 5, 2, 3],
+      "query_length": 12,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-precede-explicit-first": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [5, 1, 2, 2, 2, 4, 4, 4, null, 5, 2, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-precede-overlapping-excluded": {
+      "kind": "Hits",
+      "query": [1, 2],
+      "subject": [2, 1],
+      "query_length": 2,
+      "subject_length": 4,
+      "warnings": []
+    },
+    "ir-precede-adjacent": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-precede-empty-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, null, null, null, null, null, null, null, null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-precede-bad-select": {
+      "kind": "error",
+      "message": "'arg' should be one of “first”, “all”",
+      "warnings": []
+    },
+    "ir-follow-last": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, 5, 5, 1, 1, 3, 2, 2, 4, 5, 1, 4],
+      "names": null,
+      "warnings": []
+    },
+    "ir-follow-all": {
+      "kind": "Hits",
+      "query": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "subject": [5, 5, 1, 1, 3, 2, 2, 4, 5, 1, 4],
+      "query_length": 12,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "ir-follow-explicit-last": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, 5, 5, 1, 1, 3, 2, 2, 4, 5, 1, 4],
+      "names": null,
+      "warnings": []
+    },
+    "ir-follow-ties": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [4],
+      "query_length": 1,
+      "subject_length": 4,
+      "warnings": []
+    },
+    "ir-follow-ties-last": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4],
+      "names": null,
+      "warnings": []
+    },
+    "ir-follow-adjacent": {
+      "kind": "Hits",
+      "query": [1, 1],
+      "subject": [1, 2],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "ir-follow-empty-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, null, null, null, null, null, null, null, null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "ir-follow-bad-select": {
+      "kind": "error",
+      "message": "'arg' should be one of “last”, “all”",
+      "warnings": []
+    },
+    "ir-distance-parallel": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 0, 0, 0, 7, 0, 13, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-symmetric": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 0, 0, 0, 7, 0, 13, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-recycle-one": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 4, 8, 6, 6, 3, 16, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-recycle-one-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 4, 8, 6, 6, 3, 16, 0],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-empty": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-cyclic": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [4, 0, 0, 0, 5, 5, 1, 6],
+      "names": null,
+      "warnings": ["an argument will be fractionally recycled", "an argument will be fractionally recycled"]
+    }
+  }
+}
