@@ -1,0 +1,27 @@
+[project]
+name = "ranges-e0b"
+version = "0.1.0"
+description = "IRanges/GRanges port to Python from knowledge alone (experiment e0b-no-r)"
+readme = "README.md"
+authors = [
+    { name = "Sean Davis", email = "seandavi@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.5.4",
+    "polars>=2.1.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.170.14",
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
