@@ -60,9 +60,12 @@ _REVMAP = "revmap"  # mcols column holding 0-based index lists in the port
 # ---------------------------------------------------------------- helpers
 
 def _val(v: Any) -> Any:
-    """RVector -> scalar (length 1) or masked ndarray; natives pass through."""
+    """RVector -> scalar (length 1) or masked ndarray; natives pass through.
+
+    A length-1 NA stays a masked array: `None` is R NULL / the port's "absent" sentinel.
+    """
     if isinstance(v, RVector):
-        return v.scalar() if len(v) == 1 else v.np_masked()
+        return v.scalar() if len(v) == 1 and v.values[0] is not None else v.np_masked()
     return v
 
 
