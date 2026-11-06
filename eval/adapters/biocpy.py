@@ -96,6 +96,22 @@ def _seq(rv: RVector) -> list:
     return rv.list()
 
 
+def _rvector_column(rv: RVector) -> np.ndarray:
+    """R vector -> typed numpy column; a masked array when it holds NA."""
+    if rv.type == "chr":
+        mask = [v is None for v in rv.values]
+        arr = np.array(["" if m else v for v, m in zip(rv.values, mask)], dtype=str)
+        return np.ma.masked_array(arr, mask=mask) if any(mask) else arr
+    arr = rv.np_masked()
+    return arr if np.ma.is_masked(arr) else arr.data
+
+
+def _mcols_frame(columns: list, nrow: int) -> BiocFrame:
+    """Extra named R arguments (`...`) -> BiocFrame; vectors become typed columns, port objects pass through."""
+    return BiocFrame({name: _rvector_column(v) if isinstance(v, RVector) else v for name, v in columns},
+                     number_of_rows=nrow)
+
+
 def _as_rvector(value: Any) -> Any:
     """A nested call's native vector result (ndarray, masked array, non-empty list) as an R vector, NA kept."""
     if isinstance(value, np.ndarray) and value.ndim == 1:
@@ -217,13 +233,7 @@ class Adapter(AdapterBase):
             return self.build_Factor(p)
         if kind == "IntegerList":
             return [np.array(e, dtype=np.int32) for e in p["elements"]]
-        rv = RVector(p["type"], p["values"])
-        if rv.type == "chr":
-            mask = [v is None for v in rv.values]
-            arr = np.array(["" if m else v for v, m in zip(rv.values, mask)], dtype=str)
-            return np.ma.masked_array(arr, mask=mask) if any(mask) else arr
-        arr = rv.np_masked()
-        return arr if np.ma.is_masked(arr) else arr.data
+        return _rvector_column(RVector(p["type"], p["values"]))
 
     def _frame(self, columns: list, nrow: int, rownames: list | None = None) -> BiocFrame:
         return BiocFrame({name: self._column(col) for name, col in columns}, number_of_rows=nrow, row_names=rownames)
@@ -297,7 +307,7 @@ class Adapter(AdapterBase):
             kw["names"] = None if names is None else names.list()
         if _mcols:
             n = len(kw["start"]) if "start" in kw else 0
-            kw["mcols"] = BiocFrame({name: _seq(v) for name, v in _mcols}, number_of_rows=n)
+            kw["mcols"] = _mcols_frame(_mcols, n)
         return IRanges(**kw)
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING,
@@ -312,7 +322,7 @@ class Adapter(AdapterBase):
         if seqinfo is not MISSING:
             kw["seqinfo"] = seqinfo
         if _mcols:
-            kw["mcols"] = BiocFrame({name: _seq(v) for name, v in _mcols}, number_of_rows=len(kw["seqnames"]))
+            kw["mcols"] = _mcols_frame(_mcols, len(kw["seqnames"]))
         return GenomicRanges(**kw)
 
     def op_Seqinfo(self, *, seqnames=MISSING, seqlengths=MISSING, isCircular=MISSING, genome=MISSING):
