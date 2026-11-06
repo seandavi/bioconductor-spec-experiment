@@ -56,12 +56,20 @@ def _reject_duplicates(names: list, what: str) -> None:
         raise Unsupported(f"duplicate names in {what}")
 
 
+def _typed_list(v: RVector) -> list:
+    """`RVector.list()` keeping double storage: an integral JSON value of a dbl vector stays a float."""
+    vals = v.list()
+    if v.type == "dbl":
+        return [float(x) if isinstance(x, int) else x for x in vals]
+    return vals
+
+
 def _arg(v: Any, name: str = "argument") -> Any:
     """RVector -> scalar (length 1; NA -> None) / ndarray (numeric, logical) / list (character)."""
     if not isinstance(v, RVector):
         return v
     if len(v) == 1:
-        return v.scalar()
+        return _typed_list(v)[0]
     if v.type == "chr":
         return v.list()
     try:
@@ -79,14 +87,14 @@ def _scalar_or_list(v: Any) -> Any:
     """Seqinfo fields: the port broadcasts a scalar; longer vectors are plain lists."""
     if v is None:
         return None
-    return v.scalar() if len(v) == 1 else v.list()
+    return _typed_list(v)[0] if len(v) == 1 else _typed_list(v)
 
 
 def _mapping_or_arg(v: Any, name: str) -> Any:
     """A named R vector is the port's `Mapping[str, int]` (per seqlevel); otherwise as `_arg`."""
     if isinstance(v, RVector) and v.names is not None:
         _reject_duplicates(v.names, f"named argument {name}")
-        return dict(zip(v.names, v.list()))
+        return dict(zip(v.names, _typed_list(v)))
     return _arg(v, name)
 
 
