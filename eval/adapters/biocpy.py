@@ -49,6 +49,7 @@ from adapter_base import (
     RVector,
     UnknownArgument,
     Unsupported,
+    infer_type,
     p_dataframe,
     p_factor,
     p_granges,
@@ -93,6 +94,18 @@ class _Revmap:
 def _seq(rv: RVector) -> list:
     """R vector -> Python list (None = NA); the port documents `Sequence` for these arguments."""
     return rv.list()
+
+
+def _as_rvector(value: Any) -> Any:
+    """A nested call's native vector result (ndarray, masked array, non-empty list) as an R vector, NA kept."""
+    if isinstance(value, np.ndarray) and value.ndim == 1:
+        mask = np.ma.getmaskarray(value).tolist() if isinstance(value, np.ma.MaskedArray) else [False] * len(value)
+        data = value.data if isinstance(value, np.ma.MaskedArray) else value
+        vals = [None if m else v for v, m in zip(data.tolist(), mask)]
+        return RVector(infer_type(data), vals)
+    if isinstance(value, list) and value:
+        return RVector(infer_type(value), value)
+    return value
 
 
 def _arr(rv: RVector) -> Any:
@@ -192,6 +205,11 @@ class Adapter(AdapterBase):
     }
 
     # ---------------------------------------------------------------- inputs
+
+    def eval_arg(self, a: Any, env: dict) -> Any:
+        value = super().eval_arg(a, env)
+        # a nested call's native vector is an R vector to the next call
+        return _as_rvector(value) if isinstance(a, dict) and "$call" in a else value
 
     def _column(self, p: dict) -> Any:
         kind = p["kind"]
