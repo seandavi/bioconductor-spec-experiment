@@ -128,3 +128,11 @@ the strand logic and confirmed with ad hoc runs:
   cases listed above, and any combination of `*`-strand subjects/queries in
   `precede`/`follow` beyond the examples tested.
 - No human intervention at any point.
+
+## 2026-11-06 03:10 — implementer: review round 1
+
+- **Finding 1 (empty range selects itself in `nearest`) — rejected.** Checked in R:
+  `nearest/precede/follow(IRanges(5,4))` all return 1 (itself), `select="all"` returns the
+  pair `(1,1)` twice, `nearest(IRanges(c(5,10,3), c(4,12,6)))` is `3 3 1`, and the GRanges
+  equivalents also return 1. R is normative, so the behaviour (including the duplicated
+  pair) is kept; regression tests now document it with the R values.

@@ -193,3 +193,10 @@ def test_coverage_width_shift_unused_levels():
     h = GRanges(["chr1", "chr2"], IRanges([2, 3], width=[5, 2]), seqinfo=Seqinfo(["chr1", "chr2", "chr9"]))
     cv = h.coverage()
     assert len(cv["chr9"]) == 0 and len(cv["chr1"]) == 6 and len(cv["chr2"]) == 4  # R
+
+
+def test_empty_range_is_its_own_neighbour_like_r():
+    # R: g <- GRanges("chr1", IRanges(5,4), "+"); nearest(g), precede(g), follow(g) -> 1 (review finding 1)
+    g = GRanges("chr1", IRanges(5, 4), "+")
+    assert g.nearest().tolist() == [0]
+    assert g.precede().tolist() == [0] and g.follow().tolist() == [0]

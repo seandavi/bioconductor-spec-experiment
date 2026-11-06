@@ -149,3 +149,17 @@ def test_precede_follow_nearest_match_naive_definitions(q, s):
     hits = pairs(q.nearest(s, select="all"))
     assert hits == sorted(set(hits))
     assert {i for i, _ in hits} == set(range(len(q)))
+
+
+def test_empty_range_is_its_own_nearest_like_r():
+    # Review finding 1 asked for self-exclusion here; R itself does not exclude an
+    # empty range (its precede/follow use start > end / end < start, which a
+    # zero-width range satisfies against itself), so we match R.
+    # R: x <- IRanges(5,4); nearest(x), precede(x), follow(x) -> 1 ; select="all" -> (1,1),(1,1)
+    x = IRanges(5, 4)
+    assert x.nearest().tolist() == [0]
+    assert x.precede().tolist() == [0] and x.follow().tolist() == [0]
+    assert pairs(x.nearest(select="all")) == [(0, 0), (0, 0)]  # R also repeats the pair
+    # R: nearest(IRanges(c(5,10,3), c(4,12,6))) -> 3 3 1
+    mixed = IRanges([5, 10, 3], [4, 12, 6])
+    assert mixed.nearest().tolist() == [2, 2, 0]
