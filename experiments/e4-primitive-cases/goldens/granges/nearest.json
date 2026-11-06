@@ -120,8 +120,8 @@
     },
     "gr-follow-star-direction-from-subject": {
       "kind": "Hits",
-      "query": [],
-      "subject": [],
+      "query": [1],
+      "subject": [1],
       "query_length": 1,
       "subject_length": 2,
       "warnings": []
