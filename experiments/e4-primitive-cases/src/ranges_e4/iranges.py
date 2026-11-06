@@ -12,7 +12,7 @@ from . import _mcols, inter, intra, nearest, ordering, overlaps, setops
 from .hits import Hits
 from .rle import Rle
 from . import coverage as _coverage
-from ._arrays import as_int, recycle
+from ._arrays import INT32_MAX, INT32_MIN, as_int, recycle
 
 
 def as_names(names: Sequence[str | None] | np.ndarray | None, n: int) -> np.ndarray | None:
@@ -94,7 +94,12 @@ class IRanges:
         if (width < 0).any():
             raise ValueError("each range must have a non-negative width")
         end = start + width - 1
-        if start.size and (end.max() > 2**31 - 1 or start.min() < -(2**31) + 1):
+        # every stored or derived coordinate must be a valid R integer (-2^31 is NA)
+        if start.size and (
+            width.max() > INT32_MAX
+            or min(start.min(), end.min()) < INT32_MIN
+            or max(start.max(), end.max()) > INT32_MAX
+        ):
             raise ValueError("range exceeds R integer bounds")
         self._start = start
         self._width = width
