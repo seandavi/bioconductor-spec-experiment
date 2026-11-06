@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols
+from . import _mcols, intra
 from ._arrays import as_int, recycle
 
 
@@ -168,6 +168,46 @@ class IRanges:
             np.concatenate([x._width for x in xs]),
             names,
             _mcols.concat([x._mcols for x in xs], [len(x) for x in xs]),
+        )
+
+    # intra-range ---------------------------------------------------------
+    def _with_coords(self, start: np.ndarray, width: np.ndarray, use_names: bool = True) -> Self:
+        return self._make(start, width, self._names if use_names else None, self._mcols)
+
+    def shift(self, shift: Any) -> Self:
+        n = len(self)
+        return self._with_coords(*intra.shift(self._start, self._width, intra.arg_vector(shift, n, "shift")))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        n = len(self)
+        a = [None if v is None else intra.arg_vector(v, n, nm) for v, nm in ((start, "start"), (end, "end"), (width, "width"))]
+        return self._with_coords(*intra.narrow(self._start, self._width, *a))
+
+    def resize(self, width: Any, fix: Any = "start", use_names: bool = True) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.resize(self._start, self._width, intra.arg_vector(width, n, "width"), intra.str_vector(fix, n, "fix"), np.zeros(n, bool)),
+            use_names,
+        )
+
+    def flank(self, width: Any, start: Any = True, both: bool = False, use_names: bool = True) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.flank(
+                self._start, self._width, intra.arg_vector(width, n, "width"),
+                intra.flag_vector(start, n, "start"), both, np.zeros(n, bool),
+            ),
+            use_names,
+        )
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.promoters(
+                self._start, self._width, intra.arg_vector(upstream, n, "upstream"),
+                intra.arg_vector(downstream, n, "downstream"), np.zeros(n, bool),
+            ),
+            use_names,
         )
 
     def __repr__(self) -> str:

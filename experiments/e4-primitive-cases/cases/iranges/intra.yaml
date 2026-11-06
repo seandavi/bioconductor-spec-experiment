@@ -1,0 +1,228 @@
+cases:
+  - id: ir-shift-scalar
+    clause: IR-SHIFT-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+    call: {op: shift, args: [x], kwargs: {shift: 3}}
+  - id: ir-shift-negative
+    clause: IR-SHIFT-1
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 1]}}
+    call: {op: shift, args: [x], kwargs: {shift: -5}}
+  - id: ir-shift-vector
+    clause: IR-SHIFT-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: shift, args: [x], kwargs: {shift: [1, 2, 3]}}
+  - id: ir-shift-cyclic
+    clause: IR-SHIFT-3
+    inputs:
+      x: {IRanges: {start: [1, 10, 20, 30], width: [5, 1, 0, 4]}}
+    call: {op: shift, args: [x], kwargs: {shift: [1, 2]}}
+    adr: ADR-0007
+    python: {expect_error: true}
+  - id: ir-narrow-start
+    clause: IR-NARROW-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+    call: {op: narrow, args: [x], kwargs: {start: 2}}
+  - id: ir-narrow-end
+    clause: IR-NARROW-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {end: 3}}
+  - id: ir-narrow-negative-start
+    clause: IR-NARROW-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {start: -2}}
+  - id: ir-narrow-negative-end
+    clause: IR-NARROW-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {end: -2}}
+  - id: ir-narrow-start-width
+    clause: IR-NARROW-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {start: 2, width: 2}}
+  - id: ir-narrow-end-width
+    clause: IR-NARROW-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {end: 3, width: 2}}
+  - id: ir-narrow-start-end
+    clause: IR-NARROW-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {start: 2, end: 3}}
+  - id: ir-narrow-vector-args
+    clause: IR-NARROW-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: narrow, args: [x], kwargs: {start: [1, 2, 3], end: [5, 3, 3]}}
+  - id: ir-narrow-empty-at-end
+    clause: IR-NARROW-3
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: narrow, args: [x], kwargs: {start: [6, 5]}}
+  - id: ir-narrow-empty-end0
+    clause: IR-NARROW-3
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: narrow, args: [x], kwargs: {start: 1, end: 0}}
+  - id: ir-narrow-widening-start
+    clause: IR-NARROW-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 1]}}
+    call: {op: narrow, args: [x], kwargs: {start: 3}}
+  - id: ir-narrow-widening-end
+    clause: IR-NARROW-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 1]}}
+    call: {op: narrow, args: [x], kwargs: {end: 3}}
+  - id: ir-narrow-negative-width
+    clause: IR-NARROW-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: narrow, args: [x], kwargs: {start: 3, end: 1}}
+  - id: ir-narrow-three-args
+    clause: IR-NARROW-4
+    inputs:
+      x: {IRanges: {start: [1], width: [5]}}
+    call: {op: narrow, args: [x], kwargs: {start: 2, end: 3, width: 2}}
+  - id: ir-narrow-width-only
+    clause: IR-NARROW-4
+    inputs:
+      x: {IRanges: {start: [1], width: [5]}}
+    call: {op: narrow, args: [x], kwargs: {width: 2}}
+  - id: ir-resize-fix-start
+    clause: IR-RESIZE-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+    call: {op: resize, args: [x], kwargs: {width: 3}}
+  - id: ir-resize-fix-end
+    clause: IR-RESIZE-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: resize, args: [x], kwargs: {width: 3, fix: end}}
+  - id: ir-resize-fix-center-odd
+    clause: IR-RESIZE-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20, 30], width: [5, 1, 0, 4]}}
+    call: {op: resize, args: [x], kwargs: {width: 3, fix: center}}
+  - id: ir-resize-fix-center-even
+    clause: IR-RESIZE-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20, 30], width: [5, 1, 0, 3]}}
+    call: {op: resize, args: [x], kwargs: {width: 2, fix: center}}
+  - id: ir-resize-vector-width-fix
+    clause: IR-RESIZE-3
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: resize, args: [x], kwargs: {width: [1, 2, 3], fix: [start, end, center]}}
+  - id: ir-resize-no-names
+    clause: IR-RESIZE-3
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4], names: [a, b], mcols: {s: [1, 2]}}}
+    call: {op: resize, args: [x], kwargs: {width: 2, use.names: false}}
+  - id: ir-resize-zero
+    clause: IR-RESIZE-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: resize, args: [x], kwargs: {width: 0}}
+  - id: ir-resize-negative
+    clause: IR-RESIZE-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: resize, args: [x], kwargs: {width: -1}}
+  - id: ir-resize-bad-fix
+    clause: IR-RESIZE-4
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 4]}}
+    call: {op: resize, args: [x], kwargs: {width: 2, fix: middle}}
+  - id: ir-flank-start
+    clause: IR-FLANK-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+    call: {op: flank, args: [x], kwargs: {width: 2}}
+  - id: ir-flank-end
+    clause: IR-FLANK-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: 2, start: false}}
+  - id: ir-flank-vector-width
+    clause: IR-FLANK-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: [1, 2, 3]}}
+  - id: ir-flank-negative-start
+    clause: IR-FLANK-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: flank, args: [x], kwargs: {width: -2}}
+  - id: ir-flank-negative-end
+    clause: IR-FLANK-2
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 4, 3]}}
+    call: {op: flank, args: [x], kwargs: {width: -2, start: false}}
+  - id: ir-flank-both-start
+    clause: IR-FLANK-3
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: 2, both: true}}
+  - id: ir-flank-both-end
+    clause: IR-FLANK-3
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: 2, start: false, both: true}}
+  - id: ir-flank-both-negative
+    clause: IR-FLANK-3
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: -2, both: true}}
+  - id: ir-flank-zero
+    clause: IR-FLANK-4
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: 0}}
+  - id: ir-flank-zero-end
+    clause: IR-FLANK-4
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: flank, args: [x], kwargs: {width: 0, start: false}}
+  - id: ir-promoters-default
+    clause: IR-PROMOTERS-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 5000], width: [5, 1, 0], names: [a, b, c], mcols: {s: [1, 2, 3]}}}
+    call: {op: promoters, args: [x]}
+  - id: ir-promoters-custom
+    clause: IR-PROMOTERS-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 2, downstream: 1}}
+  - id: ir-promoters-zero
+    clause: IR-PROMOTERS-1
+    inputs:
+      x: {IRanges: {start: [1, 10, 20], width: [5, 1, 0]}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 0, downstream: 0}}
+  - id: ir-promoters-negative
+    clause: IR-PROMOTERS-2
+    inputs:
+      x: {IRanges: {start: [1, 10], width: [5, 1]}}
+    call: {op: promoters, args: [x], kwargs: {upstream: -1, downstream: 2}}
+  - id: ir-intra-empty-shift
+    clause: IR-INTRA-EMPTY-1
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: shift, args: [x], kwargs: {shift: 1}}
+  - id: ir-intra-empty-resize
+    clause: IR-INTRA-EMPTY-1
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: resize, args: [x], kwargs: {width: 3, fix: end}}
+  - id: ir-intra-empty-flank
+    clause: IR-INTRA-EMPTY-1
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: flank, args: [x], kwargs: {width: 3}}

@@ -28,3 +28,21 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-CAT-NAMES-1 | `c()` pads unnamed pieces with `""` when any piece has names | `?"c,Vector-method"` |
 | IR-CAT-MCOLS-1 | `c()` unions mcols columns; missing cells are NA | `?"c,Vector-method"` |
 | IR-CAT-EMPTY-1 | `c()` with a zero-length piece is a no-op for that piece | `?"c,Vector-method"` |
+| IR-SHIFT-1 | `shift` adds the offset to start; width unchanged; names/mcols kept | `?"intra-range-methods"` |
+| IR-SHIFT-2 | `shift` accepts a per-range vector | `?"intra-range-methods"` |
+| IR-SHIFT-3 | `shift` with a vector that recycles cyclically: R accepts, Python errors (ADR-0007) | `?"intra-range-methods"` |
+| IR-NARROW-1 | `narrow(start=)` / `narrow(end=)`: positive counts from range start, negative from range end | `?narrow` |
+| IR-NARROW-2 | `narrow` with start+width, end+width, or start+end | `?narrow` |
+| IR-NARROW-3 | `narrow` may produce an empty range at `start = width+1` | `?narrow` |
+| IR-NARROW-4 | `narrow` that would widen, give negative width, or supply 3 (or only width) args is an error | `?narrow` |
+| IR-RESIZE-1 | `resize(fix="start")` keeps start; `"end"` keeps end | `?resize` |
+| IR-RESIZE-2 | `resize(fix="center")` shifts start by `floor((oldwidth - width)/2)` | `?resize` |
+| IR-RESIZE-3 | `resize` accepts per-range width and fix; `use.names=FALSE` drops names | `?resize` |
+| IR-RESIZE-4 | `resize` to width 0 is valid; negative width or unknown `fix` is an error | `?resize` |
+| IR-FLANK-1 | `flank(width>0)` is the region just before start (`start=TRUE`) or after end | `?flank` |
+| IR-FLANK-2 | `flank(width<0)` is the region inside the range at the chosen side | `?flank` |
+| IR-FLANK-3 | `flank(both=TRUE)` spans `abs(width)` each side of the boundary | `?flank` |
+| IR-FLANK-4 | `flank(width=0)` gives an empty range at the boundary | `?flank` |
+| IR-PROMOTERS-1 | `promoters`: `[start-upstream, start+downstream-1]` (defaults 2000/200) | `?promoters` |
+| IR-PROMOTERS-2 | `promoters` with negative upstream/downstream is an error | `?promoters` |
+| IR-INTRA-EMPTY-1 | intra-range ops on a zero-length IRanges return zero-length IRanges | `?"intra-range-methods"` |
