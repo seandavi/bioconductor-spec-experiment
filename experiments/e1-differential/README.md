@@ -5,7 +5,7 @@ Independent numpy/polars port of Bioconductor's IRanges 2.47 / GenomicRanges 1.6
 compares the results. Divergences are fixed in Python or recorded in a short ADR.
 
 ```
-uv run pytest                                   # 1.7k tests, no R needed (R results are cached)
+uv run pytest                                   # ~3.7k tests, ~10 s, no R needed (R results are cached)
 uv run pytest tests/differential -k reduce      # a subset
 uv run pytest --refresh-r                       # rerun everything in R, rewrite the cache
 uv run python tests/differential/show.py <id>   # R vs Python side by side for one case
@@ -85,4 +85,11 @@ file I/O, `mcols` row names, `circle.length` arguments, comparison operators (`=
 
 ## Status
 Unit tests (`tests/unit`: properties on random input, class behaviour, harness self-tests) and
-~1.5k differential cases pass; `mypy src` is clean.
+~3.4k differential cases (about 250 handwritten, the rest generated) pass; `mypy src` is clean
+(`uvx mypy src --ignore-missing-imports`).
+
+### Where the harness has been pushed (and where to push next)
+Generators in `tests/differential/gen/` cover: exhaustive small pools (parallel ops, overlaps, nearest),
+seeded random pools (IRanges/GRanges, large nested inputs), metadata propagation, mcols type mixes,
+malformed arguments to every op, constructors, and random seqinfo pairs (warnings compared).
+Untested by design: values near ±2^31 (ADR-0005), `random` ties, `seqlevels<-`, performance at 1e5+ ranges.

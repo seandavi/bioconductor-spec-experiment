@@ -51,6 +51,11 @@ properties are read as attributes. Add an `ADAPTERS` entry in `adapter.py` only 
 index-valued results (`post=_post_idx`), non-method functions, or argument reshaping.
 Unit-test hooks in `tests/unit/test_adapter.py`.
 
+## Generated cases
+`cases/grid_*.yaml` are produced by `gen/*.py` (seeded, committed). Edit the generator, run it
+(`uv run python tests/differential/gen/<name>.py`), then run the tests to fill the R cache. To widen a
+generator change its seed/size and commit the regenerated YAML and cache.
+
 ## Files
 `harness.py` (cases, cache, R runner, compare) · `adapter.py` (call table, encoder) ·
 `codec.py` (literal decode, diff) · `r/run_cases.R` + `r/encode.R` (R side) · `show.py`.
