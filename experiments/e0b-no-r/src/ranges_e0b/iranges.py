@@ -6,7 +6,8 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import inter, intra, nearest, ordering, overlaps, setops
+from . import coverage, inter, intra, nearest, ordering, overlaps, setops
+from .rle import Rle
 from .overlaps import Hits
 from ._sew import (
     IntArray,
@@ -367,3 +368,9 @@ class IRanges:
     def distance(self, other: "IRanges") -> IntArray:
         """Parallel distance; 0 for overlapping or adjacent ranges."""
         return nearest.distance(self._start, self.end, other._start, other.end)
+
+    # --- coverage ------------------------------------------------------------
+
+    def coverage(self, shift: int = 0, width: int | None = None, weight: Any = 1) -> Rle:
+        """Per-position coverage over 1..width (default: max end after shift) as an `Rle`."""
+        return coverage.coverage_kernel(self._start, self.end, shift, width, weight)
