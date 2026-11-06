@@ -169,10 +169,12 @@ def _subscript(i: Any, n: int) -> Any:
         vals = [None if m else v for v, m in zip(np.ma.getdata(i).tolist(), np.ma.getmaskarray(i).tolist())]
     else:
         raise Unsupported(f"subscript:{type(i).__name__}")
-    if t in ("int", "dbl"):
+    if t == "dbl":
+        raise Unsupported("subscript:double (port documents integer sequences)")
+    if t == "int":
         if any(v is None or v <= 0 for v in vals):
-            raise Unsupported("subscript:non-positive or NA number")
-        return np.array(vals, dtype=np.int64 if t == "int" else np.float64) - 1
+            raise Unsupported("subscript:non-positive or NA integer")
+        return np.array(vals, dtype=np.int64) - 1
     if t == "lgl":
         if any(v is None for v in vals) or len(vals) != n:
             raise Unsupported("subscript:logical with NA or not full length (R recycles)")
