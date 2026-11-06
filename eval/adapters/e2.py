@@ -315,6 +315,8 @@ class Adapter(AdapterBase):
         return RVector("int", [x.frame.width if isinstance(x, _DF) else len(x)])
 
     def op_seqnames(self, *, x):
+        if isinstance(x, Seqinfo):
+            return RVector("chr", list(x.seqnames))
         _need_granges(x, "seqnames")
         return x.seqnames
 
