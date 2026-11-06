@@ -111,9 +111,12 @@ def _mcols_mapping(pairs: Any) -> dict[str, pl.Series] | None:
     _reject_duplicates([name for name, _ in pairs], "metadata columns")
     out = {}
     for name, value in pairs:
-        if not isinstance(value, RVector):
-            raise Unsupported("metadata column that is not an atomic vector")
-        out[name] = _series(value)
+        if isinstance(value, pl.Series):
+            out[name] = value
+        elif isinstance(value, RVector):
+            out[name] = _series(value)
+        else:
+            raise Unsupported("metadata column that is neither an atomic vector nor a native column")
     return out
 
 
@@ -266,6 +269,9 @@ class Adapter(AdapterBase):
         return pl.DataFrame([self._column_series(col).alias(name) for name, col in p["columns"]])
 
     def build_Factor(self, p: dict) -> pl.Series:
+        return self._column_series(p)
+
+    def build_IntegerList(self, p: dict) -> pl.Series:
         return self._column_series(p)
 
     # ---- constructors --------------------------------------------------------

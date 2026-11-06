@@ -16,7 +16,7 @@ The other 53 ops have an `op_*`.
 - Subscripts: negative/zero/NA integers (port: negative counts from the end), double, NA logical,
   logical recycling (port: mask of exactly length n), NULL.
 - NA inside a numeric/logical vector argument (the port has no NA in int/bool arrays).
-- A factor as GRanges `seqnames` (the port has no factor type).
+- Duplicate names in a named bound vector or in metadata columns (a dict / frame cannot hold them).
 
 ## Convention translations
 
@@ -24,7 +24,9 @@ The other 53 ops have an `op_*`.
 - 1-length vector -> scalar, longer -> ndarray / list; named vector `start`/`end`/`width` -> `Mapping[str, int]` (GRanges.gaps/coverage, documented).
 - Subscript: positive integers `- 1`. Results `+ 1`: Hits, `select=` results, `order`, `reduce` revmap. `NO_HIT` -> NA.
 - `distance`: `-1` -> NA (documented as R NA in `GRanges.distance`).
+- Factor `seqnames` (Enum Series) are passed through; the port infers seqlevels from them.
 - mcols: dict of polars Series (int/dbl/chr/lgl -> Int64/Float64/String/Boolean, Factor -> Enum, IntegerList -> List(Int64)).
 - `reduce(with_revmap=True)` tuple -> result with a `revmap` IntegerList mcols column.
 - `seqlengths`/`isCircular`/`genome`: GRanges dicts and Seqinfo tuples -> vectors named by seqlevel.
 - GRanges coverage `dict[str, Rle]` -> RleList; `mcols` zero-column frame projects with its own height (0).
+- `dbl` vectors keep float storage when unboxed to scalars (integral JSON values become floats); no float -> int coercion.
