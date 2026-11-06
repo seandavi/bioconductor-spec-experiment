@@ -515,11 +515,12 @@ class GRanges:
             wc = w_arr if w_arr.ndim == 0 or len(w_arr) == 1 else w_arr[idx]
             if self._seqinfo._is_circular[c] and seqlen:
                 # circular: ranges wrap around the sequence; `width` can only truncate
-                if widths[c] is not None and widths[c] > seqlen:
+                keep = widths[c]
+                if keep is not None and keep > seqlen:
                     raise ValueError("'width' cannot be greater than the length of a circular sequence")
                 dense = _coverage.coverage_circular(
                     self._ranges._start[idx], self._ranges._width[idx], shift_arr[idx], seqlen, wc
-                )[: widths[c]]
+                )[:keep]
             else:
                 length = widths[c] if widths[c] is not None else seqlen
                 dense = _coverage.coverage_dense(

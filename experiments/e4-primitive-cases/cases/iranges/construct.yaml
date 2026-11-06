@@ -71,3 +71,10 @@ cases:
     call: {op: identity, args: [x]}
     adr: ADR-0006
     python: {expect_error: true}
+  - id: ir-con-start-only-runs
+    clause: IR-CON-TWO-1
+    inputs:
+      x: {IRanges: {start: [1, 2, 3, 7]}}
+    call: {op: identity, args: [x]}
+    adr: ADR-0011
+    python: {expect_error: true}

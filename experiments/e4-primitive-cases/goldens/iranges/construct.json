@@ -119,6 +119,15 @@
       "names": null,
       "mcols": {},
       "warnings": ["NAs introduced by coercion to integer range", "NAs produced by integer overflow"]
+    },
+    "ir-con-start-only-runs": {
+      "kind": "IRanges",
+      "start": [1, 7],
+      "end": [3, 7],
+      "width": [3, 1],
+      "names": null,
+      "mcols": {},
+      "warnings": []
     }
   }
 }

@@ -8,13 +8,14 @@ import pytest
 from ranges_e4 import GRanges, Seqinfo
 
 
-def test_seqinfo_merge_is_symmetric_on_values() -> None:
+def test_seqinfo_merge_unions_values_and_orders_x_first() -> None:
     a = Seqinfo(["x", "y"], [10, None], [None, True], "g")
     b = Seqinfo(["y", "z"], [20, 30], [None, None], None)
     ab, ba = a.merge(b), b.merge(a)
-    assert ab.seqlengths == ba.seqlengths | {} and ab.seqnames == ("x", "y", "z")
-    assert ba.seqnames == ("y", "z", "x")
-    assert ab.genome == {"x": "g", "y": "g", "z": "g"} or ab.genome["x"] == "g"
+    assert ab.seqnames == ("x", "y", "z") and ba.seqnames == ("y", "z", "x")
+    assert ab.seqlengths == {"x": 10, "y": 20, "z": 30} == {k: ba.seqlengths[k] for k in ab.seqlengths}
+    assert ab.is_circular == {"x": None, "y": True, "z": None}
+    assert ab.genome["x"] == "g" and ab.genome["z"] is None
 
 
 def test_seqinfo_is_immutable() -> None:

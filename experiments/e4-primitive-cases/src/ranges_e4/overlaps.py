@@ -60,7 +60,7 @@ def overlap_pairs(
             case "equal":
                 g = max(maxgap, 0)
                 ok = (np.abs(a - cs) <= g) & (np.abs(b - ce) <= g)
-            case "within":
+            case _:  # within
                 ok = (cs <= a) & (b <= ce)
                 if maxgap > 0:
                     ok &= (ce - cs) - (b - a) <= maxgap
