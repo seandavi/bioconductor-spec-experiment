@@ -274,8 +274,11 @@ class Adapter(AdapterBase):
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING,
                    seqlengths=MISSING, _mcols=()):
-        kw = {k: to_arg(v) for k, v in (("seqnames", seqnames), ("ranges", ranges), ("strand", strand),
-                                         ("seqinfo", seqinfo)) if v is not MISSING}
+        kw = {k: to_arg(v) for k, v in (("ranges", ranges), ("seqinfo", seqinfo)) if v is not MISSING}
+        # atomic seqnames / strand go as lists, so that NA stays distinct from Python None (R NULL)
+        for k, v in (("seqnames", seqnames), ("strand", strand)):
+            if v is not MISSING:
+                kw[k] = v.list() if isinstance(v, RVector) else v
         if seqlengths is not MISSING:
             # the port takes {seqname: length}; an unnamed vector is handed over as is and rejected by the port
             if isinstance(seqlengths, RVector) and seqlengths.names is not None:
