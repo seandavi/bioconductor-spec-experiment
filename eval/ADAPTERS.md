@@ -119,9 +119,9 @@ otherwise `Unsupported("subscript:<form>")`.
 |---|---|
 | `Unsupported(reason)`, or op listed in `unsupported_ops` | `unsupported` |
 | `UnknownArgument(name)` from you (an R argument you can't map), or your signature rejects a legal R arg | `unsupported` (`argument:<name>`) |
-| any exception whose traceback enters `port_packages` | `port_error` (phase `build` → always `port_error_unexpected`; see COMPARATOR.md) |
+| any exception whose traceback enters `port_packages` | `port_error` (phase `build` or `project` → always `port_error_unexpected`: only a `call`-phase error can match an R error, see COMPARATOR.md) |
 | any other exception (TypeError in translation, AttributeError on a missing port API, bad projection) | `adapter_error` |
-| per-case timeout (default 30 s) | `port_error` (`origin: timeout`) |
+| per-case timeout (default 30 s) | `port_error` (`origin: timeout`; never an R1 pass) |
 
 `unsupported` and `adapter_error` never score as pass. Python warnings are
 recorded, never compared.

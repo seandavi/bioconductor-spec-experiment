@@ -44,6 +44,21 @@ def test_row3_both_error_passes_R1():
     assert (r["outcome"], r["rule"]) == ("pass", "R1")
 
 
+def test_row2c_projection_failure_never_earns_R1():
+    # the operation returned, then reading the result back failed inside the port: R errored, so this is no "both error"
+    r = score(exp(ERR), {"status": "port_error", "phase": "project", "error": {"origin": "port"}})
+    assert (r["outcome"], r["rule"]) == ("port_error_unexpected", "row2c")
+    r = score(exp(ERR), {"status": "port_error", "phase": "project", "error": {"origin": "timeout"}})
+    assert r["outcome"] == "port_error_unexpected"
+
+
+def test_row4b_timeout_in_call_does_not_match_an_r_error():
+    r = score(exp(ERR), {"status": "port_error", "phase": "call", "error": {"origin": "timeout"}})
+    assert r["outcome"] == "port_error_unexpected"
+    r = score(exp(ERR), {"status": "port_error", "phase": "call", "error": {"origin": "bind"}})
+    assert (r["outcome"], r["rule"]) == ("pass", "R1")
+
+
 def test_row4_r_error_port_value_mismatch():
     r = score(exp(ERR), value(vec([1])))
     assert r["outcome"] == "mismatch" and r["detail"]["kinds"] == ["r_error_port_value"]

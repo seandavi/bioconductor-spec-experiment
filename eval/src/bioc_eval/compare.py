@@ -160,7 +160,10 @@ def score(exp: dict, rec: dict | None) -> dict:
         return {**base, "outcome": "adapter_error", "rule": "row2", "detail": rec.get("error", {})}
     if status == "port_error" and rec.get("phase") == "build":
         return {**base, "outcome": "port_error_unexpected", "rule": "row2b", "detail": rec.get("error", {})}
-    if r_error and status == "port_error":
+    if status == "port_error" and rec.get("phase") == "project":
+        # the operation returned; failing to read the result back is not "the port raised" (no R1 pass)
+        return {**base, "outcome": "port_error_unexpected", "rule": "row2c", "detail": rec.get("error", {})}
+    if r_error and status == "port_error" and rec.get("error", {}).get("origin") != "timeout":
         return {**base, "outcome": "pass", "rule": "R1"}
     if r_error and status == "value":
         bad = projection_errors(rec["result"])

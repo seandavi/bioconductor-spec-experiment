@@ -95,3 +95,34 @@ def test_enters_port_looks_at_module_names():
         assert enters_port(e.__traceback__, ("fakeport",))
         assert not enters_port(e.__traceback__, ("other",))
         assert classify(e, "call", ("fakeport",))["status"] == "port_error"
+
+
+def test_projection_failures_are_phase_project_and_never_pass_against_an_r_error():
+    """Op succeeds, then a native getter fails (or hangs) during projection; R errored on the same case."""
+    from bioc_eval.compare import score
+
+    class P(Probe):
+        def __init__(self, project_fn):
+            self.project_fn = project_fn
+
+        def run_case(self, case, stage):
+            stage("build", lambda: None)
+            value = stage("call", lambda: object())
+            return {"result": stage("project", self.project_fn, value)}
+
+    exp = {"id": "c", "source": "heldout", "op": "IRanges", "status": "ok",
+           "result": {"kind": "error", "message": "each range must have a non-negative width"}}
+
+    boom = run_one(P(lambda v: fakeport.boom("getter failed")), CASE, 5.0)
+    assert (boom["status"], boom["phase"]) == ("port_error", "project")
+    assert score(exp, boom)["outcome"] == "port_error_unexpected"
+
+    def hang(v):
+        time.sleep(5)
+
+    slow = run_one(P(hang), CASE, 0.2)
+    assert (slow["phase"], slow["error"]["origin"]) == ("project", "timeout")
+    assert score(exp, slow)["outcome"] == "port_error_unexpected"
+
+    bug = run_one(P(lambda v: len(5)), CASE, 5.0)  # adapter-side projection bug
+    assert score(exp, bug)["outcome"] == "adapter_error"

@@ -13,8 +13,10 @@ Evaluated top to bottom; first match wins.
 | 1 | any | `unsupported` | `unsupported` |
 | 2 | any | `adapter_error` | `adapter_error` |
 | 2b | any | `port_error`, phase `build` | `port_error_unexpected` (R built that input; a port that cannot gets no R1 pass) |
-| 3 | error | `port_error` | `pass` (relaxation R1) |
+| 2c | any | `port_error`, phase `project` | `port_error_unexpected` (the operation returned; failing to read its result back is not an error from the operation, so no R1 pass) |
+| 3 | error | `port_error`, phase `call`, not a timeout | `pass` (relaxation R1) |
 | 4 | error | value | `mismatch` (diff `r_error_port_value`) |
+| 4b | error | `port_error`, origin `timeout` | `port_error_unexpected` (a hang is not an error from the operation) |
 | 5 | value | `port_error` (incl. timeout) | `port_error_unexpected` |
 | 6 | value | value | compare (rule below) → `pass` \| `mismatch` |
 
