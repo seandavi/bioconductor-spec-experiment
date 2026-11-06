@@ -11,6 +11,7 @@ import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
 from ranges_e3._types import BoolArray, IntArray
+from ranges_e3.hits import Hits
 from ranges_e3.iranges import IRanges, per_range
 from ranges_e3.rle import Rle
 from ranges_e3.seqinfo import Seqinfo
@@ -209,13 +210,13 @@ class GRanges:
         at_start = np.broadcast_to(np.asarray(start, dtype=np.bool_), n) ^ self._mirrored(ignore_strand)
         return self._like(*_kernels.flank(r._start, r._width, per_range(width, n, "width"), at_start, both))
 
-    def promoters(self, upstream: Any = 2000, downstream: Any = 200, ignore_strand: bool = False) -> Self:
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> Self:
         """GR.8."""
         n, r = len(self), self._ranges
         return self._like(
             *_kernels.promoters(
                 r._start, r._width, per_range(upstream, n, "upstream"), per_range(downstream, n, "downstream"),
-                self._mirrored(ignore_strand),
+                self._mirrored(False),
             )
         )
 
@@ -311,7 +312,8 @@ class GRanges:
                 elif length is not None:
                     hi = length
                 else:
-                    hi = int(r._end[idx].max()) if len(idx) else None
+                    positive = idx[r._width[idx] > 0]
+                    hi = int(r._end[positive].max()) if len(positive) else None
                 if hi is None:
                     continue
                 gs_, ge = _kernels.gaps(r._start[idx], r._end[idx], lo, hi)
@@ -341,6 +343,12 @@ class GRanges:
             s, en = _kernels.set_operation(
                 self._ranges._start[xi], self._ranges._end[xi], y._ranges._start[yi], y._ranges._end[yi], op
             )
+            if op != "union":  # R clips intersect/setdiff results to [1, seqlength] (GR.12)
+                limit = info.seqlengths[key // 3]
+                if limit is not None:
+                    s, en = np.maximum(s, 1), np.minimum(en, limit)
+                    ok = s <= en
+                    s, en = s[ok], en[ok]
             if len(s):
                 parts.append((key, s, en))
         return self._from_groups(parts, info)
@@ -365,16 +373,18 @@ class GRanges:
         return same & ((self._strand == y._strand) | (self._strand == STAR) | (y._strand == STAR))
 
     def _parallel(
-        self, y: GRanges, ignore_strand: bool, kernel: Any, fallback: str
+        self, y: GRanges, ignore_strand: bool, kernel: Any, fallback: str, y_strand: Any
     ) -> Self:
+        """Pairwise op on comparable pairs; ``y_strand(ok, xs, xe, ys, ye)`` flags pairs that take ``y``'s strand."""
         if len(self) != len(y):
             raise ValueError("parallel operations need equal lengths (SET.2)")
         info, y_seq = self._aligned(y)
         ok = self._comparable(y, y_seq, ignore_strand)
         xs, xe = self._ranges._start, self._ranges._end
+        ys, ye = y._ranges._start, y._ranges._end
         s, e = xs.copy(), xe.copy()
         if ok.any():
-            s[ok], e[ok] = kernel(xs[ok], xe[ok], y._ranges._start[ok], y._ranges._end[ok])
+            s[ok], e[ok] = kernel(xs[ok], xe[ok], ys[ok], ye[ok])
         if not ok.all():
             if fallback == "refuse":
                 raise ValueError("pair of ranges is not comparable (different seqname or strand)")
@@ -382,22 +392,29 @@ class GRanges:
                 e[~ok] = xs[~ok] - 1
         strand = self._strand.copy()
         if not ignore_strand:
-            strand = np.where(self._strand == STAR, y._strand, self._strand).astype(np.int8)
+            take_y = (self._strand == STAR) & y_strand(ok, xs, xe, ys, ye)
+            strand = np.where(take_y, y._strand, self._strand).astype(np.int8)
         return self._new(self._seq, IRanges._new(s, e - s + 1), strand, info, self._names)
 
     def punion(self, y: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
         """GR.13."""
-        return self._parallel(y, ignore_strand, lambda a, b, c, d: _kernels.punion(a, b, c, d, fill_gap), "refuse")
-
-    def pintersect(self, y: GRanges, resolve_empty: str = "none", ignore_strand: bool = False) -> Self:
-        """GR.13."""
         return self._parallel(
-            y, ignore_strand, lambda a, b, c, d: _kernels.pintersect(a, b, c, d, resolve_empty), "empty"
+            y, ignore_strand, lambda a, b, c, d: _kernels.punion(a, b, c, d, fill_gap), "refuse",
+            lambda ok, *_: np.zeros(len(ok), dtype=np.bool_),
+        )
+
+    def pintersect(self, y: GRanges, ignore_strand: bool = False) -> Self:
+        """GR.13 (pairs without overlap give a zero-width range at ``x``'s start)."""
+        return self._parallel(
+            y, ignore_strand, lambda a, b, c, d: _kernels.pintersect(a, b, c, d, "start.x"), "empty",
+            lambda ok, xs, xe, ys, ye: ok & (np.minimum(xe, ye) >= np.maximum(xs, ys) - 1),
         )
 
     def psetdiff(self, y: GRanges, ignore_strand: bool = False) -> Self:
         """GR.13."""
-        return self._parallel(y, ignore_strand, _kernels.psetdiff, "keep")
+        return self._parallel(
+            y, ignore_strand, _kernels.psetdiff, "keep", lambda ok, *_: np.ones(len(ok), dtype=np.bool_)
+        )
 
     # --- coverage (GR.17) ---
 
@@ -412,6 +429,200 @@ class GRanges:
             lengths, values = _kernels.coverage_runs(r._start[idx], r._end[idx], shifts[idx], size)
             out[name] = Rle(lengths, values)
         return out
+
+    # --- overlaps (GR.14) ---
+
+    def _blocks(
+        self, y: GRanges, ignore_strand: bool, split_star: bool = False
+    ) -> list[tuple[IntArray, IntArray, bool]]:
+        """Comparable (query indices, subject indices, mirrored) blocks (GR.6).
+
+        Each query is in one block, except with ``split_star`` where a ``*`` query is in two:
+        against ``+``/``*`` subjects (not mirrored) and against ``-`` subjects (mirrored, GR.15).
+        """
+        _, y_seq = self._aligned(y)
+        blocks: list[tuple[IntArray, IntArray, bool]] = []
+        for seq in np.unique(self._seq):
+            q_in = np.flatnonzero(self._seq == seq)
+            s_in = np.flatnonzero(y_seq == seq)
+            if len(s_in) == 0:
+                continue
+            if ignore_strand:
+                blocks.append((q_in, s_in, False))
+                continue
+            s_strand = y._strand[s_in]
+            for strand in (PLUS, MINUS, STAR):
+                q_idx = q_in[self._strand[q_in] == strand]
+                if len(q_idx) == 0:
+                    continue
+                if strand == STAR and split_star:
+                    blocks.append((q_idx, s_in[s_strand != MINUS], False))
+                    blocks.append((q_idx, s_in[s_strand == MINUS], True))
+                    continue
+                keep = np.ones(len(s_in), dtype=np.bool_) if strand == STAR else (
+                    (s_strand == strand) | (s_strand == STAR)
+                )
+                blocks.append((q_idx, s_in[keep], strand == MINUS))
+        return blocks
+
+    def _block_pairs(
+        self, y: GRanges, ignore_strand: bool, kernel: Any, split_star: bool = False
+    ) -> tuple[IntArray, IntArray]:
+        """Run ``kernel(q_start, q_end, s_start, s_end, mirrored, q_idx, s_idx)`` per block; sort pairs."""
+        qs, qe = self._ranges._start, self._ranges._end
+        ss, se = y._ranges._start, y._ranges._end
+        out_q: list[IntArray] = [_mcols.empty_int()]
+        out_s: list[IntArray] = [_mcols.empty_int()]
+        for q_idx, s_idx, mirrored in self._blocks(y, ignore_strand, split_star):
+            qi, si = kernel(qs[q_idx], qe[q_idx], ss[s_idx], se[s_idx], mirrored, q_idx, s_idx)
+            out_q.append(q_idx[qi])
+            out_s.append(s_idx[si])
+        qi, si = np.concatenate(out_q), np.concatenate(out_s)
+        order = np.lexsort((si, qi))
+        return qi[order], si[order]
+
+    def _overlap_pairs(
+        self, subject: GRanges, max_gap: int, min_overlap: int, type: str, ignore_strand: bool
+    ) -> tuple[IntArray, IntArray]:
+        _kernels.check_overlap_args(int(max_gap), int(min_overlap), type)
+        return self._block_pairs(
+            subject, ignore_strand,
+            lambda a, b, c, d, _m, _q, _s: _kernels.find_overlaps(a, b, c, d, int(max_gap), int(min_overlap), type),
+        )
+
+    def find_overlaps(
+        self, subject: GRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any",
+        select: str = "all", ignore_strand: bool = False,
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """GR.14."""
+        qi, si = self._overlap_pairs(subject, max_gap, min_overlap, type, ignore_strand)
+        if select == "all":
+            return Hits(qi, si, len(self), len(subject))
+        return _kernels.select_pairs(qi, si, len(self), select)
+
+    def count_overlaps(
+        self, subject: GRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any",
+        ignore_strand: bool = False,
+    ) -> IntArray:
+        """GR.14."""
+        qi, _ = self._overlap_pairs(subject, max_gap, min_overlap, type, ignore_strand)
+        return np.bincount(qi, minlength=len(self)).astype(np.int64)
+
+    def overlaps_any(
+        self, subject: GRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any",
+        ignore_strand: bool = False,
+    ) -> BoolArray:
+        """GR.14."""
+        return self.count_overlaps(subject, max_gap, min_overlap, type, ignore_strand) > 0
+
+    def subset_by_overlaps(
+        self, subject: GRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any",
+        invert: bool = False, ignore_strand: bool = False,
+    ) -> Self:
+        """GR.14."""
+        hit = self.overlaps_any(subject, max_gap, min_overlap, type, ignore_strand)
+        return self._take(np.flatnonzero(~hit if invert else hit).astype(np.int64))
+
+    # --- nearest / precede / follow / distance (GR.15) ---
+
+    def _neighbors(
+        self, subject: GRanges | None, select: str, allowed: tuple[str, ...], ignore_strand: bool, kernel: Any,
+        pick: str, directional: bool = False,
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        if select not in allowed:
+            raise ValueError(f"select must be one of {allowed}")
+        target = self if subject is None else subject
+        qi, si = self._block_pairs(target, ignore_strand, kernel, split_star=directional)
+        if directional:
+            qi, si = self._closest_per_query(target, qi, si)
+        if select == "all":
+            return Hits(qi, si, len(self), len(target))
+        return _kernels.select_pairs(qi, si, len(self), pick)
+
+    def _closest_per_query(self, target: GRanges, qi: IntArray, si: IntArray) -> tuple[IntArray, IntArray]:
+        """Keep, per query, the pairs at minimal distance (merges the two ``*``-query blocks)."""
+        if len(qi) == 0:
+            return qi, si
+        r, t = self._ranges, target._ranges
+        d = _kernels.distance(r._start[qi], r._end[qi], t._start[si], t._end[si])
+        starts = np.flatnonzero(np.concatenate([[True], qi[1:] != qi[:-1]]))
+        counts = np.diff(np.append(starts, len(qi)))
+        best = np.repeat(np.minimum.reduceat(d, starts), counts)
+        keep = d == best
+        return qi[keep], si[keep]
+
+    def nearest(
+        self, subject: GRanges | None = None, select: str = "arbitrary", ignore_strand: bool = False
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """GR.15."""
+        def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, _m: bool, q_idx: IntArray, s_idx: IntArray) -> Any:
+            ids = (q_idx, s_idx) if subject is None else None
+            return _kernels.nearest_pairs(a, b, c, d, ids)
+
+        return self._neighbors(subject, select, ("arbitrary", "all"), ignore_strand, kernel, "first")
+
+    def precede(
+        self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """GR.15 (a ``-`` query looks toward lower coordinates)."""
+        def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, mirrored: bool, *_: Any) -> Any:
+            return _kernels.precede_pairs(-a, -d) if mirrored else _kernels.precede_pairs(b, c)
+
+        return self._neighbors(subject, select, ("first", "all"), ignore_strand, kernel, "first", directional=True)
+
+    def follow(
+        self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """GR.15 (``first`` = highest index of a tie, ADR-0010)."""
+        def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, mirrored: bool, *_: Any) -> Any:
+            return _kernels.follow_pairs(-b, -c) if mirrored else _kernels.follow_pairs(a, d)
+
+        if select not in ("first", "all"):
+            raise ValueError("select must be 'first' or 'all'")
+        return self._neighbors(
+            subject, select, ("first", "all"), ignore_strand, kernel, "last", directional=True
+        )
+
+    def distance(self, y: GRanges, ignore_strand: bool = False) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+        """GR.15: masked (NA) where the pair is not comparable."""
+        n, m = len(self), len(y)
+        if n != m and 1 not in (n, m):
+            raise ValueError("distance needs equal lengths or one of length 1")
+        if 0 in (n, m):
+            return _kernels.masked_ints(_mcols.empty_int(), np.zeros(0, dtype=np.bool_))
+        size = max(n, m)
+        xi = np.zeros(size, dtype=np.int64) if n == 1 else np.arange(size)
+        yi = np.zeros(size, dtype=np.int64) if m == 1 else np.arange(size)
+        x, yy = self[xi], y[yi]
+        _, y_seq = x._aligned(yy)
+        ok = x._comparable(yy, y_seq, ignore_strand)
+        d = _kernels.distance(x._ranges._start, x._ranges._end, yy._ranges._start, yy._ranges._end)
+        return _kernels.masked_ints(d, ~ok)
+
+    # --- ordering (GR.16) ---
+
+    def _keys(self) -> list[IntArray]:
+        return [self._seq.astype(np.int64), self._strand.astype(np.int64), self._ranges._start, self._ranges._end]
+
+    def order(self, decreasing: bool = False) -> IntArray:
+        """GR.16."""
+        return _kernels.order_by(self._keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        """GR.16."""
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "average") -> IntArray | npt.NDArray[np.float64]:
+        """GR.16."""
+        return _kernels.rank_by(self._keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> BoolArray:
+        """GR.16."""
+        return _kernels.duplicated_by(self._keys(), from_last)
+
+    def unique(self) -> Self:
+        """GR.16."""
+        return self._take(np.flatnonzero(~self.duplicated()).astype(np.int64))
 
     # --- trim (GR.9) ---
 

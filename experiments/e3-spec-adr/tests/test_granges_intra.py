@@ -49,7 +49,6 @@ def test_flank_minus_strand_mirrors() -> None:
 def test_promoters_minus_strand() -> None:
     assert span(G.promoters(4, 2)) == [(6, 11), (13, 18), (6, 11), (6, 11)]
     assert span(G.promoters()) == [(-1990, 209), (-185, 2014), (-1990, 209), (-192, 2007)]
-    assert span(G.promoters(4, 2, ignore_strand=True)) == [(6, 11)] * 3 + [(1, 6)]
     with pytest.raises(ValueError):
         G.promoters(-1, 0)
 

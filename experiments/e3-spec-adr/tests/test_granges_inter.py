@@ -161,3 +161,35 @@ def test_coverage_length_rules() -> None:
     cov = short.coverage()
     assert len(cov["a"]) == 2 and len(cov["b"]) == 3
     assert len(GRanges("a", IRanges(start=1, end=3), seqinfo=Seqinfo(["a", "z"])).coverage()["z"]) == 0
+
+
+@pytest.mark.spec("GR.12")
+def test_intersect_and_setdiff_clip_to_seqlength_but_union_does_not() -> None:
+    si = Seqinfo(["n", "u"], [30, None])
+    x = GRanges(["n", "n", "u"], IRanges(start=[25, -3, 25], end=[35, 2, 35]), strand="+", seqinfo=si)
+    empty = x[[]]
+    assert gs(x.setdiff(empty)) == [("n", 1, 2, "+"), ("n", 25, 30, "+"), ("u", 25, 35, "+")]
+    assert gs(x.intersect(x)) == [("n", 1, 2, "+"), ("n", 25, 30, "+"), ("u", 25, 35, "+")]
+    assert gs(x.union(empty)) == [("n", -3, 2, "+"), ("n", 25, 35, "+"), ("u", 25, 35, "+")]
+    circ = GRanges("c", IRanges(start=25, end=35), seqinfo=Seqinfo(["c"], [30], [True]))
+    assert gs(circ.setdiff(circ[[]])) == [("c", 25, 30, "*")]
+
+
+@pytest.mark.spec("GR.11")
+def test_gaps_ignores_groups_with_only_zero_width_ranges() -> None:
+    g = gr(("a", 11, 10, "*"), ("b", 27, 30, "-"), seqinfo=Seqinfo(["a", "b"], [None, 40]))
+    assert ("a", 1, 10, "*") not in gs(g.gaps())
+    assert [r for r in gs(g.gaps()) if r[0] == "a"] == []
+    assert ("a", 1, 5, "+") in gs(g.gaps(start=1, end=5))
+
+
+@pytest.mark.spec("GR.13")
+def test_parallel_result_strand_rules() -> None:
+    star = gr(("a", 1, 8, "*"))
+    assert gs(star.pintersect(gr(("a", 5, 12, "-")))) == [("a", 5, 8, "-")]
+    assert gs(star.pintersect(gr(("a", 20, 30, "-")))) == [("a", 1, 0, "*")]
+    assert gs(star.pintersect(gr(("b", 5, 12, "+")))) == [("a", 1, 0, "*")]
+    assert gs(star.punion(gr(("a", 5, 12, "-")))) == [("a", 1, 12, "*")]
+    assert gs(star.psetdiff(gr(("a", 5, 12, "+")))) == [("a", 1, 4, "+")]
+    assert gs(star.psetdiff(gr(("b", 5, 9, "+")))) == [("a", 1, 8, "+")]
+    assert gs(gr(("a", 1, 8, "+")).psetdiff(gr(("b", 5, 9, "-")))) == [("a", 1, 8, "+")]

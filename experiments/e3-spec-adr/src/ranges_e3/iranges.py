@@ -346,7 +346,10 @@ class IRanges:
         """NEAR.2. ``subject=None`` searches ``self`` excluding each range itself."""
         return self._neighbors(
             subject, select, ("arbitrary", "all"),
-            lambda t: _kernels.nearest_pairs(self._start, self._end, t._start, t._end, subject is None),
+            lambda t: _kernels.nearest_pairs(
+                self._start, self._end, t._start, t._end,
+                (np.arange(len(self)), np.arange(len(t))) if subject is None else None,
+            ),
         )
 
     def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]

@@ -460,15 +460,18 @@ def follow_pairs(qs: IntArray, se: IntArray) -> tuple[IntArray, IntArray]:
 
 
 def nearest_pairs(
-    qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, exclude_self: bool
+    qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, ids: tuple[IntArray, IntArray] | None = None
 ) -> tuple[IntArray, IntArray]:
-    """NEAR.2: all subjects at minimal distance, sorted by (query, subject)."""
+    """NEAR.2: all subjects at minimal distance, sorted by (query, subject).
+
+    ``ids`` = (query ids, subject ids): pairs with equal ids are excluded (self-search).
+    """
     nq, ns = len(qs), len(ss)
     if nq == 0 or ns == 0:
         return _EMPTY, _EMPTY
     q0, s0 = find_overlaps(qs, qe, ss, se, 0, 0, "any")  # every pair at distance 0
-    if exclude_self:
-        keep = q0 != s0
+    if ids is not None:
+        keep = ids[0][q0] != ids[1][s0]
         q0, s0 = q0[keep], s0[keep]
     rest = np.flatnonzero(np.bincount(q0, minlength=nq) == 0)
     by_start, by_end = np.argsort(ss, kind="stable"), np.argsort(se, kind="stable")
