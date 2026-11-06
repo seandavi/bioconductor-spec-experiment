@@ -95,6 +95,13 @@ def to_series(name: str, rv: RVector) -> pl.Series:
     return pl.Series(name, rv.list(), dtype=PL_DTYPE[rv.type])
 
 
+def name_mapping(rv: RVector) -> dict:
+    """Named R vector -> the port's {name: value} mapping; a mapping cannot hold repeated or NA names."""
+    if len(set(rv.names)) != len(rv.names) or any(n is None for n in rv.names):
+        raise Unsupported("named vector with repeated or NA names")
+    return dict(zip(rv.names, rv.list()))
+
+
 def mcols_dict(extra_named: list) -> dict | None:
     """`...` of IRanges() / GRanges() -> the port's `mcols=` dict of columns."""
     if not extra_named:
@@ -272,7 +279,7 @@ class Adapter(AdapterBase):
         if seqlengths is not MISSING:
             # the port takes {seqname: length}; an unnamed vector is handed over as is and rejected by the port
             if isinstance(seqlengths, RVector) and seqlengths.names is not None:
-                kw["seqlengths"] = dict(zip(seqlengths.names, seqlengths.list()))
+                kw["seqlengths"] = name_mapping(seqlengths)
             else:
                 kw["seqlengths"] = to_arg(seqlengths)
         mcols = mcols_dict(list(_mcols))
@@ -473,7 +480,7 @@ class Adapter(AdapterBase):
         if isinstance(width, RVector) and len(width) > 1:
             if width.names is None:
                 raise Unsupported("argument:width unnamed vector")
-            kw["width"] = dict(zip(width.names, width.list()))  # the port takes {seqname: length}
+            kw["width"] = name_mapping(width)  # the port takes {seqname: length}
         return self._method("coverage", x, **kw)
 
     # ---- ordering -------------------------------------------------------------------------------------------------------------------------------
