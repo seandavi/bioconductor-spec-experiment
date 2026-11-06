@@ -161,8 +161,10 @@ def py_result(case: Case) -> dict[str, Any]:
         try:
             value = adapter.encode(adapter.run_python(case.spec))
             out: dict[str, Any] = {"value": value}
-        except _BUGS as e:  # a Python defect, never a legitimate R-style error
-            out = {"error": f"{type(e).__name__}: {e}", "bug": True}
+        except _BUGS as e:  # a Python defect, unless it is R's "unused argument"
+            out = {"error": f"{type(e).__name__}: {e}"}
+            if not (isinstance(e, TypeError) and "unexpected keyword argument" in str(e)):
+                out["bug"] = True
         except Exception as e:  # noqa: BLE001 - ValueError/IndexError/... = R-style error
             out = {"error": f"{type(e).__name__}: {e}"}
     out["warnings"] = [str(x.message) for x in w]

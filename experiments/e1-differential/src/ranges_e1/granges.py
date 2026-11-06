@@ -10,6 +10,7 @@ import numpy as np
 import polars as pl
 
 from . import _meta
+from ._kernels import intra
 from ._meta import Names
 from .iranges import IRanges
 from .seqinfo import Seqinfo
@@ -299,3 +300,53 @@ class GRanges:
             self._seq, new_start, new_end - new_start + 1, self._strand,
             self._names if use_names else None, self._mcols, self._seqinfo, check=False,
         )
+
+    # -- intra-range ---------------------------------------------------------
+    def _neg(self, ignore_strand: bool) -> np.ndarray:
+        """Ranges to be treated as minus-strand (their 5' end is the right end)."""
+        return np.zeros(len(self), dtype=bool) if ignore_strand else self._strand == MINUS
+
+    def _moved(self, ranges: IRanges, use_names: bool) -> Self:
+        """Same sequences/strands/mcols with new coordinates; warns if out of bounds."""
+        return self._copy(ranges=ranges.set_names(None).set_mcols(None), names=self._names if use_names else None, check=True)
+
+    def shift(self, shift: Any = 0, use_names: bool = True) -> Self:
+        """Shift along the genome; strand is ignored (R)."""
+        return self._moved(self._ranges.shift(shift), use_names)
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True) -> Self:
+        """Narrow relative to each range's left end; strand is ignored (R)."""
+        return self._moved(self._ranges.narrow(start, end, width), use_names)
+
+    def resize(self, width: Any, fix: Any = "start", use_names: bool = True, ignore_strand: bool = False) -> Self:
+        """Resize keeping the `fix` end; "start"/"end" refer to the transcript sense, so they swap on "-"."""
+        r = self._ranges
+        new_w = r._int_arg(width, "width", longer="truncate")
+        if (new_w < 0).any():
+            raise ValueError("'width' values must be non-negative")
+        codes = r._fix_codes(fix)
+        neg = self._neg(ignore_strand)
+        swapped = np.where(codes == intra.FIX_START, intra.FIX_END, np.where(codes == intra.FIX_END, intra.FIX_START, codes))
+        s, w = intra.resize(r.start, r.width, new_w, np.where(neg, swapped, codes))
+        return self._moved(IRanges._new(s, w), use_names)
+
+    def flank(
+        self, width: Any, start: Any = True, both: bool = False, use_names: bool = True, ignore_strand: bool = False
+    ) -> Self:
+        """Flanks upstream (start=True) or downstream of each range, in the strand's sense."""
+        r = self._ranges
+        by = r._int_arg(width, "width")
+        flags = np.asarray(start)
+        if flags.dtype.kind != "b":
+            raise ValueError("'start' must be logical without NA's")
+        at_start = _meta.recycle_arg(np.atleast_1d(flags), len(self), "start", longer="truncate")
+        s, w = intra.flank(r.start, r.width, by, at_start ^ self._neg(ignore_strand), bool(both))
+        return self._moved(IRanges._new(s, w), use_names)
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
+        """Promoter windows around the start of each range, strand-aware."""
+        r = self._ranges
+        up = r._int_arg(upstream, "upstream", longer="truncate")
+        down = r._int_arg(downstream, "downstream", longer="truncate")
+        s, w = intra.promoters(r.start, r.width, up, down, self._strand == MINUS)
+        return self._moved(IRanges._new(s, w), use_names)
