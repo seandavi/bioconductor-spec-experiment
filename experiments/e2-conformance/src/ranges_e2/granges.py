@@ -720,7 +720,7 @@ class GRanges:
         ok = x._recode(si) == y._recode(si)
         if not ignore_strand:
             ok &= _compat(x._strand, y._strand)
-        d = _nearest.range_distance(x._s(), x._s() + x._w() - 1, y._s(), y._s() + y._w() - 1)
+        d = _nearest.pair_distance(x._s(), x._s() + x._w() - 1, y._s(), y._s() + y._w() - 1)
         return np.where(ok, d, NA_INDEX).astype(np.int64)
 
     # ---- coverage -------------------------------------------------------------------------------------------------

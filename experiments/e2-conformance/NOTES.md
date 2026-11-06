@@ -141,11 +141,3 @@ Totals now: 921 cases / 155 clauses; R 921/921; Python 917 pass + 4 xfail; pytes
 Lesson: ownership/immutability and type-widening are properties of the *Python* API; a conformance suite
 generated from R pins values, so these need hand-written Python tests (now in test_api.py).
 Not changed: the previously documented limits (positions <= 0 in GRanges precede/follow/nearest; O(nq*ns)).
-
-## 2026-11-06 — upstream upgrade: IRanges 2.47.3 / GenomicRanges 1.65.2 (distance)
-
-Release note: `distance()` now returns 0 for overlapping ranges and gap width + 1 otherwise (adjacent = 1); GenomicRanges delegates to the IntegerRanges method; `nearest/precede/follow` unchanged.
-Followed README "R / Bioc upgrade": `just check-r` -> exactly 9 drifted cases (all `*.distance.*`; installed `packageVersion()` still printed 2.47.2 / 1.65.1, so the drift detector, not the version string, was the signal) -> restated clauses IR.DISTANCE / GR.DISTANCE -> `just generate iranges-nearest granges-nearest` (diff: those 9 values + timestamps; nearest goldens unchanged) -> committed -> `just check-py` failed on exactly those 9 -> fixed.
-Fix: new `_nearest.range_distance` for the public `distance()`; `pair_distance` (adjacent = 0) stays because nearest tie-breaking and GR.NEAREST rely on "overlap or adjacent = 0". Added a kernel test pinning adjacent = 1.
-Verified: R 921/921, Python 917 pass + 4 xfail, `uv run pytest` 2038 passed + 4 xfailed, mypy --strict clean, fuzz seeds 11 and 5 (3000 each): 0 distance divergences; the one seed-5 divergence is the documented GRanges precede end <= 0 limit (zero-width subject at 1).
-xfails reviewed: unchanged, still xfail (strict) against the new R.

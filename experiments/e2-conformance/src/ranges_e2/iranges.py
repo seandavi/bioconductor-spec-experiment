@@ -351,7 +351,6 @@ class IRanges:
         return _ties_result(ties, len(self), len(sj), select)
 
     def distance(self, other: IRanges) -> npt.NDArray[np.int64]:
-        """Parallel distance: 0 if overlapping, else gap width + 1 (adjacent ranges give 1)."""
         return _nearest.distance_ranges(self._s(), self._w(), other._s(), other._w())
 
     # ---- coverage ---------------------------------------------------------------------

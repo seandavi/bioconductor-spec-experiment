@@ -9,7 +9,7 @@
     "IR.NEAREST.SELF": "nearest(x) with no subject finds the nearest other range in x (never itself)",
     "IR.PRECEDE": "precede(x, subject) returns the subject starting strictly after end(x) with the smallest start; select='first' (default) picks lowest index among ties, 'all' returns all, 'last' is an error; NA if none",
     "IR.FOLLOW": "follow(x, subject) returns the subject ending strictly before start(x) with the largest end; select='last' (default) picks highest index among ties, 'all' returns all, 'first' is an error",
-    "IR.DISTANCE": "distance(x, y) is parallel: 0 for overlapping ranges, otherwise the number of positions strictly between them plus one (so adjacent ranges are 1; IRanges 2.47.3); the shorter argument recycles to the longer length (warning if not a multiple); names are dropped"
+    "IR.DISTANCE": "distance(x, y) is parallel: 0 for overlapping or adjacent ranges, otherwise the number of positions strictly between them; the shorter argument recycles to the longer length (warning if not a multiple); names are dropped"
   },
   "fixtures": {
     "zself": {"$type": "IRanges", "start": [5, 10, 10], "width": [0, 0, 3]},

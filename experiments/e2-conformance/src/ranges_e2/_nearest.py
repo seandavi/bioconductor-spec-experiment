@@ -24,15 +24,6 @@ def pair_distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> Int
     return out
 
 
-def range_distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
-    """Public distance(): 0 if the ranges overlap, else gap width + 1 (adjacent = 1).
-
-    IRanges >= 2.47.3. nearest/precede/follow keep using pair_distance (adjacent = 0).
-    """
-    out: IntArray = np.where(np.maximum(qs, ss) <= np.minimum(qe, se), 0, np.maximum(qs, ss) - np.minimum(qe, se))
-    return out
-
-
 def nearest_ties(
     qs: IntArray, qw: IntArray, ss: IntArray, sw: IntArray, mask: MaskFn | None = None, self_exclude: bool = False
 ) -> list[IntArray]:
@@ -94,4 +85,4 @@ def distance_ranges(xs: IntArray, xw: IntArray, ys: IntArray, yw: IntArray) -> I
     """Parallel distance; the shorter argument recycles to the longer length."""
     n = max(len(xs), len(ys)) if len(xs) and len(ys) else 0
     xs, xw, ys, yw = (rep_len(a, n) for a in (xs, xw, ys, yw))
-    return range_distance(xs, xs + xw - 1, ys, ys + yw - 1)
+    return pair_distance(xs, xs + xw - 1, ys, ys + yw - 1)
