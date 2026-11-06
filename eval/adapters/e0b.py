@@ -287,6 +287,8 @@ class Adapter(AdapterBase):
             raise UnknownArgument("seqlengths")
         if seqnames is MISSING or ranges is MISSING:
             raise Unsupported("GRanges: port requires seqnames and ranges")
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = {} if strand is MISSING else {"strand": _arg(strand, "strand")}
         if seqinfo is not MISSING:
             kw["seqinfo"] = seqinfo
@@ -379,6 +381,8 @@ class Adapter(AdapterBase):
     def op_c(self, *dots, x, **kw):
         for k in kw:
             raise UnknownArgument(k)
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         return _prop(x, "concat")(*dots)
 
     # ---- intra-range ---------------------------------------------------------------------
@@ -460,6 +464,9 @@ class Adapter(AdapterBase):
 
     # ---- coverage ------------------------------------------------------------------------------------------
     def op_coverage(self, *, x, width=MISSING, **kw):
+        for name in ("weight", "shift"):
+            if isinstance(kw.get(name), RVector) and kw[name].type == "chr":
+                raise Unsupported(f"coverage: {name} as an mcols column name")  # the port takes numbers only
         convert = _mapping_or_arg if isinstance(x, GRanges) else _arg  # Mapping width is GRanges-only
         bounds = {} if width is MISSING else {"width": convert(width, "width")}
         return _invoke(x, "coverage", **kw, **bounds)
