@@ -131,6 +131,20 @@ def _arr(rv: RVector) -> Any:
     return rv.np(na_as_nan=True)
 
 
+def _scalar_only(kw: dict, names: tuple, what: str) -> None:
+    """The port method types these arguments as a scalar `int`; a longer vector (R recycles / pairs it) is a form it lacks."""
+    for name in names:
+        if isinstance(kw.get(name), RVector) and len(kw[name]) > 1:
+            raise Unsupported(f"{what}: {name} as a vector")
+
+
+def _no_incomparables(rv: Any) -> Any:
+    """R `incomparables = FALSE` (nothing is incomparable) -> the container biocutils takes; its default is `set()`."""
+    if isinstance(rv, RVector) and rv.type == "lgl" and rv.values == [False]:
+        return set()
+    raise Unsupported("duplicated / unique: incomparables other than FALSE")
+
+
 def _val(rv: Any) -> Any:
     """Length-1 R vector -> Python scalar; otherwise a list; NULL / port objects unchanged."""
     if not isinstance(rv, RVector):
@@ -497,6 +511,7 @@ class Adapter(AdapterBase):
                                              "ignore_strand": "ignore_strand"})
 
     def op_promoters(self, *, x, **kw):
+        _scalar_only(kw, ("upstream", "downstream"), "promoters")
         return self._invoke(x, "promoters", kw, {"upstream": "upstream", "downstream": "downstream"})
 
     # ---------------------------------------------------------------- inter-range
@@ -599,6 +614,8 @@ class Adapter(AdapterBase):
         for name in ("weight", "shift"):
             if isinstance(kw.get(name), RVector) and kw[name].type == "chr":
                 raise Unsupported(f"coverage: {name} as an mcols column name")  # the port takes numbers only
+        if isinstance(x, GenomicRanges):
+            _scalar_only(kw, ("shift", "width", "weight"), "GenomicRanges.coverage")
         # IRanges.coverage documents array-valued shift / weight; GenomicRanges.coverage documents scalars.
         conv = {"shift": _arr, "weight": _arr} if isinstance(x, IRanges) else {}
         res = self._invoke(x, "coverage", kw, {"shift": "shift", "width": "width", "weight": "weight",
@@ -620,10 +637,12 @@ class Adapter(AdapterBase):
 
     def op_duplicated(self, *, x, **kw):
         # biocutils.duplicated is the port's public generic; it accepts IRanges and GenomicRanges
-        return self._call_mapped(ut.duplicated, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x)
+        return self._call_mapped(ut.duplicated, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x,
+                                 conv={"incomparables": _no_incomparables})
 
     def op_unique(self, *, x, **kw):
-        return self._call_mapped(ut.unique, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x)
+        return self._call_mapped(ut.unique, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x,
+                                 conv={"incomparables": _no_incomparables})
 
     # ---------------------------------------------------------------- projection
 

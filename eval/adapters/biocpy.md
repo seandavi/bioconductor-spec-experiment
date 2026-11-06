@@ -26,11 +26,15 @@ Header of `biocpy.py` lists the docs used and every translation; this file is th
   Positive integers (shifted to 0-based), full-length logicals and names are passed.
 - `order()` of more than one object.
 - `findOverlaps` / `countOverlaps` / `subsetByOverlaps` with `type = "equal"` (the port documents any / start / end / within).
+- Vector forms of scalar `int` parameters: `GenomicRanges.coverage(shift=, width=, weight=)` and `promoters(upstream=, downstream=)` with
+  more than one element (`IRanges.coverage` takes array-valued shift / weight).
+- `duplicated` / `unique` with `incomparables` other than `FALSE`.
 - `coverage(weight=, shift=)` given a character column name; `GRanges(seqinfo=<character>)`; `c(<ranges>, <atomic>)`.
 
 ## Convention translations
 
-- `duplicated` / `unique` call `biocutils.duplicated` / `biocutils.unique` (the port's public generics; `fromLast` -> `from_last`); results are projected as returned.
+- `duplicated` / `unique` call `biocutils.duplicated` / `biocutils.unique` (the port's public generics; `fromLast` -> `from_last`;
+  R `incomparables = FALSE` -> `set()`, the generic's default and its "nothing incomparable"); results are projected as returned.
 - A nested call's ndarray / masked-array result is passed on as an R vector (NA kept), so `x[order(x)]` and `IRanges(start(x), width(x))` work.
 - Constructor `...` columns become typed numpy columns (masked when NA is present).
 
