@@ -109,3 +109,22 @@ the strand logic and confirmed with ad hoc runs:
 - Not implemented: `distanceToNearest`, `selectNearest`, `overlapsRanges`,
   `findOverlaps` with integer vectors as query, `circle.length`/circular wrap,
   `nthread`.
+
+## 2026-11-06 02:30 — implementer: wrap-up (stage 14)
+
+- All operations in TARGET.md's required scope are public API (`tests/test_scope.py`
+  asserts the surface). `uv run pytest`: 300 passed; `mypy src` clean.
+- Redesign worth knowing: the first overlap engine bounded candidate subjects only
+  from above (by start), which made `type=any/end/within` quadratic (200k x 200k
+  never finished). Added a lower bound from the running max of subject ends;
+  now ~1 s. The hypothesis brute-force test guards the pruning's correctness.
+- Property tests corrected twice by their own failures (my invariants were wrong,
+  the code was right): reduce with `min_gapwidth > 1` legitimately covers more
+  positions than its input.
+- Known unverified spots (expectations written from my reading of R, not each
+  checked in R): `Hits`-level behaviour of `select="arbitrary"` (we return the
+  first), GRanges `find_overlaps` on seqlevel sets that only partly overlap, the
+  exact wording/trigger of R's warnings, `IRanges.nearest` tie rule beyond the
+  cases listed above, and any combination of `*`-strand subjects/queries in
+  `precede`/`follow` beyond the examples tested.
+- No human intervention at any point.
