@@ -11,7 +11,7 @@ just check-goldens   # R recomputes and diffs against committed goldens (exit 1 
 ```
 
 Needs `Rscript` with IRanges, GenomicRanges, yaml, jsonlite (R 4.6 / Bioc 3.24
-when written) for the two `just` recipes only. `uv run pytest` needs no R.
+when written; goldens regenerated for IRanges 2.47.3 / GenomicRanges 1.65.2) for the two `just` recipes only. `uv run pytest` needs no R.
 
 ## How conformance works
 
@@ -46,7 +46,7 @@ goldens/.../<group>.json     build objects natively -> run op -> project -> comp
   `revmap`) and subtracts 1 from `int` subscript inputs (ADR-0001).
 
 Size at close-out: 715 cases (393 IRanges, 322 GRanges), 305 clauses, 11 ADRs,
-2308 passing tests, 6 skipped (ADR-0010).
+2309 passing tests, 6 skipped (ADR-0010).
 
 ## Package design
 
