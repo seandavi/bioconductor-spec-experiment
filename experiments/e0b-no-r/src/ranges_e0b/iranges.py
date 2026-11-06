@@ -6,7 +6,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import intra
+from . import intra, ordering
 from ._sew import (
     IntArray,
     concat_mcols,
@@ -179,3 +179,27 @@ class IRanges:
         """`upstream` + `downstream` ranges around the start (all ranges treated as `+`)."""
         minus = np.zeros(len(self), dtype=bool)
         return self._replace(*intra.promoters(self._start, self._width, upstream, downstream, minus))
+
+    # --- ordering ------------------------------------------------------------
+
+    def _order_keys(self) -> list[IntArray]:
+        return [self._start, self._width]
+
+    def order(self, decreasing: bool = False) -> IntArray:
+        """0-based stable permutation sorting by (start, width)."""
+        return ordering.order_keys(self._order_keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "average") -> Any:
+        """1-based ranks by (start, width); float64 for "average", else int64."""
+        return ordering.rank_keys(self._order_keys(), ties_method)
+
+    def duplicated(self) -> Any:
+        """Boolean mask; True for repeats of an earlier range (first occurrence False)."""
+        return ordering.duplicated_keys(self._order_keys())
+
+    def unique(self) -> Self:
+        """Drop repeats, keeping first occurrences in original order."""
+        return self[~self.duplicated()]
