@@ -103,25 +103,28 @@ def test_nearest_self_excludes_itself():
 
 def test_distance():
     d = lambda a, b, c, e: int(IRanges(a, b).distance(IRanges(c, e))[0])  # noqa: E731
-    # R 4.6 / IRanges 2.47: gap width; 0 when overlapping or adjacent
-    assert d(1, 3, 4, 5) == 0
-    assert d(1, 3, 5, 6) == 1
+    # R (IRanges 2.47.3): 0 if overlapping, else gap width + 1 (adjacent -> 1).
+    # Empty ranges never overlap, so even an empty range inside another gives >= 1.
+    assert d(1, 3, 4, 5) == 1  # R: 1
+    assert d(1, 3, 5, 6) == 2  # R: 2
     assert d(1, 3, 2, 5) == 0
     assert d(1, 3, 1, 3) == 0
-    assert d(5, 6, 1, 3) == 1
-    assert d(5, 4, 1, 3) == 1
-    assert d(5, 4, 7, 9) == 2
-    assert d(5, 4, 5, 7) == 0
-    assert d(5, 4, 3, 4) == 0
-    assert d(3, 4, 5, 4) == 0
-    assert d(5, 4, 3, 10) == 0
-    assert d(1, 2, 5, 4) == 2
+    assert d(5, 6, 1, 3) == 2  # R: 2
+    assert d(5, 4, 1, 3) == 2  # R: 2
+    assert d(5, 4, 7, 9) == 3  # R: 3
+    assert d(5, 4, 5, 7) == 1  # R: 1
+    assert d(5, 4, 3, 4) == 1  # R: 1
+    assert d(3, 4, 5, 4) == 1  # R: 1
+    assert d(5, 4, 3, 10) == 1  # R: 1
+    assert d(1, 2, 5, 4) == 3  # R: 3
+    assert d(5, 4, 5, 4) == 1  # R: 1
+    assert d(1, 10, 6, 5) == 1  # R: 1
 
 
 def test_distance_recycling():
     x = IRanges([1, 10], [2, 12])
-    assert x.distance(IRanges(5, 6)).tolist() == [2, 3]  # R: 2 3
-    assert IRanges(5, 6).distance(x).tolist() == [2, 3]
+    assert x.distance(IRanges(5, 6)).tolist() == [3, 4]  # R: 3 4
+    assert IRanges(5, 6).distance(x).tolist() == [3, 4]
     assert len(IRanges.empty().distance(IRanges(5, 6))) == 0
     with pytest.raises(ValueError):
         x.distance(IRanges([1, 2, 3], [4, 5, 6]))
@@ -145,7 +148,10 @@ def test_precede_follow_nearest_match_naive_definitions(q, s):
         assert q.follow(s).tolist()[i] == expf
         dists = [int(q[i].distance(s[j])[0]) for j in range(len(s))]
         nn = q.nearest(s).tolist()[i]
-        assert dists[nn] == min(dists) or min(dists) > 0  # overlapping/adjacent winners have distance 0
+        # nearest is unchanged by the distance() redefinition: any overlapping-or-adjacent subject
+        # (distance <= 1 now) wins ties among themselves, so compare exactly only beyond that
+        # R: select="all" for q=25-25, s=19-24,20-25 returns both (distances 1 and 0)
+        assert dists[nn] == min(dists) or min(dists) <= 1
     hits = pairs(q.nearest(s, select="all"))
     assert hits == sorted(set(hits))
     assert {i for i, _ in hits} == set(range(len(q)))
