@@ -12,6 +12,7 @@ import polars as pl
 from ranges_e3 import _kernels, _mcols, _subscript
 from ranges_e3._types import BoolArray, IntArray
 from ranges_e3.iranges import IRanges, per_range
+from ranges_e3.rle import Rle
 from ranges_e3.seqinfo import Seqinfo
 
 STRANDS = ("+", "-", "*")  # code order = sort order (R factor order)
@@ -217,6 +218,200 @@ class GRanges:
                 self._mirrored(ignore_strand),
             )
         )
+
+    # --- grouping helpers ---
+
+    def _group_keys(self, ignore_strand: bool) -> IntArray:
+        """Sortable group id per range: ``(seqlevel, strand)`` or ``seqlevel`` alone (GR.10)."""
+        strand = np.full(len(self), STAR, dtype=np.int64) if ignore_strand else self._strand.astype(np.int64)
+        return self._seq.astype(np.int64) * 3 + strand
+
+    @staticmethod
+    def _groups(keys: IntArray) -> list[tuple[int, IntArray]]:
+        """``[(key, indices)]`` ascending by key; indices ascending."""
+        if len(keys) == 0:
+            return []
+        order = np.argsort(keys, kind="stable")
+        sorted_keys = keys[order]
+        cuts = np.flatnonzero(np.diff(sorted_keys)) + 1
+        return [(int(keys[c[0]]), c) for c in np.split(order, cuts)]
+
+    def _from_groups(
+        self, parts: list[tuple[int, IntArray, IntArray]], info: Seqinfo | None = None
+    ) -> Self:
+        """Assemble ``(key, start, end)`` parts (already in output order) into a GRanges."""
+        if parts:
+            keys = np.concatenate([np.full(len(s), k, dtype=np.int64) for k, s, _ in parts])
+            start = np.concatenate([s for _, s, _ in parts])
+            end = np.concatenate([e for _, _, e in parts])
+        else:
+            keys, start, end = _mcols.empty_int(), _mcols.empty_int(), _mcols.empty_int()
+        return self._new(
+            (keys // 3).astype(np.int32), IRanges._new(start, end - start + 1), (keys % 3).astype(np.int8),
+            info if info is not None else self._seqinfo,
+        )
+
+    # --- inter-range (GR.10-11) ---
+
+    def range(self, ignore_strand: bool = False) -> Self:
+        """GR.10."""
+        r = self._ranges
+        parts = []
+        for key, idx in self._groups(self._group_keys(ignore_strand)):
+            lo, hi = _kernels.span(r._start[idx], r._end[idx])  # type: ignore[misc]
+            parts.append((key, np.array([lo], dtype=np.int64), np.array([hi], dtype=np.int64)))
+        return self._from_groups(parts)
+
+    def reduce(
+        self, min_gapwidth: int = 1, drop_empty_ranges: bool = False, with_revmap: bool = False,
+        ignore_strand: bool = False,
+    ) -> Self:
+        """GR.10."""
+        r = self._ranges
+        parts = []
+        revmap: list[IntArray] = []
+        for key, idx in self._groups(self._group_keys(ignore_strand)):
+            gs_, ge, order, bounds = _kernels.reduce_scan(
+                r._start[idx], r._end[idx], int(min_gapwidth), drop_empty_ranges
+            )
+            parts.append((key, gs_, ge))
+            if with_revmap:
+                groups = [idx[g] for g in _kernels.split_groups(order, bounds)]
+                if drop_empty_ranges:
+                    groups = [g[r._width[g] > 0] for g in groups]
+                revmap.extend(groups)
+        out = self._from_groups(parts)
+        return out.with_mcols(pl.DataFrame([_mcols.revmap_series(revmap)])) if with_revmap else out
+
+    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> Self:
+        """GR.10."""
+        r = self._ranges
+        parts = []
+        revmap: list[IntArray] = []
+        for key, idx in self._groups(self._group_keys(ignore_strand)):
+            ps, pe, rm = _kernels.disjoin(r._start[idx], r._end[idx], with_revmap)
+            parts.append((key, ps, pe))
+            revmap.extend(idx[g] for g in rm)
+        out = self._from_groups(parts)
+        return out.with_mcols(pl.DataFrame([_mcols.revmap_series(revmap)])) if with_revmap else out
+
+    def gaps(self, start: int | None = None, end: int | None = None, ignore_strand: bool = False) -> Self:
+        """GR.11."""
+        r = self._ranges
+        strands = (STAR,) if ignore_strand else (PLUS, MINUS, STAR)
+        keys = self._group_keys(ignore_strand)
+        parts = []
+        for level, length in enumerate(self.seqlengths):
+            for strand in strands:
+                key = level * 3 + strand
+                idx = np.flatnonzero(keys == key)
+                lo = 1 if start is None else int(start)
+                if end is not None:
+                    hi: int | None = int(end)
+                elif length is not None:
+                    hi = length
+                else:
+                    hi = int(r._end[idx].max()) if len(idx) else None
+                if hi is None:
+                    continue
+                gs_, ge = _kernels.gaps(r._start[idx], r._end[idx], lo, hi)
+                if len(gs_):
+                    parts.append((key, gs_, ge))
+        return self._from_groups(parts)
+
+    # --- set operations (GR.12-13) ---
+
+    def _aligned(self, y: GRanges) -> tuple[Seqinfo, npt.NDArray[np.int32]]:
+        """Merged seqinfo and ``y``'s seqname codes expressed in it."""
+        info = self._seqinfo.merge(y._seqinfo)
+        remap = np.array([info.index(name) for name in y._seqinfo.seqnames] + [0], dtype=np.int32)
+        return info, remap[y._seq]
+
+    def _set_op(self, y: GRanges, op: str, ignore_strand: bool) -> Self:
+        info, y_seq = self._aligned(y)
+        strand_y = np.full(len(y), STAR, dtype=np.int64) if ignore_strand else y._strand.astype(np.int64)
+        kx = self._group_keys(ignore_strand)
+        ky = y_seq.astype(np.int64) * 3 + strand_y
+        gx, gy = dict(self._groups(kx)), dict(self._groups(ky))
+        wanted = {"union": sorted(set(gx) | set(gy)), "intersect": sorted(set(gx) & set(gy)), "setdiff": sorted(gx)}[op]
+        e = _mcols.empty_int()
+        parts = []
+        for key in wanted:
+            xi, yi = gx.get(key, e), gy.get(key, e)
+            s, en = _kernels.set_operation(
+                self._ranges._start[xi], self._ranges._end[xi], y._ranges._start[yi], y._ranges._end[yi], op
+            )
+            if len(s):
+                parts.append((key, s, en))
+        return self._from_groups(parts, info)
+
+    def union(self, y: GRanges, ignore_strand: bool = False) -> Self:
+        """GR.12."""
+        return self._set_op(y, "union", ignore_strand)
+
+    def intersect(self, y: GRanges, ignore_strand: bool = False) -> Self:
+        """GR.12."""
+        return self._set_op(y, "intersect", ignore_strand)
+
+    def setdiff(self, y: GRanges, ignore_strand: bool = False) -> Self:
+        """GR.12."""
+        return self._set_op(y, "setdiff", ignore_strand)
+
+    def _comparable(self, y: GRanges, y_seq: npt.NDArray[np.int32], ignore_strand: bool) -> BoolArray:
+        """GR.6 for aligned pairs (``y_seq`` in this object's seqinfo codes)."""
+        same = self._seq == y_seq
+        if ignore_strand:
+            return same
+        return same & ((self._strand == y._strand) | (self._strand == STAR) | (y._strand == STAR))
+
+    def _parallel(
+        self, y: GRanges, ignore_strand: bool, kernel: Any, fallback: str
+    ) -> Self:
+        if len(self) != len(y):
+            raise ValueError("parallel operations need equal lengths (SET.2)")
+        info, y_seq = self._aligned(y)
+        ok = self._comparable(y, y_seq, ignore_strand)
+        xs, xe = self._ranges._start, self._ranges._end
+        s, e = xs.copy(), xe.copy()
+        if ok.any():
+            s[ok], e[ok] = kernel(xs[ok], xe[ok], y._ranges._start[ok], y._ranges._end[ok])
+        if not ok.all():
+            if fallback == "refuse":
+                raise ValueError("pair of ranges is not comparable (different seqname or strand)")
+            if fallback == "empty":
+                e[~ok] = xs[~ok] - 1
+        strand = self._strand.copy()
+        if not ignore_strand:
+            strand = np.where(self._strand == STAR, y._strand, self._strand).astype(np.int8)
+        return self._new(self._seq, IRanges._new(s, e - s + 1), strand, info, self._names)
+
+    def punion(self, y: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
+        """GR.13."""
+        return self._parallel(y, ignore_strand, lambda a, b, c, d: _kernels.punion(a, b, c, d, fill_gap), "refuse")
+
+    def pintersect(self, y: GRanges, resolve_empty: str = "none", ignore_strand: bool = False) -> Self:
+        """GR.13."""
+        return self._parallel(
+            y, ignore_strand, lambda a, b, c, d: _kernels.pintersect(a, b, c, d, resolve_empty), "empty"
+        )
+
+    def psetdiff(self, y: GRanges, ignore_strand: bool = False) -> Self:
+        """GR.13."""
+        return self._parallel(y, ignore_strand, _kernels.psetdiff, "keep")
+
+    # --- coverage (GR.17) ---
+
+    def coverage(self, shift: Any = 0, width: int | None = None) -> dict[str, Rle]:
+        """GR.17: per-level run-length coverage, strand ignored."""
+        r = self._ranges
+        shifts = per_range(shift, len(self), "shift")
+        out: dict[str, Rle] = {}
+        for level, (name, length) in enumerate(zip(self.seqlevels, self.seqlengths)):
+            idx = np.flatnonzero(self._seq == level)
+            size = width if width is not None else length
+            lengths, values = _kernels.coverage_runs(r._start[idx], r._end[idx], shifts[idx], size)
+            out[name] = Rle(lengths, values)
+        return out
 
     # --- trim (GR.9) ---
 
