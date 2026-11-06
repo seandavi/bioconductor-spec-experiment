@@ -3,3 +3,6 @@ build/
 __pycache__/
 *.pyc
 .pytest_cache/
+# self-test outputs are reproducible (`just selftest`); real-port results are committed in S9
+results/scored/r_echo*
+results/scored/mutant*
