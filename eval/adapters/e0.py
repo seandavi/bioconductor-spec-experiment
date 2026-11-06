@@ -111,9 +111,12 @@ def mcols_dict(extra_named: list) -> dict | None:
         raise Unsupported("mcols: duplicate column names")
     out = {}
     for k, v in extra_named:
-        if not isinstance(v, RVector):
-            raise Unsupported("mcols: non-atomic column")
-        out[k] = to_series(k, v)
+        if isinstance(v, pl.Series):
+            out[k] = v.alias(k)
+        elif isinstance(v, RVector):
+            out[k] = to_series(k, v)
+        else:
+            raise Unsupported("mcols: column is neither atomic nor a polars Series")
     return out
 
 
