@@ -284,3 +284,42 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
     ADAPTERS.md), per idea 11.
 - Next: 7 adapters in parallel worktrees, matrix run, adjudication (Opus,
   Sol spot-check), maintenance replay, then `--no-ff` merges.
+
+## 2026-11-06 — Eval phase 1 done; phase 2 (adapters) launched (run f6e1b6f5)
+
+| Stage | Model | Wall time |
+|---|---|---|
+| plan + contract artifacts | Opus | 21.2 min |
+| build | Sonnet | 35.1 min |
+| oracle review | Sol | 9.4 min |
+| revise | Sonnet | 3.2 min |
+
+- Pool: 9,650 scored cases. e1 4,504 (incl. 119 red-team), e2 921, e4 715,
+  heldout 3,510 (12 op families, seeds scanned absent from every
+  experiment). 11 E1 cases unconvertible (7 brace typos E1's own decoder
+  misreads, 4 out-of-vocabulary ops), listed not hidden. ~15% of cases
+  are R errors (both-error = pass, call phase only).
+- Oracle: 23 s cold for all 9,650 with 4 Rscript workers; byte-identical
+  on re-run. Verified by me: r_echo 9650/9650; mutant 0 predicted-vs-
+  scored disagreements; 89 unit tests. Frozen ports clean at their tags.
+- Key design calls by the planner: R builds every input and ports receive
+  R's projection (one decode quirk can't spoil every case); constructor
+  ops tested separately. Hits set-compare only for SortedByQuery Hits,
+  backed by measurement (403/3000 random GRanges findOverlaps return
+  subjects unordered within a query). Doubles exact; oracle writes full
+  precision (R's default JSON keeps 15 digits).
+- Planner's 4 "confirm" defaults, accepted by me: timeout folds into
+  port_error_unexpected; `unsupported` counts in the denominator (no
+  incentive to dodge); port error building an R-valid input is never a
+  both-error pass; factor-in-Rle projects as character.
+- Sol's oracle review found 3 real referee defects: (1) a projection-phase
+  failure could earn a both-error pass, hiding a port that accepts an
+  invalid call; (2) case hash ignored kwarg order, so mcols column order
+  could be cross-wired via cache; (3) R JSON writer dropped control
+  characters. All fixed; 0/9650 expected projections changed. Idea 9
+  again: the referee needed review as much as the players.
+- Phase 2: 7 adapter worktrees (eval-adapter/<port>). Adapter authors get
+  resolved inputs only (no expected.jsonl copied), may not run scoring,
+  must stay thin; E1/E2/E4 adapters may not reuse those ports' own
+  conformance adapters. Sol reviews thinness first (score inflation),
+  then translation bugs (score deflation).
