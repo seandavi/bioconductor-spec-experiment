@@ -317,3 +317,141 @@ class GRanges:
 
     def unique(self) -> Self:
         return self[~self.duplicated()]
+
+    # --- inter-range -------------------------------------------------------------
+    # Grouped by (seqlevel, strand); results are sorted by seqlevel, strand
+    # (+ - *), start, and carry no names or mcols. ignore_strand=True puts
+    # every range in the `*` group.
+
+    def _groups(self, ignore_strand: bool) -> IntArray:
+        return self._seq * 3 + (STAR if ignore_strand else self._strand)
+
+    def _from_groups(self, s: IntArray, e: IntArray, g: IntArray, seqinfo: Seqinfo | None = None) -> Self:
+        return self._make(g // 3, g % 3, IRanges._from_ends(s, e), seqinfo or self._seqinfo, check=False)
+
+    def range(self, ignore_strand: bool = False) -> Self:
+        s, e, g = inter.range_kernel(self._ranges.start, self._ranges.end, self._groups(ignore_strand))
+        return self._from_groups(s, e, g)
+
+    def reduce(
+        self,
+        min_gapwidth: int = 1,
+        drop_empty_ranges: bool = False,
+        with_revmap: bool = False,
+        ignore_strand: bool = False,
+    ) -> Any:
+        """As IRanges.reduce, per (seqlevel, strand); with_revmap returns `(GRanges, list)`."""
+        s, e, g, revmap = inter.reduce_kernel(
+            self._ranges.start, self._ranges.end, self._groups(ignore_strand), min_gapwidth, drop_empty_ranges, with_revmap
+        )
+        out = self._from_groups(s, e, g)
+        return (out, revmap) if with_revmap else out
+
+    def disjoin(self, ignore_strand: bool = False) -> Self:
+        s, e, g = inter.disjoin_kernel(self._ranges.start, self._ranges.end, self._groups(ignore_strand))
+        return self._from_groups(s, e, g)
+
+    def gaps(
+        self,
+        start: int | Mapping[str, int] = 1,
+        end: int | Mapping[str, int] | None = None,
+        ignore_strand: bool = False,
+    ) -> Self:
+        """Uncovered positions within [start, end] for every seqlevel x strand.
+
+        Every seqlevel yields all three strands (only `*` with ignore_strand), so
+        a strand without ranges gives the full-length gap. `end` defaults to the
+        seqlength, else the largest end on that seqlevel; a seqlevel with neither
+        is skipped.
+        """
+        names = self._seqinfo.seqnames
+        max_end: dict[int, int] = {}
+        if len(self):
+            for k in np.unique(self._seq):
+                max_end[int(k)] = int(self._ranges.end[self._seq == k].max())
+        strands = (STAR,) if ignore_strand else (PLUS, MINUS, STAR)
+        groups: list[int] = []
+        los: list[int] = []
+        his: list[int] = []
+        for k, name in enumerate(names):
+            lo = start[name] if isinstance(start, Mapping) else start
+            hi: int | None
+            if end is None:
+                hi = self._seqinfo.seqlengths[k]
+                if hi is None:
+                    hi = max_end.get(k)
+            else:
+                hi = end[name] if isinstance(end, Mapping) else end
+            if hi is None:
+                continue
+            for st in strands:
+                groups.append(k * 3 + st)
+                los.append(lo)
+                his.append(hi)
+        s, e, g = inter.gaps_kernel(
+            self._ranges.start, self._ranges.end, self._groups(ignore_strand),
+            np.array(groups, dtype=np.int64), np.array(los, dtype=np.int64), np.array(his, dtype=np.int64),
+        )
+        return self._from_groups(s, e, g)
+
+    # --- set operations ----------------------------------------------------------
+
+    def _align(self, other: "GRanges") -> tuple[Seqinfo, IntArray, IntArray]:
+        """Merged seqinfo and both objects' seq codes expressed in it."""
+        info = self._seqinfo if other._seqinfo == self._seqinfo else self._seqinfo.merge(other._seqinfo)
+        return info, _remap(self._seq, self._seqinfo, info), _remap(other._seq, other._seqinfo, info)
+
+    def _set_args(self, other: "GRanges", ignore_strand: bool) -> tuple[Seqinfo, tuple[IntArray, ...]]:
+        info, a_seq, b_seq = self._align(other)
+        star = STAR if ignore_strand else None
+        ga = a_seq * 3 + (star if star is not None else self._strand)
+        gb = b_seq * 3 + (star if star is not None else other._strand)
+        return info, (self._ranges.start, self._ranges.end, ga, other._ranges.start, other._ranges.end, gb)
+
+    def union(self, other: "GRanges", ignore_strand: bool = False) -> Self:
+        info, args = self._set_args(other, ignore_strand)
+        return self._from_groups(*setops.union_kernel(*args), seqinfo=info)
+
+    def intersect(self, other: "GRanges", ignore_strand: bool = False) -> Self:
+        info, args = self._set_args(other, ignore_strand)
+        return self._from_groups(*setops.sweep_kernel(*args, "intersect"), seqinfo=info)
+
+    def setdiff(self, other: "GRanges", ignore_strand: bool = False) -> Self:
+        info, args = self._set_args(other, ignore_strand)
+        return self._from_groups(*setops.sweep_kernel(*args, "setdiff"), seqinfo=info)
+
+    def _parallel_args(
+        self, other: "GRanges", ignore_strand: bool, keep_x_strand: bool = False
+    ) -> tuple[Seqinfo, IntArray, IntArray]:
+        """Merged seqinfo, seq codes and result strands for pairwise ops."""
+        if len(self) != len(other):
+            raise ValueError("parallel operations require equal lengths")
+        info, a_seq, b_seq = self._align(other)
+        if np.any(a_seq != b_seq):
+            raise ValueError("parallel operations require identical seqnames")
+        a, b = self._strand, other._strand
+        if ignore_strand:
+            return info, a_seq, a.copy() if keep_x_strand else np.full(len(a), STAR, dtype=np.int64)
+        if np.any((a != b) & (a != STAR) & (b != STAR)):
+            raise ValueError("parallel operations require compatible strands (equal, or `*`)")
+        return info, a_seq, a if keep_x_strand else np.where(a == STAR, b, a)
+
+    def _parallel_result(self, info: Seqinfo, seq: IntArray, strand: IntArray, s: IntArray, e: IntArray) -> Self:
+        return self._make(seq, strand, self._ranges._replace(s, e - s + 1), info, self._mcols)
+
+    def punion(self, other: "GRanges", fill_gap: bool = False, ignore_strand: bool = False) -> Self:
+        info, seq, strand = self._parallel_args(other, ignore_strand)
+        s, e = setops.punion(self._ranges.start, self._ranges.end, other._ranges.start, other._ranges.end, fill_gap)
+        return self._parallel_result(info, seq, strand, s, e)
+
+    def pintersect(self, other: "GRanges", resolve_empty: str = "none", ignore_strand: bool = False) -> Self:
+        info, seq, strand = self._parallel_args(other, ignore_strand)
+        s, e = setops.pintersect(
+            self._ranges.start, self._ranges.end, other._ranges.start, other._ranges.end, resolve_empty
+        )
+        return self._parallel_result(info, seq, strand, s, e)
+
+    def psetdiff(self, other: "GRanges", ignore_strand: bool = False) -> Self:
+        info, seq, strand = self._parallel_args(other, ignore_strand, keep_x_strand=True)
+        s, e = setops.psetdiff(self._ranges.start, self._ranges.end, other._ranges.start, other._ranges.end)
+        return self._parallel_result(info, seq, strand, s, e)
