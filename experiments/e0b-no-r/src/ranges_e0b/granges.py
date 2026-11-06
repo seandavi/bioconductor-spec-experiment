@@ -455,3 +455,151 @@ class GRanges:
         info, seq, strand = self._parallel_args(other, ignore_strand, keep_x_strand=True)
         s, e = setops.psetdiff(self._ranges.start, self._ranges.end, other._ranges.start, other._ranges.end)
         return self._parallel_result(info, seq, strand, s, e)
+
+    # --- overlaps ----------------------------------------------------------------
+    # Pairs must share a seqlevel; strands must be equal or either `*` unless
+    # ignore_strand. For type "start"/"end", a pair involving a `-` range compares
+    # the opposite ends (5'/3' semantics). Circular wraparound is not handled.
+
+    def _overlap_pairs(
+        self, subj: "GRanges", maxgap: int, minoverlap: int, type: str, ignore_strand: bool
+    ) -> tuple[IntArray, IntArray]:
+        overlaps.check_args(type, maxgap, minoverlap)
+        _, q_seq, s_seq = self._align(subj)
+        qs, qe, ss, se = self._ranges.start, self._ranges.end, subj._ranges.start, subj._ranges.end
+        flips = type in ("start", "end") and not ignore_strand
+        other_type = {"start": "end", "end": "start"}.get(type, type)
+        out_q: list[IntArray] = []
+        out_s: list[IntArray] = []
+        for k in np.unique(q_seq):
+            qidx, sidx = np.flatnonzero(q_seq == k), np.flatnonzero(s_seq == k)
+            if len(qidx) == 0 or len(sidx) == 0:
+                continue
+            args = (qs[qidx], qe[qidx], ss[sidx], se[sidx])
+            lq, ls = overlaps.overlap_pairs(*args, type, maxgap, minoverlap)
+            q, s = qidx[lq], sidx[ls]
+            qstr, sstr = self._strand[q], subj._strand[s]
+            if not ignore_strand:
+                ok = (qstr == STAR) | (sstr == STAR) | (qstr == sstr)
+                q, s, qstr, sstr = q[ok], s[ok], qstr[ok], sstr[ok]
+            if flips:
+                minus = (qstr == MINUS) | (sstr == MINUS)
+                lq2, ls2 = overlaps.overlap_pairs(*args, other_type, maxgap, minoverlap)
+                q2, s2 = qidx[lq2], sidx[ls2]
+                qstr2, sstr2 = self._strand[q2], subj._strand[s2]
+                ok2 = ((qstr2 == STAR) | (sstr2 == STAR) | (qstr2 == sstr2)) & ((qstr2 == MINUS) | (sstr2 == MINUS))
+                q, s = np.concatenate((q[~minus], q2[ok2])), np.concatenate((s[~minus], s2[ok2]))
+            out_q.append(q)
+            out_s.append(s)
+        if not out_q:
+            return empty_int(), empty_int()
+        q, s = np.concatenate(out_q), np.concatenate(out_s)
+        o = np.lexsort((s, q))
+        return q[o], s[o]
+
+    def find_overlaps(
+        self,
+        subject: "GRanges | None" = None,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",
+        select: str = "all",
+        ignore_strand: bool = False,
+    ) -> Any:
+        """As IRanges.find_overlaps, restricted to same seqlevel and compatible strand."""
+        subj = self if subject is None else subject
+        qi, si = self._overlap_pairs(subj, maxgap, minoverlap, type, ignore_strand)
+        if select == "all":
+            return Hits(qi, si, len(self), len(subj))
+        return overlaps.select_hits(qi, si, len(self), select)
+
+    def count_overlaps(
+        self, subject: "GRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
+    ) -> IntArray:
+        return self.find_overlaps(subject, maxgap, minoverlap, type, ignore_strand=ignore_strand).count_per_query()
+
+    def overlaps_any(
+        self, subject: "GRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
+    ) -> Any:
+        return self.count_overlaps(subject, maxgap, minoverlap, type, ignore_strand) > 0
+
+    def subset_by_overlaps(
+        self,
+        subject: "GRanges",
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",
+        invert: bool = False,
+        ignore_strand: bool = False,
+    ) -> Self:
+        mask = self.overlaps_any(subject, maxgap, minoverlap, type, ignore_strand)
+        return self[~mask if invert else mask]
+
+    # --- nearest -----------------------------------------------------------------
+    # Same seqlevel and compatible strand required. For precede/follow a `-`
+    # query looks toward lower coordinates; `*` queries are treated as `+`.
+
+    def _nearest_family(
+        self, kind: str, subject: "GRanges | None", select: str, allowed: tuple[str, str], ignore_strand: bool
+    ) -> Any:
+        if select not in allowed:
+            raise ValueError(f"select must be one of {allowed}, got {select!r}")
+        subj = self if subject is None else subject
+        _, q_seq, s_seq = self._align(subj)
+        qi, si = nearest.nearest_family(
+            kind, self._ranges.start, self._ranges.end, q_seq, self._strand,
+            subj._ranges.start, subj._ranges.end, s_seq, subj._strand,
+            ignore_strand=ignore_strand, exclude_self=subject is None,
+        )
+        if select == "all":
+            return Hits(qi, si, len(self), len(subj))
+        return nearest.first_per_query(qi, si, len(self))
+
+    def precede(self, subject: "GRanges | None" = None, select: str = "first", ignore_strand: bool = False) -> Any:
+        return self._nearest_family("precede", subject, select, ("first", "all"), ignore_strand)
+
+    def follow(self, subject: "GRanges | None" = None, select: str = "first", ignore_strand: bool = False) -> Any:
+        return self._nearest_family("follow", subject, select, ("first", "all"), ignore_strand)
+
+    def nearest(self, subject: "GRanges | None" = None, select: str = "arbitrary", ignore_strand: bool = False) -> Any:
+        return self._nearest_family("nearest", subject, select, ("arbitrary", "all"), ignore_strand)
+
+    def distance(self, other: "GRanges", ignore_strand: bool = False) -> IntArray:
+        """Parallel distance; `NO_HIT` (-1, R `NA`) across seqlevels or incompatible strands."""
+        if len(self) != len(other):
+            raise ValueError("distance requires equal lengths")
+        _, a_seq, b_seq = self._align(other)
+        a, b = self._strand, other._strand
+        d = nearest.distance(self._ranges.start, self._ranges.end, other._ranges.start, other._ranges.end)
+        ok = a_seq == b_seq
+        if not ignore_strand:
+            ok &= (a == b) | (a == STAR) | (b == STAR)
+        return np.where(ok, d, NO_HIT)
+
+    # --- coverage ----------------------------------------------------------------
+
+    def coverage(
+        self, shift: int = 0, width: int | Mapping[str, int] | None = None, weight: Any = 1
+    ) -> dict[str, Rle]:
+        """Coverage per seqlevel (strand ignored) as `{seqname: Rle}`.
+
+        Length defaults to the seqlength, else the largest shifted end.
+        """
+        w = np.asarray(weight)
+        if w.ndim == 0:
+            w = np.full(len(self), w)
+        if len(w) != len(self):
+            raise ValueError("weight must be scalar or one per range")
+        out: dict[str, Rle] = {}
+        for k, name in enumerate(self._seqinfo.seqnames):
+            idx = np.flatnonzero(self._seq == k)
+            if isinstance(width, Mapping):
+                wd = width.get(name)
+            else:
+                wd = width
+            if wd is None:
+                wd = self._seqinfo.seqlengths[k]
+            out[name] = coverage.coverage_kernel(
+                self._ranges.start[idx], self._ranges.end[idx], shift, wd, w[idx]
+            )
+        return out
