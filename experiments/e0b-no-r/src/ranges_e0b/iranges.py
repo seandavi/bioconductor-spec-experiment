@@ -6,7 +6,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import inter, intra, ordering, overlaps, setops
+from . import inter, intra, nearest, ordering, overlaps, setops
 from .overlaps import Hits
 from ._sew import (
     IntArray,
@@ -328,3 +328,42 @@ class IRanges:
     ) -> Self:
         mask = self.overlaps_any(subject, maxgap, minoverlap, type)
         return self[~mask if invert else mask]
+
+    # --- nearest -------------------------------------------------------------
+
+    def _nearest_family(self, kind: str, subject: "IRanges | None", select: str, allowed: tuple[str, str]) -> Any:
+        if select not in allowed:
+            raise ValueError(f"select must be one of {allowed}, got {select!r}")
+        subj = self if subject is None else subject
+        zq, zs = np.zeros(len(self), np.int64), np.zeros(len(subj), np.int64)
+        star_q, star_s = zq + nearest.STAR, zs + nearest.STAR
+        qi, si = nearest.nearest_family(
+            kind, self._start, self.end, zq, star_q, subj._start, subj.end, zs, star_s,
+            ignore_strand=False, exclude_self=subject is None,
+        )
+        if select == "all":
+            return Hits(qi, si, len(self), len(subj))
+        return nearest.first_per_query(qi, si, len(self))
+
+    def precede(self, subject: "IRanges | None" = None, select: str = "first") -> Any:
+        """Subject with the smallest start > each range's end (adjacent counts).
+
+        Returns 0-based indices (`NO_HIT` if none) or `Hits` for select="all".
+        Ties go to the lowest index. `subject=None` means self, excluding self-matches.
+        """
+        return self._nearest_family("precede", subject, select, ("first", "all"))
+
+    def follow(self, subject: "IRanges | None" = None, select: str = "first") -> Any:
+        """Subject with the largest end < each range's start (adjacent counts)."""
+        return self._nearest_family("follow", subject, select, ("first", "all"))
+
+    def nearest(self, subject: "IRanges | None" = None, select: str = "arbitrary") -> Any:
+        """Closest subject; overlapping or adjacent (distance 0) win.
+
+        "arbitrary" is deterministic: the lowest index among ties.
+        """
+        return self._nearest_family("nearest", subject, select, ("arbitrary", "all"))
+
+    def distance(self, other: "IRanges") -> IntArray:
+        """Parallel distance; 0 for overlapping or adjacent ranges."""
+        return nearest.distance(self._start, self.end, other._start, other.end)
