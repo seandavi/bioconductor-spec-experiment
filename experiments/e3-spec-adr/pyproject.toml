@@ -1,0 +1,28 @@
+[project]
+name = "ranges-e3"
+version = "0.1.0"
+description = "IRanges/GRanges port to Python, built spec-and-ADR first (experiment e3)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "polars>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ranges_e3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "spec(*ids): spec clause ids this test exercises (see spec/).",
+]
