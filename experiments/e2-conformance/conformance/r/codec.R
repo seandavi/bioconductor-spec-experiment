@@ -201,8 +201,9 @@ decode <- function(tree, fx = list()) {
   g <- function(k) if (is.null(tree[[k]])) NULL else decode(tree[[k]], fx)
   suppressWarnings(switch(type,
     IRanges = dec_ranges(tree, fx),
-    Seqinfo = Seqinfo(seqnames = g("seqnames"), seqlengths = g("seqlengths"),
-                      isCircular = g("isCircular"), genome = g("genome")),
+    Seqinfo = do.call(Seqinfo, Filter(Negate(is.null), list(
+      seqnames = g("seqnames"), seqlengths = g("seqlengths"),
+      isCircular = g("isCircular"), genome = g("genome")))),
     GRanges = {
       sn <- g("seqnames")
       si <- if (!is.null(tree$seqinfo)) g("seqinfo") else Seqinfo(unique(sn))
