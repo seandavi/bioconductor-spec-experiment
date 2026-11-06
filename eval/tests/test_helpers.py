@@ -30,7 +30,11 @@ def test_rvector_numpy_views():
         v.np()
     m = v.np_masked()
     assert m.mask.tolist() == [False, True, False] and m.data[2] == 3
-    assert RVector("dbl", [1.0, None]).np().tolist()[0] == 1.0
+    with pytest.raises(ValueError):
+        RVector("dbl", [1.0, None]).np()
+    assert RVector("dbl", [1.0, None]).np(na_as_nan=True).tolist()[0] == 1.0
+    assert math.isnan(RVector("dbl", [1.0, None]).np(na_as_nan=True)[1])
+    assert RVector("dbl", [1.0, "NaN"]).np().tolist()[0] == 1.0
     assert RVector("lgl", [True]).np().dtype == np.bool_
     with pytest.raises(ValueError):
         RVector("int", [1, 2]).scalar()

@@ -549,7 +549,7 @@ class Adapter(AdapterBase):
                 return _sc(v)
             # keep R's storage type: a dbl weight reaches the port as float64 (NA -> nan), an int one as int64;
             # NA in an int/lgl vector stays None
-            return v.list() if v.type != "dbl" and None in v.values else v.np()
+            return v.list() if v.type != "dbl" and None in v.values else v.np(na_as_nan=True)
 
         return _call(x, "coverage", shift=_ls(shift), width=width_arg(width), weight=weight_arg(weight))
 

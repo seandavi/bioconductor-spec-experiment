@@ -78,16 +78,20 @@ class RVector:
             raise ValueError(f"expected a length-1 R vector, got {len(self.values)}")
         return self.list()[0]
 
-    def np(self) -> np.ndarray:
-        """ndarray: int -> int64, dbl -> float64 (NA and NaN both nan), lgl -> bool, chr -> object.
+    def np(self, na_as_nan: bool = False) -> np.ndarray:
+        """ndarray: int -> int64, dbl -> float64, lgl -> bool, chr -> object.
 
-        Raises ValueError if an int/lgl/chr vector holds NA; use np_masked() then.
+        Raises ValueError if the vector holds NA; use np_masked() then. A dbl vector may pass
+        na_as_nan=True to hand the port NaN for NA (a port with no NA representation should
+        instead report the input unsupported).
         """
         vals = self.list()
-        if self.type == "dbl":
+        if self.type == "dbl" and na_as_nan:
             return np.array([math.nan if v is None else v for v in vals], dtype=np.float64)
         if any(v is None for v in vals):
             raise ValueError(f"NA in {self.type} vector; use np_masked()")
+        if self.type == "dbl":
+            return np.array(vals, dtype=np.float64)
         dt = {"int": np.int64, "lgl": np.bool_}.get(self.type, object)
         return np.array(vals, dtype=dt)
 

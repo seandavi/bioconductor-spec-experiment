@@ -93,7 +93,7 @@ zero-length names → null):
 | `p_hits(from_, to, n_left, n_right)` | **1-based** in |
 | `p_rle(values, lengths=None, type=None)` / `p_rlelist(names, rles)` | dense or run form; normalized to maximal runs (NA and NaN each form their own runs) |
 
-`RVector.np()` returns int64 / float64 / bool / object arrays and raises on NA in int/lgl/chr (dbl NA and NaN both become `nan`);
+`RVector.np()` returns int64 / float64 / bool / object arrays and raises on NA in any type (a dbl NA becomes `nan` only with `np(na_as_nan=True)`; R NaN is always `nan`);
 use `.np_masked()` when NA must survive. `RVector` and `None` results are projected by the base; `project` only sees port natives.
 
 ## Allowed vs forbidden

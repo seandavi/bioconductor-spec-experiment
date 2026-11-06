@@ -128,7 +128,7 @@ def _arr(rv: RVector) -> Any:
     """R vector -> ndarray (a list when it holds NA in an int / lgl vector), for arguments the port types as ndarray."""
     if rv.type == "chr" or (rv.type != "dbl" and any(v is None for v in rv.values)):
         return rv.list()
-    return rv.np()
+    return rv.np(na_as_nan=True)
 
 
 def _val(rv: Any) -> Any:
