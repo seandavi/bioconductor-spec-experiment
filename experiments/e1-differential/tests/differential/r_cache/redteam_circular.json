@@ -1,0 +1,644 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "rt-circ-multi-turn": {
+   "hash": "ea8940ac875322ad52b47d7766a4e35e0b37d3b3937522142e24f657d556dae5",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-nearest-all": {
+   "hash": "d7a2ad881d6b5529592d1c328f56d488721b1db06f06ff60a003882a7a8658a5",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1
+     ],
+     "to": [
+      1,
+      2
+     ],
+     "nLnode": 1,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-nearest-choice": {
+   "hash": "fc43f295e1f8792bfd513736ff6a6821c967473ba0370e4a3b59707e1ebc1b2c",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-nearest-origin-adjacent": {
+   "hash": "af67312d72164669e6262ae894ab0791e56ba5431cb84946979c63ed19fd8863",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-any": {
+   "hash": "c62d531089496d14fbc017f9eafce7236a6d1bd4da0b525eb964e18f19dced2c",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-countOverlaps": {
+   "hash": "1b35194a3b330b6299189f364c77493a792a311151f783232f207cd50c1e4671",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": [
+      "origin"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-coverage": {
+   "hash": "4e01de29ee021537096d3171c6f3160fd262ff285a1b5ef773633e13bad4264e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chrM"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        6,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-distance": {
+   "hash": "13c8e730995f8529afda103e60a67e3ad9286b5c0736e77cdf759933f1396fa0",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-end": {
+   "hash": "ae4a037cd6b6fa28082c130144eb9397f72cc620f280909180059a5585fd6b9e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-equal": {
+   "hash": "509081926db39584566bd781966e834f637f8d0fe431eaac95aaf5c047385e1c",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-follow": {
+   "hash": "aecbc39383d0adfdcd618aefd6cfde07ca39865831cfa45d5eb883646c213e7f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-ignore-strand": {
+   "hash": "37021245e0c0b67884cb3fc0393dd4bffa193e0b5a2f7887fd8a8cc1f95e9dd3",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-invert": {
+   "hash": "589aa53c1e683eb3091652b26fd84164ee2d99d664b87b4f433f6ad0475dbd9a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "label": {
+       "class": "vector",
+       "type": "chr",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrM"
+      ],
+      "seqlengths": [
+       10
+      ],
+      "is_circular": [
+       true
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-linear-control": {
+   "hash": "ab2dc27c1862c3ea9f6c23a5ee5a076d74752f3609fdbe75cb7963f507e3ad1d",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chrM. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-circ-origin-minoverlap": {
+   "hash": "24198173bf96abeb211971f514e00afe47fb015f78c2eb9f34e344af08acc5e3",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-nearest": {
+   "hash": "1ec469c8c70ca019d2be05ab9bb68a22ddcb310a4a728b209d97e7e143134426",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-opposite": {
+   "hash": "e55890a11ca650281e08fbb0c07dd55a23ff395f9a3b2edb9cba564d7b84ef2a",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-overlapsAny": {
+   "hash": "9495b8e27c2909349adb6af4fe54fa1956109b20beb81589586d153ac990321e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-precede": {
+   "hash": "bdd111796043ca6ca614de9cd8df0d0e16bf25881635672a6971d9990923bb51",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-reduce": {
+   "hash": "7376af2b9679e8048e1d1943ba8441f5b6a97fe45b1bac066cce6c66df88edfe",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrM"
+     ],
+     "start": [
+      9
+     ],
+     "width": [
+      4
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ]
+       ]
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrM"
+      ],
+      "seqlengths": [
+       10
+      ],
+      "is_circular": [
+       true
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-start": {
+   "hash": "262963bf908282551f9d193c492129357c68175756140177e8da5f8931830790",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-subsetByOverlaps": {
+   "hash": "bdd0f90830892047405f7a5ea1e3872b536498a342b8f2ee5420b32dd4bcb9ee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrM"
+     ],
+     "start": [
+      9
+     ],
+     "width": [
+      4
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": [
+      "origin"
+     ],
+     "mcols": {
+      "label": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "origin"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrM"
+      ],
+      "seqlengths": [
+       10
+      ],
+      "is_circular": [
+       true
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-trim": {
+   "hash": "82e47cfec4da5f53754f9cef147bfdb28323ef89ec4d85e78f82f46a82209167",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrM"
+     ],
+     "start": [
+      9
+     ],
+     "width": [
+      4
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": [
+      "origin"
+     ],
+     "mcols": {
+      "label": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "origin"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrM"
+      ],
+      "seqlengths": [
+       10
+      ],
+      "is_circular": [
+       true
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-unknown-control": {
+   "hash": "5b9ef52f1b22948f46adce4b6431906a250099654b617fc9a0a8eaa001656ee9",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chrM. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-circ-origin-unknown-length": {
+   "hash": "24ab5a44ffaa9fdf090da2b4084b17c27c6bc488375ab815d39a74fb9b8e62bf",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-origin-within": {
+   "hash": "6e4f30299f2a9f847fb60f6cee98ce4a11454d8e3e789b0be7f219aa21f74046",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-self-drops": {
+   "hash": "8ca9bdab08e3ed75e552d8d29d639a105a8f5d341209e779b4b689a9734ab4ba",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2
+     ],
+     "to": [
+      2,
+      1
+     ],
+     "nLnode": 2,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-self-redundant": {
+   "hash": "8b17ac61d0dc8ea2cde1e70dbcfd0382de6122d77e2832f83def93446383484b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      2
+     ],
+     "nLnode": 2,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-shift-equal": {
+   "hash": "ffe3f108e11b8f15d2c7ad11f6f9bf71686433e3850fd10da194c1ce448aeba1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-shift-start": {
+   "hash": "97155e96deed95a4c788f8d5b243900fcc70f049c8c2da2feb8612deef381245",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-shift-within": {
+   "hash": "a1c79a3c7ce8ff1715717596da53e2f051f3713e691ae646d818565298e2ee68",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-zero-boundary": {
+   "hash": "b865c74c974838c52686ac5576eea409dd3ade4c1a47167b65a70dcd3d4a77d1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "rt-circ-zero-interior": {
+   "hash": "ac084630ca108aa4db752179138ad270b7091ceb963d61787e424644f26d4f9b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  }
+ }
+}

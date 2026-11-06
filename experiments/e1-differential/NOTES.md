@@ -59,3 +59,10 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-06 00:50 GRanges parallel ops (found by a random seqinfo-pair grid, 640 cases): pintersect
   returns x's seqlevels only (values merged from y; y just validates/warns); pintersect strand =
   merged only for hits, else x's; psetdiff strand = merged always; punion strand = x's.
+- 2026-11-06T05:46Z red team: baseline 3808 passed. Added 33 circular-seqinfo cases;
+  17 expose lost periodic/origin hits (including nearest and empty ranges), 16 match R.
+  Direct R execution confirms origin overlap. Automatic circular-seqinfo semantics are
+  in scope; explicit circle.length arguments remain excluded. These are bugs, not ADRs.
+- 2026-11-06T05:46Z red team: unresolved cases use reasoned, strict xfail marks via
+  a collection hook. They still execute both sides; fixes produce XPASS failures.
+  Existing expectations and src remain unchanged. No divergences were accepted.

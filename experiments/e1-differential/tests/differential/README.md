@@ -30,6 +30,9 @@ cases:
 - **Indices are R's (1-based) in cases and in canonical results.** The adapter converts.
 - Escape hatch: `raw: {r: "<R expr>", py: "<Python expr>"}`; inputs are bound as variables
   (`np`, `pl` and `ranges_e1` names too). Python-side indices are 0-based there.
+- Unresolved red-team failures: `xfail: "reason"` adds a **strict** pytest expected failure.
+  Both languages still execute. A newly matching result fails as XPASS until the mark is removed.
+  This is not an accepted divergence or an ADR. `--runxfail` exposes the original failures.
 - Optional keys: `check_warnings: true` (both sides must warn, or both not);
   `compare: arbitrary` + `universe: {fn: findOverlaps, ... select: all}` (Python pick must be
   a member of R's hit set; needs an ADR); `divergence: {adr: "0004", python: <canonical>}`
