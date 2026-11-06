@@ -3,392 +3,395 @@
   "mutant": {
    "accessors": {
     "e1": {
-     "adapter_error": 2,
-     "pass": 32,
-     "port_error_unexpected": 2
+     "adapter_error": 3,
+     "mismatch": 3,
+     "pass": 27,
+     "port_error_unexpected": 3
     },
     "e2": {
-     "adapter_error": 1,
-     "pass": 25,
-     "port_error_unexpected": 1
+     "adapter_error": 2,
+     "pass": 23,
+     "port_error_unexpected": 2
     },
     "e4": {
-     "mismatch": 3,
-     "pass": 11,
+     "adapter_error": 1,
+     "mismatch": 1,
+     "pass": 12,
      "unsupported": 1
     },
     "heldout": {
-     "adapter_error": 21,
-     "mismatch": 21,
-     "pass": 384,
-     "port_error_unexpected": 47,
-     "unsupported": 7
+     "adapter_error": 25,
+     "mismatch": 19,
+     "pass": 371,
+     "port_error_unexpected": 53,
+     "unsupported": 12
     }
    },
    "construct": {
     "e1": {
-     "adapter_error": 9,
+     "adapter_error": 10,
      "mismatch": 31,
-     "pass": 314,
+     "pass": 322,
      "port_error_unexpected": 31,
-     "unsupported": 14
+     "unsupported": 5
     },
     "e1-redteam": {
-     "pass": 10
+     "mismatch": 1,
+     "pass": 9
     },
     "e2": {
-     "adapter_error": 2,
+     "adapter_error": 1,
      "mismatch": 4,
-     "pass": 49,
-     "port_error_unexpected": 4,
+     "pass": 52,
+     "port_error_unexpected": 2,
      "unsupported": 1
     },
     "e4": {
-     "adapter_error": 2,
-     "mismatch": 3,
-     "pass": 37,
-     "port_error_unexpected": 2,
-     "unsupported": 2
+     "mismatch": 1,
+     "pass": 41,
+     "port_error_unexpected": 3,
+     "unsupported": 1
     },
     "heldout": {
      "adapter_error": 13,
-     "mismatch": 9,
-     "pass": 194,
-     "port_error_unexpected": 20,
-     "unsupported": 4
+     "mismatch": 11,
+     "pass": 195,
+     "port_error_unexpected": 14,
+     "unsupported": 7
     }
    },
    "coverage": {
     "e1": {
-     "adapter_error": 21,
-     "mismatch": 28,
-     "pass": 423,
-     "port_error_unexpected": 34,
-     "unsupported": 5
+     "adapter_error": 24,
+     "mismatch": 21,
+     "pass": 412,
+     "port_error_unexpected": 44,
+     "unsupported": 10
     },
     "e1-redteam": {
-     "mismatch": 1,
-     "pass": 11
+     "adapter_error": 1,
+     "pass": 9,
+     "port_error_unexpected": 2
     },
     "e2": {
-     "adapter_error": 2,
+     "adapter_error": 1,
      "mismatch": 3,
-     "pass": 43,
-     "port_error_unexpected": 1,
-     "unsupported": 2
+     "pass": 41,
+     "port_error_unexpected": 3,
+     "unsupported": 3
     },
     "e4": {
-     "adapter_error": 5,
-     "pass": 41,
-     "port_error_unexpected": 7,
-     "unsupported": 1
+     "adapter_error": 2,
+     "mismatch": 1,
+     "pass": 44,
+     "port_error_unexpected": 4,
+     "unsupported": 3
     },
     "heldout": {
-     "adapter_error": 7,
-     "mismatch": 6,
-     "pass": 96,
-     "port_error_unexpected": 8,
-     "unsupported": 3
+     "adapter_error": 6,
+     "mismatch": 7,
+     "pass": 92,
+     "port_error_unexpected": 10,
+     "unsupported": 5
     }
    },
    "inter": {
     "e1": {
-     "adapter_error": 21,
-     "mismatch": 17,
-     "pass": 323,
-     "port_error_unexpected": 31,
-     "unsupported": 13
+     "adapter_error": 11,
+     "mismatch": 25,
+     "pass": 331,
+     "port_error_unexpected": 26,
+     "unsupported": 12
     },
     "e1-redteam": {
      "adapter_error": 1,
      "pass": 8,
-     "port_error_unexpected": 2,
-     "unsupported": 1
+     "port_error_unexpected": 3
     },
     "e2": {
-     "adapter_error": 5,
-     "mismatch": 5,
+     "adapter_error": 3,
+     "mismatch": 7,
      "pass": 79,
-     "port_error_unexpected": 7,
-     "unsupported": 5
+     "port_error_unexpected": 11,
+     "unsupported": 1
     },
     "e4": {
-     "adapter_error": 5,
-     "mismatch": 2,
-     "pass": 85,
-     "port_error_unexpected": 8,
-     "unsupported": 4
+     "adapter_error": 6,
+     "mismatch": 1,
+     "pass": 81,
+     "port_error_unexpected": 16
     },
     "heldout": {
-     "adapter_error": 13,
-     "mismatch": 24,
-     "pass": 232,
-     "port_error_unexpected": 27,
-     "unsupported": 4
+     "adapter_error": 21,
+     "mismatch": 16,
+     "pass": 226,
+     "port_error_unexpected": 26,
+     "unsupported": 11
     }
    },
    "intra": {
     "e1": {
-     "adapter_error": 9,
-     "mismatch": 25,
-     "pass": 299,
-     "port_error_unexpected": 22,
-     "unsupported": 8
+     "adapter_error": 10,
+     "mismatch": 24,
+     "pass": 293,
+     "port_error_unexpected": 32,
+     "unsupported": 4
     },
     "e1-redteam": {
-     "mismatch": 1,
-     "pass": 1
+     "pass": 2
     },
     "e2": {
-     "adapter_error": 4,
-     "mismatch": 7,
-     "pass": 99,
-     "port_error_unexpected": 14,
-     "unsupported": 2
+     "adapter_error": 5,
+     "mismatch": 8,
+     "pass": 103,
+     "port_error_unexpected": 10
     },
     "e4": {
-     "adapter_error": 4,
-     "mismatch": 1,
-     "pass": 82,
-     "port_error_unexpected": 1
+     "adapter_error": 1,
+     "mismatch": 4,
+     "pass": 77,
+     "port_error_unexpected": 4,
+     "unsupported": 2
     },
     "heldout": {
-     "adapter_error": 6,
-     "mismatch": 20,
-     "pass": 245,
-     "port_error_unexpected": 23,
+     "adapter_error": 16,
+     "mismatch": 17,
+     "pass": 242,
+     "port_error_unexpected": 19,
      "unsupported": 6
     }
    },
    "metadata": {
     "e1": {
-     "adapter_error": 1,
-     "pass": 16,
-     "port_error_unexpected": 5,
-     "unsupported": 2
+     "mismatch": 3,
+     "pass": 17,
+     "port_error_unexpected": 3,
+     "unsupported": 1
     },
     "e1-redteam": {
      "adapter_error": 1,
      "mismatch": 1,
      "pass": 17,
-     "port_error_unexpected": 2
+     "port_error_unexpected": 1,
+     "unsupported": 1
     },
     "e2": {
-     "mismatch": 1,
      "pass": 9,
-     "port_error_unexpected": 1
+     "port_error_unexpected": 1,
+     "unsupported": 1
     },
     "e4": {
-     "adapter_error": 1,
-     "pass": 1
+     "pass": 2
     },
     "heldout": {
-     "adapter_error": 5,
-     "mismatch": 6,
-     "pass": 95,
-     "port_error_unexpected": 10,
+     "adapter_error": 7,
+     "mismatch": 4,
+     "pass": 100,
+     "port_error_unexpected": 5,
      "unsupported": 4
     }
    },
    "nearest": {
     "e1": {
-     "adapter_error": 27,
-     "mismatch": 20,
-     "pass": 470,
-     "port_error_unexpected": 54,
+     "adapter_error": 25,
+     "mismatch": 25,
+     "pass": 483,
+     "port_error_unexpected": 38,
      "unsupported": 11
     },
     "e1-redteam": {
      "adapter_error": 1,
-     "mismatch": 1,
-     "pass": 13
+     "pass": 12,
+     "port_error_unexpected": 1,
+     "unsupported": 1
     },
     "e2": {
-     "adapter_error": 7,
+     "adapter_error": 4,
      "mismatch": 3,
-     "pass": 57,
-     "port_error_unexpected": 8,
+     "pass": 64,
+     "port_error_unexpected": 4,
      "unsupported": 1
     },
     "e4": {
+     "adapter_error": 6,
      "mismatch": 3,
-     "pass": 55,
-     "port_error_unexpected": 9
+     "pass": 47,
+     "port_error_unexpected": 10,
+     "unsupported": 1
     },
     "heldout": {
-     "adapter_error": 18,
-     "mismatch": 6,
-     "pass": 244,
-     "port_error_unexpected": 28,
+     "adapter_error": 9,
+     "mismatch": 11,
+     "pass": 249,
+     "port_error_unexpected": 27,
      "unsupported": 4
     }
    },
    "ordering": {
     "e1": {
-     "adapter_error": 5,
-     "mismatch": 11,
-     "pass": 163,
-     "port_error_unexpected": 17,
-     "unsupported": 4
+     "adapter_error": 7,
+     "mismatch": 18,
+     "pass": 158,
+     "port_error_unexpected": 12,
+     "unsupported": 5
     },
     "e1-redteam": {
-     "mismatch": 1,
+     "adapter_error": 1,
      "pass": 9,
-     "unsupported": 1
+     "port_error_unexpected": 1
     },
     "e2": {
-     "adapter_error": 4,
-     "mismatch": 2,
-     "pass": 45,
-     "port_error_unexpected": 5,
-     "unsupported": 1
+     "adapter_error": 2,
+     "pass": 48,
+     "port_error_unexpected": 4,
+     "unsupported": 3
     },
     "e4": {
-     "adapter_error": 3,
+     "adapter_error": 5,
      "mismatch": 2,
-     "pass": 45,
-     "port_error_unexpected": 5,
+     "pass": 41,
+     "port_error_unexpected": 7,
      "unsupported": 1
     },
     "heldout": {
-     "adapter_error": 13,
-     "mismatch": 14,
-     "pass": 243,
-     "port_error_unexpected": 22,
-     "unsupported": 8
+     "adapter_error": 15,
+     "mismatch": 20,
+     "pass": 232,
+     "port_error_unexpected": 26,
+     "unsupported": 7
     }
    },
    "overlaps": {
     "e1": {
-     "adapter_error": 35,
-     "mismatch": 35,
-     "pass": 694,
-     "port_error_unexpected": 67,
-     "unsupported": 17
+     "adapter_error": 29,
+     "mismatch": 41,
+     "pass": 705,
+     "port_error_unexpected": 55,
+     "unsupported": 18
     },
     "e1-redteam": {
-     "mismatch": 1,
-     "pass": 21,
-     "port_error_unexpected": 1
+     "adapter_error": 2,
+     "pass": 18,
+     "port_error_unexpected": 3
     },
     "e2": {
-     "adapter_error": 11,
-     "mismatch": 9,
+     "adapter_error": 5,
+     "mismatch": 13,
      "pass": 153,
-     "port_error_unexpected": 19,
+     "port_error_unexpected": 21,
      "unsupported": 3
     },
     "e4": {
-     "adapter_error": 6,
-     "mismatch": 6,
-     "pass": 85,
-     "port_error_unexpected": 11,
-     "unsupported": 5
+     "adapter_error": 5,
+     "mismatch": 7,
+     "pass": 90,
+     "port_error_unexpected": 8,
+     "unsupported": 3
     },
     "heldout": {
-     "adapter_error": 13,
-     "mismatch": 18,
-     "pass": 223,
-     "port_error_unexpected": 42,
-     "unsupported": 4
+     "adapter_error": 18,
+     "mismatch": 19,
+     "pass": 235,
+     "port_error_unexpected": 20,
+     "unsupported": 8
     }
    },
    "seqinfo": {
     "e1": {
-     "adapter_error": 8,
-     "mismatch": 9,
-     "pass": 85,
-     "port_error_unexpected": 11,
+     "adapter_error": 3,
+     "mismatch": 11,
+     "pass": 89,
+     "port_error_unexpected": 10,
      "unsupported": 1
     },
     "e1-redteam": {
-     "mismatch": 1,
-     "pass": 6,
+     "pass": 7,
      "port_error_unexpected": 1
     },
     "e2": {
-     "mismatch": 2,
+     "adapter_error": 3,
+     "mismatch": 3,
      "pass": 42,
-     "port_error_unexpected": 4,
-     "unsupported": 2
-    },
-    "e4": {
-     "adapter_error": 5,
-     "mismatch": 2,
-     "pass": 16,
      "port_error_unexpected": 1,
      "unsupported": 1
     },
+    "e4": {
+     "adapter_error": 1,
+     "mismatch": 1,
+     "pass": 21,
+     "port_error_unexpected": 2
+    },
     "heldout": {
-     "adapter_error": 32,
-     "mismatch": 25,
-     "pass": 447,
-     "port_error_unexpected": 51,
+     "adapter_error": 30,
+     "mismatch": 33,
+     "pass": 450,
+     "port_error_unexpected": 42,
      "unsupported": 15
     }
    },
    "setops": {
     "e1": {
-     "adapter_error": 13,
-     "mismatch": 30,
+     "adapter_error": 18,
+     "mismatch": 25,
      "pass": 354,
-     "port_error_unexpected": 33,
-     "unsupported": 11
+     "port_error_unexpected": 35,
+     "unsupported": 9
     },
     "e1-redteam": {
-     "pass": 3,
-     "unsupported": 1
+     "adapter_error": 1,
+     "pass": 3
     },
     "e2": {
-     "adapter_error": 4,
-     "mismatch": 7,
-     "pass": 85,
-     "port_error_unexpected": 9,
-     "unsupported": 2
+     "adapter_error": 6,
+     "mismatch": 3,
+     "pass": 89,
+     "port_error_unexpected": 8,
+     "unsupported": 1
     },
     "e4": {
      "adapter_error": 3,
      "mismatch": 2,
-     "pass": 90,
-     "port_error_unexpected": 11,
-     "unsupported": 2
+     "pass": 86,
+     "port_error_unexpected": 14,
+     "unsupported": 3
     },
     "heldout": {
-     "adapter_error": 13,
-     "mismatch": 23,
-     "pass": 287,
-     "port_error_unexpected": 29,
-     "unsupported": 8
+     "adapter_error": 14,
+     "mismatch": 14,
+     "pass": 295,
+     "port_error_unexpected": 30,
+     "unsupported": 7
     }
    },
    "subset_concat": {
     "e1": {
-     "adapter_error": 25,
-     "mismatch": 16,
-     "pass": 375,
-     "port_error_unexpected": 37,
-     "unsupported": 9
+     "adapter_error": 23,
+     "mismatch": 30,
+     "pass": 361,
+     "port_error_unexpected": 38,
+     "unsupported": 10
     },
     "e1-redteam": {
-     "port_error_unexpected": 1
+     "pass": 1
     },
     "e2": {
-     "adapter_error": 1,
+     "adapter_error": 4,
      "mismatch": 2,
-     "pass": 55,
-     "port_error_unexpected": 2
+     "pass": 45,
+     "port_error_unexpected": 7,
+     "unsupported": 2
     },
     "e4": {
-     "adapter_error": 2,
-     "pass": 32,
-     "port_error_unexpected": 3
+     "mismatch": 1,
+     "pass": 34,
+     "port_error_unexpected": 2
     },
     "heldout": {
-     "adapter_error": 3,
-     "mismatch": 4,
-     "pass": 100,
-     "port_error_unexpected": 6,
-     "unsupported": 7
+     "adapter_error": 4,
+     "mismatch": 6,
+     "pass": 95,
+     "port_error_unexpected": 14,
+     "unsupported": 1
     }
    }
   },
@@ -600,11 +603,11 @@
   "cases": 9650,
   "excluded": 0,
   "ok": 9650,
-  "oracle_R_sha256": "ac19f8f4218f94e7a6790c1b821c68db37276008b535bb7be056c684b366f8ee",
-  "r_ran": 0,
-  "r_seconds": 0.0,
+  "oracle_R_sha256": "8bed455800e1d4c6e90c01180aea56e80834f79ecf65e9e2277003397a199392",
+  "r_ran": 9577,
+  "r_seconds": 21.9,
   "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; Seqinfo 1.3.0; BiocGenerics 0.59.12; jsonlite 2.0.0",
-  "wall_seconds": 1.1,
+  "wall_seconds": 22.9,
   "workers": 4
  }
 }

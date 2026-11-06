@@ -1,7 +1,7 @@
 # Fidelity to R: evaluation report
 
 R: `R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; Seqinfo 1.3.0; BiocGenerics 0.59.12; jsonlite 2.0.0`
-Oracle: 9650 cases, 9650 scored, 0 excluded.
+Oracle: 9650 cases, 9650 scored, 0 excluded. Full R run: 9577 distinct cases in 21.9 s (4 workers).
 
 ## Pool and reconciliation
 
@@ -28,5 +28,5 @@ Unconvertible (listed in `cases/unconvertible.jsonl`):
 | adapter | scored | pass | mismatch | adapter_error | unsupported | port_error_unexpected |
 |---|---|---|---|---|---|---|
 | r_echo | 9650 | 9650 | 0 | 0 | 0 | 0 |
-| mutant | 9650 | 7758 | 474 | 413 | 208 | 797 |
+| mutant | 9650 | 7753 | 506 | 415 | 207 | 769 |
 
