@@ -813,13 +813,14 @@ class GRanges:
         """R ``distance``: gap width between paired ranges; ``NO_MATCH`` (-1) where
         the seqnames differ or (unless ``ignore_strand``) one range is ``+`` and
         the other ``-``. Length-1 arguments are recycled."""
-        n = max(len(self), len(other)) if len(self) and len(other) else 0
-        if n == 0:
+        if len(self) == 0 or len(other) == 0:
             return np.array([], dtype=I64)
+        n = max(len(self), len(other))
+        for length in (len(self), len(other)):
+            if length not in (1, n):
+                raise ValueError("'x' and 'y' must have the same length, or one of them length 1")
         x = self if len(self) == n else self._take(np.zeros(n, dtype=np.int64))
         y = other if len(other) == n else other._take(np.zeros(n, dtype=np.int64))
-        if len(x) != len(y):
-            raise ValueError("'x' and 'y' must have the same length or length 1")
         d = _nearest.distance_k(x._start, x._width, y._start, y._width)
         bad = x.seqnames != y.seqnames
         if not ignore_strand:

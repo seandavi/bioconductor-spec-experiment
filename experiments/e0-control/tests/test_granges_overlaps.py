@@ -200,3 +200,15 @@ def test_empty_range_is_its_own_neighbour_like_r():
     g = GRanges("chr1", IRanges(5, 4), "+")
     assert g.nearest().tolist() == [0]
     assert g.precede().tolist() == [0] and g.follow().tolist() == [0]
+
+
+def test_distance_rejects_incompatible_lengths():
+    # review finding 2: only length-1 operands may be recycled
+    a = GRanges("chr1", IRanges([1, 100], width=1))
+    b = GRanges("chr1", IRanges([10, 20, 30], width=1))
+    with pytest.raises(ValueError, match="same length"):
+        a.distance(b)
+    with pytest.raises(ValueError, match="same length"):
+        b.distance(a)
+    assert a[:1].distance(b).tolist() == [8, 18, 28]
+    assert b.distance(a[:1]).tolist() == [8, 18, 28]
