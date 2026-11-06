@@ -250,6 +250,27 @@
       "values": [4, 0, 0, 0, 5, 5, 1, 6],
       "names": null,
       "warnings": ["an argument will be fractionally recycled", "an argument will be fractionally recycled"]
+    },
+    "ir-distance-empty-x-nonempty-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-nonempty-x-empty-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "ir-distance-empty-x-single-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
     }
   }
 }

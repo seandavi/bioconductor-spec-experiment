@@ -322,9 +322,11 @@ class IRanges:
 
     def distance(self, y: Self) -> np.ndarray:
         a, b = (self, y)
+        if not len(a) or not len(b):  # R: zero-length in, zero-length out, whatever the other length
+            return np.ma.MaskedArray(np.zeros(0, np.int64), mask=np.zeros(0, bool))
         if len(a) != len(b) and 1 not in (len(a), len(b)):
             raise ValueError("'x' and 'y' must have the same length (or one of length 1)")
-        n = max(len(a), len(b)) if len(a) and len(b) else 0
+        n = max(len(a), len(b))
         sa, wa = np.broadcast_to(a._start, (n,)), np.broadcast_to(a._width, (n,))
         sb, wb = np.broadcast_to(b._start, (n,)), np.broadcast_to(b._width, (n,))
         return nearest.mask_int32_overflow(nearest.distance(sa, wa, sb, wb))

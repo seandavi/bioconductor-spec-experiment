@@ -196,3 +196,21 @@ cases:
     call: {op: distance, args: [x, z]}
     adr: ADR-0007
     python: {expect_error: true}
+  - id: ir-distance-empty-x-nonempty-y
+    clause: IR-DISTANCE-3
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [1, 5], width: [2, 2]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-nonempty-x-empty-y
+    clause: IR-DISTANCE-3
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 2]}}
+      z: {IRanges: {start: [], width: []}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-distance-empty-x-single-y
+    clause: IR-DISTANCE-3
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+      z: {IRanges: {start: [1], width: [2]}}
+    call: {op: distance, args: [x, z]}

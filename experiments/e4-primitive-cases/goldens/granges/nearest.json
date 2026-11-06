@@ -167,6 +167,27 @@
       "values": [],
       "names": null,
       "warnings": []
+    },
+    "gr-distance-empty-x-nonempty-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-nonempty-x-empty-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-empty-x-single-y": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
     }
   }
 }

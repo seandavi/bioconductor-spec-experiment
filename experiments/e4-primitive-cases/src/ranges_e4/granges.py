@@ -470,9 +470,11 @@ class GRanges:
 
     def distance(self, y: Self, ignore_strand: bool = False) -> np.ndarray:
         """Masked where the pair is on different seqlevels or has incompatible strands."""
+        if not len(self) or not len(y):  # R: zero-length in, zero-length out
+            return np.ma.MaskedArray(np.zeros(0, np.int64), mask=np.zeros(0, bool))
         if len(self) != len(y) and 1 not in (len(self), len(y)):
             raise ValueError("'x' and 'y' must have the same length (or one of length 1)")
-        n = max(len(self), len(y)) if len(self) and len(y) else 0
+        n = max(len(self), len(y))
         qc, sc = self._aligned(y)
         bc = lambda a: np.broadcast_to(a, (n,))  # noqa: E731
         d = nearest.distance(bc(self._ranges._start), bc(self._ranges._width), bc(y._ranges._start), bc(y._ranges._width))

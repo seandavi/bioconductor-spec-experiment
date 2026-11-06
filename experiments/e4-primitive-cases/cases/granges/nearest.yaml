@@ -125,3 +125,21 @@ cases:
       x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
       z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
     call: {op: distance, args: [x, z]}
+  - id: gr-distance-empty-x-nonempty-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [a, a], start: [1, 5], width: [2, 2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-nonempty-x-empty-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 5], width: [2, 2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-distance-empty-x-single-y
+    clause: GR-DISTANCE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [2], seqinfo: {seqnames: [a], seqlengths: [100]}}}
+    call: {op: distance, args: [x, z]}

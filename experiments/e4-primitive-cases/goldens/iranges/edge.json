@@ -335,6 +335,11 @@
       "values": [1],
       "names": null,
       "warnings": []
+    },
+    "ir-edge-shift-zero-width-overflow": {
+      "kind": "error",
+      "message": "invalid class “IRanges” object: \n    'start(x)', 'end(x)', and 'width(x)' cannot contain NAs",
+      "warnings": ["NAs produced by integer overflow"]
     }
   }
 }

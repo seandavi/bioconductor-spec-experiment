@@ -231,3 +231,8 @@ cases:
     inputs:
       x: {IRanges: {start: [3], width: [2]}}
     call: {op: rank, args: [x], kwargs: {ties.method: average}}
+  - id: ir-edge-shift-zero-width-overflow
+    clause: IR-EDGE-2
+    inputs:
+      x: {IRanges: {start: [2147483647], width: [0]}}
+    call: {op: shift, args: [x], kwargs: {shift: 1}}
