@@ -4,12 +4,19 @@ Signature = port | op family (or `*` for cross-op argument validation) | outcome
 
 - R errored, port returned a value: the R error message is bucketed (R_ERROR_BUCKETS).
 - Port raised: the port's message is bucketed (PORT_ERROR_BUCKETS), else `<phase>:<type>`.
-- R's value is itself defective (an R-side probe says so): feature `r_nonlocal_na`, whatever the
-  port did.
+- R's value is itself defective (an R-side probe says so): feature `r_nonlocal_na` when the port's
+  value is the principled local-NA sum (same type and length as R's); `r_nonlocal_na+port_wrong`
+  when the port has its own defect there (crash, NaN, NA as 0, wrong type), so R's accident does not
+  excuse it.
 - The port's value equals R's answer for the same case with all sequences linear
   (probe_circular.py): detail `equals_R_linear`.
 - R's value changes when every range is shifted by +1000 (probe_translate.py): feature
-  `r_translation_dependent`; coord_le0 cases R answers consistently become `coord_le0_r_invariant`.
+  `r_translation_dependent` when the port's value equals R's shifted answer (rule R3/R2 as scored),
+  else `r_translation_dependent+port_wrong`; coord_le0 cases R answers consistently become
+  `coord_le0_r_invariant`.
+- select="first"/"last"/"arbitrary" whose port value is still Hits: `select_not_applied` when the
+  port frame has several subjects for one query, else `select_result_as_hits` (the adapter dropped a
+  projectable selection).
 - Values differ: `diagnose.decisive` names the representation-level normalization under which
   R and port agree (names, num_type, seqlevel_order, ...); when none does, the first diff kind/path
   plus the highest-priority input feature (INPUT_FEATURES) names the cluster.
@@ -27,6 +34,10 @@ from pathlib import Path
 
 from diagnose import decisive, diffs, row_order
 from load import ADJUDICATED, EVAL, PORTS, load
+from probe_coverage_na import local_na
+from rprobe import literal_cases
+
+from bioc_eval.compare import arbitrary_in_universe, hits_query_set  # noqa: E402  (diagnose puts src/ on the path)
 
 FAMILY = {o["op"]: o["family"] for o in json.loads((EVAL / "spec" / "ops.json").read_text())["ops"]}
 # argument-validation buckets are one behaviour across every op: clustered with op "*"
@@ -39,7 +50,10 @@ OUT = HERE / "signatures.jsonl"
 R_NONLOCAL_NA = {r["id"] for r in map(json.loads, (HERE / "probe_coverage_na.jsonl").open()) if r["local_na"] is False}
 # R's result for the same case with every sequence made linear (probe_circular.py)
 # R result changes when every range is translated by +1000 (probe_translate.py): True / False / None
-R_TRANSLATION = {r["id"]: r["translation_dependent"] for r in map(json.loads, (HERE / "probe_translate.jsonl").open())}
+_TRANSLATE = [json.loads(line) for line in (HERE / "probe_translate.jsonl").open()]
+R_TRANSLATION = {r["id"]: r["translation_dependent"] for r in _TRANSLATE}
+R_SHIFTED = {r["id"]: (r["r_shifted"], r["r_shifted_universe"]) for r in _TRANSLATE if r["translation_dependent"]}
+LITERAL = literal_cases()
 R_LINEAR = {r["id"]: r["r_linear"] for r in map(json.loads, (HERE / "probe_circular.jsonl").open())
             if r["circular_matters"]}
 INT32_EDGE = 2**30
@@ -159,6 +173,43 @@ def _valid_resolve_empty(v) -> bool:
     return isinstance(v, str) and sum(c.startswith(v) for c in choices) == 1
 
 
+def _port_local_na(cid: str, exp: dict, rec: dict) -> bool:
+    """The port's coverage is the local-NA sum (probe_coverage_na.local_na) with R's type, names and lengths."""
+    if rec.get("status") != "value":
+        return False
+    r, p = exp["result"], rec["result"]
+    if p.get("kind") != r["kind"] or local_na(LITERAL[cid], p) is not True:
+        return False
+    shape = lambda e: (e["type"], sum(e["lengths"]))  # noqa: E731
+    if r["kind"] == "Rle":
+        return shape(r) == shape(p)
+    return r["names"] == p["names"] and [shape(e) for e in r["elements"]] == [shape(e) for e in p["elements"]]
+
+
+def _port_holds_shifted(cid: str, exp: dict, rec: dict) -> bool:
+    """The port's value equals R's answer for the case with every range shifted by +1000 (probe_translate.py)."""
+    if rec.get("status") != "value":
+        return False
+    r, universe = R_SHIFTED[cid]
+    p = rec["result"]
+    if universe is not None and r["kind"] == "vector":
+        return not arbitrary_in_universe(r, p, universe)
+    if r["kind"] == "Hits" and exp.get("sorted_by_query"):
+        return not hits_query_set(r, p)
+    return not diffs(r, p)
+
+
+def _int_scalar(v) -> int:
+    if isinstance(v, dict):
+        v = next((v[k][0] for k in ("int", "dbl") if len(v.get(k) or []) == 1), None)
+    return v if isinstance(v, (int, float)) and v is not None else -1
+
+
+def _port_wrapped(r: dict, p: dict) -> bool:
+    starts = lambda o: [s for s in o.get("start") or [] if isinstance(s, int)]  # noqa: E731
+    return any(s < -2**30 for s in starts(p)) and not any(s < -2**30 for s in starts(r))
+
+
 def _msg(m: str) -> str:
     return re.sub(r"\d+", "N", (m or "").split("\n")[0])[:60]
 
@@ -191,7 +242,9 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
         cls = "r_error_port_value"
         detail = _bucket(exp["result"]["message"], R_ERROR_BUCKETS) or f"other:{_msg(exp['result']['message'])}"
     elif exp["result"]["kind"] == "vector" and rec["result"].get("kind") == "Hits" and op in ("findOverlaps", "nearest"):
-        cls, detail = "mismatch", "select_result_as_hits"  # R's select= gives a vector; the port value is Hits
+        # R's select= gives a vector; the adapter keeps Hits only when it cannot project the port's frame
+        q = rec["result"]["from"]
+        cls, detail = "mismatch", "select_not_applied" if len(q) != len(set(q)) else "select_result_as_hits"
     elif scored["rule"] == "R3":
         cls, detail = "mismatch", "R3:" + ",".join(scored["detail"]["kinds"])
         if _equals_linear(case["id"], rec["result"]):
@@ -201,6 +254,8 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
         if scored["rule"] == "R2":
             r, p = row_order(copy.deepcopy(r)), row_order(copy.deepcopy(p))
         cls, detail = "mismatch", decisive(r, p)
+        if scored["rule"] == "R2" and not diffs(r, p):
+            detail = "hits_not_sorted_by_query"  # same pairs; R2 requires the port's Hits in query order
         if _equals_linear(case["id"], rec["result"]):
             detail = "equals_R_linear"  # the port computed R's answer for linear sequences
 
@@ -214,11 +269,11 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
     if feature == "-" and isinstance(w, dict) and any(v is None for k in ("int", "dbl") for v in w.get(k, [])):
         feature = "na_weight_int" if "int" in w else "na_weight_dbl"  # NA weights: storage type decides
     if R_TRANSLATION.get(case["id"]) is True:  # R's value moves with the coordinates (probe_translate.py)
-        feature = "r_translation_dependent"
+        feature = "r_translation_dependent" + ("" if _port_holds_shifted(case["id"], exp, rec) else "+port_wrong")
     elif feature == "coord_le0" and R_TRANSLATION.get(case["id"]) is False:
         feature = "coord_le0_r_invariant"  # R gives the same answer shifted by +1000: not the sentinel defect
-    if "r_nonlocal_na" in feats:  # R's own value is defective here, whatever the port did (probe_coverage_na.py)
-        feature = "r_nonlocal_na"
+    if "r_nonlocal_na" in feats:  # R's own value is defective here (probe_coverage_na.py); is the port's?
+        feature = "r_nonlocal_na" + ("" if _port_local_na(case["id"], exp, rec) else "+port_wrong")
     if detail.startswith("diff:") or (detail.startswith("R3:") and feature != "plain"):
         detail = "diff"  # no normalization explains it: the input feature names the cluster
         kw = case["call"]["kwargs"]
@@ -228,10 +283,16 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
             feature = "drop_empty_ranges"
         elif op == "distance" and feature == "int32_edge":
             feature = "int32_edge_distance"  # R documents NA for distances beyond int32; no sentinel involved
+        elif FAMILY[op] == "overlaps" and feature == "int32_edge" and _int_scalar(kw.get("maxgap")) >= 2**31 - 2**10:
+            feature = "maxgap_int32_max"  # R's maxgap + end arithmetic overflows int32
+        elif feature == "int32_edge" and _port_wrapped(exp["result"], rec["result"]):
+            feature = "port_int32_wrap"  # the port's coordinates wrapped past -2^31 where R's are NA
     if cls == "r_error_port_value":
         # an NA flag R rejects vs an R failure on valid input: the input decides
         feature = "-" if detail not in ("na_in_logic", "length_validation") else next(
             (f for f in ("na_arg", "int32_edge", "circular", "coord_le0") if f in feats), "-")
+        if R_TRANSLATION.get(case["id"]) is True and not _port_holds_shifted(case["id"], exp, rec):
+            feature += "+port_wrong"  # R errors only because of where the ranges sit; the port misses R's shifted answer
     group = "*" if detail in CROSS_OP else FAMILY[op]
     sig = f"{port}|{group}|{cls}|{detail}|{feature}"
     return {"signature": sig, "port": port, "group": group, "op": op, "domain": exp["domain"], "class": cls,
