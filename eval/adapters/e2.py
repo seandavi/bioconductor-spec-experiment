@@ -287,6 +287,8 @@ class Adapter(AdapterBase):
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING, seqlengths=MISSING,
                    _mcols=()):
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = _present(seqnames=_ls(seqnames), ranges=ranges, strand=_ls(strand), seqinfo=seqinfo)
         if seqlengths is not MISSING:
             if seqlengths is not None and seqlengths.names is None:
@@ -420,6 +422,8 @@ class Adapter(AdapterBase):
 
     def op_c(self, *dots, x):
         _need_ranges(x, "c")
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         return x.concat(*dots)
 
     # ---------------------------------------------------------------- intra-range
@@ -536,6 +540,10 @@ class Adapter(AdapterBase):
     # ---------------------------------------------------------------- coverage
 
     def op_coverage(self, *, x, shift=MISSING, width=MISSING, weight=MISSING):
+        if isinstance(shift, RVector) and shift.type == "chr":
+            raise Unsupported("coverage: shift as an mcols column name")  # the port takes numbers only
+        if isinstance(weight, RVector) and weight.type == "chr" and not isinstance(x, GRanges):
+            raise Unsupported("coverage: weight as an mcols column name on IRanges")  # only GRanges.coverage takes one
         def width_arg(v: Any) -> Any:
             if v is MISSING or v is None or not isinstance(x, GRanges):
                 return _sc(v)
