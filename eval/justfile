@@ -1,0 +1,53 @@
+# Eval harness. Run from eval/. Plan: EVAL-PLAN.md.
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+default:
+    @just --list
+
+# E1/E2/E4 -> cases/
+convert:
+    uv run python -m bioc_eval.convert
+
+# regenerate cases/heldout.jsonl (stdlib only; never runs R)
+heldout:
+    python3 heldout/generate.py
+
+# fail if a heldout seed value appears in any experiment worktree
+seeds:
+    uv run python -m bioc_eval.seeds
+
+# schema-check spec examples, cases, resolved, expected
+validate:
+    uv run python spec/examples/validate.py
+    uv run python -m bioc_eval.validate
+
+# R on all cases (cached) -> build/resolved.jsonl, build/expected.jsonl
+oracle:
+    uv run python -m bioc_eval.oracle
+
+# verify frozen sha, run PORT in its own venv, score
+run PORT:
+    uv run python -m bioc_eval.run {{PORT}}
+
+# adapter dev loop: project(build(p)) == p for every resolved input
+roundtrip PORT:
+    uv run python -m bioc_eval.run {{PORT}} --roundtrip
+
+# adapter dev loop: only adapter_error / unsupported, no R values
+adapter-check PORT:
+    uv run python -m bioc_eval.run {{PORT}} --adapter-check
+
+# r_echo must score 100 %, mutant must match its predictions, then unit tests
+selftest:
+    uv run python -m bioc_eval.run r_echo
+    uv run python -m bioc_eval.run mutant
+    uv run python -m bioc_eval.selftest
+    uv run pytest -q
+
+# unit + pipeline tests (needs Rscript)
+test:
+    uv run pytest -q
+
+# matrix + per-case JSONL + report.md
+report:
+    uv run python -m bioc_eval.report

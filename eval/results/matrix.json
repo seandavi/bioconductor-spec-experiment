@@ -1,0 +1,2716 @@
+{
+ "matrix": {
+  "biocpy": {
+   "accessors": {
+    "e1": {
+     "mismatch": 8,
+     "pass": 28
+    },
+    "e2": {
+     "mismatch": 4,
+     "pass": 23
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 13
+    },
+    "heldout": {
+     "mismatch": 12,
+     "pass": 401,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 24,
+     "pass": 242,
+     "port_error_unexpected": 93,
+     "unsupported": 40
+    },
+    "e1-redteam": {
+     "mismatch": 2,
+     "pass": 6,
+     "port_error_unexpected": 2
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 36,
+     "port_error_unexpected": 8,
+     "unsupported": 13
+    },
+    "e4": {
+     "mismatch": 6,
+     "pass": 27,
+     "port_error_unexpected": 6,
+     "unsupported": 7
+    },
+    "heldout": {
+     "mismatch": 17,
+     "pass": 145,
+     "port_error_unexpected": 17,
+     "unsupported": 61
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 203,
+     "pass": 22,
+     "port_error_unexpected": 111,
+     "unsupported": 175
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "port_error_unexpected": 1,
+     "unsupported": 6
+    },
+    "e2": {
+     "mismatch": 39,
+     "pass": 3,
+     "unsupported": 9
+    },
+    "e4": {
+     "mismatch": 45,
+     "pass": 1,
+     "unsupported": 8
+    },
+    "heldout": {
+     "mismatch": 69,
+     "pass": 6,
+     "port_error_unexpected": 3,
+     "unsupported": 42
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 90,
+     "pass": 302,
+     "port_error_unexpected": 13
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 8,
+     "port_error_unexpected": 1
+    },
+    "e2": {
+     "mismatch": 6,
+     "pass": 93,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "mismatch": 5,
+     "pass": 93,
+     "port_error_unexpected": 6
+    },
+    "heldout": {
+     "mismatch": 17,
+     "pass": 242,
+     "port_error_unexpected": 14,
+     "unsupported": 27
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 35,
+     "pass": 303,
+     "unsupported": 25
+    },
+    "e1-redteam": {
+     "mismatch": 2
+    },
+    "e2": {
+     "mismatch": 5,
+     "pass": 117,
+     "unsupported": 4
+    },
+    "e4": {
+     "mismatch": 7,
+     "pass": 73,
+     "port_error_unexpected": 6,
+     "unsupported": 2
+    },
+    "heldout": {
+     "mismatch": 7,
+     "pass": 216,
+     "port_error_unexpected": 1,
+     "unsupported": 76
+    }
+   },
+   "metadata": {
+    "e1": {
+     "mismatch": 4,
+     "pass": 20
+    },
+    "e1-redteam": {
+     "pass": 4,
+     "port_error_unexpected": 17
+    },
+    "e2": {
+     "pass": 9,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 1
+    },
+    "heldout": {
+     "mismatch": 6,
+     "pass": 104,
+     "port_error_unexpected": 10
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 215,
+     "pass": 217,
+     "port_error_unexpected": 85,
+     "unsupported": 65
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 16,
+     "pass": 43,
+     "port_error_unexpected": 4,
+     "unsupported": 13
+    },
+    "e4": {
+     "mismatch": 17,
+     "pass": 36,
+     "port_error_unexpected": 13,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 49,
+     "pass": 187,
+     "port_error_unexpected": 22,
+     "unsupported": 42
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 79,
+     "pass": 63,
+     "port_error_unexpected": 2,
+     "unsupported": 56
+    },
+    "e1-redteam": {
+     "mismatch": 6,
+     "pass": 2,
+     "port_error_unexpected": 1,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 18,
+     "pass": 19,
+     "port_error_unexpected": 1,
+     "unsupported": 19
+    },
+    "e4": {
+     "mismatch": 17,
+     "pass": 21,
+     "port_error_unexpected": 1,
+     "unsupported": 17
+    },
+    "heldout": {
+     "mismatch": 49,
+     "pass": 140,
+     "port_error_unexpected": 1,
+     "unsupported": 110
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 382,
+     "pass": 300,
+     "port_error_unexpected": 8,
+     "unsupported": 158
+    },
+    "e1-redteam": {
+     "mismatch": 10,
+     "pass": 7,
+     "unsupported": 6
+    },
+    "e2": {
+     "mismatch": 43,
+     "pass": 112,
+     "unsupported": 40
+    },
+    "e4": {
+     "mismatch": 26,
+     "pass": 71,
+     "port_error_unexpected": 1,
+     "unsupported": 15
+    },
+    "heldout": {
+     "mismatch": 65,
+     "pass": 119,
+     "port_error_unexpected": 9,
+     "unsupported": 107
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "mismatch": 76,
+     "pass": 37,
+     "unsupported": 1
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 5
+    },
+    "e2": {
+     "mismatch": 13,
+     "pass": 30,
+     "port_error_unexpected": 1,
+     "unsupported": 6
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 24
+    },
+    "heldout": {
+     "mismatch": 29,
+     "pass": 467,
+     "port_error_unexpected": 12,
+     "unsupported": 62
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 154,
+     "pass": 108,
+     "port_error_unexpected": 16,
+     "unsupported": 163
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 1,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 16,
+     "pass": 45,
+     "port_error_unexpected": 5,
+     "unsupported": 41
+    },
+    "e4": {
+     "mismatch": 22,
+     "pass": 36,
+     "port_error_unexpected": 14,
+     "unsupported": 36
+    },
+    "heldout": {
+     "mismatch": 62,
+     "pass": 113,
+     "port_error_unexpected": 28,
+     "unsupported": 157
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 68,
+     "pass": 303,
+     "port_error_unexpected": 13,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "mismatch": 1
+    },
+    "e2": {
+     "mismatch": 8,
+     "pass": 41,
+     "port_error_unexpected": 4,
+     "unsupported": 7
+    },
+    "e4": {
+     "mismatch": 11,
+     "pass": 24,
+     "port_error_unexpected": 2
+    },
+    "heldout": {
+     "mismatch": 16,
+     "pass": 52,
+     "port_error_unexpected": 7,
+     "unsupported": 45
+    }
+   }
+  },
+  "e0": {
+   "accessors": {
+    "e1": {
+     "mismatch": 3,
+     "pass": 32,
+     "unsupported": 1
+    },
+    "e2": {
+     "mismatch": 2,
+     "pass": 25
+    },
+    "e4": {
+     "pass": 14,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 4,
+     "pass": 409,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 19,
+     "pass": 280,
+     "port_error_unexpected": 69,
+     "unsupported": 31
+    },
+    "e1-redteam": {
+     "mismatch": 4,
+     "pass": 3,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 50,
+     "port_error_unexpected": 5,
+     "unsupported": 2
+    },
+    "e4": {
+     "mismatch": 5,
+     "pass": 39,
+     "unsupported": 2
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 221,
+     "port_error_unexpected": 3,
+     "unsupported": 7
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 26,
+     "pass": 105,
+     "port_error_unexpected": 8,
+     "unsupported": 372
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 3,
+     "unsupported": 8
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 43,
+     "port_error_unexpected": 1,
+     "unsupported": 4
+    },
+    "e4": {
+     "mismatch": 8,
+     "pass": 41,
+     "port_error_unexpected": 2,
+     "unsupported": 3
+    },
+    "heldout": {
+     "mismatch": 6,
+     "pass": 68,
+     "unsupported": 46
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 58,
+     "pass": 336,
+     "port_error_unexpected": 4,
+     "unsupported": 7
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "mismatch": 6,
+     "pass": 91,
+     "port_error_unexpected": 4
+    },
+    "e4": {
+     "mismatch": 3,
+     "pass": 101
+    },
+    "heldout": {
+     "mismatch": 14,
+     "pass": 240,
+     "unsupported": 46
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 14,
+     "pass": 321,
+     "port_error_unexpected": 28
+    },
+    "e1-redteam": {
+     "pass": 2
+    },
+    "e2": {
+     "pass": 124,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "mismatch": 5,
+     "pass": 82,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 4,
+     "pass": 281,
+     "port_error_unexpected": 12,
+     "unsupported": 3
+    }
+   },
+   "metadata": {
+    "e1": {
+     "mismatch": 2,
+     "pass": 21,
+     "unsupported": 1
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "port_error_unexpected": 12
+    },
+    "e2": {
+     "pass": 9,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "mismatch": 11,
+     "pass": 104,
+     "port_error_unexpected": 5
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 49,
+     "pass": 528,
+     "port_error_unexpected": 5
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 72,
+     "port_error_unexpected": 1
+    },
+    "e4": {
+     "mismatch": 4,
+     "pass": 62,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 43,
+     "pass": 256,
+     "port_error_unexpected": 1
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 35,
+     "pass": 163,
+     "port_error_unexpected": 2
+    },
+    "e1-redteam": {
+     "pass": 11
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 55,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 55
+    },
+    "heldout": {
+     "mismatch": 14,
+     "pass": 191,
+     "unsupported": 95
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 304,
+     "pass": 539,
+     "port_error_unexpected": 2,
+     "unsupported": 3
+    },
+    "e1-redteam": {
+     "mismatch": 15,
+     "pass": 8
+    },
+    "e2": {
+     "mismatch": 10,
+     "pass": 185
+    },
+    "e4": {
+     "mismatch": 3,
+     "pass": 109,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 27,
+     "pass": 273
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 107,
+     "unsupported": 7
+    },
+    "e1-redteam": {
+     "mismatch": 2,
+     "pass": 6
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 30,
+     "unsupported": 19
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "pass": 315,
+     "unsupported": 255
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 36,
+     "pass": 397,
+     "port_error_unexpected": 8
+    },
+    "e1-redteam": {
+     "pass": 4
+    },
+    "e2": {
+     "mismatch": 5,
+     "pass": 102
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 106,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 16,
+     "pass": 338,
+     "unsupported": 6
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 33,
+     "pass": 351,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "pass": 1
+    },
+    "e2": {
+     "pass": 50,
+     "unsupported": 10
+    },
+    "e4": {
+     "pass": 36,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 77,
+     "unsupported": 42
+    }
+   }
+  },
+  "e0b": {
+   "accessors": {
+    "e1": {
+     "mismatch": 5,
+     "pass": 31
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 24
+    },
+    "e4": {
+     "pass": 15
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 404,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 15,
+     "pass": 273,
+     "port_error_unexpected": 80,
+     "unsupported": 31
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 6,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e2": {
+     "mismatch": 2,
+     "pass": 48,
+     "port_error_unexpected": 5,
+     "unsupported": 5
+    },
+    "e4": {
+     "mismatch": 3,
+     "pass": 40,
+     "port_error_unexpected": 1,
+     "unsupported": 2
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 215,
+     "port_error_unexpected": 3,
+     "unsupported": 13
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 22,
+     "pass": 99,
+     "port_error_unexpected": 24,
+     "unsupported": 366
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 3,
+     "unsupported": 8
+    },
+    "e2": {
+     "mismatch": 2,
+     "pass": 43,
+     "port_error_unexpected": 3,
+     "unsupported": 3
+    },
+    "e4": {
+     "mismatch": 11,
+     "pass": 38,
+     "port_error_unexpected": 4,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 3,
+     "pass": 71,
+     "unsupported": 46
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 122,
+     "pass": 196,
+     "port_error_unexpected": 7,
+     "unsupported": 80
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "unsupported": 3
+    },
+    "e2": {
+     "mismatch": 13,
+     "pass": 80,
+     "port_error_unexpected": 3,
+     "unsupported": 5
+    },
+    "e4": {
+     "mismatch": 12,
+     "pass": 87,
+     "unsupported": 5
+    },
+    "heldout": {
+     "mismatch": 33,
+     "pass": 185,
+     "port_error_unexpected": 3,
+     "unsupported": 79
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 15,
+     "pass": 301,
+     "port_error_unexpected": 28,
+     "unsupported": 19
+    },
+    "e1-redteam": {
+     "unsupported": 2
+    },
+    "e2": {
+     "pass": 122,
+     "port_error_unexpected": 2,
+     "unsupported": 2
+    },
+    "e4": {
+     "mismatch": 6,
+     "pass": 79,
+     "port_error_unexpected": 1,
+     "unsupported": 2
+    },
+    "heldout": {
+     "mismatch": 6,
+     "pass": 228,
+     "port_error_unexpected": 3,
+     "unsupported": 63
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 24
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "port_error_unexpected": 12
+    },
+    "e2": {
+     "pass": 9,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 115,
+     "port_error_unexpected": 5
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 108,
+     "pass": 396,
+     "port_error_unexpected": 78
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 10,
+     "pass": 60,
+     "port_error_unexpected": 6
+    },
+    "e4": {
+     "mismatch": 11,
+     "pass": 43,
+     "port_error_unexpected": 13
+    },
+    "heldout": {
+     "mismatch": 52,
+     "pass": 231,
+     "port_error_unexpected": 17
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 18,
+     "pass": 132,
+     "port_error_unexpected": 8,
+     "unsupported": 42
+    },
+    "e1-redteam": {
+     "pass": 7,
+     "port_error_unexpected": 1,
+     "unsupported": 3
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 47,
+     "port_error_unexpected": 1,
+     "unsupported": 8
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 51,
+     "port_error_unexpected": 2,
+     "unsupported": 2
+    },
+    "heldout": {
+     "mismatch": 3,
+     "pass": 128,
+     "port_error_unexpected": 5,
+     "unsupported": 164
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 287,
+     "pass": 501,
+     "port_error_unexpected": 2,
+     "unsupported": 58
+    },
+    "e1-redteam": {
+     "mismatch": 13,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 8,
+     "pass": 187
+    },
+    "e4": {
+     "mismatch": 4,
+     "pass": 108,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 15,
+     "pass": 275,
+     "unsupported": 10
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 107,
+     "unsupported": 7
+    },
+    "e1-redteam": {
+     "mismatch": 2,
+     "pass": 6
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 30,
+     "unsupported": 19
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "pass": 315,
+     "unsupported": 255
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 34,
+     "pass": 321,
+     "port_error_unexpected": 76,
+     "unsupported": 10
+    },
+    "e1-redteam": {
+     "pass": 2,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 18,
+     "pass": 78,
+     "port_error_unexpected": 10,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 19,
+     "pass": 82,
+     "port_error_unexpected": 7
+    },
+    "heldout": {
+     "mismatch": 44,
+     "pass": 282,
+     "port_error_unexpected": 21,
+     "unsupported": 13
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 1,
+     "pass": 225,
+     "port_error_unexpected": 158,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "mismatch": 1
+    },
+    "e2": {
+     "pass": 37,
+     "port_error_unexpected": 12,
+     "unsupported": 11
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 33,
+     "port_error_unexpected": 3
+    },
+    "heldout": {
+     "pass": 56,
+     "port_error_unexpected": 19,
+     "unsupported": 45
+    }
+   }
+  },
+  "e1": {
+   "accessors": {
+    "e1": {
+     "mismatch": 4,
+     "pass": 32
+    },
+    "e2": {
+     "mismatch": 2,
+     "pass": 25
+    },
+    "e4": {
+     "pass": 15
+    },
+    "heldout": {
+     "mismatch": 4,
+     "pass": 409,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "pass": 399
+    },
+    "e1-redteam": {
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 57
+    },
+    "e4": {
+     "pass": 46
+    },
+    "heldout": {
+     "mismatch": 10,
+     "pass": 223,
+     "port_error_unexpected": 1,
+     "unsupported": 6
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 351,
+     "pass": 159,
+     "port_error_unexpected": 1
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 7
+    },
+    "e2": {
+     "pass": 51
+    },
+    "e4": {
+     "pass": 54
+    },
+    "heldout": {
+     "mismatch": 3,
+     "pass": 76,
+     "port_error_unexpected": 1,
+     "unsupported": 40
+    }
+   },
+   "inter": {
+    "e1": {
+     "pass": 405
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "pass": 101
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 102
+    },
+    "heldout": {
+     "pass": 261,
+     "unsupported": 39
+    }
+   },
+   "intra": {
+    "e1": {
+     "pass": 362,
+     "port_error_unexpected": 1
+    },
+    "e1-redteam": {
+     "pass": 2
+    },
+    "e2": {
+     "pass": 126
+    },
+    "e4": {
+     "pass": 85,
+     "port_error_unexpected": 3
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 298,
+     "port_error_unexpected": 1
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 24
+    },
+    "e1-redteam": {
+     "pass": 21
+    },
+    "e2": {
+     "pass": 11
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 120
+    }
+   },
+   "nearest": {
+    "e1": {
+     "pass": 582
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 12
+    },
+    "e2": {
+     "pass": 76
+    },
+    "e4": {
+     "pass": 67
+    },
+    "heldout": {
+     "mismatch": 28,
+     "pass": 272
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 1,
+     "pass": 199
+    },
+    "e1-redteam": {
+     "pass": 11
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 55,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 55
+    },
+    "heldout": {
+     "mismatch": 3,
+     "pass": 202,
+     "unsupported": 95
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 13,
+     "pass": 835
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 22
+    },
+    "e2": {
+     "mismatch": 7,
+     "pass": 188
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 111
+    },
+    "heldout": {
+     "mismatch": 6,
+     "pass": 294
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 114
+    },
+    "e1-redteam": {
+     "pass": 8
+    },
+    "e2": {
+     "pass": 35,
+     "unsupported": 15
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 416,
+     "port_error_unexpected": 4,
+     "unsupported": 149
+    }
+   },
+   "setops": {
+    "e1": {
+     "pass": 441
+    },
+    "e1-redteam": {
+     "pass": 4
+    },
+    "e2": {
+     "mismatch": 5,
+     "pass": 102
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 107
+    },
+    "heldout": {
+     "mismatch": 18,
+     "pass": 336,
+     "unsupported": 6
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 1,
+     "pass": 388,
+     "unsupported": 73
+    },
+    "e1-redteam": {
+     "pass": 1
+    },
+    "e2": {
+     "pass": 50,
+     "unsupported": 10
+    },
+    "e4": {
+     "pass": 37
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 77,
+     "unsupported": 42
+    }
+   }
+  },
+  "e2": {
+   "accessors": {
+    "e1": {
+     "mismatch": 5,
+     "pass": 31
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 24
+    },
+    "e4": {
+     "pass": 15
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 404,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 27,
+     "pass": 337,
+     "port_error_unexpected": 35
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 6,
+     "port_error_unexpected": 1
+    },
+    "e2": {
+     "pass": 59,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 44,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "pass": 231,
+     "port_error_unexpected": 3,
+     "unsupported": 6
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 94,
+     "pass": 124,
+     "port_error_unexpected": 289,
+     "unsupported": 4
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 4,
+     "port_error_unexpected": 3,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 50
+    },
+    "e4": {
+     "mismatch": 9,
+     "pass": 45
+    },
+    "heldout": {
+     "mismatch": 2,
+     "pass": 74,
+     "port_error_unexpected": 3,
+     "unsupported": 41
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 60,
+     "pass": 303,
+     "unsupported": 42
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "pass": 101
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 102
+    },
+    "heldout": {
+     "mismatch": 11,
+     "pass": 242,
+     "unsupported": 47
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 33,
+     "pass": 308,
+     "port_error_unexpected": 8,
+     "unsupported": 14
+    },
+    "e1-redteam": {
+     "pass": 2
+    },
+    "e2": {
+     "pass": 126
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 85,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 10,
+     "pass": 239,
+     "port_error_unexpected": 7,
+     "unsupported": 44
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 24
+    },
+    "e1-redteam": {
+     "pass": 21
+    },
+    "e2": {
+     "pass": 11
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 120
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 49,
+     "pass": 508,
+     "port_error_unexpected": 25
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 73
+    },
+    "e4": {
+     "mismatch": 4,
+     "pass": 63
+    },
+    "heldout": {
+     "mismatch": 44,
+     "pass": 256
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 51,
+     "pass": 147,
+     "port_error_unexpected": 2
+    },
+    "e1-redteam": {
+     "pass": 11
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 55,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 55
+    },
+    "heldout": {
+     "mismatch": 8,
+     "pass": 197,
+     "unsupported": 95
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 252,
+     "pass": 494,
+     "port_error_unexpected": 2,
+     "unsupported": 100
+    },
+    "e1-redteam": {
+     "mismatch": 13,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 7,
+     "pass": 188
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 107,
+     "unsupported": 4
+    },
+    "heldout": {
+     "mismatch": 13,
+     "pass": 271,
+     "unsupported": 16
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "mismatch": 1,
+     "pass": 113
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 7
+    },
+    "e2": {
+     "pass": 46,
+     "unsupported": 4
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "mismatch": 5,
+     "pass": 449,
+     "port_error_unexpected": 3,
+     "unsupported": 113
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 44,
+     "pass": 388,
+     "port_error_unexpected": 8,
+     "unsupported": 1
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 3
+    },
+    "e2": {
+     "pass": 107
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 106,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 13,
+     "pass": 334,
+     "unsupported": 13
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 33,
+     "pass": 351,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "mismatch": 1
+    },
+    "e2": {
+     "pass": 51,
+     "unsupported": 9
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 36
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 74,
+     "unsupported": 45
+    }
+   }
+  },
+  "e3": {
+   "accessors": {
+    "e1": {
+     "mismatch": 8,
+     "pass": 28
+    },
+    "e2": {
+     "mismatch": 4,
+     "pass": 22,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 14
+    },
+    "heldout": {
+     "mismatch": 12,
+     "pass": 401,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 24,
+     "pass": 290,
+     "port_error_unexpected": 85
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 4,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e2": {
+     "mismatch": 2,
+     "pass": 47,
+     "port_error_unexpected": 6,
+     "unsupported": 5
+    },
+    "e4": {
+     "mismatch": 3,
+     "pass": 38,
+     "port_error_unexpected": 5
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 210,
+     "port_error_unexpected": 9,
+     "unsupported": 12
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 14,
+     "pass": 68,
+     "port_error_unexpected": 11,
+     "unsupported": 418
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 3,
+     "unsupported": 8
+    },
+    "e2": {
+     "pass": 35,
+     "port_error_unexpected": 2,
+     "unsupported": 14
+    },
+    "e4": {
+     "mismatch": 7,
+     "pass": 34,
+     "port_error_unexpected": 1,
+     "unsupported": 12
+    },
+    "heldout": {
+     "pass": 43,
+     "unsupported": 77
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 38,
+     "pass": 313,
+     "port_error_unexpected": 11,
+     "unsupported": 43
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "pass": 96,
+     "port_error_unexpected": 4,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 101,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 11,
+     "pass": 232,
+     "port_error_unexpected": 7,
+     "unsupported": 50
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 35,
+     "pass": 272,
+     "port_error_unexpected": 35,
+     "unsupported": 21
+    },
+    "e1-redteam": {
+     "mismatch": 2
+    },
+    "e2": {
+     "pass": 120,
+     "port_error_unexpected": 2,
+     "unsupported": 4
+    },
+    "e4": {
+     "mismatch": 5,
+     "pass": 78,
+     "port_error_unexpected": 1,
+     "unsupported": 4
+    },
+    "heldout": {
+     "mismatch": 6,
+     "pass": 213,
+     "port_error_unexpected": 9,
+     "unsupported": 72
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 24
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "port_error_unexpected": 12
+    },
+    "e2": {
+     "pass": 9,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 115,
+     "port_error_unexpected": 5
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 49,
+     "pass": 457,
+     "port_error_unexpected": 76
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 6,
+     "pass": 67,
+     "port_error_unexpected": 3
+    },
+    "e4": {
+     "mismatch": 5,
+     "pass": 56,
+     "port_error_unexpected": 6
+    },
+    "heldout": {
+     "mismatch": 47,
+     "pass": 239,
+     "port_error_unexpected": 14
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 27,
+     "pass": 142,
+     "port_error_unexpected": 8,
+     "unsupported": 23
+    },
+    "e1-redteam": {
+     "pass": 8,
+     "port_error_unexpected": 1,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 49,
+     "port_error_unexpected": 1,
+     "unsupported": 6
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 53,
+     "port_error_unexpected": 2
+    },
+    "heldout": {
+     "mismatch": 4,
+     "pass": 154,
+     "port_error_unexpected": 5,
+     "unsupported": 137
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 250,
+     "pass": 496,
+     "port_error_unexpected": 2,
+     "unsupported": 100
+    },
+    "e1-redteam": {
+     "mismatch": 13,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 7,
+     "pass": 188
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 107,
+     "unsupported": 4
+    },
+    "heldout": {
+     "mismatch": 11,
+     "pass": 273,
+     "unsupported": 16
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 107,
+     "unsupported": 7
+    },
+    "e1-redteam": {
+     "pass": 5,
+     "unsupported": 3
+    },
+    "e2": {
+     "pass": 29,
+     "unsupported": 21
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "pass": 314,
+     "unsupported": 256
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 54,
+     "pass": 368,
+     "port_error_unexpected": 9,
+     "unsupported": 10
+    },
+    "e1-redteam": {
+     "pass": 2,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 11,
+     "pass": 94,
+     "port_error_unexpected": 1,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 12,
+     "pass": 95,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 41,
+     "pass": 303,
+     "port_error_unexpected": 3,
+     "unsupported": 13
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 33,
+     "pass": 351,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "mismatch": 1
+    },
+    "e2": {
+     "pass": 49,
+     "unsupported": 11
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 36
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 74,
+     "unsupported": 45
+    }
+   }
+  },
+  "e4": {
+   "accessors": {
+    "e1": {
+     "mismatch": 5,
+     "pass": 31
+    },
+    "e2": {
+     "mismatch": 3,
+     "pass": 24
+    },
+    "e4": {
+     "pass": 15
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 404,
+     "unsupported": 67
+    }
+   },
+   "construct": {
+    "e1": {
+     "mismatch": 19,
+     "pass": 299,
+     "port_error_unexpected": 81
+    },
+    "e1-redteam": {
+     "mismatch": 3,
+     "pass": 4,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 49,
+     "port_error_unexpected": 5,
+     "unsupported": 5
+    },
+    "e4": {
+     "pass": 45,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 9,
+     "pass": 213,
+     "port_error_unexpected": 6,
+     "unsupported": 12
+    }
+   },
+   "coverage": {
+    "e1": {
+     "mismatch": 347,
+     "pass": 149,
+     "port_error_unexpected": 11,
+     "unsupported": 4
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 5,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 1,
+     "pass": 49,
+     "port_error_unexpected": 1
+    },
+    "e4": {
+     "pass": 52,
+     "port_error_unexpected": 2
+    },
+    "heldout": {
+     "mismatch": 5,
+     "pass": 72,
+     "unsupported": 43
+    }
+   },
+   "inter": {
+    "e1": {
+     "mismatch": 75,
+     "pass": 256,
+     "port_error_unexpected": 2,
+     "unsupported": 72
+    },
+    "e1-redteam": {
+     "mismatch": 2,
+     "pass": 10
+    },
+    "e2": {
+     "mismatch": 7,
+     "pass": 90,
+     "unsupported": 4
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 102
+    },
+    "heldout": {
+     "mismatch": 19,
+     "pass": 233,
+     "unsupported": 48
+    }
+   },
+   "intra": {
+    "e1": {
+     "mismatch": 27,
+     "pass": 287,
+     "port_error_unexpected": 36,
+     "unsupported": 13
+    },
+    "e1-redteam": {
+     "mismatch": 2
+    },
+    "e2": {
+     "pass": 124,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "pass": 84,
+     "port_error_unexpected": 4
+    },
+    "heldout": {
+     "mismatch": 4,
+     "pass": 263,
+     "port_error_unexpected": 11,
+     "unsupported": 22
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 21,
+     "unsupported": 3
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "port_error_unexpected": 12
+    },
+    "e2": {
+     "pass": 8,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 85,
+     "port_error_unexpected": 5,
+     "unsupported": 30
+    }
+   },
+   "nearest": {
+    "e1": {
+     "mismatch": 39,
+     "pass": 447,
+     "port_error_unexpected": 26,
+     "unsupported": 70
+    },
+    "e1-redteam": {
+     "mismatch": 5,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 5,
+     "pass": 58,
+     "port_error_unexpected": 1,
+     "unsupported": 12
+    },
+    "e4": {
+     "mismatch": 3,
+     "pass": 63,
+     "port_error_unexpected": 1
+    },
+    "heldout": {
+     "mismatch": 39,
+     "pass": 235,
+     "port_error_unexpected": 1,
+     "unsupported": 25
+    }
+   },
+   "ordering": {
+    "e1": {
+     "mismatch": 26,
+     "pass": 132,
+     "port_error_unexpected": 2,
+     "unsupported": 40
+    },
+    "e1-redteam": {
+     "pass": 9,
+     "unsupported": 2
+    },
+    "e2": {
+     "pass": 50,
+     "unsupported": 7
+    },
+    "e4": {
+     "pass": 55,
+     "unsupported": 1
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 155,
+     "unsupported": 144
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "mismatch": 268,
+     "pass": 501,
+     "port_error_unexpected": 2,
+     "unsupported": 77
+    },
+    "e1-redteam": {
+     "mismatch": 13,
+     "pass": 8,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 7,
+     "pass": 188
+    },
+    "e4": {
+     "mismatch": 2,
+     "pass": 111
+    },
+    "heldout": {
+     "mismatch": 11,
+     "pass": 277,
+     "unsupported": 12
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 107,
+     "unsupported": 7
+    },
+    "e1-redteam": {
+     "pass": 5,
+     "unsupported": 3
+    },
+    "e2": {
+     "pass": 29,
+     "unsupported": 21
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "pass": 314,
+     "unsupported": 256
+    }
+   },
+   "setops": {
+    "e1": {
+     "mismatch": 46,
+     "pass": 369,
+     "port_error_unexpected": 8,
+     "unsupported": 18
+    },
+    "e1-redteam": {
+     "pass": 2,
+     "unsupported": 2
+    },
+    "e2": {
+     "mismatch": 6,
+     "pass": 97,
+     "port_error_unexpected": 3,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 107
+    },
+    "heldout": {
+     "mismatch": 23,
+     "pass": 317,
+     "port_error_unexpected": 7,
+     "unsupported": 13
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "mismatch": 33,
+     "pass": 351,
+     "unsupported": 78
+    },
+    "e1-redteam": {
+     "pass": 1
+    },
+    "e2": {
+     "pass": 49,
+     "unsupported": 11
+    },
+    "e4": {
+     "pass": 37
+    },
+    "heldout": {
+     "mismatch": 1,
+     "pass": 74,
+     "unsupported": 45
+    }
+   }
+  },
+  "mutant": {
+   "accessors": {
+    "e1": {
+     "adapter_error": 3,
+     "mismatch": 3,
+     "pass": 27,
+     "port_error_unexpected": 3
+    },
+    "e2": {
+     "adapter_error": 2,
+     "pass": 23,
+     "port_error_unexpected": 2
+    },
+    "e4": {
+     "adapter_error": 1,
+     "mismatch": 1,
+     "pass": 12,
+     "unsupported": 1
+    },
+    "heldout": {
+     "adapter_error": 25,
+     "mismatch": 19,
+     "pass": 371,
+     "port_error_unexpected": 53,
+     "unsupported": 12
+    }
+   },
+   "construct": {
+    "e1": {
+     "adapter_error": 10,
+     "mismatch": 31,
+     "pass": 322,
+     "port_error_unexpected": 31,
+     "unsupported": 5
+    },
+    "e1-redteam": {
+     "mismatch": 1,
+     "pass": 9
+    },
+    "e2": {
+     "adapter_error": 1,
+     "mismatch": 4,
+     "pass": 52,
+     "port_error_unexpected": 2,
+     "unsupported": 1
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 41,
+     "port_error_unexpected": 3,
+     "unsupported": 1
+    },
+    "heldout": {
+     "adapter_error": 13,
+     "mismatch": 11,
+     "pass": 195,
+     "port_error_unexpected": 14,
+     "unsupported": 7
+    }
+   },
+   "coverage": {
+    "e1": {
+     "adapter_error": 24,
+     "mismatch": 21,
+     "pass": 412,
+     "port_error_unexpected": 44,
+     "unsupported": 10
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "pass": 9,
+     "port_error_unexpected": 2
+    },
+    "e2": {
+     "adapter_error": 1,
+     "mismatch": 3,
+     "pass": 41,
+     "port_error_unexpected": 3,
+     "unsupported": 3
+    },
+    "e4": {
+     "adapter_error": 2,
+     "mismatch": 1,
+     "pass": 44,
+     "port_error_unexpected": 4,
+     "unsupported": 3
+    },
+    "heldout": {
+     "adapter_error": 6,
+     "mismatch": 7,
+     "pass": 92,
+     "port_error_unexpected": 10,
+     "unsupported": 5
+    }
+   },
+   "inter": {
+    "e1": {
+     "adapter_error": 11,
+     "mismatch": 25,
+     "pass": 331,
+     "port_error_unexpected": 26,
+     "unsupported": 12
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "pass": 8,
+     "port_error_unexpected": 3
+    },
+    "e2": {
+     "adapter_error": 3,
+     "mismatch": 7,
+     "pass": 79,
+     "port_error_unexpected": 11,
+     "unsupported": 1
+    },
+    "e4": {
+     "adapter_error": 6,
+     "mismatch": 1,
+     "pass": 81,
+     "port_error_unexpected": 16
+    },
+    "heldout": {
+     "adapter_error": 21,
+     "mismatch": 16,
+     "pass": 226,
+     "port_error_unexpected": 26,
+     "unsupported": 11
+    }
+   },
+   "intra": {
+    "e1": {
+     "adapter_error": 10,
+     "mismatch": 24,
+     "pass": 293,
+     "port_error_unexpected": 32,
+     "unsupported": 4
+    },
+    "e1-redteam": {
+     "pass": 2
+    },
+    "e2": {
+     "adapter_error": 5,
+     "mismatch": 8,
+     "pass": 103,
+     "port_error_unexpected": 10
+    },
+    "e4": {
+     "adapter_error": 1,
+     "mismatch": 4,
+     "pass": 77,
+     "port_error_unexpected": 4,
+     "unsupported": 2
+    },
+    "heldout": {
+     "adapter_error": 16,
+     "mismatch": 17,
+     "pass": 242,
+     "port_error_unexpected": 19,
+     "unsupported": 6
+    }
+   },
+   "metadata": {
+    "e1": {
+     "mismatch": 3,
+     "pass": 17,
+     "port_error_unexpected": 3,
+     "unsupported": 1
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "mismatch": 1,
+     "pass": 17,
+     "port_error_unexpected": 1,
+     "unsupported": 1
+    },
+    "e2": {
+     "pass": 9,
+     "port_error_unexpected": 1,
+     "unsupported": 1
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "adapter_error": 7,
+     "mismatch": 4,
+     "pass": 100,
+     "port_error_unexpected": 5,
+     "unsupported": 4
+    }
+   },
+   "nearest": {
+    "e1": {
+     "adapter_error": 25,
+     "mismatch": 25,
+     "pass": 483,
+     "port_error_unexpected": 38,
+     "unsupported": 11
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "pass": 12,
+     "port_error_unexpected": 1,
+     "unsupported": 1
+    },
+    "e2": {
+     "adapter_error": 4,
+     "mismatch": 3,
+     "pass": 64,
+     "port_error_unexpected": 4,
+     "unsupported": 1
+    },
+    "e4": {
+     "adapter_error": 6,
+     "mismatch": 3,
+     "pass": 47,
+     "port_error_unexpected": 10,
+     "unsupported": 1
+    },
+    "heldout": {
+     "adapter_error": 9,
+     "mismatch": 11,
+     "pass": 249,
+     "port_error_unexpected": 27,
+     "unsupported": 4
+    }
+   },
+   "ordering": {
+    "e1": {
+     "adapter_error": 7,
+     "mismatch": 18,
+     "pass": 158,
+     "port_error_unexpected": 12,
+     "unsupported": 5
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "pass": 9,
+     "port_error_unexpected": 1
+    },
+    "e2": {
+     "adapter_error": 2,
+     "pass": 48,
+     "port_error_unexpected": 4,
+     "unsupported": 3
+    },
+    "e4": {
+     "adapter_error": 5,
+     "mismatch": 2,
+     "pass": 41,
+     "port_error_unexpected": 7,
+     "unsupported": 1
+    },
+    "heldout": {
+     "adapter_error": 15,
+     "mismatch": 20,
+     "pass": 232,
+     "port_error_unexpected": 26,
+     "unsupported": 7
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "adapter_error": 29,
+     "mismatch": 41,
+     "pass": 705,
+     "port_error_unexpected": 55,
+     "unsupported": 18
+    },
+    "e1-redteam": {
+     "adapter_error": 2,
+     "pass": 18,
+     "port_error_unexpected": 3
+    },
+    "e2": {
+     "adapter_error": 5,
+     "mismatch": 13,
+     "pass": 153,
+     "port_error_unexpected": 21,
+     "unsupported": 3
+    },
+    "e4": {
+     "adapter_error": 5,
+     "mismatch": 7,
+     "pass": 90,
+     "port_error_unexpected": 8,
+     "unsupported": 3
+    },
+    "heldout": {
+     "adapter_error": 18,
+     "mismatch": 19,
+     "pass": 235,
+     "port_error_unexpected": 20,
+     "unsupported": 8
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "adapter_error": 3,
+     "mismatch": 11,
+     "pass": 89,
+     "port_error_unexpected": 10,
+     "unsupported": 1
+    },
+    "e1-redteam": {
+     "pass": 7,
+     "port_error_unexpected": 1
+    },
+    "e2": {
+     "adapter_error": 3,
+     "mismatch": 3,
+     "pass": 42,
+     "port_error_unexpected": 1,
+     "unsupported": 1
+    },
+    "e4": {
+     "adapter_error": 1,
+     "mismatch": 1,
+     "pass": 21,
+     "port_error_unexpected": 2
+    },
+    "heldout": {
+     "adapter_error": 30,
+     "mismatch": 33,
+     "pass": 450,
+     "port_error_unexpected": 42,
+     "unsupported": 15
+    }
+   },
+   "setops": {
+    "e1": {
+     "adapter_error": 18,
+     "mismatch": 25,
+     "pass": 354,
+     "port_error_unexpected": 35,
+     "unsupported": 9
+    },
+    "e1-redteam": {
+     "adapter_error": 1,
+     "pass": 3
+    },
+    "e2": {
+     "adapter_error": 6,
+     "mismatch": 3,
+     "pass": 89,
+     "port_error_unexpected": 8,
+     "unsupported": 1
+    },
+    "e4": {
+     "adapter_error": 3,
+     "mismatch": 2,
+     "pass": 86,
+     "port_error_unexpected": 14,
+     "unsupported": 3
+    },
+    "heldout": {
+     "adapter_error": 14,
+     "mismatch": 14,
+     "pass": 295,
+     "port_error_unexpected": 30,
+     "unsupported": 7
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "adapter_error": 23,
+     "mismatch": 30,
+     "pass": 361,
+     "port_error_unexpected": 38,
+     "unsupported": 10
+    },
+    "e1-redteam": {
+     "pass": 1
+    },
+    "e2": {
+     "adapter_error": 4,
+     "mismatch": 2,
+     "pass": 45,
+     "port_error_unexpected": 7,
+     "unsupported": 2
+    },
+    "e4": {
+     "mismatch": 1,
+     "pass": 34,
+     "port_error_unexpected": 2
+    },
+    "heldout": {
+     "adapter_error": 4,
+     "mismatch": 6,
+     "pass": 95,
+     "port_error_unexpected": 14,
+     "unsupported": 1
+    }
+   }
+  },
+  "r_echo": {
+   "accessors": {
+    "e1": {
+     "pass": 36
+    },
+    "e2": {
+     "pass": 27
+    },
+    "e4": {
+     "pass": 15
+    },
+    "heldout": {
+     "pass": 480
+    }
+   },
+   "construct": {
+    "e1": {
+     "pass": 399
+    },
+    "e1-redteam": {
+     "pass": 10
+    },
+    "e2": {
+     "pass": 60
+    },
+    "e4": {
+     "pass": 46
+    },
+    "heldout": {
+     "pass": 240
+    }
+   },
+   "coverage": {
+    "e1": {
+     "pass": 511
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "pass": 51
+    },
+    "e4": {
+     "pass": 54
+    },
+    "heldout": {
+     "pass": 120
+    }
+   },
+   "inter": {
+    "e1": {
+     "pass": 405
+    },
+    "e1-redteam": {
+     "pass": 12
+    },
+    "e2": {
+     "pass": 101
+    },
+    "e4": {
+     "pass": 104
+    },
+    "heldout": {
+     "pass": 300
+    }
+   },
+   "intra": {
+    "e1": {
+     "pass": 363
+    },
+    "e1-redteam": {
+     "pass": 2
+    },
+    "e2": {
+     "pass": 126
+    },
+    "e4": {
+     "pass": 88
+    },
+    "heldout": {
+     "pass": 300
+    }
+   },
+   "metadata": {
+    "e1": {
+     "pass": 24
+    },
+    "e1-redteam": {
+     "pass": 21
+    },
+    "e2": {
+     "pass": 11
+    },
+    "e4": {
+     "pass": 2
+    },
+    "heldout": {
+     "pass": 120
+    }
+   },
+   "nearest": {
+    "e1": {
+     "pass": 582
+    },
+    "e1-redteam": {
+     "pass": 15
+    },
+    "e2": {
+     "pass": 76
+    },
+    "e4": {
+     "pass": 67
+    },
+    "heldout": {
+     "pass": 300
+    }
+   },
+   "ordering": {
+    "e1": {
+     "pass": 200
+    },
+    "e1-redteam": {
+     "pass": 11
+    },
+    "e2": {
+     "pass": 57
+    },
+    "e4": {
+     "pass": 56
+    },
+    "heldout": {
+     "pass": 300
+    }
+   },
+   "overlaps": {
+    "e1": {
+     "pass": 848
+    },
+    "e1-redteam": {
+     "pass": 23
+    },
+    "e2": {
+     "pass": 195
+    },
+    "e4": {
+     "pass": 113
+    },
+    "heldout": {
+     "pass": 300
+    }
+   },
+   "seqinfo": {
+    "e1": {
+     "pass": 114
+    },
+    "e1-redteam": {
+     "pass": 8
+    },
+    "e2": {
+     "pass": 50
+    },
+    "e4": {
+     "pass": 25
+    },
+    "heldout": {
+     "pass": 570
+    }
+   },
+   "setops": {
+    "e1": {
+     "pass": 441
+    },
+    "e1-redteam": {
+     "pass": 4
+    },
+    "e2": {
+     "pass": 107
+    },
+    "e4": {
+     "pass": 108
+    },
+    "heldout": {
+     "pass": 360
+    }
+   },
+   "subset_concat": {
+    "e1": {
+     "pass": 462
+    },
+    "e1-redteam": {
+     "pass": 1
+    },
+    "e2": {
+     "pass": 60
+    },
+    "e4": {
+     "pass": 37
+    },
+    "heldout": {
+     "pass": 120
+    }
+   }
+  }
+ },
+ "oracle": {
+  "cases": 9650,
+  "excluded": 0,
+  "ok": 9650,
+  "oracle_R_sha256": "8bed455800e1d4c6e90c01180aea56e80834f79ecf65e9e2277003397a199392",
+  "r_ran": 9577,
+  "r_seconds": 21.9,
+  "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; Seqinfo 1.3.0; BiocGenerics 0.59.12; jsonlite 2.0.0",
+  "wall_seconds": 22.9,
+  "workers": 4
+ }
+}

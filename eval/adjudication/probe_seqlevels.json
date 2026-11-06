@@ -1,0 +1,279 @@
+{
+ "chr-mixed": {
+  "call": {
+   "op": "GRanges",
+   "args": [],
+   "kwargs": {
+    "seqnames": {
+     "chr": [
+      "chr2",
+      "chr10",
+      "chr1",
+      "chr2",
+      "chrX",
+      "chr1"
+     ]
+    },
+    "ranges": {
+     "$ref": "r"
+    }
+   }
+  },
+  "R": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e0": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e0b": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e1": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e2": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e3": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "e4": [
+   "chr2",
+   "chr10",
+   "chr1",
+   "chrX"
+  ],
+  "biocpy": [
+   "chr1",
+   "chr10",
+   "chr2",
+   "chrX"
+  ]
+ },
+ "letters": {
+  "call": {
+   "op": "GRanges",
+   "args": [],
+   "kwargs": {
+    "seqnames": {
+     "chr": [
+      "b",
+      "a",
+      "c",
+      "a"
+     ]
+    },
+    "ranges": {
+     "$ref": "r"
+    }
+   }
+  },
+  "R": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e0": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e0b": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e1": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e2": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e3": [
+   "b",
+   "a",
+   "c"
+  ],
+  "e4": [
+   "b",
+   "a",
+   "c"
+  ],
+  "biocpy": [
+   "a",
+   "b",
+   "c"
+  ]
+ },
+ "factor-levels": {
+  "call": {
+   "op": "GRanges",
+   "args": [],
+   "kwargs": {
+    "seqnames": {
+     "$ref": "f"
+    },
+    "ranges": {
+     "$ref": "r"
+    }
+   }
+  },
+  "R": [
+   "z",
+   "a",
+   "q"
+  ],
+  "e0": [
+   "a",
+   "z"
+  ],
+  "e0b": [
+   "a",
+   "z"
+  ],
+  "e1": [
+   "a",
+   "z"
+  ],
+  "e2": [
+   "z",
+   "a",
+   "q"
+  ],
+  "e3": [
+   "a",
+   "z"
+  ],
+  "e4": [
+   "a",
+   "z"
+  ],
+  "biocpy": [
+   "a",
+   "z"
+  ]
+ },
+ "seqlengths-names": {
+  "call": {
+   "op": "GRanges",
+   "args": [],
+   "kwargs": {
+    "seqnames": {
+     "chr": [
+      "a",
+      "b"
+     ]
+    },
+    "ranges": {
+     "$ref": "r"
+    },
+    "seqlengths": {
+     "int": [
+      100,
+      200
+     ],
+     "names": [
+      "b",
+      "a"
+     ]
+    }
+   }
+  },
+  "R": [
+   "b",
+   "a"
+  ],
+  "e0": [
+   "b",
+   "a"
+  ],
+  "e0b": "argument:seqlengths",
+  "e1": [
+   "a",
+   "b"
+  ],
+  "e2": [
+   "b",
+   "a"
+  ],
+  "e3": "argument:seqlengths",
+  "e4": "argument:seqlengths",
+  "biocpy": "argument:seqlengths"
+ },
+ "c-merge": {
+  "call": {
+   "op": "c",
+   "args": [
+    {
+     "$ref": "x"
+    },
+    {
+     "$ref": "y"
+    }
+   ],
+   "kwargs": {}
+  },
+  "R": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e0": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e0b": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e1": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e2": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e3": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "e4": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ],
+  "biocpy": [
+   "chr2",
+   "chr1",
+   "chr10"
+  ]
+ }
+}

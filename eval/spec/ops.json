@@ -1,0 +1,74 @@
+{
+  "about": "Eval op vocabulary. A case whose top-level or nested op is not listed here is unconvertible. positional = R generic formals before '...' (args bind to these names in order). named = every legal R argument name (generic + IRanges/GRanges/Seqinfo method formals, from formals() in R 4.6 / IRanges 2.47.2 / GenomicRanges 1.65.1; entries marked + in notes were added by hand from the methods' '...' pass-through). dots: null = '...' carries no meaning here; 'objects' = extra positional args are more objects; 'mcols' = extra named args are metadata columns. method = adapter method name (op_<method>). index_valued = result/argument parts that are 1-based indices in R.",
+  "families": ["construct", "accessors", "metadata", "seqinfo", "subset_concat", "intra", "inter", "setops", "overlaps", "nearest", "coverage", "ordering"],
+  "ops": [
+    {"op": "IRanges", "method": "IRanges", "family": "construct", "positional": ["start", "end", "width", "names"], "named": ["start", "end", "width", "names"], "dots": "mcols", "index_valued": []},
+    {"op": "GRanges", "method": "GRanges", "family": "construct", "positional": ["seqnames", "ranges", "strand"], "named": ["seqnames", "ranges", "strand", "seqinfo", "seqlengths"], "dots": "mcols", "index_valued": []},
+    {"op": "Seqinfo", "method": "Seqinfo", "family": "construct", "positional": ["seqnames", "seqlengths", "isCircular", "genome"], "named": ["seqnames", "seqlengths", "isCircular", "genome"], "dots": null, "index_valued": []},
+
+    {"op": "start", "method": "start", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "end", "method": "end", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "width", "method": "width", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "names", "method": "names", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "length", "method": "length", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "seqnames", "method": "seqnames", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "strand", "method": "strand", "family": "accessors", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "ranges", "method": "ranges", "family": "accessors", "positional": ["x", "use.names", "use.mcols"], "named": ["x", "use.names", "use.mcols"], "dots": null, "index_valued": []},
+    {"op": "mcols", "method": "mcols", "family": "accessors", "positional": ["x", "use.names"], "named": ["x", "use.names"], "dots": null, "index_valued": []},
+
+    {"op": "names<-", "method": "set_names", "family": "metadata", "positional": ["x", "value"], "named": ["x", "value"], "dots": null, "index_valued": []},
+    {"op": "mcols<-", "method": "set_mcols", "family": "metadata", "positional": ["x"], "named": ["x", "value"], "dots": null, "index_valued": []},
+
+    {"op": "seqinfo", "method": "seqinfo", "family": "seqinfo", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "seqlevels", "method": "seqlevels", "family": "seqinfo", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "seqlengths", "method": "seqlengths", "family": "seqinfo", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "isCircular", "method": "isCircular", "family": "seqinfo", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "genome", "method": "genome", "family": "seqinfo", "positional": ["x"], "named": ["x"], "dots": null, "index_valued": []},
+    {"op": "seqinfo<-", "method": "set_seqinfo", "family": "seqinfo", "positional": ["x", "new2old", "pruning.mode", "value"], "named": ["x", "new2old", "pruning.mode", "value"], "dots": null, "index_valued": ["new2old (argument)"]},
+    {"op": "seqlevels<-", "method": "set_seqlevels", "family": "seqinfo", "positional": ["x", "pruning.mode", "value"], "named": ["x", "pruning.mode", "value"], "dots": null, "index_valued": []},
+    {"op": "seqlengths<-", "method": "set_seqlengths", "family": "seqinfo", "positional": ["x", "value"], "named": ["x", "value"], "dots": null, "index_valued": []},
+    {"op": "isCircular<-", "method": "set_isCircular", "family": "seqinfo", "positional": ["x", "value"], "named": ["x", "value"], "dots": null, "index_valued": []},
+    {"op": "genome<-", "method": "set_genome", "family": "seqinfo", "positional": ["x", "value"], "named": ["x", "value"], "dots": null, "index_valued": []},
+    {"op": "merge", "method": "merge", "family": "seqinfo", "positional": ["x", "y"], "named": ["x", "y"], "dots": "objects", "index_valued": []},
+    {"op": "trim", "method": "trim", "family": "seqinfo", "positional": ["x", "use.names"], "named": ["x", "use.names"], "dots": null, "index_valued": []},
+
+    {"op": "[", "method": "subset", "family": "subset_concat", "positional": ["x", "i", "j"], "named": ["x", "i", "j", "drop"], "dots": null, "index_valued": ["i (argument, when integer)"]},
+    {"op": "c", "method": "c", "family": "subset_concat", "positional": ["x"], "named": ["x", "ignore.mcols", "recursive"], "dots": "objects", "index_valued": []},
+
+    {"op": "shift", "method": "shift", "family": "intra", "positional": ["x", "shift", "use.names"], "named": ["x", "shift", "use.names"], "dots": null, "index_valued": []},
+    {"op": "narrow", "method": "narrow", "family": "intra", "positional": ["x", "start", "end", "width", "use.names"], "named": ["x", "start", "end", "width", "use.names"], "dots": null, "index_valued": []},
+    {"op": "resize", "method": "resize", "family": "intra", "positional": ["x", "width", "fix", "use.names"], "named": ["x", "width", "fix", "use.names", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "flank", "method": "flank", "family": "intra", "positional": ["x", "width", "start", "both", "use.names"], "named": ["x", "width", "start", "both", "use.names", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "promoters", "method": "promoters", "family": "intra", "positional": ["x", "upstream", "downstream", "use.names"], "named": ["x", "upstream", "downstream", "use.names"], "dots": null, "index_valued": []},
+
+    {"op": "range", "method": "range", "family": "inter", "positional": ["x"], "named": ["x", "na.rm", "with.revmap", "ignore.strand"], "dots": "objects", "index_valued": ["mcols revmap"]},
+    {"op": "reduce", "method": "reduce", "family": "inter", "positional": ["x", "drop.empty.ranges"], "named": ["x", "drop.empty.ranges", "min.gapwidth", "with.revmap", "with.inframe.attrib", "ignore.strand"], "dots": null, "index_valued": ["mcols revmap"]},
+    {"op": "gaps", "method": "gaps", "family": "inter", "positional": ["x", "start", "end"], "named": ["x", "start", "end", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "disjoin", "method": "disjoin", "family": "inter", "positional": ["x"], "named": ["x", "with.revmap", "ignore.strand"], "dots": null, "index_valued": ["mcols revmap"]},
+
+    {"op": "union", "method": "union", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "intersect", "method": "intersect", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "setdiff", "method": "setdiff", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "punion", "method": "punion", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "fill.gap", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "pintersect", "method": "pintersect", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "resolve.empty", "drop.nohit.ranges", "ignore.strand", "strict.strand"], "dots": null, "index_valued": []},
+    {"op": "psetdiff", "method": "psetdiff", "family": "setops", "positional": ["x", "y"], "named": ["x", "y", "ignore.strand"], "dots": null, "index_valued": []},
+
+    {"op": "findOverlaps", "method": "findOverlaps", "family": "overlaps", "positional": ["query", "subject", "maxgap", "minoverlap", "type", "select"], "named": ["query", "subject", "maxgap", "minoverlap", "type", "select", "nthread", "ignore.strand", "drop.self", "drop.redundant"], "dots": null, "index_valued": ["Hits from/to", "integer result (select first/last/arbitrary)"]},
+    {"op": "countOverlaps", "method": "countOverlaps", "family": "overlaps", "positional": ["query", "subject", "maxgap", "minoverlap", "type"], "named": ["query", "subject", "maxgap", "minoverlap", "type", "nthread", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "overlapsAny", "method": "overlapsAny", "family": "overlaps", "positional": ["query", "subject", "maxgap", "minoverlap", "type"], "named": ["query", "subject", "maxgap", "minoverlap", "type", "ignore.strand"], "dots": null, "index_valued": [], "notes": "+ignore.strand"},
+    {"op": "subsetByOverlaps", "method": "subsetByOverlaps", "family": "overlaps", "positional": ["x", "ranges", "maxgap", "minoverlap", "type", "invert"], "named": ["x", "ranges", "maxgap", "minoverlap", "type", "invert", "ignore.strand"], "dots": null, "index_valued": [], "notes": "+ignore.strand"},
+
+    {"op": "nearest", "method": "nearest", "family": "nearest", "positional": ["x", "subject"], "named": ["x", "subject", "select", "ignore.strand"], "dots": null, "index_valued": ["integer result", "Hits from/to (select all)"]},
+    {"op": "precede", "method": "precede", "family": "nearest", "positional": ["x", "subject"], "named": ["x", "subject", "select", "ignore.strand"], "dots": null, "index_valued": ["integer result", "Hits from/to (select all)"]},
+    {"op": "follow", "method": "follow", "family": "nearest", "positional": ["x", "subject"], "named": ["x", "subject", "select", "ignore.strand"], "dots": null, "index_valued": ["integer result", "Hits from/to (select all)"]},
+    {"op": "distance", "method": "distance", "family": "nearest", "positional": ["x", "y"], "named": ["x", "y", "ignore.strand"], "dots": null, "index_valued": []},
+
+    {"op": "coverage", "method": "coverage", "family": "coverage", "positional": ["x", "shift", "width", "weight"], "named": ["x", "shift", "width", "weight", "method"], "dots": null, "index_valued": []},
+
+    {"op": "order", "method": "order", "family": "ordering", "positional": [], "named": ["na.last", "decreasing", "method"], "dots": "objects", "index_valued": ["integer result"]},
+    {"op": "sort", "method": "sort", "family": "ordering", "positional": ["x", "decreasing"], "named": ["x", "decreasing", "na.last", "by", "ignore.strand"], "dots": null, "index_valued": []},
+    {"op": "rank", "method": "rank", "family": "ordering", "positional": ["x", "na.last", "ties.method"], "named": ["x", "na.last", "ties.method", "ignore.strand"], "dots": null, "index_valued": [], "notes": "ranks are not indices: never shift them"},
+    {"op": "duplicated", "method": "duplicated", "family": "ordering", "positional": ["x", "incomparables"], "named": ["x", "incomparables", "fromLast", "nmax", "method"], "dots": null, "index_valued": []},
+    {"op": "unique", "method": "unique", "family": "ordering", "positional": ["x", "incomparables"], "named": ["x", "incomparables", "fromLast"], "dots": null, "index_valued": [], "notes": "+fromLast (passed to duplicated)"}
+  ]
+}
