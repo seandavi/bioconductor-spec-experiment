@@ -215,8 +215,6 @@ class Adapter(AdapterBase):
         "overlapsAny": "no public overlapsAny equivalent (only find_overlaps / count_overlaps / subset_by_overlaps)",
         "punion": "no public parallel union",
         "psetdiff": "no public parallel set difference",
-        "duplicated": "no public duplicated",
-        "unique": "no public unique",
     }
 
     # ---------------------------------------------------------------- inputs
@@ -274,6 +272,10 @@ class Adapter(AdapterBase):
         fn = getattr(obj, method, None)
         if fn is None:
             raise Unsupported(f"{type(obj).__name__} has no public {method}")
+        return self._call_mapped(fn, kw, argmap, *pos, conv=conv)
+
+    def _call_mapped(self, fn: Callable, kw: dict, argmap: dict, *pos: Any,
+                     conv: dict[str, Callable] | None = None) -> Any:
         params = inspect.signature(fn).parameters
         call: dict[str, Any] = {}
         for rname, value in kw.items():
@@ -417,6 +419,8 @@ class Adapter(AdapterBase):
             raise UnknownArgument(rname)
         if not isinstance(value, RVector) or value.names is not None:
             raise Unsupported("seqlevels<-: only an unnamed character value maps to SeqInfo.set_seqnames")
+        if len(value) != len(self._seqinfo_of(x).get_seqnames()):  # set_seqnames documents "length equal to the number of names"
+            raise Unsupported("seqlevels<-: SeqInfo.set_seqnames needs as many names as current levels (no add / drop form)")
         return self._set_seqinfo_column(x, "set_seqnames", value.list())
 
     def op_set_seqlengths(self, *, x, value):
@@ -577,6 +581,13 @@ class Adapter(AdapterBase):
 
     def op_rank(self, *, x, **kw):
         return self._invoke(x, "rank", kw, {})
+
+    def op_duplicated(self, *, x, **kw):
+        # biocutils.duplicated is the port's public generic; it accepts IRanges and GenomicRanges
+        return self._call_mapped(ut.duplicated, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x)
+
+    def op_unique(self, *, x, **kw):
+        return self._call_mapped(ut.unique, kw, {"incomparables": "incomparables", "fromLast": "from_last"}, x)
 
     # ---------------------------------------------------------------- projection
 
