@@ -1,7 +1,7 @@
 # 00 Conventions (CONV)
 
 Area: notation and rules shared by every other file. Verified against
-R 4.6.0, IRanges 2.47.2, GenomicRanges 1.65.1, S4Vectors 0.51.6. NEAR.1 (`distance`) was re-verified against IRanges 2.47.3 / GenomicRanges 1.65.2 behavior (see NOTES 2026-11-06); everything else is as probed on the versions above.
+R 4.6.0, IRanges 2.47.2, GenomicRanges 1.65.1, S4Vectors 0.51.6.
 
 Anything the spec does not describe (error text, repr, performance,
 unlisted argument combinations) is implementation-defined.

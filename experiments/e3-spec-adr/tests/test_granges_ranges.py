@@ -113,10 +113,10 @@ def test_tie_rules_stay_with_the_operation_on_minus_queries() -> None:
 def test_distance_is_na_for_non_comparable_pairs() -> None:
     q = gr(("a", 6, 7, "+"), ("a", 6, 7, "-"), ("a", 6, 7, "*"), ("a", 6, 7, "+"), ("a", 25, 26, "+"), ("b", 1, 2, "-"))
     s = gr(*[("a", 1, 3, "+")] * 6)
-    assert na(q.distance(s)) == [3, None, 3, 3, 22, None]
-    assert na(q.distance(s, ignore_strand=True)) == [3, 3, 3, 3, 22, None]
+    assert na(q.distance(s)) == [2, None, 2, 2, 21, None]
+    assert na(q.distance(s, ignore_strand=True)) == [2, 2, 2, 2, 21, None]
     d = gr(("a", 1, 3, "+"), ("a", 1, 3, "+"), ("a", 1, 3, "*")).distance(gr(("a", 5, 7, "-")))
-    assert na(d) == [None, None, 2]
+    assert na(d) == [None, None, 1]
     with pytest.raises(ValueError):
         q.distance(s[[0, 1]])
     assert len(gr().distance(gr())) == 0
