@@ -7,6 +7,7 @@ Naming: R camelCase -> snake_case methods; R ``.`` in argument names -> ``_``.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
@@ -63,6 +64,11 @@ OPS: dict[str, Op] = {
 }
 
 
+def _snake(r_name: str) -> str:
+    """R argument name -> Python: `.` -> `_`, camelCase -> snake_case."""
+    return re.sub(r"(?<=[a-z])([A-Z])", lambda m: "_" + m.group(1).lower(), r_name.replace(".", "_"))
+
+
 def run_op(call: dict[str, Any], inputs: dict[str, Any]) -> tuple[Any, bool]:
     """Run a case's call; return (result, result_is_index_vector)."""
     op = OPS[call["op"]]
@@ -74,5 +80,5 @@ def run_op(call: dict[str, Any], inputs: dict[str, Any]) -> tuple[Any, bool]:
     for k, v in (call.get("kwargs") or {}).items():
         if isinstance(v, dict) and set(v) == {"ref"}:
             v = inputs[v["ref"]]
-        kwargs[k.replace(".", "_")] = v
+        kwargs[_snake(k)] = v
     return op.fn(*args, **kwargs), op.index(kwargs)

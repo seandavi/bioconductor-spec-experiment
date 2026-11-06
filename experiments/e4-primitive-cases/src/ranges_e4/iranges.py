@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, inter, intra, nearest, overlaps, setops
+from . import _mcols, inter, intra, nearest, ordering, overlaps, setops
 from .hits import Hits
 from .rle import Rle
 from . import coverage as _coverage
@@ -330,6 +330,25 @@ class IRanges:
             self._start, self._width, shift, _coverage.check_length(width), weight
         )
         return Rle.encode(dense)
+
+    # ordering ------------------------------------------------------------
+    def _keys(self) -> np.ndarray:
+        return np.vstack([self._start, self._width]) if len(self) else np.zeros((2, 0), np.int64)
+
+    def order(self, decreasing: bool = False) -> np.ndarray:
+        return ordering.order(self._keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        return self._take(self.order(decreasing))
+
+    def rank(self, *, ties_method: str) -> np.ndarray:
+        return ordering.rank(self._keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> np.ndarray:
+        return ordering.duplicated(self._keys(), from_last)
+
+    def unique(self) -> Self:
+        return self[~self.duplicated()]
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

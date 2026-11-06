@@ -151,3 +151,18 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-COV-6 | `width` pads with zeros or truncates; `width=0` gives zero-length | `?coverage` |
 | IR-COV-7 | `weight` multiplies each range's contribution (scalar or per-range; negative and fractional allowed) | `?coverage` |
 | IR-COV-8 | R recycles weight cyclically with a warning; Python errors (ADR-0007) | `?coverage` |
+| IR-ORDER-1 | `order` sorts by start, then width | `?"IRanges-class"` |
+| IR-ORDER-2 | `order(decreasing=TRUE)` reverses both keys | `?"IRanges-class"` |
+| IR-ORDER-3 | ties keep input order, also when decreasing | `?"IRanges-class"` |
+| IR-ORDER-4 | `order` of zero-length is zero-length | `?"IRanges-class"` |
+| IR-SORT-1 | `sort` reorders by `order`, carrying names and mcols | `?"IRanges-class"` |
+| IR-SORT-2 | `sort` of zero-length is zero-length | `?"IRanges-class"` |
+| IR-RANK-1 | `rank` by (start, width) with `ties.method` average/first/last/min/max; `last` gives later ties lower ranks | `?"IRanges-class"` |
+| IR-RANK-2 | `rank` of zero-length is zero-length | `?"IRanges-class"` |
+| IR-RANK-3 | `ties.method` has no default: omitting it, or an unknown value, is an error | `?"IRanges-class"` |
+| IR-DUP-1 | `duplicated` marks later repeats of the same (start, width) | `?"IRanges-class"` |
+| IR-DUP-2 | `duplicated(fromLast=TRUE)` marks earlier repeats | `?"IRanges-class"` |
+| IR-DUP-3 | `duplicated` ignores names and mcols; zero-width ranges compare by start | `?"IRanges-class"` |
+| IR-DUP-4 | `duplicated` of zero-length is zero-length | `?"IRanges-class"` |
+| IR-UNIQUE-1 | `unique` keeps first occurrences with their names and mcols | `?"IRanges-class"` |
+| IR-UNIQUE-2 | `unique` of zero-length is zero-length | `?"IRanges-class"` |
