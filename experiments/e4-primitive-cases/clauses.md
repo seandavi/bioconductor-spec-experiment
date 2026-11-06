@@ -191,3 +191,19 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | GR-TRIM-2 | circular sequences and sequences of unknown length are not trimmed | `?"trim,GenomicRanges-method"` |
 | GR-TRIM-3 | ranges wholly outside collapse to a zero-width range at the boundary (`[1,0]` or `[len+1,len]`) | `?"trim,GenomicRanges-method"` |
 | GR-TRIM-4 | `trim` of zero-length is zero-length | `?"trim,GenomicRanges-method"` |
+| GR-SHIFT-1 | `shift` moves ranges regardless of strand; keeps seqnames, strand, names, mcols, seqinfo | `?"intra-range-methods"` |
+| GR-SHIFT-2 | `narrow` is strand-agnostic (coordinates relative to range start) | `?narrow` |
+| GR-SHIFT-3 | shifting past a sequence end is allowed (no error, no trim) | `?"intra-range-methods"` |
+| GR-RESIZE-1 | `resize` fix `start`/`end` refer to the 5'/3' end: swapped on `-` strand; `*` acts as `+` | `?resize` |
+| GR-RESIZE-2 | `resize(fix="center")` is strand-independent | `?resize` |
+| GR-RESIZE-3 | `ignore.strand=TRUE` treats all ranges as `+` | `?resize` |
+| GR-RESIZE-4 | `use.names=FALSE` drops names; negative width is an error | `?resize` |
+| GR-FLANK-1 | `flank(width>0)`: upstream of start for `+`/`*`; downstream of end for `-` (and swapped by `start=FALSE`) | `?flank` |
+| GR-FLANK-2 | `flank(both=TRUE)` spans `abs(width)` each side of the strand-aware boundary | `?flank` |
+| GR-FLANK-3 | `flank(width<0)` is the strand-aware region inside the range | `?flank` |
+| GR-FLANK-4 | `ignore.strand=TRUE` treats all ranges as `+` | `?flank` |
+| GR-FLANK-5 | flank may extend before position 1 (out of bounds, warning only) | `?flank` |
+| GR-PROMOTERS-1 | `promoters`: `+`/`*` -> `[start-up, start+down-1]`; `-` -> `[end-down+1, end+up]` | `?promoters` |
+| GR-PROMOTERS-2 | `promoters` defaults 2000/200 (may go out of bounds, warning only) | `?promoters` |
+| GR-PROMOTERS-3 | negative upstream/downstream is an error | `?promoters` |
+| GR-INTRA-1 | intra-range ops on zero-length GRanges return zero-length GRanges with seqinfo | `?"intra-range-methods"` |

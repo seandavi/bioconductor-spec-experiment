@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols
+from . import _mcols, intra
 from .iranges import IRanges, resolve_subscript
 from .seqinfo import Seqinfo
 
@@ -170,6 +170,51 @@ class GRanges:
             IRanges.concat(*(x._ranges for x in xs)),
             _mcols.concat([x._mcols for x in xs], [len(x) for x in xs]),
             si,
+        )
+
+    # intra-range ---------------------------------------------------------
+    def _with_coords(self, start: np.ndarray, width: np.ndarray, use_names: bool = True) -> Self:
+        names = self._ranges._names if use_names else None
+        return self._make(self._seqcodes, self._strand, IRanges._make(start, width, names), self._mcols, self._seqinfo)
+
+    def _reverse(self, ignore_strand: bool) -> np.ndarray:
+        return np.zeros(len(self), bool) if ignore_strand else self._strand == 1
+
+    def shift(self, shift: Any) -> Self:
+        return self._with_coords(*intra.shift(self._ranges._start, self._ranges._width, intra.arg_vector(shift, len(self), "shift")))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        r = self._ranges.narrow(start, end, width)
+        return self._with_coords(r._start, r._width)
+
+    def resize(self, width: Any, fix: Any = "start", use_names: bool = True, ignore_strand: bool = False) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.resize(
+                self._ranges._start, self._ranges._width, intra.arg_vector(width, n, "width"),
+                intra.str_vector(fix, n, "fix"), self._reverse(ignore_strand),
+            ),
+            use_names,
+        )
+
+    def flank(self, width: Any, start: Any = True, both: bool = False, use_names: bool = True, ignore_strand: bool = False) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.flank(
+                self._ranges._start, self._ranges._width, intra.arg_vector(width, n, "width"),
+                intra.flag_vector(start, n, "start"), both, self._reverse(ignore_strand),
+            ),
+            use_names,
+        )
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
+        n = len(self)
+        return self._with_coords(
+            *intra.promoters(
+                self._ranges._start, self._ranges._width, intra.arg_vector(upstream, n, "upstream"),
+                intra.arg_vector(downstream, n, "downstream"), self._reverse(False),
+            ),
+            use_names,
         )
 
     # seqinfo-aware -------------------------------------------------------
