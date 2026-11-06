@@ -31,6 +31,7 @@ from adapter_base import (
     RVector,
     UnknownArgument,
     Unsupported,
+    ZeroColumnFrame,
     p_dataframe,
     p_factor,
     p_granges,
@@ -328,7 +329,10 @@ class Adapter(AdapterBase):
         return _prop(x, "ranges")
 
     def op_mcols(self, *, x):
-        return _prop(x, "mcols")
+        mcols = _prop(x, "mcols")
+        if isinstance(x, GRanges) and isinstance(mcols, pl.DataFrame) and mcols.width == 0:
+            return ZeroColumnFrame(len(x), x.names)  # a column-less polars frame holds no row count
+        return mcols
 
     # ---- metadata -----------------------------------------------------------------
     def op_set_names(self, *, x, value=MISSING):

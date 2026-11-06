@@ -49,6 +49,7 @@ from adapter_base import (
     RVector,
     UnknownArgument,
     Unsupported,
+    ZeroColumnFrame,
     infer_type,
     p_dataframe,
     p_factor,
@@ -401,7 +402,10 @@ class Adapter(AdapterBase):
         return self._invoke(x, "get_ranges", kw, {})
 
     def op_mcols(self, *, x, **kw):
-        return self._invoke(x, "get_mcols", kw, {})
+        mcols = self._invoke(x, "get_mcols", kw, {})
+        if isinstance(x, GenomicRanges) and isinstance(mcols, BiocFrame) and mcols.shape[1] == 0:
+            return ZeroColumnFrame(len(x), x.get_names())  # R keeps the owner's length and names on a column-less mcols
+        return mcols
 
     # ---------------------------------------------------------------- metadata
 

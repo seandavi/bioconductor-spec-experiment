@@ -355,6 +355,14 @@ def p_rlelist(names: Any, rles: Any) -> dict:
     return {"kind": "RleList", "names": nm, "elements": els}
 
 
+class ZeroColumnFrame:
+    """`mcols(<GRanges>)` of a port that stores "no metadata" as a frame without columns (or None) and so cannot
+    hold the owner's row count or names; R's value is a DataFrame of the owner's length with its names as row names."""
+
+    def __init__(self, nrow: int, rownames: Any):
+        self.nrow, self.rownames = nrow, rownames
+
+
 # ---------------------------------------------------------------- the base class
 
 class AdapterBase:
@@ -429,6 +437,8 @@ class AdapterBase:
             return p_null()
         if isinstance(value, RVector):
             return p_vector(value.type, value.values, value.names)
+        if isinstance(value, ZeroColumnFrame):
+            return p_dataframe(value.nrow, [], value.rownames)
         return self.project(value)
 
     # ---- one case (the runner classifies exceptions raised from these stages) ------

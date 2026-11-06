@@ -36,6 +36,7 @@ from adapter_base import (
     RVector,
     UnknownArgument,
     Unsupported,
+    ZeroColumnFrame,
     p_dataframe,
     p_factor,
     p_granges,
@@ -337,7 +338,10 @@ class Adapter(AdapterBase):
 
     def op_mcols(self, *, x):
         df = self._attr(x, "mcols")
-        return df if df.width else None  # the port represents "no metadata" as a zero-column frame
+        if df.width:
+            return df
+        # the port represents "no metadata" as a zero-column frame; R: NULL for IRanges, an n x 0 DataFrame for GRanges
+        return ZeroColumnFrame(len(x), x.names) if isinstance(x, GRanges) else None
 
     # ---- metadata ------------------------------------------------------------------------------
     def op_set_names(self, *, x, value):

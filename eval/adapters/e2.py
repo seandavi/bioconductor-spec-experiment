@@ -31,6 +31,7 @@ from adapter_base import (
     AdapterBase,
     RVector,
     Unsupported,
+    ZeroColumnFrame,
     UnknownArgument,
     p_dataframe,
     p_factor,
@@ -339,6 +340,8 @@ class Adapter(AdapterBase):
 
     def op_mcols(self, *, x):
         _need_ranges(x, "mcols")
+        if isinstance(x, GRanges) and x.mcols.width == 0:
+            return ZeroColumnFrame(len(x), x.names)
         return _DF(x.mcols, len(x))
 
     # ---------------------------------------------------------------- metadata
