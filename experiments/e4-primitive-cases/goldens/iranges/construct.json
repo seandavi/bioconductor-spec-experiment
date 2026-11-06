@@ -1,0 +1,82 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "ir-con-start-width": {
+      "kind": "IRanges",
+      "start": [1, 5, 10],
+      "end": [3, 5, 13],
+      "width": [3, 1, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-start-end": {
+      "kind": "IRanges",
+      "start": [1, 5, 10],
+      "end": [3, 5, 13],
+      "width": [3, 1, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-end-width": {
+      "kind": "IRanges",
+      "start": [1, 5, 10],
+      "end": [3, 5, 13],
+      "width": [3, 1, 4],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-empty": {
+      "kind": "IRanges",
+      "start": [],
+      "end": [],
+      "width": [],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-zero-width": {
+      "kind": "IRanges",
+      "start": [5, 1],
+      "end": [4, 0],
+      "width": [0, 0],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-negative-width": {
+      "kind": "error",
+      "message": "each range must have a non-negative width",
+      "warnings": []
+    },
+    "ir-con-names-na": {
+      "kind": "IRanges",
+      "start": [1, 2, 3],
+      "end": [1, 2, 3],
+      "width": [1, 1, 1],
+      "names": ["a", null, "c"],
+      "mcols": {},
+      "warnings": []
+    },
+    "ir-con-mcols": {
+      "kind": "IRanges",
+      "start": [1, 2],
+      "end": [1, 2],
+      "width": [1, 1],
+      "names": null,
+      "mcols": {
+        "score": [1.5, null],
+        "tag": ["a", "b"],
+        "flag": [true, false]
+      },
+      "warnings": []
+    }
+  }
+}

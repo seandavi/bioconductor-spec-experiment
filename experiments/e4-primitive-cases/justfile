@@ -1,0 +1,11 @@
+# R fills goldens (normative); Python checks them.
+goldens:
+    Rscript runners/r/run_cases.R
+
+check-goldens:
+    Rscript runners/r/run_cases.R --check
+
+test:
+    uv run pytest
+
+all: goldens test

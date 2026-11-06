@@ -1,0 +1,41 @@
+cases:
+  - id: ir-con-start-width
+    clause: IR-CON-START-WIDTH-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10], width: [3, 1, 4]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-start-end
+    clause: IR-CON-START-END-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 10], end: [3, 5, 13]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-end-width
+    clause: IR-CON-END-WIDTH-1
+    inputs:
+      x: {IRanges: {end: [3, 5, 13], width: [3, 1, 4]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-empty
+    clause: IR-CON-EMPTY-1
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-zero-width
+    clause: IR-CON-ZEROWIDTH-1
+    inputs:
+      x: {IRanges: {start: [5, 1], width: [0, 0]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-negative-width
+    clause: IR-CON-NEGWIDTH-1
+    inputs:
+      x: {IRanges: {start: [5], width: [-1]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-names-na
+    clause: IR-CON-NAMES-1
+    inputs:
+      x: {IRanges: {start: [1, 2, 3], width: [1, 1, 1], names: [a, null, c]}}
+    call: {op: identity, args: [x]}
+  - id: ir-con-mcols
+    clause: IR-CON-MCOLS-1
+    inputs:
+      x: {IRanges: {start: [1, 2], width: [1, 1], mcols: {score: [1.5, null], tag: [a, b], flag: [true, false]}}}
+    call: {op: identity, args: [x]}
