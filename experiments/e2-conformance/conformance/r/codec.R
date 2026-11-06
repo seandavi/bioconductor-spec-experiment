@@ -146,6 +146,27 @@ tree_equal <- function(a, b) {
   identical(a, b)
 }
 
+# hits-query-grouped: within each run of equal `from`, sort the `to` values (see FORMAT.md)
+group_hits <- function(tree) {
+  if (!is.list(tree)) return(tree)
+  if (!is.null(names(tree)) && identical(tree[["$type"]], "Hits")) {
+    frm <- unlist(tree$from[["$int"]]); to <- unlist(tree$to[["$int"]])
+    if (length(frm)) {
+      run <- cumsum(c(TRUE, frm[-1] != frm[-length(frm)]))
+      to <- unlist(lapply(split(to, run), sort), use.names = FALSE)
+    }
+    tree$to[["$int"]] <- as.list(to)
+    return(tree)
+  }
+  lapply(tree, group_hits)
+}
+
+compare_trees <- function(a, b, mode = "exact") {
+  if (identical(mode, "hits-query-grouped")) { a <- group_hits(a); b <- group_hits(b) }
+  else if (!identical(mode, "exact")) stop("unknown compare mode ", mode)
+  tree_equal(a, b)
+}
+
 # ---- decode ---------------------------------------------------------------
 
 dec_items <- function(items, tag) {

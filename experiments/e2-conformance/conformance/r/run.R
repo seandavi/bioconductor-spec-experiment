@@ -105,11 +105,12 @@ cmd_check <- function(all_groups) {
     fx <- decode_fixtures(g)
     for (cs in g$cases) {
       exp <- expected[[cs$id]]
+      mode <- if (!is.null(cs$compare)) cs$compare else if (!is.null(g$compare)) g$compare else "exact"
       st <- tryCatch({
         got <- normalize(run_case(cs, fx))
         if (is.null(exp)) "fail"
         else if (!is.null(exp$error)) { if (!is.null(got$error)) "pass" else "fail" }
-        else if (is.null(got$error) && tree_equal(got$value, exp$value)) {
+        else if (is.null(got$error) && compare_trees(got$value, exp$value, mode)) {
           # codec self-consistency on the stored golden
           rt <- if (is.null(exp$value)) NULL else normalize(encode(decode(exp$value)))
           if (tree_equal(rt, exp$value)) "pass" else "fail"

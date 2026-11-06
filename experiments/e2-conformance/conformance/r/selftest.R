@@ -25,4 +25,12 @@ for (nm in names(objs)) {
   cat(sprintf("%-6s %s\n", nm, if (ok) "ok" else "MISMATCH"))
   if (!ok) bad <- bad + 1
 }
+# comparison modes: within-query subject reorder passes hits-query-grouped only; query order must still match
+h <- function(frm, to) list(`$type` = "Hits", from = list(`$int` = as.list(frm)), to = list(`$int` = as.list(to)), nLnode = 3L, nRnode = 3L)
+checks <- c(
+  grouped_accepts_reorder = compare_trees(h(c(1, 1, 2), c(3, 1, 2)), h(c(1, 1, 2), c(1, 3, 2)), "hits-query-grouped"),
+  exact_rejects_reorder = !compare_trees(h(c(1, 1, 2), c(3, 1, 2)), h(c(1, 1, 2), c(1, 3, 2)), "exact"),
+  grouped_rejects_query_order = !compare_trees(h(c(1, 2, 1), c(1, 2, 3)), h(c(1, 1, 2), c(1, 3, 2)), "hits-query-grouped"),
+  grouped_rejects_other_pair = !compare_trees(h(c(1, 1), c(1, 2)), h(c(1, 1), c(1, 3)), "hits-query-grouped"))
+for (nm in names(checks)) { cat(sprintf("%-28s %s\n", nm, if (checks[[nm]]) "ok" else "FAIL")); if (!checks[[nm]]) bad <- bad + 1 }
 quit(status = as.integer(bad > 0))
