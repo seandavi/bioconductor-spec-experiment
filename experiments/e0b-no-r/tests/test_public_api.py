@@ -28,3 +28,15 @@ def test_package_exports() -> None:
     for name in ranges_e0b.__all__:
         assert hasattr(ranges_e0b, name)
     assert {"IRanges", "GRanges", "Seqinfo", "Hits", "Rle", "NO_HIT"} <= set(ranges_e0b.__all__)
+
+
+STRAND_AWARE = ["resize", "flank", "promoters", "range", "reduce", "gaps", "disjoin", "union", "intersect",
+                "setdiff", "punion", "pintersect", "psetdiff", "find_overlaps", "count_overlaps",
+                "overlaps_any", "subset_by_overlaps", "nearest", "precede", "follow", "distance"]
+
+
+@pytest.mark.parametrize("name", STRAND_AWARE)
+def test_granges_strand_aware_ops_accept_ignore_strand(name: str) -> None:
+    import inspect
+
+    assert "ignore_strand" in inspect.signature(getattr(GRanges, name)).parameters

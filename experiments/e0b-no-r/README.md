@@ -6,7 +6,7 @@ Scope: `TARGET.md`. Original plan: [PLAN.md](PLAN.md). Judgment calls: [NOTES.md
 
 ```sh
 uv sync
-uv run pytest        # 175 tests, ~2 s
+uv run pytest        # ~190 tests, ~2 s
 ```
 
 ## Honest status
@@ -19,7 +19,8 @@ uv run pytest        # 175 tests, ~2 s
 
 - **Deep kernels, thin classes.** Algorithms work on numpy arrays `(start, end, group)`.
   `IRanges` uses one group; `GRanges` uses `group = seqlevel_code*3 + strand_code`. One kernel serves both.
-- **Immutable values.** Every op returns a new object. Arrays are read-only. No setters
+- **Immutable values.** Every op returns a new object. Arrays are read-only; mcols frames are copied in
+  and out (mutating a frame you passed or got back never changes the object). No setters
   (`with_names`, `with_mcols`, `with_seqinfo`).
 - **Vectorised.** Loops only over seqlevels / strands.
 - `GRanges` stores seqnames as codes into `seqinfo`, so seqlevels order (not alphabet) drives sorting.

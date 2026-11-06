@@ -25,3 +25,8 @@ Judgment calls and human interventions. Tag R-behaviour guesses `UNVERIFIED`.
 - [impl] Bug found by hypothesis: coverage default width went negative when all ranges ended before 1. Fixed (own commit).
 - [impl] Perf smoke (500k ranges): reduce 0.05s, overlaps 0.7s, nearest 2.1s. Worst case remains one huge subject (candidate window), see README.
 - [impl] Not done / not attempted: circular-sequence wraparound; `disjoin` revmap; camelCase R-name aliases; free-function API.
+- 2026-11-06 [review] Independent review of HEAD 7322367: 4 findings, all accepted, none rejected (one commit each, regression tests in tests/test_review_fixes.py).
+  - F1 (major) GRanges `resize/flank/promoters` lacked `ignore_strand`: added; `ignore_strand=True` treats every range as `+`. Signature test added for all strand-aware GRanges ops.
+  - F2 (major) mcols aliasing: DataFrames are cloned on ingestion and returned as clones from `.mcols` (polars clone is cheap, buffers shared copy-on-write). Internal sharing between derived objects is safe because nothing mutates in place.
+  - F3 (major) `with_seqinfo` could not drop unused levels: `_remap` now maps only codes in use; removing a used level still raises ValueError.
+  - F4 (minor) empty boolean mask of wrong length now raises like any other wrong-length mask; `x[[]]` stays a valid empty subset.
