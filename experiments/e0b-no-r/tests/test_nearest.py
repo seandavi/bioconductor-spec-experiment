@@ -16,7 +16,7 @@ def test_distance() -> None:
 
 
 def test_distance_adjacent_and_overlap() -> None:
-    # R (IRanges >= 2.47.3): distance(IRanges(1,3), IRanges(c(4,5,3,1),c(6,6,5,3)))
+    # R: UNVERIFIED (from release note, IRanges >= 2.47.3) distance(IRanges(1,3), IRanges(c(4,5,3,1),c(6,6,5,3)))
     x = IRanges(start=[1] * 4, end=[3] * 4)
     y = IRanges(start=[4, 5, 3, 1], end=[6, 6, 5, 3])
     assert x.distance(y).tolist() == [1, 2, 0, 0]  # adjacent 1, gap 1 -> 2, overlap 0
