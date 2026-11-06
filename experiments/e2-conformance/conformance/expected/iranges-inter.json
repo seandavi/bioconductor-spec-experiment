@@ -1,0 +1,880 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:30:27-0500"
+  },
+  "cases": {
+    "ir.range.one": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [24]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.range.single": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [10]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.range.two-args": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [102]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.range.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.range.zero-width-only": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5]},
+        "width": {"$int": [8]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.default": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 13, 20]},
+        "width": {"$int": [3, 4, 0, 2, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.adjacent": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 12]},
+        "width": {"$int": [6, 1, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.overlapping": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.nested": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [10]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap0": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 12]},
+        "width": {"$int": [3, 3, 1, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap1": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 12]},
+        "width": {"$int": [6, 1, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap2": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [6, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap3": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [6, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap-big": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [13]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap0.overlap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.mingap.neg": {
+      "error": {
+        "message": "'min.gapwidth' must be non-negative",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.reduce.keep-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 8, 10]},
+        "width": {"$int": [0, 0, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.drop-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10]},
+        "width": {"$int": [3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.empty.absorbed": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [10]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.empty.mingap0": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 8, 10, 10]},
+        "width": {"$int": [0, 0, 0, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.drop-empty.x": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 13, 20]},
+        "width": {"$int": [3, 4, 2, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 13, 20]},
+        "width": {"$int": [3, 4, 0, 2, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [2],
+                [3],
+                [5],
+                [6],
+                [1, 4]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap.overlapping": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2, 5, 4],
+                [3]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap.mingap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [6, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2],
+                [3, 4]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap.drop-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10]},
+        "width": {"$int": [3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [4]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap.keep-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 8, 10]},
+        "width": {"$int": [0, 0, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2],
+                [3],
+                [5, 4]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.revmap.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.default": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11]},
+        "width": {"$int": [3, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.unsorted-overlapping": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4, 9, 15]},
+        "width": {"$int": [1, 4, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.ov": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [6]},
+        "width": {"$int": [4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-5, 7, 11]},
+        "width": {"$int": [6, 3, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11, 14]},
+        "width": {"$int": [3, 1, 7]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.start.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11, 14]},
+        "width": {"$int": [3, 1, 7]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.start-inside": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11]},
+        "width": {"$int": [3, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.end-inside": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11]},
+        "width": {"$int": [3, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.window-inside": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 11]},
+        "width": {"$int": [3, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.zero-width-ranges": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.zero-width-ranges.window": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [9]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.empty.window": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [10]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.empty.start-only": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.fully-covered": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.window-wider": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-2, 11]},
+        "width": {"$int": [3, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.window-disjoint-right": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [100]},
+        "width": {"$int": [11]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.window-disjoint-left": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-10]},
+        "width": {"$int": [6]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.end-before-start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.gaps.zero-width-window": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.default": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 13, 20, 22, 24]},
+        "width": {"$int": [3, 4, 2, 2, 2, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.ov": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 3, 5, 10]},
+        "width": {"$int": [2, 2, 1, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.adjacent": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 12]},
+        "width": {"$int": [3, 3, 1, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.nested-with-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 3]},
+        "width": {"$int": [2, 8]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.only-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10]},
+        "width": {"$int": [3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.revmap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 3, 5, 10]},
+        "width": {"$int": [2, 2, 1, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [1],
+                [1, 2, 5],
+                [1, 4],
+                [3]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.revmap.x": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 13, 20, 22, 24]},
+        "width": {"$int": [3, 4, 2, 2, 2, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [2],
+                [3],
+                [6],
+                [1],
+                [1, 4],
+                [1]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.disjoin.duplicates": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 3, 5, 10]},
+        "width": {"$int": [2, 2, 1, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    }
+  }
+}
