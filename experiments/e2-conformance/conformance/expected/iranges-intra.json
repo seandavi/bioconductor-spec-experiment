@@ -1,0 +1,966 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:29:54-0500"
+  },
+  "cases": {
+    "ir.shift.pos": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [15, 25, 35, 45]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.neg-into-negative": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-5, 5, 15, 25]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.zero": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 22, 33, 44]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.recycle": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [110, -80, 130, -60]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.kw": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [13, 23, 33, 43]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.shift.badlen": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 22, 33, 41]},
+        "width": {"$int": [5, 1, 0, 10]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": ["'length(x)' is not a multiple of 'length(shift)'"]
+    },
+    "ir.shift.double": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 22, 32]},
+        "width": {"$int": [5, 6, 7]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 21, 31]},
+        "width": {"$int": [4, 5, 6]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30]},
+        "width": {"$int": [3, 3, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.start.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 21, 31]},
+        "width": {"$int": [3, 3, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 21, 31]},
+        "width": {"$int": [3, 3, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.end.width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 22, 32]},
+        "width": {"$int": [2, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.neg-start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 23, 34]},
+        "width": {"$int": [3, 3, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.neg-end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30]},
+        "width": {"$int": [4, 5, 6]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.neg-both": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 22, 33]},
+        "width": {"$int": [3, 3, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 21, 32]},
+        "width": {"$int": [2, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.to-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 22, 32]},
+        "width": {"$int": [0, 0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.keeps-names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30]},
+        "width": {"$int": [1, 1, 1]},
+        "names": {"$chr": ["n1", "n2", "n3"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.err.zero-width-input": {
+      "error": {
+        "message": "solving row 3: 'allow.nonnarrowing' is FALSE and the supplied end (1) is > refwidth",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.narrow.zero-width-input": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [0, 0, 0, 0]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.start-at-width-plus-one": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [15, 25, 35]},
+        "width": {"$int": [0, 1, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.narrow.err.start-beyond": {
+      "error": {
+        "message": "solving row 1: 'allow.nonnarrowing' is FALSE and the supplied start (7) is > refwidth + 1",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.narrow.err.end-before-start": {
+      "error": {
+        "message": "solving row 1: the supplied start/end lead to a negative width",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.narrow.err.width-too-big": {
+      "error": {
+        "message": "solving row 1: either the supplied start or the supplied end (but not both) must be NA when the supplied width is not NA",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.narrow.err.three": {
+      "error": {
+        "message": "solving row 1: either the supplied start or the supplied end (but not both) must be NA when the supplied width is not NA",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.narrow.err.neg-start-too-far": {
+      "error": {
+        "message": "solving row 1: 'allow.nonnarrowing' is FALSE and the supplied start (0) is < 1",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.resize.start.grow": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [8, 8, 8, 8]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.start.shrink": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [2, 2, 2, 2]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.start.zero": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [0, 0, 0, 0]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.start.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [1, 2, 3, 4]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.end.grow": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 13, 22, 42]},
+        "width": {"$int": [8, 8, 8, 8]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.end.shrink": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [13, 19, 28, 48]},
+        "width": {"$int": [2, 2, 2, 2]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.end.zero-target": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [15, 21, 30, 50]},
+        "width": {"$int": [0, 0, 0, 0]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.end.zero-input": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 18, 27, 47]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.even": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 18, 28, 43]},
+        "width": {"$int": [4, 4, 4, 4]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.odd": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [11, 19, 28, 43]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.grow": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [2, 13, 23]},
+        "width": {"$int": [20, 20, 20]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.one": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 22, 33]},
+        "width": {"$int": [1, 1, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.zero": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 23, 33]},
+        "width": {"$int": [0, 0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.center.zero-input": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 18, 28, 43]},
+        "width": {"$int": [4, 4, 4, 4]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.fix.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 22, 31]},
+        "width": {"$int": [4, 4, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.usenames.false": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [4, 4, 4, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.keeps-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [4, 4, 4, 4]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.resize.err.negative": {
+      "error": {
+        "message": "'width' values must be non-negative",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.resize.err.na": {
+      "error": {
+        "message": "'width' must be a numeric vector without NA's",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.resize.err.badfix": {
+      "error": {
+        "message": "'fix' must be a character vector or character Rle with values in \"start\", \"end\", and \"center\"",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.resize.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 17, 27, 37]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [15, 21, 30, 50]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.start.neg": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.end.neg": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [13, 19, 28, 48]},
+        "width": {"$int": [2, 2, 2, 2]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.both.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [7, 17, 27, 37]},
+        "width": {"$int": [6, 6, 6, 6]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.both.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 18, 27, 47]},
+        "width": {"$int": [6, 6, 6, 6]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.zero-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [0, 0, 0, 0]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.vector-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [9, 18, 27]},
+        "width": {"$int": [1, 2, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.start.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [8, 26, 28]},
+        "width": {"$int": [2, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.both.neg": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [8, 18, 28]},
+        "width": {"$int": [4, 4, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.keeps-names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [9, 19, 29, 39]},
+        "width": {"$int": [1, 1, 1, 1]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.flank.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.default": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-1990, -1980, -1970, -1960]},
+        "width": {"$int": [2200, 2200, 2200, 2200]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.custom": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 15, 25, 35]},
+        "width": {"$int": [7, 7, 7, 7]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.zero-down": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 15, 25, 35]},
+        "width": {"$int": [5, 5, 5, 5]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.zero-up": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30, 40]},
+        "width": {"$int": [3, 3, 3, 3]},
+        "names": {"$chr": ["n1", "n2", "n3", "n4"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.both-zero": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10, 20, 30]},
+        "width": {"$int": [0, 0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.vector": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [9, 18, 27]},
+        "width": {"$int": [4, 4, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.promoters.err.negative": {
+      "error": {
+        "message": "'upstream' and 'downstream' must be integers >= 0",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.promoters.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    }
+  }
+}
