@@ -210,7 +210,13 @@ class Adapter(AdapterBase):
         )
 
     def build_DataFrame(self, p: dict) -> Any:
-        return pl.DataFrame([_series(n, c) for n, c in p["columns"]])
+        if p["rownames"] is not None:
+            raise Unsupported("input:DataFrame rownames: polars frames carry no row names")
+        df = pl.DataFrame([_series(n, c) for n, c in p["columns"]])
+        if not p["columns"] and p["nrow"]:
+            # a zero-column frame of the requested height: add a column, then drop it
+            df = pl.DataFrame({"_": range(p["nrow"])}).drop("_")
+        return df
 
     def build_Factor(self, p: dict) -> Any:
         return _series("", {"kind": "Factor", "levels": p["levels"], "codes": p["codes"]})
