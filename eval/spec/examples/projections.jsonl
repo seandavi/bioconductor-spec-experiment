@@ -1,0 +1,12 @@
+{"kind": "vector", "type": "int", "values": [1, null, 3], "names": ["a", "b", null]}
+{"kind": "vector", "type": "dbl", "values": [0.30000000000000004, "NaN", "Inf", null], "names": null}
+{"kind": "NULL"}
+{"kind": "IRanges", "start": [1, 5], "width": [3, 0], "names": null, "mcols": [["revmap", {"kind": "IntegerList", "elements": [[1, 2], [3]], "names": null}]]}
+{"kind": "GRanges", "seqnames": ["chr1", "chrM"], "start": [10, 3], "width": [10, 4], "strand": ["+", "-"], "names": null, "mcols": [["score", {"kind": "vector", "type": "dbl", "values": [1.5, 2.5], "names": null}]], "seqinfo": {"kind": "Seqinfo", "seqnames": ["chr1", "chr2", "chrM"], "seqlengths": [1000, 500, 16], "isCircular": [false, false, true], "genome": ["hg", "hg", "hg"]}}
+{"kind": "Seqinfo", "seqnames": ["a"], "seqlengths": [null], "isCircular": [null], "genome": [null]}
+{"kind": "DataFrame", "nrow": 3, "rownames": null, "columns": [["f", {"kind": "Factor", "levels": ["lo", "hi"], "codes": [1, null, 2]}]]}
+{"kind": "Hits", "from": [1, 1, 2], "to": [2, 1, 3], "nLnode": 4, "nRnode": 3}
+{"kind": "Rle", "type": "dbl", "values": [0.5, 0], "lengths": [4, 6]}
+{"kind": "RleList", "names": ["chr1", "chr2"], "elements": [{"type": "int", "values": [0, 1, 0], "lengths": [9, 10, 981]}, {"type": "int", "values": [0], "lengths": [500]}]}
+{"kind": "error", "message": "'width' must be non-negative"}
+{"kind": "error", "message": "bad width", "type": "ValueError"}

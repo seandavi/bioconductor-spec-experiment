@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bioc-spec-eval/case.schema.json",
+  "title": "Eval case (one line of eval/cases/*.jsonl). Semantics: CASES.md",
+  "type": "object",
+  "required": ["id", "source", "origin", "op", "inputs", "call"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^(e1|e2|e4|heldout)/[^\\s]+$"},
+    "source": {"enum": ["e1", "e1-redteam", "e2", "e4", "heldout"]},
+    "origin": {
+      "type": "object",
+      "required": ["suite", "file", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "suite": {"enum": ["e1", "e2", "e4", "heldout"]},
+        "file": {"type": "string"},
+        "id": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "op": {"type": "string"},
+    "inputs": {"type": "object", "additionalProperties": {"$ref": "#/$defs/literal"}},
+    "call": {"$ref": "#/$defs/call"}
+  },
+  "$defs": {
+    "int32": {"type": "integer", "minimum": -2147483647, "maximum": 2147483647},
+    "names": {"type": "array", "items": {"type": ["string", "null"]}},
+    "vector": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 2,
+      "properties": {
+        "int": {"type": "array", "items": {"oneOf": [{"$ref": "#/$defs/int32"}, {"type": "null"}]}},
+        "dbl": {"type": "array", "items": {"oneOf": [{"type": "number"}, {"enum": ["NaN", "Inf", "-Inf"]}, {"type": "null"}]}},
+        "chr": {"type": "array", "items": {"type": ["string", "null"]}},
+        "lgl": {"type": "array", "items": {"type": ["boolean", "null"]}},
+        "names": {"$ref": "#/$defs/names"}
+      },
+      "additionalProperties": false,
+      "oneOf": [
+        {"required": ["int"]}, {"required": ["dbl"]}, {"required": ["chr"]}, {"required": ["lgl"]}
+      ]
+    },
+    "ref": {"type": "object", "required": ["$ref"], "additionalProperties": false, "properties": {"$ref": {"type": "string"}}},
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "string"}, {"oneOf": [{"$ref": "#/$defs/vector"}, {"$ref": "#/$defs/factor"}, {"$ref": "#/$defs/integerlist"}]}],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "iranges_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {"$ref": "#/$defs/vector"},
+        "end": {"$ref": "#/$defs/vector"},
+        "width": {"$ref": "#/$defs/vector"},
+        "names": {"$ref": "#/$defs/vector"},
+        "mcols": {"$ref": "#/$defs/columns"}
+      }
+    },
+    "seqinfo_body": {
+      "type": "object",
+      "required": ["seqnames"],
+      "additionalProperties": false,
+      "properties": {
+        "seqnames": {"$ref": "#/$defs/vector"},
+        "seqlengths": {"$ref": "#/$defs/vector"},
+        "isCircular": {"$ref": "#/$defs/vector"},
+        "genome": {"$ref": "#/$defs/vector"}
+      }
+    },
+    "iranges": {"type": "object", "required": ["IRanges"], "additionalProperties": false, "properties": {"IRanges": {"$ref": "#/$defs/iranges_body"}}},
+    "granges": {
+      "type": "object", "required": ["GRanges"], "additionalProperties": false,
+      "properties": {"GRanges": {
+        "type": "object",
+        "required": ["seqnames"],
+        "additionalProperties": false,
+        "properties": {
+          "seqnames": {"$ref": "#/$defs/vector"},
+          "start": {"$ref": "#/$defs/vector"},
+          "end": {"$ref": "#/$defs/vector"},
+          "width": {"$ref": "#/$defs/vector"},
+          "names": {"$ref": "#/$defs/vector"},
+          "strand": {"$ref": "#/$defs/vector"},
+          "seqinfo": {"oneOf": [{"$ref": "#/$defs/seqinfo_body"}, {"$ref": "#/$defs/ref"}]},
+          "mcols": {"$ref": "#/$defs/columns"}
+        }
+      }}
+    },
+    "seqinfo": {"type": "object", "required": ["Seqinfo"], "additionalProperties": false, "properties": {"Seqinfo": {"$ref": "#/$defs/seqinfo_body"}}},
+    "dataframe": {
+      "type": "object", "required": ["DataFrame"], "additionalProperties": false,
+      "properties": {"DataFrame": {
+        "type": "object", "required": ["columns"], "additionalProperties": false,
+        "properties": {"columns": {"$ref": "#/$defs/columns"}, "nrow": {"type": "integer", "minimum": 0}}
+      }}
+    },
+    "factor": {
+      "type": "object", "required": ["Factor"], "additionalProperties": false,
+      "properties": {"Factor": {
+        "type": "object", "required": ["levels", "codes"], "additionalProperties": false,
+        "properties": {
+          "levels": {"type": "array", "items": {"type": "string"}},
+          "codes": {"type": "array", "items": {"type": ["integer", "null"], "minimum": 1}}
+        }
+      }}
+    },
+    "integerlist": {
+      "type": "object", "required": ["IntegerList"], "additionalProperties": false,
+      "properties": {"IntegerList": {
+        "type": "object", "required": ["elements"], "additionalProperties": false,
+        "properties": {
+          "elements": {"type": "array", "items": {"type": "array", "items": {"oneOf": [{"$ref": "#/$defs/int32"}, {"type": "null"}]}}},
+          "names": {"$ref": "#/$defs/names"}
+        }
+      }}
+    },
+    "literal": {
+      "oneOf": [
+        {"$ref": "#/$defs/vector"}, {"$ref": "#/$defs/iranges"}, {"$ref": "#/$defs/granges"},
+        {"$ref": "#/$defs/seqinfo"}, {"$ref": "#/$defs/dataframe"}, {"$ref": "#/$defs/factor"},
+        {"$ref": "#/$defs/integerlist"}, {"$ref": "#/$defs/ref"}
+      ]
+    },
+    "call": {
+      "type": "object",
+      "required": ["op", "args", "kwargs"],
+      "additionalProperties": false,
+      "properties": {
+        "op": {"type": "string"},
+        "args": {"type": "array", "items": {"$ref": "#/$defs/arg"}},
+        "kwargs": {"type": "object", "additionalProperties": {"$ref": "#/$defs/arg"}}
+      }
+    },
+    "arg": {
+      "oneOf": [
+        {"$ref": "#/$defs/ref"},
+        {"type": "object", "required": ["$call"], "additionalProperties": false, "properties": {"$call": {"$ref": "#/$defs/call"}}},
+        {"$ref": "#/$defs/vector"},
+        {"type": "string"},
+        {"type": "boolean"},
+        {"$ref": "#/$defs/int32"},
+        {"type": "number", "not": {"type": "integer"}},
+        {"type": "null"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{"id": "e1/x/bare-array", "source": "e1", "origin": {"suite": "e1", "file": "f", "id": "x"}, "op": "width", "inputs": {"x": {"IRanges": {"start": [1], "width": [1]}}}, "call": {"op": "width", "args": [{"$ref": "x"}], "kwargs": {}}}
+{"id": "e1/x/expected", "source": "e1", "origin": {"suite": "e1", "file": "f", "id": "x"}, "op": "width", "inputs": {}, "call": {"op": "width", "args": [], "kwargs": {}}, "expected": {"kind": "NULL"}}
+{"id": "e1/x/integral-double", "source": "e1", "origin": {"suite": "e1", "file": "f", "id": "x"}, "op": "shift", "inputs": {}, "call": {"op": "shift", "args": [2.0], "kwargs": {}}}
+{"id": "e1/x/int-overflow", "source": "e1", "origin": {"suite": "e1", "file": "f", "id": "x"}, "op": "shift", "inputs": {}, "call": {"op": "shift", "args": [3000000000], "kwargs": {}}}
+{"id": "e1/x/literal-in-call", "source": "e1", "origin": {"suite": "e1", "file": "f", "id": "x"}, "op": "width", "inputs": {}, "call": {"op": "width", "args": [{"IRanges": {"start": {"int": [1]}, "width": {"int": [1]}}}], "kwargs": {}}}

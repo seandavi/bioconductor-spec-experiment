@@ -1,0 +1,5 @@
+{"kind": "vector", "type": "int", "values": [1.5], "names": null}
+{"kind": "Rle", "type": "int", "values": [1], "lengths": [0]}
+{"kind": "Hits", "from": [0], "to": [1], "nLnode": 1, "nRnode": 1}
+{"kind": "GRanges", "seqnames": [], "start": [], "width": [], "strand": ["?"], "names": null, "mcols": [], "seqinfo": {"kind": "Seqinfo", "seqnames": [], "seqlengths": [], "isCircular": [], "genome": []}}
+{"kind": "RleList", "names": null, "elements": [{"kind": "Rle", "type": "int", "values": [1], "lengths": [1]}]}
