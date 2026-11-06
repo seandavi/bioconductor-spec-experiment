@@ -83,6 +83,8 @@ subsetting, concat, sort keep them. Parallel ops keep x's.
 - Overlaps and nearest on GRanges require the same seqlevel and compatible strand (equal or `*`).
   `type="start"/"end"` flips to the other end for `-`. Circular wraparound is not implemented.
 - Seqinfo merge: `None` yields to a value, conflicting values raise, no shared names warns.
+- `distance`: 0 if overlapping, else gap width + 1 (adjacent = 1), per IRanges 2.47.3 / GenomicRanges 1.65.2.
+  `nearest/precede/follow` are unchanged (adjacent still wins `nearest`).
 - Out-of-bound ranges on non-circular sequences with known length warn (not error); `trim()` fixes them.
 
 ## Tests and how to maintain them

@@ -14,10 +14,14 @@ MINUS, STAR = 1, 2
 
 
 def distance(sx: IntArray, ex: IntArray, sy: IntArray, ey: IntArray) -> IntArray:
-    """Parallel distance; overlapping or adjacent ranges are 0."""
+    """Parallel distance (IRanges 2.47.3 / GenomicRanges 1.65.2): overlapping is 0, else gap width + 1.
+
+    Adjacent ranges are 1. `nearest/precede/follow` are unaffected and still rank by gap width.
+    """
     if len(sx) != len(sy):
         raise ValueError("distance requires equal lengths")
-    return np.maximum(np.maximum(sx, sy) - np.minimum(ex, ey) - 1, 0)
+    gap = np.maximum(sx, sy) - np.minimum(ex, ey) - 1
+    return np.where(gap < 0, 0, gap + 1)
 
 
 def precede_pairs(qe: IntArray, ss: IntArray, exclude: IntArray | None = None) -> tuple[IntArray, IntArray]:
@@ -67,7 +71,7 @@ def precede_pairs(qe: IntArray, ss: IntArray, exclude: IntArray | None = None) -
 def nearest_pairs(
     qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, exclude: IntArray | None
 ) -> tuple[IntArray, IntArray]:
-    """All nearest subjects per query; overlapping/adjacent ones (distance 0) win."""
+    """All nearest subjects per query; overlapping/adjacent ones (gap 0) win."""
     ns = len(ss)
     zq, zs = overlap_pairs(qs, qe, ss, se, "any", 0, 0)
     if exclude is not None:
