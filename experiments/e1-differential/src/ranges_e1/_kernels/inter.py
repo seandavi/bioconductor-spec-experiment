@@ -44,11 +44,13 @@ def reduce(
     min_gapwidth: int = 1,
     drop_empty: bool = False,
 ) -> Reduced:
-    """Merge ranges whose gap is `< min_gapwidth`; stable sweep by (group, start, width)."""
+    """Merge ranges whose gap is `< min_gapwidth`; stable sweep by (group, start, width).
+
+    `drop_empty` (R quirk, probed): empty ranges still take part in the sweep, so they extend
+    the end and bridge clusters; afterwards they are removed from `members`, a cluster's start
+    is its first non-empty member's, and clusters without a non-empty member disappear.
+    """
     pos = np.arange(len(start), dtype=np.int64)
-    if drop_empty:
-        keep = width > 0
-        group, start, width, pos = group[keep], start[keep], width[keep], pos[keep]
     if len(start) == 0:
         e = np.empty(0, dtype=np.int64)
         return Reduced(e, e, e, [])
@@ -72,6 +74,14 @@ def reduce(
         keep = ~dup
         members = [m for m, k in zip(members, keep) if k]
         out_g, out_start, out_w = out_g[keep], out_start[keep], out_w[keep]
+    if drop_empty:
+        out_end = out_start + out_w - 1
+        members = [m[width[m] > 0] for m in members]
+        nonempty = np.array([len(m) > 0 for m in members], dtype=bool)
+        members = [m for m, k in zip(members, nonempty) if k]
+        out_g, out_end = out_g[nonempty], out_end[nonempty]
+        out_start = np.array([start[m].min() for m in members], dtype=np.int64)  # not an empty range's start
+        out_w = out_end - out_start + 1
     return Reduced(out_g, out_start, out_w, members)
 
 
@@ -86,7 +96,8 @@ def gaps(
 
     Empty ranges cover nothing and are dropped first (as R does).
     """
-    red = reduce(group, start, width, 1, drop_empty=True)
+    ne = width > 0
+    red = reduce(group[ne], start[ne], width[ne], 1)
     out_g: list[np.ndarray] = []
     out_s: list[np.ndarray] = []
     out_w: list[np.ndarray] = []

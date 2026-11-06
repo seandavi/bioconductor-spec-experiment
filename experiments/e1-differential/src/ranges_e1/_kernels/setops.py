@@ -35,8 +35,9 @@ def combine(
     Empty ranges cover nothing and are ignored. `op(in_x, in_y)` picks segments.
     Returns (group, start, width) with adjacent pieces merged.
     """
-    rx = inter.reduce(gx, sx, wx, 1, drop_empty=True)
-    ry = inter.reduce(gy, sy, wy, 1, drop_empty=True)
+    nx, ny = wx > 0, wy > 0
+    rx = inter.reduce(gx[nx], sx[nx], wx[nx], 1)
+    ry = inter.reduce(gy[ny], sy[ny], wy[ny], 1)
     lx, ly = _lift(rx.group, rx.start), _lift(ry.group, ry.start)
     ex, ey = lx + rx.width, ly + ry.width
     bps = np.unique(np.concatenate([lx, ex, ly, ey]))

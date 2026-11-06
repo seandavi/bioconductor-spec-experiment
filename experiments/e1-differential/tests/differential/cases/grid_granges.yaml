@@ -1211,3 +1211,915 @@ cases:
   inputs:
     x: *id015
   tags: [grid, coverage]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id017 {}
+  id: grid-gr-r1-range
+  inputs:
+    x: &id016
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr1, chr2, chr1, chr2, chr2, chr2, chr1, chr1, chr1, chr2, chr1, chr1, chr1, chr1, chr1, chr1, chr2, chr1, chr2, chr1]
+        start: [10, 10, 9, 7, 24, 4, 8, 12, 19, 25, 13, 4, 10, 23, 5, 13, 4, 10, 2, 16]
+        strand: ['*', +, +, '*', '*', '*', '-', '-', '-', '*', +, '*', '*', '*', '-', '*', '*', '*', +, +]
+        width: [3, 8, 0, 3, 1, 3, 1, 1, 1, 8, 2, 1, 1, 0, 1, 1, 5, 2, 1, 1]
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r1-reduce-g0-keep
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r1-reduce-g0-drop
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r1-reduce-g1-keep
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r1-reduce-g1-drop
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r1-reduce-g3-keep
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r1-reduce-g3-drop
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {with.revmap: true}
+  id: grid-gr-r1-disjoin
+  inputs:
+    x: *id016
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id017
+  id: grid-gr-r1-gaps
+  inputs:
+    x: *id016
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, start: 3}
+  id: grid-gr-r1-gaps-window
+  inputs:
+    x: *id016
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id017
+  id: grid-gr-r1-union
+  inputs: &id018
+    x: *id016
+    y:
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr2, chr1, chr2, chr2, chr2, chr2, chr2, chr1, chr2, chr2, chr2, chr1, chr1, chr1, chr1, chr2, chr2, chr1, chr2, chr2]
+        start: [11, 13, 7, 14, 23, 7, 10, 10, 10, 9, 9, 3, 25, 23, 20, 17, 14, 6, 19, 15]
+        strand: ['*', +, '-', '-', +, '-', +, +, '-', '-', +, '*', '-', '*', +, +, +, +, '-', +]
+        width: [2, 0, 1, 1, 0, 2, 8, 1, 8, 2, 2, 8, 2, 8, 3, 3, 5, 3, 1, 0]
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id017
+  id: grid-gr-r1-intersect
+  inputs: *id018
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id017
+  id: grid-gr-r1-setdiff
+  inputs: *id018
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 7]
+    fn: resize
+    kwargs: {fix: start}
+  id: grid-gr-r1-resize-start
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, 9]
+    fn: resize
+    kwargs: {fix: end}
+  id: grid-gr-r1-resize-end
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, 9]
+    fn: resize
+    kwargs: {fix: center}
+  id: grid-gr-r1-resize-center
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, -5]
+    fn: flank
+    kwargs: {both: false, start: false}
+  id: grid-gr-r1-flank
+  inputs:
+    x: *id016
+  tags: [grid, flank]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id019 {ignore.strand: true}
+  id: grid-gr-r1-range-ign
+  inputs:
+    x: *id016
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r1-reduce-g0-keep-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r1-reduce-g0-drop-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r1-reduce-g1-keep-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r1-reduce-g1-drop-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r1-reduce-g3-keep-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r1-reduce-g3-drop-ign
+  inputs:
+    x: *id016
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {ignore.strand: true, with.revmap: true}
+  id: grid-gr-r1-disjoin-ign
+  inputs:
+    x: *id016
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id019
+  id: grid-gr-r1-gaps-ign
+  inputs:
+    x: *id016
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, ignore.strand: true, start: 3}
+  id: grid-gr-r1-gaps-window-ign
+  inputs:
+    x: *id016
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id019
+  id: grid-gr-r1-union-ign
+  inputs: *id018
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id019
+  id: grid-gr-r1-intersect-ign
+  inputs: *id018
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id019
+  id: grid-gr-r1-setdiff-ign
+  inputs: *id018
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 1]
+    fn: resize
+    kwargs: {fix: start, ignore.strand: true}
+  id: grid-gr-r1-resize-start-ign
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, 6]
+    fn: resize
+    kwargs: {fix: end, ignore.strand: true}
+  id: grid-gr-r1-resize-end-ign
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, 4]
+    fn: resize
+    kwargs: {fix: center, ignore.strand: true}
+  id: grid-gr-r1-resize-center-ign
+  inputs:
+    x: *id016
+  tags: [grid, resize]
+- call:
+    args: [$x, 4]
+    fn: flank
+    kwargs: {both: true, ignore.strand: true, start: false}
+  id: grid-gr-r1-flank-ign
+  inputs:
+    x: *id016
+  tags: [grid, flank]
+- call:
+    args: [$x, 0, 1]
+    fn: promoters
+  id: grid-gr-r1-promoters
+  inputs:
+    x: *id016
+  tags: [grid, promoters]
+- call:
+    args:
+    - call:
+        args: [$x, 40, 5]
+        fn: promoters
+    fn: trim
+  id: grid-gr-r1-trim-promoters
+  inputs:
+    x: *id016
+  tags: [grid, trim]
+- call:
+    args: [$x, 1]
+    fn: shift
+  id: grid-gr-r1-shift
+  inputs:
+    x: *id016
+  tags: [grid, shift]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id021 {}
+  id: grid-gr-r2-range
+  inputs:
+    x: &id020
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr1, chr2, chr2, chr2, chr2, chr1, chr2, chr1, chr1, chr1, chr1, chr1, chr1, chr1]
+        start: [15, 2, 7, 5, 13, 19, 18, 20, 7, 18, 18, 19, 21, 22, 7, 16, 9, 25, 11, 11]
+        strand: ['*', '*', '*', '*', '*', '*', '*', +, +, '-', +, '-', '-', '-', +, +, '-', +, '-', +]
+        width: [0, 5, 5, 0, 1, 1, 2, 5, 0, 3, 2, 1, 8, 0, 2, 8, 2, 1, 2, 5]
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r2-reduce-g0-keep
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r2-reduce-g0-drop
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r2-reduce-g1-keep
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r2-reduce-g1-drop
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r2-reduce-g3-keep
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r2-reduce-g3-drop
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {with.revmap: true}
+  id: grid-gr-r2-disjoin
+  inputs:
+    x: *id020
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id021
+  id: grid-gr-r2-gaps
+  inputs:
+    x: *id020
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, start: 3}
+  id: grid-gr-r2-gaps-window
+  inputs:
+    x: *id020
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id021
+  id: grid-gr-r2-union
+  inputs: &id022
+    x: *id020
+    y:
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr1, chr2, chr2, chr1, chr2, chr1, chr1, chr2]
+        start: [25, 3, 25, 21, 4, 20, 11, 20]
+        strand: ['-', +, +, '-', '-', '-', +, '*']
+        width: [2, 2, 5, 2, 2, 1, 1, 2]
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id021
+  id: grid-gr-r2-intersect
+  inputs: *id022
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id021
+  id: grid-gr-r2-setdiff
+  inputs: *id022
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 5]
+    fn: resize
+    kwargs: {fix: start}
+  id: grid-gr-r2-resize-start
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 9]
+    fn: resize
+    kwargs: {fix: end}
+  id: grid-gr-r2-resize-end
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 4]
+    fn: resize
+    kwargs: {fix: center}
+  id: grid-gr-r2-resize-center
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 1]
+    fn: flank
+    kwargs: {both: false, start: false}
+  id: grid-gr-r2-flank
+  inputs:
+    x: *id020
+  tags: [grid, flank]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id023 {ignore.strand: true}
+  id: grid-gr-r2-range-ign
+  inputs:
+    x: *id020
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r2-reduce-g0-keep-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r2-reduce-g0-drop-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r2-reduce-g1-keep-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r2-reduce-g1-drop-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r2-reduce-g3-keep-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r2-reduce-g3-drop-ign
+  inputs:
+    x: *id020
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {ignore.strand: true, with.revmap: true}
+  id: grid-gr-r2-disjoin-ign
+  inputs:
+    x: *id020
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id023
+  id: grid-gr-r2-gaps-ign
+  inputs:
+    x: *id020
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, ignore.strand: true, start: 3}
+  id: grid-gr-r2-gaps-window-ign
+  inputs:
+    x: *id020
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id023
+  id: grid-gr-r2-union-ign
+  inputs: *id022
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id023
+  id: grid-gr-r2-intersect-ign
+  inputs: *id022
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id023
+  id: grid-gr-r2-setdiff-ign
+  inputs: *id022
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 5]
+    fn: resize
+    kwargs: {fix: start, ignore.strand: true}
+  id: grid-gr-r2-resize-start-ign
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 2]
+    fn: resize
+    kwargs: {fix: end, ignore.strand: true}
+  id: grid-gr-r2-resize-end-ign
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 3]
+    fn: resize
+    kwargs: {fix: center, ignore.strand: true}
+  id: grid-gr-r2-resize-center-ign
+  inputs:
+    x: *id020
+  tags: [grid, resize]
+- call:
+    args: [$x, 0]
+    fn: flank
+    kwargs: {both: false, ignore.strand: true, start: false}
+  id: grid-gr-r2-flank-ign
+  inputs:
+    x: *id020
+  tags: [grid, flank]
+- call:
+    args: [$x, 3, 3]
+    fn: promoters
+  id: grid-gr-r2-promoters
+  inputs:
+    x: *id020
+  tags: [grid, promoters]
+- call:
+    args:
+    - call:
+        args: [$x, 40, 5]
+        fn: promoters
+    fn: trim
+  id: grid-gr-r2-trim-promoters
+  inputs:
+    x: *id020
+  tags: [grid, trim]
+- call:
+    args: [$x, 9]
+    fn: shift
+  id: grid-gr-r2-shift
+  inputs:
+    x: *id020
+  tags: [grid, shift]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id025 {}
+  id: grid-gr-r3-range
+  inputs:
+    x: &id024
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr1, chr2, chr2, chr1, chr2, chr1, chr2, chr2, chr1, chr2, chr2, chr1, chr2, chr1, chr2, chr2, chr1, chr2, chr2, chr2, chr1, chr1, chr2, chr1, chr1, chr2, chr1, chr2, chr2, chr2]
+        start: [21, 22, 12, 2, 6, 1, 23, 20, 19, 9, 13, 14, 23, 15, 17, 3, 2, 21, 16, 21, 5, 19, 24, 4, 13, 17, 5, 19, 11, 11]
+        strand: ['*', +, '*', +, +, +, '*', +, '-', '-', '*', '-', +, '-', '*', '-', '-', +, +, '*', '*', +, +, +, '*', '-', '-', +, +, '-']
+        width: [1, 3, 0, 0, 5, 2, 0, 5, 1, 1, 1, 2, 2, 2, 1, 1, 1, 5, 0, 2, 3, 8, 3, 3, 5, 0, 1, 1, 0, 0]
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r3-reduce-g0-keep
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r3-reduce-g0-drop
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r3-reduce-g1-keep
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r3-reduce-g1-drop
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r3-reduce-g3-keep
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r3-reduce-g3-drop
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {with.revmap: true}
+  id: grid-gr-r3-disjoin
+  inputs:
+    x: *id024
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id025
+  id: grid-gr-r3-gaps
+  inputs:
+    x: *id024
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, start: 3}
+  id: grid-gr-r3-gaps-window
+  inputs:
+    x: *id024
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id025
+  id: grid-gr-r3-union
+  inputs: &id026
+    x: *id024
+    y:
+      GRanges:
+        seqinfo: *id001
+        seqnames: [chr1, chr1, chr2, chr1, chr1, chr2, chr1, chr2]
+        start: [9, 20, 5, 19, 17, 10, 7, 24]
+        strand: ['*', +, '*', +, +, +, +, +]
+        width: [1, 2, 0, 2, 0, 0, 8, 3]
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id025
+  id: grid-gr-r3-intersect
+  inputs: *id026
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id025
+  id: grid-gr-r3-setdiff
+  inputs: *id026
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 7]
+    fn: resize
+    kwargs: {fix: start}
+  id: grid-gr-r3-resize-start
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, 7]
+    fn: resize
+    kwargs: {fix: end}
+  id: grid-gr-r3-resize-end
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, 4]
+    fn: resize
+    kwargs: {fix: center}
+  id: grid-gr-r3-resize-center
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, 4]
+    fn: flank
+    kwargs: {both: false, start: true}
+  id: grid-gr-r3-flank
+  inputs:
+    x: *id024
+  tags: [grid, flank]
+- call:
+    args: [$x]
+    fn: range
+    kwargs: &id027 {ignore.strand: true}
+  id: grid-gr-r3-range-ign
+  inputs:
+    x: *id024
+  tags: [grid, range]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r3-reduce-g0-keep-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 0, with.revmap: true}
+  id: grid-gr-r3-reduce-g0-drop-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r3-reduce-g1-keep-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 1, with.revmap: true}
+  id: grid-gr-r3-reduce-g1-drop-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: false, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r3-reduce-g3-keep-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: reduce
+    kwargs: {drop.empty.ranges: true, ignore.strand: true, min.gapwidth: 3, with.revmap: true}
+  id: grid-gr-r3-reduce-g3-drop-ign
+  inputs:
+    x: *id024
+  tags: [grid, reduce]
+- call:
+    args: [$x]
+    fn: disjoin
+    kwargs: {ignore.strand: true, with.revmap: true}
+  id: grid-gr-r3-disjoin-ign
+  inputs:
+    x: *id024
+  tags: [grid, disjoin]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: *id027
+  id: grid-gr-r3-gaps-ign
+  inputs:
+    x: *id024
+  tags: [grid, gaps]
+- call:
+    args: [$x]
+    fn: gaps
+    kwargs: {end: 30, ignore.strand: true, start: 3}
+  id: grid-gr-r3-gaps-window-ign
+  inputs:
+    x: *id024
+  tags: [grid, gaps]
+- call:
+    args: [$x, $y]
+    fn: union
+    kwargs: *id027
+  id: grid-gr-r3-union-ign
+  inputs: *id026
+  tags: [grid, union]
+- call:
+    args: [$x, $y]
+    fn: intersect
+    kwargs: *id027
+  id: grid-gr-r3-intersect-ign
+  inputs: *id026
+  tags: [grid, intersect]
+- call:
+    args: [$x, $y]
+    fn: setdiff
+    kwargs: *id027
+  id: grid-gr-r3-setdiff-ign
+  inputs: *id026
+  tags: [grid, setdiff]
+- call:
+    args: [$x, 9]
+    fn: resize
+    kwargs: {fix: start, ignore.strand: true}
+  id: grid-gr-r3-resize-start-ign
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, 9]
+    fn: resize
+    kwargs: {fix: end, ignore.strand: true}
+  id: grid-gr-r3-resize-end-ign
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, 7]
+    fn: resize
+    kwargs: {fix: center, ignore.strand: true}
+  id: grid-gr-r3-resize-center-ign
+  inputs:
+    x: *id024
+  tags: [grid, resize]
+- call:
+    args: [$x, -2]
+    fn: flank
+    kwargs: {both: true, ignore.strand: true, start: true}
+  id: grid-gr-r3-flank-ign
+  inputs:
+    x: *id024
+  tags: [grid, flank]
+- call:
+    args: [$x, 5, 5]
+    fn: promoters
+  id: grid-gr-r3-promoters
+  inputs:
+    x: *id024
+  tags: [grid, promoters]
+- call:
+    args:
+    - call:
+        args: [$x, 40, 5]
+        fn: promoters
+    fn: trim
+  id: grid-gr-r3-trim-promoters
+  inputs:
+    x: *id024
+  tags: [grid, trim]
+- call:
+    args: [$x, -2]
+    fn: shift
+  id: grid-gr-r3-shift
+  inputs:
+    x: *id024
+  tags: [grid, shift]
