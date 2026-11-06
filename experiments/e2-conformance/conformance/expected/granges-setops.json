@@ -1,0 +1,997 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:39:03-0500"
+  },
+  "cases": {
+    "gr.union.basic": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2", "chr2", "chr2"]},
+        "start": {"$int": [1, 10, 5, 8, 5]},
+        "width": {"$int": [14, 7, 5, 5, 5]},
+        "strand": {"$chr": ["+", "-", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2"]},
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [16, 8]},
+        "strand": {"$chr": ["*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.with-star": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 3, 5]},
+        "width": {"$int": [8, 5, 5, 4, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.self": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.drops-names-mcols": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [8, 5]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.basic": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1"]},
+        "start": {"$int": [5, 10, 12]},
+        "width": {"$int": [4, 3, 3]},
+        "strand": {"$chr": ["+", "+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2"]},
+        "start": {"$int": [5, 10, 5]},
+        "width": {"$int": [4, 5, 5]},
+        "strand": {"$chr": ["*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.star-does-not-match": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr2"]},
+        "start": {"$int": [6]},
+        "width": {"$int": [2]},
+        "strand": {"$chr": ["*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.star-ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2"]},
+        "start": {"$int": [3, 6]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.self": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.reversed": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1"]},
+        "start": {"$int": [5, 10, 12]},
+        "width": {"$int": [4, 3, 3]},
+        "strand": {"$chr": ["+", "+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.basic": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 13, 10, 5]},
+        "width": {"$int": [4, 2, 2, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1"]},
+        "start": {"$int": [1]},
+        "width": {"$int": [4]},
+        "strand": {"$chr": ["*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.star": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5, 8]},
+        "width": {"$int": [8, 5, 5, 1, 2]},
+        "strand": {"$chr": ["+", "+", "-", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.self": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.reversed": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2", "chr2"]},
+        "start": {"$int": [9, 15, 5, 8]},
+        "width": {"$int": [1, 2, 5, 5]},
+        "strand": {"$chr": ["+", "-", "+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.merges-seqinfo": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2", "chr3"]},
+        "start": {"$int": [1, 10, 10, 1, 5, 1]},
+        "width": {"$int": [8, 5, 5, 3, 5, 3]},
+        "strand": {"$chr": ["+", "+", "-", "+", "*", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chr3"]},
+          "seqlengths": {"$int": [1000, 500, 200]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.merges-seqinfo": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chr3"]},
+          "seqlengths": {"$int": [1000, 500, 200]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.merges-seqinfo": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chr3"]},
+          "seqlengths": {"$int": [1000, 500, 200]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.incompatible-seqinfo": {
+      "error": {
+        "message": "error in evaluating the argument 'x' in selecting a method for function 'reduce': sequence chr1 has incompatible seqlengths:\n  - in 'x': 1000\n  - in 'y': 999",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.intersect.incompatible-seqinfo": {
+      "error": {
+        "message": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 1000\n  - in 'y': 999",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.union.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2", "chr2"]},
+        "start": {"$int": [5, 12, 5, 8]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "-", "+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.union.empty-both": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.intersect.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.empty-right": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.empty-left": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.punion.incompatible-pair-error": {
+      "error": {
+        "message": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.punion.compatible": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [8, 5]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.punion.star-is-compatible": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2"]},
+        "start": {"$int": [3, 5]},
+        "width": {"$int": [6, 4]},
+        "strand": {"$chr": ["*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.punion.incompatible-pair-error.ignore-strand": {
+      "error": {
+        "message": "'x' and 'y' elements must have compatible 'seqnames' and 'strand' values",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.punion.gap-error": {
+      "error": {
+        "message": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.pintersect.basic": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr1"]},
+        "start": {"$int": [5, 10, 12, 8, 50]},
+        "width": {"$int": [4, 0, 3, 2, 0]},
+        "strand": {"$chr": ["+", "+", "-", "+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {
+            "hit": {"$lgl": [true, false, true, true, false]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr1"]},
+        "start": {"$int": [5, 12, 12, 8, 50]},
+        "width": {"$int": [4, 3, 3, 2, 0]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {
+            "hit": {"$lgl": [true, true, true, true, false]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.drop-nohit": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2"]},
+        "start": {"$int": [5, 12, 8]},
+        "width": {"$int": [4, 3, 2]},
+        "strand": {"$chr": ["+", "-", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.self": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [1, 10, 10, 5]},
+        "width": {"$int": [8, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "hit": {"$lgl": [true, true, true, true]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.star": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2"]},
+        "start": {"$int": [3, 6]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "hit": {"$lgl": [true, true]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.star-vs-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2"]},
+        "start": {"$int": [3, 6]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "hit": {"$lgl": [true, true]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.keeps-names-mcols": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [8, 5]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "s": {"$int": [1, 2]},
+            "hit": {"$lgl": [true, true]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.basic": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [5, 10]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.incompatible-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [8, 5]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.different-seqname": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [8, 5]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [5, 10]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.pairs": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr1"]},
+        "start": {"$int": [1, 10, 10, 5, 50]},
+        "width": {"$int": [4, 5, 2, 3, 5]},
+        "strand": {"$chr": ["+", "+", "-", "+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.punion.len-mismatch": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.pintersect.recycles-length-1": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2"]},
+        "start": {"$int": [3, 10, 10, 5]},
+        "width": {"$int": [4, 0, 0, 0]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "hit": {"$lgl": [true, false, false, false]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.len-mismatch": {
+      "error": {
+        "message": "'y' must have the length of 'x' or length 1",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.psetdiff.len-mismatch": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.pintersect.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "hit": {"$lgl": []}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2"]},
+          "seqlengths": {"$int": [1000, 500]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    }
+  }
+}
