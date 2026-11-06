@@ -1,0 +1,25 @@
+[project]
+name = "ranges-e2"
+version = "0.1.0"
+description = "IRanges/GRanges port to Python, driven by a language-neutral conformance suite (experiment E2)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "polars>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ranges_e2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
