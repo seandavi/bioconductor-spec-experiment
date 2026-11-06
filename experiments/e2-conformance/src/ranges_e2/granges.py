@@ -11,7 +11,7 @@ import polars as pl
 
 from . import _coverage, _inter, _nearest, _ordering, _overlaps
 from ._nearest import MaskFn
-from ._util import IntArray, as_bool_array, as_int64, positions_from_subscript, rep_len
+from ._util import IntArray, frozen, as_bool_array, as_int64, positions_from_subscript, rep_len
 from .hits import Hits
 from .iranges import IRanges, _revmap_frame, _select_hits, _ties_result
 from .rle import Factor, Rle
@@ -85,8 +85,8 @@ class GRanges:
             extra = frame if extra is None else pl.concat([extra, frame], how="horizontal")
         if extra is not None:
             rng = rng.with_mcols(extra)
-        object.__setattr__(self, "_seq", codes)
-        object.__setattr__(self, "_strand", _strand_codes(strand, n))
+        object.__setattr__(self, "_seq", frozen(codes))
+        object.__setattr__(self, "_strand", frozen(_strand_codes(strand, n)))
         object.__setattr__(self, "_ranges", rng)
         object.__setattr__(self, "_seqinfo", seqinfo)
 
@@ -120,8 +120,8 @@ class GRanges:
         seqinfo: Seqinfo,
     ) -> GRanges:
         obj = object.__new__(cls)
-        object.__setattr__(obj, "_seq", np.asarray(seq, dtype=np.int32))
-        object.__setattr__(obj, "_strand", np.asarray(strand, dtype=np.int8))
+        object.__setattr__(obj, "_seq", frozen(np.asarray(seq, dtype=np.int32)))
+        object.__setattr__(obj, "_strand", frozen(np.asarray(strand, dtype=np.int8)))
         object.__setattr__(obj, "_ranges", ranges)
         object.__setattr__(obj, "_seqinfo", seqinfo)
         return obj

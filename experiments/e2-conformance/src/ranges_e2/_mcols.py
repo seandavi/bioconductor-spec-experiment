@@ -21,7 +21,7 @@ def normalise(df: pl.DataFrame | None, n: int) -> pl.DataFrame | None:
         return None
     h = df.height
     if h == n:
-        return df
+        return df.clone()  # a private wrapper: in-place edits (replace_column) must not leak
     if h == 0 or h > n:
         raise ValueError(f"trying to set a metadata column of length {h} on an object of length {n}")
     return df[np.resize(np.arange(h), n)]

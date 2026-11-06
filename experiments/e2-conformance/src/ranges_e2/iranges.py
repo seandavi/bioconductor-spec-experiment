@@ -10,7 +10,7 @@ import numpy.typing as npt
 import polars as pl
 
 from . import _coverage, _inter, _intra, _mcols, _nearest, _ordering, _overlaps
-from ._util import IntArray, as_bool_array, as_int64, check_int32, positions_from_subscript, rep_len
+from ._util import IntArray, as_bool_array, frozen, as_int64, check_int32, positions_from_subscript, rep_len
 from .hits import Hits
 from .rle import Rle
 
@@ -70,14 +70,14 @@ class IRanges:
         mcols: pl.DataFrame | None = None,
     ) -> None:
         s, w = _solve_start_width(_int_arg(start, "start"), _int_arg(end, "end"), _int_arg(width, "width"))
-        object.__setattr__(self, "_start", check_int32(s, "start").astype(np.int32))
-        object.__setattr__(self, "_width", check_int32(w, "width").astype(np.int32))
+        object.__setattr__(self, "_start", frozen(check_int32(s, "start").astype(np.int32)))
+        object.__setattr__(self, "_width", frozen(check_int32(w, "width").astype(np.int32)))
         object.__setattr__(self, "_names", None)
         object.__setattr__(self, "_mcols", None)
         if names is not None:
             object.__setattr__(self, "_names", self._pad_names(names, len(s)))
         if mcols is not None:
-            object.__setattr__(self, "_mcols", _mcols.normalise(mcols, len(s)))
+            object.__setattr__(self, "_mcols", _mcols.normalise(mcols, len(s)))  # clones: never aliases caller's
 
     def __setattr__(self, key: str, value: Any) -> None:
         raise AttributeError("IRanges is immutable")
@@ -95,10 +95,11 @@ class IRanges:
     ) -> IRanges:
         """Trusted constructor from validated int64 arrays."""
         obj = object.__new__(cls)
-        object.__setattr__(obj, "_start", check_int32(np.asarray(start, dtype=np.int64), "start").astype(np.int32))
-        object.__setattr__(obj, "_width", check_int32(np.asarray(width, dtype=np.int64), "width").astype(np.int32))
-        object.__setattr__(obj, "_names", names)
-        object.__setattr__(obj, "_mcols", mcols)
+        s64, w64 = np.asarray(start, dtype=np.int64), np.asarray(width, dtype=np.int64)
+        object.__setattr__(obj, "_start", frozen(check_int32(s64, "start").astype(np.int32)))
+        object.__setattr__(obj, "_width", frozen(check_int32(w64, "width").astype(np.int32)))
+        object.__setattr__(obj, "_names", None if names is None else list(names))
+        object.__setattr__(obj, "_mcols", None if mcols is None else mcols.clone())
         return obj
 
     # ---- accessors -------------------------------------------------------
@@ -116,7 +117,7 @@ class IRanges:
 
     @property
     def end(self) -> npt.NDArray[np.int32]:
-        return (self._start.astype(np.int64) + self._width - 1).astype(np.int32)
+        return frozen((self._start.astype(np.int64) + self._width - 1).astype(np.int32))
 
     @property
     def names(self) -> Names | None:
@@ -125,7 +126,7 @@ class IRanges:
     @property
     def mcols(self) -> pl.DataFrame:
         """Metadata columns; an object without columns returns an empty frame (height 0)."""
-        return _mcols.empty_frame() if self._mcols is None else self._mcols
+        return _mcols.empty_frame() if self._mcols is None else self._mcols.clone()
 
     @property
     def has_mcols(self) -> bool:

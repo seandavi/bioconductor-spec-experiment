@@ -15,6 +15,12 @@ class Hits:
     query_length: int
     subject_length: int
 
+    def __post_init__(self) -> None:
+        for name in ("query_hits", "subject_hits"):
+            arr = np.array(getattr(self, name), copy=True)
+            arr.setflags(write=False)
+            object.__setattr__(self, name, arr)
+
     def __len__(self) -> int:
         return len(self.query_hits)
 

@@ -15,6 +15,11 @@ class Factor:
     levels: tuple[str, ...]
     codes: npt.NDArray[np.int64]
 
+    def __post_init__(self) -> None:
+        codes = np.array(self.codes, copy=True)
+        codes.setflags(write=False)
+        object.__setattr__(self, "codes", codes)
+
     def __len__(self) -> int:
         return len(self.codes)
 
@@ -28,6 +33,15 @@ class Rle:
 
     values: npt.NDArray[np.generic] | Factor
     lengths: npt.NDArray[np.int64]
+
+    def __post_init__(self) -> None:
+        lengths = np.array(self.lengths, copy=True)
+        lengths.setflags(write=False)
+        object.__setattr__(self, "lengths", lengths)
+        if isinstance(self.values, np.ndarray):
+            values = np.array(self.values, copy=True)
+            values.setflags(write=False)
+            object.__setattr__(self, "values", values)
 
     def __len__(self) -> int:
         return int(self.lengths.sum())

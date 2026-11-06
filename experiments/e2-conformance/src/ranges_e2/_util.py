@@ -37,6 +37,13 @@ def as_int64(values: Any, what: str = "value") -> IntArray:
     return arr.astype(np.int64)
 
 
+def frozen(a: npt.NDArray[Any]) -> npt.NDArray[Any]:
+    """Return a private, read-only copy: objects own their arrays and never alias callers'."""
+    out = np.array(a, copy=True)
+    out.setflags(write=False)
+    return out
+
+
 def check_int32(a: IntArray, what: str = "value") -> IntArray:
     if a.size and (a.max() > INT32_MAX or a.min() < -INT32_MAX):
         raise ValueError(f"{what} overflows 32-bit integer range")

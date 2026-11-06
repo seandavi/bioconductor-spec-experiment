@@ -99,3 +99,53 @@ def test_seqinfo_merge_conflict() -> None:
         Seqinfo(["a"], [10]).merge(Seqinfo(["a"], [11]))
     merged = Seqinfo(["a"], [None], genome="hg").merge(Seqinfo(["a", "b"], [5, 6]))
     assert merged.seqnames == ("a", "b") and merged.seqlengths == (5, 6) and merged.genome == ("hg", None)
+
+
+# ---- review finding 1: accessors and constructors must not alias mutable state ----------------
+
+
+def test_array_accessors_are_read_only() -> None:
+    x = IRanges(start=[1, 5], width=[3, 4])
+    for arr in (x.start, x.width, x.end):
+        with pytest.raises(ValueError):
+            arr[0] = -5
+    g = GRanges(["a", "a"], x, ["+", "-"])
+    for arr in (g.start, g.width, g.end):
+        with pytest.raises(ValueError):
+            arr[0] = -5
+    assert x.width.tolist() == [3, 4] and g.width.tolist() == [3, 4]
+    for arr in (g.seqnames.lengths, g.strand.lengths):
+        with pytest.raises(ValueError):
+            arr[0] = 9
+
+
+def test_constructor_copies_caller_arrays_and_frames() -> None:
+    start = np.array([1, 5])
+    frame = pl.DataFrame({"score": [1.5, 2.5]})
+    x = IRanges(start=start, width=[2, 2], mcols=frame)
+    start[0] = 100
+    frame.replace_column(0, pl.Series("score", [9.0, 9.0]))
+    assert x.start.tolist() == [1, 5]
+    assert x.mcols["score"].to_list() == [1.5, 2.5]
+
+
+def test_mcols_accessor_returns_private_frame() -> None:
+    x = IRanges(start=[1, 5], width=[2, 2], mcols=pl.DataFrame({"score": [1.5, 2.5]}))
+    g = GRanges(["a", "a"], x)
+    x.mcols.replace_column(0, pl.Series("score", [0.0, 0.0]))
+    g.mcols.replace_column(0, pl.Series("score", [0.0, 0.0]))
+    assert x.mcols["score"].to_list() == [1.5, 2.5]
+    assert g.mcols["score"].to_list() == [1.5, 2.5]
+
+
+def test_derived_objects_do_not_share_mutable_state() -> None:
+    x = IRanges(start=[1, 5], width=[2, 2], names=["a", "b"], mcols=pl.DataFrame({"s": [1, 2]}))
+    y = x.shift(1)
+    z = x[[0, 1]]
+    with pytest.raises(ValueError):
+        y.width[0] = 7
+    x.names.append("zzz")  # type: ignore[union-attr]
+    assert x.names == ["a", "b"] and y.names == ["a", "b"] and z.names == ["a", "b"]
+    hits = x.find_overlaps(x)
+    with pytest.raises(ValueError):
+        hits.query_hits[0] = 5  # type: ignore[union-attr]
