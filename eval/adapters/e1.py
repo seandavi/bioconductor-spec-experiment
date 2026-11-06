@@ -155,13 +155,12 @@ def _as_r_index(res):
     return res
 
 
-def _revmap_to_r_base(res, with_revmap):
-    """with.revmap=TRUE adds a `revmap` IntegerList mcol of 0-based positions; shift it +1.
+def _revmap_to_r_base(res):
+    """A `revmap` IntegerList mcol on reduce/disjoin output (port: 0-based positions) -> +1.
 
-    Two public port calls (mcols, set_mcols) because the port builds the column 0-based.
+    These ops drop the input's mcols, so any `revmap` column is the port's own, whatever form
+    the `with.revmap` flag arrived in. Two public port calls (mcols, set_mcols).
     """
-    if not (isinstance(with_revmap, RVector) and with_revmap.values == [True]):
-        return res
     mc = res.mcols
     if mc is None or "revmap" not in mc.columns:
         return res
@@ -417,7 +416,7 @@ class Adapter(AdapterBase):
                   ignore_strand=MISSING):
         res = _send(x, "reduce", drop_empty_ranges=drop_empty_ranges, min_gapwidth=min_gapwidth,
                     with_revmap=with_revmap, ignore_strand=ignore_strand)
-        return _revmap_to_r_base(res, with_revmap)
+        return _revmap_to_r_base(res)
 
     def op_gaps(self, *, x, start=MISSING, end=MISSING, ignore_strand=MISSING):
         return _send(x, "gaps", start=_per_seqlevel(x, start), end=_per_seqlevel(x, end),
@@ -425,7 +424,7 @@ class Adapter(AdapterBase):
 
     def op_disjoin(self, *, x, with_revmap=MISSING, ignore_strand=MISSING):
         res = _send(x, "disjoin", with_revmap=with_revmap, ignore_strand=ignore_strand)
-        return _revmap_to_r_base(res, with_revmap)
+        return _revmap_to_r_base(res)
 
     # ---- set operations ----------------------------------------------------
     def op_union(self, *, x, y=MISSING, ignore_strand=MISSING):
