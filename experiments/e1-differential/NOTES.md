@@ -46,3 +46,6 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-06 ordering: order/rank/duplicated use key (start, width), stable; `decreasing` keeps
   ties in index order (R radix). R's `rank(<IRanges>)` default errors -> ADR-0004. Not ported:
   multi-argument `order(x, y)`, `rank(ties.method="random")`, `==`/`<`/`match`/`xtfrm` (outside TARGET).
+- 2026-11-05 23:53 correction: NOTES timestamps from the stage-4 entry to the ordering entry
+  were estimated and ran ahead of the wall clock (real time at end of stage 9: 23:53, started
+  23:26). Later entries use `date`.

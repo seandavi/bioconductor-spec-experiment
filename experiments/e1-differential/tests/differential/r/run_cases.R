@@ -28,11 +28,11 @@ df_lit <- function(cols) {
 
 seqinfo_lit <- function(l) {
   g <- function(k) if (is.null(l[[k]])) NULL else decode(l[[k]])
-  sn <- g("seqnames")
-  Seqinfo(seqnames = sn,
-    seqlengths = if (is.null(l$seqlengths)) NA_integer_ else as.integer(g("seqlengths")),
-    isCircular = if (is.null(l$is_circular)) NA else g("is_circular"),
-    genome = if (is.null(l$genome)) NA_character_ else g("genome"))
+  a <- list(seqnames = g("seqnames"))
+  if (!is.null(l$seqlengths)) a$seqlengths <- as.integer(g("seqlengths"))
+  if (!is.null(l$is_circular)) a$isCircular <- g("is_circular")
+  if (!is.null(l$genome)) a$genome <- g("genome")
+  do.call(Seqinfo, a)
 }
 
 iranges_lit <- function(l) {
@@ -44,11 +44,10 @@ iranges_lit <- function(l) {
 
 granges_lit <- function(l) {
   g <- function(k) if (is.null(l[[k]])) NULL else decode(l[[k]])
-  ir <- IRanges(start = g("start"), end = g("end"), width = g("width"))
+  ir <- IRanges(start = g("start"), end = g("end"), width = g("width"), names = g("names"))
   si <- if (is.null(l$seqinfo)) NULL else seqinfo_lit(l$seqinfo)
   st <- g("strand"); if (is.null(st)) st <- "*"
-  x <- GRanges(seqnames = g("seqnames"), ranges = ir, strand = st, names = g("names"),
-    seqinfo = si)
+  x <- GRanges(seqnames = g("seqnames"), ranges = ir, strand = st, seqinfo = si)
   if (!is.null(l$mcols)) mcols(x) <- df_lit(l$mcols)
   x
 }

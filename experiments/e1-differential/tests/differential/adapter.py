@@ -211,14 +211,22 @@ def encode(v: Any) -> Any:
     if v is None:
         return None
     if isinstance(v, GRanges):
-        return v._to_canonical()  # noqa: SLF001
+        return {
+            "class": "GRanges", "seqnames": [str(x) for x in v.seqnames], "start": v.start.tolist(),
+            "width": v.width.tolist(), "strand": [str(x) for x in v.strand],
+            "names": None if v.names is None else list(v.names), "mcols": enc_mcols(v.mcols),
+            "seqinfo": encode(v.seqinfo),
+        }
     if isinstance(v, r1.IRanges):
         return {
             "class": "IRanges", "start": v.start.tolist(), "width": v.width.tolist(),
             "names": None if v.names is None else list(v.names), "mcols": enc_mcols(v.mcols),
         }
     if isinstance(v, Seqinfo):
-        return v._to_canonical()  # noqa: SLF001
+        return {
+            "class": "Seqinfo", "seqnames": list(v.seqnames), "seqlengths": list(v.seqlengths),
+            "is_circular": list(v.is_circular), "genome": list(v.genome),
+        }
     if isinstance(v, Hits):
         return {
             "class": "Hits", "from": (v.query_hits + 1).tolist(), "to": (v.subject_hits + 1).tolist(),

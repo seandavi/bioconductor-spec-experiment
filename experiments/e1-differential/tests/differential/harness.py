@@ -81,7 +81,8 @@ def r_versions() -> str:
              '"; S4Vectors", as.character(packageVersion("S4Vectors")))'],
             capture_output=True, text=True, check=True,
         ).stdout
-        _versions = out.replace("R ", "R ", 1).strip()
+        scripts = hashlib.sha256((R_SCRIPT.read_bytes() + (R_SCRIPT.parent / "encode.R").read_bytes())).hexdigest()[:12]
+        _versions = f"{out.strip()}; harness {scripts}"
     return _versions
 
 
