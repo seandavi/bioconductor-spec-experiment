@@ -251,7 +251,7 @@ class Adapter(AdapterBase):
         return None if names is None else RVector("chr", names.tolist())
 
     def op_length(self, *, x):
-        self._need("length", x, _PORT_OBJECTS)
+        self._need("length", x, _PORT_OBJECTS + (Hits, Rle))
         return RVector("int", [len(x)])
 
     def op_seqnames(self, *, x):
