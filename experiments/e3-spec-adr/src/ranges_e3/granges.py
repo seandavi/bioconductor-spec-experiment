@@ -10,7 +10,7 @@ import numpy.typing as npt
 import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
-from ranges_e3._types import BoolArray, IntArray
+from ranges_e3._types import BoolArray, IntArray, MaskedInts
 from ranges_e3.hits import Hits
 from ranges_e3.iranges import IRanges, per_range
 from ranges_e3.rle import Rle
@@ -493,7 +493,7 @@ class GRanges:
     def find_overlaps(
         self, subject: GRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any",
         select: str = "all", ignore_strand: bool = False,
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         """GR.14."""
         qi, si = self._overlap_pairs(subject, max_gap, min_overlap, type, ignore_strand)
         if select == "all":
@@ -528,7 +528,7 @@ class GRanges:
     def _neighbors(
         self, subject: GRanges | None, select: str, allowed: tuple[str, ...], ignore_strand: bool, kernel: Any,
         pick: str, directional: bool = False,
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         if select not in allowed:
             raise ValueError(f"select must be one of {allowed}")
         target = self if subject is None else subject
@@ -553,7 +553,7 @@ class GRanges:
 
     def nearest(
         self, subject: GRanges | None = None, select: str = "arbitrary", ignore_strand: bool = False
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         """GR.15."""
         def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, _m: bool, q_idx: IntArray, s_idx: IntArray) -> Any:
             ids = (q_idx, s_idx) if subject is None else None
@@ -563,7 +563,7 @@ class GRanges:
 
     def precede(
         self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         """GR.15 (a ``-`` query looks toward lower coordinates)."""
         def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, mirrored: bool, *_: Any) -> Any:
             return _kernels.precede_pairs(-a, -d) if mirrored else _kernels.precede_pairs(b, c)
@@ -572,7 +572,7 @@ class GRanges:
 
     def follow(
         self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         """GR.15 (``first`` = highest index of a tie, ADR-0010)."""
         def kernel(a: IntArray, b: IntArray, c: IntArray, d: IntArray, mirrored: bool, *_: Any) -> Any:
             return _kernels.follow_pairs(-b, -c) if mirrored else _kernels.follow_pairs(a, d)
@@ -583,7 +583,7 @@ class GRanges:
             subject, select, ("first", "all"), ignore_strand, kernel, "last", directional=True
         )
 
-    def distance(self, y: GRanges, ignore_strand: bool = False) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+    def distance(self, y: GRanges, ignore_strand: bool = False) -> MaskedInts:
         """GR.15: masked (NA) where the pair is not comparable."""
         n, m = len(self), len(y)
         if n != m and 1 not in (n, m):

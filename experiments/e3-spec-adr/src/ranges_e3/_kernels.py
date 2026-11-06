@@ -8,7 +8,7 @@ from __future__ import annotations
 import numpy as np
 import numpy.typing as npt
 
-from ranges_e3._types import BoolArray, IntArray
+from ranges_e3._types import BoolArray, IntArray, MaskedInts
 
 # --- intra-range (spec 20-intra.md) ---
 
@@ -394,12 +394,12 @@ def _overlap_condition(
     return ok
 
 
-def masked_ints(values: IntArray, missing: BoolArray) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+def masked_ints(values: IntArray, missing: BoolArray) -> MaskedInts:
     """CONV.4: int64 array with NA positions masked."""
     return np.ma.MaskedArray(np.where(missing, 0, values).astype(np.int64), mask=missing)
 
 
-def select_pairs(qi: IntArray, si: IntArray, nq: int, select: str) -> np.ma.MaskedArray:  # type: ignore[type-arg]
+def select_pairs(qi: IntArray, si: IntArray, nq: int, select: str) -> MaskedInts:
     """OVL.8: per-query first/last/arbitrary subject from pairs sorted by (query, subject)."""
     if select not in ("first", "last", "arbitrary"):
         raise ValueError("select must be 'all', 'first', 'last' or 'arbitrary'")

@@ -11,3 +11,5 @@ IntArray = npt.NDArray[np.int64]
 BoolArray = npt.NDArray[np.bool_]
 # Anything accepted where a per-range integer argument is wanted (CONV.6).
 IntLike = int | np.integer[Any] | npt.ArrayLike
+# Integer result where NA positions are masked (CONV.4).
+MaskedInts = np.ma.MaskedArray[Any, np.dtype[np.int64]]

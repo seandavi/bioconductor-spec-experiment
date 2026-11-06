@@ -55,6 +55,7 @@ Ex: queries `a:5-10:{+,-,*}`, subjects `a:1-7:{+,-,*}` → `+`–`+`, `+`–`*`,
 **GR.15** `distance`: NA (masked) for non-comparable pairs, else NEAR.1. `nearest`, `precede`, `follow` choose among comparable subjects only. `nearest` is NEAR.2 over the comparable subjects (all ties kept; ADR-0011).
 `precede`/`follow` are directional. A pair is *mirrored* when the query or the subject is `-` (comparability already excludes `+`/`-`); `ignore_strand` mirrors nothing. For a mirrored pair `precede` means NEAR.4's condition (`e_s < s_q`, largest `e_s`) and `follow` means NEAR.3's (`s_s > e_q`, smallest `s_s`). So a `+` query uses `+`/`*` subjects unmirrored; a `-` query uses `-`/`*` subjects mirrored; a `*` query uses `+`/`*` subjects unmirrored *and* `-` subjects mirrored, then keeps only the candidates at minimal `distance` (ties from both sides are all kept). Tie rules stay with the operation: `precede first` = lowest index, `follow first` = highest.
 Ex: S=`a:1-3:+, a:10-12:+, a:20-22:-, a:30-32:*, b:5-7:+, a:40-42:-`; query `a:6-7:+` → precede 1, follow 0; `a:6-7:-` → precede NA, follow 2; `a:50-51:*` → precede 5 (the `-` subject, mirrored), follow 3; `b:1-2:-` → NA for all three (`b:+` is not comparable). Query `a:100-101:*`, S=`a:120-121:+, a:80-81:-` → precede `{0,1}` if equally distant, else the nearer.
+R treats a zero-width subject at position 1 (`[1,0]`) inconsistently in `precede`/`follow`; results involving it are implementation-defined.
 
 ## Order and coverage
 

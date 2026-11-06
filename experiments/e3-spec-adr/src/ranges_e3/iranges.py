@@ -10,7 +10,7 @@ import numpy.typing as npt
 import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
-from ranges_e3._types import BoolArray, IntArray
+from ranges_e3._types import BoolArray, IntArray, MaskedInts
 from ranges_e3.hits import Hits
 from ranges_e3.rle import Rle
 
@@ -302,7 +302,7 @@ class IRanges:
 
     def find_overlaps(
         self, subject: IRanges, max_gap: int = -1, min_overlap: int = 0, type: str = "any", select: str = "all"
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         """OVL.2-9."""
         qi, si = self._overlap_pairs(subject, max_gap, min_overlap, type)
         if select == "all":
@@ -333,7 +333,7 @@ class IRanges:
         select: str,
         allowed: tuple[str, ...],
         pairs: Any,
-    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    ) -> Hits | MaskedInts:
         if select not in allowed:
             raise ValueError(f"select must be one of {allowed}")
         target = self if subject is None else subject
@@ -342,7 +342,7 @@ class IRanges:
             return Hits(qi, si, len(self), len(target))
         return _kernels.select_pairs(qi, si, len(self), "last" if select == "last" else "first")
 
-    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | MaskedInts:
         """NEAR.2. ``subject=None`` searches ``self`` excluding each range itself."""
         return self._neighbors(
             subject, select, ("arbitrary", "all"),
@@ -352,13 +352,13 @@ class IRanges:
             ),
         )
 
-    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | MaskedInts:
         """NEAR.3."""
         return self._neighbors(
             subject, select, ("first", "all"), lambda t: _kernels.precede_pairs(self._end, t._start)
         )
 
-    def follow(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+    def follow(self, subject: IRanges | None = None, select: str = "first") -> Hits | MaskedInts:
         """NEAR.4 (``first`` is the highest-index tie, ADR-0010)."""
         if select not in ("first", "all"):
             raise ValueError("select must be 'first' or 'all'")
