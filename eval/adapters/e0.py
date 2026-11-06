@@ -61,10 +61,9 @@ R_TYPE_OF_NUMPY_KIND = {"i": "int", "u": "int", "f": "dbl", "b": "lgl", "O": "ch
 # ---------------------------------------------------------------- value conversion
 
 def num_array(rv: RVector) -> np.ndarray:
-    """int/dbl/lgl vector -> ndarray; NA becomes NaN in a float array (the port rejects it)."""
-    vals = rv.list()
-    if any(v is None for v in vals):
-        return np.array([math.nan if v is None else v for v in vals], dtype=np.float64)
+    """int/dbl/lgl vector -> ndarray; the port has no NA in numeric arrays, so a vector holding NA is unsupported."""
+    if any(v is None for v in rv.values):
+        raise Unsupported(f"NA in {rv.type} vector argument")
     return rv.np()
 
 
@@ -277,6 +276,8 @@ class Adapter(AdapterBase):
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING,
                    seqlengths=MISSING, _mcols=()):
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = {k: to_arg(v) for k, v in (("ranges", ranges), ("seqinfo", seqinfo)) if v is not MISSING}
         # atomic seqnames / strand go as lists, so that NA stays distinct from Python None (R NULL)
         for k, v in (("seqnames", seqnames), ("strand", strand)):
@@ -402,6 +403,8 @@ class Adapter(AdapterBase):
     def op_c(self, *dots, x):
         if not isinstance(x, PORT_OBJECTS):
             raise Unsupported("c: not a port object")
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         return concat(x, *dots)
 
     # ---- intra-range -----------------------------------------------------------------------------------------
@@ -428,6 +431,9 @@ class Adapter(AdapterBase):
         return shift_revmap_to_r_base(self._method("reduce", x, **kw))
 
     def op_gaps(self, *, x, **kw):
+        for bound in ("start", "end"):
+            if isinstance(kw.get(bound), RVector) and any(v is None for v in kw[bound].values):
+                raise Unsupported(f"NA bound: argument {bound}")  # the port has no NA bound; NaN / None mean other things
         return self._method("gaps", x, **kw)
 
     def op_disjoin(self, *, x, **kw):
@@ -482,6 +488,9 @@ class Adapter(AdapterBase):
 
     # ---- coverage ------------------------------------------------------------------------------------------------------------------------
     def op_coverage(self, *, x, **kw):
+        for name in ("weight", "shift"):
+            if isinstance(kw.get(name), RVector) and kw[name].type == "chr":
+                raise Unsupported(f"coverage: {name} as an mcols column name")  # the port takes numbers only
         width = kw.get("width")
         if isinstance(width, RVector) and (len(width) > 1 or width.names is not None):
             if width.names is None:
