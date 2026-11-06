@@ -85,3 +85,12 @@ def test_nearest_ties_are_minimum_distance(seed: int) -> None:
     for i, ties in enumerate(nearest_ties(qs, qw, ss, sw)):
         d = pair_distance(qs[i], qs[i] + qw[i] - 1, ss, ss + sw - 1)
         assert set(ties.tolist()) == set(np.nonzero(d == d.min())[0].tolist())
+
+
+def test_distance_adjacent_is_one_since_iranges_2_47_3() -> None:
+    from ranges_e2 import IRanges
+
+    x = IRanges(start=[1, 1, 1, 1], width=[5, 5, 5, 5])
+    y = IRanges(start=[3, 6, 7, 9], width=[6, 3, 2, 4])
+    assert x.distance(y).tolist() == [0, 1, 2, 4]
+    assert y.distance(x).tolist() == [0, 1, 2, 4]
