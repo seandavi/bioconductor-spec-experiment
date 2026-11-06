@@ -81,7 +81,7 @@
 {"id":"e1/coverage/cov-weight-na-error","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/coverage/cov-weight-negative","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-recycle-warns","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"'weight' has length 2, expected 1 or 3","origin":"port"}}
-{"id":"e1/coverage/cov-weight-string-error","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/coverage/cov-weight-string-error","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name on IRanges"}}
 {"id":"e1/coverage/cov-weight-vector","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-zero","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-zero-width-padded","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
@@ -430,7 +430,7 @@
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"'shift' has length 2, expected 1 or 3","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-lgl","source":"e1","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"RleList","kinds":["r_error_port_value"]}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-gr-coverage-shift-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-gr-coverage-shift-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-NA","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-dbl","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
@@ -724,14 +724,14 @@
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"'shift' has length 2, expected 1 or 3","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-lgl","source":"e1","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"Rle","kinds":["r_error_port_value"]}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-ir-coverage-shift-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-ir-coverage-shift-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-NA","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-dbl","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"'weight' has length 2, expected 1 or 3","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-lgl","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-ir-coverage-weight-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-ir-coverage-weight-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name on IRanges"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-NA","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"width: NA not allowed","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-dbl","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"width: non-integer value","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
@@ -4426,7 +4426,7 @@
 {"id":"e1/redteam_metadata/rt-meta-gr-construct-mcols-scalar","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 1 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-construct-mcols-zero","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"R1"}
 {"id":"e1/redteam_metadata/rt-meta-gr-coverage-na-column","source":"e1-redteam","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].type","r":"'int'","port":"'dbl'","kinds":["length","type"]}}
-{"id":"e1/redteam_metadata/rt-meta-gr-coverage-shift-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"invalid literal for int() with base 10: 'offset'","origin":"port"}}
+{"id":"e1/redteam_metadata/rt-meta-gr-coverage-shift-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/redteam_metadata/rt-meta-gr-flank-na-logical","source":"e1-redteam","op":"flank","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"GRanges","kinds":["r_error_port_value"]}}
 {"id":"e1/redteam_metadata/rt-meta-gr-nonreserved-control","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"exact"}
@@ -4451,7 +4451,7 @@
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-nondivisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-scalar","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 1 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-zero","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"R1"}
-{"id":"e1/redteam_metadata/rt-meta-ir-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"TypeError","message":"'weight' must be numeric","origin":"port"}}
+{"id":"e1/redteam_metadata/rt-meta-ir-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name on IRanges"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-flank-na-logical","source":"e1-redteam","op":"flank","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"IRanges","kinds":["r_error_port_value"]}}
 {"id":"e1/redteam_metadata/rt-meta-ir-set-mcols-divisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 4","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-set-mcols-nondivisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 3","origin":"port"}}
@@ -4561,7 +4561,7 @@
 {"id":"e2/granges-core/gr.mcols.listfactor.c","source":"e2","op":"c","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.get","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.subset","source":"e2","op":"[","outcome":"pass","rule":"exact"}
-{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"6","port":"0","kinds":["value"]}}
+{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.null","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.recycles-divisor","source":"e2","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 6","origin":"port"}}
@@ -6147,7 +6147,7 @@
 {"id":"heldout/GRanges/GRanges/14","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/15","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/16","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/18","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/19","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/2","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6169,10 +6169,10 @@
 {"id":"heldout/GRanges/GRanges/34","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/35","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqlengths"}}
 {"id":"heldout/GRanges/GRanges/36","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/38","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/39","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/40","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/41","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/42","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6208,7 +6208,7 @@
 {"id":"heldout/GRanges/GRanges/7","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/70","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/71","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/73","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/74","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"1","port":"0","kinds":["length"]}}
 {"id":"heldout/GRanges/GRanges/75","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6224,8 +6224,8 @@
 {"id":"heldout/GRanges/GRanges/84","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/85","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/86","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute 'seqnames'","origin":"port"}}
-{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute 'seqnames'","origin":"port"}}
+{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
+{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/89","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/9","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"2","port":"0","kinds":["length"]}}
 {"id":"heldout/IRanges/IRanges/0","source":"heldout","op":"IRanges","outcome":"pass","rule":"R1"}
@@ -6390,7 +6390,7 @@
 {"id":"heldout/c/GRanges/39","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/40","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/41","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
-{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"pass","rule":"R1"}
+{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/GRanges/43","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:ignore_mcols"}}
 {"id":"heldout/c/GRanges/44","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/45","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
@@ -6427,7 +6427,7 @@
 {"id":"heldout/c/IRanges/23","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/24","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/25","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
-{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute '_names'","origin":"port"}}
+{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/IRanges/27","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/28","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/29","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
@@ -6603,7 +6603,7 @@
 {"id":"heldout/coverage/IRanges/47","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/48","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/49","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"heldout/coverage/IRanges/5","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:weight: port takes a scalar, case passes length 4"}}
+{"id":"heldout/coverage/IRanges/5","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name on IRanges"}}
 {"id":"heldout/coverage/IRanges/50","source":"heldout","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"Rle","kinds":["r_error_port_value"]}}
 {"id":"heldout/coverage/IRanges/51","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/52","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
@@ -7414,14 +7414,14 @@
 {"id":"heldout/mcols/GRanges/43","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/44","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/45","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
-{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"3","port":"0","kinds":["value"]}}
+{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/47","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/48","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.rownames","r":"\"['a', 'b', 'c']\"","port":"'None'","kinds":["names"]}}
 {"id":"heldout/mcols/GRanges/49","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/50","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/51","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/52","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
-{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"5","port":"0","kinds":["names","value"]}}
+{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/54","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/55","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/56","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}

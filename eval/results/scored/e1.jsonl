@@ -4561,7 +4561,7 @@
 {"id":"e2/granges-core/gr.mcols.listfactor.c","source":"e2","op":"c","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.get","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.subset","source":"e2","op":"[","outcome":"pass","rule":"exact"}
-{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'DataFrame'","port":"'NULL'","kinds":["kind"]}}
+{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.null","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.recycles-divisor","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
@@ -6147,7 +6147,7 @@
 {"id":"heldout/GRanges/GRanges/14","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/15","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/16","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/18","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/19","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/2","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6169,10 +6169,10 @@
 {"id":"heldout/GRanges/GRanges/34","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/35","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/36","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/38","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/39","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/40","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/41","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/42","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6208,7 +6208,7 @@
 {"id":"heldout/GRanges/GRanges/7","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/70","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/71","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/73","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/74","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"1","port":"0","kinds":["length"]}}
 {"id":"heldout/GRanges/GRanges/75","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6224,8 +6224,8 @@
 {"id":"heldout/GRanges/GRanges/84","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/85","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/86","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'str' object has no attribute 'seqnames'","origin":"port"}}
-{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'str' object has no attribute 'seqnames'","origin":"port"}}
+{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
+{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/89","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/9","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"2","port":"0","kinds":["length"]}}
 {"id":"heldout/IRanges/IRanges/0","source":"heldout","op":"IRanges","outcome":"pass","rule":"R1"}
@@ -6390,7 +6390,7 @@
 {"id":"heldout/c/GRanges/39","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/40","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/41","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
-{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"pass","rule":"R1"}
+{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/GRanges/43","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:ignore_mcols"}}
 {"id":"heldout/c/GRanges/44","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/45","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
@@ -6427,7 +6427,7 @@
 {"id":"heldout/c/IRanges/23","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/24","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/25","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
-{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"TypeError","message":"concat needs a non-empty sequence of IRanges","origin":"port"}}
+{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/IRanges/27","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/28","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/29","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
@@ -7414,14 +7414,14 @@
 {"id":"heldout/mcols/GRanges/43","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/44","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/45","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
-{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'DataFrame'","port":"'NULL'","kinds":["kind"]}}
+{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/47","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/48","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.rownames","r":"\"['a', 'b', 'c']\"","port":"'None'","kinds":["names"]}}
 {"id":"heldout/mcols/GRanges/49","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/50","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/51","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/52","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
-{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'DataFrame'","port":"'NULL'","kinds":["kind"]}}
+{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/54","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/55","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/56","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}

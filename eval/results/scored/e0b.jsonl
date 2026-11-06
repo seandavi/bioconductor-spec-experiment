@@ -81,7 +81,7 @@
 {"id":"e1/coverage/cov-weight-na-error","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/coverage/cov-weight-negative","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-recycle-warns","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be scalar or one per range","origin":"port"}}
-{"id":"e1/coverage/cov-weight-string-error","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/coverage/cov-weight-string-error","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/coverage/cov-weight-vector","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-zero","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/coverage/cov-weight-zero-width-padded","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
@@ -301,7 +301,7 @@
 {"id":"e1/granges_ops/gr-coverage-shift-per-range","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"operands could not be broadcast together with shapes (3,) (4,) ","origin":"port"}}
 {"id":"e1/granges_ops/gr-coverage-strand-ignored","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/granges_ops/gr-coverage-weight","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/granges_ops/gr-coverage-weight-mcols-column","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
+{"id":"e1/granges_ops/gr-coverage-weight-mcols-column","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/granges_ops/gr-coverage-weight-vector","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/granges_ops/gr-coverage-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/granges_ops/gr-coverage-width-per-seqlevel","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()","origin":"port"}}
@@ -430,14 +430,14 @@
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"IndexError","message":"boolean index did not match indexed array along axis 0; size of axis is 1 but size of corresponding boolean axis is 2","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-lgl","source":"e1","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"RleList","kinds":["r_error_port_value"]}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-shift-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-gr-coverage-shift-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-gr-coverage-shift-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-NA","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-dbl","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be scalar or one per range","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-lgl","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-gr-coverage-weight-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-gr-coverage-weight-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-gr-coverage-weight-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-width-NA","source":"e1","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"RleList","kinds":["r_error_port_value"]}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-width-dbl","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"TypeError","message":"expected a sequence of integers or a single integer, got '2.5'","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-gr-coverage-width-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
@@ -724,14 +724,14 @@
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"operands could not be broadcast together with shapes (3,) (2,) ","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-lgl","source":"e1","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"Rle","kinds":["r_error_port_value"]}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-shift-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-ir-coverage-shift-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-ir-coverage-shift-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-NA","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-dbl","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-len2","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be scalar or one per range","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-lgl","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-weight-neg","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_bad_args/bad-ir-coverage-weight-str","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"e1/grid_bad_args/bad-ir-coverage-weight-str","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-NA","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-dbl","source":"e1","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"TypeError","message":"expected a sequence of integers or a single integer, got '2.5'","origin":"port"}}
 {"id":"e1/grid_bad_args/bad-ir-coverage-width-empty","source":"e1","op":"coverage","outcome":"pass","rule":"R1"}
@@ -1783,61 +1783,61 @@
 {"id":"e1/grid_coverage_na/covna0-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna0-partition-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna0-partition-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna1-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna1-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna1-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna1-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[4]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna1-partition-num-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
+{"id":"e1/grid_coverage_na/covna1-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna1-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna1-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna1-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna1-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna10-partition-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna10-partition-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna10-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna10-partition-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna10-partition-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna11-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"3","port":"2","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna11-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna11-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values","r":"3","port":"2","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna11-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna11-partition-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna11-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna11-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna11-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna11-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna11-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna12-partition-offset-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna12-partition-offset-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna12-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna12-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna12-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna13-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna13-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna13-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna13-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna13-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna13-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna13-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna13-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna13-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna13-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna14-partition-offset-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna14-partition-offset-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna14-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna14-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna14-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna15-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna15-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna15-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna15-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna15-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna15-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna15-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna15-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna15-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna15-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna16-partition-offset-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna16-partition-offset-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna16-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna16-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna16-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna17-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna17-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna17-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna17-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna17-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna17-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna17-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna17-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna17-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna17-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna18-partition-offset-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna18-partition-offset-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna18-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna18-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna18-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna19-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna19-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna19-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna19-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"2","port":"1","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna19-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna19-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna19-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna19-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna19-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna19-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna2-partition-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna2-partition-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna2-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
@@ -1848,106 +1848,106 @@
 {"id":"e1/grid_coverage_na/covna20-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna20-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna20-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna21-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna21-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna21-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna21-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna21-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna21-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna21-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna21-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna21-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna21-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna22-partition-offset-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna22-partition-offset-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna22-partition-offset-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna22-partition-offset-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna22-partition-offset-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna23-partition-offset-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna23-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna23-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna23-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna23-partition-offset-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna23-partition-offset-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna23-partition-offset-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna23-partition-offset-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna23-partition-offset-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna23-partition-offset-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna24-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna24-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna24-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna24-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna24-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna25-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna25-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna25-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna25-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna25-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna25-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna25-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna25-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna25-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna25-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna26-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna26-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna26-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna26-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna26-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna27-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna27-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna27-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna27-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna27-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna27-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna27-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna27-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna27-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna27-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna28-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna28-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna28-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna28-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna28-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna29-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna29-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna29-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna29-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"2","port":"1","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna29-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna3-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna3-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna3-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna3-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna3-partition-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna29-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna29-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna29-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna29-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna29-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna3-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna3-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna3-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna3-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna3-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna30-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna30-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna30-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna30-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna30-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna31-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna31-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna31-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna31-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna31-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna31-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna31-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna31-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna31-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna31-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna32-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna32-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna32-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna32-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna32-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna33-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna33-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna33-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna33-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna33-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna33-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna33-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna33-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna33-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna33-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna34-gap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna34-gap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna34-gap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna34-gap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna34-gap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna35-gap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna35-gap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna35-gap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna35-gap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna35-gap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna35-gap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna35-gap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna35-gap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna35-gap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna35-gap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna36-overlap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna36-overlap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna36-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna36-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna36-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna37-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna37-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna37-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna37-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna37-overlap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna37-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna37-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna37-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna37-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna37-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna38-overlap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna38-overlap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna38-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna38-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna38-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna39-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna39-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna39-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna39-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna39-overlap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna39-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna39-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna39-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna39-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna39-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna4-partition-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna4-partition-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna4-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
@@ -1958,106 +1958,106 @@
 {"id":"e1/grid_coverage_na/covna40-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna40-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna40-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna41-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna41-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna41-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna41-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna41-overlap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna41-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna41-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna41-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna41-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna41-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna42-overlap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna42-overlap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna42-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna42-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna42-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna43-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna43-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna43-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna43-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna43-overlap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna43-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna43-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna43-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna43-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna43-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna44-overlap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna44-overlap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna44-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna44-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna44-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna45-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna45-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna45-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna45-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna45-overlap-num-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
+{"id":"e1/grid_coverage_na/covna45-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna45-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna45-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna45-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna45-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna46-overlap-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna46-overlap-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna46-overlap-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna46-overlap-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna46-overlap-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna47-overlap-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna47-overlap-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna47-overlap-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna47-overlap-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna47-overlap-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna47-overlap-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna47-overlap-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna47-overlap-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna47-overlap-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna47-overlap-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna48-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna48-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna48-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna48-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna48-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna49-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"1","port":"0","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna49-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_coverage_na/covna49-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_coverage_na/covna49-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"1","port":"0","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna49-empty-inside-num-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"e1/grid_coverage_na/covna5-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"3","port":"1","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna5-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values","r":"3","port":"1","kinds":["length"]}}
-{"id":"e1/grid_coverage_na/covna5-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna5-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna5-partition-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna49-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna49-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna49-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna49-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna49-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna5-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna5-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna5-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna5-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna5-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna50-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna50-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna50-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna50-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna50-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna51-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna51-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna51-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna51-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna51-empty-inside-num-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
+{"id":"e1/grid_coverage_na/covna51-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna51-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna51-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna51-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna51-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna52-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna52-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna52-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna52-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna52-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna53-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna53-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna53-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna53-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna53-empty-inside-num-width","source":"e1","op":"coverage","outcome":"pass","rule":"exact"}
+{"id":"e1/grid_coverage_na/covna53-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna53-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna53-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna53-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna53-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna54-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna54-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna54-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna54-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna54-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna55-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna55-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna55-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna55-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna55-empty-inside-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna55-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna55-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna55-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna55-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna55-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna56-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna56-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna56-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna56-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna56-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna57-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna57-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna57-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna57-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna57-empty-inside-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna57-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna57-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna57-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna57-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna57-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna58-empty-inside-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna58-empty-inside-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna58-empty-inside-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna58-empty-inside-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna58-empty-inside-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna59-empty-inside-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna59-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna59-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna59-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna59-empty-inside-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna59-empty-inside-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna59-empty-inside-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna59-empty-inside-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna59-empty-inside-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna59-empty-inside-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna6-partition-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna6-partition-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna6-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
@@ -2068,76 +2068,76 @@
 {"id":"e1/grid_coverage_na/covna60-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna60-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna60-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna61-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna61-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna61-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna61-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna61-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna61-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna61-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna61-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna61-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna61-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna62-nested-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna62-nested-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna62-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna62-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna62-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna63-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna63-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna63-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna63-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna63-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna63-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna63-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna63-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna63-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna63-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna64-nested-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna64-nested-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna64-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna64-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna64-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna65-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna65-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna65-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna65-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna65-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna65-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna65-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna65-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna65-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna65-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna66-nested-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna66-nested-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna66-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna66-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna66-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna67-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna67-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna67-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna67-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna67-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna67-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna67-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna67-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna67-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna67-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna68-nested-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna68-nested-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna68-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna68-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna68-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna69-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna69-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna69-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna69-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna69-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna7-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna7-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna7-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna7-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna7-partition-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna69-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna69-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna69-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna69-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna69-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna7-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna7-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna7-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna7-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna7-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna70-nested-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna70-nested-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna70-nested-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna70-nested-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna70-nested-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna71-nested-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna71-nested-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna71-nested-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[1].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna71-nested-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[1]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna71-nested-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna71-nested-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna71-nested-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna71-nested-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna71-nested-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna71-nested-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna8-partition-int","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna8-partition-int-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna8-partition-int-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna8-partition-int-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_coverage_na/covna8-partition-int-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
-{"id":"e1/grid_coverage_na/covna9-partition-num","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna9-partition-num-gr","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna9-partition-num-gr2","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[2]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna9-partition-num-shift","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[4]","r":"None","port":"'NaN'","kinds":["value"]}}
-{"id":"e1/grid_coverage_na/covna9-partition-num-width","source":"e1","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[3]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/grid_coverage_na/covna9-partition-num","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna9-partition-num-gr","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna9-partition-num-gr2","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna9-partition-num-shift","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
+{"id":"e1/grid_coverage_na/covna9-partition-num-width","source":"e1","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/grid_granges/grid-gr-count-equal","source":"e1","op":"countOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_granges/grid-gr-count-qlong","source":"e1","op":"countOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e1/grid_granges/grid-gr-count-qshort","source":"e1","op":"countOverlaps","outcome":"pass","rule":"exact"}
@@ -4379,7 +4379,7 @@
 {"id":"e1/redteam_edges/rt-edge-all-zero-gaps","source":"e1-redteam","op":"gaps","outcome":"pass","rule":"exact"}
 {"id":"e1/redteam_edges/rt-edge-all-zero-range","source":"e1-redteam","op":"range","outcome":"pass","rule":"exact"}
 {"id":"e1/redteam_edges/rt-edge-all-zero-reduce","source":"e1-redteam","op":"reduce","outcome":"pass","rule":"exact"}
-{"id":"e1/redteam_edges/rt-edge-gr-coverage-overlap-na","source":"e1-redteam","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/redteam_edges/rt-edge-gr-coverage-overlap-na","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/redteam_edges/rt-edge-gr-coverage-typed-na","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/redteam_edges/rt-edge-gr-default-empty","source":"e1-redteam","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"GRanges: port requires seqnames and ranges"}}
 {"id":"e1/redteam_edges/rt-edge-gr-empty-coverage","source":"e1-redteam","op":"coverage","outcome":"pass","rule":"exact"}
@@ -4393,7 +4393,7 @@
 {"id":"e1/redteam_edges/rt-edge-gr-negative-follow","source":"e1-redteam","op":"follow","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"Hits","kinds":["r_error_port_value"]}}
 {"id":"e1/redteam_edges/rt-edge-gr-negative-nearest","source":"e1-redteam","op":"nearest","outcome":"mismatch","rule":"R2","detail":{"path":"$.pairs","r":"(1, 3)","port":"(1, 4)","kinds":["length"]}}
 {"id":"e1/redteam_edges/rt-edge-gr-negative-precede","source":"e1-redteam","op":"precede","outcome":"mismatch","rule":"R2","detail":{"path":"$.pairs","r":"0","port":"(1, 4)","kinds":["length"]}}
-{"id":"e1/redteam_edges/rt-edge-ir-coverage-overlap-na","source":"e1-redteam","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"e1/redteam_edges/rt-edge-ir-coverage-overlap-na","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/redteam_edges/rt-edge-ir-coverage-typed-na","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"e1/redteam_edges/rt-edge-ir-default-empty","source":"e1-redteam","op":"IRanges","outcome":"pass","rule":"exact"}
 {"id":"e1/redteam_edges/rt-edge-ir-empty-coverage","source":"e1-redteam","op":"coverage","outcome":"pass","rule":"exact"}
@@ -4425,9 +4425,9 @@
 {"id":"e1/redteam_metadata/rt-meta-gr-construct-mcols-nondivisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-construct-mcols-scalar","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 1 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-construct-mcols-zero","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"R1"}
-{"id":"e1/redteam_metadata/rt-meta-gr-coverage-na-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
-{"id":"e1/redteam_metadata/rt-meta-gr-coverage-shift-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"UFuncTypeError","message":"ufunc 'add' did not contain a loop with signature matching types (dtype('int64'), dtype('<U6')) -> None","origin":"port"}}
-{"id":"e1/redteam_metadata/rt-meta-gr-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
+{"id":"e1/redteam_metadata/rt-meta-gr-coverage-na-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
+{"id":"e1/redteam_metadata/rt-meta-gr-coverage-shift-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
+{"id":"e1/redteam_metadata/rt-meta-gr-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-flank-na-logical","source":"e1-redteam","op":"flank","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument start"}}
 {"id":"e1/redteam_metadata/rt-meta-gr-nonreserved-control","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e1/redteam_metadata/rt-meta-gr-pintersect-existing-hit-drop","source":"e1-redteam","op":"pintersect","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:drop_nohit_ranges"}}
@@ -4451,7 +4451,7 @@
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-nondivisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-scalar","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 1 rows, expected 3","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-construct-mcols-zero","source":"e1-redteam","op":"mcols<-","outcome":"pass","rule":"R1"}
-{"id":"e1/redteam_metadata/rt-meta-ir-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
+{"id":"e1/redteam_metadata/rt-meta-ir-coverage-weight-column","source":"e1-redteam","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-flank-na-logical","source":"e1-redteam","op":"flank","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument start"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-set-mcols-divisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 4","origin":"port"}}
 {"id":"e1/redteam_metadata/rt-meta-ir-set-mcols-nondivisor","source":"e1-redteam","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 3","origin":"port"}}
@@ -4561,7 +4561,7 @@
 {"id":"e2/granges-core/gr.mcols.listfactor.c","source":"e2","op":"c","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.get","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.listfactor.subset","source":"e2","op":"[","outcome":"pass","rule":"exact"}
-{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"6","port":"0","kinds":["value"]}}
+{"id":"e2/granges-core/gr.mcols.none","source":"e2","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.null","source":"e2","op":"mcols<-","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-core/gr.mcols.set.recycles-divisor","source":"e2","op":"mcols<-","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"mcols has 2 rows, expected 6","origin":"port"}}
@@ -4597,9 +4597,9 @@
 {"id":"e2/granges-coverage/gr.cov.shift.no-seqlengths","source":"e2","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-coverage/gr.cov.shift.scalar","source":"e2","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-coverage/gr.cov.shift.vector","source":"e2","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"operands could not be broadcast together with shapes (3,) (6,) ","origin":"port"}}
-{"id":"e2/granges-coverage/gr.cov.weight.column-character","source":"e2","op":"coverage","outcome":"pass","rule":"R1"}
-{"id":"e2/granges-coverage/gr.cov.weight.column-dbl","source":"e2","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
-{"id":"e2/granges-coverage/gr.cov.weight.column-int","source":"e2","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
+{"id":"e2/granges-coverage/gr.cov.weight.column-character","source":"e2","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
+{"id":"e2/granges-coverage/gr.cov.weight.column-dbl","source":"e2","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
+{"id":"e2/granges-coverage/gr.cov.weight.column-int","source":"e2","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e2/granges-coverage/gr.cov.weight.scalar","source":"e2","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-coverage/gr.cov.weight.vector-dbl","source":"e2","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e2/granges-coverage/gr.cov.weight.vector-int","source":"e2","op":"coverage","outcome":"pass","rule":"exact"}
@@ -5477,7 +5477,7 @@
 {"id":"e4/granges-coverage/gr-cov-strand-ignored","source":"e4","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e4/granges-coverage/gr-cov-unused-level","source":"e4","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e4/granges-coverage/gr-cov-weight-cyclic","source":"e4","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be scalar or one per range","origin":"port"}}
-{"id":"e4/granges-coverage/gr-cov-weight-mcols-name","source":"e4","op":"coverage","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"weight must be numeric","origin":"port"}}
+{"id":"e4/granges-coverage/gr-cov-weight-mcols-name","source":"e4","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"e4/granges-coverage/gr-cov-weight-scalar","source":"e4","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"e4/granges-coverage/gr-cov-weight-too-long","source":"e4","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"e4/granges-coverage/gr-cov-weight-vector","source":"e4","op":"coverage","outcome":"pass","rule":"exact"}
@@ -6147,7 +6147,7 @@
 {"id":"heldout/GRanges/GRanges/14","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/15","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/16","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/17","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/18","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/19","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/2","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6169,10 +6169,10 @@
 {"id":"heldout/GRanges/GRanges/34","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/35","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqlengths"}}
 {"id":"heldout/GRanges/GRanges/36","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/37","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/38","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/39","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/4","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/40","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/41","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/42","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6208,7 +6208,7 @@
 {"id":"heldout/GRanges/GRanges/7","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/70","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/71","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
-{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
+{"id":"heldout/GRanges/GRanges/72","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/73","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/74","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"1","port":"0","kinds":["length"]}}
 {"id":"heldout/GRanges/GRanges/75","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
@@ -6224,8 +6224,8 @@
 {"id":"heldout/GRanges/GRanges/84","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/85","source":"heldout","op":"GRanges","outcome":"pass","rule":"R1"}
 {"id":"heldout/GRanges/GRanges/86","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
-{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute 'seqnames'","origin":"port"}}
-{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute 'seqnames'","origin":"port"}}
+{"id":"heldout/GRanges/GRanges/87","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
+{"id":"heldout/GRanges/GRanges/88","source":"heldout","op":"GRanges","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:seqinfo as a character vector; the port takes a Seqinfo"}}
 {"id":"heldout/GRanges/GRanges/89","source":"heldout","op":"GRanges","outcome":"pass","rule":"exact"}
 {"id":"heldout/GRanges/GRanges/9","source":"heldout","op":"GRanges","outcome":"mismatch","rule":"exact","detail":{"path":"$.mcols","r":"2","port":"0","kinds":["length"]}}
 {"id":"heldout/IRanges/IRanges/0","source":"heldout","op":"IRanges","outcome":"pass","rule":"R1"}
@@ -6390,7 +6390,7 @@
 {"id":"heldout/c/GRanges/39","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/40","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"cannot combine: mcols columns differ: [('tag',), ('m2',)]","origin":"port"}}
 {"id":"heldout/c/GRanges/41","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
-{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"pass","rule":"R1"}
+{"id":"heldout/c/GRanges/42","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/GRanges/43","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:ignore_mcols"}}
 {"id":"heldout/c/GRanges/44","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/GRanges/45","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"SchemaError","message":"type Int64 is incompatible with expected type String\n\nThis error occurred with the following context stack:\n\t[1] failed to vstack column 'm1'\n","origin":"port"}}
@@ -6427,7 +6427,7 @@
 {"id":"heldout/c/IRanges/23","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/24","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/25","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"cannot combine: mcols columns differ: [(), ('m2', 'flag')]","origin":"port"}}
-{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"AttributeError","message":"'RVector' object has no attribute '_start'","origin":"port"}}
+{"id":"heldout/c/IRanges/26","source":"heldout","op":"c","outcome":"unsupported","rule":"row1","detail":{"reason":"c: atomic operand"}}
 {"id":"heldout/c/IRanges/27","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/28","source":"heldout","op":"c","outcome":"pass","rule":"exact"}
 {"id":"heldout/c/IRanges/29","source":"heldout","op":"c","outcome":"port_error_unexpected","rule":"row5","detail":{"type":"ValueError","message":"cannot combine: mcols columns differ: [(), (), ('score',)]","origin":"port"}}
@@ -6538,7 +6538,7 @@
 {"id":"heldout/coverage/GRanges/77","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/GRanges/78","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/GRanges/79","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
-{"id":"heldout/coverage/GRanges/80","source":"heldout","op":"coverage","outcome":"mismatch","rule":"row4","detail":{"path":"$","r":"error","port":"RleList","kinds":["r_error_port_value"]}}
+{"id":"heldout/coverage/GRanges/80","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"heldout/coverage/GRanges/81","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/GRanges/82","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/GRanges/83","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
@@ -6547,11 +6547,11 @@
 {"id":"heldout/coverage/GRanges/86","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/GRanges/87","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/GRanges/88","source":"heldout","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values","r":"5","port":"4","kinds":["length"]}}
-{"id":"heldout/coverage/GRanges/89","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
+{"id":"heldout/coverage/GRanges/89","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"heldout/coverage/GRanges/90","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/GRanges/91","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/GRanges/92","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"heldout/coverage/GRanges/93","source":"heldout","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"heldout/coverage/GRanges/93","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"heldout/coverage/GRanges/94","source":"heldout","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.elements[0].values","r":"7","port":"6","kinds":["length"]}}
 {"id":"heldout/coverage/GRanges/95","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/GRanges/96","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
@@ -6583,27 +6583,27 @@
 {"id":"heldout/coverage/IRanges/29","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/3","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/30","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
-{"id":"heldout/coverage/IRanges/31","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
+{"id":"heldout/coverage/IRanges/31","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: shift as an mcols column name"}}
 {"id":"heldout/coverage/IRanges/32","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/33","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/34","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/35","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/36","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/37","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
-{"id":"heldout/coverage/IRanges/38","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
+{"id":"heldout/coverage/IRanges/38","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"heldout/coverage/IRanges/39","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/4","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/40","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/41","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/42","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/43","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
-{"id":"heldout/coverage/IRanges/44","source":"heldout","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[9]","r":"None","port":"'NaN'","kinds":["value"]}}
+{"id":"heldout/coverage/IRanges/44","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"NA in vector argument weight"}}
 {"id":"heldout/coverage/IRanges/45","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/46","source":"heldout","op":"coverage","outcome":"mismatch","rule":"exact","detail":{"path":"$.values","r":"10","port":"9","kinds":["length"]}}
 {"id":"heldout/coverage/IRanges/47","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/48","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:method"}}
 {"id":"heldout/coverage/IRanges/49","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
-{"id":"heldout/coverage/IRanges/5","source":"heldout","op":"coverage","outcome":"pass","rule":"R1"}
+{"id":"heldout/coverage/IRanges/5","source":"heldout","op":"coverage","outcome":"unsupported","rule":"row1","detail":{"reason":"coverage: weight as an mcols column name"}}
 {"id":"heldout/coverage/IRanges/50","source":"heldout","op":"coverage","outcome":"pass","rule":"R1"}
 {"id":"heldout/coverage/IRanges/51","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
 {"id":"heldout/coverage/IRanges/52","source":"heldout","op":"coverage","outcome":"pass","rule":"exact"}
@@ -7414,14 +7414,14 @@
 {"id":"heldout/mcols/GRanges/43","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/44","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/45","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
-{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"3","port":"0","kinds":["value"]}}
+{"id":"heldout/mcols/GRanges/46","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/47","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/48","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.rownames","r":"\"['a', 'b', 'c']\"","port":"'None'","kinds":["names"]}}
 {"id":"heldout/mcols/GRanges/49","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/50","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/51","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/52","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
-{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"mismatch","rule":"exact","detail":{"path":"$.nrow","r":"5","port":"0","kinds":["names","value"]}}
+{"id":"heldout/mcols/GRanges/53","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/54","source":"heldout","op":"mcols","outcome":"pass","rule":"exact"}
 {"id":"heldout/mcols/GRanges/55","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
 {"id":"heldout/mcols/GRanges/56","source":"heldout","op":"mcols","outcome":"unsupported","rule":"row1","detail":{"reason":"argument:use_names"}}
