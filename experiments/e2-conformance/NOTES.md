@@ -26,3 +26,18 @@
 - p* set ops do not recycle length-1 (error); `distance` does (warns on fractional). `psetdiff` errors whenever y lies strictly inside x.
 - coverage: positions < 1 silently dropped; NA weight gives garbage (not pinned).
 - reduce/disjoin `revmap` order = indices sorted by (start, end), ties by index.
+
+## 2026-11-05 — Phase A done (suite: 884 cases, 16 groups; `run.R check` green)
+
+- Time: suite authoring ~2.5 h wall incl. reading goldens; codec/runner ~25 min of that. Reading R goldens for surprises was the dominant cost, and it paid: most quirks below were not guessable.
+- Case counts: iranges core 66 / intra 69 / inter 57 / setops 50 / overlaps 133 / nearest 42 / coverage 29 / order 31; seqinfo 45; granges core 80 / intra 57 / inter 38 / setops 48 / overlaps 62 / nearest 28 / coverage 21 / order 26.
+- More R quirks pinned (R right, Python must copy):
+  - `reduce` merges identical zero-width ranges even with `min.gapwidth=0`; other zero-width ranges follow `next.start - max.end.excl < min.gapwidth` (fuzzed vs R, 0 mismatches over 4000 draws).
+  - `gaps(x)` default window = [min start, max end] of the *non-empty* reduced ranges.
+  - `findOverlaps(type="within", maxgap<=0)` is unconstrained; maxgap>0 bounds `width(s) - width(q)`. `type="start"/"end"/"equal"` need no overlap at all, only |start diff| <= max(maxgap,0).
+  - `GRanges precede/follow`: for x `*` the direction is taken from the *subject* strand (`-` subject reverses).
+  - `pintersect(GRanges)` adds mcols `hit`; strand = the non-`*` of the pair; `punion` keeps x's strand; incompatible pairs error (`punion`) / flag (`pintersect`) / pass x through (`psetdiff`).
+  - `rank(IRanges)` without `ties.method` errors in R (unevaluated default vector); `precede/follow(GRanges, empty subject)` return Hits not integer. Both look like R bugs → candidates for xfail.
+  - `GRanges(names=...)` is an mcols column; `GRanges(mcols=DFrame)` makes columns `mcols.<col>` (case dropped).
+  - `order(GRanges, ignore.strand=TRUE)` errors; `sort`/`rank` accept it.
+- Compare mode `hits-query-grouped` declared at file level (`"compare"` key) for overlaps/nearest groups.
