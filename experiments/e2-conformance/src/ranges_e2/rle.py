@@ -33,7 +33,7 @@ class Rle:
         return int(self.lengths.sum())
 
     @classmethod
-    def from_dense(cls, dense: npt.NDArray[np.generic]) -> "Rle":
+    def from_dense(cls, dense: npt.NDArray[np.generic]) -> Rle:
         """Compress a dense array into runs of equal values."""
         if len(dense) == 0:
             return cls(dense[:0], np.zeros(0, dtype=np.int64))
@@ -43,7 +43,7 @@ class Rle:
         return cls(dense[starts], lengths)
 
     @classmethod
-    def from_factor(cls, factor: Factor) -> "Rle":
+    def from_factor(cls, factor: Factor) -> Rle:
         rle = cls.from_dense(factor.codes)
         assert isinstance(rle.values, np.ndarray)
         return cls(Factor(factor.levels, rle.values.astype(np.int64)), rle.lengths)

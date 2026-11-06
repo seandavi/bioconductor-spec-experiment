@@ -9,7 +9,7 @@ import numpy as np
 import numpy.typing as npt
 import polars as pl
 
-from . import _coverage, _inter, _mcols, _nearest, _ordering, _overlaps
+from . import _coverage, _inter, _nearest, _ordering, _overlaps
 from ._nearest import MaskFn
 from ._util import IntArray, as_bool_array, as_int64, positions_from_subscript, rep_len
 from .hits import Hits
@@ -118,7 +118,7 @@ class GRanges:
         strand: npt.NDArray[np.integer[Any]],
         ranges: IRanges,
         seqinfo: Seqinfo,
-    ) -> "GRanges":
+    ) -> GRanges:
         obj = object.__new__(cls)
         object.__setattr__(obj, "_seq", np.asarray(seq, dtype=np.int32))
         object.__setattr__(obj, "_strand", np.asarray(strand, dtype=np.int8))
@@ -207,7 +207,7 @@ class GRanges:
         seq: Any = None,
         strand: Any = None,
         seqinfo: Seqinfo | None = None,
-    ) -> "GRanges":
+    ) -> GRanges:
         return GRanges._make(
             self._seq if seq is None else seq,
             self._strand if strand is None else strand,
@@ -215,22 +215,22 @@ class GRanges:
             self._seqinfo if seqinfo is None else seqinfo,
         )
 
-    def with_names(self, names: Sequence[str | None] | None) -> "GRanges":
+    def with_names(self, names: Sequence[str | None] | None) -> GRanges:
         return self._with(ranges=self._ranges.with_names(names))
 
-    def with_mcols(self, mcols: pl.DataFrame | None) -> "GRanges":
+    def with_mcols(self, mcols: pl.DataFrame | None) -> GRanges:
         return self._with(ranges=self._ranges.with_mcols(mcols))
 
     # ---- seqinfo edits -------------------------------------------------------------
 
-    def with_seqinfo(self, seqinfo: Seqinfo) -> "GRanges":
+    def with_seqinfo(self, seqinfo: Seqinfo) -> GRanges:
         """R's `seqinfo<-` with identical level sets: replaces the metadata, relabels data by name."""
         if set(seqinfo.seqnames) != set(self._seqinfo.seqnames):
             raise ValueError("the seqlevels in the supplied Seqinfo are not the same as in x")
         remap = np.array([seqinfo.seqnames.index(nm) for nm in self._seqinfo.seqnames], dtype=np.int32)
         return self._with(seq=remap[self._seq] if len(self) else self._seq, seqinfo=seqinfo)
 
-    def with_seqlevels(self, value: Sequence[str]) -> "GRanges":
+    def with_seqlevels(self, value: Sequence[str]) -> GRanges:
         """R's `seqlevels<-`: rename (nothing in common, same length), reorder, add, or drop unused levels."""
         new, mapping = self._seqinfo.relevel(value)
         remap = np.array([-1 if m is None else m for m in mapping], dtype=np.int32)
@@ -243,25 +243,25 @@ class GRanges:
             new_codes = self._seq
         return self._with(seq=new_codes, seqinfo=new)
 
-    def with_seqlengths(self, value: Any) -> "GRanges":
+    def with_seqlengths(self, value: Any) -> GRanges:
         return self._with(seqinfo=self._seqinfo.with_field("seqlengths", value))
 
-    def with_is_circular(self, value: Any) -> "GRanges":
+    def with_is_circular(self, value: Any) -> GRanges:
         return self._with(seqinfo=self._seqinfo.with_field("is_circular", value))
 
-    def with_genome(self, value: Any) -> "GRanges":
+    def with_genome(self, value: Any) -> GRanges:
         return self._with(seqinfo=self._seqinfo.with_field("genome", value))
 
     # ---- subsetting / combining -----------------------------------------------------
 
-    def __getitem__(self, i: Any) -> "GRanges":
+    def __getitem__(self, i: Any) -> GRanges:
         idx = positions_from_subscript(i, len(self), self._ranges._names)
         return self._take(idx)
 
-    def _take(self, idx: IntArray) -> "GRanges":
+    def _take(self, idx: IntArray) -> GRanges:
         return self._with(seq=self._seq[idx], strand=self._strand[idx], ranges=self._ranges._take(idx))
 
-    def concat(self, *others: "GRanges") -> "GRanges":
+    def concat(self, *others: GRanges) -> GRanges:
         parts = [self, *others]
         if any(not isinstance(p, GRanges) for p in parts):
             raise TypeError("can only concatenate GRanges with GRanges")
@@ -305,7 +305,7 @@ class GRanges:
         pieces: list[tuple[int, int, IntArray, IntArray]],
         seqinfo: Seqinfo | None = None,
         mcols: pl.DataFrame | None = None,
-    ) -> "GRanges":
+    ) -> GRanges:
         """Build a GRanges from (seq, strand, start, width) group results, already in output order."""
         if pieces:
             seq = np.concatenate([np.full(len(p[2]), p[0]) for p in pieces])
@@ -318,10 +318,10 @@ class GRanges:
 
     # ---- intra-range ----------------------------------------------------------------------
 
-    def shift(self, shift: Any) -> "GRanges":
+    def shift(self, shift: Any) -> GRanges:
         return self._with(ranges=self._ranges.shift(shift))
 
-    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> "GRanges":
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> GRanges:
         return self._with(ranges=self._ranges.narrow(start, end, width))
 
     def _minus(self, ignore_strand: bool) -> npt.NDArray[np.bool_]:
@@ -329,7 +329,7 @@ class GRanges:
 
     def resize(
         self, width: Any, fix: str | Sequence[str] | npt.NDArray[np.str_] = "start", use_names: bool = True, ignore_strand: bool = False
-    ) -> "GRanges":
+    ) -> GRanges:
         fx = np.asarray([fix] if isinstance(fix, str) else list(fix))
         fx = rep_len(fx, len(self), "fix") if len(self) else fx
         minus = self._minus(ignore_strand)
@@ -339,12 +339,12 @@ class GRanges:
 
     def flank(
         self, width: Any, start: bool | Sequence[bool] = True, both: bool = False, ignore_strand: bool = False
-    ) -> "GRanges":
+    ) -> GRanges:
         st = as_bool_array([start] if isinstance(start, bool) else start, len(self), "start")
         st = np.where(self._minus(ignore_strand), ~st, st)
         return self._with(ranges=self._ranges.flank(width, st, both))
 
-    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> "GRanges":
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> GRanges:
         from . import _intra
 
         ns, nw = _intra.promoter_ranges(
@@ -356,7 +356,7 @@ class GRanges:
         )
         return self._with(ranges=IRanges._make(ns, nw, self._ranges._names, self._ranges._mcols))
 
-    def trim(self) -> "GRanges":
+    def trim(self) -> GRanges:
         """Clip ranges to 1..seqlength on non-circular sequences with known length."""
         if len(self) == 0:
             return self
@@ -373,7 +373,7 @@ class GRanges:
 
     # ---- inter-range ---------------------------------------------------------------------------
 
-    def range(self, ignore_strand: bool = False) -> "GRanges":
+    def range(self, ignore_strand: bool = False) -> GRanges:
         pieces = []
         for seq, st, idx in self._groups(ignore_strand):
             s, w = _inter.range_of(self._s()[idx], self._w()[idx])
@@ -386,7 +386,7 @@ class GRanges:
         min_gapwidth: int = 1,
         with_revmap: bool = False,
         ignore_strand: bool = False,
-    ) -> "GRanges":
+    ) -> GRanges:
         pieces = []
         revmaps: list[IntArray] = []
         for seq, st, idx in self._groups(ignore_strand):
@@ -396,7 +396,7 @@ class GRanges:
                 revmaps.extend(idx[r] for r in rev)
         return self._assemble(pieces, mcols=_revmap_frame(revmaps) if with_revmap else None)
 
-    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> "GRanges":
+    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> GRanges:
         pieces = []
         revmaps: list[IntArray] = []
         for seq, st, idx in self._groups(ignore_strand):
@@ -411,7 +411,7 @@ class GRanges:
         start: int | Sequence[int | None] | Mapping[str, int | None] | None = None,
         end: int | Sequence[int | None] | Mapping[str, int | None] | None = None,
         ignore_strand: bool = False,
-    ) -> "GRanges":
+    ) -> GRanges:
         """Gaps for every seqlevel and strand (or '*' only with ignore_strand), within [start, end].
 
         start defaults to 1, end to the seqlength; with unknown seqlength the window ends at the
@@ -443,12 +443,12 @@ class GRanges:
 
     # ---- set operations -----------------------------------------------------------------------------
 
-    def union(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
+    def union(self, y: GRanges, ignore_strand: bool = False) -> GRanges:
         return self.concat(y).reduce(drop_empty_ranges=True, ignore_strand=ignore_strand)
 
     def _aligned_for_setops(
-        self, y: "GRanges", ignore_strand: bool
-    ) -> tuple["GRanges", "GRanges", list[int | None]]:
+        self, y: GRanges, ignore_strand: bool
+    ) -> tuple[GRanges, GRanges, list[int | None]]:
         """x and y on the merged seqinfo, plus per-level end bounds: seqlength, else the last position."""
         if ignore_strand:
             x, y = self._with(strand=np.full(len(self), STAR, dtype=np.int8)), y._with(
@@ -466,21 +466,21 @@ class GRanges:
         bounds = [L if L is not None else last[i] for i, L in enumerate(si.seqlengths)]
         return x, y, bounds
 
-    def setdiff(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
+    def setdiff(self, y: GRanges, ignore_strand: bool = False) -> GRanges:
         """Positions in x not in y, per seqname and strand, as R defines it:
         gaps(union(gaps(x, end=L), y), end=L), so positions outside 1..L are dropped.
         """
         x, y, bounds = self._aligned_for_setops(y, ignore_strand)
         return x.gaps(end=bounds).union(y).gaps(end=bounds)
 
-    def intersect(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
+    def intersect(self, y: GRanges, ignore_strand: bool = False) -> GRanges:
         """R: setdiff(x, gaps(y, end=L)); same 1..L clipping as setdiff."""
         x, y, bounds = self._aligned_for_setops(y, ignore_strand)
         return x.setdiff(y.gaps(end=bounds))
 
     def _parallel_setup(
-        self, y: "GRanges", ignore_strand: bool, allow_recycle_y: bool = False
-    ) -> tuple[Seqinfo, "GRanges", npt.NDArray[np.bool_], npt.NDArray[np.int8]]:
+        self, y: GRanges, ignore_strand: bool, allow_recycle_y: bool = False
+    ) -> tuple[Seqinfo, GRanges, npt.NDArray[np.bool_], npt.NDArray[np.int8]]:
         """Merged seqinfo, y aligned to len(self), per-pair compatibility, per-pair result strand."""
         si = self._seqinfo.merge(y._seqinfo)
         if len(y) != len(self):
@@ -496,7 +496,7 @@ class GRanges:
             strand = np.where(self._strand == STAR, y._strand, self._strand).astype(np.int8)
         return si, y, ok, strand
 
-    def punion(self, y: "GRanges", fill_gap: bool = False, ignore_strand: bool = False) -> "GRanges":
+    def punion(self, y: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> GRanges:
         si, y, ok, _ = self._parallel_setup(y, ignore_strand)
         if not np.all(ok):
             raise ValueError("x and y elements must have compatible seqnames and strand values")
@@ -504,8 +504,8 @@ class GRanges:
         return GRanges._make(self._recode(si), self._strand, r, si)
 
     def pintersect(
-        self, y: "GRanges", drop_nohit_ranges: bool = False, ignore_strand: bool = False
-    ) -> "GRanges":
+        self, y: GRanges, drop_nohit_ranges: bool = False, ignore_strand: bool = False
+    ) -> GRanges:
         """Parallel intersection; adds mcols `hit` (FALSE where seqname/strand clash or no overlap).
 
         Pairs without a hit become a zero-width range at the start of x.
@@ -527,7 +527,7 @@ class GRanges:
             return kept.with_mcols(None if base is None else kept.mcols.drop("hit"))
         return res
 
-    def psetdiff(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
+    def psetdiff(self, y: GRanges, ignore_strand: bool = False) -> GRanges:
         si, y, ok, _ = self._parallel_setup(y, ignore_strand)
         strand = self._strand if ignore_strand else np.where(self._strand == STAR, y._strand, self._strand)
         xs, xw = self._s(), self._w()
@@ -541,7 +541,7 @@ class GRanges:
     # ---- overlaps ---------------------------------------------------------------------------------------
 
     def _overlap_pairs(
-        self, subject: "GRanges", maxgap: int, minoverlap: int, type: str, ignore_strand: bool
+        self, subject: GRanges, maxgap: int, minoverlap: int, type: str, ignore_strand: bool
     ) -> tuple[IntArray, IntArray]:
         _overlaps.check_overlap_args(maxgap, minoverlap, type)
         si = self._seqinfo.merge(subject._seqinfo)
@@ -569,7 +569,7 @@ class GRanges:
 
     def find_overlaps(
         self,
-        subject: "GRanges",
+        subject: GRanges,
         maxgap: int = -1,
         minoverlap: int = 0,
         type: str = "any",
@@ -582,31 +582,31 @@ class GRanges:
         return _select_hits(q, s, len(self), len(subject), select)
 
     def count_overlaps(
-        self, subject: "GRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
+        self, subject: GRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
     ) -> npt.NDArray[np.int64]:
         q, _ = self._overlap_pairs(subject, maxgap, minoverlap, type, ignore_strand)
         return np.bincount(q, minlength=len(self)).astype(np.int64)
 
     def overlaps_any(
-        self, subject: "GRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
+        self, subject: GRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any", ignore_strand: bool = False
     ) -> npt.NDArray[np.bool_]:
         return self.count_overlaps(subject, maxgap, minoverlap, type, ignore_strand) > 0
 
     def subset_by_overlaps(
         self,
-        ranges: "GRanges",
+        ranges: GRanges,
         maxgap: int = -1,
         minoverlap: int = 0,
         type: str = "any",
         invert: bool = False,
         ignore_strand: bool = False,
-    ) -> "GRanges":
+    ) -> GRanges:
         hit = self.overlaps_any(ranges, maxgap, minoverlap, type, ignore_strand)
         return self[~hit if invert else hit]
 
     # ---- nearest ---------------------------------------------------------------------------------------------
 
-    def _pair_masks(self, subject: "GRanges", ignore_strand: bool) -> tuple[MaskFn, MaskFn]:
+    def _pair_masks(self, subject: GRanges, ignore_strand: bool) -> tuple[MaskFn, MaskFn]:
         si = self._seqinfo.merge(subject._seqinfo)
         qc, sc = self._recode(si), subject._recode(si)
 
@@ -628,7 +628,7 @@ class GRanges:
         return mask, reverse
 
     def nearest(
-        self, subject: "GRanges | None" = None, select: str = "arbitrary", ignore_strand: bool = False
+        self, subject: GRanges | None = None, select: str = "arbitrary", ignore_strand: bool = False
     ) -> Hits | npt.NDArray[np.int64]:
         """Nearest subject, built the way R builds it from overlaps, precede and follow.
 
@@ -690,28 +690,28 @@ class GRanges:
         return Hits(q_all[order], s_all[order], nq, len(sj))
 
     def precede(
-        self, subject: "GRanges | None" = None, select: str = "first", ignore_strand: bool = False
+        self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False
     ) -> Hits | npt.NDArray[np.int64]:
         if select not in ("first", "all"):
             raise ValueError("select must be 'first' or 'all'")
         return self._directional(subject, "precede", select, ignore_strand)
 
     def follow(
-        self, subject: "GRanges | None" = None, select: str = "last", ignore_strand: bool = False
+        self, subject: GRanges | None = None, select: str = "last", ignore_strand: bool = False
     ) -> Hits | npt.NDArray[np.int64]:
         if select not in ("last", "all"):
             raise ValueError("select must be 'last' or 'all'")
         return self._directional(subject, "follow", select, ignore_strand)
 
     def _directional(
-        self, subject: "GRanges | None", kind: str, select: str, ignore_strand: bool
+        self, subject: GRanges | None, kind: str, select: str, ignore_strand: bool
     ) -> Hits | npt.NDArray[np.int64]:
         sj = self if subject is None else subject  # R does not exclude self for precede/follow
         mask, reverse = self._pair_masks(sj, ignore_strand)
         ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), kind, reverse, mask)
         return _ties_result(ties, len(self), len(sj), select)
 
-    def distance(self, other: "GRanges", ignore_strand: bool = False) -> npt.NDArray[np.int64]:
+    def distance(self, other: GRanges, ignore_strand: bool = False) -> npt.NDArray[np.int64]:
         """Parallel distance; NA_INDEX (-1) where seqnames differ or strands are incompatible."""
         n = max(len(self), len(other)) if len(self) and len(other) else 0
         x = self._take(rep_len(np.arange(len(self)), n)) if n else self[[]]
@@ -778,7 +778,7 @@ class GRanges:
     def order(self, decreasing: bool = False, ignore_strand: bool = False) -> IntArray:
         return _ordering.order_by(self._keys(ignore_strand), decreasing)
 
-    def sort(self, decreasing: bool = False, ignore_strand: bool = False) -> "GRanges":
+    def sort(self, decreasing: bool = False, ignore_strand: bool = False) -> GRanges:
         return self._take(self.order(decreasing, ignore_strand))
 
     def rank(self, ties_method: str = "average", ignore_strand: bool = False) -> npt.NDArray[np.generic]:
@@ -787,7 +787,7 @@ class GRanges:
     def duplicated(self, from_last: bool = False) -> npt.NDArray[np.bool_]:
         return _ordering.duplicated_by(self._keys(), from_last)
 
-    def unique(self, from_last: bool = False) -> "GRanges":
+    def unique(self, from_last: bool = False) -> GRanges:
         return self[~self.duplicated(from_last)]
 
     # ---- misc -----------------------------------------------------------------------------------------------------------

@@ -92,7 +92,7 @@ GRanges methods take `ignore_strand=` wherever R does. Seqinfo: `Seqinfo(...)`, 
 | **Add behavior** | Add a clause (one sentence) + cases to `cases/<group>.json` -> `just generate <group>` -> read the new goldens for surprises -> commit cases and `expected/` together -> make Python pass. |
 | **R / Bioc upgrade** | `just check-r` lists drifted cases -> review the diff -> `just generate` -> commit naming the upstream change -> `just check-py` now fails on exactly those cases. |
 | **New op** | Add an `@op("name", <R params>)` adapter in `conformance/ops.py`. Unknown R arguments must raise `TypeError`. |
-| **Hunt for new behavior** | `just fuzz --seed N --n 3000` generates random cases, has R produce goldens in a temp dir, runs Python, prints divergences. Promote each real finding to a named clause + cases in `cases/` (this found 6 of the clauses below `GR.SETOPS.CLIP`, `IR.REDUCE.DROPEMPTY`, `GR.NEAREST.TIE`, ...). |
+| **Hunt for new behavior** | `just fuzz --seed N --n 3000` generates random cases, has R produce goldens in a temp dir, runs Python, prints divergences. Promote each real finding to a named clause + cases in `cases/` (this is how `GR.SETOPS.CLIP`, `IR.REDUCE.DROPEMPTY` and `GR.NEAREST.TIE` were found). |
 | **R quirk Python should not copy** | Add the case id and reason to `xfail.json` and a NOTES entry. xfails are strict: an unexpected pass fails the run. Review them on every upgrade. |
 | **Unordered output** | Only when R's order is not a contract: set `"compare"` on the case or file and record why in NOTES. |
 

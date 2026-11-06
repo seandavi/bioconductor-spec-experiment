@@ -52,7 +52,6 @@ def directional_ties(
     kind: str,
     reverse: MaskFn | None = None,
     mask: MaskFn | None = None,
-    self_exclude: bool = False,
 ) -> list[IntArray]:
     """precede/follow candidates per query: eligible subjects at the minimum directional distance.
 
@@ -75,9 +74,6 @@ def directional_ties(
             dist = np.where(reverse(i), rev, fwd)
         if mask is not None:
             dist = np.where(mask(i), dist, _INF)
-        if self_exclude:
-            dist = dist.copy()
-            dist[i] = _INF
         if len(dist) == 0 or dist.min() == _INF:
             out.append(np.zeros(0, dtype=np.int64))
         else:

@@ -92,7 +92,7 @@ class IRanges:
     @classmethod
     def _make(
         cls, start: IntArray, width: IntArray, names: Names | None = None, mcols: pl.DataFrame | None = None
-    ) -> "IRanges":
+    ) -> IRanges:
         """Trusted constructor from validated int64 arrays."""
         obj = object.__new__(cls)
         object.__setattr__(obj, "_start", check_int32(np.asarray(start, dtype=np.int64), "start").astype(np.int32))
@@ -131,11 +131,11 @@ class IRanges:
     def has_mcols(self) -> bool:
         return self._mcols is not None
 
-    def with_names(self, names: Sequence[str | None] | None) -> "IRanges":
+    def with_names(self, names: Sequence[str | None] | None) -> IRanges:
         padded = None if names is None else self._pad_names(names, len(self))
         return IRanges._make(self._start.astype(np.int64), self._width.astype(np.int64), padded, self._mcols)
 
-    def with_mcols(self, mcols: pl.DataFrame | None) -> "IRanges":
+    def with_mcols(self, mcols: pl.DataFrame | None) -> IRanges:
         return IRanges._make(
             self._start.astype(np.int64),
             self._width.astype(np.int64),
@@ -154,15 +154,15 @@ class IRanges:
 
     # ---- subsetting / combining -----------------------------------------
 
-    def __getitem__(self, i: Any) -> "IRanges":
+    def __getitem__(self, i: Any) -> IRanges:
         idx = positions_from_subscript(i, len(self), self._names)
         return self._take(idx)
 
-    def _take(self, idx: IntArray) -> "IRanges":
+    def _take(self, idx: IntArray) -> IRanges:
         names = None if self._names is None else [self._names[k] for k in idx.tolist()]
         return IRanges._make(self._s()[idx], self._w()[idx], names, _mcols.take(self._mcols, idx))
 
-    def concat(self, *others: "IRanges") -> "IRanges":
+    def concat(self, *others: IRanges) -> IRanges:
         """c(x, y, ...): names pad with "" when only some inputs are named; mcols union with NA fill."""
         parts = [self, *others]
         if any(not isinstance(p, IRanges) for p in parts):
@@ -179,11 +179,11 @@ class IRanges:
 
     # ---- intra-range ------------------------------------------------------
 
-    def shift(self, shift: Any) -> "IRanges":
+    def shift(self, shift: Any) -> IRanges:
         s = rep_len(as_int64(shift, "shift"), len(self), "shift")
         return IRanges._make(self._s() + s, self._w(), self._names, self._mcols)
 
-    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> "IRanges":
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> IRanges:
         ns, nw = _intra.narrow_ranges(
             self._s(), self._w(), _int_arg(start, "start"), _int_arg(end, "end"), _int_arg(width, "width")
         )
@@ -191,19 +191,19 @@ class IRanges:
 
     def resize(
         self, width: Any, fix: str | Sequence[str] | npt.NDArray[np.str_] = "start", use_names: bool = True
-    ) -> "IRanges":
+    ) -> IRanges:
         fx = np.asarray([fix] if isinstance(fix, str) else list(fix))
         ns, nw = _intra.resize_ranges(self._s(), self._w(), as_int64(width, "width"), fx)
         return IRanges._make(ns, nw, self._names if use_names else None, self._mcols)
 
     def flank(
         self, width: Any, start: bool | Sequence[bool] | npt.NDArray[np.bool_] = True, both: bool = False
-    ) -> "IRanges":
+    ) -> IRanges:
         at_start = as_bool_array(start if not isinstance(start, bool) else [start], len(self), "start")
         ns, nw = _intra.flank_ranges(self._s(), self._w(), as_int64(width, "width"), at_start, both)
         return IRanges._make(ns, nw, self._names, self._mcols)
 
-    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> "IRanges":
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> IRanges:
         minus = np.zeros(len(self), dtype=bool)
         ns, nw = _intra.promoter_ranges(
             self._s(), self._w(), as_int64(upstream, "upstream"), as_int64(downstream, "downstream"), minus
@@ -212,44 +212,44 @@ class IRanges:
 
     # ---- inter-range --------------------------------------------------------
 
-    def range(self, *others: "IRanges") -> "IRanges":
+    def range(self, *others: IRanges) -> IRanges:
         both = self.concat(*others) if others else self
         s, w = _inter.range_of(both._s(), both._w())
         return IRanges._make(s, w)
 
     def reduce(
         self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False
-    ) -> "IRanges":
+    ) -> IRanges:
         s, w, rev = _inter.reduce_ranges(self._s(), self._w(), min_gapwidth, drop_empty_ranges, with_revmap)
         return IRanges._make(s, w, None, _revmap_frame(rev))
 
-    def gaps(self, start: int | None = None, end: int | None = None) -> "IRanges":
+    def gaps(self, start: int | None = None, end: int | None = None) -> IRanges:
         s, w = _inter.gaps_ranges(self._s(), self._w(), start, end)
         return IRanges._make(s, w)
 
-    def disjoin(self, with_revmap: bool = False) -> "IRanges":
+    def disjoin(self, with_revmap: bool = False) -> IRanges:
         s, w, rev = _inter.disjoin_ranges(self._s(), self._w(), with_revmap)
         return IRanges._make(s, w, None, _revmap_frame(rev))
 
     # ---- set operations -------------------------------------------------------
 
-    def union(self, y: "IRanges") -> "IRanges":
+    def union(self, y: IRanges) -> IRanges:
         s, w = _inter.union_ranges(self._s(), self._w(), y._s(), y._w())
         return IRanges._make(s, w)
 
-    def intersect(self, y: "IRanges") -> "IRanges":
+    def intersect(self, y: IRanges) -> IRanges:
         s, w = _inter.intersect_ranges(self._s(), self._w(), y._s(), y._w())
         return IRanges._make(s, w)
 
-    def setdiff(self, y: "IRanges") -> "IRanges":
+    def setdiff(self, y: IRanges) -> IRanges:
         s, w = _inter.setdiff_ranges(self._s(), self._w(), y._s(), y._w())
         return IRanges._make(s, w)
 
-    def _check_parallel(self, y: "IRanges") -> None:
+    def _check_parallel(self, y: IRanges) -> None:
         if len(self) != len(y):
             raise ValueError("x and y must have the same length")
 
-    def punion(self, y: "IRanges", fill_gap: bool = False) -> "IRanges":
+    def punion(self, y: IRanges, fill_gap: bool = False) -> IRanges:
         self._check_parallel(y)
         xs, xe, ys, ye = self._s(), self._e(), y._s(), y._e()
         if not fill_gap and np.any(np.maximum(xs, ys) > np.minimum(xe, ye) + 1):
@@ -257,7 +257,7 @@ class IRanges:
         s = np.minimum(xs, ys)
         return IRanges._make(s, np.maximum(xe, ye) - s + 1, self._names)
 
-    def pintersect(self, y: "IRanges", resolve_empty: str = "none") -> "IRanges":
+    def pintersect(self, y: IRanges, resolve_empty: str = "none") -> IRanges:
         self._check_parallel(y)
         if resolve_empty not in ("none", "max.start", "start.x"):
             raise ValueError("resolve_empty must be 'none', 'max.start' or 'start.x'")
@@ -273,7 +273,7 @@ class IRanges:
             w = np.where(ambiguous, 0, w)
         return IRanges._make(s, w, self._names)
 
-    def psetdiff(self, y: "IRanges") -> "IRanges":
+    def psetdiff(self, y: IRanges) -> IRanges:
         self._check_parallel(y)
         xs, xe, ys, ye = self._s(), self._e(), y._s(), y._e()
         if np.any((ys > xs) & (ye < xe)):
@@ -292,7 +292,7 @@ class IRanges:
 
     def find_overlaps(
         self,
-        subject: "IRanges",
+        subject: IRanges,
         maxgap: int = -1,
         minoverlap: int = 0,
         type: str = "any",
@@ -307,26 +307,26 @@ class IRanges:
         return _select_hits(q, s, len(self), len(subject), select)
 
     def count_overlaps(
-        self, subject: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any"
+        self, subject: IRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any"
     ) -> npt.NDArray[np.int64]:
         hits = self.find_overlaps(subject, maxgap, minoverlap, type)
         assert isinstance(hits, Hits)
         return np.bincount(hits.query_hits, minlength=len(self)).astype(np.int64)
 
     def overlaps_any(
-        self, subject: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any"
+        self, subject: IRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any"
     ) -> npt.NDArray[np.bool_]:
         return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
 
     def subset_by_overlaps(
-        self, ranges: "IRanges", maxgap: int = -1, minoverlap: int = 0, type: str = "any", invert: bool = False
-    ) -> "IRanges":
+        self, ranges: IRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any", invert: bool = False
+    ) -> IRanges:
         hit = self.overlaps_any(ranges, maxgap, minoverlap, type)
         return self[~hit if invert else hit]
 
     # ---- nearest ------------------------------------------------------------------
 
-    def nearest(self, subject: "IRanges | None" = None, select: str = "arbitrary") -> Hits | npt.NDArray[np.int64]:
+    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | npt.NDArray[np.int64]:
         """Closest subject (distance 0 if overlapping/adjacent). subject=None: nearest other range."""
         if select not in ("arbitrary", "all"):
             raise ValueError("select must be 'arbitrary' or 'all'")
@@ -335,21 +335,21 @@ class IRanges:
         ties = _nearest.nearest_ties(self._s(), self._w(), sj._s(), sj._w(), None, me)
         return _ties_result(ties, len(self), len(sj), select)
 
-    def precede(self, subject: "IRanges | None" = None, select: str = "first") -> Hits | npt.NDArray[np.int64]:
+    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | npt.NDArray[np.int64]:
         if select not in ("first", "all"):
             raise ValueError("select must be 'first' or 'all'")
         sj = self if subject is None else subject  # R does not exclude self for precede/follow
         ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "precede")
         return _ties_result(ties, len(self), len(sj), select)
 
-    def follow(self, subject: "IRanges | None" = None, select: str = "last") -> Hits | npt.NDArray[np.int64]:
+    def follow(self, subject: IRanges | None = None, select: str = "last") -> Hits | npt.NDArray[np.int64]:
         if select not in ("last", "all"):
             raise ValueError("select must be 'last' or 'all'")
         sj = self if subject is None else subject
         ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "follow")
         return _ties_result(ties, len(self), len(sj), select)
 
-    def distance(self, other: "IRanges") -> npt.NDArray[np.int64]:
+    def distance(self, other: IRanges) -> npt.NDArray[np.int64]:
         return _nearest.distance_ranges(self._s(), self._w(), other._s(), other._w())
 
     # ---- coverage ---------------------------------------------------------------------
@@ -381,7 +381,7 @@ class IRanges:
     def order(self, decreasing: bool = False) -> IntArray:
         return _ordering.order_by(self._keys(), decreasing)
 
-    def sort(self, decreasing: bool = False) -> "IRanges":
+    def sort(self, decreasing: bool = False) -> IRanges:
         return self._take(self.order(decreasing))
 
     def rank(self, ties_method: str = "average") -> npt.NDArray[np.generic]:
@@ -390,7 +390,7 @@ class IRanges:
     def duplicated(self, from_last: bool = False) -> npt.NDArray[np.bool_]:
         return _ordering.duplicated_by(self._keys(), from_last)
 
-    def unique(self, from_last: bool = False) -> "IRanges":
+    def unique(self, from_last: bool = False) -> IRanges:
         return self[~self.duplicated(from_last)]
 
     # ---- misc -----------------------------------------------------------------------------

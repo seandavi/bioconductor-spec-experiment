@@ -58,7 +58,7 @@ class Seqinfo:
         except ValueError:
             raise KeyError(f"unknown sequence {name!r}") from None
 
-    def subset(self, names: Sequence[str]) -> "Seqinfo":
+    def subset(self, names: Sequence[str]) -> Seqinfo:
         """Select/reorder levels by name; unknown names add a level with NA metadata."""
         rows = []
         for nm in names:
@@ -69,7 +69,7 @@ class Seqinfo:
                 rows.append((nm, None, None, None))
         return Seqinfo([r[0] for r in rows], [r[1] for r in rows], [r[2] for r in rows], [r[3] for r in rows])
 
-    def merge(self, other: "Seqinfo") -> "Seqinfo":
+    def merge(self, other: Seqinfo) -> Seqinfo:
         """Union of levels (self's order first); NA fields filled from the other side; conflicts error."""
         names = list(self.seqnames)
         lens = list(self.seqlengths)
@@ -95,7 +95,7 @@ class Seqinfo:
                     target[i] = theirs
         return Seqinfo(names, lens, circ, genome)
 
-    def with_field(self, field: str, value: Any) -> "Seqinfo":
+    def with_field(self, field: str, value: Any) -> Seqinfo:
         """Return a copy with seqlengths / is_circular / genome replaced (scalar recycles)."""
         n = len(self)
         if field == "seqlengths":
@@ -106,7 +106,7 @@ class Seqinfo:
             return Seqinfo(self.seqnames, self.seqlengths, self.is_circular, _broadcast(value, n, "genome"))
         raise ValueError(f"unknown field {field}")
 
-    def rename_levels(self, value: Sequence[str]) -> "Seqinfo":
+    def rename_levels(self, value: Sequence[str]) -> Seqinfo:
         """R's `seqlevels<-` on a Seqinfo: positional rename if nothing in common, else map by name.
 
         Returns the new Seqinfo; use `level_map` for the old->new index mapping on data.
@@ -114,7 +114,7 @@ class Seqinfo:
         new, _ = self.relevel(value)
         return new
 
-    def relevel(self, value: Sequence[str]) -> tuple["Seqinfo", list[int | None]]:
+    def relevel(self, value: Sequence[str]) -> tuple[Seqinfo, list[int | None]]:
         """Return (new Seqinfo, old_index -> new_index or None when the level is dropped)."""
         new_names = list(value)
         if len(set(new_names)) != len(new_names):
