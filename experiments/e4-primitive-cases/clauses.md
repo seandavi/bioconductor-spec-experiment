@@ -253,3 +253,28 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | GR-PSETDIFF-2 | incompatible pairs return x unchanged | `?"setops"` |
 | GR-PSETDIFF-3 | compatible pair strand is x's, or y's when x is `*` | `?"setops"` |
 | GR-PSETDIFF-4 | y strictly inside x is an error | `?"setops"` |
+| GR-FO-1 | `findOverlaps` pairs ranges on the same seqlevel with compatible strands: equal, or either is `*` | `?findOverlaps` |
+| GR-FO-2 | `ignore.strand=TRUE` pairs on seqlevel only | `?findOverlaps` |
+| GR-FO-3 | ranges on different seqlevels never overlap | `?findOverlaps` |
+| GR-FO-4 | `select` first/last/arbitrary apply to the strand-aware hits | `?findOverlaps` |
+| GR-FO-5 | `type` start/end/within/equal are strand-aware as for `any` | `?findOverlaps` |
+| GR-FO-6 | `maxgap`/`minoverlap` never bridge seqlevels | `?findOverlaps` |
+| GR-FO-7 | zero-width GRanges follow the IRanges overlap rules | `?findOverlaps` |
+| GR-FO-8 | self overlaps, zero-length query/subject | `?findOverlaps` |
+| GR-FO-9 | query and subject seqinfo are merged; conflicting seqlengths are an error; no common seqlevels only warns | `?findOverlaps` |
+| GR-COUNT-1 | `countOverlaps` = strand-aware hits per query | `?countOverlaps` |
+| GR-OVANY-1 | `overlapsAny` = count > 0, strand-aware | `?overlapsAny` |
+| GR-SUBSET-1 | `subsetByOverlaps` (incl. `invert`) is strand-aware, keeps seqinfo | `?subsetByOverlaps` |
+| GR-NEAREST-1 | `nearest` minimises distance over subjects on the same seqlevel with compatible strand | `?nearest` |
+| GR-NEAREST-2 | `nearest(ignore.strand=TRUE)` drops the strand condition | `?nearest` |
+| GR-NEAREST-3 | no eligible subject (other seqlevel, empty subject) gives NA | `?nearest` |
+| GR-PRECEDE-1 | `precede` is strand-aware: `+` looks right, `-` looks left; subjects need a compatible strand | `?precede` |
+| GR-PRECEDE-2 | `precede(ignore.strand=TRUE)` treats all as `+` | `?precede` |
+| GR-PRECEDE-3 | a `*` query takes its direction from each subject's strand (`-` subject: left; else right) | `?precede` |
+| GR-FOLLOW-1 | `follow` is the mirror of `precede`: `+` looks left, `-` looks right | `?follow` |
+| GR-FOLLOW-2 | `follow(ignore.strand=TRUE)` treats all as `+` | `?follow` |
+| GR-FOLLOW-3 | a `*` query takes its direction from each subject's strand | `?follow` |
+| GR-DISTANCE-1 | `distance` of GRanges pairs equals the IRanges distance | `?distance` |
+| GR-DISTANCE-2 | pairs with incompatible strands are NA unless `ignore.strand=TRUE` | `?distance` |
+| GR-DISTANCE-3 | pairs on different seqlevels are NA | `?distance` |
+| GR-DISTANCE-4 | length-1 recycles; zero-length gives zero-length | `?distance` |

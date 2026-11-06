@@ -1,0 +1,172 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-nearest": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 2, 2, 4, 1, 5],
+      "names": null,
+      "candidates": [
+        [3],
+        [2],
+        [2],
+        [4],
+        [1],
+        [5]
+      ],
+      "warnings": []
+    },
+    "gr-nearest-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 6],
+      "subject": [3, 2, 2, 4, 1, 5],
+      "query_length": 6,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-nearest-ignore-strand-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5, 6],
+      "subject": [2, 2, 2, 4, 1, 5],
+      "query_length": 6,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-nearest-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 2, 2, 4, 1, 5],
+      "names": null,
+      "candidates": [
+        [2],
+        [2],
+        [2],
+        [4],
+        [1],
+        [5]
+      ],
+      "warnings": []
+    },
+    "gr-nearest-other-seqname-only": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-nearest-empty-subject": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [null, null, null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-precede": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 2, 2, 4, 3, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-precede-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 4, 5],
+      "subject": [3, 2, 2, 4, 3],
+      "query_length": 6,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-precede-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 3, 3, 4, 2, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-precede-star-direction-from-subject": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "gr-follow": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 5, 1, null, 2, 5],
+      "names": null,
+      "warnings": []
+    },
+    "gr-follow-all": {
+      "kind": "Hits",
+      "query": [1, 2, 3, 5, 6],
+      "subject": [1, 5, 1, 2, 5],
+      "query_length": 6,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-follow-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 2, 2, null, null, 5],
+      "names": null,
+      "warnings": []
+    },
+    "gr-follow-star-direction-from-subject": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": []
+    },
+    "gr-distance-parallel": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [16, 7, 8, 3, 32, 96],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-strand-incompatible-na": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [16, null, 8, null, 13],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [16, 7, 8, null, 13],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-different-seqnames-na": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, 7],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-recycle-x": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [16, 7, 8, null, 13],
+      "names": null,
+      "warnings": []
+    },
+    "gr-distance-empty": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": null,
+      "warnings": []
+    }
+  }
+}

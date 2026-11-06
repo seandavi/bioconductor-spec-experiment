@@ -54,3 +54,15 @@ def follow_pairs(qs: np.ndarray, qw: np.ndarray, ss: np.ndarray, sw: np.ndarray)
         cand = se < qs[i]
         out.append(np.flatnonzero(cand & (se == se[cand].max())) if cand.any() else np.zeros(0, np.int64))
     return _collect(out)
+
+
+def ties_at_minimum(dist: np.ndarray, eligible: np.ndarray) -> np.ndarray:
+    """Positions of eligible entries with the smallest distance (all ties, ascending)."""
+    if not eligible.any():
+        return np.zeros(0, np.int64)
+    d = np.where(eligible, dist, np.iinfo(np.int64).max)
+    return np.flatnonzero(d == d.min())
+
+
+def collect(per_query: list[np.ndarray]) -> Pairs:
+    return _collect(per_query)

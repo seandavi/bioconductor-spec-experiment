@@ -1,0 +1,285 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-fo-strand-compat": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2, 3, 3, 3, 4],
+      "subject": [1, 3, 2, 3, 1, 2, 3, 5],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-ignore-strand": {
+      "kind": "Hits",
+      "query": [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4],
+      "subject": [1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 5],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-star-matches-all": {
+      "kind": "Hits",
+      "query": [1, 1, 1],
+      "subject": [1, 2, 3],
+      "query_length": 1,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "gr-fo-different-seqnames": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "gr-fo-select-first": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 2, 1, 5, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-fo-select-last": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 3, 3, 5, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-fo-select-arbitrary": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 2, 1, 5, null],
+      "names": null,
+      "candidates": [
+        [1, 3],
+        [2, 3],
+        [1, 2, 3],
+        [5],
+        [null]
+      ],
+      "warnings": []
+    },
+    "gr-fo-select-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 1, 1, 4, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-fo-within": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2, 3, 3, 3, 5],
+      "subject": [1, 3, 2, 3, 1, 2, 3, 4],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-within-none": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-start": {
+      "kind": "Hits",
+      "query": [1, 1],
+      "subject": [1, 3],
+      "query_length": 1,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-equal-star": {
+      "kind": "Hits",
+      "query": [1, 1, 1],
+      "subject": [1, 2, 3],
+      "query_length": 1,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-end": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2],
+      "subject": [1, 3, 4, 5],
+      "query_length": 2,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-maxgap": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 3,
+      "warnings": []
+    },
+    "gr-fo-maxgap-does-not-cross-seqnames": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "gr-fo-minoverlap": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2, 3, 3, 3, 4],
+      "subject": [1, 3, 2, 3, 1, 2, 3, 5],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-zero-width": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 3,
+      "subject_length": 1,
+      "warnings": []
+    },
+    "gr-fo-self": {
+      "kind": "Hits",
+      "query": [1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5],
+      "subject": [1, 3, 2, 3, 1, 2, 3, 4, 5, 4, 5],
+      "query_length": 5,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-empty-query": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 0,
+      "subject_length": 5,
+      "warnings": []
+    },
+    "gr-fo-empty-subject": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [null, null, null, null, null],
+      "names": null,
+      "warnings": []
+    },
+    "gr-fo-seqlevels-merged": {
+      "kind": "Hits",
+      "query": [1],
+      "subject": [1],
+      "query_length": 1,
+      "subject_length": 2,
+      "warnings": ["Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': c\n  - in 'y': b\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."]
+    },
+    "gr-fo-seqlengths-conflict": {
+      "kind": "error",
+      "message": "sequence a has incompatible seqlengths:\n  - in 'x': 100\n  - in 'y': 200",
+      "warnings": []
+    },
+    "gr-fo-no-common-seqlevels": {
+      "kind": "Hits",
+      "query": [],
+      "subject": [],
+      "query_length": 1,
+      "subject_length": 1,
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr-count": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 2, 3, 1, 0],
+      "names": null,
+      "warnings": []
+    },
+    "gr-count-ignore-strand": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 3, 3, 2, 0],
+      "names": null,
+      "warnings": []
+    },
+    "gr-count-within": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [2, 2, 3, 0, 1],
+      "names": null,
+      "warnings": []
+    },
+    "gr-ovany": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [true, true, true, true, false],
+      "names": null,
+      "warnings": []
+    },
+    "gr-ovany-ignore-strand": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [true, true, true, true, false],
+      "names": null,
+      "warnings": []
+    },
+    "gr-subset": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "a", "b"],
+      "start": [1, 1, 1, 1],
+      "end": [10, 10, 10, 10],
+      "width": [10, 10, 10, 10],
+      "strand": ["+", "-", "*", "+"],
+      "names": ["p", "q", "r", "s"],
+      "mcols": {
+        "s": [1, 2, 3, 4]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-subset-invert": {
+      "kind": "GRanges",
+      "seqnames": ["a"],
+      "start": [50],
+      "end": [54],
+      "width": [5],
+      "strand": ["+"],
+      "names": ["t"],
+      "mcols": {
+        "s": [5]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-subset-ignore-strand": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a", "a", "b"],
+      "start": [1, 1, 1, 1],
+      "end": [10, 10, 10, 10],
+      "width": [10, 10, 10, 10],
+      "strand": ["+", "-", "*", "+"],
+      "names": ["p", "q", "r", "s"],
+      "mcols": {
+        "s": [1, 2, 3, 4]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    }
+  }
+}

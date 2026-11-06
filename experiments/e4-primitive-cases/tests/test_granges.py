@@ -94,3 +94,30 @@ def test_set_ops_match_per_group_set_algebra(seed: int) -> None:
     assert _cover(x.union(y)) == cx | cy
     assert _cover(x.intersect(y)) == cx & cy
     assert _cover(x.setdiff(y)) == cx - cy
+
+
+@pytest.mark.parametrize("seed", range(12))
+@pytest.mark.parametrize("ignore", [False, True])
+def test_granges_overlaps_match_brute_force(seed: int, ignore: bool) -> None:
+    q, s = _random_granges(seed, 10), _random_granges(seed + 50, 12)
+    h = q.find_overlaps(s, ignore_strand=ignore)
+    want = []
+    for i in range(len(q)):
+        for j in range(len(s)):
+            same = q.seqnames[i] == s.seqnames[j]
+            strand_ok = ignore or q.strand[i] == s.strand[j] or "*" in (q.strand[i], s.strand[j])
+            qs, qe, ss, se = q.start[i], q.end[i], s.start[j], s.end[j]
+            if same and strand_ok and qs <= se and ss <= qe:
+                want.append((i, j))
+    assert list(zip(h.query.tolist(), h.subject.tolist(), strict=True)) == want
+
+
+@pytest.mark.parametrize("seed", range(12))
+def test_granges_distance_mask(seed: int) -> None:
+    q, s = _random_granges(seed, 10), _random_granges(seed + 7, 10)
+    d = q.distance(s)
+    for i in range(len(q)):
+        ok = q.seqnames[i] == s.seqnames[i] and (
+            q.strand[i] == s.strand[i] or "*" in (q.strand[i], s.strand[i])
+        )
+        assert bool(d.mask[i]) == (not ok)
