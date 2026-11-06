@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+import warnings
 from typing import Any
 
 import numpy as np
@@ -64,6 +65,30 @@ def recycle_to(a: np.ndarray, n: int, what: str) -> np.ndarray:
         return a[:0]
     if len(a) == 0:
         raise ValueError(f"'{what}' has length 0 but 'x' has length {n}")
+    return np.resize(a, n)
+
+
+def recycle_arg(
+    a: np.ndarray, n: int, what: str, *, longer: str = "error", warn: bool = True
+) -> np.ndarray:
+    """Recycle an argument against a length-`n` object, R style.
+
+    Zero-length args are an error unless n == 0. `longer`: "error" or "truncate".
+    A non-multiple length warns (`warn=False` to stay silent).
+    """
+    m = len(a)
+    if m == n:
+        return a
+    if n == 0:
+        if m > 1 and longer == "error":
+            raise ValueError(f"'{what}' is longer than the object")
+        return a[:0]
+    if m == 0:
+        raise ValueError(f"'{what}' has no elements")
+    if m > n and longer == "error":
+        raise ValueError(f"'{what}' is longer than the object")
+    if warn and (n % m if m < n else m % n):
+        warnings.warn(f"'{what}' length is not a multiple of the object length", UserWarning, stacklevel=3)
     return np.resize(a, n)
 
 

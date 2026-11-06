@@ -9,6 +9,7 @@ import numpy as np
 import polars as pl
 
 from . import _meta
+from ._kernels import intra
 from ._meta import INT_MAX, Names
 
 
@@ -189,3 +190,70 @@ class IRanges:
             _meta.concat_names([(p._names, len(p)) for p in parts]),
             _meta.concat_mcols([(p._mcols, len(p)) for p in parts]),
         )
+
+    # -- intra-range ---------------------------------------------------------
+    def _meta_kept(self, use_names: bool) -> tuple[Names | None, pl.DataFrame | None]:
+        return (self._names if use_names else None), self._mcols
+
+    def _int_arg(self, v: Any, what: str, **kw: Any) -> np.ndarray:
+        """Integer-valued argument recycled to len(self); doubles truncate like as.integer."""
+        a = np.asarray(v)
+        if a.dtype.kind == "f" and not np.ma.isMaskedArray(v):
+            if np.isnan(a).any():
+                raise ValueError(f"'{what}' must be a numeric vector without NA's")
+            a = np.trunc(a)
+        elif a.dtype.kind not in "iufb" and not np.ma.isMaskedArray(v):
+            raise ValueError(f"'{what}' must be a numeric vector")
+        return _meta.recycle_arg(_meta.as_int_array(a if not np.ma.isMaskedArray(v) else v, f"'{what}'"), len(self), what, **kw)
+
+    def shift(self, shift: Any = 0, use_names: bool = True) -> Self:
+        by = self._int_arg(shift, "shift")
+        s, w = intra.shift(self._start, self._width, by)
+        return self._new(s, w, *self._meta_kept(use_names))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True) -> Self:
+        """Narrow relative to each range; negative start/end count from the end (R)."""
+        n = len(self)
+
+        def sew(v: Any, what: str) -> np.ndarray:
+            if v is None:
+                return np.full(n, intra.NA, dtype=np.int64)
+            if np.ma.isMaskedArray(v):
+                arr = np.where(np.ma.getmaskarray(v), intra.NA, np.ma.getdata(v)).astype(np.int64)
+            else:
+                f = np.atleast_1d(np.asarray(v, dtype=float))
+                arr = np.where(np.isnan(f), intra.NA, np.trunc(np.nan_to_num(f))).astype(np.int64)
+            return _meta.recycle_arg(arr, n, what, warn=False)
+
+        s, w = intra.narrow(self._start, self._width, sew(start, "start"), sew(end, "end"), sew(width, "width"))
+        return self._new(s, w, *self._meta_kept(use_names))
+
+    def resize(self, width: Any, fix: Any = "start", use_names: bool = True) -> Self:
+        new_w = self._int_arg(width, "width", longer="truncate")
+        if (new_w < 0).any():
+            raise ValueError("'width' values must be non-negative")
+        s, w = intra.resize(self._start, self._width, new_w, self._fix_codes(fix))
+        return self._new(s, w, *self._meta_kept(use_names))
+
+    def _fix_codes(self, fix: Any) -> np.ndarray:
+        values = [fix] if isinstance(fix, str) else list(fix)
+        table = {"start": intra.FIX_START, "end": intra.FIX_END, "center": intra.FIX_CENTER}
+        if not values or any(v not in table for v in values):
+            raise ValueError("'fix' must be a character vector with values in \"start\", \"end\", and \"center\"")
+        codes = np.array([table[v] for v in values], dtype=np.int64)
+        return _meta.recycle_arg(codes, len(self), "fix", longer="truncate")
+
+    def flank(self, width: Any, start: Any = True, both: bool = False, use_names: bool = True) -> Self:
+        by = self._int_arg(width, "width")
+        flags = np.asarray(start)
+        if flags.dtype.kind != "b":
+            raise ValueError("'start' must be logical without NA's")
+        at_start = _meta.recycle_arg(np.atleast_1d(flags), len(self), "start", longer="truncate")
+        s, w = intra.flank(self._start, self._width, by, at_start, bool(both))
+        return self._new(s, w, *self._meta_kept(use_names))
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
+        up = self._int_arg(upstream, "upstream", longer="truncate")
+        down = self._int_arg(downstream, "downstream", longer="truncate")
+        s, w = intra.promoters(self._start, self._width, up, down)
+        return self._new(s, w, *self._meta_kept(use_names))

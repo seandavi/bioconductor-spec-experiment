@@ -151,13 +151,18 @@ def r_result(case: Case, all_cases: list[Case], *, force: bool = False) -> dict[
 # ---- Python side -----------------------------------------------------------
 
 
+_BUGS = (TypeError, AttributeError, NameError, AssertionError, NotImplementedError, ZeroDivisionError)
+
+
 def py_result(case: Case) -> dict[str, Any]:
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         try:
             value = adapter.encode(adapter.run_python(case.spec))
             out: dict[str, Any] = {"value": value}
-        except Exception as e:  # noqa: BLE001 - any failure is a candidate "error"
+        except _BUGS as e:  # a Python defect, never a legitimate R-style error
+            out = {"error": f"{type(e).__name__}: {e}", "bug": True}
+        except Exception as e:  # noqa: BLE001 - ValueError/IndexError/... = R-style error
             out = {"error": f"{type(e).__name__}: {e}"}
     out["warnings"] = [str(x.message) for x in w]
     return out
@@ -184,6 +189,8 @@ def _arbitrary_ok(r_all: dict[str, Any], py: dict[str, Any]) -> str | None:
 
 def evaluate(case: Case, r: dict[str, Any], py: dict[str, Any], universe: dict[str, Any] | None = None) -> str | None:
     """None if the case passes, else a failure description."""
+    if py.get("bug"):
+        return f"Python raised an internal error (not an R-style error): {py['error']}"
     div = case.spec.get("divergence")
     if div is not None:
         want = div["python"]
