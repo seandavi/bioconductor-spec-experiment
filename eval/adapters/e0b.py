@@ -50,6 +50,12 @@ _PL_DTYPE = {"int": pl.Int64, "dbl": pl.Float64, "chr": pl.String, "lgl": pl.Boo
 
 # ---------------------------------------------------------------- argument translation
 
+def _reject_duplicates(names: list, what: str) -> None:
+    """A mapping / frame cannot hold repeated keys; collapsing them would hide input from the port."""
+    if len(set(names)) != len(names):
+        raise Unsupported(f"duplicate names in {what}")
+
+
 def _arg(v: Any, name: str = "argument") -> Any:
     """RVector -> scalar (length 1; NA -> None) / ndarray (numeric, logical) / list (character)."""
     if not isinstance(v, RVector):
@@ -79,6 +85,7 @@ def _scalar_or_list(v: Any) -> Any:
 def _mapping_or_arg(v: Any, name: str) -> Any:
     """A named R vector is the port's `Mapping[str, int]` (per seqlevel); otherwise as `_arg`."""
     if isinstance(v, RVector) and v.names is not None:
+        _reject_duplicates(v.names, f"named argument {name}")
         return dict(zip(v.names, v.list()))
     return _arg(v, name)
 
@@ -93,6 +100,7 @@ def _mcols_mapping(pairs: Any) -> dict[str, pl.Series] | None:
     """`...` extra named arguments -> mcols mapping (the port builds the frame)."""
     if not pairs:
         return None
+    _reject_duplicates([name for name, _ in pairs], "metadata columns")
     out = {}
     for name, value in pairs:
         if not isinstance(value, RVector):
@@ -222,6 +230,8 @@ class Adapter(AdapterBase):
         raise Unsupported(f"metadata column:{kind}")
 
     def _mcols_input(self, pairs: list) -> dict[str, pl.Series] | None:
+        if pairs:
+            _reject_duplicates([name for name, _ in pairs], "metadata columns")
         return {name: self._column_series(col) for name, col in pairs} if pairs else None
 
     def _iranges_input(self, p: dict) -> IRanges:
