@@ -14,7 +14,8 @@ Translations (representation only):
 - mcols: extra named args / `mcols<-` values become polars DataFrames (int -> Int32, dbl -> Float64, chr -> String,
   lgl -> Boolean, Factor -> Enum, IntegerList -> List(Int32)). A DataFrame input / mcols result is a `_DF`
   (frame + nrow): the port stores "no columns" as None, so its frame cannot carry the row count.
-- Port results with the revmap list column (0-based indices) are projected with shift=1.
+- Any mcols list column named `revmap` is index-valued: built with shift -1 from inputs, projected with shift +1
+  (symmetric, so user metadata named revmap round-trips; the port never interprets list-column values).
 - Rle of a Factor (seqnames / strand) is projected as an expanded chr vector, as PROJECTION.md says.
 - Port arguments an R method lacks (and vice versa) are Unsupported / UnknownArgument; nothing is filled in.
 """
@@ -174,7 +175,10 @@ class Adapter(AdapterBase):
                 lv = col["levels"]
                 cols.append(pl.Series(name, [None if c is None else lv[c - 1] for c in col["codes"]], dtype=pl.Enum(lv)))
             elif kind == "IntegerList":
-                cols.append(pl.Series(name, col["elements"], dtype=pl.List(pl.Int32)))
+                # a column named revmap is index-valued: the port stores it 0-based (shift -1 here, +1 on projection)
+                shift = -1 if name == _REVMAP else 0
+                cols.append(pl.Series(name, [[None if v is None else v + shift for v in e] for e in col["elements"]],
+                                      dtype=pl.List(pl.Int32)))
             else:
                 raise Unsupported(f"input mcols column {kind}")
         return pl.DataFrame(cols) if cols else None
