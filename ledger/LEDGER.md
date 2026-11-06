@@ -405,3 +405,47 @@ Headline (heldout; fidelity = pass / (pass + mismatch + port_error_unexpected)):
 - Fix-up launched (run 5836111b): Sonnet fixes adapter/harness faults
   (thin), re-scores all ports; Opus (resumed) re-adjudicates with Sol's
   splits; Sol verifies.
+
+## 2026-11-06 — Fix-up + re-adjudication accepted (run 5836111b)
+
+- Sonnet fixed every adapter/harness fault (thin; one commit each), re-scored.
+  Opus (resumed) re-adjudicated: 9,378 outcomes, 665 clusters, 0 unmatched.
+  New rule: an R accident never excuses a port's own defect on the same case
+  (r_accident 1,529 → 280; 591 became port_bug, e.g. e1 returns NaN not NA
+  in NA-weight coverage, e4 counts NA weights as 0).
+- Sol verify: **accept with notes**. All spot-check objections resolved; all
+  108 newly passing pairs accounted for as representation repairs (73
+  select= projections, 18 incomparables forwarding, 17 zero-column mcols);
+  every retained r_accident (280) re-checked. All 67,550 scores recompute.
+- Orchestrator fixed Sol's note 1 (biocpy `selected or Hits` falsy-empty
+  bug, 3 cases); adapter_fault now 0 for every port.
+
+Final adjusted held-out fidelity: **e1 98.7, e2 96.9, e4 96.2, e0 96.0,
+e3 94.2, e0b 92.4, biocpy 81.3**. Raw held-out pass: e1 85.0, e2 82.4,
+e0 79.0, e4 75.3, e3 73.2, e0b 71.4, biocpy 62.5.
+
+## 2026-11-06 — Maintenance replay: detection
+
+- Change: `distance()` reverted to its pre-Bioc-2.13 rule (overlap → 0, else
+  gap + 1; adjacent → 1), via `.First` patch of the IntegerRanges method
+  (`harness/replay/`). Real historical NEWS change, applied in reverse.
+  Versions unchanged (a real release bumps them).
+- Eval oracle under patched R: 93 expected values change, all `distance`;
+  0 inputs change.
+
+| port | own detection mechanism | result under patched R | time |
+|---|---|---|---|
+| e0 | none (by design: "read NEWS") | 306 passed: **not detected** | 3 s |
+| e0b | none | 211 passed: **not detected** | 4 s |
+| e3 | none (spec edited from NEWS) | 177 passed: **not detected** | 1 s |
+| e1 | `pytest` reruns R on version change (forced: `--refresh-r`) | **40 failed, all distance**; `git diff r_cache/` lists them | 67 s |
+| e2 | `just check-r` | **9 cases, all distance** (ir/gr.distance.*) | 6 s |
+| e4 | `just check-goldens` | **drift in 2 files** holding distance cases (nearest.json ×2) | 4 s |
+
+- E1 caveat: its trigger is the R package version string; a behavior change
+  without a version bump (like this simulation, or a dependency not in the
+  key) is missed unless refreshed manually. E2/E4 re-run R unconditionally.
+- E4 localizes to file granularity (goldens grouped by op family); E2 and
+  E1 to the exact case.
+- Propagation launched (run 6347cf83): same release note to all six,
+  Sonnet, each following its own README maintenance procedure; E0b without R.
