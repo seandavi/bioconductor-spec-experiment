@@ -83,11 +83,12 @@ class Seqinfo:
                 genome.append(other.genome[j])
                 continue
             i = self.seqnames.index(nm)
-            for label, mine, theirs, target in (
+            fields: list[tuple[str, Any, Any, list[Any]]] = [
                 ("seqlengths", self.seqlengths[i], other.seqlengths[j], lens),
                 ("circularity flags", self.is_circular[i], other.is_circular[j], circ),
                 ("genomes", self.genome[i], other.genome[j], genome),
-            ):
+            ]
+            for label, mine, theirs, target in fields:
                 if mine is not None and theirs is not None and mine != theirs:
                     raise ValueError(f"sequence {nm} has incompatible {label}: {mine} vs {theirs}")
                 if mine is None:

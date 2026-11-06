@@ -10,6 +10,7 @@ import numpy.typing as npt
 import polars as pl
 
 from . import _coverage, _inter, _mcols, _nearest, _ordering, _overlaps
+from ._nearest import MaskFn
 from ._util import IntArray, as_bool_array, as_int64, positions_from_subscript, rep_len
 from .hits import Hits
 from .iranges import IRanges, _revmap_frame, _select_hits, _ties_result
@@ -41,13 +42,19 @@ def _strand_codes(strand: Any, n: int) -> npt.NDArray[np.int8]:
 
 def _compat(qstrand: npt.NDArray[np.int8] | int, sstrand: npt.NDArray[np.int8]) -> npt.NDArray[np.bool_]:
     """Strands are compatible when equal or either is '*'."""
-    return (np.asarray(qstrand) == STAR) | (sstrand == STAR) | (np.asarray(qstrand) == sstrand)
+    q = np.asarray(qstrand)
+    out: npt.NDArray[np.bool_] = (q == STAR) | (sstrand == STAR) | (q == sstrand)
+    return out
 
 
 class GRanges:
     """Immutable genomic ranges. `seqnames` are codes into `seqinfo`, `strand` 0 '+', 1 '-', 2 '*'."""
 
     __slots__ = ("_seq", "_strand", "_ranges", "_seqinfo")
+    _seq: npt.NDArray[np.int32]
+    _strand: npt.NDArray[np.int8]
+    _ranges: IRanges
+    _seqinfo: Seqinfo
 
     def __init__(
         self,
@@ -90,19 +97,16 @@ class GRanges:
             if n:
                 raise ValueError("seqnames must be supplied")
             return [], []
-        if isinstance(seqnames, Factor):
-            names = seqnames.to_list()
-            levels = list(seqnames.levels)
-        else:
-            names = list(seqnames)
-            levels = list(dict.fromkeys(names))
-        if any(v is None for v in names):
+        raw: list[str | None] = seqnames.to_list() if isinstance(seqnames, Factor) else list(seqnames)
+        names = [v for v in raw if v is not None]
+        if len(names) != len(raw):
             raise ValueError("seqnames cannot contain NAs")
+        levels = list(seqnames.levels) if isinstance(seqnames, Factor) else list(dict.fromkeys(names))
         if len(names) == 1 and n != 1:
             names = names * n
         if len(names) != n:
             raise ValueError(f"seqnames must have the length of the object to construct ({n}) or length 1")
-        return names, levels  # type: ignore[return-value]
+        return names, levels
 
     def __setattr__(self, key: str, value: Any) -> None:
         raise AttributeError("GRanges is immutable")
@@ -171,6 +175,18 @@ class GRanges:
     @property
     def seqlevels(self) -> list[str]:
         return list(self._seqinfo.seqnames)
+
+    @property
+    def seqlengths(self) -> tuple[int | None, ...]:
+        return self._seqinfo.seqlengths
+
+    @property
+    def is_circular(self) -> tuple[bool | None, ...]:
+        return self._seqinfo.is_circular
+
+    @property
+    def genome(self) -> tuple[str | None, ...]:
+        return self._seqinfo.genome
 
     def seqname_strings(self) -> list[str]:
         return [self._seqinfo.seqnames[c] for c in self._seq.tolist()]
@@ -312,7 +328,7 @@ class GRanges:
         return np.zeros(len(self), dtype=bool) if ignore_strand else self._strand == MINUS
 
     def resize(
-        self, width: Any, fix: str | Sequence[str] = "start", use_names: bool = True, ignore_strand: bool = False
+        self, width: Any, fix: str | Sequence[str] | npt.NDArray[np.str_] = "start", use_names: bool = True, ignore_strand: bool = False
     ) -> "GRanges":
         fx = np.asarray([fix] if isinstance(fix, str) else list(fix))
         fx = rep_len(fx, len(self), "fix") if len(self) else fx
@@ -590,25 +606,26 @@ class GRanges:
 
     # ---- nearest ---------------------------------------------------------------------------------------------
 
-    def _pair_masks(self, subject: "GRanges", ignore_strand: bool) -> tuple[Any, Any, "GRanges"]:
+    def _pair_masks(self, subject: "GRanges", ignore_strand: bool) -> tuple[MaskFn, MaskFn]:
         si = self._seqinfo.merge(subject._seqinfo)
         qc, sc = self._recode(si), subject._recode(si)
 
         def mask(i: int) -> npt.NDArray[np.bool_]:
-            ok = sc == qc[i]
+            ok: npt.NDArray[np.bool_] = sc == qc[i]
             return ok if ignore_strand else ok & _compat(self._strand[i], subject._strand)
 
         def reverse(i: int) -> npt.NDArray[np.bool_]:
             if ignore_strand:
                 return np.zeros(len(subject), dtype=bool)
-            q = self._strand[i]
+            q = int(self._strand[i])
+            flags: npt.NDArray[np.bool_] = np.zeros(len(subject), dtype=bool)
             if q == MINUS:
-                return np.ones(len(subject), dtype=bool)
-            if q == STAR:
-                return subject._strand == MINUS
-            return np.zeros(len(subject), dtype=bool)
+                flags[:] = True
+            elif q == STAR:
+                flags = subject._strand == MINUS
+            return flags
 
-        return mask, reverse, subject
+        return mask, reverse
 
     def nearest(
         self, subject: "GRanges | None" = None, select: str = "arbitrary", ignore_strand: bool = False
@@ -617,7 +634,7 @@ class GRanges:
             raise ValueError("select must be 'arbitrary' or 'all'")
         me = subject is None
         sj = self if subject is None else subject
-        mask, _, _ = self._pair_masks(sj, ignore_strand)
+        mask, _ = self._pair_masks(sj, ignore_strand)
         ties = _nearest.nearest_ties(self._s(), self._w(), sj._s(), sj._w(), mask, me)
         return _ties_result(ties, len(self), len(sj), select)
 
@@ -640,7 +657,7 @@ class GRanges:
     ) -> Hits | npt.NDArray[np.int64]:
         me = subject is None
         sj = self if subject is None else subject
-        mask, reverse, _ = self._pair_masks(sj, ignore_strand)
+        mask, reverse = self._pair_masks(sj, ignore_strand)
         ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), kind, reverse, mask, me)
         return _ties_result(ties, len(self), len(sj), select)
 

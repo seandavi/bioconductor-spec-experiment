@@ -7,6 +7,7 @@ All functions return NEW arrays; indices in revmaps are 0-based positions into t
 from __future__ import annotations
 
 import numpy as np
+import numpy.typing as npt
 
 from ._util import IntArray, cummax
 
@@ -111,23 +112,24 @@ def disjoin_ranges(
 
 def _coverage_pair(
     xs: IntArray, xw: IntArray, ys: IntArray, yw: IntArray
-) -> tuple[IntArray, IntArray, IntArray]:
+) -> tuple[IntArray, npt.NDArray[np.bool_], npt.NDArray[np.bool_]]:
     """Elementary intervals from the union of breakpoints and per-set coverage flags."""
     points = np.unique(np.concatenate((xs, xs + xw, ys, ys + yw)))
     if len(points) < 2:
         return points, np.zeros(0, dtype=bool), np.zeros(0, dtype=bool)
 
-    def covered(s: IntArray, w: IntArray) -> IntArray:
+    def covered(s: IntArray, w: IntArray) -> npt.NDArray[np.bool_]:
         delta = np.zeros(len(points) + 1, dtype=np.int64)
         if len(s):
             np.add.at(delta, np.searchsorted(points, s), 1)
             np.add.at(delta, np.searchsorted(points, s + w), -1)
-        return np.cumsum(delta)[: len(points) - 1] > 0
+        flags: npt.NDArray[np.bool_] = np.cumsum(delta)[: len(points) - 1] > 0
+        return flags
 
     return points, covered(xs, xw), covered(ys, yw)
 
 
-def _intervals_from_mask(points: IntArray, mask: IntArray) -> tuple[IntArray, IntArray]:
+def _intervals_from_mask(points: IntArray, mask: npt.NDArray[np.bool_]) -> tuple[IntArray, IntArray]:
     ks = np.nonzero(mask)[0]
     if len(ks) == 0:
         return _empty(), _empty()

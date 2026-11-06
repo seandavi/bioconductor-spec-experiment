@@ -19,7 +19,8 @@ from ..rle import Factor
 from .codec import DFrameOut, Vec, vec_to_series
 
 OpFn = Callable[["Params"], Any]
-OPS: dict[str, OpFn] = {}
+Adapter = Callable[[list[Any], dict[str, Any]], Any]
+OPS: dict[str, Adapter] = {}
 
 
 class Params:
@@ -62,7 +63,7 @@ def op(name: str, *params: str, varargs: bool = False, dots: bool = False) -> Ca
                     raise TypeError(f"{name}: unused argument {k}")
             return fn(Params(named, positional, extra))
 
-        OPS[name] = call  # type: ignore[assignment]
+        OPS[name] = call
         return fn
 
     return register
@@ -71,7 +72,7 @@ def op(name: str, *params: str, varargs: bool = False, dots: bool = False) -> Ca
 def run_op(name: str, args: list[Any], kwargs: dict[str, Any]) -> Any:
     if name not in OPS:
         raise NotImplementedError(f"op {name} is not implemented")
-    return OPS[name](args, kwargs)  # type: ignore[call-arg]
+    return OPS[name](args, kwargs)
 
 
 # ---- argument conversion ------------------------------------------------------------
@@ -130,6 +131,14 @@ def strings(v: Any, what: str = "argument") -> list[str | None] | None:
     return None if v is None else _vec(v, what).strings()
 
 
+def names_arg(v: Any, what: str = "argument") -> list[str]:
+    """Character vector without NAs."""
+    vals = _vec(v, what).strings()
+    if any(s is None for s in vals):
+        raise ValueError(f"{what} cannot contain NAs")
+    return [s for s in vals if s is not None]
+
+
 def r_subscript(v: Any, n: int, names: list[str | None] | None) -> np.ndarray:
     """R `[` subscript -> 0-based positions. Zero drops out, negatives drop elements, no mixing."""
     from .._util import positions_from_subscript
@@ -149,13 +158,15 @@ def r_subscript(v: Any, n: int, names: list[str | None] | None) -> np.ndarray:
             flags = flags[:n]
         elif len(flags) < n and len(flags) > 0:
             flags = np.resize(flags, n)
-        return np.nonzero(flags)[0].astype(np.int64)
+        positions: np.ndarray = np.nonzero(flags)[0].astype(np.int64)
+        return positions
     a = vec.ints()
     if (a < 0).any():
         if (a > 0).any():
             raise ValueError("only 0's may be mixed with negative subscripts")
         drop = -a[a < 0] - 1
-        return np.setdiff1d(np.arange(n, dtype=np.int64), drop)
+        kept: np.ndarray = np.setdiff1d(np.arange(n, dtype=np.int64), drop)
+        return kept
     a = a[a > 0]
     if (a > n).any():
         raise IndexError("subscript contains out-of-bounds indices")
@@ -222,22 +233,23 @@ def _granges_ctor(p: Params) -> GRanges:
     seqinfo = dots.pop("seqinfo", None)
     seqlengths = dots.pop("seqlengths", None)
     sn = p.get("seqnames")
-    seqnames = sn if isinstance(sn, Factor) or sn is None else _vec(sn).strings()
+    seqnames = sn if isinstance(sn, Factor) or sn is None else names_arg(sn, "seqnames")
     sl = None
     if seqlengths is not None:
         sv = _vec(seqlengths)
         if sv.names is None:
             raise ValueError("seqlengths must have names")
-        sl = dict(zip(sv.names, sv.values))
+        sl = {nm: v for nm, v in zip(sv.names, sv.values) if nm is not None}
     cols = {k: vec_to_series(k, _vec(v, k)) for k, v in dots.items()}
     strand = p.get("strand")
+    ctor_cols: dict[str, Any] = dict(cols)
     return GRanges(
         seqnames,
         p.get("ranges"),
         None if strand is None else _vec(strand).strings(),
         seqinfo=seqinfo,
         seqlengths=sl,
-        **cols,
+        **ctor_cols,
     )
 
 
@@ -315,7 +327,7 @@ def _ranges(p: Params) -> Any:
 
 @op("seqinfo", "x")
 def _seqinfo_get(p: Params) -> Seqinfo:
-    return p["x"].seqinfo
+    return _si(p["x"])
 
 
 def _si(x: Any) -> Seqinfo:
@@ -356,9 +368,7 @@ def _field_value(si: Seqinfo, value: Any, what: str) -> list[Any]:
 def _set_seqlengths(p: Params) -> Any:
     x = p["x"]
     vals = _field_value(_si(x), p["value"], "seqlengths")
-    return x.with_seqinfo(_si(x).with_field("seqlengths", vals)) if False else (
-        _si(x).with_field("seqlengths", vals) if isinstance(x, Seqinfo) else x.with_seqlengths(vals)
-    )
+    return _si(x).with_field("seqlengths", vals) if isinstance(x, Seqinfo) else x.with_seqlengths(vals)
 
 
 @op("isCircular<-", "x", "value")
@@ -378,7 +388,7 @@ def _set_genome(p: Params) -> Any:
 @op("seqlevels<-", "x", "value")
 def _set_seqlevels(p: Params) -> Any:
     x = p["x"]
-    value = _vec(p["value"], "value").strings()
+    value = names_arg(p["value"], "value")
     if isinstance(x, Seqinfo):
         return x.rename_levels(value)
     return x.with_seqlevels(value)
@@ -393,7 +403,8 @@ def _set_seqinfo(p: Params) -> Any:
 
 @op("merge", "x", "y")
 def _merge(p: Params) -> Seqinfo:
-    return p["x"].merge(p["y"])
+    merged: Seqinfo = p["x"].merge(p["y"])
+    return merged
 
 
 @op("[", "x", "i")
@@ -403,7 +414,7 @@ def _subset(p: Params) -> Any:
         vec = _vec(i, "i")
         if vec.kind != "chr":
             raise TypeError("a Seqinfo object can be subsetted only by name")
-        return x.subset(vec.strings())
+        return x.subset(names_arg(vec, "i"))
     _check_ranges(x)
     return x[r_subscript(i, len(x), x.names)]
 
@@ -485,9 +496,9 @@ def _promoters(p: Params) -> Any:
 def _range(p: Params) -> Any:
     x = p["x"]
     _check_ranges(x)
-    kw = _strand_arg(x, Params({"ignore.strand": p.dots["ignore.strand"]}, [], {})) if "ignore.strand" in p.dots else {}
     if set(p.dots) - {"ignore.strand"}:
         raise TypeError("unused argument")
+    kw = _strand_arg(x, Params({"ignore.strand": p.dots["ignore.strand"]}, [], {})) if p.dots else {}
     if p.rest:
         if isinstance(x, GRanges):
             return x.concat(*p.rest).range(**kw)
@@ -509,7 +520,7 @@ def _reduce(p: Params) -> Any:
     )
 
 
-def _per_level(v: Any, x: GRanges, what: str) -> Any:
+def _per_level(v: Any, what: str) -> Any:
     """gaps start/end for GRanges: scalar, named (by seqlevel) or positional vector; NA -> None."""
     if v is None:
         return None
@@ -525,10 +536,8 @@ def _gaps(p: Params) -> Any:
     x = p["x"]
     _check_ranges(x)
     if isinstance(x, GRanges):
-        start = _per_level(p.get("start"), x, "start")
-        end = _per_level(p.get("end"), x, "end")
-        if isinstance(start, int) or start is None:
-            pass
+        start = _per_level(p.get("start"), "start")
+        end = _per_level(p.get("end"), "end")
         return x.gaps(start, end, **_strand_arg(x, p))
     return x.gaps(opt_int(p.get("start")), opt_int(p.get("end")))
 

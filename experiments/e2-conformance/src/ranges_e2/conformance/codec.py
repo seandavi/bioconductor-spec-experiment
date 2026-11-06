@@ -386,11 +386,11 @@ def tree_equal(a: Tree, b: Tree) -> bool:
             return False
         if len(a) == 0 and len(b) == 0:
             return True
-        if isinstance(a, dict) != isinstance(b, dict):
-            return False
-        if isinstance(a, dict):
+        if isinstance(a, dict) and isinstance(b, dict):
             return list(a.keys()) == list(b.keys()) and all(tree_equal(a[k], b[k]) for k in a)
-        return len(a) == len(b) and all(tree_equal(x, y) for x, y in zip(a, b))
+        if isinstance(a, list) and isinstance(b, list):
+            return len(a) == len(b) and all(tree_equal(x, y) for x, y in zip(a, b))
+        return False
     if isinstance(a, bool) or isinstance(b, bool):
         return isinstance(a, bool) and isinstance(b, bool) and a == b
     if isinstance(a, (int, float)) and isinstance(b, (int, float)):

@@ -56,6 +56,10 @@ class IRanges:
     """
 
     __slots__ = ("_start", "_width", "_names", "_mcols")
+    _start: npt.NDArray[np.int32]
+    _width: npt.NDArray[np.int32]
+    _names: Names | None
+    _mcols: pl.DataFrame | None
 
     def __init__(
         self,
@@ -185,12 +189,16 @@ class IRanges:
         )
         return IRanges._make(ns, nw, self._names, self._mcols)
 
-    def resize(self, width: Any, fix: str | Sequence[str] = "start", use_names: bool = True) -> "IRanges":
+    def resize(
+        self, width: Any, fix: str | Sequence[str] | npt.NDArray[np.str_] = "start", use_names: bool = True
+    ) -> "IRanges":
         fx = np.asarray([fix] if isinstance(fix, str) else list(fix))
         ns, nw = _intra.resize_ranges(self._s(), self._w(), as_int64(width, "width"), fx)
         return IRanges._make(ns, nw, self._names if use_names else None, self._mcols)
 
-    def flank(self, width: Any, start: bool | Sequence[bool] = True, both: bool = False) -> "IRanges":
+    def flank(
+        self, width: Any, start: bool | Sequence[bool] | npt.NDArray[np.bool_] = True, both: bool = False
+    ) -> "IRanges":
         at_start = as_bool_array(start if not isinstance(start, bool) else [start], len(self), "start")
         ns, nw = _intra.flank_ranges(self._s(), self._w(), as_int64(width, "width"), at_start, both)
         return IRanges._make(ns, nw, self._names, self._mcols)

@@ -20,7 +20,8 @@ _INF = np.iinfo(np.int64).max
 
 def pair_distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
     """Number of positions between two ranges; 0 if they overlap or are adjacent."""
-    return np.maximum(0, np.maximum(qs, ss) - np.minimum(qe, se) - 1)
+    out: IntArray = np.maximum(0, np.maximum(qs, ss) - np.minimum(qe, se) - 1)
+    return out
 
 
 def nearest_ties(
