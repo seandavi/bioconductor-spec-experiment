@@ -3,7 +3,7 @@
 Port: `iranges` 0.7.3 + `genomicranges` 0.9.0. Index base: 0-based row indices, coordinates as given (1-based, inclusive).
 Header of `biocpy.py` lists the docs used and every translation; this file is the short version.
 
-## Unsupported ops (`unsupported_ops`, 6 of 59)
+## Unsupported ops (`unsupported_ops`, 6 of 57)
 
 | Op | Reason |
 |---|---|
@@ -42,5 +42,5 @@ Header of `biocpy.py` lists the docs used and every translation; this file is th
 
 ## Round-trip limits (port, not adapter)
 
-- NA in `names` becomes the string `"None"` in the port (11 inputs).
-- Ranges whose end exceeds int32 are rejected at construction (build-phase port error).
+- NA in `names` becomes the string `"None"` in the port (4 distinct inputs).
+- Ranges whose end exceeds int32 are rejected at construction (build-phase port error, 6 inputs).
