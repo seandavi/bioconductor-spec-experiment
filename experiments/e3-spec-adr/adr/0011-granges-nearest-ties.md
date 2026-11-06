@@ -1,4 +1,4 @@
-# ADR-0011 GRanges nearest(select="all") keeps all minimal-distance ties
+# ADR-0011 GRanges nearest(select="all") keeps all minimal-gap ties
 
 Status: accepted · Clauses: NEAR.2, GR.15
 
