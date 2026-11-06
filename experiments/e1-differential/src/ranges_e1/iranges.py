@@ -257,10 +257,7 @@ class IRanges:
     @flags("both", "use_names")
     def flank(self, width: Any, start: Any = True, both: bool = False, use_names: bool = True) -> Self:
         by = self._int_arg(width, "width")
-        flags = np.asarray(start)
-        if flags.dtype.kind != "b":
-            raise ValueError("'start' must be logical without NA's")
-        at_start = _meta.recycle_arg(np.atleast_1d(flags), len(self), "start", longer="truncate")
+        at_start = _meta.recycle_arg(_args.logical_vector(start, "start"), len(self), "start", longer="truncate")
         s, w = intra.flank(self._start, self._width, by, at_start, bool(both))
         return self._new(s, w, *self._meta_kept(use_names))
 

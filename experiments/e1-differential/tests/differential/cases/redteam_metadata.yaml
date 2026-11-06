@@ -272,7 +272,6 @@ cases:
         - null
         - false
   check_warnings: true
-  xfail: 'Bug: masked logical flank start silently loses NA instead of rejecting it.'
 - id: rt-meta-ir-coverage-weight-column
   tags:
   - redteam
@@ -614,7 +613,6 @@ cases:
         - null
         - false
   check_warnings: true
-  xfail: 'Bug: masked logical flank start silently loses NA instead of rejecting it.'
 - id: rt-meta-gr-coverage-weight-column
   tags:
   - redteam

@@ -33,6 +33,16 @@ def flag(v: Any, what: str) -> bool:
     raise ValueError(f"'{what}' must be TRUE or FALSE")
 
 
+def logical_vector(v: Any, what: str) -> np.ndarray:
+    """A logical vector without NAs (masked entries included) as a bool ndarray."""
+    if isinstance(v, np.ma.MaskedArray) and np.ma.getmaskarray(v).any():
+        raise ValueError(f"'{what}' must be logical without NA's")
+    a = np.atleast_1d(np.ma.getdata(v) if isinstance(v, np.ma.MaskedArray) else np.asarray(v))
+    if a.dtype.kind != "b":
+        raise ValueError(f"'{what}' must be logical without NA's")
+    return a
+
+
 def scalar_int(v: Any, what: str, *, allow_na: bool = False) -> int | None:
     """A single number as int (doubles truncate like as.integer); NA only when allowed."""
     x = _single(v)

@@ -348,10 +348,7 @@ class GRanges:
         """Flanks upstream (start=True) or downstream of each range, in the strand's sense."""
         r = self._ranges
         by = r._int_arg(width, "width")
-        flags = np.asarray(start)
-        if flags.dtype.kind != "b":
-            raise ValueError("'start' must be logical without NA's")
-        at_start = _meta.recycle_arg(np.atleast_1d(flags), len(self), "start", longer="truncate")
+        at_start = _meta.recycle_arg(_args.logical_vector(start, "start"), len(self), "start", longer="truncate")
         s, w = intra.flank(r.start, r.width, by, at_start ^ self._neg(ignore_strand), bool(both))
         return self._moved(IRanges._new(s, w), use_names)
 
