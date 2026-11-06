@@ -38,7 +38,7 @@ for k in range(40):
     x, y = gr(sa), gr(sb)
     inputs = {"x": x, "y": y}
     for fn in ("c", "union", "intersect", "setdiff", "findOverlaps", "punion", "pintersect", "psetdiff", "range", "nearest", "precede", "follow", "distance", "countOverlaps"):
-        kw: dict = {"select": "first"} if fn == "nearest" else {}
+        kw: dict = {"select": "arbitrary"} if fn == "nearest" else {}
         cases.append({"id": f"si{k}-{fn}", "tags": ["seqinfo", fn, "warning"], "check_warnings": True, "inputs": inputs,
                       "call": {"fn": fn, "args": ["$x", "$y"], **({"kwargs": kw} if kw else {})}})
     cases.append({"id": f"si{k}-c-seqinfo", "tags": ["seqinfo", "c"], "inputs": inputs,

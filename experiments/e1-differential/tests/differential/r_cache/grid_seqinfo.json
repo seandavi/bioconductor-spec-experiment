@@ -226,9 +226,19 @@
    }
   },
   "si0-nearest": {
-   "hash": "b1961bf78d6c9813ba5e17f5d1ac53a208b5bb5ca8a417dd49bd8a0c2b36d2b1",
+   "hash": "7871b2bd64c50ffeda4caea7018bc91290e21583dfa73fe94ae833eef09e31e2",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      1,
+      null,
+      2
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -853,10 +863,22 @@
    }
   },
   "si1-nearest": {
-   "hash": "1b4bf5f8c205f75c85b3e8e463fea874663d605387c6db1c2b7e96d3444fccef",
+   "hash": "667fd4584cac76c5033d410e835f05ece2ad3314265069f8df407004c9cb87dc",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si1-pintersect": {
@@ -1290,9 +1312,9 @@
    }
   },
   "si10-nearest": {
-   "hash": "1f3f211ad492dca99b9260e318fda9c999657aed809dc59c16267522e82b7236",
+   "hash": "5f1ad0e161efa5602bfa38ca111fbdf00004f1485516b911724f5380a4df087c",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chrX has incompatible seqlengths:\n  - in 'x': 50\n  - in 'y': 100",
     "warnings": []
    }
   },
@@ -1432,9 +1454,9 @@
    }
   },
   "si11-nearest": {
-   "hash": "9727b19de3b5ddb31a713a2e19f6949bf3e2bd903eaa0d612cadfd5e402a59b8",
+   "hash": "d9faaf535ca8c8aadf7cb4d08767ebd3ac83c64e2dae2363aa3bb1bd5621cc36",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequences chr2, chrX, chr1 have incompatible genomes:\n  - in 'x': hg38, hg19, hg19\n  - in 'y': hg19, hg38, hg38",
     "warnings": []
    }
   },
@@ -1760,10 +1782,22 @@
    }
   },
   "si12-nearest": {
-   "hash": "f3504bf0b69fa853c1de1abec80ab26f0fafd9c7177c3f91f6b3be968889b17d",
+   "hash": "09d08f6e22f9583181f2824bd9e6c3fe1b2d0b8a480eba05db652a7ba39ce313",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr3\n  - in 'y': chrX, chr1\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si12-pintersect": {
@@ -2377,10 +2411,22 @@
    }
   },
   "si13-nearest": {
-   "hash": "e53a6880218be9fb47cf5b3b9444eb9ecbe533f49e4da0c5696d54a9d0268989",
+   "hash": "9da2956109816fc295b4ee753458f42a3da8b18d47c41e3881ed1fe71250b9aa",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chrX, chr1\n  - in 'y': chr2\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si13-pintersect": {
@@ -2946,9 +2992,19 @@
    }
   },
   "si14-nearest": {
-   "hash": "70ba668a9b054bac26d501b3ed3850f6ce182789e9332e1d3dfca7c4f196c79c",
+   "hash": "e8aac3651b550daa5330038cacb246d43e035edf15d0245797033626218b1134",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      1
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -3547,10 +3603,22 @@
    }
   },
   "si15-nearest": {
-   "hash": "7426251f73c016418074616a52006c620edae66b9bbf2567038b69f409e8df1e",
+   "hash": "741a93250244aa5526ef332b06bc554375d5f148162607991c0494e631ad0070",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si15-pintersect": {
@@ -4116,9 +4184,19 @@
    }
   },
   "si16-nearest": {
-   "hash": "c16fa10a231c6d3701e93e85260f0780117d28610b1008ced0c28a8396700ff0",
+   "hash": "b68d1a39de051785e5c8192e0ddd9a498a2e2ff116763d70e7432cb5581e53b0",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      null,
+      1,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -4687,10 +4765,22 @@
    }
   },
   "si17-nearest": {
-   "hash": "271511d966a4574770253b554d910cfcc9b63b81c865182481a9b9b754c4e58e",
+   "hash": "6973d9d5cecc063ef5c00c6c30e02cbd127146c565eaedb7e7011cb8847a48fc",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      4
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr2\n  - in 'y': chrX\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si17-pintersect": {
@@ -5260,9 +5350,19 @@
    }
   },
   "si18-nearest": {
-   "hash": "34ff6fcab6f4e0e56ae864808248c0d27aeb4b173bc948966836936516def1d3",
+   "hash": "e75036ac04faa7c3b2e35e2d703916616365169dfd27c98d678bfff527236b81",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      3,
+      null,
+      1
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -5693,9 +5793,9 @@
    }
   },
   "si19-nearest": {
-   "hash": "da5fc9b41eff332cd5bb871c7336fe2fcf54003503baba50bdc5c0b7d67f4196",
+   "hash": "633f380e3333c63e8eb2785797246b5d4572d7121255d71e080aed93ab754b12",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 50\n  - in 'y': 100",
     "warnings": []
    }
   },
@@ -5997,10 +6097,22 @@
    }
   },
   "si2-nearest": {
-   "hash": "38bf4dfa0f0f62451a2014aeede49c7810d5e956c1e9da34e4fd1ef01bd177ab",
+   "hash": "9f32e1888297750e8359133621d1dc5a97d7f629f3ed448cc4b52ef97affa34c",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chrX\n  - in 'y': chr3\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si2-pintersect": {
@@ -6582,9 +6694,19 @@
    }
   },
   "si20-nearest": {
-   "hash": "8af72fa1cfc49b1482e1a16b209c64d5eef3bf14b77ddfa9642b9794ebd225a7",
+   "hash": "0aeda88656f7edce22ee849e251db1ba609e26bf47556e0df23027ca82e32d47",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      null,
+      3,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -7159,10 +7281,22 @@
    }
   },
   "si21-nearest": {
-   "hash": "94ce3b690139fa7a8821839ed1170b33958628803ecb10e1e84b057079292747",
+   "hash": "a5002203e62f3c1d86c9d4e2866aa42371738c03513f1a7fd187fc265bffc6a5",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      4,
+      3,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr3\n  - in 'y': chr1\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si21-pintersect": {
@@ -7772,9 +7906,19 @@
    }
   },
   "si22-nearest": {
-   "hash": "f107bdbeff9afe2e4953c5bcfc2407eded2c9cbf6dd3f38c1383d0cd3cf781d7",
+   "hash": "97b9a5d0d64c66f28e618b87a1f1ee16c888a721da223a7bfa7738ec3c5a70e9",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      3,
+      null,
+      2
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -8329,9 +8473,19 @@
    }
   },
   "si23-nearest": {
-   "hash": "fbe20b7d9bed6cc5703f275d3abf25aefd956e12fb18a50dbbf931081d01c1bc",
+   "hash": "ddc55cab26bf703ca338f232d4cbe29e887ad3914be73bb5e646f47e8e00408e",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      2,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -8910,9 +9064,19 @@
    }
   },
   "si24-nearest": {
-   "hash": "fea019f8583e42fbc4952b9d56de55551416233b474531883c04c81589392c6e",
+   "hash": "98933818b36085085038026a53dd71a2974d9e5975ae4e5481b70916a1723109",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      2,
+      2,
+      2
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -9449,9 +9613,19 @@
    }
   },
   "si25-nearest": {
-   "hash": "9c003d626326f41021114d63747808143f4c0e6962388bfb78e377e00792547b",
+   "hash": "6b42b4131691c7191cbd9c7d28ae8abc53e154b350d5a1ca2dbbccf1c3091f5c",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      null,
+      3,
+      1
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -10020,9 +10194,19 @@
    }
   },
   "si26-nearest": {
-   "hash": "faac833b5f2a673b6c2bdc28d306f22eb1b5dfcbeeef05b3a0a6a78d4d4f61db",
+   "hash": "8522eb6c10a0bbb2f2be295552a304a4e32a049ca3f1e9ec7fae4bbebb9ff230",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      2,
+      4,
+      4
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -10330,9 +10514,9 @@
    }
   },
   "si27-nearest": {
-   "hash": "0bc55d3265634116d881fa0c751775201015db3a5c131ccfb712e2059cfd1592",
+   "hash": "30f11d23ee730074a25d5663465842d521fb34abce607550b3effc7495e30c7e",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chrX has incompatible seqlengths:\n  - in 'x': 100\n  - in 'y': 50",
     "warnings": []
    }
   },
@@ -10658,10 +10842,22 @@
    }
   },
   "si28-nearest": {
-   "hash": "c8cffaa71731b1accb553767b44a589900d7013453ea40fe3263147b1d6c1e37",
+   "hash": "e3a1b424b015cae7b0088717dd5841d414ea6416f59068a0896ef1aaa7d69d3c",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si28-pintersect": {
@@ -11235,10 +11431,22 @@
    }
   },
   "si29-nearest": {
-   "hash": "8ff3b61ea4bf10cfba786265b8c372a6a380c99fa8ff74a5e4bd48003eda4c2f",
+   "hash": "c250a7605b17597998e69662a34333be0e22de51d1f65da36d50b4c807e75765",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si29-pintersect": {
@@ -11640,9 +11848,9 @@
    }
   },
   "si3-nearest": {
-   "hash": "67255862b014bade4bc128f005ab67a6240f23b34cd9d16af25fe41ed99a628d",
+   "hash": "77ec7cf5d4d6fa2bae6bced8191153f85c53e16a4556d526631125b8635e17d9",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chr3 has incompatible seqlengths:\n  - in 'x': 50\n  - in 'y': 100",
     "warnings": []
    }
   },
@@ -11968,10 +12176,22 @@
    }
   },
   "si30-nearest": {
-   "hash": "921dfe5626b907b2a0d075a899e13adae0489092908eb22525c86af424383c6f",
+   "hash": "54fd41960817afcffa2140435117ab71ef021ea65eccb05334d214a774773e6e",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si30-pintersect": {
@@ -12537,9 +12757,19 @@
    }
   },
   "si31-nearest": {
-   "hash": "e412acb863fabef3979ba3f51a7cae405d192f994ec764c0b9033b5ac4ddc4a7",
+   "hash": "68fabcc21b694ae8ba231160dca4ab6ea1477f07a291965e0e1cda469605a702",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      null,
+      2,
+      4
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -13057,9 +13287,19 @@
    }
   },
   "si32-nearest": {
-   "hash": "ff534b0773d8b9b8439c9255585903086abd43fd738d121d769f958b841bbd93",
+   "hash": "7649a0e33b6236e2c30b754c69f0ce175b2cf47354ef89ae40bf005a3b2b76f7",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -13652,9 +13892,19 @@
    }
   },
   "si33-nearest": {
-   "hash": "f612918aac2fb47d68d0ba347b8a0a47280370fbcb9b67b3b339a72c58852a24",
+   "hash": "6e63c1c3a22e4453a533a93a821699dc4b9c3b12a3e724c268e9eedf730b51e5",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      null,
+      null,
+      2
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -14081,9 +14331,9 @@
    }
   },
   "si34-nearest": {
-   "hash": "08fc368bcfe45f3e3ecc9db50aa745672ffce4d7234b8e5ce5cc9f52d589604a",
+   "hash": "e9adadb7e0c09871ce7efe2312217167532e4dda0b5829d640a432556772380b",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chr3 has incompatible genomes:\n  - in 'x': hg19\n  - in 'y': hg38",
     "warnings": []
    }
   },
@@ -14385,9 +14635,19 @@
    }
   },
   "si35-nearest": {
-   "hash": "48c94967b1e93a190544e8d6deea9e43a20257f33ee74e4b1072850dcffc3777",
+   "hash": "a0ab2e0b79fb8237f7d9f7e69b105c8614ba5d402001960deb4bf0f22e613c69",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -14968,9 +15228,19 @@
    }
   },
   "si36-nearest": {
-   "hash": "4675e27ab512334ef471fbd05340c212d611007623dcb995c8669b732e2a9806",
+   "hash": "2a70ac7b60d6346a09ea2119373942cd71febb683194ba7ee3e4256bc2c2bffa",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      1,
+      3
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -15389,9 +15659,9 @@
    }
   },
   "si37-nearest": {
-   "hash": "64aec9b91aff306e25c1593c25cc775da58aa90260421487acc019f5b2430aa2",
+   "hash": "c0f8a889de68bc7608b9c98bed869c02c765cf99ee711588c140549fd4888803",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "error": "sequence chr1 has incompatible circularity flags:\n  - in 'x': TRUE\n  - in 'y': FALSE",
     "warnings": []
    }
   },
@@ -15717,10 +15987,22 @@
    }
   },
   "si38-nearest": {
-   "hash": "0e64315dc825f263fee2acb896c2dcffe2ac055080e740a16f96d058e6b7d589",
+   "hash": "59641337686b34ddefd578fea0dd0a1bf69387952c27ba15e149d2e54da0400b",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si38-pintersect": {
@@ -16306,9 +16588,19 @@
    }
   },
   "si39-nearest": {
-   "hash": "e497079098590ae7e52a9c6e420265a6551de8064e4e1ed6235fc46bf0cc6962",
+   "hash": "34b5166c84d03aa0345ba07bf0b03feb4489caa403e774b501278a3573395e3f",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      null,
+      null,
+      4
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -16879,9 +17171,19 @@
    }
   },
   "si4-nearest": {
-   "hash": "af0403c6cb5aa0463fc43343bb2faa5f091fbd796ff98f9b08d5566115dbd96c",
+   "hash": "88821bf62d5b406f369b1979120031980ff02917279089f1d358ab38a52a343e",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      null,
+      4,
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -17472,10 +17774,22 @@
    }
   },
   "si5-nearest": {
-   "hash": "e750af12dfb402ae092eea7943be8cef37dec17766197b6b8e9fdb0c31c6a2f9",
+   "hash": "8eaa07692a428814fc02fff00c24f0757b826c476bde76bbe097b0f47994c3b1",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      3,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr2\n  - in 'y': chr3\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si5-pintersect": {
@@ -18033,9 +18347,19 @@
    }
   },
   "si6-nearest": {
-   "hash": "04b7184659f1c49b91d9dab2878fda6c0e51224c9b92aed36a6ce859c79ed379",
+   "hash": "8415fa7fe6f40dec886fcc68e2b5da0db489589d6c9c7d8ea9ab945ed1f834cd",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      3,
+      3,
+      3
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -18596,9 +18920,19 @@
    }
   },
   "si7-nearest": {
-   "hash": "be4ab4afd6629cc29b1fe0f34b85e258dabe36f4b76d2dedaefb5d5397c7981a",
+   "hash": "f5dc276f4d1c169e1f2487bef678b1b99fe360003f23a4b6141cf2ac3ef76dff",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      3,
+      1,
+      2
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -19132,10 +19466,22 @@
    }
   },
   "si8-nearest": {
-   "hash": "fb258a880e1e91e9b8c03b95a2280571780a99cef100dfb4fd749d0f62077867",
+   "hash": "c6d9841e1201acad1732a7a95b4d5da9802f81336ae6dfff555e5263210c808a",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"
+    ]
    }
   },
   "si8-pintersect": {
@@ -19747,10 +20093,22 @@
    }
   },
   "si9-nearest": {
-   "hash": "1e5b551a36c65401fc3bbb50dca6138b88f5331391bc22b25261613de8414bad",
+   "hash": "f8cc65429ce8e34e78182b5cc7b4765cc169cde66da2c7a45bd1ab2ffe531f23",
    "result": {
-    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
-    "warnings": []
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chrX\n  - in 'y': chr3\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
    }
   },
   "si9-pintersect": {

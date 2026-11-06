@@ -84,7 +84,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si0-nearest
   inputs: *id001
@@ -232,7 +232,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si1-nearest
   inputs: *id004
@@ -378,7 +378,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si2-nearest
   inputs: *id007
@@ -529,7 +529,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si3-nearest
   inputs: *id010
@@ -678,7 +678,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si4-nearest
   inputs: *id013
@@ -827,7 +827,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si5-nearest
   inputs: *id016
@@ -976,7 +976,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si6-nearest
   inputs: *id019
@@ -1125,7 +1125,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si7-nearest
   inputs: *id022
@@ -1274,7 +1274,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si8-nearest
   inputs: *id025
@@ -1423,7 +1423,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si9-nearest
   inputs: *id028
@@ -1570,7 +1570,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si10-nearest
   inputs: *id031
@@ -1719,7 +1719,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si11-nearest
   inputs: *id034
@@ -1866,7 +1866,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si12-nearest
   inputs: *id037
@@ -2015,7 +2015,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si13-nearest
   inputs: *id040
@@ -2166,7 +2166,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si14-nearest
   inputs: *id043
@@ -2315,7 +2315,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si15-nearest
   inputs: *id046
@@ -2464,7 +2464,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si16-nearest
   inputs: *id049
@@ -2613,7 +2613,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si17-nearest
   inputs: *id052
@@ -2760,7 +2760,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si18-nearest
   inputs: *id055
@@ -2910,7 +2910,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si19-nearest
   inputs: *id058
@@ -3057,7 +3057,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si20-nearest
   inputs: *id061
@@ -3207,7 +3207,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si21-nearest
   inputs: *id064
@@ -3355,7 +3355,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si22-nearest
   inputs: *id067
@@ -3504,7 +3504,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si23-nearest
   inputs: *id070
@@ -3653,7 +3653,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si24-nearest
   inputs: *id073
@@ -3799,7 +3799,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si25-nearest
   inputs: *id076
@@ -3948,7 +3948,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si26-nearest
   inputs: *id079
@@ -4098,7 +4098,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si27-nearest
   inputs: *id082
@@ -4247,7 +4247,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si28-nearest
   inputs: *id085
@@ -4395,7 +4395,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si29-nearest
   inputs: *id088
@@ -4544,7 +4544,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si30-nearest
   inputs: *id091
@@ -4694,7 +4694,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si31-nearest
   inputs: *id094
@@ -4844,7 +4844,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si32-nearest
   inputs: *id097
@@ -4991,7 +4991,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si33-nearest
   inputs: *id100
@@ -5143,7 +5143,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si34-nearest
   inputs: *id103
@@ -5290,7 +5290,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si35-nearest
   inputs: *id106
@@ -5438,7 +5438,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si36-nearest
   inputs: *id109
@@ -5587,7 +5587,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si37-nearest
   inputs: *id112
@@ -5736,7 +5736,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si38-nearest
   inputs: *id115
@@ -5884,7 +5884,7 @@ cases:
 - call:
     args: [$x, $y]
     fn: nearest
-    kwargs: {select: first}
+    kwargs: {select: arbitrary}
   check_warnings: true
   id: si39-nearest
   inputs: *id118
