@@ -289,9 +289,9 @@ class Adapter(AdapterBase):
                    _mcols=()):
         kw = _present(seqnames=_ls(seqnames), ranges=ranges, strand=_ls(strand), seqinfo=seqinfo)
         if seqlengths is not MISSING:
-            if seqlengths is None or seqlengths.names is None:
+            if seqlengths is not None and seqlengths.names is None:
                 raise Unsupported("argument:seqlengths unnamed")  # the port takes a {seqlevel: length} mapping
-            kw["seqlengths"] = _mapping(seqlengths)
+            kw["seqlengths"] = None if seqlengths is None else _mapping(seqlengths)
         return GRanges(**kw, mcols=_frame_from(list(_mcols)))
 
     def op_Seqinfo(self, *, seqnames=MISSING, seqlengths=MISSING, isCircular=MISSING, genome=MISSING):
