@@ -120,7 +120,8 @@ def nearest_k(
 
 
 def distance_k(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -> np.ndarray:
-    """Gap between two ranges, 0 when they overlap or are adjacent."""
+    """R >= IRanges 2.47.3 ``distance``: 0 when the ranges overlap, else gap width + 1
+    (adjacent ranges give 1). Empty ranges never overlap (R tests ``max(start) <= min(end)``)."""
     if len(xs) == 0 or len(ys) == 0:
         return np.array([], dtype=I64)
     n = max(len(xs), len(ys))
@@ -129,4 +130,4 @@ def distance_k(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -
             raise ValueError(f"'{b}' must have length 1 or the length of the other argument")
     max_start = np.maximum(xs, ys)
     min_end = np.minimum(xs + xw - 1, ys + yw - 1)
-    return np.maximum(max_start - min_end - 1, 0).astype(I64)
+    return np.maximum(max_start - min_end, 0).astype(I64)
