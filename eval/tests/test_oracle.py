@@ -135,3 +135,18 @@ def test_kwarg_order_is_part_of_the_case_hash_and_survives_dedup_and_cache(tmp_p
         cols = lambda cid: [n for n, _ in exp[cid]["result"]["mcols"]]
         assert cols(a["id"]) == ["aa", "bb"] and cols(b["id"]) == ["bb", "aa"], round_
         assert meta["r_ran"] == (2 if round_ == "cold" else 0)
+
+
+def test_control_characters_round_trip_through_names_and_character_mcols():
+    """The R JSON writer must escape (not drop) U+0001..U+001F, including backspace and form feed."""
+    ops = load_ops()
+    ctrl = "".join(chr(i) for i in range(1, 32))
+    names = ["a\bb\fc\u0001d", ctrl, "tab\there\nline\rend", 'quote"back\\slash']
+    inputs = {"x": {"IRanges": {"start": {"int": [1, 2, 3, 4]}, "width": {"int": [1, 1, 1, 1]},
+                                "names": {"chr": names}, "mcols": [["label", {"chr": list(reversed(names))}]]}}}
+    got = run_r([case(0, "names", inputs, call("names", ref("x"))),
+                 case(1, "ranges", inputs, call("ranges", ref("x")))], ops, workers=1)
+    assert got["t/0"]["inputs"]["x"]["names"] == names
+    assert got["t/0"]["inputs"]["x"]["mcols"][0][1]["values"] == list(reversed(names))
+    assert got["t/0"]["result"]["values"] == names
+    assert got["t/1"]["result"]["names"] == names

@@ -16,7 +16,10 @@ jstr <- function(s) {
   s <- gsub("\n", "\\n", s, fixed = TRUE)
   s <- gsub("\r", "\\r", s, fixed = TRUE)
   s <- gsub("\t", "\\t", s, fixed = TRUE)
-  s <- gsub("[\001-\037]", "", s)
+  if (grepl("[\001-\037]", s)) {  # every other control character is escaped, never dropped
+    for (code in setdiff(1:31, c(9L, 10L, 13L)))
+      s <- gsub(intToUtf8(code), sprintf("\\u%04x", code), s, fixed = TRUE)
+  }
   paste0("\"", s, "\"")
 }
 jnum <- function(x) {
