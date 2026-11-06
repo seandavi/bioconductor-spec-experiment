@@ -121,28 +121,33 @@ def _mcols_from_projection(pairs: list) -> pl.DataFrame | None:
     return _frame([(n, _column_from_projection(c)) for n, c in pairs])
 
 
+_KIND_OF_DTYPE = {"b": "lgl", "i": "int", "u": "int", "f": "dbl"}
+
+
 def _subscript(i, n: int):
-    """R `[` subscript -> the port's 0-based Python-style subscript.
+    """R `[` subscript (RVector or a nested call's ndarray) -> the port's 0-based Python-style subscript.
 
     The port's subscripts are Python-style (negatives wrap, 0 is an index), so only forms with
     the same meaning in R are passed: positive integers (shifted) and full-length logicals.
     """
-    if not isinstance(i, RVector):
+    if isinstance(i, RVector):
+        kind, arr = i.type, _array(i)
+    elif isinstance(i, np.ndarray):
+        kind, arr = _KIND_OF_DTYPE.get(i.dtype.kind), i
+    else:
         raise Unsupported("subscript:non-vector")
-    if i.type == "chr":
+    if kind is None:
         raise Unsupported("subscript:name")
-    if i.type == "lgl":
-        if any(x is None for x in i.values):
-            raise Unsupported("subscript:logical NA")
-        if len(i) != n:
+    if np.ma.getmaskarray(arr).any():
+        raise Unsupported("subscript:logical NA" if kind == "lgl" else "subscript:NA")
+    arr = np.ma.getdata(arr)
+    if kind == "lgl":
+        if len(arr) != n:
             raise Unsupported("subscript:logical recycling")
-        return i.np()
-    if any(x is None for x in i.values):
-        raise Unsupported("subscript:NA")
-    vals = i.list()
-    if any(x != x or x < 1 for x in vals):
+        return arr
+    if (arr != arr).any() or (arr < 1).any():
         raise Unsupported("subscript:zero/negative")
-    return i.np() - 1
+    return arr - 1
 
 
 def _as_r_index(res):
