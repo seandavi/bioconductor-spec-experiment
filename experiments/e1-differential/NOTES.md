@@ -43,3 +43,6 @@ Append-only. Timestamped judgment calls and human interventions.
   precede(first)/follow(last); a tie goes to the follow side (arbitrary) or keeps both (all).
   Self mode (`nearest(x)`) uses findOverlaps(drop.self) whose select="arbitrary" is the max
   subject index (not the engine's first). distance() overflow -> NA (masked) + warning, as R.
+- 2026-11-06 ordering: order/rank/duplicated use key (start, width), stable; `decreasing` keeps
+  ties in index order (R radix). R's `rank(<IRanges>)` default errors -> ADR-0004. Not ported:
+  multi-argument `order(x, y)`, `rank(ties.method="random")`, `==`/`<`/`match`/`xtfrm` (outside TARGET).

@@ -13,6 +13,7 @@ import polars as pl
 from . import _meta
 from ._kernels import coverage as coverage_kernel
 from ._kernels import inter, intra, overlaps, setops
+from ._kernels import order as order_kernel
 from ._kernels import nearest as nearest_kernel
 from .hits import Hits
 from .rle import Rle
@@ -528,3 +529,34 @@ class IRanges:
                 raise ValueError("'width' cannot be negative")
         vals, lens = coverage_kernel.coverage(start, self._width, wt, total)
         return Rle(vals, lens)
+
+    # -- ordering ------------------------------------------------------------
+    def _order_keys(self) -> list[np.ndarray]:
+        """Sort keys, most significant first: start, then width."""
+        return [self._start, self._width]
+
+    @staticmethod
+    def _flag(v: Any, what: str) -> bool:
+        if not isinstance(v, (bool, np.bool_)):
+            raise ValueError(f"'{what}' must be TRUE or FALSE")
+        return bool(v)
+
+    def order(self, decreasing: bool = False) -> np.ndarray:
+        """0-based permutation sorting by (start, width); ties keep input order."""
+        return order_kernel.order(self._order_keys(), self._flag(decreasing, "decreasing"))
+
+    def sort(self, decreasing: bool = False) -> Self:
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "average") -> np.ndarray:
+        """1-based ranks by (start, width); float for "average", int otherwise.
+
+        R's own default fails to match its ties.method choices; Python defaults to "average" (ADR-0004).
+        """
+        return order_kernel.rank(self._order_keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> np.ndarray:
+        return order_kernel.duplicated(self._order_keys(), self._flag(from_last, "fromLast"))
+
+    def unique(self, from_last: bool = False) -> Self:
+        return self[~self.duplicated(from_last)]
