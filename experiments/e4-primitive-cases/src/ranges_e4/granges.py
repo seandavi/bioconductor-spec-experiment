@@ -8,7 +8,9 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _group, _mcols, inter, intra, nearest, overlaps, setops
+from . import _group, _mcols, inter, intra, nearest, ordering, overlaps, setops
+from . import coverage as _coverage
+from .rle import Rle
 from .hits import Hits
 from .iranges import IRanges, resolve_subscript
 from .seqinfo import Seqinfo
@@ -479,6 +481,65 @@ class GRanges:
             qs_, ys_ = bc(self._strand), bc(y._strand)
             ok = ok & ((qs_ == ys_) | (qs_ == 2) | (ys_ == 2))
         return np.ma.MaskedArray(d, mask=~ok)
+
+    # coverage ------------------------------------------------------------
+    def coverage(self, shift: Any = 0, width: Any = None, weight: Any = 1) -> dict[str, Rle]:
+        """Per-seqlevel coverage (strand ignored), in seqlevels order.
+
+        Length of each vector: ``width`` (scalar, per-seqlevel sequence, or dict
+        by seqname) if given, else the seqlength, else the max end. ``weight``
+        may be a scalar, a per-range vector, or the name of a numeric mcols column.
+        """
+        n, nlev = len(self), len(self._seqinfo)
+        if isinstance(weight, str):
+            if weight not in self._mcols.columns:
+                raise ValueError(f"no mcols column named {weight!r}")
+            weight = self._mcols[weight].to_numpy()
+        w_arr = np.asarray(weight)
+        shift_arr = intra.arg_vector(shift, n, "shift") if n else np.zeros(0, np.int64)
+        if isinstance(width, dict):
+            widths: list[int | None] = [width.get(s) for s in self._seqinfo.seqnames]
+        elif width is None:
+            widths = [None] * nlev
+        else:
+            vals = np.atleast_1d(np.asarray(width)).tolist()
+            if len(vals) == 1:
+                vals = vals * nlev
+            if len(vals) != nlev:
+                raise ValueError(f"'width' must have length 1 or {nlev}")
+            widths = [None if v is None else int(v) for v in vals]
+        out: dict[str, Rle] = {}
+        for c, name in enumerate(self._seqinfo.seqnames):
+            idx = np.flatnonzero(self._seqcodes == c)
+            length = widths[c] if widths[c] is not None else self._seqinfo._seqlengths[c]
+            wc = w_arr if w_arr.ndim == 0 or len(w_arr) == 1 else w_arr[idx]
+            dense = _coverage.coverage_dense(
+                self._ranges._start[idx], self._ranges._width[idx], shift_arr[idx], length, wc
+            )
+            out[name] = Rle.encode(dense)
+        return out
+
+    # ordering ------------------------------------------------------------
+    def _keys(self) -> np.ndarray:
+        """Sort key rows: seqlevel position, strand (+ - *), start, width."""
+        if not len(self):
+            return np.zeros((4, 0), np.int64)
+        return np.vstack([self._seqcodes, self._strand.astype(np.int64), self._ranges._start, self._ranges._width])
+
+    def order(self, decreasing: bool = False) -> np.ndarray:
+        return ordering.order(self._keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        return self._take(self.order(decreasing))
+
+    def rank(self, *, ties_method: str) -> np.ndarray:
+        return ordering.rank(self._keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> np.ndarray:
+        return ordering.duplicated(self._keys(), from_last)
+
+    def unique(self) -> Self:
+        return self[~self.duplicated()]
 
     # seqinfo-aware -------------------------------------------------------
     def trim(self) -> Self:

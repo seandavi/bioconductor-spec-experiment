@@ -278,3 +278,20 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | GR-DISTANCE-2 | pairs with incompatible strands are NA unless `ignore.strand=TRUE` | `?distance` |
 | GR-DISTANCE-3 | pairs on different seqlevels are NA | `?distance` |
 | GR-DISTANCE-4 | length-1 recycles; zero-length gives zero-length | `?distance` |
+| GR-COV-1 | `coverage(GRanges)` gives one run-length vector per seqlevel; strand is ignored | `?coverage` |
+| GR-COV-2 | vectors are in seqlevels order | `?coverage` |
+| GR-COV-3 | vector length is the seqlength when known (ranges beyond it clipped), else the maximum end | `?coverage` |
+| GR-COV-4 | unused seqlevels give all-zero vectors of seqlength (zero-length if unknown); zero-length input likewise | `?coverage` |
+| GR-COV-5 | `shift` (scalar or per-range) moves ranges; known seqlengths still fix the length | `?coverage` |
+| GR-COV-6 | `width` (scalar, or one per seqlevel in seqlevels order) overrides the length | `?coverage` |
+| GR-COV-7 | `weight`: scalar, per-range vector, or the name of an mcols column | `?coverage` |
+| GR-ORDER-1 | `order(GRanges)` sorts by seqlevel position, strand, start, width | `?"GRanges-class"` |
+| GR-ORDER-2 | decreasing reverses all keys; ties keep input order | `?"GRanges-class"` |
+| GR-ORDER-3 | strand order is `+`, `-`, `*` | `?"GRanges-class"` |
+| GR-ORDER-4 | seqlevels sort by their position in seqlevels, not alphabetically | `?"GRanges-class"` |
+| GR-ORDER-5 | width breaks start ties; zero-length gives zero-length | `?"GRanges-class"` |
+| GR-SORT-1 | `sort` reorders by `order`, carrying names/mcols/seqinfo | `?"GRanges-class"` |
+| GR-RANK-1 | `rank` on the same keys; `ties.method` required | `?"GRanges-class"` |
+| GR-DUP-1 | `duplicated` on (seqname, strand, start, width) | `?"GRanges-class"` |
+| GR-DUP-2 | strand matters; names and mcols do not | `?"GRanges-class"` |
+| GR-UNIQUE-1 | `unique` keeps first occurrences with names/mcols | `?"GRanges-class"` |

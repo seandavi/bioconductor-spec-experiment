@@ -1,0 +1,96 @@
+cases:
+  - id: gr-order-basic
+    clause: GR-ORDER-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: order, args: [x]}
+  - id: gr-order-decreasing
+    clause: GR-ORDER-2
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: order, args: [x], kwargs: {decreasing: true}}
+  - id: gr-order-strand-plus-minus-star
+    clause: GR-ORDER-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a], start: [1, 1, 1], width: [1, 1, 1], strand: ["*", "-", "+"]}}
+    call: {op: order, args: [x]}
+  - id: gr-order-seqlevels-position-z-first
+    clause: GR-ORDER-4
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [1, 1], seqinfo: {seqnames: [z, a]}}}
+    call: {op: order, args: [x]}
+  - id: gr-order-seqlevels-position-a-first
+    clause: GR-ORDER-4
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [1, 1], seqinfo: {seqnames: [a, z]}}}
+    call: {op: order, args: [x]}
+  - id: gr-order-width-tiebreak
+    clause: GR-ORDER-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a], start: [1, 1, 1], width: [3, 1, 2]}}
+    call: {op: order, args: [x]}
+  - id: gr-order-empty
+    clause: GR-ORDER-5
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: order, args: [x]}
+  - id: gr-sort
+    clause: GR-SORT-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: sort, args: [x]}
+  - id: gr-sort-decreasing
+    clause: GR-SORT-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: sort, args: [x], kwargs: {decreasing: true}}
+  - id: gr-rank-average
+    clause: GR-RANK-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: average}}
+  - id: gr-rank-first
+    clause: GR-RANK-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: first}}
+  - id: gr-rank-last
+    clause: GR-RANK-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: last}}
+  - id: gr-rank-min
+    clause: GR-RANK-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: gr-rank-max
+    clause: GR-RANK-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: max}}
+  - id: gr-dup
+    clause: GR-DUP-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: duplicated, args: [x]}
+  - id: gr-dup-from-last
+    clause: GR-DUP-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: duplicated, args: [x], kwargs: {fromLast: true}}
+  - id: gr-dup-strand-matters
+    clause: GR-DUP-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 1], width: [1, 1], strand: ["+", "-"]}}
+    call: {op: duplicated, args: [x]}
+  - id: gr-dup-ignores-names
+    clause: GR-DUP-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 1], width: [1, 1], names: [x, y]}}
+    call: {op: duplicated, args: [x]}
+  - id: gr-unique
+    clause: GR-UNIQUE-1
+    inputs:
+      x: {GRanges: {seqnames: [b, a, a, b, a, a, c, a], start: [5, 5, 1, 5, 5, 5, 1, 5], width: [2, 2, 3, 2, 1, 2, 1, 2], strand: ["+", "-", "+", "*", "+", "+", "-", "-"], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}, seqinfo: {seqnames: [b, a, c]}}}
+    call: {op: unique, args: [x]}
