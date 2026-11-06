@@ -24,7 +24,7 @@ Translations (representation only):
   * dense coverage arrays -> Rle (runs normalised by the base helper); the `GenomicRanges.coverage` dict -> RleList.
   * seqlengths / isCircular / genome accessors return plain lists in seqlevel order; R returns them named by
     seqlevels, so the names are attached from `get_seqnames()`.
-  * missing `subject` in findOverlaps (self overlaps): the object is passed as its own query.
+  * missing `subject` in findOverlaps / countOverlaps (self overlaps): the object is passed as its own query.
   * `range(x, ...)`: objects in `...` are first combined with the port's combine, then `range` is called.
   * `seqlengths<-` / `isCircular<-` / `genome<-` on a GRanges: `get_seqinfo()`, the SeqInfo setter, `set_seqinfo()`
     (the port has no per-GRanges setter).
@@ -77,6 +77,9 @@ class _Coverage:
     def __init__(self, value: Any):
         self.value = value
 
+    def __len__(self) -> int:
+        return len(self.value)
+
 
 class _Revmap:
     """A result computed with `with_reverse_map=True`: its `revmap` mcols column holds 0-based indices."""
@@ -87,17 +90,20 @@ class _Revmap:
 
 # ---------------------------------------------------------------- R value -> port value
 
-def _seq(rv: RVector) -> Any:
-    """Vector of length != 1: ndarray, or a list when it holds NA (int / lgl / chr)."""
-    if rv.type == "chr":
-        return rv.list()
-    if rv.type != "dbl" and any(v is None for v in rv.values):
+def _seq(rv: RVector) -> list:
+    """R vector -> Python list (None = NA); the port documents `Sequence` for these arguments."""
+    return rv.list()
+
+
+def _arr(rv: RVector) -> Any:
+    """R vector -> ndarray (a list when it holds NA in an int / lgl vector), for arguments the port types as ndarray."""
+    if rv.type == "chr" or (rv.type != "dbl" and any(v is None for v in rv.values)):
         return rv.list()
     return rv.np()
 
 
 def _val(rv: Any) -> Any:
-    """Length-1 R vector -> Python scalar; longer -> `_seq`; NULL / port objects unchanged."""
+    """Length-1 R vector -> Python scalar; otherwise a list; NULL / port objects unchanged."""
     if not isinstance(rv, RVector):
         return rv
     return rv.scalar() if len(rv) == 1 else _seq(rv)
@@ -156,6 +162,13 @@ def _project_columns(frame: BiocFrame | None) -> list:
     if frame is None:
         return []
     return [(name, _project_column(frame.get_column(name))) for name in frame.get_column_names()]
+
+
+def _require(**objects: Any) -> None:
+    """The port method has a required parameter for this R argument, and the case omits it."""
+    for name, value in objects.items():
+        if value is MISSING:
+            raise Unsupported(f"argument missing: {name}")
 
 
 def _names_list(names: Any) -> list | None:
@@ -273,11 +286,9 @@ class Adapter(AdapterBase):
                    seqlengths=MISSING, _mcols=()):
         if seqlengths is not MISSING:
             raise UnknownArgument("seqlengths")
-        kw: dict[str, Any] = {}
-        if seqnames is not MISSING:
-            kw["seqnames"] = seqnames.list()
-        if ranges is not MISSING:
-            kw["ranges"] = ranges
+        _require(seqnames=seqnames, ranges=ranges)  # GenomicRanges.__init__ has no defaults for these
+        kw: dict[str, Any] = {"seqnames": seqnames.list() if isinstance(seqnames, RVector) else seqnames,
+                              "ranges": ranges}
         if strand is not MISSING:
             kw["strand"] = None if strand is None else strand.list()
         if seqinfo is not MISSING:
@@ -287,9 +298,8 @@ class Adapter(AdapterBase):
         return GenomicRanges(**kw)
 
     def op_Seqinfo(self, *, seqnames=MISSING, seqlengths=MISSING, isCircular=MISSING, genome=MISSING):
-        kw: dict[str, Any] = {}
-        if seqnames is not MISSING:
-            kw["seqnames"] = seqnames.list()
+        _require(seqnames=seqnames)  # SeqInfo.__init__ has no default for seqnames
+        kw: dict[str, Any] = {"seqnames": seqnames.list()}
         if seqlengths is not MISSING:
             kw["seqlengths"] = _val(seqlengths)
         if isCircular is not MISSING:
@@ -452,16 +462,20 @@ class Adapter(AdapterBase):
 
     # ---------------------------------------------------------------- set operations
 
-    def op_union(self, *, x, y, **kw):
+    def op_union(self, *, x, y=MISSING, **kw):
+        _require(y=y)
         return self._invoke(x, "union", kw, {"ignore_strand": "ignore_strand"}, y)
 
-    def op_intersect(self, *, x, y, **kw):
+    def op_intersect(self, *, x, y=MISSING, **kw):
+        _require(y=y)
         return self._invoke(x, "intersect", kw, {"ignore_strand": "ignore_strand"}, y)
 
-    def op_setdiff(self, *, x, y, **kw):
+    def op_setdiff(self, *, x, y=MISSING, **kw):
+        _require(y=y)
         return self._invoke(x, "setdiff", kw, {"ignore_strand": "ignore_strand"}, y)
 
-    def op_pintersect(self, *, x, y, **kw):
+    def op_pintersect(self, *, x, y=MISSING, **kw):
+        _require(y=y)
         return self._invoke(x, "pintersect", kw, {"ignore_strand": "ignore_strand"}, y)
 
     # ---------------------------------------------------------------- overlaps
@@ -476,11 +490,14 @@ class Adapter(AdapterBase):
         res = self._invoke(subject, "find_overlaps", kw, argmap, query)
         return self._search(res, len(query), len(subject))
 
-    def op_countOverlaps(self, *, query, subject, **kw):
+    def op_countOverlaps(self, *, query, subject=MISSING, **kw):
+        if subject is MISSING:  # as findOverlaps: missing subject = the query itself
+            subject = query
         argmap = {**self._OVERLAP_ARGS, "nthread": "num_threads"}
         return self._invoke(subject, "count_overlaps", kw, argmap, query)
 
-    def op_subsetByOverlaps(self, *, x, ranges, **kw):
+    def op_subsetByOverlaps(self, *, x, ranges=MISSING, **kw):
+        _require(ranges=ranges)
         return self._invoke(x, "subset_by_overlaps", kw, self._OVERLAP_ARGS, ranges)
 
     # ---------------------------------------------------------------- nearest / distance
@@ -500,14 +517,15 @@ class Adapter(AdapterBase):
     def op_follow(self, *, x, subject=MISSING, **kw):
         return self._search_op("follow", x, subject, kw)
 
-    def op_distance(self, *, x, y, **kw):
+    def op_distance(self, *, x, y=MISSING, **kw):
+        _require(y=y)
         return self._invoke(x, "distance", kw, {}, y)
 
     # ---------------------------------------------------------------- coverage
 
     def op_coverage(self, *, x, **kw):
         # IRanges.coverage documents array-valued shift / weight; GenomicRanges.coverage documents scalars.
-        conv = {"shift": _seq, "weight": _seq} if isinstance(x, IRanges) else {}
+        conv = {"shift": _arr, "weight": _arr} if isinstance(x, IRanges) else {}
         res = self._invoke(x, "coverage", kw, {"shift": "shift", "width": "width", "weight": "weight",
                                                "method": "method"}, conv=conv)
         return _Coverage(res)
