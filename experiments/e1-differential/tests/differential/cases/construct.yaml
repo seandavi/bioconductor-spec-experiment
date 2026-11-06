@@ -1,0 +1,264 @@
+# IRanges construction, accessors, subsetting, concatenation, mcols.
+cases:
+  - id: ir-start-end
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [1, 5], end: [3, 10]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-start-width
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-end-width
+    tags: [construct]
+    inputs: {x: {IRanges: {end: [3, 10], width: [3, 0]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-all-three-consistent
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [1], end: [3], width: [3]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-all-three-inconsistent
+    tags: [construct, error]
+    inputs: {x: {IRanges: {start: [1], end: [3], width: [2]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-start-only-runs
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [1, 2, 3, 7, 8, 3, 2]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-start-only-logical-runs
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [true, true, false, true]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-end-only-error
+    tags: [construct, error]
+    inputs: {x: {IRanges: {end: [1, 2, 3]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-negative-width-error
+    tags: [construct, error]
+    inputs: {x: {IRanges: {start: [1], width: [-1]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-end-before-start-minus-1-error
+    tags: [construct, error]
+    inputs: {x: {IRanges: {start: [5], end: [3]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-na-start-error
+    tags: [construct, error, na]
+    inputs: {x: {IRanges: {start: [null], width: [2]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-int32-overflow-integer-inputs
+    tags: [construct, error, int32]
+    inputs: {x: {IRanges: {start: [2147483647], width: [2]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-int32-overflow-double-error
+    tags: [construct, error, int32]
+    inputs: {x: {IRanges: {start: {num: [2147483647]}, width: {num: [2]}}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-int32-max-ok
+    tags: [construct, int32]
+    inputs: {x: {IRanges: {start: [2147483647], width: [1]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-recycle-scalar-width
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [2]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-negative-coordinates
+    tags: [construct]
+    inputs: {x: {IRanges: {start: [-5, -2], width: [3, 0]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-empty
+    tags: [construct, empty]
+    inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-zero-width
+    tags: [construct, zero-width]
+    inputs: {x: {IRanges: {start: [5, 1], width: [0, 0]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names
+    tags: [construct, names]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, b]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-with-na
+    tags: [construct, names, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-empty-string
+    tags: [construct, names]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: ["", b]}}}
+    call: {fn: names, args: [$x]}
+  - id: ir-names-too-short-padded
+    tags: [construct, names]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-too-long-error
+    tags: [construct, names, error]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, b, c]}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-none
+    tags: [accessor, names]
+    inputs: {x: {IRanges: {start: [1], width: [3]}}}
+    call: {fn: names, args: [$x]}
+  - id: ir-accessor-start
+    tags: [accessor]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}
+    call: {fn: start, args: [$x]}
+  - id: ir-accessor-end
+    tags: [accessor, zero-width]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}
+    call: {fn: end, args: [$x]}
+  - id: ir-accessor-width
+    tags: [accessor]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}
+    call: {fn: width, args: [$x]}
+  - id: ir-accessor-length
+    tags: [accessor]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}
+    call: {fn: length, args: [$x]}
+  - id: ir-mcols-roundtrip
+    tags: [mcols]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], mcols: {score: [1.5, 2.5], tag: [u, v]}}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-mcols-accessor
+    tags: [mcols]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], mcols: {score: [1, 2]}}}}
+    call: {fn: mcols, args: [$x]}
+  - id: ir-mcols-none
+    tags: [mcols]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2]}}}
+    call: {fn: mcols, args: [$x]}
+  - id: ir-mcols-set
+    tags: [mcols]
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [3, 2]}}
+      m: {DataFrame: {a: [1, 2]}}
+    call: {fn: mcols<-, args: [$x], kwargs: {value: $m}}
+  - id: ir-mcols-set-wrong-length-error
+    tags: [mcols, error]
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [3, 2]}}
+      m: {DataFrame: {a: [1, 2, 3]}}
+    call: {fn: mcols<-, args: [$x], kwargs: {value: $m}}
+  - id: ir-names-set
+    tags: [names]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2]}}}
+    call: {fn: names<-, args: [$x], kwargs: {value: [p, q]}}
+  - id: ir-subset-int
+    tags: [subset]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1], names: [a, b, c]}}}
+    call: {fn: "[", args: [$x, [3, 1]]}
+  - id: ir-subset-repeat-and-order
+    tags: [subset]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [2, 2, 1]]}
+  - id: ir-subset-negative
+    tags: [subset]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [-1]]}
+  - id: ir-subset-zero-dropped
+    tags: [subset]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [0, 2]]}
+  - id: ir-subset-mixed-sign-error
+    tags: [subset, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [-1, 2]]}
+  - id: ir-subset-logical
+    tags: [subset]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [true, false, true]]}
+  - id: ir-subset-logical-wrong-length-error
+    tags: [subset, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [true, false, true, true]]}
+  - id: ir-subset-names
+    tags: [subset, names]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1], names: [a, b, c]}}}
+    call: {fn: "[", args: [$x, [c, a]]}
+  - id: ir-subset-unknown-name-error
+    tags: [subset, names, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1], names: [a, b, c]}}}
+    call: {fn: "[", args: [$x, [zz]]}
+  - id: ir-subset-name-without-names-error
+    tags: [subset, names, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [a]]}
+  - id: ir-subset-out-of-bounds-error
+    tags: [subset, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [4]]}
+  - id: ir-subset-na-error
+    tags: [subset, na, error]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1]}}}
+    call: {fn: "[", args: [$x, [1, null]]}
+  - id: ir-subset-empty
+    tags: [subset, empty]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1], mcols: {m: [1, 2, 3]}}}}
+    call: {fn: "[", args: [$x, {int: []}]}
+  - id: ir-subset-keeps-mcols
+    tags: [subset, mcols]
+    inputs: {x: {IRanges: {start: [1, 5, 9], width: [3, 2, 1], mcols: {m: [1, 2, 3]}}}}
+    call: {fn: "[", args: [$x, [3, 1]]}
+  - id: ir-concat
+    tags: [concat]
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [3, 0]}}
+      y: {IRanges: {start: [2], width: [4]}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-concat-three
+    tags: [concat]
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      y: {IRanges: {start: [2], width: [4]}}
+    call: {fn: c, args: [$x, $y, $x]}
+  - id: ir-concat-names-one-sided
+    tags: [concat, names]
+    inputs:
+      x: {IRanges: {start: [1], width: [3], names: [a]}}
+      y: {IRanges: {start: [2], width: [4]}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-concat-names-one-sided-reversed
+    tags: [concat, names]
+    inputs:
+      x: {IRanges: {start: [1], width: [3], names: [a]}}
+      y: {IRanges: {start: [2], width: [4]}}
+    call: {fn: c, args: [$y, $x]}
+  - id: ir-concat-mcols-same
+    tags: [concat, mcols]
+    inputs:
+      x: {IRanges: {start: [1], width: [3], mcols: {m: [1]}}}
+      y: {IRanges: {start: [2], width: [4], mcols: {m: [2]}}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-concat-mcols-different-columns
+    tags: [concat, mcols]
+    inputs:
+      x: {IRanges: {start: [1], width: [3], mcols: {a: [1]}}}
+      y: {IRanges: {start: [2], width: [4], mcols: {z: [2.5]}}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-concat-mcols-one-sided
+    tags: [concat, mcols]
+    inputs:
+      x: {IRanges: {start: [1], width: [3], mcols: {a: [1]}}}
+      y: {IRanges: {start: [2], width: [4]}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-concat-with-empty
+    tags: [concat, empty]
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+      y: {IRanges: {start: {int: []}, width: {int: []}}}
+    call: {fn: c, args: [$x, $y]}
+  - id: ir-names-na-with-mcols
+    tags: [construct, names, mcols, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null], mcols: {m: [1, 2]}}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-na-then-set-mcols
+    tags: [mcols, names, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null]}}, m: {DataFrame: {a: [1, 2]}}}
+    call: {fn: mcols<-, args: [$x], kwargs: {value: $m}}
+  - id: ir-set-names-na-with-mcols
+    tags: [mcols, names, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], mcols: {m: [1, 2]}}}}
+    call: {fn: names<-, args: [$x], kwargs: {value: [a, null]}}
+  - id: ir-mcols-accessor-na-names
+    # R's mcols() getter builds rownames from names(x) and fails if any name is NA. ADR-0006.
+    tags: [mcols, names, na, divergence]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null], mcols: {m: [1, 2]}}}}
+    call: {fn: mcols, args: [$x]}
+    divergence: {adr: "0006", python: {class: DataFrame, columns: {m: {class: vector, type: int, values: [1, 2], names: null}}, nrow: 2}}

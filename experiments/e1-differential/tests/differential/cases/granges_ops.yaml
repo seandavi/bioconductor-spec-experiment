@@ -1,0 +1,124 @@
+# GRanges overlaps, nearest, coverage, ordering. Randomised pools: grid_granges.yaml.
+x_def: &QS
+  q: {GRanges: {seqnames: [chr1, chr1, chr2, chr1], start: [1, 10, 5, 30], width: [8, 8, 5, 10], strand: ["+", "-", "+", "*"], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+  s: {GRanges: {seqnames: [chr1, chr1, chr2, chr3, chr1], start: [5, 12, 1, 1, 35], width: [10, 3, 10, 5, 10], strand: ["+", "*", "-", "+", "-"], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+empty_def: &E {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+cases:
+  - {id: gr-fo-basic, tags: [findOverlaps], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: gr-fo-ignore-strand, tags: [findOverlaps, strand], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {ignore.strand: true}}}
+  - {id: gr-fo-type-within, tags: [findOverlaps], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: within}}}
+  - {id: gr-fo-maxgap, tags: [findOverlaps], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 5, type: end}}}
+  - {id: gr-fo-minoverlap, tags: [findOverlaps], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {minoverlap: 4}}}
+  - {id: gr-fo-select-first, tags: [findOverlaps, select], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: first}}}
+  - {id: gr-fo-select-last, tags: [findOverlaps, select], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: last}}}
+  - {id: gr-fo-select-arbitrary, tags: [findOverlaps, select], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: arbitrary}}}
+  - {id: gr-fo-star-matches-any-strand, tags: [findOverlaps, strand], inputs: {q: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 1, 1], width: [5, 5, 5], strand: ["+", "-", "*"]}}, s: {GRanges: {seqnames: [chr1, chr1, chr1], start: [2, 2, 2], width: [5, 5, 5], strand: ["+", "-", "*"]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: gr-fo-different-seqnames-never-hit-even-with-huge-maxgap, tags: [findOverlaps, int32], inputs: {q: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}, s: {GRanges: {seqnames: [chr2], start: [1], width: [5], seqinfo: {seqnames: [chr2, chr1]}}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 2147483647, type: within}}}
+  - {id: gr-fo-any-maxgap-and-minoverlap-error, tags: [findOverlaps, error], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 0, minoverlap: 1}}}
+  - {id: gr-fo-type-error, tags: [findOverlaps, error], inputs: *QS, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: foo}}}
+  - {id: gr-fo-empty-query, tags: [findOverlaps, empty], inputs: {e: *E, s: &s1 {GRanges: {seqnames: [chr1], start: [5], width: [10], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}}, call: {fn: findOverlaps, args: [$e, $s]}}
+  - {id: gr-fo-empty-subject, tags: [findOverlaps, empty], inputs: {e: *E, q: *s1}, call: {fn: findOverlaps, args: [$q, $e]}}
+  - {id: gr-fo-empty-subject-select-first, tags: [findOverlaps, empty, select], inputs: {e: *E, q: *s1}, call: {fn: findOverlaps, args: [$q, $e], kwargs: {select: first}}}
+  - {id: gr-fo-zero-width, tags: [findOverlaps, zero-width], inputs: {q: {GRanges: {seqnames: [chr1, chr1, chr1], start: [5, 1, 11], width: [0, 0, 0]}}, s: {GRanges: {seqnames: [chr1], start: [1], width: [10]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - id: gr-fo-seqinfo-disjoint-warns
+    tags: [findOverlaps, seqinfo, warning]
+    check_warnings: true
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2]}}}
+      b: {GRanges: {seqnames: [chr1], start: [3], width: [5], seqinfo: {seqnames: [chr1, chr3]}}}
+    call: {fn: findOverlaps, args: [$a, $b]}
+  - id: gr-fo-seqlength-conflict-error
+    tags: [findOverlaps, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [10]}}}
+      b: {GRanges: {seqnames: [chr1], start: [3], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [20]}}}
+    call: {fn: findOverlaps, args: [$a, $b]}
+  - {id: gr-fo-self, tags: [findOverlaps, self], inputs: *QS, call: {fn: findOverlaps, args: [$q]}}
+  - {id: gr-fo-self-drop-self, tags: [findOverlaps, self], inputs: *QS, call: {fn: findOverlaps, args: [$q], kwargs: {drop.self: true, ignore.strand: true, maxgap: 20}}}
+  - {id: gr-count, tags: [countOverlaps], inputs: *QS, call: {fn: countOverlaps, args: [$q, $s]}}
+  - {id: gr-count-ignore-strand, tags: [countOverlaps, strand], inputs: *QS, call: {fn: countOverlaps, args: [$q, $s], kwargs: {ignore.strand: true}}}
+  - {id: gr-any, tags: [overlapsAny], inputs: *QS, call: {fn: overlapsAny, args: [$q, $s]}}
+  - {id: gr-any-self, tags: [overlapsAny, self], inputs: *QS, call: {fn: overlapsAny, args: [$q]}}
+  - {id: gr-subset-by-overlaps, tags: [subsetByOverlaps, names, mcols], inputs: *QS, call: {fn: subsetByOverlaps, args: [$q, $s]}}
+  - {id: gr-subset-by-overlaps-invert, tags: [subsetByOverlaps], inputs: *QS, call: {fn: subsetByOverlaps, args: [$q, $s], kwargs: {invert: true}}}
+  - {id: gr-subset-by-overlaps-ignore-strand, tags: [subsetByOverlaps, strand], inputs: *QS, call: {fn: subsetByOverlaps, args: [$q, $s], kwargs: {ignore.strand: true}}}
+
+  - {id: gr-nearest, tags: [nearest], inputs: *QS, call: {fn: nearest, args: [$q, $s]}}
+  - {id: gr-nearest-all, tags: [nearest], inputs: *QS, call: {fn: nearest, args: [$q, $s], kwargs: {select: all}}}
+  - {id: gr-nearest-ignore-strand, tags: [nearest, strand], inputs: *QS, call: {fn: nearest, args: [$q, $s], kwargs: {ignore.strand: true}}}
+  - {id: gr-nearest-self, tags: [nearest, self], inputs: *QS, call: {fn: nearest, args: [$q]}}
+  - {id: gr-nearest-empty-subject, tags: [nearest, empty], inputs: {e: *E, q: *s1}, call: {fn: nearest, args: [$q, $e]}}
+  - {id: gr-nearest-empty-subject-all, tags: [nearest, empty], inputs: {e: *E, q: *s1}, call: {fn: nearest, args: [$q, $e], kwargs: {select: all}}}
+  - {id: gr-nearest-empty-query, tags: [nearest, empty], inputs: {e: *E, s: *s1}, call: {fn: nearest, args: [$e, $s]}}
+  - {id: gr-nearest-select-first-error, tags: [nearest, error], inputs: *QS, call: {fn: nearest, args: [$q, $s], kwargs: {select: first}}}
+  - {id: gr-nearest-other-seqname-only, tags: [nearest, seqinfo], inputs: {q: {GRanges: {seqnames: [chr1], start: [5], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}, s: {GRanges: {seqnames: [chr2], start: [5], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: nearest, args: [$q, $s]}}
+  - {id: gr-nearest-tie-prefers-lower-index, tags: [nearest, ties], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [1]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [20, 1], width: [1, 1]}}}, call: {fn: nearest, args: [$q, $s]}}
+  - {id: gr-nearest-tie-prefers-lower-index-swapped, tags: [nearest, ties], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [1]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [1, 20], width: [1, 1]}}}, call: {fn: nearest, args: [$q, $s]}}
+  - {id: gr-nearest-tie-all, tags: [nearest, ties], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [1]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [1, 20], width: [1, 1]}}}, call: {fn: nearest, args: [$q, $s], kwargs: {select: all}}}
+  - {id: gr-precede, tags: [precede, strand], inputs: *QS, call: {fn: precede, args: [$q, $s]}}
+  - {id: gr-precede-all, tags: [precede, strand], inputs: *QS, call: {fn: precede, args: [$q, $s], kwargs: {select: all}}}
+  - {id: gr-precede-ignore-strand, tags: [precede, strand], inputs: *QS, call: {fn: precede, args: [$q, $s], kwargs: {ignore.strand: true}}}
+  - {id: gr-follow, tags: [follow, strand], inputs: *QS, call: {fn: follow, args: [$q, $s]}}
+  - {id: gr-follow-all, tags: [follow, strand], inputs: *QS, call: {fn: follow, args: [$q, $s], kwargs: {select: all}}}
+  - {id: gr-follow-ignore-strand, tags: [follow, strand], inputs: *QS, call: {fn: follow, args: [$q, $s], kwargs: {ignore.strand: true}}}
+  - {id: gr-precede-minus-strand-looks-left, tags: [precede, strand], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [2], strand: ["-"]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [1, 20], width: [2, 2], strand: ["-", "-"]}}}, call: {fn: precede, args: [$q, $s]}}
+  - {id: gr-follow-minus-strand-looks-right, tags: [follow, strand], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [2], strand: ["-"]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [1, 20], width: [2, 2], strand: ["-", "-"]}}}, call: {fn: follow, args: [$q, $s]}}
+  - {id: gr-precede-plus-ignores-minus-subjects, tags: [precede, strand], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [2], strand: ["+"]}}, s: {GRanges: {seqnames: [chr1, chr1], start: [20, 30], width: [2, 2], strand: ["-", "+"]}}}, call: {fn: precede, args: [$q, $s]}}
+  - {id: gr-precede-star-query-both-sides, tags: [precede, strand], inputs: {q: {GRanges: {seqnames: [chr1], start: [10], width: [2], strand: ["*"]}}, s: {GRanges: {seqnames: [chr1, chr1, chr1], start: [20, 1, 40], width: [2, 2, 2], strand: ["+", "-", "+"]}}}, call: {fn: precede, args: [$q, $s], kwargs: {select: all}}}
+  - {id: gr-precede-empty-range-at-1-second-seqlevel, tags: [precede, zero-width, quirk], inputs: {q: {GRanges: {seqnames: [chr2], start: [5], width: [1], strand: ["-"], seqinfo: {seqnames: [chr1, chr2]}}}, s: {GRanges: {seqnames: [chr2], start: [1], width: [0], strand: ["-"], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: follow, args: [$q, $s]}}
+  - {id: gr-follow-empty-range-at-1-first-seqlevel, tags: [follow, zero-width, quirk], inputs: {q: {GRanges: {seqnames: [chr1], start: [5], width: [1], strand: ["+"], seqinfo: {seqnames: [chr1, chr2]}}}, s: {GRanges: {seqnames: [chr1], start: [1], width: [0], strand: ["+"], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: follow, args: [$q, $s]}}
+  - {id: gr-follow-empty-range-at-1-second-seqlevel, tags: [follow, zero-width, quirk], inputs: {q: {GRanges: {seqnames: [chr2], start: [5], width: [1], strand: ["+"], seqinfo: {seqnames: [chr1, chr2]}}}, s: {GRanges: {seqnames: [chr2], start: [1], width: [0], strand: ["+"], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: follow, args: [$q, $s]}}
+  - {id: gr-precede-self, tags: [precede, self], inputs: *QS, call: {fn: precede, args: [$q]}}
+  - {id: gr-follow-self, tags: [follow, self], inputs: *QS, call: {fn: follow, args: [$q]}}
+  - {id: gr-precede-empty-subject, tags: [precede, empty], inputs: {e: *E, q: *s1}, call: {fn: precede, args: [$q, $e]}}
+  - {id: gr-follow-empty-subject-all, tags: [follow, empty], inputs: {e: *E, q: *s1}, call: {fn: follow, args: [$q, $e], kwargs: {select: all}}}
+  - {id: gr-distance, tags: [distance], inputs: *QS, call: {fn: distance, args: [$q, {call: {fn: "[", args: [$s, [1, 2, 3, 4]]}}]}}
+  - {id: gr-distance-ignore-strand, tags: [distance, strand], inputs: *QS, call: {fn: distance, args: [$q, {call: {fn: "[", args: [$s, [1, 2, 3, 4]]}}], kwargs: {ignore.strand: true}}}
+  - {id: gr-distance-star-strand-ok, tags: [distance, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [3], strand: ["*"]}}, b: {GRanges: {seqnames: [chr1], start: [10], width: [3], strand: ["-"]}}}, call: {fn: distance, args: [$a, $b]}}
+  - {id: gr-distance-different-seqnames-na, tags: [distance], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}, b: {GRanges: {seqnames: [chr2], start: [10], width: [3], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: distance, args: [$a, $b]}}
+  - {id: gr-distance-recycle-length-1, tags: [distance, recycle], inputs: *QS, call: {fn: distance, args: [$q, {call: {fn: "[", args: [$s, [1]]}}]}}
+  - {id: gr-distance-empty, tags: [distance, empty], inputs: {e: *E}, call: {fn: distance, args: [$e, $e]}}
+
+  - {id: gr-coverage, tags: [coverage], inputs: *QS, call: {fn: coverage, args: [$q]}}
+  - {id: gr-coverage-no-seqlengths, tags: [coverage], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr2], start: [1, 5, 3], width: [6, 3, 4], strand: ["+", "-", "+"], seqinfo: {seqnames: [chr1, chr2, chr3]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-width, tags: [coverage], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {width: 12}}}
+  - {id: gr-coverage-width-per-seqlevel, tags: [coverage], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {width: [5, 6, 7]}}}
+  - {id: gr-coverage-shift, tags: [coverage], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {shift: 2}}}
+  - {id: gr-coverage-shift-per-range, tags: [coverage], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {shift: [0, 1, 2, 3]}}}
+  - {id: gr-coverage-weight, tags: [coverage, weight], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {weight: 2}}}
+  - {id: gr-coverage-weight-vector, tags: [coverage, weight], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {weight: [1, 2, 3, 4]}}}
+  - {id: gr-coverage-weight-mcols-column, tags: [coverage, weight], inputs: *QS, call: {fn: coverage, args: [$q], kwargs: {weight: m}}}
+  - {id: gr-coverage-strand-ignored, tags: [coverage, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [1, 1], width: [3, 3], strand: ["+", "-"], seqinfo: {seqnames: [chr1], seqlengths: [5]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-empty-known-lengths, tags: [coverage, empty], inputs: {e: *E}, call: {fn: coverage, args: [$e]}}
+  - {id: gr-coverage-empty-unknown-lengths, tags: [coverage, empty], inputs: {e: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}, seqinfo: {seqnames: [chr1]}}}}, call: {fn: coverage, args: [$e]}}
+  - {id: gr-coverage-oob-clipped, tags: [coverage, seqinfo, warning], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [6], seqinfo: {seqnames: [chr1], seqlengths: [8]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-circular-ignored, tags: [coverage, seqinfo], inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [6], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-circular-wrap-two-pieces, tags: [coverage, circular], inputs: {g: {GRanges: {seqnames: [chr1], start: [7], width: [4], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-circular-multi-turn, tags: [coverage, circular], inputs: {g: {GRanges: {seqnames: [chr1], start: [3], width: [19], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-circular-negative-start, tags: [coverage, circular], inputs: {g: {GRanges: {seqnames: [chr1], start: [-2], width: [4], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-circular-weight-shift, tags: [coverage, circular, weight], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [1, 6], width: [3, 5], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g], kwargs: {shift: 2, weight: [1, 3]}}}
+  - {id: gr-coverage-circular-explicit-width, tags: [coverage, circular], inputs: {g: {GRanges: {seqnames: [chr1], start: [7], width: [4], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g], kwargs: {width: 10}}}
+  - {id: gr-coverage-circular-short-width, tags: [coverage, circular], inputs: {g: {GRanges: {seqnames: [chr1], start: [7], width: [4], seqinfo: {seqnames: [chr1], seqlengths: [8], is_circular: [true]}}}}, call: {fn: coverage, args: [$g], kwargs: {width: 5}}}
+  - {id: gr-coverage-zero-width, tags: [coverage, zero-width], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [5, 2], width: [0, 2]}}}, call: {fn: coverage, args: [$g]}}
+  - {id: gr-coverage-runValue, tags: [coverage, rle], inputs: *QS, call: {fn: runValue, args: [{call: {fn: "[[", args: [{call: {fn: coverage, args: [$q]}}, chr1]}}]}}
+
+  - {id: gr-order, tags: [order], inputs: *QS, call: {fn: order, args: [$q]}}
+  - {id: gr-order-decreasing, tags: [order], inputs: *QS, call: {fn: order, args: [$q], kwargs: {decreasing: true}}}
+  - {id: gr-order-ignore-strand-unused-error, tags: [order, error], inputs: *QS, call: {fn: order, args: [$q], kwargs: {ignore.strand: true}}}
+  - {id: gr-order-seqlevels-custom-order, tags: [order, seqinfo], inputs: {g: {GRanges: {seqnames: [chr1, chr3, chr2, chr3], start: [1, 1, 1, 2], width: [1, 1, 1, 1], seqinfo: {seqnames: [chr3, chr2, chr1]}}}}, call: {fn: order, args: [$g]}}
+  - {id: gr-order-strand-before-start, tags: [order, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1, chr1], start: [5, 1, 9, 2], width: [1, 1, 1, 1], strand: ["*", "-", "+", "+"]}}}, call: {fn: order, args: [$g]}}
+  - {id: gr-sort, tags: [sort, names, mcols], inputs: *QS, call: {fn: sort, args: [$q]}}
+  - {id: gr-sort-decreasing, tags: [sort], inputs: *QS, call: {fn: sort, args: [$q], kwargs: {decreasing: true}}}
+  - {id: gr-sort-ignore-strand, tags: [sort, strand], inputs: *QS, call: {fn: sort, args: [$q], kwargs: {ignore.strand: true}}}
+  - {id: gr-rank-min, tags: [rank], inputs: *QS, call: {fn: rank, args: [$q], kwargs: {ties.method: min}}}
+  - {id: gr-rank-ignore-strand, tags: [rank, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 1, 1], width: [2, 2, 2], strand: ["+", "-", "+"]}}}, call: {fn: rank, args: [$g], kwargs: {ties.method: min, ignore.strand: true}}}
+  - {id: gr-rank-strand-matters, tags: [rank, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 1, 1], width: [2, 2, 2], strand: ["+", "-", "+"]}}}, call: {fn: rank, args: [$g], kwargs: {ties.method: min}}}
+  - {id: gr-duplicated, tags: [duplicated, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1, chr2], start: [1, 1, 1, 1], width: [2, 2, 2, 2], strand: ["+", "-", "+", "+"], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: duplicated, args: [$g]}}
+  - {id: gr-duplicated-ignore-strand-unused-error, tags: [duplicated, error], inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [2]}}}, call: {fn: duplicated, args: [$g], kwargs: {ignore.strand: true}}}
+  - {id: gr-duplicated-from-last, tags: [duplicated], inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 1, 3], width: [2, 2, 2]}}}, call: {fn: duplicated, args: [$g], kwargs: {fromLast: true}}}
+  - {id: gr-duplicated-ignores-names-mcols, tags: [duplicated, names, mcols], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [1, 1], width: [2, 2], names: [a, b], mcols: {m: [1, 2]}}}}, call: {fn: duplicated, args: [$g]}}
+  - {id: gr-unique, tags: [unique, names, mcols], inputs: {g: {GRanges: {seqnames: [chr2, chr1, chr1, chr2], start: [1, 5, 5, 1], width: [1, 2, 2, 1], strand: ["+", "-", "-", "+"], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}, seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: unique, args: [$g]}}
+  - {id: gr-unique-from-last, tags: [unique], inputs: {g: {GRanges: {seqnames: [chr2, chr1, chr1, chr2], start: [1, 5, 5, 1], width: [1, 2, 2, 1], strand: ["+", "-", "-", "+"], names: [a, b, c, d], seqinfo: {seqnames: [chr1, chr2]}}}}, call: {fn: unique, args: [$g], kwargs: {fromLast: true}}}
+  - {id: gr-order-empty, tags: [order, empty], inputs: {e: *E}, call: {fn: order, args: [$e]}}
+  - {id: gr-sort-empty, tags: [sort, empty], inputs: {e: *E}, call: {fn: sort, args: [$e]}}
+  - {id: gr-rank-empty, tags: [rank, empty], inputs: {e: *E}, call: {fn: rank, args: [$e], kwargs: {ties.method: min}}}

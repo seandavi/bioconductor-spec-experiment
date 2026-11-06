@@ -1,0 +1,48 @@
+# GRanges intra-range ops: strand-aware resize/flank/promoters; shift/narrow are not.
+g_def: &G
+  g: {GRanges: {seqnames: [chr1, chr1, chr2, chr1, chr2], start: [10, 20, 5, 30, 50], width: [5, 5, 5, 0, 10], strand: ["+", "-", "+", "*", "-"], names: [a, b, c, d, e], mcols: {m: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+cases:
+  - {id: gr-shift, tags: [shift], inputs: *G, call: {fn: shift, args: [$g, 3]}}
+  - {id: gr-shift-vector, tags: [shift], inputs: *G, call: {fn: shift, args: [$g, [1, 2, 3, 4, 5]]}}
+  - {id: gr-shift-oob-warns, tags: [shift, warning], check_warnings: true, inputs: *G, call: {fn: shift, args: [$g, 150]}}
+  - {id: gr-shift-negative-oob-warns, tags: [shift, warning], check_warnings: true, inputs: *G, call: {fn: shift, args: [$g, -50]}}
+  - {id: gr-shift-use-names-false, tags: [shift, names], inputs: *G, call: {fn: shift, args: [$g, 1], kwargs: {use.names: false}}}
+  - {id: gr-shift-overflow-error, tags: [shift, error, int32, divergence], inputs: *G, call: {fn: shift, args: [$g, 2147483647]}, divergence: {adr: "0005", python: {error: true}}}
+  - {id: gr-narrow-start, tags: [narrow], inputs: *G, call: {fn: narrow, args: [{call: {fn: "[", args: [$g, [1, 2]]}}], kwargs: {start: 2}}}
+  - {id: gr-narrow-end-ignores-strand, tags: [narrow, strand], inputs: *G, call: {fn: narrow, args: [{call: {fn: "[", args: [$g, [1, 2]]}}], kwargs: {end: 3}}}
+  - {id: gr-narrow-start-width, tags: [narrow], inputs: *G, call: {fn: narrow, args: [{call: {fn: "[", args: [$g, [1, 2]]}}], kwargs: {start: 2, width: 2}}}
+  - {id: gr-narrow-error, tags: [narrow, error], inputs: *G, call: {fn: narrow, args: [$g], kwargs: {start: 3}}}
+  - {id: gr-resize-start, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 3]}}
+  - {id: gr-resize-end, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 3], kwargs: {fix: end}}}
+  - {id: gr-resize-center, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 3], kwargs: {fix: center}}}
+  - {id: gr-resize-grow, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 12]}}
+  - {id: gr-resize-fix-vector, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 3], kwargs: {fix: [start, end, center, start, end]}}}
+  - {id: gr-resize-ignore-strand, tags: [resize, strand], inputs: *G, call: {fn: resize, args: [$g, 3], kwargs: {ignore.strand: true}}}
+  - {id: gr-resize-zero, tags: [resize, zero-width], inputs: *G, call: {fn: resize, args: [$g, 0]}}
+  - {id: gr-resize-negative-error, tags: [resize, error], inputs: *G, call: {fn: resize, args: [$g, -1]}}
+  - {id: gr-resize-oob-warns, tags: [resize, warning], check_warnings: true, inputs: *G, call: {fn: resize, args: [$g, 500]}}
+  - {id: gr-resize-all-star, tags: [resize, strand], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [10, 20], width: [5, 5]}}}, call: {fn: resize, args: [$g, 3], kwargs: {fix: end}}}
+  - {id: gr-flank-start, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3]}}
+  - {id: gr-flank-end, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3], kwargs: {start: false}}}
+  - {id: gr-flank-both, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3], kwargs: {both: true}}}
+  - {id: gr-flank-both-end, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3], kwargs: {start: false, both: true}}}
+  - {id: gr-flank-negative, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, -3]}}
+  - {id: gr-flank-negative-end, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, -3], kwargs: {start: false}}}
+  - {id: gr-flank-ignore-strand, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3], kwargs: {ignore.strand: true}}}
+  - {id: gr-flank-start-vector, tags: [flank, strand], inputs: *G, call: {fn: flank, args: [$g, 3], kwargs: {start: [true, false, true, false, true]}}}
+  - {id: gr-flank-oob-warns, tags: [flank, warning], check_warnings: true, inputs: *G, call: {fn: flank, args: [$g, 20]}}
+  - {id: gr-flank-zero-width, tags: [flank, zero-width], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [30, 30], width: [0, 0], strand: ["+", "-"]}}}, call: {fn: flank, args: [$g, 3]}}
+  - {id: gr-flank-zero-width-end, tags: [flank, zero-width], inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [30, 30], width: [0, 0], strand: ["+", "-"]}}}, call: {fn: flank, args: [$g, 3], kwargs: {start: false}}}
+  - {id: gr-promoters-default, tags: [promoters, strand, warning], check_warnings: true, inputs: *G, call: {fn: promoters, args: [$g]}}
+  - {id: gr-promoters-values, tags: [promoters, strand], inputs: *G, call: {fn: promoters, args: [$g, 4, 2]}}
+  - {id: gr-promoters-zero, tags: [promoters, zero-width], inputs: *G, call: {fn: promoters, args: [$g, 0, 0]}}
+  - {id: gr-promoters-upstream-only, tags: [promoters, strand], inputs: *G, call: {fn: promoters, args: [$g, 4, 0]}}
+  - {id: gr-promoters-vector, tags: [promoters, strand], inputs: *G, call: {fn: promoters, args: [$g], kwargs: {upstream: [1, 2, 3, 4, 5], downstream: 1}}}
+  - {id: gr-promoters-negative-error, tags: [promoters, error], inputs: *G, call: {fn: promoters, args: [$g, -1, 2]}}
+  - {id: gr-promoters-ignore-strand-unused-error, tags: [promoters, strand, error], inputs: *G, call: {fn: promoters, args: [$g, 4, 2], kwargs: {ignore.strand: true}}}
+  - {id: gr-promoters-trim, tags: [promoters, trim], inputs: *G, call: {fn: trim, args: [{call: {fn: promoters, args: [$g]}}]}}
+  - {id: gr-promoters-keeps-names-mcols, tags: [promoters, names, mcols], inputs: *G, call: {fn: promoters, args: [$g, 1, 1]}}
+  - {id: gr-promoters-use-names-false, tags: [promoters, names], inputs: *G, call: {fn: promoters, args: [$g, 1, 1], kwargs: {use.names: false}}}
+  - {id: gr-intra-empty, tags: [resize, empty], inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}}}}, call: {fn: resize, args: [$g, 3]}}
+  - {id: gr-flank-empty, tags: [flank, empty], inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}}}}, call: {fn: flank, args: [$g, 3]}}
+  - {id: gr-promoters-empty, tags: [promoters, empty], inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}}}}, call: {fn: promoters, args: [$g]}}

@@ -1,0 +1,182 @@
+# IRanges intra-range ops: shift, narrow, resize, flank, promoters.
+# Anchors: X = three ranges incl. a zero-width one, with names and mcols.
+x_def: &X
+  x: {IRanges: {start: [10, 20, 30], width: [5, 6, 0], names: [a, b, c], mcols: {m: [1, 2, 3]}}}
+cases:
+  - {id: shift-scalar, tags: [shift], inputs: *X, call: {fn: shift, args: [$x, 3]}}
+  - {id: shift-vector, tags: [shift], inputs: *X, call: {fn: shift, args: [$x, [1, 2, 3]]}}
+  - {id: shift-negative, tags: [shift], inputs: *X, call: {fn: shift, args: [$x, -50]}}
+  - {id: shift-double-truncates, tags: [shift], inputs: *X, call: {fn: shift, args: [$x, {num: [1.5, -1.5, 2.9]}]}}
+  - {id: shift-recycle-nonmultiple-warns, tags: [shift, warning], check_warnings: true, inputs: *X, call: {fn: shift, args: [$x, [1, 2]]}}
+  - {id: shift-too-long-error, tags: [shift, error], inputs: *X, call: {fn: shift, args: [$x, [1, 2, 3, 4]]}}
+  - {id: shift-empty-arg-error, tags: [shift, error], inputs: *X, call: {fn: shift, args: [$x, {int: []}]}}
+  - {id: shift-na-error, tags: [shift, error, na], inputs: *X, call: {fn: shift, args: [$x, [null]]}}
+  - {id: shift-overflow-error, tags: [shift, error, int32], inputs: *X, call: {fn: shift, args: [$x, 2147483647]}}
+  - {id: shift-use-names-false, tags: [shift, names], inputs: *X, call: {fn: shift, args: [$x, 1], kwargs: {use.names: false}}}
+  - {id: shift-empty-x, tags: [shift, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: shift, args: [$x, 3]}}
+
+  - {id: narrow-start, tags: [narrow], inputs: *X, call: {fn: narrow, args: [$x], kwargs: {start: 1}}}
+  - id: narrow-start-2
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6], names: [a, b]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2}}
+  - id: narrow-end
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: 3}}
+  - id: narrow-start-end
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2, end: 4}}
+  - id: narrow-negative-start
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: -2}}
+  - id: narrow-negative-end
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: -2}}
+  - id: narrow-start-width
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2, width: 2}}
+  - id: narrow-end-width
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: 4, width: 2}}
+  - id: narrow-negative-start-width
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10], width: [5]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: -5, width: 2}}
+  - id: narrow-width-only-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {width: 2}}
+  - id: narrow-all-three-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2, end: 3, width: 2}}
+  - id: narrow-to-zero-width
+    tags: [narrow, zero-width]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 1, end: 0}}
+  - id: narrow-start-at-width-plus-one
+    tags: [narrow, zero-width]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 6}}
+  - id: narrow-start-past-width-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 7}}
+  - id: narrow-start-zero-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 0}}
+  - id: narrow-end-zero
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: 0}}
+  - id: narrow-end-past-width-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: 6}}
+  - id: narrow-end-very-negative
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: -6}}
+  - id: narrow-end-too-negative-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {end: -7}}
+  - id: narrow-start-after-end-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 3, end: 1}}
+  - id: narrow-negative-width-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2, width: -1}}
+  - id: narrow-width-overruns-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 5, width: 2}}
+  - id: narrow-vector-start
+    tags: [narrow]
+    inputs: {x: {IRanges: {start: [10, 20, 30], width: [5, 6, 7]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: [1, 2]}}
+  - id: narrow-too-long-arg-error
+    tags: [narrow, error]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: [1, 2, 3]}}
+  - id: narrow-na-args-noop
+    tags: [narrow, na]
+    inputs: {x: {IRanges: {start: [10], width: [5]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: null, end: null}}
+  - id: narrow-keeps-names-mcols
+    tags: [narrow, names, mcols]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6], names: [a, b], mcols: {m: [1, 2]}}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2}}
+  - id: narrow-use-names-false
+    tags: [narrow, names]
+    inputs: {x: {IRanges: {start: [10, 20], width: [5, 6], names: [a, b]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2, use.names: false}}
+  - id: narrow-zero-width-input-ok
+    tags: [narrow, zero-width]
+    inputs: {x: {IRanges: {start: [30], width: [0]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 1}}
+  - id: narrow-zero-width-input-start-2-error
+    tags: [narrow, zero-width, error]
+    inputs: {x: {IRanges: {start: [30], width: [0]}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 2}}
+  - id: narrow-empty-x
+    tags: [narrow, empty]
+    inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}
+    call: {fn: narrow, args: [$x], kwargs: {start: 1}}
+
+  - {id: resize-start, tags: [resize], inputs: *X, call: {fn: resize, args: [$x, 3]}}
+  - {id: resize-end, tags: [resize], inputs: *X, call: {fn: resize, args: [$x, 3], kwargs: {fix: end}}}
+  - {id: resize-center-odd, tags: [resize, center], inputs: *X, call: {fn: resize, args: [$x, 3], kwargs: {fix: center}}}
+  - {id: resize-center-even, tags: [resize, center], inputs: *X, call: {fn: resize, args: [$x, 4], kwargs: {fix: center}}}
+  - {id: resize-center-grow, tags: [resize, center], inputs: *X, call: {fn: resize, args: [$x, 8], kwargs: {fix: center}}}
+  - {id: resize-zero, tags: [resize, zero-width], inputs: *X, call: {fn: resize, args: [$x, 0]}}
+  - {id: resize-negative-error, tags: [resize, error], inputs: *X, call: {fn: resize, args: [$x, -1]}}
+  - {id: resize-vector-width, tags: [resize], inputs: *X, call: {fn: resize, args: [$x, [1, 2, 3]]}}
+  - {id: resize-vector-fix, tags: [resize, center], inputs: *X, call: {fn: resize, args: [$x, [7, 2, 4]], kwargs: {fix: [start, end, center]}}}
+  - {id: resize-bad-fix-error, tags: [resize, error], inputs: *X, call: {fn: resize, args: [$x, 3], kwargs: {fix: foo}}}
+  - {id: resize-na-error, tags: [resize, error, na], inputs: *X, call: {fn: resize, args: [$x, [null]]}}
+  - {id: resize-double-truncates, tags: [resize], inputs: *X, call: {fn: resize, args: [$x, {num: [2.7]}]}}
+  - {id: resize-recycle-nonmultiple-warns, tags: [resize, warning], check_warnings: true, inputs: *X, call: {fn: resize, args: [$x, [1, 2]]}}
+  - {id: resize-empty-arg-error, tags: [resize, error], inputs: *X, call: {fn: resize, args: [$x, {int: []}]}}
+  - {id: resize-use-names-false, tags: [resize, names], inputs: *X, call: {fn: resize, args: [$x, 3], kwargs: {use.names: false}}}
+  - {id: resize-empty-x, tags: [resize, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: resize, args: [$x, 3]}}
+  - {id: resize-negative-start-coords, tags: [resize], inputs: {x: {IRanges: {start: [-5, -2], width: [3, 0]}}}, call: {fn: resize, args: [$x, 5], kwargs: {fix: center}}}
+
+  - {id: flank-start, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, 3]}}
+  - {id: flank-end, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, 3], kwargs: {start: false}}}
+  - {id: flank-both-start, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, 3], kwargs: {both: true}}}
+  - {id: flank-both-end, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, 3], kwargs: {start: false, both: true}}}
+  - {id: flank-negative-start, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, -3]}}
+  - {id: flank-negative-end, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, -3], kwargs: {start: false}}}
+  - {id: flank-negative-both, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, -3], kwargs: {both: true}}}
+  - {id: flank-negative-larger-than-width, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, -10]}}
+  - {id: flank-zero, tags: [flank, zero-width], inputs: *X, call: {fn: flank, args: [$x, 0]}}
+  - {id: flank-zero-both, tags: [flank, zero-width], inputs: *X, call: {fn: flank, args: [$x, 0], kwargs: {both: true}}}
+  - {id: flank-vector-width, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, [1, 2, 3]]}}
+  - {id: flank-vector-start, tags: [flank], inputs: *X, call: {fn: flank, args: [$x, 3], kwargs: {start: [true, false, true]}}}
+  - {id: flank-too-long-error, tags: [flank, error], inputs: *X, call: {fn: flank, args: [$x, [1, 2, 3, 4]]}}
+  - {id: flank-na-error, tags: [flank, error, na], inputs: *X, call: {fn: flank, args: [$x, [null]]}}
+  - {id: flank-start-na-error, tags: [flank, error, na], inputs: *X, call: {fn: flank, args: [$x, 3], kwargs: {start: [null]}}}
+  - {id: flank-keeps-names-mcols, tags: [flank, names, mcols], inputs: *X, call: {fn: flank, args: [$x, 2]}}
+  - {id: flank-use-names-false, tags: [flank, names], inputs: *X, call: {fn: flank, args: [$x, 2], kwargs: {use.names: false}}}
+  - {id: flank-empty-x, tags: [flank, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: flank, args: [$x, 2]}}
+
+  - {id: promoters-default, tags: [promoters], inputs: *X, call: {fn: promoters, args: [$x]}}
+  - {id: promoters-custom, tags: [promoters], inputs: *X, call: {fn: promoters, args: [$x], kwargs: {upstream: 5, downstream: 3}}}
+  - {id: promoters-zero-zero, tags: [promoters, zero-width], inputs: *X, call: {fn: promoters, args: [$x, 0, 0]}}
+  - {id: promoters-upstream-only, tags: [promoters], inputs: *X, call: {fn: promoters, args: [$x, 3, 0]}}
+  - {id: promoters-negative-error, tags: [promoters, error], inputs: *X, call: {fn: promoters, args: [$x, -1, 5]}}
+  - {id: promoters-vector-upstream, tags: [promoters], inputs: *X, call: {fn: promoters, args: [$x], kwargs: {upstream: [1, 2, 3], downstream: 1}}}
+  - {id: promoters-na-error, tags: [promoters, error, na], inputs: *X, call: {fn: promoters, args: [$x, [null], 2]}}
+  - {id: promoters-double-truncates, tags: [promoters], inputs: *X, call: {fn: promoters, args: [$x, {num: [1.5]}, 1]}}
+  - {id: promoters-use-names-false, tags: [promoters, names], inputs: *X, call: {fn: promoters, args: [$x], kwargs: {use.names: false}}}
+  - {id: promoters-empty-x, tags: [promoters, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: promoters, args: [$x]}}

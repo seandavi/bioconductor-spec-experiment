@@ -1,0 +1,88 @@
+"""Generate cases/grid_iranges_random.yaml: seeded random IRanges through every operation.
+
+    uv run python tests/differential/gen/grid_iranges_random.py
+
+Inputs are tiny-coordinate, duplicate- and empty-heavy, with a few negative starts, so ties
+and degenerate ranges are common. Fixed seed -> reproducible cases; change SEED/N to widen.
+"""
+
+from __future__ import annotations
+
+import random
+from pathlib import Path
+
+import yaml
+
+SEED, N = 20261106, 3
+rng = random.Random(SEED)
+
+
+def ir(n: int, lo: int = -3, hi: int = 30) -> dict:
+    return {"IRanges": {
+        "start": [rng.randint(lo, hi) for _ in range(n)],
+        "width": [rng.choice([0, 0, 1, 2, 3, 5, 9]) for _ in range(n)],
+    }}
+
+
+cases: list[dict] = []
+
+
+def add(cid: str, tags: list[str], inputs: dict, fn: str, args: list, kwargs: dict | None = None) -> None:
+    call: dict = {"fn": fn, "args": args}
+    if kwargs:
+        call["kwargs"] = kwargs
+    cases.append({"id": cid, "tags": ["random", *tags], "inputs": inputs, "call": call})
+
+
+for k in range(N):
+    x, y = ir(rng.choice([12, 25, 40])), ir(rng.choice([8, 25, 50]))
+    xy = {"x": x, "y": y}
+    n = len(x["IRanges"]["start"])
+    for mg in (0, 1, 2, 4):
+        for de in (False, True):
+            add(f"rnd{k}-reduce-g{mg}-{'drop' if de else 'keep'}", ["reduce"], {"x": x}, "reduce", ["$x"],
+                {"min.gapwidth": mg, "drop.empty.ranges": de, "with.revmap": True})
+    add(f"rnd{k}-range", ["range"], {"x": x}, "range", ["$x"])
+    add(f"rnd{k}-disjoin", ["disjoin"], {"x": x}, "disjoin", ["$x"], {"with.revmap": True})
+    add(f"rnd{k}-gaps", ["gaps"], {"x": x}, "gaps", ["$x"])
+    add(f"rnd{k}-gaps-window", ["gaps"], {"x": x}, "gaps", ["$x"], {"start": -5, "end": 40})
+    add(f"rnd{k}-gaps-start-only", ["gaps"], {"x": x}, "gaps", ["$x"], {"start": 4})
+    for fn in ("union", "intersect", "setdiff"):
+        add(f"rnd{k}-{fn}", [fn], xy, fn, ["$x", "$y"])
+    for fix in ("start", "end", "center"):
+        add(f"rnd{k}-resize-{fix}", ["resize"], {"x": x}, "resize", ["$x", rng.randint(0, 8)], {"fix": fix})
+    add(f"rnd{k}-flank", ["flank"], {"x": x}, "flank", ["$x", rng.randint(-6, 6)], {"start": rng.random() < 0.5, "both": rng.random() < 0.3})
+    add(f"rnd{k}-promoters", ["promoters"], {"x": x}, "promoters", ["$x", rng.randint(0, 5), rng.randint(0, 5)])
+    add(f"rnd{k}-shift", ["shift"], {"x": x}, "shift", ["$x", rng.randint(-20, 20)])
+    add(f"rnd{k}-narrow", ["narrow"], {"x": x}, "narrow", ["$x"], {"start": 1, "end": 0})
+    for typ in ("any", "start", "end", "within", "equal"):
+        add(f"rnd{k}-fo-{typ}", ["findOverlaps"], xy, "findOverlaps", ["$x", "$y"], {"type": typ, "maxgap": rng.choice([-1, 0, 2]), "minoverlap": rng.choice([0, 1, 2]) if typ != "any" else 0})
+    add(f"rnd{k}-fo-self", ["findOverlaps", "self"], {"x": x}, "findOverlaps", ["$x"], {"drop.self": True, "drop.redundant": True})
+    for fn, sels in (("nearest", ("arbitrary", "all")), ("precede", ("first", "all")), ("follow", ("last", "all"))):
+        for sel in sels:
+            add(f"rnd{k}-{fn}-{sel}", [fn], xy, fn, ["$x", "$y"], {"select": sel})
+        add(f"rnd{k}-{fn}-self", [fn, "self"], {"x": x}, fn, ["$x"])
+    add(f"rnd{k}-distance", ["distance"], {"x": x, "y": ir(n)}, "distance", ["$x", "$y"])
+    add(f"rnd{k}-coverage", ["coverage"], {"x": x}, "coverage", ["$x"])
+    add(f"rnd{k}-coverage-opts", ["coverage"], {"x": x}, "coverage", ["$x"],
+        {"shift": rng.randint(-5, 5), "width": rng.randint(5, 45), "weight": [rng.randint(-2, 3) for _ in range(n)]})
+    add(f"rnd{k}-order", ["order"], {"x": x}, "order", ["$x"])
+    add(f"rnd{k}-order-dec", ["order"], {"x": x}, "order", ["$x"], {"decreasing": True})
+    for tm in ("min", "max", "first", "last", "average"):
+        add(f"rnd{k}-rank-{tm}", ["rank"], {"x": x}, "rank", ["$x"], {"ties.method": tm})
+    add(f"rnd{k}-duplicated", ["duplicated"], {"x": x}, "duplicated", ["$x"])
+    add(f"rnd{k}-unique-fromlast", ["unique"], {"x": x}, "unique", ["$x"], {"fromLast": True})
+    add(f"rnd{k}-sort", ["sort"], {"x": x}, "sort", ["$x"])
+    # parallel ops need equal lengths; build y2 with len(x), then keep only pairs R accepts
+    y2 = ir(n)
+    ys, ws = y2["IRanges"]["start"], y2["IRanges"]["width"]
+    xs, xw = x["IRanges"]["start"], x["IRanges"]["width"]
+    good = [i for i in range(n) if not (ys[i] > xs[i] and ys[i] + ws[i] - 1 < xs[i] + xw[i] - 1)]
+    sub = lambda r, idx: {"IRanges": {"start": [r["IRanges"]["start"][i] for i in idx], "width": [r["IRanges"]["width"][i] for i in idx]}}  # noqa: E731
+    add(f"rnd{k}-punion-fillgap", ["punion"], {"x": x, "y": y2}, "punion", ["$x", "$y"], {"fill.gap": True})
+    add(f"rnd{k}-pintersect-maxstart", ["pintersect"], {"x": x, "y": y2}, "pintersect", ["$x", "$y"], {"resolve.empty": "max.start"})
+    add(f"rnd{k}-psetdiff", ["psetdiff"], {"x": sub(x, good), "y": sub(y2, good)}, "psetdiff", ["$x", "$y"])
+
+out = Path(__file__).parent.parent / "cases" / "grid_iranges_random.yaml"
+out.write_text("# GENERATED by gen/grid_iranges_random.py - edit the generator, not this file.\n" + yaml.safe_dump({"cases": cases}, default_flow_style=None, width=200))
+print(f"wrote {out} ({len(cases)} cases)")

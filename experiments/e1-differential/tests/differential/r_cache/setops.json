@@ -1,0 +1,654 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "intersect-adjacent-empty": {
+   "hash": "287cf6b92618ba557516b654646c9ffb91feb60e6c13949bca436b0abecdd817",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-basic": {
+   "hash": "bfa797a80a3495666e75783276be74ac9f63dc357c327e03e5cebe0674597a82",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3,
+      8
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-both-empty": {
+   "hash": "ef36c38913c2ea76afbd3b6560df946b30d7df31cfeef52dba08899f7ae51223",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-multiple": {
+   "hash": "502125daf9208b29be0b299c3edae128183b76b2d438d5df16e650dfd62560d3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3,
+      10
+     ],
+     "width": [
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-negative-coords": {
+   "hash": "ac47dc53478016c05db2cd137bae644bbcdb7d08c2fbc15f7e6c41298e4dc536",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -3
+     ],
+     "width": [
+      8
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-self": {
+   "hash": "f20a970a74234a19a03e26ef55c9abf4f4d2a126910753ab4d5113986148de37",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      8,
+      25
+     ],
+     "width": [
+      5,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-with-empty": {
+   "hash": "96a2b3c3ca69f84d49ea0e6e7784420d79940b930833befbec34c7a7c50996a6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "intersect-zero-width-in-range": {
+   "hash": "67ff14db8e49371a42ffb8c819b3c47baf5b33d88cbc2042a6071d9a50d81600",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "pintersect-ambiguous-bad-resolve-error": {
+   "hash": "795cffc9d23a4d0a810750440a90886bbc956ad83326be6c011be79c67d44f55",
+   "result": {
+    "error": "'arg' should be one of \u201cnone\u201d, \u201cmax.start\u201d, \u201cstart.x\u201d",
+    "warnings": []
+   }
+  },
+  "pintersect-ambiguous-error": {
+   "hash": "caef952310fdf887070c2b85a5574aa32a1c769153adeed67cd7366873451057",
+   "result": {
+    "error": "some intersections produce ambiguous empty ranges.\n  Use argument 'resolve.empty' to resolve them.",
+    "warnings": []
+   }
+  },
+  "pintersect-bad-resolve-not-needed": {
+   "hash": "08cc7da66d99dfdeef5e6920cc1497c8567611556d3705952c250279d0709699",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2
+     ],
+     "width": [
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "pintersect-basic": {
+   "hash": "719fd8c5ddc955ebe045501d945708f2927350ce53b9c9114763ec3a24e4fc7b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3,
+      8,
+      10,
+      22
+     ],
+     "width": [
+      3,
+      0,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "pintersect-empty": {
+   "hash": "6ff0f16b3e9bd1871f931e40d0f3bf3dd69d5d7f2de94a958c511eeca67257af",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "pintersect-length-mismatch-error": {
+   "hash": "6e11c9062ed88ef3db738fac65f26f3287143de7ad08570024b7afe1d2f7122f",
+   "result": {
+    "error": "'x' and 'y' must have the same length",
+    "warnings": []
+   }
+  },
+  "psetdiff-basic": {
+   "hash": "0553e6e467dee071a23b6e9b0151330c9ade07ce7f89e82f277a1b827a832e52",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      10,
+      20
+     ],
+     "width": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "psetdiff-empty": {
+   "hash": "03695577d9271a53163afa29fcc2f2189e573348392adf02fae2465e40615096",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "psetdiff-length-mismatch-error": {
+   "hash": "ef0a2116770c85041a24b59ebe8e78b0b45734bf967fa9efbd399e3495bab5c1",
+   "result": {
+    "error": "'x' and 'y' must have the same length",
+    "warnings": []
+   }
+  },
+  "psetdiff-split-error": {
+   "hash": "d77210819e0d0471edbea502c8524c3f814390b151abf8e3fa65205b16bbff82",
+   "result": {
+    "error": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+    "warnings": []
+   }
+  },
+  "punion-basic": {
+   "hash": "f3a29e8025ba598d801de70ebe5124d713861c9e9abada832e29289cfc13ab98",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      10,
+      20
+     ],
+     "width": [
+      7,
+      6,
+      0,
+      12
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "punion-empty": {
+   "hash": "7d963bf41ad1b4e2be91cf161e8903c76419498a43f226abb4734ac1e5052e14",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "punion-fill-gap": {
+   "hash": "3b9bba5721109d0eba4b36597a41d92dc005142455fc99273ef4d8bed26b29e2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      10,
+      20
+     ],
+     "width": [
+      7,
+      6,
+      0,
+      12
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "punion-fill-gap-not-logical-error": {
+   "hash": "c45d4235ba04818c5f780510f0e3130d3ba16904ca7e39297b2fcc50b02e7d87",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "punion-gap-error": {
+   "hash": "325bdb6f4e3c32dffc9b09363681725dc1d91e3904a61a9536a9c2374619a2d4",
+   "result": {
+    "error": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+    "warnings": []
+   }
+  },
+  "punion-length-mismatch-error": {
+   "hash": "06d3d93e15e0cdbfaf95c586b9ea4b0160211a356c42ab4ddd39abf71f412e5f",
+   "result": {
+    "error": "'x' and 'y' must have the same length",
+    "warnings": []
+   }
+  },
+  "setdiff-empty-minus-x": {
+   "hash": "2f3860bf8e7559b6b86e8b24c176789c28c63e1cd224b18a41f791cf57231376",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-range-minus-zero-width": {
+   "hash": "38bff8c56c45e9f2182710cf8b318f042c9efa734a4de97bcbc79dccfe3f6873",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      10
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-self": {
+   "hash": "a0c885de9c668e603e9074512a84ecedf7fefa98e5e90ae1a59c973dbc29bd2a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-split": {
+   "hash": "afccb5024d4c9128a579a30f7921c3a1592335ccea174bd0f8d5145dfdfbf4bb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      6,
+      13
+     ],
+     "width": [
+      2,
+      4,
+      8
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-tail": {
+   "hash": "0b75b085d7cede9874542640b3515acf7868d567c2dd6be2bdf7e2a08b96f119",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-x-minus-empty": {
+   "hash": "bede5f3c253fe485fb71ab5562541a77319bd720cea07b4cd1404e013b4c01ea",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      8
+     ],
+     "width": [
+      5,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-xy": {
+   "hash": "d094ff9aa93e9f98e56adc818676e29bbccfc81c9ee6906c920503f093b5fe6a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      25
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-yx": {
+   "hash": "cbbeae3c6180ad787b6bd1378ac869435a6ff28ed672dabe28638836149d7ebd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      6,
+      10,
+      40
+     ],
+     "width": [
+      2,
+      4,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "setdiff-zero-width-minus-range": {
+   "hash": "0a8fcbfa593274df30d0d08ccfdad8973793b63d1b8b8afe3a6aad4cecd0b3aa",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-adjacent-merges": {
+   "hash": "269e77473c7b52121104dc07f207ca7ebbaef06fa56d4e670572ec636ced1e0a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-basic": {
+   "hash": "19001e889441a5f16cf3a480730fe45b78ddf7a772c6cde514553e5822d025b9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      25,
+      40
+     ],
+     "width": [
+      13,
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-both-empty": {
+   "hash": "0eba4145fe13f96b005f59921f6b5981db3357d8847f0df81eeb0f95a4f78d46",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-drops-names-mcols": {
+   "hash": "92b33567f796123336bf3a1e8950af7d37c4196648f9720f7a6dc50bae17d0a7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      8,
+      25
+     ],
+     "width": [
+      5,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-gap-stays": {
+   "hash": "d38b61d218904d96b88a8b293f9a2259f8ff0b0f4de198b59efd3cd3f194b648",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-unsorted-overlapping": {
+   "hash": "fe656482aca1ccd516962c43d378b44ddbfe56e93d635181b05162a2f4c74a04",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      30,
+      100
+     ],
+     "width": [
+      6,
+      11,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-with-empty": {
+   "hash": "45e6c7da02266f31085fc2dd909670faa2f5e74400fe04186f4956ea0dc8db36",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      8
+     ],
+     "width": [
+      5,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "union-zero-width-only": {
+   "hash": "834b79634d05abf5a1c2ace39ac3414a0350a030f38a719ffe1f38d30e66a917",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  }
+ }
+}

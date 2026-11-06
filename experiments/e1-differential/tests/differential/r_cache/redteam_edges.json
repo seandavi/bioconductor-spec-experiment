@@ -1,0 +1,1357 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "rt-edge-all-zero-disjoin": {
+   "hash": "2d98b92c250dd41354b0c013cf7498d54b11e6ca8bee78f61824b07b0c057549",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-all-zero-gaps": {
+   "hash": "77537c22fca7689ee764c9eafff20653d654237555f5ffd8d45d0fd2c3fdd0f2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -5
+     ],
+     "width": [
+      16
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-all-zero-range": {
+   "hash": "20fedd129093c432076ec7c69c4751088a642b86f12d3b1119a530d026217c58",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2
+     ],
+     "width": [
+      10
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-all-zero-reduce": {
+   "hash": "51ea2bbbe1333d4c48205b3d84e312496dc4d7d8016099f8cf90c4332e3cb44c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      4,
+      8
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2
+        ],
+        [
+         4
+        ],
+        [
+         1,
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-coverage-overlap-na": {
+   "hash": "ce365dcc995cec9e35c4583859561d58cb484d957fe7afad0cb079e372c2f64c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-coverage-typed-na": {
+   "hash": "c0370444e172ce08644bf62c2bf158684b9881c40c0efd212f533a284e609889",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null
+       ],
+       "lengths": [
+        1,
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-default-empty": {
+   "hash": "76df97e16390ea5c1e97f3faedf0cb3dccc14544c4225a0d591632ff1cb9c131",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [],
+      "seqlengths": [],
+      "is_circular": [],
+      "genome": []
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-coverage": {
+   "hash": "f7955dc30b6403ca7f11dce80203c5e57e6f76629edbb3326eaa9dd60c11d643",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chrZ",
+      "chrA"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-disjoin": {
+   "hash": "f4b5ab21234d07dde996dfd838edb2ffa3ebe0327d9cce44818c78a023ceb89f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-nearest": {
+   "hash": "38d70ff06b03e479bd83a1999d89b8f419a29fbe7b23c06f06d9d61cb07e8a16",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 0,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-range": {
+   "hash": "a6647aefb0197396384440bdd59406020aa74e00c657ebce176259d283a330dd",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-reduce": {
+   "hash": "f170cb2250eab2d0e391e99a992e66f946368e3124d35199370647d4bd754972",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-sort": {
+   "hash": "2d6002d10450ed2d78091b04fdd20d94f3b9bc38088c43537ef20061cdf8d33d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-union": {
+   "hash": "185987384395edb1d58eddcd08a64b4b0e0009ef6ccbe2bbe5aa45b9f8d242f5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-empty-unique": {
+   "hash": "7219b3fd724ca31fead435a6121c5d44643283e43dfeec3ed4649c1bed7b4bee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA"
+      ],
+      "seqlengths": [
+       0,
+       4
+      ],
+      "is_circular": [
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-negative-follow": {
+   "hash": "4a55269dbab2efdb17c3b81d119d0f4a6f53169c06af817ee602c4bdb8c98385",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-negative-nearest": {
+   "hash": "b7087194e509fed0ef99777b74f40a9ab0b434e9c232b2e9fc10e171b6ec2d8b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      4
+     ],
+     "to": [
+      3,
+      3,
+      3
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-gr-negative-precede": {
+   "hash": "a160d6893f58f7effa78416a764af782e654734982df61431c30d4ceab239408",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-coverage-overlap-na": {
+   "hash": "b677df152f41f7b0cf0f410957a16e7e5c28a47bac6d1a0d5fbfd33ed610d433",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-coverage-typed-na": {
+   "hash": "5383769a23cb7819a6fd3ff48553df420965df85b3f0605794d30a12578a4c46",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null
+     ],
+     "lengths": [
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-default-empty": {
+   "hash": "2112880c7fa7cbf4ca16587575f036096ce076546b92ec8d890ad9e25c70d836",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-coverage": {
+   "hash": "afa66ea2d1fbb84f0b8c3874102c387d5140b615167ba8d218418cb4bdee341f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [],
+     "lengths": []
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-disjoin": {
+   "hash": "d9530bb36a2071e1c5a8e55bfeee9839f0a807bea40cb180ca378b6024f1e0ad",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-nearest": {
+   "hash": "879061131a3f16ff83938f9f6ffcff9e9883e3a4e7d5b574d40f100573f1ebc1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 0,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-range": {
+   "hash": "489a7f8901b9ffca2496b6f65c45876db024dc8657134440d3c89e8c105d18a6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-reduce": {
+   "hash": "4ff5f44c66fa336e553ed347aa4049dd93e22bb608ba4e69a460115a7adf5673",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-sort": {
+   "hash": "7f30a0c20fe0508b5ad4b3adbf5fd2d3190dc8165afa570464260e5a3ae2feff",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-union": {
+   "hash": "2c19fb6f61e333158d3da6e9e5c1edaad5c256f8b37ce5f5c8eacb9b54de68f6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-empty-unique": {
+   "hash": "ea6832e66f6ea137e72ac114acd0385a2ec660be074484acfad6b35242a07962",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-negative-follow": {
+   "hash": "b40a4c9c215562f568fcdfb9b71e717e1cb56003ff708aeb9493a2ea362afe07",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      3
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-negative-nearest": {
+   "hash": "2467bc7f884201c1e0f4281f2389e4c01c8c00e438f15c6be58b482fd7760a8a",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      1,
+      3,
+      3,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ir-negative-precede": {
+   "hash": "4a024da1a0004a152c0592ac697fcfc765bf915cdcd0b5b1b2f6d8416330ec72",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      2,
+      4,
+      4,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-duplicated-from-last": {
+   "hash": "fe8eb21bdc4de53b8ec7be13d8ac0175fe5b7bfec2f68ed4c87e052cfa05fc01",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-order-ascending": {
+   "hash": "eda2553f4879b682bfea9b2c25d222e55264f24eb4e631e675a2e2f4b680f8f3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      5,
+      3,
+      2,
+      1,
+      6
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-order-descending": {
+   "hash": "d568bbb98966b7e7cc280f461a4b94363b3b5504930120befe132f494d6d2733",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      6,
+      2,
+      3,
+      4,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-rank-last": {
+   "hash": "e49ccae612d18cbf390d53a8637c9cea5d69fd51045da365edc4029c60e6a4f9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6,
+      4,
+      3,
+      2,
+      1,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-sort-descending": {
+   "hash": "78c8aad67e2c18a7ad3d78cbc17f0ff8699f43cbb9e3ae74dbf3464d46b4ef5d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrZ",
+      "chrZ",
+      "chrZ",
+      "chrZ"
+     ],
+     "start": [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-",
+      "+",
+      "+"
+     ],
+     "names": [
+      "a",
+      "f",
+      "b",
+      "c",
+      "d",
+      "e"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        6,
+        1,
+        5,
+        4,
+        3,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA",
+       "unused"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-sort-ignore-strand": {
+   "hash": "aa007fcb095e16ae78e8e62e7e0a830eb2f174dbee1a4c61c814f1237ed7bcab",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrZ",
+      "chrZ",
+      "chrZ",
+      "chrZ",
+      "chrA",
+      "chrA"
+     ],
+     "start": [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "-",
+      "+",
+      "+",
+      "*",
+      "*"
+     ],
+     "names": [
+      "b",
+      "c",
+      "d",
+      "e",
+      "a",
+      "f"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        5,
+        4,
+        3,
+        2,
+        6,
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA",
+       "unused"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-subset-empty-name": {
+   "hash": "8cc08011508bbc3d81b85f6c2ca4c5ccb44dd774080d2ddfbdd0d027142928b6",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "rt-edge-ordering-unique-from-last": {
+   "hash": "76f403cc0fc10e9f4bf398d027f31d02888ad35d98ca23693611fa993fcc6dc6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrZ",
+      "chrZ",
+      "chrZ",
+      "chrA"
+     ],
+     "start": [
+      5,
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "-",
+      "+",
+      "*"
+     ],
+     "names": [
+      "b",
+      "c",
+      "e",
+      "f"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        5,
+        4,
+        2,
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA",
+       "unused"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-trim-circularity-circular": {
+   "hash": "d49cc9a4758dab15adb1531a28a137051a701c49761b278384987c496b900dd1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      -2
+     ],
+     "width": [
+      8
+     ],
+     "strand": [
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       3
+      ],
+      "is_circular": [
+       true
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-edge-trim-circularity-linear": {
+   "hash": "c33d21facddd8ef93dbca7318086ef58e283132d580db0e02a6b3fdc80b47b53",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "strand": [
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       3
+      ],
+      "is_circular": [
+       false
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-edge-trim-circularity-unknown": {
+   "hash": "353066b90c22d07374335d357ba22fb1e62ece4419ce021be827cf300498e53b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "strand": [
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       3
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-edge-zero-seqlength-coverage": {
+   "hash": "41a9770282cdd1c5c8ada73f2107c2a41dcf094710d347d57ac908472a9f3288",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chrZ",
+      "chrA",
+      "unused"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequences chrZ and\n  chrA. Note that ranges located on a sequence whose length is unknown (NA) or\n  on a circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-edge-zero-seqlength-gaps": {
+   "hash": "a572db1e592ba055451502ec5c7c27bdf8cf749b2ad96e81f8e9d1c7c31a81bb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrA",
+      "unused",
+      "unused",
+      "unused"
+     ],
+     "start": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA",
+       "unused"
+      ],
+      "seqlengths": [
+       0,
+       3,
+       2
+      ],
+      "is_circular": [
+       false,
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequences chrZ and\n  chrA. Note that ranges located on a sequence whose length is unknown (NA) or\n  on a circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "rt-edge-zero-seqlength-trim": {
+   "hash": "2075ce90dcf18fc27837894043b2538f6db6a1e3e098bf562fe95a1d76c57e39",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrZ",
+      "chrZ",
+      "chrZ",
+      "chrA",
+      "chrA"
+     ],
+     "start": [
+      1,
+      1,
+      1,
+      1,
+      4
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrZ",
+       "chrA",
+       "unused"
+      ],
+      "seqlengths": [
+       0,
+       3,
+       2
+      ],
+      "is_circular": [
+       false,
+       false,
+       false
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequences chrZ and\n  chrA. Note that ranges located on a sequence whose length is unknown (NA) or\n  on a circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  }
+ }
+}

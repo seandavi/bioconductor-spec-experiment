@@ -1,0 +1,3063 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "subset-grn-all": {
+   "hash": "6f84f2e6f7487af3613adde517389a1deee6c56335d54c7bc2359b435c8a294c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-chr-empty-string": {
+   "hash": "f4a73dc1728236d3f965a09d706788d572e83cb5d20382b00bb4be13eb8fa29f",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "subset-grn-dbl": {
+   "hash": "0e0346040e732e3dd1a1746076a5259d828e7f736e782d2b62271e7e583d364d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c2"
+     ],
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      2,
+      0
+     ],
+     "strand": [
+      "+",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-dbl-neg": {
+   "hash": "020f3a5b96087a93d485392cfc071aa254960b1d6789876c96401683bd3f3f0b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-empty": {
+   "hash": "cd7292616a6bd8e7c28c0e6b9b32fbcc4cc40afab06617986193417078303398",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-empty-chr": {
+   "hash": "226965ab677106e2a5cd4c4130ee950e4d9c4137c96ad2fa26a5a37664bb1170",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-empty-lgl": {
+   "hash": "2eb9acc72de62ce86322d89c7fb61a48fca8bb159ac7e02f5d038c79cfc6509c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-empty-object-int": {
+   "hash": "06adf00ae5f94d05e29f8fe67936ee22bc789061cf1dca04f1ad39da5efc7142",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-grn-int": {
+   "hash": "716e330966726c57f78e60ae6d7d38553eb4480a1072c455744f37d153920519",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c1"
+     ],
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "strand": [
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-int-na": {
+   "hash": "a85fe50ad6c070dacd29159efef54d5499ad0b66856cf5819236ca2c86410e30",
+   "result": {
+    "error": "subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl": {
+   "hash": "96f8aabc131b3631edc9af7b463b2d759649d16d901b58df784560608848fa4a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c1"
+     ],
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-false": {
+   "hash": "162e67c4b11064ba9ed437a21f3f0d6960d96a5ef24f439ece0425d4cb8c8ef9",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-long": {
+   "hash": "3cac52cae9c61b5fdfb6796ce449f00f2f997f2e2b0bb9d2ef78c1cee3e35cb9",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c1"
+     ],
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-long-true": {
+   "hash": "216d51aba5b9cf49ac32afd432781e5120d43e9d0c35d06bdf183075bad1aa96",
+   "result": {
+    "error": "subscript is a logical vector with out-of-bounds TRUE values",
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-na": {
+   "hash": "c436e3bbf90d0046dc75b4d13c52f143274d311e049cb13cd7cdafc7058039ab",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-one": {
+   "hash": "abc381eba705d82b6488d51e8426bce27170f57a1c94647be7948dd85626ee96",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-lgl-short": {
+   "hash": "a656f14896d42c0b0ae507e6b23f40d01041467cc71a4f624244d682ba0e10cc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c1"
+     ],
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-mixed": {
+   "hash": "0c1b9857fb780f7c9ac8ba282582efedc9b585b135d9462b331750bb7260830f",
+   "result": {
+    "error": "only 0's may be mixed with negative subscripts",
+    "warnings": []
+   }
+  },
+  "subset-grn-mixed-zero": {
+   "hash": "071416d031e3665884293380d43b720947dc29e35879a06f3b81f7e8d5d25711",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-na": {
+   "hash": "a223330fecb1f2381c837f0a4ef2b76998639ea520ed873367dcb7e7237e14aa",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-grn-name": {
+   "hash": "f7730f44ebb4f587f0c936dd5b6e8186fd13be18f58c7eb683a240e3805e2723",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2"
+     ],
+     "start": [
+      12
+     ],
+     "width": [
+      1
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": [
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-name-dup": {
+   "hash": "6bb27e4acc66563313e124f9a876f6810188a27d4a6a2e5a0cb4d6001ea65d0e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      2
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": [
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-name-missing": {
+   "hash": "d19dd2b4ebaf267a6c71e612deb1e7d1328aef3a97f7d005c3dcd3fb0e6c79ab",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "subset-grn-name-na": {
+   "hash": "27efdc4259ada00679bd3573d79afd9d4afb7604cdc1356706620c93521d9bf9",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-grn-names": {
+   "hash": "e7a5306a265b1ce190537ee52efb0b3150c9e50ef1b71b75ae2c7a0e1230c7e3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      12,
+      1,
+      5
+     ],
+     "width": [
+      1,
+      2,
+      0
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-"
+     ],
+     "names": [
+      "d",
+      "a",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-neg": {
+   "hash": "f58db8c451ccf42ab862c622d2f42f36253c533daa885d07da39b9ec96420054",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-neg-oob": {
+   "hash": "5af850ecbb90b5bd5dc0742efcea7ca0a735cdb3deb2adebac4c9a4a0218a364",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c1",
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-neg-oob-mixed": {
+   "hash": "6ff434934e0eebc9daea9d41741edd23418a371644dff420c27db000ef5bab31",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2"
+     ],
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-negs": {
+   "hash": "077ae7cb8a70303fb1054b8340212167b5dc364d4e3985f381d0d22474b0a95c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c2"
+     ],
+     "start": [
+      5,
+      12
+     ],
+     "width": [
+      0,
+      1
+     ],
+     "strand": [
+      "-",
+      "+"
+     ],
+     "names": [
+      "b",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-oob": {
+   "hash": "8e0c36273000b1d30d6c86647ea754efc59e94f44ca0745a8d791b362aa3aad1",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-grn-rep": {
+   "hash": "b125d18cb73ad80bd0f8389955212e41309a1bd0d64df9191d73265958cabaca",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c2",
+      "c2"
+     ],
+     "start": [
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "-",
+      "-",
+      "-"
+     ],
+     "names": [
+      "b",
+      "b",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        2,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-rev": {
+   "hash": "d2f0bff84bd451d647559b68ab47f758496d71f2e69ebac0abe5e802df0a779e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2",
+      "c1",
+      "c2",
+      "c1"
+     ],
+     "start": [
+      12,
+      9,
+      5,
+      1
+     ],
+     "width": [
+      1,
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-",
+      "+"
+     ],
+     "names": [
+      "d",
+      "a",
+      "b",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4,
+        3,
+        2,
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-zero": {
+   "hash": "51713b2a3ee71783ad9506ccabee760c1dafa490f04f20a1575dfb99ed3fab24",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-grn-zero-int": {
+   "hash": "718356e1217c33cce050fcf2fb7e38257d03e1038aec71446126f01340ab8a1b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c2"
+     ],
+     "start": [
+      5
+     ],
+     "width": [
+      0
+     ],
+     "strand": [
+      "-"
+     ],
+     "names": [
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c1",
+       "c2",
+       "c3"
+      ],
+      "seqlengths": [
+       50,
+       50,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-all": {
+   "hash": "de7c750b7d48c20e3e89ab428c7adc2eacb4de9cc3abc1a1f87e1cc61f14754e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-chr-empty-string": {
+   "hash": "e5f8961e9f88fceda7330edbbfe0fe90d13d5a0a66b1f94eb6350be9f1052f8d",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "subset-irn-dbl": {
+   "hash": "0f5ab4629afc3aacdacc9d86c9825610f65ad492b191a2955d66cbca1ca24495",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      2,
+      0
+     ],
+     "names": [
+      "a",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-dbl-neg": {
+   "hash": "e26573204ba47e48abe1da1f743912badcd51b91f8d8dae8274f60b4bcfc466d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-empty": {
+   "hash": "91d8b1412a69aea95d97c0242dd7058067f7491f7babb3a6b3cb667f6d640db3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-empty-chr": {
+   "hash": "1ac064dd3ac146557b06ea4f662d26e8606ef261ebc60168a5c6b999a652c2e6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-empty-lgl": {
+   "hash": "c9465b787229e81b59bd915ee224159b52143e6d6576699ad8ad19ea2087fc58",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-empty-object-int": {
+   "hash": "d6f969bd7a399b2b434b76fc5088d31c24d2e7e26175cfece046c2f92a8e7d67",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-irn-int": {
+   "hash": "731577b5784a7e2bd8cd8ed37a634d7b1f4cda5772a0400e411ff99c8e22aecf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-int-na": {
+   "hash": "613865f5f45e6ccadfbc3e09294e1c9a0fb39d1bd27de698d3e2cfebc37d6a2a",
+   "result": {
+    "error": "subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl": {
+   "hash": "f6bb45ff52fa14d29a5f1f96971feec7d64fd29ef3287274ab05ac6441e6d5be",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-false": {
+   "hash": "47955afe5d07238cd098518c495a95e3b4f49ea26b49967c9e0f0a56a29417c6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-long": {
+   "hash": "5f5c287656fd4caf2a50d1a141c37a51be3fc635603095816da96607ac5f78cc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-long-true": {
+   "hash": "394ffcaaf188bca174022441eb7246e88a885eb35d37b414e47b9a3595bb04a5",
+   "result": {
+    "error": "subscript is a logical vector with out-of-bounds TRUE values",
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-na": {
+   "hash": "3c2bebe39a3c4b7c4889e2dcefc45fe6a658aa3c288555203de3a3316f7f594f",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-one": {
+   "hash": "bafba227f370fd55836714be904dc3eb606aecddd1c09030befcc83d523dbc71",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-lgl-short": {
+   "hash": "a06bf43b76c013fb1e4dec904bab7ba7bd494edbc517b3bbdd616d9af6071b5f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": [
+      "a",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-mixed": {
+   "hash": "e0504c6e600770581d1b05a3d60a37e71d95046a0569c2146d99d603faa32b71",
+   "result": {
+    "error": "only 0's may be mixed with negative subscripts",
+    "warnings": []
+   }
+  },
+  "subset-irn-mixed-zero": {
+   "hash": "b213020c5c5cbc5ab589264c3270e0e4ae2b8f077e3cbf9a41e3d3fb3db44944",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-na": {
+   "hash": "be8625aa0092751b5f7e7c39cb9feb2a4eb8715703cdcbe773ef24e4fbc5e4ac",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-irn-name": {
+   "hash": "0085b95593e7b3fdda76900ceecc9dded35b6f95f180705ffc6718665b66a6d6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      12
+     ],
+     "width": [
+      1
+     ],
+     "names": [
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-name-dup": {
+   "hash": "729b3c76ce596e86a2f40c8a74e138b52dff02c35c0e2402bfb29f60954631fd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      2
+     ],
+     "names": [
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-name-missing": {
+   "hash": "fb850b85b1f43e35ab8f67c9b3c879f0f53259d0a9b3e5ec81a2b526e944ae29",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "subset-irn-name-na": {
+   "hash": "8802f9fad1e4eb911793ef89ad2ad71c5df52e73ad424a71166d8860b0a2d921",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-irn-names": {
+   "hash": "149938658cd64184038dc4ac366af7fcd2ee6f82250382ffe568392edc97d78e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      12,
+      1,
+      5
+     ],
+     "width": [
+      1,
+      2,
+      0
+     ],
+     "names": [
+      "d",
+      "a",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-neg": {
+   "hash": "c3f88ee81cfc1d2edbfa36ed646ff1a32442b9fa6d43016606057c5cce06e404",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-neg-oob": {
+   "hash": "facf0c89fdb1c5422a3722a88a70376c4f0a541e00c7a47725ed907024d10669",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-neg-oob-mixed": {
+   "hash": "4e3a2937f0517e1b76dda3b0e84539dc2e05747d998e99ffdd24a759c544f8ff",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": [
+      "b",
+      "a",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-negs": {
+   "hash": "f066feffc1bf802238074fe887f9c54fcfbe1e828ba45b61221c96e8200f09ff",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      12
+     ],
+     "width": [
+      0,
+      1
+     ],
+     "names": [
+      "b",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-oob": {
+   "hash": "4a36cb5af2470cac18bea33da6019ba4efb6c71504ee6ea5e76eeedc567f8d35",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-irn-rep": {
+   "hash": "366f3618ec0c93848fdb81443b9320176f28b462441551814aa930e31b38b3f5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": [
+      "b",
+      "b",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        2,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-rev": {
+   "hash": "2ce2bf9cda06b9ff34dc6bb5c66061d2a861262636dfbd63297ba4ba8d797a1f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      12,
+      9,
+      5,
+      1
+     ],
+     "width": [
+      1,
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "d",
+      "a",
+      "b",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4,
+        3,
+        2,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-zero": {
+   "hash": "0dd24ecdfce2b400132d7eb16a78e00241f580f9faaf1c179437a614e1e1fc60",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-irn-zero-int": {
+   "hash": "437cf6bb55f3e14ba6ef72179cb8f43871bf01a70fc3cbe872e4c0f5b4b1e555",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5
+     ],
+     "width": [
+      0
+     ],
+     "names": [
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-all": {
+   "hash": "bd5c6fbe61a22676446a14c3ea60ff3af3dedce661f44a2747c6535bd311913b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-chr-empty-string": {
+   "hash": "67441c98663b703fd9d1f2ebbfc0fe9aa836c4ca4d7090bb3e27dea8039bfb48",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-dbl": {
+   "hash": "cc5b8866ee1e7c4ab89e94ee8a5f9b0e4f106d023f0e6856a783b6f527a2953b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      2,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-dbl-neg": {
+   "hash": "9ecd55642e93a3801af7bb7fe8a41b28f7de2241a0308d6498748de5fd9e71d9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-empty": {
+   "hash": "bed5b1d3fab02e47032e4df61befe0cea45243556e7def497b69e6b68eca6861",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-empty-chr": {
+   "hash": "84512f3a53c4dc89eb1183534dd7a709af7d08a59f048bd453258e55f31cc98c",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-empty-lgl": {
+   "hash": "792430624ae7b62d4e0cb8a3c9bbf16c2a0f3497ae422c83f3651951a5114457",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-empty-object-int": {
+   "hash": "f47699998fbee013a45a0861e7eece124a83c88db86e0f4318565a28f1c8dbb0",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-iru-int": {
+   "hash": "8dc519737a509712cea6ac22fe9b2f92744ffe3ec76774776be11a0fc4356ed0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-int-na": {
+   "hash": "9fb5f9fedde3b59f60bd735bb6e10574ad985368dfa393d4a5c75b2b525f3460",
+   "result": {
+    "error": "subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl": {
+   "hash": "59a13dd7d8820e1b0c1a406898d8e72d7293c1b4558797d9ab1bd5b9c9313abe",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-false": {
+   "hash": "85a26d5478520212515040dff47d235130bdca6222edbd281c4f107dc4b1f93e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-long": {
+   "hash": "c9cf910329f158252e501a2fa1122089a9555a78f0b5a26c96f366090815c647",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-long-true": {
+   "hash": "71f9b0bca36b4a3f87fcd2e32eb129b9f450b52ffd025f9967d453f720915153",
+   "result": {
+    "error": "subscript is a logical vector with out-of-bounds TRUE values",
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-na": {
+   "hash": "5001dd80a81bebc67c2e419d1530b81ad1bf9bd4c12bb35cecc042f165ff0d69",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-one": {
+   "hash": "3c030a1842d873708709b1d450518bd58677140ae39f7675981664d8a30d7b21",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-lgl-short": {
+   "hash": "91ed8eb2e59307520757cc9527b3f2ea00daca3fbbd60c547e1c9722776c164c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-mixed": {
+   "hash": "ea21b249ead599ecb4e449669d4079c9b0bceb74e45ed72de3ca0ea1e3061560",
+   "result": {
+    "error": "only 0's may be mixed with negative subscripts",
+    "warnings": []
+   }
+  },
+  "subset-iru-mixed-zero": {
+   "hash": "c19c630aa0bc8d711eb8b5c97cdff5fe6ca24ac4192792f1b9da04550cbcef67",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-na": {
+   "hash": "9f447746c1d686b02129fab31dfbf4a9885673997a8a980df9ee7c14d9bdf4ac",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-iru-name": {
+   "hash": "02033682d8df35be9a284cd82e9428d155d683fa7a48b99698f6bb9f2d3e6c6d",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-name-dup": {
+   "hash": "9e0b9d22905103d3a7cb192e1a8d1d233c4af13101a115189b64d86d36cf41ef",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-name-missing": {
+   "hash": "ba72c7706e6a5cabef4639f29cda92719d21c1be3bb52613e3573a5a60ae9ba3",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-name-na": {
+   "hash": "c8c35016d7daa58a24f2b8e5287c94196ccc91fd83f5947511c3694ef73af3e5",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "subset-iru-names": {
+   "hash": "987572f4d846e0188e182c3caf58b2342f502ef13936f416ff1d92e795316d5f",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "subset-iru-neg": {
+   "hash": "8e40ede8f39ce491a3d6cde20eb92f79852bc2aa06d5f9bbd0b9d8236c7cf987",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-neg-oob": {
+   "hash": "e6aedfacb62c5801939bc38128199d09f6d0b984f0cd35b872df8ffe734aecee",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      12
+     ],
+     "width": [
+      2,
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-neg-oob-mixed": {
+   "hash": "7225948dfe041cba5e024caab3955c7ae73b105374afa6ff593a6dab90d6b819",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9,
+      12
+     ],
+     "width": [
+      0,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-negs": {
+   "hash": "47875811874c1ffbd3db636e3fabe56fed913e57fd5ca1ea4ab96acaaddc244f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      12
+     ],
+     "width": [
+      0,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-oob": {
+   "hash": "d948749bb28c9b23ec102b6480d29f1f526b7da66d865391eaa79d49e4dbeaf7",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "subset-iru-rep": {
+   "hash": "29cb32501a3f361961e150347fefb31303afd6ce306a5ec4d4d633acd7bb6bc2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5,
+      5
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        2,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-rev": {
+   "hash": "548a752e96426b13c9999e2a3030c0dfc28005bb44d787cef7c4ef9568eec755",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      12,
+      9,
+      5,
+      1
+     ],
+     "width": [
+      1,
+      3,
+      0,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4,
+        3,
+        2,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-zero": {
+   "hash": "a40234a9afaa85b65b897c27ede40664bb544e186bd2b02e2e24947727dd5a87",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-iru-zero-int": {
+   "hash": "9f9a645e8fff59010150fd8ce83f94088b03efc7dda2cf25bc03fbc837e34c4b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  }
+ }
+}

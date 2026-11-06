@@ -1,0 +1,11326 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "meta-gr0-concat": {
+   "hash": "e516cdd6f1b32189d5b0eedf19bc4c0f59d3dd5c017ffd3111f13653ceffc937",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrB",
+      "chrB",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17,
+      8,
+      4,
+      8,
+      16,
+      7
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1,
+      3,
+      1,
+      6,
+      0,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-",
+      "*",
+      "-",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g4"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z",
+        "y",
+        "z",
+        "y",
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758,
+        0.12,
+        0.389,
+        0.711,
+        0.199,
+        0.889
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-concat-self-twice": {
+   "hash": "8610fdd834f810a200161d44bdb4e248edec927eb2aa5908648f77c62b09f9bc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA",
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA",
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17,
+      23,
+      28,
+      9,
+      17,
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1,
+      3,
+      1,
+      3,
+      1,
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-",
+      "*",
+      "*",
+      "*",
+      "-",
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z",
+        "x",
+        "x",
+        "y",
+        "z",
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758,
+        0.636,
+        0.613,
+        0.788,
+        0.758,
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-concat-unnamed-x": {
+   "hash": "b2cf7761e64f1ce851096f57c3292748a82c8160db7c235a7373597692024636",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrB",
+      "chrB",
+      "chrA"
+     ],
+     "start": [
+      9,
+      7,
+      10,
+      8,
+      4,
+      8,
+      16,
+      7
+     ],
+     "width": [
+      1,
+      3,
+      3,
+      3,
+      1,
+      6,
+      0,
+      6
+     ],
+     "strand": [
+      "*",
+      "-",
+      "+",
+      "*",
+      "-",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "",
+      "",
+      "",
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g4"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "z",
+        "z",
+        "y",
+        "z",
+        "y",
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.061,
+        0.74,
+        0.898,
+        0.12,
+        0.389,
+        0.711,
+        0.199,
+        0.889
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-concat-unnamed-y": {
+   "hash": "85fc1c958d0c0cb3e8505e444a3e62391a6c19a114e6e29870a125bb9adc369a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17,
+      19,
+      29,
+      15
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1,
+      1,
+      6,
+      3
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-",
+      "+",
+      "*",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "",
+      "",
+      ""
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z",
+        "z",
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758,
+        0.131,
+        0.014,
+        0.971
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-coverage": {
+   "hash": "9edb7e90f6d493432c553c5e52049bd1710277f41cd94682d9576a6e239c884a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        16,
+        1,
+        83
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        27,
+        1,
+        172
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        8,
+        3,
+        11,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-disjoin": {
+   "hash": "649c0e4b904a040ecffd329b9f96b9859fcf97b22e40d0eff1aa58c3f839d541",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-flank": {
+   "hash": "5c0e3b1adc32adb3df287fb8a8a10129f07c220762d00b4fc023a58212a321ed",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      21,
+      26,
+      7,
+      18
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-flank-bothTrue-usenamesFalse": {
+   "hash": "b9874d034721c53844ca71b0822684ade8a1b313fb393340d964ca55a742b793",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      21,
+      26,
+      7,
+      16
+     ],
+     "width": [
+      4,
+      4,
+      4,
+      4
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-gaps-start1-end40": {
+   "hash": "56d8f066c196725c80fa3e10cc5330811f9ad00c83f8aabc71e54c618b9b222c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrB",
+      "chrB",
+      "chrB",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrC",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      1,
+      1,
+      18,
+      1,
+      1,
+      1,
+      1,
+      29,
+      1,
+      1,
+      1,
+      12,
+      26
+     ],
+     "width": [
+      40,
+      16,
+      23,
+      40,
+      40,
+      40,
+      27,
+      12,
+      40,
+      40,
+      8,
+      11,
+      15
+     ],
+     "strand": [
+      "+",
+      "-",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-intersect": {
+   "hash": "7363ec2df2d24c7124ad91a08fc5ce18653d0d994b5be124c4d32e8f22a174df",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-mcols": {
+   "hash": "15d360d9cda4bf21131db554852f7aa5e694f38dff40a2e9a646e32b40041e8a",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "nrow": 4
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-names-set-null": {
+   "hash": "ed6dda62840344d7171c0f79a16e65dd814c9363828e0e98cae6ffae8983320d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-narrow-start1-end0": {
+   "hash": "3d761ac3a624b1cd0c610c765ec1641351a3b3cb43530b2962d8999db057ccc4",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-narrow-start1-width0": {
+   "hash": "f2d16787f1d695bb678fc82d84b44bcbfd8b031f3ef60d9070a4bbc38863ab1f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-promoters": {
+   "hash": "9330c4474016fee6dd13065e4f6348d822855229da9ad3a035f1a4ce6593710a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      22,
+      27,
+      8,
+      17
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-range": {
+   "hash": "4ce264bda84b78506f2fa7ffc705ded10f51ac51d1d8e6e1e00c09f9642f7056",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      17
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-ranges": {
+   "hash": "4a1952fcbbfb7260c6e7031b7a8b0dc1ac64668834d325d277596ea1a39fd2c4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-reduce": {
+   "hash": "237d409289f6a26fa5cbc663efccfa8a1875e1ba7cca104c49fa9f6075625770",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-reduce-withrevmapTrue": {
+   "hash": "11632488bf2d92755bb920225afa58321ab7fec7a395ab18a576d0c45048ec09",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         4
+        ],
+        [
+         2
+        ],
+        [
+         3
+        ],
+        [
+         1
+        ]
+       ]
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-resize": {
+   "hash": "7241d287c220fb6fd24a05ee15bc35cfdad1d2b59b7eb39cd30c3d85733da5ae",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      16
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-resize-usenamesFalse": {
+   "hash": "befb198956a6d9bb0e47ab2c042b6353c4daa5e8d8aed03dd704756ab196303e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      16
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-seqinfo": {
+   "hash": "29b26ad48e0a2c16e1ad3c44497c2a0781061abdaae8b38f0f3f165eaf17bc50",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "seqlengths": [
+      100,
+      200,
+      null
+     ],
+     "is_circular": [
+      false,
+      null,
+      true
+     ],
+     "genome": [
+      "g1",
+      "g1",
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-setdiff": {
+   "hash": "4a4fa88f52080d2303929cf06778c1f41e5d4a1d9f25b657190c4e66aa8a56d1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-shift": {
+   "hash": "89ab6bee9248c887deaa139a2d60a3346ecfea77cb1997a43ebe21ed45eca3f8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      26,
+      31,
+      12,
+      20
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-shift-usenamesFalse": {
+   "hash": "d1157c650b2fbe2d0e076dd0a92a3e3118648d59826e4819030a0be40645bccc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      26,
+      31,
+      12,
+      20
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-sort": {
+   "hash": "be4f6f3aa21e349ef25f60c82bc8ee9e85819837aea26f71018b800d34288225",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      28,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": [
+      "g3",
+      "g1",
+      "g2",
+      "g0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "y",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.758,
+        0.613,
+        0.788,
+        0.636
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        1,
+        2,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-sort-decreasingTrue": {
+   "hash": "40a8437ffcd71db45198fa9a390669cfaa4987b24943c1e5988436ded892b321",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrB",
+      "chrA"
+     ],
+     "start": [
+      23,
+      9,
+      28,
+      17
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g2",
+      "g1",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.788,
+        0.613,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        2,
+        1,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-by-overlaps": {
+   "hash": "307a05f6558c465aa0bdd10aa41d6d995d609da77433503270cc843fc101319e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-by-overlaps-invert": {
+   "hash": "da59190675c408a058bf317e85a53128f02f4e47731fb855a5366886c74129ea",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-logical": {
+   "hash": "ee576b9c1b140bc4a2d6a67210096e3c9c4d37eb74c468b087b219623c9e892d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "-"
+     ],
+     "names": [
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-names": {
+   "hash": "f4d57cab115ab1994f3a656cc51e17b6141448b6cfe4cf42c54fa6edfd2e8f2b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrC"
+     ],
+     "start": [
+      17,
+      23
+     ],
+     "width": [
+      1,
+      3
+     ],
+     "strand": [
+      "-",
+      "*"
+     ],
+     "names": [
+      "g3",
+      "g0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.758,
+        0.636
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-negative": {
+   "hash": "5d2675d49d7e22a2c6d39a028e481d8c9734d037d9fe0d7e7ed8f439077d661d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "-"
+     ],
+     "names": [
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-subset-repeat": {
+   "hash": "a3d26515e781b67780037210eb8eeef54580d45f2a783404df3c1ccd164a7b25",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrB"
+     ],
+     "start": [
+      23,
+      23,
+      28
+     ],
+     "width": [
+      3,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g0",
+      "g1"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.636,
+        0.613
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        0,
+        1
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-trim": {
+   "hash": "8572f18dbcbda01ec6dc2a74f958871d87e99fcc029388ee400192b4f8779cee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-union": {
+   "hash": "a1b9e9d9a5e982e51dcaa22cbdd7a4569124dc084f33819e34f4b7afdc4137a7",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrB",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      17,
+      7,
+      8,
+      28,
+      4,
+      9,
+      23
+     ],
+     "width": [
+      1,
+      6,
+      6,
+      1,
+      1,
+      3,
+      3
+     ],
+     "strand": [
+      "-",
+      "*",
+      "*",
+      "*",
+      "-",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr0-unique": {
+   "hash": "5e24add3e9f1887aa722d2bea43a03d2395f7b34940e4dbfe6a23d1f38d7200b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrB",
+      "chrC",
+      "chrA"
+     ],
+     "start": [
+      23,
+      28,
+      9,
+      17
+     ],
+     "width": [
+      3,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.636,
+        0.613,
+        0.788,
+        0.758
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-concat": {
+   "hash": "1c8c1854c378ed2eec7c3d7ee2f05a9d891fc9d23b64f6445212db972951d19a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrB",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1,
+      17,
+      18,
+      26
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6,
+      6,
+      1,
+      3
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*",
+      "*",
+      "+",
+      "-"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482,
+        0.137,
+        0.122,
+        0.442
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-concat-self-twice": {
+   "hash": "94d81f4d918b7fc1e529df6fa935bb205cd79be6741392885d2e33fd06250514",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1,
+      25,
+      6,
+      20,
+      1,
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6,
+      1,
+      1,
+      1,
+      6,
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*",
+      "*",
+      "*",
+      "+",
+      "*",
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x",
+        "x",
+        "z",
+        "x",
+        "x",
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482,
+        0.062,
+        0.682,
+        0.531,
+        0.482,
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-concat-unnamed-x": {
+   "hash": "ef92d08840a2ee6e3ecc243a7ecf5eb98fa9afa7e03b2e815e3f34eba49bb817",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrB",
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrB",
+      "chrB"
+     ],
+     "start": [
+      11,
+      3,
+      24,
+      17,
+      18,
+      26
+     ],
+     "width": [
+      3,
+      0,
+      3,
+      6,
+      1,
+      3
+     ],
+     "strand": [
+      "*",
+      "-",
+      "-",
+      "*",
+      "+",
+      "-"
+     ],
+     "names": [
+      "",
+      "",
+      "",
+      "g0",
+      "g1",
+      "g2"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "y",
+        "z",
+        "x",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.703,
+        0.384,
+        0.517,
+        0.137,
+        0.122,
+        0.442
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-concat-unnamed-y": {
+   "hash": "08383b60b36a5881f01159f8596ac1e7807905d5e3bfc390de9f7df62cd384a2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB",
+      "chrA",
+      "chrA",
+      "chrC"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1,
+      21,
+      22,
+      12
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6,
+      1,
+      3,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*",
+      "-",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3",
+      "",
+      "",
+      ""
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482,
+        0.953,
+        0.398,
+        0.487
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-coverage": {
+   "hash": "aa736d086a1effd844fd56ba3ec39c87ce7e6cf836e2e5906d31dbdceb652799",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        19,
+        1,
+        80
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0
+       ],
+       "lengths": [
+        6,
+        194
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        5,
+        1,
+        18,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-disjoin": {
+   "hash": "68e5fa8ddcbb5bde4016fd63d10ac7c9f9508548fd2051abb03249bfa4285c45",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6,
+      25
+     ],
+     "width": [
+      1,
+      6,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-flank": {
+   "hash": "ee47f207b498ae710e24302407daacc13d1c1c0194789165e74d98251ef4a322",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      23,
+      4,
+      18,
+      -1
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chrB. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "meta-gr1-flank-bothTrue-usenamesFalse": {
+   "hash": "53e07c7de4c6b16e86487a841ab0ec1c065647b15a645c526109e26a5f882471",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      23,
+      4,
+      18,
+      -1
+     ],
+     "width": [
+      4,
+      4,
+      4,
+      4
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chrB. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "meta-gr1-gaps-start1-end40": {
+   "hash": "1c61c041fcbed784b49a20b9758ad91d8727862eca2514470a502076b2b01f5b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrA",
+      "chrB",
+      "chrB",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrC",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      1,
+      21,
+      1,
+      1,
+      1,
+      1,
+      7,
+      1,
+      1,
+      1,
+      7,
+      26
+     ],
+     "width": [
+      19,
+      20,
+      40,
+      40,
+      40,
+      40,
+      34,
+      40,
+      40,
+      5,
+      18,
+      15
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-intersect": {
+   "hash": "d65a50facb3b76b7d76850023516adc4c575c8b8a7bd46eaf419426fe235967b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-mcols": {
+   "hash": "d1db97b688dbe3ba41b0fed27f674529a07c48526d5de57531041588e67518de",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "nrow": 4
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-names-set-null": {
+   "hash": "b467b61ec4bb64f2bc763835f288551ac8c908f52c9d365ef952e88c1a12e2bd",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-narrow-start1-end0": {
+   "hash": "14293afedf8dc2ba4b8c561d918819f8fc23177e750de44c32a5de9b1cb3f63d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-narrow-start1-width0": {
+   "hash": "3798d942c16877cbdc30f833588cecc599a4aed8d432439db3fbbff2883611c3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-promoters": {
+   "hash": "c93be496e918afaa4985d3f8bfc4f7c821ace82967547b20583be9e160e9805a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      24,
+      5,
+      19,
+      0
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chrB. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "meta-gr1-range": {
+   "hash": "4e1c33fa70a006183389168ae7eb449c5334eea74bc4bb95caeac92d63e45cd1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6
+     ],
+     "width": [
+      1,
+      6,
+      20
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-ranges": {
+   "hash": "84550adbfa356a1a1a5cfc3e918ae73f562683861ec138b8c42ffb149a58d7e3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-reduce": {
+   "hash": "97aa94ef9c098d5e1c90d3c14957300f7e1f0582f1b51b27caa90f09c20da6db",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6,
+      25
+     ],
+     "width": [
+      1,
+      6,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-reduce-withrevmapTrue": {
+   "hash": "863299bc90299b22e528b918829c80865f5ab4f315cbbd8fdc4477ca024b5373",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6,
+      25
+     ],
+     "width": [
+      1,
+      6,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         3
+        ],
+        [
+         4
+        ],
+        [
+         2
+        ],
+        [
+         1
+        ]
+       ]
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-resize": {
+   "hash": "a53908387eb1615d22b219a753fa59a429782e2ba604d0f8a0d129e0c6c9a331",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-resize-usenamesFalse": {
+   "hash": "77f84b432ca8e440abcad7781e3f62f162e851ea59ac06af45b0a7aad8321edb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-seqinfo": {
+   "hash": "0e63156a2e866d8768f32c82cb6d3d8a02c7f8962b8d96b9b727dfa480865325",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC"
+     ],
+     "seqlengths": [
+      100,
+      200,
+      null
+     ],
+     "is_circular": [
+      false,
+      null,
+      true
+     ],
+     "genome": [
+      "g1",
+      "g1",
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-setdiff": {
+   "hash": "5edddb0b291fe2f0a51f4f9ebabf894b290d7b34c261e2652c8d9df43262d4e1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6,
+      25
+     ],
+     "width": [
+      1,
+      6,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-shift": {
+   "hash": "dee823bcdd337f252f5b48569ecd28e0531897765b6f1fa3346e5b01242bf4b4",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      28,
+      9,
+      23,
+      4
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-shift-usenamesFalse": {
+   "hash": "bce7d9333a89b26c8237c1cbe9e2d635cfabd05a74f14bfa6284ed9c42cc4cde",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      28,
+      9,
+      23,
+      4
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-sort": {
+   "hash": "525815b9c892b192a1e7b1f9b3ae06f4134d7ea2831fe32d5b3629d4aa64e1e5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      1,
+      6,
+      25
+     ],
+     "width": [
+      1,
+      6,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": [
+      "g2",
+      "g3",
+      "g1",
+      "g0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.531,
+        0.482,
+        0.682,
+        0.062
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        1,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-sort-decreasingTrue": {
+   "hash": "843b3c9e14e5675005007572c0889ebeb19c1de207b62f99f836d984116f4e60",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrB",
+      "chrA"
+     ],
+     "start": [
+      25,
+      6,
+      1,
+      20
+     ],
+     "width": [
+      1,
+      1,
+      6,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "+"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g3",
+      "g2"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.482,
+        0.531
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        3,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-by-overlaps": {
+   "hash": "9229390f04a4363e2b8e0bc052014b32a8fd112a190e606ace25accad147e5b5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": [],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-by-overlaps-invert": {
+   "hash": "39515fa92ee365f400dcefb62d51704aeac2595577e70c769677f3315eee0ea8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-logical": {
+   "hash": "993e9fea4328da6ec2d052c986cf22e862575ffb4e6879bb7e70d62c1007b360",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-names": {
+   "hash": "4993163a03c2eb5c2df61d59109bc222282383b00f7bbb36bbb4ecaf6836c993",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrB",
+      "chrC"
+     ],
+     "start": [
+      1,
+      25
+     ],
+     "width": [
+      6,
+      1
+     ],
+     "strand": [
+      "*",
+      "*"
+     ],
+     "names": [
+      "g3",
+      "g0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.482,
+        0.062
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-negative": {
+   "hash": "07b854567a77001d5cd838011800771ffb09dc9af9c6005d3d0d7c6de5ac8e18",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      20,
+      1
+     ],
+     "width": [
+      1,
+      6
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": [
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-subset-repeat": {
+   "hash": "3cfec689b9c732d4826f72329b3a23164fedb580cb6942c84b97e4a7ba3bc179",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      25,
+      25,
+      6
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g0",
+      "g1"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.062,
+        0.682
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        0,
+        1
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-trim": {
+   "hash": "9d5e5f9bb0cab3a229bd15708d022fd463aaa990c40adb1da380577371eeee11",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-union": {
+   "hash": "5c72f7411e3fdfe69dbf88bc5b8752de10d5c73a6f700594fe71281402eb41bd",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrA",
+      "chrB",
+      "chrB",
+      "chrB",
+      "chrC",
+      "chrC",
+      "chrC"
+     ],
+     "start": [
+      20,
+      18,
+      26,
+      1,
+      6,
+      17,
+      25
+     ],
+     "width": [
+      1,
+      1,
+      3,
+      6,
+      1,
+      6,
+      1
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-gr1-unique": {
+   "hash": "a4ff2aa2a84b3458db898f9b07c7663aef205287fe6468316aa117546356df02",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chrC",
+      "chrC",
+      "chrA",
+      "chrB"
+     ],
+     "start": [
+      25,
+      6,
+      20,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      6
+     ],
+     "strand": [
+      "*",
+      "*",
+      "+",
+      "*"
+     ],
+     "names": [
+      "g0",
+      "g1",
+      "g2",
+      "g3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.062,
+        0.682,
+        0.531,
+        0.482
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chrA",
+       "chrB",
+       "chrC"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       null
+      ],
+      "is_circular": [
+       false,
+       null,
+       true
+      ],
+      "genome": [
+       "g1",
+       "g1",
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-concat": {
+   "hash": "fb253369716147fce647a031fb9da04d02ceb94b96ad9f9d08c96e7c03000dd2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18,
+      16,
+      22,
+      18
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6,
+      6,
+      3,
+      6
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631,
+        0.586,
+        0.453,
+        0.3
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-concat-self-twice": {
+   "hash": "8df900c8d00dd2a886fc6480862707ea5b0323497579f40359768d2314d2f699",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18,
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18,
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6,
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6,
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x",
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x",
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631,
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631,
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-concat-unnamed-x": {
+   "hash": "62abfde6d557eb13a8709223c74f1cc80b7c6b6e77bdcc2ce4e2bde480a00fc3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      26,
+      29,
+      27,
+      16,
+      22,
+      18
+     ],
+     "width": [
+      3,
+      3,
+      3,
+      6,
+      3,
+      6
+     ],
+     "names": [
+      "",
+      "",
+      "",
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.594,
+        0.58,
+        0.456,
+        0.586,
+        0.453,
+        0.3
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-concat-unnamed-y": {
+   "hash": "b9ba2252b852a782c884382d60529dff28e6cab8a31aa568758f747136f775fe",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18,
+      11,
+      24,
+      15
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6,
+      3,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "",
+      "",
+      ""
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x",
+        "y",
+        "y",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631,
+        0.512,
+        0.165,
+        0.342
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-count": {
+   "hash": "0c7cff13eaf66ffc7104d43b34b8468dce4dd76a21a51b84adfa642afe99c342",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      3
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-disjoin": {
+   "hash": "8c7e658aad488a3eb55ea247e9786e8dc6c4e3dd044b5bfedb5e381f9c66d327",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      13,
+      18,
+      21
+     ],
+     "width": [
+      1,
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-flank": {
+   "hash": "48697af061e27e3b2182abb306f2fdfddd302d2d50e6a30586dbd78cfe451c2a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3,
+      11,
+      19,
+      0,
+      1,
+      25,
+      16
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-flank-bothTrue-usenamesFalse": {
+   "hash": "bbbc4af3e6d2442c46aa0262b8d6d28498940d48b76cc6b7eccc45e51a40436f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3,
+      11,
+      19,
+      0,
+      1,
+      25,
+      16
+     ],
+     "width": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-gaps-start1-end40": {
+   "hash": "3f6c03a8278c1617f9f87abe1f64b2e48d37f185672b2f483c30a2514bd6af62",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      16,
+      24
+     ],
+     "width": [
+      1,
+      10,
+      2,
+      17
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-intersect": {
+   "hash": "b17adc16f7316413c8fa8ec7f544b0c385e369730ef5078f8a254268ea3c6993",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      18
+     ],
+     "width": [
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-names-set-null": {
+   "hash": "d331f2b9356872a94ea24f8ac45fcdbbd2afe63ea06d1e74c9b08019a4cb884d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-narrow-start1-end0": {
+   "hash": "cb8e4ca6f4b29293e69c494f4aa39106e29a99dce80ad5d21c693b041a00d953",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-narrow-start1-width0": {
+   "hash": "2e5c92421854de3b342529c58f4d04112f52aaa6e203eebd9e56d519d2eec1b6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-promoters": {
+   "hash": "32321065cd16e3d78e5a47e89b8416d6594e2f3395ada4da26a4acb27001949a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      12,
+      20,
+      1,
+      2,
+      26,
+      17
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-range": {
+   "hash": "68304ada60b211533e83376cad06fb47a217578ca14e7e513a65713ccc187a3b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2
+     ],
+     "width": [
+      25
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-reduce": {
+   "hash": "9dca5f2e4c9b2ff7bcdcd76390b6b85937e6fb478a1f3c4117009fe960e6f09a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      5,
+      13,
+      18,
+      27
+     ],
+     "width": [
+      1,
+      0,
+      3,
+      6,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-reduce-withrevmapTrue": {
+   "hash": "d5554af059635403562f65e6931af60142cdbca20b550a40e906eed9881b0366",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      5,
+      13,
+      18,
+      27
+     ],
+     "width": [
+      1,
+      0,
+      3,
+      6,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         4,
+         5
+        ],
+        [
+         1
+        ],
+        [
+         2
+        ],
+        [
+         7,
+         3
+        ],
+        [
+         6
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-resize": {
+   "hash": "d9ec35819bda34fdfae53a56e72804a5b11f3259e81db3d0dd51a0e116658dcb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-resize-usenamesFalse": {
+   "hash": "f72d1486bc02d855d0e6d524c1b218a26bad24502e1cc415cfdb0cd4c4b4e4cf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-setdiff": {
+   "hash": "400b71705e283eb95b0b9bb53f785d33f4d2d313289e5c1a1ddb42401fe1b93a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      13
+     ],
+     "width": [
+      1,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-shift": {
+   "hash": "e4dd57ea37f8e930da52533d116098b6691feeec2717d8ed6dfab991c590e86d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      8,
+      16,
+      24,
+      5,
+      6,
+      30,
+      21
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-shift-usenamesFalse": {
+   "hash": "ccd5f7b276aaf38378a0704d8691ef11fad7403224b6ff024b82e76237b3ad38",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      8,
+      16,
+      24,
+      5,
+      6,
+      30,
+      21
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-sort": {
+   "hash": "37ffbc70f5b4b53b6bdb0cfc26cbcf40310df4ced584b8eb123183bd65ea305e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      5,
+      13,
+      18,
+      21,
+      27
+     ],
+     "width": [
+      1,
+      0,
+      0,
+      3,
+      6,
+      0,
+      0
+     ],
+     "names": [
+      "r3",
+      "r4",
+      "r0",
+      "r1",
+      "r6",
+      "r2",
+      "r5"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "y",
+        "z",
+        "x",
+        "x",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.059,
+        0.565,
+        0.418,
+        0.241,
+        0.631,
+        0.551,
+        0.947
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        4,
+        0,
+        1,
+        6,
+        2,
+        5
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-sort-decreasingTrue": {
+   "hash": "adfc5539f35ac23214363ee8021ba0fac02fd8c24078c84225f22ce7601a7be2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      27,
+      21,
+      18,
+      13,
+      5,
+      3,
+      2
+     ],
+     "width": [
+      0,
+      0,
+      6,
+      3,
+      0,
+      0,
+      1
+     ],
+     "names": [
+      "r5",
+      "r2",
+      "r6",
+      "r1",
+      "r0",
+      "r4",
+      "r3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z",
+        "x",
+        "x",
+        "z",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.947,
+        0.551,
+        0.631,
+        0.241,
+        0.418,
+        0.565,
+        0.059
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        5,
+        2,
+        6,
+        1,
+        0,
+        4,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-by-overlaps": {
+   "hash": "ec6064565b737304de038b6fad2c23218fae45d106eb5e71f63010e4df0147d7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      18
+     ],
+     "width": [
+      0,
+      6
+     ],
+     "names": [
+      "r2",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.551,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-by-overlaps-invert": {
+   "hash": "21d0b57197ee0d581c3ce391d894c6066532effb7f74900dc94ef8ef1755d732",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      2,
+      3,
+      27
+     ],
+     "width": [
+      0,
+      3,
+      1,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r3",
+      "r4",
+      "r5"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "y",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.059,
+        0.565,
+        0.947
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        3,
+        4,
+        5
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-logical": {
+   "hash": "68d58014e50438b46ab07d3d0e65cc536769ea844ee5748cc5c02727ad86079a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      2,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      1,
+      0,
+      6
+     ],
+     "names": [
+      "r0",
+      "r3",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "z",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.059,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        3,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-names": {
+   "hash": "fa0a0d24a42b08781affc083683bf7bc01ed9ea7b954b3288c6327dbb3c1c9fa",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      18,
+      5
+     ],
+     "width": [
+      6,
+      0
+     ],
+     "names": [
+      "r6",
+      "r0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.631,
+        0.418
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        6,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-negative": {
+   "hash": "b314466e463721f75521d40f4a16b483d2b206350a34d200110e59dec6349f44",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": [
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-subset-repeat": {
+   "hash": "f7e6121c1ea5a1c49386fa2c4f163e1253e6f9fb3a6e82d92bfef8036806fb82",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5,
+      13
+     ],
+     "width": [
+      0,
+      0,
+      3
+     ],
+     "names": [
+      "r0",
+      "r0",
+      "r1"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.418,
+        0.241
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        0,
+        1
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-union": {
+   "hash": "4b94ba93358da751bfe20d8cd1f2a964051233116fc6f867dead08e9dd3263ef",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      13
+     ],
+     "width": [
+      1,
+      12
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir0-unique": {
+   "hash": "7fad917bda28cbfbacefd13dcc2775e96668a4b25a45b59bb281c2f3eadd2de6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      13,
+      21,
+      2,
+      3,
+      27,
+      18
+     ],
+     "width": [
+      0,
+      3,
+      0,
+      1,
+      0,
+      0,
+      6
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "z",
+        "z",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.418,
+        0.241,
+        0.551,
+        0.059,
+        0.565,
+        0.947,
+        0.631
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-concat": {
+   "hash": "cea293fc4fd14ff9703c020fa897a7057ef0f1a95db5e0fbf12b70ecfad37703",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23,
+      18,
+      12,
+      20,
+      19,
+      11
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0,
+      1,
+      0,
+      6,
+      6,
+      6
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y",
+        "x",
+        "y",
+        "x",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497,
+        0.399,
+        0.104,
+        0.634,
+        0.062,
+        0.067
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-concat-self-twice": {
+   "hash": "7c9e6922e49e1a1cfc53a7556d813adf450e886df293056531474aeab6221d55",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23,
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23,
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0,
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0,
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y",
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y",
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497,
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497,
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-concat-unnamed-x": {
+   "hash": "8ff9c2b3ab72e009e91ed5dc32896e2ee589a347399b5462e5249aa14d9edf3b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      16,
+      10,
+      3,
+      18,
+      12,
+      20,
+      19,
+      11
+     ],
+     "width": [
+      1,
+      0,
+      3,
+      1,
+      0,
+      6,
+      6,
+      6
+     ],
+     "names": [
+      "",
+      "",
+      "",
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x",
+        "x",
+        "x",
+        "y",
+        "x",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.74,
+        0.479,
+        0.692,
+        0.399,
+        0.104,
+        0.634,
+        0.062,
+        0.067
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-concat-unnamed-y": {
+   "hash": "02970653a5e6b485b39a84aa14ab7a90f6b004f46aa16fb0d9da6f20310b4ec1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23,
+      20,
+      1,
+      3
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0,
+      1,
+      6,
+      1
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "",
+      "",
+      ""
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y",
+        "y",
+        "x",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497,
+        0.634,
+        0.955,
+        0.602
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-count": {
+   "hash": "a7c6d391725caac5aad3f3cf453ddb5a33ff826925513bcf85f12b509e574c87",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      2,
+      2,
+      0,
+      1,
+      0,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-disjoin": {
+   "hash": "66f9f55fcb271dfdec651ca17797eb388b562d888b6b10df76901becc8773d84",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10,
+      15,
+      19,
+      21,
+      22,
+      23,
+      27
+     ],
+     "width": [
+      1,
+      3,
+      2,
+      1,
+      1,
+      4,
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-flank": {
+   "hash": "2f2415cd589f55c006bbcaea53a2d4bcdd95beee273d5d840fae211502cc3780",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      19,
+      17,
+      20,
+      25,
+      13,
+      8,
+      21
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-flank-bothTrue-usenamesFalse": {
+   "hash": "4737d2e7d6d14e780abdd3649f20983db5f26c3d88f2cb3250b287a29e720ab1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      19,
+      17,
+      20,
+      25,
+      13,
+      8,
+      21
+     ],
+     "width": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-gaps-start1-end40": {
+   "hash": "bb4040bbb2a9b241856209019bc99798223b8e63ef6cf9b9074ade9a34529c4b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      11,
+      18,
+      33
+     ],
+     "width": [
+      9,
+      4,
+      1,
+      8
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-intersect": {
+   "hash": "36c5e6e61d6c8d1be8ff20bae7f1a2c213a4fd025f1368127847a2bf61de187b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      15,
+      19
+     ],
+     "width": [
+      2,
+      7
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-names-set-null": {
+   "hash": "66ee04a7562e2b758d254464d662695dab8c707ce614e08815c2fcf6d90c6468",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-narrow-start1-end0": {
+   "hash": "ab50d54107c33bb0859633775d5857d22e626a856799db2920e90f0e8964550b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-narrow-start1-width0": {
+   "hash": "032dc96a014964872ab7123c9f81e12b329c5e79104393a34bc2864fa091e020",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-promoters": {
+   "hash": "aeded232bdd9efa86174d07a7165cb08f35e93c0b2830710fda04a703b27ecc6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      20,
+      18,
+      21,
+      26,
+      14,
+      9,
+      22
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-range": {
+   "hash": "8facb74fc6bada13166b198fabd6a2d893988e09f52ffbaf6815d97eb8b21bde",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10
+     ],
+     "width": [
+      23
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-reduce": {
+   "hash": "9b693284b845f0e87fda820d86d5be00b5d72c9d4000e1e2048108214c3ea18d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10,
+      15,
+      19
+     ],
+     "width": [
+      1,
+      3,
+      14
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-reduce-withrevmapTrue": {
+   "hash": "c3bb4ccab2549b4fdaf61c5686648d0ba10a638b532e38b252dcb067acbd6a82",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10,
+      15,
+      19
+     ],
+     "width": [
+      1,
+      3,
+      14
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         6
+        ],
+        [
+         5
+        ],
+        [
+         2,
+         1,
+         3,
+         7,
+         4
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-resize": {
+   "hash": "daa73eaf53cf98620eb010018ed36ca59960274f0579f13c52d5c53ca800652f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-resize-usenamesFalse": {
+   "hash": "1756c8f4193476cdb360ef66462b28c6ce4fac6c97f09732b40aeec9edc18f7f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-setdiff": {
+   "hash": "c353fe2fd88fb879a1d8fb118865eaf04089fb75585045e60973d99e117387e1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10,
+      17,
+      26
+     ],
+     "width": [
+      1,
+      1,
+      7
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-shift": {
+   "hash": "6a3469451dacfdfffb183944c8224e7ef74d7b81acbb54431ecd86a825d0d818",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      24,
+      22,
+      25,
+      30,
+      18,
+      13,
+      26
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-shift-usenamesFalse": {
+   "hash": "9047b239cdca4e68e9ef0efd6f1bac6761a9c1cfbcdc06579057ccbdf9325127",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      24,
+      22,
+      25,
+      30,
+      18,
+      13,
+      26
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-sort": {
+   "hash": "c0328cd2764dae98bf6c9dd337d93879770c5d3eadc2675ce18417002f6c0896",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10,
+      15,
+      19,
+      21,
+      22,
+      23,
+      27
+     ],
+     "width": [
+      1,
+      3,
+      3,
+      6,
+      0,
+      0,
+      6
+     ],
+     "names": [
+      "r5",
+      "r4",
+      "r1",
+      "r0",
+      "r2",
+      "r6",
+      "r3"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "x",
+        "y",
+        "y",
+        "z"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.917,
+        0.398,
+        0.218,
+        0.494,
+        0.287,
+        0.497,
+        0.738
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        5,
+        4,
+        1,
+        0,
+        2,
+        6,
+        3
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-sort-decreasingTrue": {
+   "hash": "6cb9a38638b53a642b57e84db2881012eb2527df184345082893ab42ed60d3f4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      27,
+      23,
+      22,
+      21,
+      19,
+      15,
+      10
+     ],
+     "width": [
+      6,
+      0,
+      0,
+      6,
+      3,
+      3,
+      1
+     ],
+     "names": [
+      "r3",
+      "r6",
+      "r2",
+      "r0",
+      "r1",
+      "r4",
+      "r5"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "y",
+        "y",
+        "x",
+        "y",
+        "y",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.738,
+        0.497,
+        0.287,
+        0.494,
+        0.218,
+        0.398,
+        0.917
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        6,
+        2,
+        0,
+        1,
+        4,
+        5
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-by-overlaps": {
+   "hash": "7e30ffa7ca5f1e3db39635404bcd677dbfa8af6ef22f5e5b86db77924de0108d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      15,
+      23
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      3,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r4",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "y",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.398,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        4,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-by-overlaps-invert": {
+   "hash": "17d787c3d6621dda3941df39deea2d30e663cfd9d6feeea51069da56a3cd9c10",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      27,
+      10
+     ],
+     "width": [
+      6,
+      1
+     ],
+     "names": [
+      "r3",
+      "r5"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "z",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.738,
+        0.917
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        5
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-logical": {
+   "hash": "931a1b0979e2e3f2a1ce298181832db974ba29edf8e477c134d54cefe41e6473",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      10,
+      23
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      1,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-names": {
+   "hash": "a618a05eff9ac8dc92ca078578ba83744d6e55889914556aac711b53e7f04205",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      23,
+      21
+     ],
+     "width": [
+      0,
+      6
+     ],
+     "names": [
+      "r6",
+      "r0"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "y",
+        "x"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.497,
+        0.494
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        6,
+        0
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-negative": {
+   "hash": "febe8fb02ad58180cb061343433050219b12dcc2066e0cf235ee3f440bd5698d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": [
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-subset-repeat": {
+   "hash": "bb5d3538c195ba2e082d38794e700dfe1fafc2167c1f4eb8ae64d806e9e8767d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      21,
+      19
+     ],
+     "width": [
+      6,
+      6,
+      3
+     ],
+     "names": [
+      "r0",
+      "r0",
+      "r1"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.494,
+        0.218
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        0,
+        1
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-union": {
+   "hash": "9e767621ff5849007657d97c4301c109786194b6efdacd1286d92aaad535da51",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      10
+     ],
+     "width": [
+      23
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "meta-ir1-unique": {
+   "hash": "132f10b1a5b2354a2b5ccb90d7a89a68e282069427ae2a94ef3553556246e4aa",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      21,
+      19,
+      22,
+      27,
+      15,
+      10,
+      23
+     ],
+     "width": [
+      6,
+      3,
+      0,
+      6,
+      3,
+      1,
+      0
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3",
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "mcols": {
+      "c": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "x",
+        "y",
+        "y",
+        "z",
+        "y",
+        "x",
+        "y"
+       ],
+       "names": null
+      },
+      "d": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.494,
+        0.218,
+        0.287,
+        0.738,
+        0.398,
+        0.917,
+        0.497
+       ],
+       "names": null
+      },
+      "i": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "names": null
+      },
+      "l": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  }
+ }
+}

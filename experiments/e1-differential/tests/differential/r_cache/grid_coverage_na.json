@@ -1,0 +1,9107 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "covna0-partition-int": {
+   "hash": "2e9c606913e952b3673c3ee442739d9e65c95d7ab9265880824db5da9774ca7c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      3,
+      1,
+      null,
+      4
+     ],
+     "lengths": [
+      1,
+      3,
+      3,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna0-partition-int-gr": {
+   "hash": "ce6b2ae442a900b8cb3b9e5e904146072e5258c02aa3d05621698d5894dc1cfd",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null,
+        3,
+        1,
+        null,
+        4
+       ],
+       "lengths": [
+        1,
+        3,
+        3,
+        3,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna0-partition-int-gr2": {
+   "hash": "71ab62fbb7c99fec3ee19f82a76f08d5ec8e14390b57e7ce9595bcd9a7a0f285",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        null
+       ],
+       "lengths": [
+        4,
+        3,
+        13
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna0-partition-int-shift": {
+   "hash": "793c7d260991cbb7b25ee4cb50b4786d946755467775502e47032a9b641b1ad1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna0-partition-int-width": {
+   "hash": "a2b70400f24330922cd4ecda23aa6a54eb685a90823619cfd7e9b9f833069ed2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      3,
+      1,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna1-partition-num": {
+   "hash": "10599f264be034051192ee95f90688a5460936b731c1670e1b6d95d9c2072d0c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      3,
+      2,
+      null
+     ],
+     "lengths": [
+      4,
+      3,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna1-partition-num-gr": {
+   "hash": "aa6282b0884138fdc12c2ac1acefed9ba6791d2ca32de08d442a37034e342a05",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        3,
+        2,
+        null
+       ],
+       "lengths": [
+        4,
+        3,
+        3,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna1-partition-num-gr2": {
+   "hash": "928a94db9752fbd1bdc52daeb58611493955f3186e75dea683bf18e5be4dbfbe",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        3
+       ],
+       "lengths": [
+        4,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        null
+       ],
+       "lengths": [
+        7,
+        3,
+        10
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna1-partition-num-shift": {
+   "hash": "8a67b6477eb34d64d63de4edc8ee4ccbb1a61623fa4645b9bb1272b4e40898db",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      3,
+      2,
+      null
+     ],
+     "lengths": [
+      1,
+      4,
+      3,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna1-partition-num-width": {
+   "hash": "dafabad5999791a94433420511a4f680d7a5c47ebf1a54d9b9dd2260d0e15949",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna10-partition-int": {
+   "hash": "dafa4c1f1de7d32e7948c70835332fb18cd596bea49f75cdc7aec8887912a37a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      1,
+      4
+     ],
+     "lengths": [
+      2,
+      1,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna10-partition-int-gr": {
+   "hash": "3780c2942e783c106c5db4715fe5d93b675ee6fb5b4996ea9c84f06b314822a9",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna10-partition-int-gr2": {
+   "hash": "abea6daf33e0330139b60b27e1c295d4d2da5ab95810391625420da6c13e37d4",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        4
+       ],
+       "lengths": [
+        2,
+        1,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna10-partition-int-shift": {
+   "hash": "ec6136b1b93dcc5bc083f06257aa61ee0c3de73142188774e2b540b8c2360582",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna10-partition-int-width": {
+   "hash": "95cbd84a261f563ca91205f86a74d5e6e08e223b1b2b1005dfe97e2ed43ade12",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna11-partition-num": {
+   "hash": "57d2421a1b7f9d5eff99bed89aa900c7e5e2ffb67cb4abadad1c3c30cafbaa70",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null,
+      5
+     ],
+     "lengths": [
+      2,
+      1,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna11-partition-num-gr": {
+   "hash": "31e61f77ed7961294ed701dd61af62d5906253e1af4181910fd48897bda9d685",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null
+       ],
+       "lengths": [
+        2,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna11-partition-num-gr2": {
+   "hash": "9378b23d37b19c7d9b59713df03365b5407305470aa21a7d8f4b5444e0c6f98d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null,
+        5
+       ],
+       "lengths": [
+        2,
+        1,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna11-partition-num-shift": {
+   "hash": "b83cb8fd52495b940a8c88ff2809cac4c5a6f3e712ac352976d2145112b16a4f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna11-partition-num-width": {
+   "hash": "87550cd9c87214362687c5a2db9b36c56649edbb30bc23989613cf8b28d34069",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna12-partition-offset-int": {
+   "hash": "66e18f2cbd29e44ddabd2dc4ba5a043d18828bdfb34bd944d0fa1fe2bc8948fe",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna12-partition-offset-int-gr": {
+   "hash": "036b253a2ac8ecb3b7e006d67da7cd23b24ba31065a5552e80f0fa9ac2ade709",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna12-partition-offset-int-gr2": {
+   "hash": "6936d1d592b1a8d7f620c32cfd0d6d5dbb3baf7319614f157d9af851b654d0ff",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        2,
+        3,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna12-partition-offset-int-shift": {
+   "hash": "f868e55eb04d159f99bce6a4ab49a3a5b0345b5c4371ccf64d7b0dddade46d48",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna12-partition-offset-int-width": {
+   "hash": "093ff79f877ae37bad9030fc8710033c9c66f7d952335bef22c4ccc32f36e9b4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna13-partition-offset-num": {
+   "hash": "bcc2dab9aaafa198d80729361b480aeab97ebe3d4faabb2c383efbf36bff8bc1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna13-partition-offset-num-gr": {
+   "hash": "9c9c84dbb693e740208e3a5d85a1efc420e97d33d3ed73613659f2a5cb609638",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna13-partition-offset-num-gr2": {
+   "hash": "7e28eb8e3ec993e0018b4dbfccc482f2589d009be16ed8abdd5e3fc7c47a6194",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        4
+       ],
+       "lengths": [
+        2,
+        2,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna13-partition-offset-num-shift": {
+   "hash": "6802e039646f3423cef6f5566389191d2b531a1eca9a63ade5987a8c590aa23e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna13-partition-offset-num-width": {
+   "hash": "7b8e16b0c813b53523fee192a904808a6600dcf32dd94a2709138802a2372e79",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna14-partition-offset-int": {
+   "hash": "f83d86f5abdf7ed08c70291aaed245a8b923dde58679c99b9d4691f1f7abf1e8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      4,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna14-partition-offset-int-gr": {
+   "hash": "40c1b9103646056d2aefeacf8ae01389f517240ca89ee29da20cd3e9285634d0",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        4,
+        3,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna14-partition-offset-int-gr2": {
+   "hash": "9d914ac97d047063ae6b528c6e43eb20df7b585d34de116dbdd4b1f748d3d515",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        6,
+        3,
+        21
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        4,
+        14
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna14-partition-offset-int-shift": {
+   "hash": "e1676fe68ec67692ba7d735351e65670419007f2ce472fb347329c97c14027a5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      3,
+      null
+     ],
+     "lengths": [
+      3,
+      4,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna14-partition-offset-int-width": {
+   "hash": "5e039eaca0afd5dd9cf01dd8a1284b8f7fb99c6522e295084930d360faa59545",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna15-partition-offset-num": {
+   "hash": "235e0a7a570e1ec2a5fda55f105da78799e18b4cef8dcff7964431517daa16fa",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      2,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna15-partition-offset-num-gr": {
+   "hash": "b836f56b7c88edc54fdbfda9f0fb1526ab7ba019363a1f203021a9949bc4ab65",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        null
+       ],
+       "lengths": [
+        2,
+        1,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna15-partition-offset-num-gr2": {
+   "hash": "a4bfa36e800894371dc5377e1938216e4976e53c7dfe591ee1c647423a51760a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        6,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        null
+       ],
+       "lengths": [
+        2,
+        1,
+        17
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna15-partition-offset-num-shift": {
+   "hash": "4e435bf2d20d61fb268a128bf4671155b35d34a3415b0f6412698c8b919608d8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      5,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna15-partition-offset-num-width": {
+   "hash": "b6d600391aad2cf09bed9f5c3d15f7f7573a9153c67010ab6ea1311756cad40e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      2,
+      1,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna16-partition-offset-int": {
+   "hash": "0bbd0609b12b951760d856e57e8137d143bac4d1d9c6b694d3af1bde9a729caf",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna16-partition-offset-int-gr": {
+   "hash": "4a4047190e4dce97aa5777492361842c11179129594235a7854524710aedd40e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna16-partition-offset-int-gr2": {
+   "hash": "7c2fb3b683f75e156fc0713b98c0e72afaeacccb99654ee5b55e9dd494d0c77c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        4,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        2,
+        2,
+        16
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna16-partition-offset-int-shift": {
+   "hash": "a165791bf9b0073dc2a095941778a966b7fc4bd28918fc36ae9d29caf02e2381",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna16-partition-offset-int-width": {
+   "hash": "52ae881938f1428a77f65527e335beedd79d310422966ec387cfe2cc7106eac3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna17-partition-offset-num": {
+   "hash": "eda69cae2aab76e22a5baf58d106d588eb60f608d092165469b2263626d9e5af",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna17-partition-offset-num-gr": {
+   "hash": "197c4f5fa0188931ffd236794ad741bf2f81b776701b2079dbb423f474d9ed12",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna17-partition-offset-num-gr2": {
+   "hash": "50ff00162109ac21a8dd8502669e2099e80d986d2d4f3650a63111b2f23a1c3f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        4,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        0
+       ],
+       "lengths": [
+        2,
+        2,
+        16
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna17-partition-offset-num-shift": {
+   "hash": "1d8be19b8299cd4b2329801bc1eec5f8e544edf4472701e53e2587ac3a4612fd",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      null
+     ],
+     "lengths": [
+      5,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna17-partition-offset-num-width": {
+   "hash": "fa42eb3b857631c746483e96f8474591f4c639d99e213805c90f2dacd1d95cf3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna18-partition-offset-int": {
+   "hash": "5f75eb1d985fa1b44939abdabf36febe51277aab5a8f212c715cf0430e8b11fe",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna18-partition-offset-int-gr": {
+   "hash": "7b5ebbc67e795d7d5b7b22376dbecf584d1900a8c56e82cea3679bce47bfa475",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna18-partition-offset-int-gr2": {
+   "hash": "48bf084db0166bc7303f91df280fd738ee42dd6fff64c3b8319d9c96adedae26",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5
+       ],
+       "lengths": [
+        1,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna18-partition-offset-int-shift": {
+   "hash": "985a3a8bfcda423192ad37c3f93400de0867c8bf185761173c034ab50e4b53da",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna18-partition-offset-int-width": {
+   "hash": "ca9a15c0097fce6315c1aad94c5fd74a9c5415dfd0a689c680cd9b965e330d97",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna19-partition-offset-num": {
+   "hash": "a188f8f187d5722c282cf3bb127d75a8e1297c2ce6790d729e36e53f40a6c716",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna19-partition-offset-num-gr": {
+   "hash": "b1a89aae876a68fea371db5d9dee6eea7ca554735ed61a4d634eaa8b59e38249",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna19-partition-offset-num-gr2": {
+   "hash": "a222f3a19fad62775be13cc4712d0093797ba7510a176f45d70e71299aef9831",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        19
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna19-partition-offset-num-shift": {
+   "hash": "6334664da2a998e39adb960d898c4b07953775bb9184ac63ec021fce25565c4b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      1
+     ],
+     "lengths": [
+      1,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna19-partition-offset-num-width": {
+   "hash": "0745fa915a82310a6b447653aa39a24aa038ee96f09494389f30b411a5fe60f9",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna2-partition-int": {
+   "hash": "29b66865f7ed87de30022a3034b6372d60b68c770dafbbcbbbbb91bb8b1d94de",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      2
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna2-partition-int-gr": {
+   "hash": "364107325bf61aba270b7b66750d602685c65deb3d4431a2dd2569d3a9bfa721",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null,
+        2
+       ],
+       "lengths": [
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna2-partition-int-gr2": {
+   "hash": "f0eadf2f7b4ec42dc94a0b50a4a65f19f17e97c6f257b510895069834bdf4f9d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null,
+        2
+       ],
+       "lengths": [
+        2,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna2-partition-int-shift": {
+   "hash": "968dab0de17a2fb4195472247012f245eb0647a863dfbfeab93acaffebbb1ebc",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna2-partition-int-width": {
+   "hash": "cd815e97e8a7d2eb64f9368e5f0afca92d34870a8a033d933ba81da8cc3a708e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna20-partition-offset-int": {
+   "hash": "b92742979bd4db6aea6fa2ae1a38553c262d9643137be115635b9b75900f5c79",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna20-partition-offset-int-gr": {
+   "hash": "23254ed7224a93a68ded7a48f5d88e574ee61a35fc66d2d08e681166de7732c9",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        null
+       ],
+       "lengths": [
+        3,
+        1,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna20-partition-offset-int-gr2": {
+   "hash": "1aee8e0ab40811532177ec14170f4acb387b5a081a20d2824246b06fbd91c793",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        4,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        3,
+        1,
+        1,
+        3,
+        12
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna20-partition-offset-int-shift": {
+   "hash": "cf1ccd8870eef5edfbacd1be6f51fdb78aa2e50b529f4af32365d89799e87dc6",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna20-partition-offset-int-width": {
+   "hash": "0d8fd7cf9368a4af720e9261345e6c8c3f50efd8f7ade683dfa85d1c08810c3b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna21-partition-offset-num": {
+   "hash": "85fa961949efc944e24e3d8b3cb08800f16e20e819824d251ad84baecf06677a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      3,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna21-partition-offset-num-gr": {
+   "hash": "a1fbc3226143a43aa6f4ecf2c8ee86fe20e55813b9c93a710c311ecc91223588",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        3,
+        null
+       ],
+       "lengths": [
+        3,
+        1,
+        1,
+        7
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna21-partition-offset-num-gr2": {
+   "hash": "7bd7049167db4eb59803538d7c287bfe249a7b3470973c636b204969797a0306",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        25
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        3,
+        0
+       ],
+       "lengths": [
+        3,
+        1,
+        1,
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna21-partition-offset-num-shift": {
+   "hash": "867c43a61d0fc9eca7ed9f43a1830546ecd9d35a9240edd6e8c5497e80ba44f1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      3,
+      null
+     ],
+     "lengths": [
+      6,
+      1,
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna21-partition-offset-num-width": {
+   "hash": "92745746d714449375f9c2007477779252d5ff6ba2259e798dc024238ed38b7d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      3,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna22-partition-offset-int": {
+   "hash": "024d04d46831c8916455f7ed68b1759679847f327764046d4e08d4ca48782992",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna22-partition-offset-int-gr": {
+   "hash": "7787b2fbafa804bdffdb25e14a0e8fe4674a6283d8d719b6597dcd302e8106cf",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna22-partition-offset-int-gr2": {
+   "hash": "49d6156fecb9fd1be0bae53a6c6b20881173ceb8b0b7769ebc6b049eb4e0607b",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        0
+       ],
+       "lengths": [
+        5,
+        2,
+        23
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        17
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna22-partition-offset-int-shift": {
+   "hash": "8886414e52689499b6cdb532002d61a158a7c0f2a36f087eddb69b2a787d37f8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna22-partition-offset-int-width": {
+   "hash": "96badd65654ca4a20f4f34887190823a7aee68835aed03413e31ac3f3a452c57",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna23-partition-offset-num": {
+   "hash": "596efaa3a832022603b470b5857ee9a76e2a11312cc68f62b76bfd03b3f4b37a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna23-partition-offset-num-gr": {
+   "hash": "0af5aad0dd75fea7ad352b57acb39d406ca489f418b9edc077680387d8b9889f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna23-partition-offset-num-gr2": {
+   "hash": "ac365dcc5266108b9eb4041637eb08bfe658a778623c2d78b06c4e75d20aa350",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        0
+       ],
+       "lengths": [
+        5,
+        3,
+        12
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna23-partition-offset-num-shift": {
+   "hash": "8de2106c5c0b409cd2b6ade9cf3fa3395dd4bcc2c1ea507be733c3b524776e54",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna23-partition-offset-num-width": {
+   "hash": "a47894f490eec18f96e6f2cc682132fc684e343cab79520efa0d0571f296dfa9",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna24-gap-int": {
+   "hash": "54c5db6df8154bc8fdf5b78c059fb50d7fe9b4a88b8c534263df4f530b05a3d2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      1,
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna24-gap-int-gr": {
+   "hash": "2e29139160a2db00f6b93f61420647fc291b0430ec3680a01f889041fd5a3ed2",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        5,
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        2,
+        1,
+        1,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna24-gap-int-gr2": {
+   "hash": "58c4b70bd283fd6238d9c4dd9fa0ea4e1e4e9f2134cc000e0b390842bd01e57c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        5,
+        0,
+        5
+       ],
+       "lengths": [
+        3,
+        2,
+        1,
+        4,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        7,
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna24-gap-int-shift": {
+   "hash": "46f8363d2514d2064f4f6cf3cd4363a8142f441e24da157459e7f1853bf7fcae",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      1,
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna24-gap-int-width": {
+   "hash": "06bb28e6f8ed5f023f5063e9ab09a3d7f50e12e845d22c7d45dc8bbb22151c10",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      1,
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna25-gap-num": {
+   "hash": "30418cead8dfd1d0c0ff48c17a0c7a46431bc24b76797f69c9b2d25664397c33",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      13
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna25-gap-num-gr": {
+   "hash": "c313f0eaef9f8c2ff308842eca07d48d84ec116315b25b3e2b7efc231477198c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        13
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna25-gap-num-gr2": {
+   "hash": "d354c1c3515c8d3aff7c9f3bc4dbf50ebaa7bba89859e1d692507dc761c4af53",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        5,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        13
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna25-gap-num-shift": {
+   "hash": "e9e726b7262b31103ba217cb79818314d355d9eefc9aeb4666a7e2bb609859db",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      13
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna25-gap-num-width": {
+   "hash": "9fd885965a6e11044a790fce9628bbc3d2ae02d1a46ffc5c2b0ae2d517efebd8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna26-gap-int": {
+   "hash": "2c341b015815f7a2c421806ac1137688fe77bc5e50fb298a3676a60a2b9429bd",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      16
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna26-gap-int-gr": {
+   "hash": "aba0fcf3a9fda4fba92a56dfa81c8d97b9524f72fcb914ab33ae431af4bf6565",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna26-gap-int-gr2": {
+   "hash": "5deb434219adc59414b7e13de31536caa7613a254a4fcb944a3511c1c9dff0d5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        0
+       ],
+       "lengths": [
+        4,
+        3,
+        23
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna26-gap-int-shift": {
+   "hash": "f469e8066c877741197a53223d3230b5bdeaf18db7f3c5cba7a9083621b1292c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      14
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna26-gap-int-width": {
+   "hash": "66e108d64e1e08796bf512de90a623228579d712b1a2092ab3cfa3f84e0e09e1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna27-gap-num": {
+   "hash": "8f659dd0a5fe8c98993995450ac22246e81cc78c312452fe2853466d105b11b9",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      16
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna27-gap-num-gr": {
+   "hash": "2876ac554759610485651b0522d96b0a8e8fa27b10e4d519443631a11a46c05d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna27-gap-num-gr2": {
+   "hash": "ea657d8a7aa630b5b5c255ba58d7cb0d2431e6328f7d2f0f9ff39cd2d222d9eb",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        4,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna27-gap-num-shift": {
+   "hash": "d8c10339500373cd3d7d81adcbc0f7156ce2b9e753b1efad4f030f67102c753e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      14
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna27-gap-num-width": {
+   "hash": "f4aee22c4d32e2a9901b566bf75a69f11143b06daceacf020d1f72250dc3e829",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna28-gap-int": {
+   "hash": "0a843e7e71c933ca8129cf87823693fcaccaaf8ec173c9ff6d0e5d4cbae632d2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna28-gap-int-gr": {
+   "hash": "c96ea13bea4e52dfc4b595ce62a0e3b2102e46b446bad3de283d5a2641038ad8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna28-gap-int-gr2": {
+   "hash": "643653e25a0ebab49633cf2dc98c49c8e7d5912aefbeca7dd684a2cd99970222",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        30
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna28-gap-int-shift": {
+   "hash": "68e731be2b8d4bb0b410cfe5a183907f77fb807b825b576437573c211de17fad",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna28-gap-int-width": {
+   "hash": "1664f0e9c6be517df3fd459f7f6b06dd1bbf6ce54d11c6acc9933cd148efa753",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna29-gap-num": {
+   "hash": "f2023f11a4771a9c9755bd158f4ad3c14c8cc665309dd06d979b36c69ace77c8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna29-gap-num-gr": {
+   "hash": "d6daaafb7298dde29311b7082ec9f22e2e1f723881c6c1dd18cf5be4768e6724",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna29-gap-num-gr2": {
+   "hash": "bf1500c3bb2406bb087578794754904a631fed7f1086a30803a402f41fa50bf8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        28
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        2
+       ],
+       "lengths": [
+        1,
+        6,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna29-gap-num-shift": {
+   "hash": "51b9f27dec7ec709842d1d7c402eebc2a99a6b8015894a5c1fa5c465a358a5c3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      2
+     ],
+     "lengths": [
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna29-gap-num-width": {
+   "hash": "1b76cfc42a835faa2b29bcef59cdd7caded7b51620575c428dfeeeb7a4b86439",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna3-partition-num": {
+   "hash": "c65834feec107529e22e6a47bdd196dd5003dd4d8e17ffcc68499f3ff04143a3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna3-partition-num-gr": {
+   "hash": "4545d48c34a2cf1491e72b97b135ae5713c55da519ec73d133bea69db25e3bcc",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null
+       ],
+       "lengths": [
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna3-partition-num-gr2": {
+   "hash": "36e57db100ba78d42c36de038d563b85c1f351784faff5a4f6fa290588f25601",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null
+       ],
+       "lengths": [
+        2,
+        28
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna3-partition-num-shift": {
+   "hash": "1c29461447ca3328f1044900907faea8d5bb47bfa2320c26f6e4297fe64aee2e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna3-partition-num-width": {
+   "hash": "dbc8924e29a0b7c1e9cc1e7c7a35e9fdf1f94f97e6c759b4d3ae582ec080f824",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna30-gap-int": {
+   "hash": "edd933563b0a0852fb1f24c9e1472af2ef1308f43aac6efdc8245b6ac30be949",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      0,
+      3,
+      0,
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna30-gap-int-gr": {
+   "hash": "cebf5ff21a6749c9b4e8e28dc089aa276becdd047109a3497675216c339e2990",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        0,
+        3,
+        0,
+        5,
+        0
+       ],
+       "lengths": [
+        3,
+        1,
+        2,
+        2,
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna30-gap-int-gr2": {
+   "hash": "6d3e64f6373230c8b2e84638a8dcb7814670c4c5fbb0ff304946f175da5dece8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0,
+        5
+       ],
+       "lengths": [
+        4,
+        2,
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        9,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna30-gap-int-shift": {
+   "hash": "df1344c1dbed6c828a051b0cc1f2dedf2cbdbb0ed829f419a51db19518945f0b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      0,
+      3,
+      0,
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna30-gap-int-width": {
+   "hash": "2a87cb408e65b5f2fca0db13291b8eeec913d939d006cda2e1f3d47c790a303d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      0,
+      3,
+      0,
+      5,
+      0
+     ],
+     "lengths": [
+      3,
+      1,
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna31-gap-num": {
+   "hash": "19867b6108014a0b8762cc05cd69e2ed9ae1d2a90aa8de933921c013827f2028",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      14
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna31-gap-num-gr": {
+   "hash": "a32022af0598777850fb0a8625e2d532efb110d596f855f97cc75fbf10c1e99a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna31-gap-num-gr2": {
+   "hash": "783e9627a5d2ff08e9e7cd6ff15a8c0fe3b0ca5f882fff9e5915f85b61ec2c81",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        30
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence b. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "covna31-gap-num-shift": {
+   "hash": "a0adcd741b6e0457454d96a56f864541df8adb7b3e72bea866164b43a32c6590",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna31-gap-num-width": {
+   "hash": "60b3bf9dfcf034ae56a5e17647f4d580ebd9c42c0d8d5a53c30433a933d6bc91",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      16
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna32-gap-int": {
+   "hash": "715aab2afb812f86143ddc78daeb1bbed24880f860f4d272b9f21689141dc59b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      13
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna32-gap-int-gr": {
+   "hash": "58d305594ad09604bbd4f201465bb744903776c3c45105fcc5ce65245573594f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna32-gap-int-gr2": {
+   "hash": "411ac8bab68b14cffda5000ca42297af022c981007e96b6a8dcf7b72329aaf04",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        30
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna32-gap-int-shift": {
+   "hash": "e97f730a38e61d8b5070d54d2a8cb54a26546731b1d42fb07655c1c802bcc4d1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      13
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna32-gap-int-width": {
+   "hash": "3d88d2c046b61501d6e45965264c3090a982976fbdf721ae7ba6784d084d57af",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna33-gap-num": {
+   "hash": "94a7792105d9d7cd17bd56adb7d0ee0da133cfb8eae8f1f2999643ffe1586c6c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      2,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna33-gap-num-gr": {
+   "hash": "150c291113db9243f88d4405e6e8a34e141b9f00f6e86c3b4dde5f429fa6b987",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        null
+       ],
+       "lengths": [
+        2,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna33-gap-num-gr2": {
+   "hash": "ee642888035d99fd779d28c4c9b81d10dd2bb4063740fdbc310c21079c52baa0",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        null
+       ],
+       "lengths": [
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequence b. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "covna33-gap-num-shift": {
+   "hash": "111a493d0c54564f875de678da48aa59078671f2f2243c89a51c958c075fff26",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna33-gap-num-width": {
+   "hash": "949c433c6c01897cb31b44709b758f503a0be128c86818d5d10c564ebed667c4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      2,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna34-gap-int": {
+   "hash": "3c06971c4a0dee955a6a203f94b12540017d11dd48665cb51a810da5480299b3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna34-gap-int-gr": {
+   "hash": "cf109259723e0ee43bc0826a660fa53b4637a403f6d497bbfadc76f72ff96880",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna34-gap-int-gr2": {
+   "hash": "af60db8a823d06948c491f3e114f4db937c4d92dbe446498ce0b9368bb504280",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna34-gap-int-shift": {
+   "hash": "52c198e5eeb1f1eb886f38e49451544a29d08b4f6298c47eb083380a32e91591",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna34-gap-int-width": {
+   "hash": "95a2cecffd560c449a8003fcb4946a490f4597b1a283f36a40c07d846254ca80",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna35-gap-num": {
+   "hash": "873c2ec9ecfcda39d4bdac4c1c188c847925b916891fb0f32e2b2a2dd17c2f82",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna35-gap-num-gr": {
+   "hash": "ed06a81ecf1978bb7aa1dc60dd3c35eff882b9ed358011f0468107edf7cbc879",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna35-gap-num-gr2": {
+   "hash": "b2288da7b0cb9365536776a205d94dfd773ea2cd02225a261aee73aa61147918",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna35-gap-num-shift": {
+   "hash": "f9e0c475ae79632282bbb834b4d685a727945b01167aed78b2db758f2b87ab5d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna35-gap-num-width": {
+   "hash": "73921290d28933950026f86c9f722cecaab3e08050cb6c07ccb67f3b1549a722",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna36-overlap-int": {
+   "hash": "fc650309f225b2d0acd978a924e9c8eb1d2d6b065436ec173522a698f91a1284",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna36-overlap-int-gr": {
+   "hash": "4361eb68e7c014bc8d83e922098d2ea633a592a1b3f89eb7857ee62d1df5ade9",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna36-overlap-int-gr2": {
+   "hash": "1df0638d73ef2a45a7f6fc251d00ecbb00af8628f06d7fe85a88b4d3998c44a1",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        0
+       ],
+       "lengths": [
+        3,
+        1,
+        16
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna36-overlap-int-shift": {
+   "hash": "e5eed62e7daaf6bc46a57cbbc9613ca52eddae2317e2a0d04d80a8d2f8209e5d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      6,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna36-overlap-int-width": {
+   "hash": "1aacfadf370218de010c4678e2a3552e5d5c94205ac1b6d8cdca47196f2ea675",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna37-overlap-num": {
+   "hash": "2f78dc7a2aa462f3b6914ecdf7af1cbda830dbcfda258df98654f8da0ca642a8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna37-overlap-num-gr": {
+   "hash": "2a9310846fbef54b9fe2bdb27ecc85191c4ef154859ce99b8dc32a452ae2652a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna37-overlap-num-gr2": {
+   "hash": "1fd7b5a86b017496b381e608dbc9eb9aae4f116cc452de487d8097d3032ac325",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        3,
+        17
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna37-overlap-num-shift": {
+   "hash": "344905e5a90097193361ba994e992ce6e947cee522d87efc5737a0b307363669",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna37-overlap-num-width": {
+   "hash": "5d40eeba99f0f26594b4af8f75fecef1f2b385f8cbd5a970617486d48e079e65",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna38-overlap-int": {
+   "hash": "21b896f8e8bfb008644ca808cf7cceb57f3d0b4c6614cbbe6baa7a872f3ead88",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna38-overlap-int-gr": {
+   "hash": "ba6aeb85d6d52aaeed7b41762014d196c0685a3a7eb62be9435f33be6ea41a5d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna38-overlap-int-gr2": {
+   "hash": "1e75223671825bf954b2ad4e1dbbf7c5a02b723d1fc1dfb0a6c90b26bc304353",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna38-overlap-int-shift": {
+   "hash": "8601083bcaaead39ad798967ad591d265eb011413965a3202dfa083bb54612b2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna38-overlap-int-width": {
+   "hash": "b3e91d5fd0fbdcc555d782240544032d0169f3ddddc7c20789c3f4f0888318dd",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      0
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna39-overlap-num": {
+   "hash": "737beaae0a9b6a922ecb9c9efa3eb0b5a64c87f991a1865be9e612b5038fecf0",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna39-overlap-num-gr": {
+   "hash": "f811761644a039cf011e26da2575f32452697dc1a9c58b2b9e2e46a3b8c24930",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna39-overlap-num-gr2": {
+   "hash": "af701ee219418a7b8cba24332ac0a3eed8b6706237fb1c4d4214eabe94c28ede",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        0
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        4,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna39-overlap-num-shift": {
+   "hash": "47a6d634ec5b935047b9b9e1e21d1ed5a36f066436cf52ad818f92b9f456773a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna39-overlap-num-width": {
+   "hash": "85349e2dca0c47f9f3e2016dcb6b6fa0c75cd61635a01d6823d3907e3420e7b4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna4-partition-int": {
+   "hash": "a604f8f1efdc51878faddb5bb70bca1779e3a1c4c45e196bb4129a7f916293ca",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      null,
+      2
+     ],
+     "lengths": [
+      2,
+      3,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna4-partition-int-gr": {
+   "hash": "8db89dbf9bdb67293d0168aad3f48b9237c81e316f7e06312e56836ec41942eb",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        null
+       ],
+       "lengths": [
+        2,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna4-partition-int-gr2": {
+   "hash": "be40f0a92c761bcc09cdb5306f4713e4afcf1172198e9ae4f3556471ab0a491c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        0
+       ],
+       "lengths": [
+        1,
+        19
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna4-partition-int-shift": {
+   "hash": "4e43ff5db791d4a71643f39d66d87e37bd33558df5850f63708dccf71949c22c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna4-partition-int-width": {
+   "hash": "d6672b7aaa8ae2d0a1a19c6c75d8a896a82eba6ec3d596afd87d178b815ec9b5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      null
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna40-overlap-int": {
+   "hash": "b98ab9b3a54c505e68175aacf79a04c9a1da78efab4e06a3b4a1975c6d68d55a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna40-overlap-int-gr": {
+   "hash": "af8f8544862a6e95b58782a55ca46793ba6751059d66fcaf13283394903b13f7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna40-overlap-int-gr2": {
+   "hash": "4e8fef01610bd6419fab6b0a575c37ddc527215efcd16eee2e73930025a7ecc7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        26
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna40-overlap-int-shift": {
+   "hash": "3b4e2906b78fda64efc36d65c889bbfa5aa4783b89902ebbad9f5c2debecc93a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      4,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna40-overlap-int-width": {
+   "hash": "fedba4ddbcfba029c06d4e031ad08faaa086df533d007d0897aa420f5cd86a30",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna41-overlap-num": {
+   "hash": "4f39c058242b254a74db42d7394c3c2a55d6db40eb9a0d2cbaa01ee43a2e58d5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna41-overlap-num-gr": {
+   "hash": "82d8c7c654ca4b826635be15c9b5267f94e6a8e31be7296c9fe591e21787f50e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna41-overlap-num-gr2": {
+   "hash": "5ed6c19c488f093388c3916d4e6ee49ea6d4914efb325ebb31d4b00c70a16c49",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        28
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna41-overlap-num-shift": {
+   "hash": "9b5cfee4c216b8ebad050d2e04a46c1d2f7e35ca5026d0e455fca281b1db804b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      4,
+      1,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna41-overlap-num-width": {
+   "hash": "7ef6f9465890b84b2bc6231c68d4bd8d37afeb54ee2409658de04d09737d7c8c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna42-overlap-int": {
+   "hash": "ed3d62094ce6471af6af321c2a32d799034c880bb65cf189544f6cd797ef0bbd",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna42-overlap-int-gr": {
+   "hash": "8bc68a292ec3e91724ce3a1ad4a3d9e5f2c12478a88d69f3491b5d76e3061e0e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna42-overlap-int-gr2": {
+   "hash": "f180d167db4124f44336fff41e5c051a653c89d27ab651b96ffc4fbbe779b9b5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna42-overlap-int-shift": {
+   "hash": "86529d9cda5cab81af18b1e2c6dc117be3f3aaaa41f9aa9b24ff3cdb44aa6b36",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna42-overlap-int-width": {
+   "hash": "8854ffd6413e6b547bf78424171c8aec964dd695bbe918fb1b32d88cb20f9bf8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna43-overlap-num": {
+   "hash": "ae88164dc778796a79e1711f4feef767e742d5a6e740336fc596facad949af42",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      null
+     ],
+     "lengths": [
+      2,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna43-overlap-num-gr": {
+   "hash": "1da4ffbdf0ce9e2038aacb3d94fbcab29c407183973926695f378a6f066e7e99",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        null
+       ],
+       "lengths": [
+        2,
+        4,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna43-overlap-num-gr2": {
+   "hash": "13274ce5c380908555976aa9595822792778a2d2b70b058fce91f5bc1529d4d8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        6,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna43-overlap-num-shift": {
+   "hash": "98338540da590e210c9ee9f20f406d9e1b537e6b9b73850af48796e686d7cba9",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      null
+     ],
+     "lengths": [
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna43-overlap-num-width": {
+   "hash": "0f51cfc6416b1b46abc766f936ad030d12ee74773e5a670b25cb782dbe8e377b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      null
+     ],
+     "lengths": [
+      2,
+      4,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna44-overlap-int": {
+   "hash": "5a5de2c59f5dc23a64853489c730b9ed6b5939963ed2f6c657829e8b9fddf3ba",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna44-overlap-int-gr": {
+   "hash": "fcb364951c0ab94581b214554c777b0e71632e26e3798ae2c718ecd7f65d9c26",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna44-overlap-int-gr2": {
+   "hash": "fcc469c9832885ce2d98056392490912e01081c369d1c9c26c9155e10760ea1d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        9,
+        0
+       ],
+       "lengths": [
+        6,
+        1,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna44-overlap-int-shift": {
+   "hash": "b45b4680006a90c9db2038650bb74503652b5f0709924dbc290c28b92f12ac65",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      8,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna44-overlap-int-width": {
+   "hash": "bc9540eb7bc4461fd4de876aaed02678e22aca6cabcf7be2719031c2c0023899",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna45-overlap-num": {
+   "hash": "bd1d702a676a678e5a7c50efb35cf0ebbf1566e5e4927d14c2e81eef6195d77a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      5,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna45-overlap-num-gr": {
+   "hash": "f1e2f5397b4c87a12ff14f758ca5da52f34ab26c27181b451f5d2a0cccd1e0bc",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        5,
+        1,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna45-overlap-num-gr2": {
+   "hash": "099e9a2905fe41c2fbab96f1a599291782a884a8420f3ad12750dcb6fd5d4c22",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        5,
+        1,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna45-overlap-num-shift": {
+   "hash": "aaf1aa5acbf1d22a5e5fdc239559e80cca85b054fdbbe59a15bb2a0738bd2d2b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      6,
+      1,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna45-overlap-num-width": {
+   "hash": "4a1c857dc2effdbea20779c00407127ef25557d69d3df0cbe4a7b5a5da186b2a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna46-overlap-int": {
+   "hash": "34be193fe772c89ea05a7ced5c83b221b41830b36d94f45d89658a17cb3b838c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna46-overlap-int-gr": {
+   "hash": "097bb2a8966f672e740a2d851d74880d140ee88f63b928584dee44d234a2d22b",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna46-overlap-int-gr2": {
+   "hash": "9d423df26ea3f106f8fa0ba10b67e57b560d45e1c2031ea4f989ccfe67949727",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        9
+       ],
+       "lengths": [
+        3,
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence b. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "covna46-overlap-int-shift": {
+   "hash": "010d2fa52f45164e4802a64e8581f93fc653b5beae3433b93ffc5a784b95ff98",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna46-overlap-int-width": {
+   "hash": "6e8ff661f6ddc98008a1aba1e148b8ecfb982ae9202fe840d171872a44ee4c8e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna47-overlap-num": {
+   "hash": "2a81b6256148e5a8ba559ffe42221410d2f056ee0f235b9eafb8f8f012b8e1c3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna47-overlap-num-gr": {
+   "hash": "b8335bf183f6ffaa17dbb5eb85247f7158f44058cba41c5e3482ce3a332cc33c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        9
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna47-overlap-num-gr2": {
+   "hash": "d6e26a870d1456c78cc5f41bb37b510fa2f08044362b0af655091fe290e0e27b",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        5,
+        5,
+        10
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna47-overlap-num-shift": {
+   "hash": "54e3a0b3ebf529e45288710dad71ca83502fbf4368f2c60b3c11eb07f315880a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      null
+     ],
+     "lengths": [
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna47-overlap-num-width": {
+   "hash": "a759ee6632f3bb24ad6421b68aaf30e1050ef18bc91a1bef1aa3863c5521ed47",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna48-empty-inside-int": {
+   "hash": "22cc7c4e27f86515a57a30507d7c537fe9c453fd926398ea173f2334f5189942",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna48-empty-inside-int-gr": {
+   "hash": "7e1064e5f323bcc294e7cc79bdcf3219087ecb230784371ff18d885384575b35",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna48-empty-inside-int-gr2": {
+   "hash": "41b7ca7012c130a699bba34ee9cf23cb72b68c4397cd141c811580689764e0d4",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        8
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna48-empty-inside-int-shift": {
+   "hash": "0968c7d6f2b5ce4f55862ac1fb7e9693f27f2d403fa1c12dff7c504f1bd187ac",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna48-empty-inside-int-width": {
+   "hash": "ae6c54929ea7bd2db785d8a5b3687394073c7b181e38c1d1f9b1d26000b6ae7c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna49-empty-inside-num": {
+   "hash": "010cbf1b87f70438581aa274877d17ad52a2cfd8438a3bf122c6dc6dcc26ab41",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna49-empty-inside-num-gr": {
+   "hash": "25c60ffccd69e56b059a2d374131c5e74adbc82e8e95116bc57c5929db9c51a1",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna49-empty-inside-num-gr2": {
+   "hash": "76b98239dc09b4f5730759d87583369c668c59a8846a7611e128a4045d65eaf8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna49-empty-inside-num-shift": {
+   "hash": "18291f63e4b1108c51f6fa1a92008a386d8d3cb993f92c06c5d64d038c6c8b1d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna49-empty-inside-num-width": {
+   "hash": "f61ce3f6178d6ffca998c917ad402d845419ae6ee3fcafea57859d11ba76176c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna5-partition-num": {
+   "hash": "070cafd42ea4a2856f39a6e5893a011365d4fd71430914d4d423f291017516da",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      4,
+      null
+     ],
+     "lengths": [
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna5-partition-num-gr": {
+   "hash": "37e615c8de2a581d1ebe2c9f29e8f2220cc14626b06310cbd72e5c686cbce3b7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null,
+        4,
+        null
+       ],
+       "lengths": [
+        1,
+        4,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna5-partition-num-gr2": {
+   "hash": "78f7b02e182a24fc7e7204efb575e9980d49e16b05df8705d4289d36bcf572e1",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna5-partition-num-shift": {
+   "hash": "6bd0bc15bb8b705e0c8c89cd667a07ab05e7b02b44f8ee1e23cb9ec9a9999551",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna5-partition-num-width": {
+   "hash": "5d3f971163cf52ab0ce75980233417f5b290ca5b8568e31fa119c79ed17958c0",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna50-empty-inside-int": {
+   "hash": "778d977f7a0473fad2ed96cb08f583c03aaf8dc6ff139b1d152270df3337454f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna50-empty-inside-int-gr": {
+   "hash": "3ecf119659f1276205648616e80b1f9fdc93eabbc554830bbdd7b9e9c9f5ce39",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        7
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna50-empty-inside-int-gr2": {
+   "hash": "2f05c4e05b9c8d7bda61fa589995626c65144bc7f2b162f5ee0be17573f8dae4",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna50-empty-inside-int-shift": {
+   "hash": "95db068d731fff3f100b9f659bfbb820a368eaff443c2182fef67b3fc9974293",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna50-empty-inside-int-width": {
+   "hash": "c5e13d32039209d0489c9db479702d32389590834af244355c4d0be30ebd5cd4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna51-empty-inside-num": {
+   "hash": "9dcdc8f738e5c0a38b39315cf6f4813b055ab3dd70d1f8cb967b35b27cf089af",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna51-empty-inside-num-gr": {
+   "hash": "14bfcf4005dee3ac4836f2aeecd4aa7b6c6b94c49f6d809c2c1cc7973e10a032",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        7
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna51-empty-inside-num-gr2": {
+   "hash": "6354241db9cb6667ec4802ff2ae5abe3db571fb1791825f25f2206277c33d048",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        5,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        5,
+        2,
+        13
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna51-empty-inside-num-shift": {
+   "hash": "663e751c68a109605569609f4af5e44b9169670058205b600a4bd9cd94598b75",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna51-empty-inside-num-width": {
+   "hash": "e3ba6f6c93818197874b0118db91973595e7cefe310ef597f8620c75ce9dd739",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna52-empty-inside-int": {
+   "hash": "feae42787d156155a82b483d42463ef81002a34a571f66f1ff9e5f2c92b304d4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna52-empty-inside-int-gr": {
+   "hash": "46e72cd5a6c6ca0d2609511ced5a0079fed8251101811ef427f70a298019d681",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        7
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna52-empty-inside-int-gr2": {
+   "hash": "a283e9abb7503ca19dfebb3867084b2616606923382bcaf82edd9970bf8dbd2e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        0
+       ],
+       "lengths": [
+        6,
+        3,
+        21
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        7
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna52-empty-inside-int-shift": {
+   "hash": "9017b349ed0a8c1361cc37599295b2743e900e99c97603daaeae0b02e770bb61",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      3,
+      2,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna52-empty-inside-int-width": {
+   "hash": "eb88b46731cf275353ebe7b3e26a9c299e9108afc9e0165b34d6d7079cf00b29",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna53-empty-inside-num": {
+   "hash": "96dc520542e136a9209d9bcbfc55abba10cad10ca1d59ef2e15d2ba0e6cf74a5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      2,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna53-empty-inside-num-gr": {
+   "hash": "ecfba203dc7d959e742d31ac0b102ab1fa29d08f91d1cae81910d154273a857f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna53-empty-inside-num-gr2": {
+   "hash": "869bc62694e94fad4809cffceccb709713fdee0d25a4f2bdde26dcc97079df65",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        2,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        4
+       ],
+       "lengths": [
+        6,
+        3,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna53-empty-inside-num-shift": {
+   "hash": "da13e26cac57c9b744c65c281fd484bc6118044b4ede270e5595473cd62600d7",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna53-empty-inside-num-width": {
+   "hash": "36d1776819aa42fa4a4718600a69a7e297624b933489179274046ca05d7c95f0",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      3
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna54-empty-inside-int": {
+   "hash": "c28f21248bfb503be07f2140635d456e0be62ebcefe67ae55575ad6dc2c8a972",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna54-empty-inside-int-gr": {
+   "hash": "50826fef90941f916c98aaa93552e0ddc71e77e0cd1e205f9338c5283a6a97b8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna54-empty-inside-int-gr2": {
+   "hash": "e6325bd00c7b8b0b8d65b1acff19fc1abd421f17592f5e4bee75c5dbec4dfd6a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        30
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        19
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna54-empty-inside-int-shift": {
+   "hash": "bdd154a2d283583bce0c6a6c08e0bb1cf7610ad0becef16b1c43983ebd1ee5e8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna54-empty-inside-int-width": {
+   "hash": "44563366927afd1b6f28b2436eb8cccc033cc6abb8a464adc497e2fe95dfd2e5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna55-empty-inside-num": {
+   "hash": "c51fd937b8522badfaed2945f64481e6f88caeea42867efbff49173b25ab64ed",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna55-empty-inside-num-gr": {
+   "hash": "594982992d217e7cfbd500f3cd5bf3703e0b03ebabf01730415c629bfd9cbe03",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna55-empty-inside-num-gr2": {
+   "hash": "7741cea5b7657e04f03eab82fd0166c27be3c35cfdc4fbd85eb5f1e000b0542f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        19
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna55-empty-inside-num-shift": {
+   "hash": "99cdbe25a5bd91b0c421450bfee0c0d8dc9d972aa8d10847bd04c39325007f69",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      4,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna55-empty-inside-num-width": {
+   "hash": "9736fdba5361d98f97b6c8288b0174caad8fe5f5af733577ed295e5915ec4bdc",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna56-empty-inside-int": {
+   "hash": "c1265cf5275da5b9ba217e38e62b653dd3c59fe72a544ef4b5f0539571a222eb",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna56-empty-inside-int-gr": {
+   "hash": "81d8e35346356b818848e1f48a9af6d61671e03a0ebf6df610b5703e83cf01e8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna56-empty-inside-int-gr2": {
+   "hash": "c53dfbc9758f4abb34cc8195a734c695841211773cc8e0b5b3b4eba2fef1ce6b",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        29
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2
+       ],
+       "lengths": [
+        1,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna56-empty-inside-int-shift": {
+   "hash": "9383a2204dee75ccb7411e085d0ce5115705cf024487715d84d13076467ab52d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna56-empty-inside-int-width": {
+   "hash": "7c81c7ed4d60fa6e29673fb470f2a553b67a539b3bde9a35470ab8af4bc426e1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna57-empty-inside-num": {
+   "hash": "459cfc9c6f62c83e735d770dfe6b2f4be6ddc89615435c8a928dbb01b8a45db9",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna57-empty-inside-num-gr": {
+   "hash": "306ae77d62f2a3001ad28c30869d443e8f988479afe37aabe67fae9ebc2782c6",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna57-empty-inside-num-gr2": {
+   "hash": "fef84fdefa004ebbbcfa93eb8e991e813b6c7885523bc381d22c24f4fdfbc1e0",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        29
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna57-empty-inside-num-shift": {
+   "hash": "5ef3759acd0b8cbb8805395d846a793803eed793b81a51a26a490f6dc78bdea1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna57-empty-inside-num-width": {
+   "hash": "681ce7f64a7d24fb52e0b2177a101c66da762bfab8198bf716c731d7e8153dec",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna58-empty-inside-int": {
+   "hash": "290dea76a5ec3af7f607b0f69b19f4f2426c39107f8eb1a9112a2addd1a4771e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna58-empty-inside-int-gr": {
+   "hash": "66c748fca7daa50dcbfa1dc9a0ffb72c97b0815496a4c757c0afb57c3aec7ebd",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna58-empty-inside-int-gr2": {
+   "hash": "0bca3debefb7cf5c8fe2544d98e3e39cdf1c6f4438e9c3a9fb6580ecf712e548",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        3,
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna58-empty-inside-int-shift": {
+   "hash": "68d20b127344843e15d54537ff09c853fbf68e87de3730f29b5165672d003d81",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna58-empty-inside-int-width": {
+   "hash": "8f43f1a6772004d130a92a858d5bfd8b98ff09be7f42a39592f528b09f426793",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna59-empty-inside-num": {
+   "hash": "d5aa5f7fe4342a085c28d5f6e20eea892ac682d6753ba2b423739ea7245e15d6",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna59-empty-inside-num-gr": {
+   "hash": "5f8c3ce15af77cb61677669e9f55d641455a910f748cc58322afa9ad346df717",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna59-empty-inside-num-gr2": {
+   "hash": "7317fe45c34e7566259160a0e99a6cbeeebcd129ccf73f36a6a1df79a96bf71a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna59-empty-inside-num-shift": {
+   "hash": "554d18e5a0e188debfb84957e79e85c5059ec371e33f81063a86623efb9656a1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      5,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna59-empty-inside-num-width": {
+   "hash": "e89a4cd8aa8ae8d69ab2a3ded5ac51a3104a0ed60be2348d0729c99673ea177d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      2,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna6-partition-int": {
+   "hash": "059faa3ae4de75e701466c9101cd755faa35ce4a1fa8815f8f638c78b8f9056e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      null,
+      5
+     ],
+     "lengths": [
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna6-partition-int-gr": {
+   "hash": "cfec28c14e31ca03a1cf4279c586b7a385ddf81688726f8a40f8b09fb3bec707",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        null,
+        5
+       ],
+       "lengths": [
+        1,
+        3,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna6-partition-int-gr2": {
+   "hash": "87ab172785e81cfcafbafe150b06ef91f9807225ad965f446e1a117f31312db0",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        0,
+        5,
+        0
+       ],
+       "lengths": [
+        1,
+        3,
+        3,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        19
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna6-partition-int-shift": {
+   "hash": "23a72add01fc980aef2c123e1e9a22d9a8c0e22e2b69f7787f904f9398745985",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna6-partition-int-width": {
+   "hash": "618c3420fb952f25a4247708b1133fcf31078e5518dbbe8a2d2c1c0607e99610",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      null
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna60-nested-int": {
+   "hash": "3de25dbfa2533d65e0d6c6cb1ea7730d50f6fc1b9000f0964d6ff61492854e4e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna60-nested-int-gr": {
+   "hash": "0d45e0c9449c71e1c607d59594752b7a58467df94367497588ec2ae370c89eb5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna60-nested-int-gr2": {
+   "hash": "142c5fad5d630296f2e608440efc8e12824debf31d0d57e121cd7b368f760bf5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        6
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna60-nested-int-shift": {
+   "hash": "0588949daa40368232948778573505878918fdda90270367f163b41408dfee22",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna60-nested-int-width": {
+   "hash": "6874d7f19ca9d5ee72aeb88110dc42c61f55ebd2da065b7cc3c7d695cbb58ed5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna61-nested-num": {
+   "hash": "6ebce08a6bf4451a7920a619cd647408d6f07483384a7b75d0a56b9aad9166a5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna61-nested-num-gr": {
+   "hash": "d72e55029035c125529834c526f8961583d91823647dfb7a6bdd010d651a6c25",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna61-nested-num-gr2": {
+   "hash": "4d286ec4dab35f71f03c1d192459db9df97ae9554caa0a2ee8dde039ae1368ca",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        0
+       ],
+       "lengths": [
+        10,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        1,
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna61-nested-num-shift": {
+   "hash": "bfeed3242ab83a8bc046ec3debeafedcf3b64a4c7acf69b63ed259d56449f218",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna61-nested-num-width": {
+   "hash": "758cfc4eaa4bd49e68fff08180f3d4aa22b1c97942cfe0bdf07ca0506b1730bd",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna62-nested-int": {
+   "hash": "58b7f3bb4f8b9c279719d5d04591d8b8c2975725151e89a65db3b511e0f2344d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna62-nested-int-gr": {
+   "hash": "e05f0aaf66638735b7d3c24ca4a85fd8c9c799be04283c70d8d3d4227a8870d4",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna62-nested-int-gr2": {
+   "hash": "2df986e5f9f352d867e0b22533978fb8eb6bd8cfd3312dbfdfff1105132ba800",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        9,
+        4
+       ],
+       "lengths": [
+        1,
+        1,
+        1,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna62-nested-int-shift": {
+   "hash": "3af7d0c95c0c6c4ccc57ff6b6295970004eef535cbd33c2b01a05e0ec272c19b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna62-nested-int-width": {
+   "hash": "50277ec8bc5633c5db9e0c1d5c0ef79aa7269b063c4c2384bbc28ecde33dd6f5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna63-nested-num": {
+   "hash": "5ac1e4f114d9b76891527bd5b5ce45aca6c03fec23466e89ad4376ea8afd306a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna63-nested-num-gr": {
+   "hash": "b6f03022b3ab8bc5baeba16b686859e585c26fc071f0fea0bc18fcc6f3897c6e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna63-nested-num-gr2": {
+   "hash": "9f97ff5ac1c4d08083dc2be24ecf3d890f1f1bc45a6571100d3622d417f49483",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        4,
+        3,
+        0
+       ],
+       "lengths": [
+        1,
+        1,
+        1,
+        3,
+        24
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        20
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna63-nested-num-shift": {
+   "hash": "7d692252549a5c575d089407a3120cb752bf9e2cb1519c00adbcc60c6ab4c508",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna63-nested-num-width": {
+   "hash": "5aa3306e224797d6e6982e6378df9a476bb7aeccdec02ae1e89d61f483e39f06",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna64-nested-int": {
+   "hash": "080899819381973260c843e056f181b5b1e73ffb82aa155fe1b8822a1ad96d95",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      6,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna64-nested-int-gr": {
+   "hash": "1925c4f3ec917e4a442128d07d273e9c3ebed3d8b7ecaa902867de936e7d64e3",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        6,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna64-nested-int-gr2": {
+   "hash": "3572145c9e09e2bd9fc2a32652d98496e146ee688ac189e4242ae075e814eb3e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        6,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3
+       ],
+       "lengths": [
+        7,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna64-nested-int-shift": {
+   "hash": "4b581f4157f913830864344ff2781e9db4fc279eb01baedcb51c4a7eb84159b1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      6,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna64-nested-int-width": {
+   "hash": "454d463b25062b82af6e6d6ce327b50dcb2ca9d79b47ec42e9eea1ee04bfff54",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      6,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna65-nested-num": {
+   "hash": "ef06768e4b82370eccb6f1a04f11fb693f68fa52a219a44b647484f0eb6052fe",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna65-nested-num-gr": {
+   "hash": "98627caed2698b9b6b44de3cb837740533ff464d808142a54b987992a342ab24",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna65-nested-num-gr2": {
+   "hash": "a6c1c30757210005cbd86affad1de68d57d60cb5edeb83acfd7423e4d25f2ac9",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        null
+       ],
+       "lengths": [
+        7,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna65-nested-num-shift": {
+   "hash": "12bd161136e377ece7c5dd0f16668ecc422f85ffbc99ac41303ba1feaa29e9cc",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna65-nested-num-width": {
+   "hash": "9d2df3e0a34879746ac3e4dd54981992f197047ebddd19a193f075304ea805c6",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna66-nested-int": {
+   "hash": "34156614fb204f2e2bb0f9f13fb2224d6a8f185f3eadc5aea1c63f2c078a22f2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna66-nested-int-gr": {
+   "hash": "4006c1a00ca7c532d7df90b2968b12570349842eefaf49a90384d4924d11869d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna66-nested-int-gr2": {
+   "hash": "1e3f25cbb7656db9007b78a0473ef82f3bca0e35448d862fcefa31b2a99a4d88",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        5,
+        1,
+        0
+       ],
+       "lengths": [
+        1,
+        5,
+        4,
+        20
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna66-nested-int-shift": {
+   "hash": "45aad09b38ef2af8ae75fcd089a33d07c946aa363fe14da73a68c81b9a5b3c66",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      5,
+      null
+     ],
+     "lengths": [
+      3,
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna66-nested-int-width": {
+   "hash": "353558299e812513282b13fa79211552cfd3b828efabf9a6fbe5cf04a471bb43",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      11
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna67-nested-num": {
+   "hash": "159ad0665a0bb58960dcdbf12aa861f4fa73aeb7756d53b5d79f10d6f6aac3ea",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna67-nested-num-gr": {
+   "hash": "5a5f8a7c839cc3862a43dcd936595b208fe750a1f76eccd2c05924b7a209f288",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        11
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna67-nested-num-gr2": {
+   "hash": "395a5bb4a352c22d6f3d84df67a13b1c197d211cd42a1e11a6ac56118fd732eb",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        29
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        0
+       ],
+       "lengths": [
+        2,
+        1,
+        17
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna67-nested-num-shift": {
+   "hash": "e9e3f2649e4672219e12a6ae54724a901daed3a58dbbebebfe6b84a9b7df7b50",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      9
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna67-nested-num-width": {
+   "hash": "109fef9403a14bd371f32f85e28889429a91a414390423a54e3d345b36f6157e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna68-nested-int": {
+   "hash": "267ea60716e680840c855e76e4236bd9abfa5a8e72813517b932ee15d467e66c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna68-nested-int-gr": {
+   "hash": "d9761a8d0e2875b114d6d733fa9a4571c0437b68c8a3b3ff601267d7f694c677",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        5,
+        null
+       ],
+       "lengths": [
+        1,
+        1,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna68-nested-int-gr2": {
+   "hash": "baa36ee1d2bcc445b8f7df22913781b0d7a50878f080d38f3a4e41563460bed8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        5,
+        2
+       ],
+       "lengths": [
+        1,
+        5,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna68-nested-int-shift": {
+   "hash": "b1d7457a0ef0ea8c6b32ab99b04b07a94d784fd1ac6d14ddb06341a90de3a7bf",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      2,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      1,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna68-nested-int-width": {
+   "hash": "ebe6536327435e3da5b46b3ef56e79e76a6784ff6c5808a1d50e3b3c8768c039",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      5,
+      null
+     ],
+     "lengths": [
+      1,
+      1,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna69-nested-num": {
+   "hash": "f2dc6f510cb236c5c0fc430fc2b43a29b60bebb4482ceefcc5e24267425b96c5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna69-nested-num-gr": {
+   "hash": "61ee182e0e3530d169e35fc93d81d9b8f3d3d0607793bca49c13a338ae4fb0c7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna69-nested-num-gr2": {
+   "hash": "6d88e64833c847cfbf129b159180b927765cb0905831037c133016da0369d600",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        30
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna69-nested-num-shift": {
+   "hash": "34b20d6986b0b9ec9ebb9f3f3f19e4f451f861824d64cfb7516ca9dae8b1b899",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna69-nested-num-width": {
+   "hash": "c7c67ac64dfaf4bb81c62860f528d9dfac3adfaf6553f457601e1e1771d511d1",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna7-partition-num": {
+   "hash": "b90aea11bf9909a5cd594a62d0c4310526098ddad3188cf6e6df7e981514a98f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      2,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna7-partition-num-gr": {
+   "hash": "fbe2b4c353eff3f823360e2758b26e8c2ebb60746a56cc2a76e2ea0fdbb3ad10",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        2,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna7-partition-num-gr2": {
+   "hash": "e8f9e4cd3fe3a1981a43648ecd1330199b065e2c6e9d5f898cf430f447be8ba6",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        2,
+        null
+       ],
+       "lengths": [
+        1,
+        3,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "covna7-partition-num-shift": {
+   "hash": "43794d8b2d8b340924a401892c5a429cb3eda88156bcbcde4e1c0b78cdf298a3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      null
+     ],
+     "lengths": [
+      2,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna7-partition-num-width": {
+   "hash": "b70bbf224040fc4493853f33df71b5d17b57633ecf6d7dd49b550402018d14fa",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      2,
+      null
+     ],
+     "lengths": [
+      1,
+      3,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna70-nested-int": {
+   "hash": "a47ed0b8501f8b6f4ab95ff181ab517a887d013027d0f5b64a5d329669f7da4d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna70-nested-int-gr": {
+   "hash": "0ab02287647281fbdd5f161fb4c56c8dbf128b9c4089cc8662e3842f0043d8bf",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna70-nested-int-gr2": {
+   "hash": "c2ee856496d62714a9c0cfce5b874bac0427235cb580652b52ba2c6ff249b0b0",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna70-nested-int-shift": {
+   "hash": "1197aa7aa153de6a37ec2036bdad189b7f868d00827ae5e94fab7096cfb84e1e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      3,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna70-nested-int-width": {
+   "hash": "fa27d8a19860996548551655a23e990744894328f1bbf55defa78e049d14762d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna71-nested-num": {
+   "hash": "46fad57177a5e9e14534c319f9d18a3ea38d4e4a44888551cd3dfc253812acb8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna71-nested-num-gr": {
+   "hash": "c80d117c16f32096fd9bd180fab8944dd279ed71c8fcfa710bb8049f9e797397",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna71-nested-num-gr2": {
+   "hash": "45bcaedfeafc6733124a39d841a07ebd88abfe2c6b116c42dbb7aa4a1e4645da",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        1,
+        5,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        10
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna71-nested-num-shift": {
+   "hash": "2226b027f1c2b90fe298a60d845ba681fe1a23810de3200523b98cf80b8e8079",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      null
+     ],
+     "lengths": [
+      1,
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna71-nested-num-width": {
+   "hash": "827b61d01e4c2239542e9ef60ed3bbfd296abdc5993a506f61979fee5de06bbe",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null
+     ],
+     "lengths": [
+      12
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna8-partition-int": {
+   "hash": "cd39f79cc1a483cd630b54a473caffbc4a06ef9022b9c205f6c69e1a9f4610ec",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      3,
+      null
+     ],
+     "lengths": [
+      2,
+      4,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna8-partition-int-gr": {
+   "hash": "8a61ed31f4ba2c125f93c6126b0fbcb2570f080075df887638e2f40506e53147",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null,
+        3,
+        null
+       ],
+       "lengths": [
+        2,
+        4,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna8-partition-int-gr2": {
+   "hash": "2ce15919a9d73ef7e090b7b7070bc624765fcd6658d55ef518fc0883b6407ad3",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        null
+       ],
+       "lengths": [
+        12
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        2,
+        1,
+        17
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna8-partition-int-shift": {
+   "hash": "51ead3f548f2d7675377098879a9b2c2b1a36f8fb171bcfc58d6a599c11bf592",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      null
+     ],
+     "lengths": [
+      4,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna8-partition-int-width": {
+   "hash": "e9de9164ddb09ddc433e4f3e05624801090cbff443aa2edd31b9f6706d780493",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      null,
+      3
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna9-partition-num": {
+   "hash": "5a84e5d202105991a609c44d0163c2778c0f951e9edd00fb07b1194e16b92dd3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      2,
+      4,
+      null
+     ],
+     "lengths": [
+      2,
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna9-partition-num-gr": {
+   "hash": "f7a5b92c34111de735151e318717bd3f13c689a6e14aad5f4dcb6b977a962f99",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        2,
+        4,
+        null
+       ],
+       "lengths": [
+        2,
+        1,
+        3,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna9-partition-num-gr2": {
+   "hash": "5800e0296e5ac189bdee800f7c9c6dad64229757b745bc9e460ac6902f32fde4",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        5,
+        0,
+        null
+       ],
+       "lengths": [
+        2,
+        4,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        4
+       ],
+       "lengths": [
+        2,
+        1,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna9-partition-num-shift": {
+   "hash": "e9725048b8848d4133a642f25c45190a5b2f15431080eb08e351267d2d1c66eb",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      5,
+      2,
+      4,
+      null
+     ],
+     "lengths": [
+      1,
+      2,
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "covna9-partition-num-width": {
+   "hash": "2a3f8d2aac5900f0e39c05e5191cd53b90f528e3128db54e6c38ef464813be8c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      5,
+      2,
+      4,
+      null
+     ],
+     "lengths": [
+      2,
+      1,
+      3,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  }
+ }
+}

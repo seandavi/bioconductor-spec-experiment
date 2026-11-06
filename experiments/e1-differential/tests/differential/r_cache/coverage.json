@@ -1,0 +1,704 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "cov-adjacent-ranges-merge-runs": {
+   "hash": "004f26288761a79badb1f9a11856876fb64887504d78b93e4fa9b3b65774a408",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-all-negative": {
+   "hash": "5981acda570098e210a132222ef6e4d5165e130329eff2c7cc67c1bd1695e99f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [],
+     "lengths": []
+    },
+    "warnings": []
+   }
+  },
+  "cov-as-vector": {
+   "hash": "8c4fdd5ba4e6680d4ab6a9eebf2d2982857a773dbe9ad03d2eb9f0c4da7bcb6a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "cov-basic": {
+   "hash": "eadfd3f5e538f9bc825da34e4772e932c0c2734b477bd4d8e92de1bfee696065",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-empty": {
+   "hash": "0a4685d062d866488bc1943b79288dccc2aeef642355f318db865365a25807e4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [],
+     "lengths": []
+    },
+    "warnings": []
+   }
+  },
+  "cov-empty-width": {
+   "hash": "7478fb3956c58f9a4124546bd0658192dff009acdca652c2590e010ee18d6017",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      5
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-huge-width-sparse": {
+   "hash": "e74385e585b0787b800cc1077dc9264892fdb2377ae15c508e2164daecaa99a7",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      4,
+      2,
+      999999993,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-identical-ranges": {
+   "hash": "3637a7ff606ff75e80c27c54cd2284a817924ba303b3680a9e3b7eaa4ca7617d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-length": {
+   "hash": "cdb25e037ea9d5dc0dc439e647f5d734991797e2eea304f69be0673017341ea4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      14
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "cov-negative-start": {
+   "hash": "db7186a9981b232443f880b749d0ebd60e2ce81dd784f7417ac8dbe0c62ba8fb",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-negative-start-shifted": {
+   "hash": "6e70e9d123f573b186da04ad62c025073b60d5482fb912651f7da2e043e87b81",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-nested": {
+   "hash": "c663b12ba08f912eaf31d4fd38658e4ef9666d85afc2d46b4ae89dea13c45446",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      3,
+      2,
+      1
+     ],
+     "lengths": [
+      2,
+      1,
+      1,
+      3,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-runLength": {
+   "hash": "ab9c1e65f20380588b6e6cfbe06670115955443f641ab699812c247c5b641c8b",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "cov-runValue": {
+   "hash": "48f30c630a1dd6cf9d9a744bbd79162d48da0a349a2fc28ece92628964ae90f5",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "cov-shift": {
+   "hash": "1d157ab7e1562303ba2b5c63634a953ce1b55ac7c2d8f3451c27064f8a897de7",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-shift-entirely-negative": {
+   "hash": "37001878c4288c5b7bb150a3549c59f7230d1eba87c543fa13effc13f557695a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [],
+     "lengths": []
+    },
+    "warnings": []
+   }
+  },
+  "cov-shift-negative": {
+   "hash": "e8e77477aeeb151b8fd5745b84e8a3f53ba1714af3342775f76449f9b19c5d27",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-shift-negative-width": {
+   "hash": "3aa414d250e6c1dc866f899749de02c4211a2725a3e5191da6cf590199d425f4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-shift-recycle-warns": {
+   "hash": "23af78cc862cb8501c6db66e1c2bacbaa7af5de4a627d9cad591ea33262ad252",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      1,
+      3,
+      1,
+      2,
+      3,
+      2
+     ]
+    },
+    "warnings": [
+     "'shift' length is not a divisor of 'x' length"
+    ]
+   }
+  },
+  "cov-shift-vector": {
+   "hash": "e3498a8bfc8a704b10562f4095ef99a3def4fc95e83ccb989c11bbd2e9cd4ca7",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      3,
+      1,
+      2,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-double": {
+   "hash": "4227e6ae37572acab7b2436826dfba475f19cac5d6792f4f45b86aba758c96b8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1.5,
+      3,
+      1.5,
+      0,
+      1.5
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-double-vector": {
+   "hash": "96d805adec420d6b8b6261d51afe3a9cf083007897afb574392472ddd6e6b917",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1.5,
+      3.5,
+      2,
+      0,
+      3
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-int": {
+   "hash": "cf89c878e892ac1d0012927278f4dd61b806e3a5319b3b8c8ffe97b64e77018d",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      4,
+      2,
+      0,
+      2
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-na-error": {
+   "hash": "5b2c4292c63b5fbf7fa206a721d8b6d749af98459714545ed82f5f06ef356a20",
+   "result": {
+    "error": "'weight' must be an integer or numeric vector",
+    "warnings": []
+   }
+  },
+  "cov-weight-negative": {
+   "hash": "74a084a529d4bdf863dd53f70c6f6f3cef110420569e6b4efb73757643c04c9a",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      -1
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-recycle-warns": {
+   "hash": "d4ef6a7c8f8e9c24aabb6737677f15f0c4f4b52a08762740b8637de817a33b1b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      3,
+      2,
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": [
+     "'weight' length is not a divisor of 'x' length"
+    ]
+   }
+  },
+  "cov-weight-string-error": {
+   "hash": "fe74b1d5db07dca6f3565e127a708fe433f55929c9bddcf5b4440be10b1de2ef",
+   "result": {
+    "error": "'mcols(x)' has no \"a\" column",
+    "warnings": []
+   }
+  },
+  "cov-weight-vector": {
+   "hash": "bcd3ec9878ce25254a7e8af223ecfe0880327dccb3eab5a9d67121f76b20cef2",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      3,
+      2,
+      0,
+      3
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-zero": {
+   "hash": "869b03e5c00c140b96e9858d968b2ed8f658af3052932875b41ce95320bb76eb",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weight-zero-width-padded": {
+   "hash": "985ad6f0f0cd9bc6b0fa0dc871980399d30fac4b4da8c920148dec2fc2c7fcdb",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-weights-cancel-to-same-run": {
+   "hash": "e260e20237a83590de7a0cc16c7f003ddccc65aa021d95e41cac091a44010342",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      2,
+      -2
+     ],
+     "lengths": [
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-width-na-default": {
+   "hash": "c182fd124ac0312bcb793efb3873b18d7dcfbc62867e9b049c3cb73fd5b0c591",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-width-negative-error": {
+   "hash": "13a4e6397c6b267dbabe843ed80761500fc91fed98ffafb57f05bb1044f595fe",
+   "result": {
+    "error": "'width' cannot be negative",
+    "warnings": []
+   }
+  },
+  "cov-width-pad": {
+   "hash": "6c4fe8ee5051fb18a49d142e9dda35401abfb18fda34e4de6f157e647defb460",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1,
+      0
+     ],
+     "lengths": [
+      2,
+      2,
+      1,
+      4,
+      2,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-width-truncate": {
+   "hash": "8820f59fad7a0682780cb20991f836a0c5dd6c06fd8dc426fbd23d5b9fe1bc7b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1
+     ],
+     "lengths": [
+      2,
+      2,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-width-zero": {
+   "hash": "b71f66780fe50f81feb0514bdcdafefca825a019391f50ba0fb5d31657468ab3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [],
+     "lengths": []
+    },
+    "warnings": []
+   }
+  },
+  "cov-zero-width-extends-default-width": {
+   "hash": "ca98656d4b53f1bd75042af5bc0da2633a0e0323f8cdb0efdaa162b972ef7802",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0
+     ],
+     "lengths": [
+      3,
+      16
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-zero-width-mixed": {
+   "hash": "a5507c85929821900e8dea8470f4e7d86f33b5603887eb6dff51ec8ae07a10b8",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1
+     ],
+     "lengths": [
+      1,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-zero-width-only": {
+   "hash": "f8c70107f471dd6ccd832addbd2274ca24a933dd3f9ca16664523f8bba77787b",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov-zero-width-only-padded": {
+   "hash": "d5ce181110a9fb897f036b5e9dd3e07a4f8609bf27cbf6066f0ad2b151c299df",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0
+     ],
+     "lengths": [
+      10
+     ]
+    },
+    "warnings": []
+   }
+  }
+ }
+}

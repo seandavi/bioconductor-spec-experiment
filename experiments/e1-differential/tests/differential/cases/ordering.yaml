@@ -1,0 +1,41 @@
+# IRanges order / sort / rank / duplicated / unique. Order key: (start, width), stable.
+x_def: &X
+  x: {IRanges: {start: [5, 1, 5, 1, 5, 3, 5], width: [2, 3, 0, 3, 2, 0, 5], names: [a, b, c, d, e, f, g], mcols: {m: [1, 2, 3, 4, 5, 6, 7]}}}
+empty_def: &E {IRanges: {start: {int: []}, width: {int: []}}}
+cases:
+  - {id: order-basic, tags: [order], inputs: *X, call: {fn: order, args: [$x]}}
+  - {id: order-decreasing, tags: [order], inputs: *X, call: {fn: order, args: [$x], kwargs: {decreasing: true}}}
+  - {id: order-decreasing-na-error, tags: [order, error], inputs: *X, call: {fn: order, args: [$x], kwargs: {decreasing: null}}}
+  - {id: order-empty, tags: [order, empty], inputs: {e: *E}, call: {fn: order, args: [$e]}}
+  - {id: order-ties-by-width, tags: [order], inputs: {x: {IRanges: {start: [3, 3, 3], width: [2, 0, 1]}}}, call: {fn: order, args: [$x]}}
+  - {id: order-negative-coords-decreasing, tags: [order], inputs: {x: {IRanges: {start: [-3, 3, -3], width: [2, 0, 1]}}}, call: {fn: order, args: [$x], kwargs: {decreasing: true}}}
+  - {id: order-int32-extremes, tags: [order, int32], inputs: {x: {IRanges: {start: [2147483647, -2147483647, 0], width: [1, 1, 0]}}}, call: {fn: order, args: [$x]}}
+  - {id: sort-basic, tags: [sort, names, mcols], inputs: *X, call: {fn: sort, args: [$x]}}
+  - {id: sort-decreasing, tags: [sort, names, mcols], inputs: *X, call: {fn: sort, args: [$x], kwargs: {decreasing: true}}}
+  - {id: sort-empty, tags: [sort, empty], inputs: {e: *E}, call: {fn: sort, args: [$e]}}
+  - {id: sort-zero-width, tags: [sort, zero-width], inputs: {x: {IRanges: {start: [3, 1, 2], width: [0, 0, 0]}}}, call: {fn: sort, args: [$x]}}
+  - {id: rank-average, tags: [rank], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: average}}}
+  - {id: rank-min, tags: [rank], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: min}}}
+  - {id: rank-max, tags: [rank], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: max}}}
+  - {id: rank-first, tags: [rank], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: first}}}
+  - {id: rank-last, tags: [rank], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: last}}}
+  - {id: rank-bad-method-error, tags: [rank, error], inputs: *X, call: {fn: rank, args: [$x], kwargs: {ties.method: foo}}}
+  - id: rank-default-ties-method
+    tags: [rank, divergence]
+    inputs: {x: {IRanges: {start: [5, 1, 5], width: [2, 3, 2]}}}
+    call: {fn: rank, args: [$x]}
+    divergence: {adr: "0004", python: {class: vector, type: num, values: [2.5, 1, 2.5], names: null}}
+  - {id: rank-all-distinct, tags: [rank], inputs: {x: {IRanges: {start: [3, 1, 2], width: [1, 1, 1]}}}, call: {fn: rank, args: [$x], kwargs: {ties.method: min}}}
+  - {id: rank-empty, tags: [rank, empty], inputs: {e: *E}, call: {fn: rank, args: [$e], kwargs: {ties.method: min}}}
+  - {id: rank-zero-width-ties, tags: [rank, zero-width], inputs: {x: {IRanges: {start: [5, 5, 5, 4], width: [0, 0, 1, 0]}}}, call: {fn: rank, args: [$x], kwargs: {ties.method: average}}}
+  - {id: duplicated-basic, tags: [duplicated], inputs: *X, call: {fn: duplicated, args: [$x]}}
+  - {id: duplicated-from-last, tags: [duplicated], inputs: *X, call: {fn: duplicated, args: [$x], kwargs: {fromLast: true}}}
+  - {id: duplicated-empty, tags: [duplicated, empty], inputs: {e: *E}, call: {fn: duplicated, args: [$e]}}
+  - {id: duplicated-ignores-names-mcols, tags: [duplicated, names, mcols], inputs: {x: {IRanges: {start: [1, 1], width: [3, 3], names: [a, b], mcols: {m: [1, 2]}}}}, call: {fn: duplicated, args: [$x]}}
+  - {id: duplicated-zero-width-vs-nonempty, tags: [duplicated, zero-width], inputs: {x: {IRanges: {start: [1, 1, 1, 1], width: [0, 0, 3, 3]}}}, call: {fn: duplicated, args: [$x]}}
+  - {id: duplicated-from-last-na-error, tags: [duplicated, error], inputs: *X, call: {fn: duplicated, args: [$x], kwargs: {fromLast: null}}}
+  - {id: unique-basic, tags: [unique, names, mcols], inputs: *X, call: {fn: unique, args: [$x]}}
+  - {id: unique-from-last, tags: [unique, names, mcols], inputs: *X, call: {fn: unique, args: [$x], kwargs: {fromLast: true}}}
+  - {id: unique-empty, tags: [unique, empty], inputs: {e: *E}, call: {fn: unique, args: [$e]}}
+  - {id: unique-zero-width, tags: [unique, zero-width], inputs: {x: {IRanges: {start: [1, 1, 1], width: [0, 0, 3]}}}, call: {fn: unique, args: [$x]}}
+  - {id: unique-all-same, tags: [unique], inputs: {x: {IRanges: {start: [2, 2, 2], width: [4, 4, 4]}}}, call: {fn: unique, args: [$x]}}

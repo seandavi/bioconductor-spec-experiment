@@ -1,0 +1,637 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "duplicated-basic": {
+   "hash": "189714e1795acd193062c164d12396a6551a32cfee2d8dd8ea09da7e055b42c6",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "duplicated-empty": {
+   "hash": "4549dbeaa02b02aa68aa5e579d8d716988bdf177786f4731c0dac57de0ce258e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "duplicated-from-last": {
+   "hash": "1ef8786bfdc1e381e41401bcfb0844be108f4134c6b14867f47d2669c6a63be9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "duplicated-from-last-na-error": {
+   "hash": "f78e1bddb685f23ff10cf97b612cb5210b45883c067bf5b44cfb2fd147a1f239",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "duplicated-ignores-names-mcols": {
+   "hash": "99cf2994e18ccb6c11e53ec61224d74fd3339e1ad26ff88bfb1e7e03bc89df72",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "duplicated-zero-width-vs-nonempty": {
+   "hash": "aad15a00c3a9ee723c506969753f388512922a8f9ec927aeb1c05c16097dab48",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      true,
+      false,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-basic": {
+   "hash": "a70624ad7801a586b19abfa2b03a00b7c6e6aaf5a53664bcdb5fde4037a29f2b",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      4,
+      6,
+      3,
+      1,
+      5,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-decreasing": {
+   "hash": "cc63dd3efc9249b14853876eed5a41ded60ee7c8c6d4d50831455f33e5d19332",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      7,
+      1,
+      5,
+      3,
+      6,
+      2,
+      4
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-decreasing-na-error": {
+   "hash": "818da9ba28854db06f46155f3e588fcb4ddd51071ce8b7eb64f9f9964a7e2d1e",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "order-empty": {
+   "hash": "23c0b84b8c0df6d7f4998476175dc1e338cab05a8888a50e50bca50de9c41ac7",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-int32-extremes": {
+   "hash": "6ee58da664e4077c166ec23830c370044d00f2e476fd4cd56855afd164d225a0",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-negative-coords-decreasing": {
+   "hash": "bc369ba830d3e09a76232a2cbf0f55b66ccdc8f78aab822373d83de9df2ba054",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      1,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "order-ties-by-width": {
+   "hash": "4328769906803941e850e447dbd878c5dcab77eb46587669be26cdf0c2fa75c4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-all-distinct": {
+   "hash": "0d784c3d19072234b1cf49313231599fcf59113bd38f2732de7ecff55436f36f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      1,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-average": {
+   "hash": "f119141b59d2fd14c2f175f604fd0ac54424feeeca1894da39cd845f09efa5f4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "num",
+     "values": [
+      5.5,
+      1.5,
+      4,
+      1.5,
+      5.5,
+      3,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-bad-method-error": {
+   "hash": "bc38822af3e1addca4cbac50f918fd65723b0770b27f2c06979e55051b6ed9b6",
+   "result": {
+    "error": "'arg' should be one of \u201caverage\u201d, \u201cfirst\u201d, \u201clast\u201d, \u201crandom\u201d, \u201cmax\u201d, \u201cmin\u201d",
+    "warnings": []
+   }
+  },
+  "rank-default-ties-method": {
+   "hash": "ee471c91e641a355af4ae97ac5d700990b2b5b645f63b2640a1c9ef91e81faab",
+   "result": {
+    "error": "'arg' must be of length 1",
+    "warnings": []
+   }
+  },
+  "rank-empty": {
+   "hash": "50105b8e2f622bfa824739ce0aab46ceb6bd910caa4a737cd6ae190b4d09fa36",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-first": {
+   "hash": "90ca9cdf2c86286e84f0a97f05317ec2ef33287b254f5aaadfcf14bcbdd2a8bb",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      5,
+      1,
+      4,
+      2,
+      6,
+      3,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-last": {
+   "hash": "83074bcaef646b5f488736c051156f109b1f89fc9d3447c52bd04f0f9b3e3e4d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6,
+      2,
+      4,
+      1,
+      5,
+      3,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-max": {
+   "hash": "4b0aac78892446a629f2254b315a8f430ec43247076163cc9715fbd6541b5672",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6,
+      2,
+      4,
+      2,
+      6,
+      3,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-min": {
+   "hash": "0c7500c7f6a8ff8b7318ee450cfdabe40ac32e7381fd4b2fdec26b1a724616f2",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      5,
+      1,
+      4,
+      1,
+      5,
+      3,
+      7
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "rank-zero-width-ties": {
+   "hash": "ac0cb42fb64ea21892ad514eb5faaf343c94493e3d2794b2660f795aa3d978d6",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "num",
+     "values": [
+      2.5,
+      2.5,
+      4,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "sort-basic": {
+   "hash": "5b03f069d85bdf92435dd0a9e925fdf07b17a7c6f3e347d865f48add5d283ba3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      1,
+      3,
+      5,
+      5,
+      5,
+      5
+     ],
+     "width": [
+      3,
+      3,
+      0,
+      0,
+      2,
+      2,
+      5
+     ],
+     "names": [
+      "b",
+      "d",
+      "f",
+      "c",
+      "a",
+      "e",
+      "g"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        4,
+        6,
+        3,
+        1,
+        5,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "sort-decreasing": {
+   "hash": "a0a5287c9dcba288e3723d76632a087179e9c9d9d3b7aeda7a0414492316d57c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5,
+      5,
+      5,
+      3,
+      1,
+      1
+     ],
+     "width": [
+      5,
+      2,
+      2,
+      0,
+      0,
+      3,
+      3
+     ],
+     "names": [
+      "g",
+      "a",
+      "e",
+      "c",
+      "f",
+      "b",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        1,
+        5,
+        3,
+        6,
+        2,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "sort-empty": {
+   "hash": "ecd21c1371897c9a22e475162f78995c435de70128828d1a5074a22f779e5c64",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "sort-zero-width": {
+   "hash": "64726b7e37c4d2783733e94557eb1e26bfb6fbb662d89968624d62332d34486e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "unique-all-same": {
+   "hash": "d5285a30fcc1a166b4a52b5b307e6d32973698934964b16bb9343aff08249473",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2
+     ],
+     "width": [
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "unique-basic": {
+   "hash": "93f8f2ea8279df2dc2c20bc4e16dd8a862b490b228e9ab200c55679282f7983c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      1,
+      5,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      3,
+      0,
+      0,
+      5
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "f",
+      "g"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        6,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "unique-empty": {
+   "hash": "0cf2f075f5fbade78c4bb825cdff4c9bde26f03b4186e3dfdd8fd79c7d6bdfb8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "unique-from-last": {
+   "hash": "87b4f3ce40056443414dd7593bcdcc9bde9458c726697323bc800b03392d61e1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      1,
+      5,
+      3,
+      5
+     ],
+     "width": [
+      0,
+      3,
+      2,
+      0,
+      5
+     ],
+     "names": [
+      "c",
+      "d",
+      "e",
+      "f",
+      "g"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        4,
+        5,
+        6,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "unique-zero-width": {
+   "hash": "abe6dd4ac114223b0eb0a4afd0dca62f866d47452f15fcc61820b0c4f9cf1244",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      1
+     ],
+     "width": [
+      0,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  }
+ }
+}

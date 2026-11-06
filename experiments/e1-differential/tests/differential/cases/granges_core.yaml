@@ -1,0 +1,332 @@
+# GRanges construction, accessors, seqinfo, subsetting, concatenation, trim.
+si_def: &SI {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null], is_circular: [false, null, true], genome: [hg19, hg19, null]}}
+g_def: &G
+  g: {GRanges: {seqnames: [chr2, chr1, chr2], start: [1, 10, 30], width: [5, 5, 0], strand: ["+", "-", "*"], names: [a, b, c], mcols: {score: [1, 2, 3]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null], is_circular: [false, null, true], genome: [hg19, hg19, null]}}}
+cases:
+  - id: gr-construct-basic
+    tags: [construct]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 2], end: [5, 6]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-seqlevels-appearance-order
+    tags: [construct, seqinfo]
+    inputs: {g: {GRanges: {seqnames: [chr2, chr1, chr2, chr10], start: [1, 2, 3, 4], width: [1, 1, 1, 1]}}}
+    call: {fn: seqlevels, args: [$g]}
+  - id: gr-strand-default-star
+    tags: [construct, strand]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}}
+    call: {fn: strand, args: [$g]}
+  - id: gr-strand-recycled
+    tags: [construct, strand]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 2], width: [5, 5], strand: ["+"]}}}
+    call: {fn: strand, args: [$g]}
+  - id: gr-strand-invalid-error
+    tags: [construct, strand, error]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: [x]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-strand-dot-error
+    tags: [construct, strand, error]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["."]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-strand-na-warns
+    tags: [construct, strand, na, warning]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [1, 2], width: [5, 5], strand: ["+", null]}}}
+    call: {fn: strand, args: [$g]}
+  - id: gr-seqnames-recycled
+    tags: [construct]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1, 2], width: [5, 5]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-ranges-recycled
+    tags: [construct]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1], width: [5]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-length-mismatch-error
+    tags: [construct, error]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2, chr3], start: [1, 2], width: [5, 5]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-seqnames-na-error
+    tags: [construct, na, error]
+    inputs: {g: {GRanges: {seqnames: [chr1, null], start: [1, 2], width: [5, 5]}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-seqname-not-in-seqinfo-error
+    tags: [construct, seqinfo, error]
+    inputs: {g: {GRanges: {seqnames: [chr1, chrX], start: [1, 2], width: [5, 5], seqinfo: {seqnames: [chr1, chr2]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-seqinfo-extra-levels-kept
+    tags: [construct, seqinfo]
+    inputs: {g: {GRanges: {seqnames: [chr2], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2, chr3]}}}}
+    call: {fn: seqlevels, args: [$g]}
+  - id: gr-names-and-mcols
+    tags: [construct, names, mcols]
+    inputs: *G
+    call: {fn: identity, args: [$g]}
+  - id: gr-empty
+    tags: [construct, empty]
+    inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-empty-with-seqinfo
+    tags: [construct, empty, seqinfo]
+    inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}, seqinfo: {seqnames: [chr1], seqlengths: [10]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-zero-width
+    tags: [construct, zero-width]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [5], width: [0]}}}
+    call: {fn: identity, args: [$g]}
+  - {id: gr-seqnames-accessor, tags: [accessor], inputs: *G, call: {fn: seqnames, args: [$g]}}
+  - {id: gr-strand-accessor, tags: [accessor], inputs: *G, call: {fn: strand, args: [$g]}}
+  - {id: gr-ranges-accessor, tags: [accessor, names], inputs: *G, call: {fn: ranges, args: [$g]}}
+  - {id: gr-start-accessor, tags: [accessor], inputs: *G, call: {fn: start, args: [$g]}}
+  - {id: gr-end-accessor, tags: [accessor], inputs: *G, call: {fn: end, args: [$g]}}
+  - {id: gr-width-accessor, tags: [accessor], inputs: *G, call: {fn: width, args: [$g]}}
+  - {id: gr-names-accessor, tags: [accessor, names], inputs: *G, call: {fn: names, args: [$g]}}
+  - {id: gr-length-accessor, tags: [accessor], inputs: *G, call: {fn: length, args: [$g]}}
+  - {id: gr-mcols-accessor, tags: [accessor, mcols], inputs: *G, call: {fn: mcols, args: [$g]}}
+  - {id: gr-seqlevels, tags: [seqinfo], inputs: *G, call: {fn: seqlevels, args: [$g]}}
+  - {id: gr-seqlengths, tags: [seqinfo], inputs: *G, call: {fn: seqlengths, args: [$g]}}
+  - {id: gr-isCircular, tags: [seqinfo], inputs: *G, call: {fn: isCircular, args: [$g]}}
+  - {id: gr-genome, tags: [seqinfo], inputs: *G, call: {fn: genome, args: [$g]}}
+  - {id: gr-seqinfo, tags: [seqinfo], inputs: *G, call: {fn: seqinfo, args: [$g]}}
+  - {id: gr-seqinfo-standalone, tags: [seqinfo], inputs: {si: *SI}, call: {fn: identity, args: [$si]}}
+  - id: seqinfo-duplicate-names-error
+    tags: [seqinfo, error]
+    inputs: {si: {Seqinfo: {seqnames: [a, a]}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-negative-length-error
+    tags: [seqinfo, error]
+    inputs: {si: {Seqinfo: {seqnames: [a, b], seqlengths: [-1, 2]}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-wrong-length-vector-error
+    tags: [seqinfo, error]
+    inputs: {si: {Seqinfo: {seqnames: [a, b], seqlengths: [1, 2, 3]}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-scalar-genome-recycled
+    tags: [seqinfo]
+    inputs: {si: {Seqinfo: {seqnames: [a, b], genome: [x]}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-empty
+    tags: [seqinfo, empty]
+    inputs: {si: {Seqinfo: {seqnames: {chr: []}}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-na-name-error
+    tags: [seqinfo, na, error]
+    inputs: {si: {Seqinfo: {seqnames: [a, null]}}}
+    call: {fn: identity, args: [$si]}
+  - id: seqinfo-merge-basic
+    tags: [seqinfo, merge, warning]
+    check_warnings: true
+    inputs: {a: {Seqinfo: {seqnames: [a, b], seqlengths: [1, null]}}, b: {Seqinfo: {seqnames: [b, c], seqlengths: [5, 7]}}}
+    call: {fn: merge, args: [$a, $b]}
+  - id: seqinfo-merge-conflict-error
+    tags: [seqinfo, merge, error]
+    inputs: {a: {Seqinfo: {seqnames: [a], seqlengths: [1]}}, b: {Seqinfo: {seqnames: [a], seqlengths: [2]}}}
+    call: {fn: merge, args: [$a, $b]}
+
+  - id: gr-oob-construct-warns
+    tags: [warning, seqinfo, oob]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [90], width: [31], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-oob-negative-start-warns
+    tags: [warning, seqinfo, oob]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [-5], width: [26], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-oob-circular-no-warning
+    tags: [warning, seqinfo, oob]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [90], width: [31], seqinfo: {seqnames: [chr1], seqlengths: [100], is_circular: [true]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-oob-unknown-length-no-warning
+    tags: [warning, seqinfo, oob]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [90], width: [3000], seqinfo: {seqnames: [chr1]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-oob-exactly-at-length-ok
+    tags: [warning, seqinfo, oob]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [91], width: [10], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}}
+    call: {fn: identity, args: [$g]}
+  - id: gr-trim-mixed
+    tags: [trim, seqinfo]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr1, chr1, chr1, chr1], start: [90, -5, 200, 150, -20], end: [120, 20, 210, 160, -10], seqinfo: {seqnames: [chr1], seqlengths: [100]}, strand: ["+", "-", "*", "+", "-"], names: [a, b, c, d, e]}}}
+    call: {fn: trim, args: [$g]}
+  - id: gr-trim-no-seqlengths-noop
+    tags: [trim, seqinfo]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [-5], width: [200]}}}
+    call: {fn: trim, args: [$g]}
+  - id: gr-trim-circular-noop
+    tags: [trim, seqinfo]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [90], width: [31], seqinfo: {seqnames: [chr1], seqlengths: [100], is_circular: [true]}}}}
+    call: {fn: trim, args: [$g]}
+  - id: gr-trim-keeps-mcols
+    tags: [trim, mcols]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [90], width: [31], mcols: {m: [1]}, seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 50]}}}}
+    call: {fn: trim, args: [$g]}
+  - id: gr-trim-zero-width-beyond-end
+    tags: [trim, zero-width]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr1], start: [105, 100], width: [0, 0], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}}
+    call: {fn: trim, args: [$g]}
+  - id: gr-trim-empty
+    tags: [trim, empty]
+    inputs: {g: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}, seqinfo: {seqnames: [chr1], seqlengths: [10]}}}}
+    call: {fn: trim, args: [$g]}
+
+  - id: gr-subset-int
+    tags: [subset]
+    inputs: *G
+    call: {fn: "[", args: [$g, [3, 1]]}
+  - id: gr-subset-negative
+    tags: [subset]
+    inputs: *G
+    call: {fn: "[", args: [$g, [-1]]}
+  - id: gr-subset-logical
+    tags: [subset]
+    inputs: *G
+    call: {fn: "[", args: [$g, [true, false, true]]}
+  - id: gr-subset-names
+    tags: [subset, names]
+    inputs: *G
+    call: {fn: "[", args: [$g, [c, a]]}
+  - id: gr-subset-name-error
+    tags: [subset, names, error]
+    inputs: *G
+    call: {fn: "[", args: [$g, [zzz]]}
+  - id: gr-subset-out-of-bounds-error
+    tags: [subset, error]
+    inputs: *G
+    call: {fn: "[", args: [$g, [4]]}
+  - id: gr-subset-empty-keeps-seqinfo
+    tags: [subset, empty, seqinfo]
+    inputs: *G
+    call: {fn: "[", args: [$g, {int: []}]}
+  - id: gr-subset-drops-nothing-from-seqinfo
+    tags: [subset, seqinfo]
+    inputs: *G
+    call: {fn: "[", args: [$g, [2]]}
+  - id: gr-subset-name-without-names-error
+    tags: [subset, names, error]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}}
+    call: {fn: "[", args: [$g, [a]]}
+
+  - id: gr-concat-same-seqinfo
+    tags: [concat]
+    inputs: *G
+    call: {fn: c, args: [$g, $g]}
+  - id: gr-concat-disjoint-seqlevels-warns
+    tags: [concat, seqinfo, warning]
+    check_warnings: true
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200]}}}
+      b: {GRanges: {seqnames: [chr3], start: [1], width: [5], seqinfo: {seqnames: [chr3, chr1], seqlengths: [300, 100]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-subset-seqlevels-no-warning
+    tags: [concat, seqinfo, warning]
+    check_warnings: true
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200]}}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5]}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-na-seqlengths-filled-from-right
+    tags: [concat, seqinfo]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-seqlevel-order-left-first
+    tags: [concat, seqinfo, warning]
+    inputs:
+      a: {GRanges: {seqnames: [chr2], start: [1], width: [5]}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5], seqinfo: {seqnames: [chr1, chr3]}}}
+    call: {fn: seqlevels, args: [{call: {fn: c, args: [$a, $b]}}]}
+  - id: gr-concat-seqlength-conflict-error
+    tags: [concat, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [50]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-genome-conflict-error
+    tags: [concat, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], genome: [hg19]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], genome: [hg38]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-genome-na-filled
+    tags: [concat, seqinfo]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], genome: [hg19]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}
+    call: {fn: genome, args: [{call: {fn: c, args: [$a, $b]}}]}
+  - id: gr-concat-circular-na-filled
+    tags: [concat, seqinfo]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], is_circular: [true]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}
+    call: {fn: isCircular, args: [{call: {fn: c, args: [$a, $b]}}]}
+  - id: gr-concat-circular-conflict-error
+    tags: [concat, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], is_circular: [true]}}}
+      b: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], is_circular: [false]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-mcols-union
+    tags: [concat, mcols]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], mcols: {x: [1]}}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5], mcols: {y: [2.5]}}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-names-one-sided
+    tags: [concat, names]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], names: [a]}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5]}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-strands
+    tags: [concat, strand]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}
+      b: {GRanges: {seqnames: [chr1], start: [2], width: [5], strand: ["-"]}}
+    call: {fn: c, args: [$a, $b]}
+  - id: gr-concat-with-empty
+    tags: [concat, empty]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5]}}
+      e: {GRanges: {seqnames: {chr: []}, start: {int: []}, width: {int: []}}}
+    call: {fn: c, args: [$a, $e]}
+
+  - id: gr-set-seqlengths
+    tags: [seqinfo, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2, chr3]}}}}
+    call: {fn: seqlengths<-, args: [$g], kwargs: {value: [100, 200, 300]}}
+  - id: gr-set-seqlengths-named
+    tags: [seqinfo, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2, chr3]}}}, v: {int: [300, 100, 200]}}
+    call: {fn: seqlengths<-, args: [$g], kwargs: {value: $v}}
+  - id: gr-set-seqlengths-wrong-count-error
+    tags: [seqinfo, setter, error]
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1, chr2, chr3]}}}}
+    call: {fn: seqlengths<-, args: [$g], kwargs: {value: [100, 200]}}
+  - id: gr-set-seqlengths-triggers-oob-warning
+    tags: [seqinfo, setter, warning]
+    check_warnings: true
+    inputs: {g: {GRanges: {seqnames: [chr1], start: [1], width: [50]}}}
+    call: {fn: seqlengths<-, args: [$g], kwargs: {value: [10]}}
+  - id: gr-set-genome-scalar
+    tags: [seqinfo, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 1], width: [5, 5]}}}
+    call: {fn: genome<-, args: [$g], kwargs: {value: hg19}}
+  - id: gr-set-isCircular
+    tags: [seqinfo, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 1], width: [5, 5]}}}
+    call: {fn: isCircular<-, args: [$g], kwargs: {value: [true, false]}}
+  - id: gr-set-isCircular-wrong-count-error
+    tags: [seqinfo, setter, error]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 1], width: [5, 5]}}}
+    call: {fn: isCircular<-, args: [$g], kwargs: {value: [true]}}
+  - id: gr-set-names
+    tags: [names, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 1], width: [5, 5]}}}
+    call: {fn: names<-, args: [$g], kwargs: {value: [p, q]}}
+  - id: gr-set-mcols
+    tags: [mcols, setter]
+    inputs: {g: {GRanges: {seqnames: [chr1, chr2], start: [1, 1], width: [5, 5]}}, m: {DataFrame: {a: [1, 2]}}}
+    call: {fn: mcols<-, args: [$g], kwargs: {value: $m}}

@@ -1,0 +1,1054 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "ir-accessor-end": {
+   "hash": "3b5ea4f8a27438ec24f3a954a3f7c4bc25d5583348262989bfc68f929048bf40",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      4
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-accessor-length": {
+   "hash": "48b10a048d35c7477dfcd2b8a982d7cc95cd216b3ce804392c8457458c2beeaa",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-accessor-start": {
+   "hash": "0b40f33d593a5b038bf4f02d30a3d5f359208cf52dfa790daef1023ca6c7c9c7",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-accessor-width": {
+   "hash": "52a58fae69da17172418ab9a8ee5117acf354727785b8d8dbf8aca193135aab3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-all-three-consistent": {
+   "hash": "f5bf2b919523d605a0942e3d942c3ccfdb2a2ff5337274ee1a89e92201e17e02",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-all-three-inconsistent": {
+   "hash": "4bf6def95b9d310fe8841fd8ed643b3a7ffe90030c52cc47eb386d437e56b223",
+   "result": {
+    "error": "In range 1: the supplied 'width' (2) doesn't match the width\n  inferred from the supplied 'start' and 'end' (3).",
+    "warnings": []
+   }
+  },
+  "ir-concat": {
+   "hash": "ece4f82b97b51d24e26de35d4eb1f9ffe02f5d58401c3df13edc2669498ec1dc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      2
+     ],
+     "width": [
+      3,
+      0,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-mcols-different-columns": {
+   "hash": "32f60630cc251f9d1da9bd54d0f7c845d43d9e0f934994412c34ec1e36b2974a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      },
+      "z": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        null,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-mcols-one-sided": {
+   "hash": "a142ce727628a0a2ccba8566f92808533221b958151295f9c56fa8536a893f2a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-mcols-same": {
+   "hash": "4465efc45e00e79b1061dcc1a288ac599df0ce0a8297f5d5275a6ed3cf42daf3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-names-one-sided": {
+   "hash": "8e8639f00da11fdeef4fe70f3067c2254e9f2822203c7f268c43bf3d36bef44a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      4
+     ],
+     "names": [
+      "a",
+      ""
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-names-one-sided-reversed": {
+   "hash": "1ea1276cb95f6116b200a14fd3d3f9ab156ff759670742c049e146afd3d3e8fc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1
+     ],
+     "width": [
+      4,
+      3
+     ],
+     "names": [
+      "",
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-three": {
+   "hash": "e8fb8fd149a2461431f885e14c0f1e7aa2ab652e3a7d7fc67366f90905d552e9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      3,
+      4,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-concat-with-empty": {
+   "hash": "d743f04ccbd00a5e380027eb58e54cd20bd5515a17a296ebc28e01e4a9ed1e96",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-empty": {
+   "hash": "09a314e05988ece8df73ec14428691801d28383f7191f32ef2fd35c2f83799aa",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-end-before-start-minus-1-error": {
+   "hash": "8ecd2b7014af1aa1482d02f01e08b47ad6b7b5231d8367301454d3248697ef0f",
+   "result": {
+    "error": "each range must have an end that is greater or equal to its start minus one",
+    "warnings": []
+   }
+  },
+  "ir-end-only-error": {
+   "hash": "8e7c3e7fee5ef45968110ce97f69299d8a92b1ec017757ee0f3ce914467c294c",
+   "result": {
+    "error": "at least two of the 'start', 'end', and 'width' arguments must be supplied",
+    "warnings": []
+   }
+  },
+  "ir-end-width": {
+   "hash": "e9278cf2cd216bc3c8160df768a63a5e1c6f3919e715a1f38a9237c3bdcebd7e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      11
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-int32-max-ok": {
+   "hash": "79e7e2ba9ce5c4151316c67daa89d96c2b841ea6902543961c95544781a6d9a9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2147483647
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-int32-overflow-double-error": {
+   "hash": "045a9cfa1c077c58ae2f1d2964e1cc1de9fdbf81fff56fe9823e14bb02900c0d",
+   "result": {
+    "error": "each range must have an end that is < 2^31 and > - 2^31",
+    "warnings": [
+     "NAs introduced by coercion to integer range"
+    ]
+   }
+  },
+  "ir-int32-overflow-integer-inputs": {
+   "hash": "80eee5bf96c77f48191a3e6ea2a005e1b04e90aa38fafe05e78356380967167f",
+   "result": {
+    "error": "each range must have an end that is < 2^31 and > - 2^31",
+    "warnings": [
+     "NAs introduced by coercion to integer range"
+    ]
+   }
+  },
+  "ir-mcols-accessor": {
+   "hash": "250524fda4d52131b3b69e110379d0147efab5a9f8a68b9f161227083f710c9f",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "ir-mcols-accessor-na-names": {
+   "hash": "2eb4403a5e754bfbf0dfae7390fa0ae4d43307968ed5e1d2eeb0eafa8b7d5068",
+   "result": {
+    "error": "missing values not allowed in rownames",
+    "warnings": []
+   }
+  },
+  "ir-mcols-none": {
+   "hash": "557331e6cd0d823a7eb950398dbb624672176da9bf93dfd23f3a879eab780b96",
+   "result": {
+    "value": null,
+    "warnings": []
+   }
+  },
+  "ir-mcols-roundtrip": {
+   "hash": "8e4ee8997adb1df39d5a9df6bf0d0de31d12b16452dfc0fa0f7b2c0ff48b6f66",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5
+       ],
+       "names": null
+      },
+      "tag": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "u",
+        "v"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-mcols-set": {
+   "hash": "7a927cf8d0e3f336da9a0546a95f3954dbee9ee1f5297655a19e2b79fca200b2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-mcols-set-wrong-length-error": {
+   "hash": "a56810d95f078c8b9d3f6be91cdd9fd65c813c4070d5896c1bef9d16b58c7ced",
+   "result": {
+    "error": "trying to set a metadata column of length 3 on an object of length 2",
+    "warnings": []
+   }
+  },
+  "ir-na-start-error": {
+   "hash": "34b81d9fbd897cbfc87d0bf888d6c7864cfd3563b569e5a80456c8a98a55d845",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ir-names": {
+   "hash": "e6b443d0528acbb7d5f40c5df78dd1b3efb7aec0e6969ae38172acc892bdddb2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      "b"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-empty-string": {
+   "hash": "765806e6b7bb949b4b624b1bf5b335d6ebfc6fc2e90523c1f596009085f1843e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "chr",
+     "values": [
+      "",
+      "b"
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-na-then-set-mcols": {
+   "hash": "e3e7c5098b48f8b2412a29a66b5789b7b692e4702d979f8645d9611fd8ed51dd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-na-with-mcols": {
+   "hash": "397299674dd991f65667dbc452b83ce96046abc05507d7de9c7e3548cf173046",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-none": {
+   "hash": "40cdd5a2d5c432e179b8a9644da1346b563ab0cf341e965be72c26e2f73bdc5c",
+   "result": {
+    "value": null,
+    "warnings": []
+   }
+  },
+  "ir-names-set": {
+   "hash": "74a3fe70566d569b372e5d9a9433aa41be204baedd00fe455257ccbe38bd4407",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "p",
+      "q"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-too-long-error": {
+   "hash": "0dfc5288297ecded3afd8dbac9225eacd418dc360439a9257421a84a803a4042",
+   "result": {
+    "error": "attempt to set too many names (3) on IRanges object of length 2",
+    "warnings": []
+   }
+  },
+  "ir-names-too-short-padded": {
+   "hash": "40d656a987e3bb54e1256ac89c9dc270184784c0f9a162ed94e4ae5a39f054eb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-with-na": {
+   "hash": "27044fd23549192c36d660ddd86e653478719e87fea27d0191b4eef647b7d4dd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-negative-coordinates": {
+   "hash": "66623127024093f5009b909d95e0300c5be579ab752f82a5346f948769c11c17",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -5,
+      -2
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-negative-width-error": {
+   "hash": "311f6c1ac7d921f64421fedca4db27cd059469e9436105ab1f091cfdb8884615",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ir-recycle-scalar-width": {
+   "hash": "834de2758b30dc32fbd9dab0853026f7194fd817d14144ccd9a5216c756c183d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-set-names-na-with-mcols": {
+   "hash": "740413272e241460262bb6367a57fa2225b946268dcfec78cf89fc42a287e9ab",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-start-end": {
+   "hash": "c45e99df07a51eb18c26d8b86c50bca27fb407da29e4e0582c2686231dd98dc6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-start-only-logical-runs": {
+   "hash": "a7364662916f8235668536a591c7ebb85535643118a81cbae85f17c655afac32",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      4
+     ],
+     "width": [
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-start-only-runs": {
+   "hash": "4b70c1e5b61372d69f87b6ae780326c2ea319002c193ffb3d1a356a21c29f8ce",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      7,
+      3,
+      2
+     ],
+     "width": [
+      3,
+      2,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-start-width": {
+   "hash": "2a906f69365e5ed318952c4b535327eda01dfd53c3ec0be936c43be4bd7edd04",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-empty": {
+   "hash": "34e4eb08558d45491f3fb22a93742f5d03bacca69bc1151974f194aa60240f75",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-int": {
+   "hash": "43f6a5448708332039736e263d5bfb980044dd540a6b3d44f3a52083597337c5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      1,
+      3
+     ],
+     "names": [
+      "c",
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-keeps-mcols": {
+   "hash": "aa0260f7d4f8837812f58d57f7066a62fdd71a0b9abd39e3dbd44f09a39636e0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      1,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-logical": {
+   "hash": "c1c40743887ba2a9e6afe10e8e1082a886649f670ec86b75c4baa5cace0ddc4d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-logical-wrong-length-error": {
+   "hash": "a816e1d76993f1d1b763ae0f1bfc0fbac5e581088dfc0e897316abecd5a4c26c",
+   "result": {
+    "error": "subscript is a logical vector with out-of-bounds TRUE values",
+    "warnings": []
+   }
+  },
+  "ir-subset-mixed-sign-error": {
+   "hash": "bba4c0d28a6df65fbf1cea9e08aecf4e7a4ab4c11157f3b25925fadf97c991ca",
+   "result": {
+    "error": "only 0's may be mixed with negative subscripts",
+    "warnings": []
+   }
+  },
+  "ir-subset-na-error": {
+   "hash": "dd1f3aea34d54b2285a0db4cdd23fb8c2373c129aff77685f22562c0f336c551",
+   "result": {
+    "error": "subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "ir-subset-name-without-names-error": {
+   "hash": "3a003fed439240967b15c30d4ee15688cddd500fb43355fce9a5e1b7a0b7f5f8",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "ir-subset-names": {
+   "hash": "88620e8a1dbcfdeba880bc0156fcec65bc4209faff02d0842728bb0c60a13379",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      1
+     ],
+     "width": [
+      1,
+      3
+     ],
+     "names": [
+      "c",
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-negative": {
+   "hash": "1e2ecd3ed781220e8f1600e63913e0b8f0aa46918e7c1ab25d6e8cff07432431",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9
+     ],
+     "width": [
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-out-of-bounds-error": {
+   "hash": "862393d3396f9659391dfdcc607d7581a0478603a7b3d6ce6df319d2b3cc2554",
+   "result": {
+    "error": "subscript contains out-of-bounds indices",
+    "warnings": []
+   }
+  },
+  "ir-subset-repeat-and-order": {
+   "hash": "d5d2bcaca00ec8d31c5a804d46620e80482304a47899da3fe702be60b70eca2f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5,
+      1
+     ],
+     "width": [
+      2,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-subset-unknown-name-error": {
+   "hash": "11dab2de30af76d4a98c0c8b1ac41ca456781523d21c77a09ab8659e466aaf15",
+   "result": {
+    "error": "subscript contains invalid names",
+    "warnings": []
+   }
+  },
+  "ir-subset-zero-dropped": {
+   "hash": "2eccb0987ce0993afbf52a05f0d34877b9851f17f91d2c2ad39ca2c2224b306a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5
+     ],
+     "width": [
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-zero-width": {
+   "hash": "ed5901d5b9b716110f3a626acd703ee00cc44b7d51c02356fdd66b82a8579e99",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      1
+     ],
+     "width": [
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  }
+ }
+}

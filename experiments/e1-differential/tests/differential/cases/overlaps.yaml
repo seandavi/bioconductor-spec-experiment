@@ -1,0 +1,80 @@
+# IRanges overlaps: findOverlaps (types, maxgap, minoverlap, select), countOverlaps,
+# overlapsAny, subsetByOverlaps. Exhaustive small-pool coverage is in grid_overlaps.yaml.
+x_def: &Q
+  q: {IRanges: {start: [1, 5, 9, 15], width: [3, 3, 3, 0], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}}}
+  s: {IRanges: {start: [2, 6, 6, 20], width: [10, 2, 0, 5]}}
+empty_def: &E {IRanges: {start: {int: []}, width: {int: []}}}
+cases:
+  - {id: fo-basic, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-type-start, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: start}}}
+  - {id: fo-type-end, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: end}}}
+  - {id: fo-type-within, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: within}}}
+  - {id: fo-type-equal, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: equal}}}
+  - {id: fo-maxgap-0-adjacent, tags: [findOverlaps], inputs: {q: {IRanges: {start: [1], width: [3]}}, s: {IRanges: {start: [4], width: [3]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 0}}}
+  - {id: fo-default-adjacent-no-hit, tags: [findOverlaps], inputs: {q: {IRanges: {start: [1], width: [3]}}, s: {IRanges: {start: [4], width: [3]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-maxgap-2, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 2}}}
+  - {id: fo-maxgap-large, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 100}}}
+  - {id: fo-minoverlap-2, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {minoverlap: 2}}}
+  - {id: fo-minoverlap-large, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {minoverlap: 1000}}}
+  - {id: fo-minoverlap-within, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: within, minoverlap: 3}}}
+  - {id: fo-maxgap-within, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: within, maxgap: 3}}}
+  - {id: fo-maxgap-start, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: start, maxgap: 4}}}
+  - {id: fo-maxgap-end, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: end, maxgap: 4}}}
+  - {id: fo-maxgap-equal, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: equal, maxgap: 4}}}
+  - {id: fo-select-first, tags: [findOverlaps, select], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: first}}}
+  - {id: fo-select-last, tags: [findOverlaps, select], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: last}}}
+  - {id: fo-select-arbitrary, tags: [findOverlaps, select], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: arbitrary}}}
+  - {id: fo-select-bad-error, tags: [findOverlaps, select, error], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: foo}}}
+  - {id: fo-type-bad-error, tags: [findOverlaps, error], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: foo}}}
+  - {id: fo-any-maxgap-and-minoverlap-error, tags: [findOverlaps, error], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 0, minoverlap: 1}}}
+  - {id: fo-within-maxgap-and-minoverlap-ok, tags: [findOverlaps], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: within, maxgap: 3, minoverlap: 1}}}
+  - {id: fo-maxgap-too-negative-error, tags: [findOverlaps, error], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: -2}}}
+  - {id: fo-minoverlap-negative-error, tags: [findOverlaps, error], inputs: *Q, call: {fn: findOverlaps, args: [$q, $s], kwargs: {minoverlap: -1}}}
+  - {id: fo-empty-query, tags: [findOverlaps, empty], inputs: {e: *E, s: {IRanges: {start: [1], width: [3]}}}, call: {fn: findOverlaps, args: [$e, $s]}}
+  - {id: fo-empty-subject, tags: [findOverlaps, empty], inputs: {e: *E, q: {IRanges: {start: [1], width: [3]}}}, call: {fn: findOverlaps, args: [$q, $e]}}
+  - {id: fo-empty-subject-select-first, tags: [findOverlaps, empty, select], inputs: {e: *E, q: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: findOverlaps, args: [$q, $e], kwargs: {select: first}}}
+  - {id: fo-empty-query-select-last, tags: [findOverlaps, empty, select], inputs: {e: *E, s: {IRanges: {start: [1], width: [3]}}}, call: {fn: findOverlaps, args: [$e, $s], kwargs: {select: last}}}
+  - {id: fo-zero-width-inside, tags: [findOverlaps, zero-width], inputs: {q: {IRanges: {start: [5, 1, 11, 10], width: [0, 0, 0, 0]}}, s: {IRanges: {start: [1], width: [10]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-zero-width-subject, tags: [findOverlaps, zero-width], inputs: {q: {IRanges: {start: [1, 3, 5], width: [10, 3, 0]}}, s: {IRanges: {start: [5, 3, 11], width: [0, 0, 0]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-zero-width-both-same-position, tags: [findOverlaps, zero-width], inputs: {q: {IRanges: {start: [5], width: [0]}}, s: {IRanges: {start: [5], width: [0]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-zero-width-equal-type, tags: [findOverlaps, zero-width], inputs: {q: {IRanges: {start: [5], width: [0]}}, s: {IRanges: {start: [5, 6], width: [0, 0]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: equal}}}
+  - {id: fo-zero-width-minoverlap-1, tags: [findOverlaps, zero-width], inputs: {q: {IRanges: {start: [5], width: [0]}}, s: {IRanges: {start: [1], width: [10]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {minoverlap: 1}}}
+  - {id: fo-hit-order-nested-subjects, tags: [findOverlaps], inputs: {q: {IRanges: {start: [5], width: [2]}}, s: {IRanges: {start: [6, 1, 5, 5, 1, 4], width: [1, 10, 2, 3, 3, 5]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-duplicate-subjects, tags: [findOverlaps], inputs: {q: {IRanges: {start: [5], width: [2]}}, s: {IRanges: {start: [5, 5, 5], width: [2, 2, 2]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-select-duplicate-subjects, tags: [findOverlaps, select], inputs: {q: {IRanges: {start: [5], width: [2]}}, s: {IRanges: {start: [5, 5, 5], width: [2, 2, 2]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: arbitrary}}}
+  - {id: fo-select-arbitrary-nested, tags: [findOverlaps, select], inputs: {q: {IRanges: {start: [5, 2, 7], width: [2, 1, 1]}}, s: {IRanges: {start: [6, 1, 5, 5, 1, 4], width: [1, 10, 2, 3, 3, 5]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {select: arbitrary}}}
+  - {id: fo-unsorted-query, tags: [findOverlaps], inputs: {q: {IRanges: {start: [30, 1, 15], width: [3, 3, 3]}}, s: {IRanges: {start: [16, 2, 31], width: [2, 2, 2]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-int32-extremes, tags: [findOverlaps, int32], inputs: {q: {IRanges: {start: [2147483640], width: [7]}}, s: {IRanges: {start: [2147483645], width: [2]}}}, call: {fn: findOverlaps, args: [$q, $s]}}
+  - {id: fo-int32-huge-maxgap, tags: [findOverlaps, int32], inputs: {q: {IRanges: {start: [-2000000000], width: [3]}}, s: {IRanges: {start: [2000000000], width: [3]}}}, call: {fn: findOverlaps, args: [$q, $s], kwargs: {maxgap: 2147483647}}}
+  - {id: fo-self, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s]}}
+  - {id: fo-self-drop-self, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {drop.self: true}}}
+  - {id: fo-self-drop-self-redundant, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {drop.self: true, drop.redundant: true}}}
+  - {id: fo-self-drop-redundant-only, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {drop.redundant: true}}}
+  - {id: fo-self-within-drop-self, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {type: within, drop.self: true}}}
+  - {id: fo-self-within-drop-redundant, tags: [findOverlaps, self], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {type: within, drop.self: true, drop.redundant: true}}}
+  - {id: fo-self-select-first, tags: [findOverlaps, self, select], inputs: *Q, call: {fn: findOverlaps, args: [$s], kwargs: {select: first}}}
+
+  - {id: count-basic, tags: [countOverlaps], inputs: *Q, call: {fn: countOverlaps, args: [$q, $s]}}
+  - {id: count-maxgap, tags: [countOverlaps], inputs: *Q, call: {fn: countOverlaps, args: [$q, $s], kwargs: {maxgap: 3}}}
+  - {id: count-within, tags: [countOverlaps], inputs: *Q, call: {fn: countOverlaps, args: [$q, $s], kwargs: {type: within}}}
+  - {id: count-minoverlap, tags: [countOverlaps], inputs: *Q, call: {fn: countOverlaps, args: [$q, $s], kwargs: {minoverlap: 3}}}
+  - {id: count-empty-subject, tags: [countOverlaps, empty], inputs: {e: *E, q: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: countOverlaps, args: [$q, $e]}}
+  - {id: count-empty-query, tags: [countOverlaps, empty], inputs: {e: *E, s: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: countOverlaps, args: [$e, $s]}}
+  - {id: count-self, tags: [countOverlaps, self], inputs: *Q, call: {fn: countOverlaps, args: [$s]}}
+  - id: count-unnamed-query
+    tags: [countOverlaps, names]
+    inputs: {q: {IRanges: {start: [1, 5], width: [3, 3]}}, s: {IRanges: {start: [2], width: [10]}}}
+    call: {fn: countOverlaps, args: [$q, $s]}
+  - {id: any-basic, tags: [overlapsAny], inputs: *Q, call: {fn: overlapsAny, args: [$q, $s]}}
+  - {id: any-type-within, tags: [overlapsAny], inputs: *Q, call: {fn: overlapsAny, args: [$q, $s], kwargs: {type: within}}}
+  - {id: any-reversed-within, tags: [overlapsAny], inputs: *Q, call: {fn: overlapsAny, args: [$s, $q], kwargs: {type: within}}}
+  - {id: any-maxgap, tags: [overlapsAny], inputs: *Q, call: {fn: overlapsAny, args: [$q, $s], kwargs: {maxgap: 5}}}
+  - {id: any-empty-subject, tags: [overlapsAny, empty], inputs: {e: *E, q: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: overlapsAny, args: [$q, $e]}}
+  - {id: any-self, tags: [overlapsAny, self], inputs: *Q, call: {fn: overlapsAny, args: [$s]}}
+  - {id: any-bad-args-error, tags: [overlapsAny, error], inputs: *Q, call: {fn: overlapsAny, args: [$q, $s], kwargs: {maxgap: 1, minoverlap: 1}}}
+  - {id: subset-basic, tags: [subsetByOverlaps, names, mcols], inputs: *Q, call: {fn: subsetByOverlaps, args: [$q, $s]}}
+  - {id: subset-invert, tags: [subsetByOverlaps, names, mcols], inputs: *Q, call: {fn: subsetByOverlaps, args: [$q, $s], kwargs: {invert: true}}}
+  - {id: subset-minoverlap, tags: [subsetByOverlaps], inputs: *Q, call: {fn: subsetByOverlaps, args: [$q, $s], kwargs: {minoverlap: 3}}}
+  - {id: subset-type-within, tags: [subsetByOverlaps], inputs: *Q, call: {fn: subsetByOverlaps, args: [$q, $s], kwargs: {type: within}}}
+  - {id: subset-empty-subject, tags: [subsetByOverlaps, empty], inputs: {e: *E, q: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: subsetByOverlaps, args: [$q, $e]}}
+  - {id: subset-empty-subject-invert, tags: [subsetByOverlaps, empty], inputs: {e: *E, q: {IRanges: {start: [1, 2], width: [3, 1]}}}, call: {fn: subsetByOverlaps, args: [$q, $e], kwargs: {invert: true}}}

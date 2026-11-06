@@ -1,0 +1,2542 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "gr-any": {
+   "hash": "9461812b69ea571417a2634f6de396138e9a2c3131ee81dc2bd6615217bf86e9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      false,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-any-self": {
+   "hash": "c58662e0e8ac77d5dcdb9b51219ee7ad8c2af597cd8463ec1131309c5900b03a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-count": {
+   "hash": "9db0a9d9b2e13201362308334a010d6e9247ec6bb58cb80e708908babb53f9d4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      0,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-count-ignore-strand": {
+   "hash": "03cf3b4ae1ba1c5f304db960d237494631f94fe3f2d922c089fe8570a93c31fb",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      1,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage": {
+   "hash": "c34522f3f6f6a918aea751b05a5122ad6510062e7422195f13dc62d83a6a7dcb",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        8,
+        1,
+        8,
+        12,
+        10,
+        61
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        4,
+        5,
+        191
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-explicit-width": {
+   "hash": "cea43971379f4dd5f841a8c0f8bc2f1c9566785135798ab15da76a290a290709",
+   "result": {
+    "error": "'width[1]' cannot be greater than length of underlying circular sequence",
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-ignored": {
+   "hash": "9e7ead3443c6a7af7ed541315af301f8f2d2419700a63f271377acd9aebd79a2",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        2,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-multi-turn": {
+   "hash": "efe59d4d893dc8195c55706a34b353fc26dc0412394baa49a009e277c0698343",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        3,
+        2
+       ],
+       "lengths": [
+        2,
+        3,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-negative-start": {
+   "hash": "814e807f4f9ff25a5e2456e0d2f0de1c2c3618181c5e0bfb6be20d75992c6bca",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        1,
+        4,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-short-width": {
+   "hash": "e895dc313be43373cb5116031d0a1a31f5b1b6ab3960d866b99700cd6fd01b17",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-weight-shift": {
+   "hash": "823a50c22baa01c6037dfbbf3d05ca11744f1f41d53b5ed42fe10022bd49ce06",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        3,
+        4,
+        1,
+        0,
+        3
+       ],
+       "lengths": [
+        2,
+        2,
+        1,
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-circular-wrap-two-pieces": {
+   "hash": "a7799091e80c6e71e5ddb9ef5933d7bd2b27308f27c6433e8054d4809c869883",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        4,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-empty-known-lengths": {
+   "hash": "7b668a445b6ef13111e01dd8264690dff64667e84a081b3888a392f882268cf3",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        100
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        200
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-empty-unknown-lengths": {
+   "hash": "a82f3618fff1b8529347cda6ce4f70ce824940a30c017c0e3acffa375ffb2c6d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-no-seqlengths": {
+   "hash": "9c3b80171cfc9b2c869c139221d825366983d8749199c6706018c5c85d8a5a8f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        1
+       ],
+       "lengths": [
+        4,
+        2,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-oob-clipped": {
+   "hash": "3f65a72eb520b9be777b6402d812e8d9faec0833b74c29de959f1b77cc0f35d1",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        4,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "gr-coverage-runValue": {
+   "hash": "499681bb8a921e67c6d68ae4647e61e278c651bee6fbf1fbb6f9a253cb4e8444",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-shift": {
+   "hash": "3297ecf10f4587bf36da84f74e45d343365206b1c9009a1ae7a17f7ccf51db0c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        8,
+        1,
+        8,
+        12,
+        10,
+        59
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        6,
+        5,
+        189
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-shift-per-range": {
+   "hash": "0273dd81f7cfcdc17077df6aaaab0c56e9eef3b5d572c7551d5f85545fc1fb58",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        8,
+        2,
+        8,
+        14,
+        10,
+        58
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        6,
+        5,
+        189
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-strand-ignored": {
+   "hash": "68418f0e47274778f1871fa83e55a4ecae4e9d8bd275f825d808f0ef2ce8a782",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        0
+       ],
+       "lengths": [
+        3,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-weight": {
+   "hash": "f6c978e768bddf1c7ea60ae63854d7be6437b2c9a7573c6242f9653ad8fa56d5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        0,
+        2,
+        0,
+        2,
+        0
+       ],
+       "lengths": [
+        8,
+        1,
+        8,
+        12,
+        10,
+        61
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        0
+       ],
+       "lengths": [
+        4,
+        5,
+        191
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-weight-mcols-column": {
+   "hash": "219ffddf659da4d178ea4b7047e3e6a4db3c20ee58d998cdbf35bb0b82bb7a1d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        2,
+        0,
+        4,
+        0
+       ],
+       "lengths": [
+        8,
+        1,
+        8,
+        12,
+        10,
+        61
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        4,
+        5,
+        191
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-weight-vector": {
+   "hash": "ec2b926b64b2ed20bb6460832b1a561acd51385f208e5d44251551814620e847",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        2,
+        0,
+        4,
+        0
+       ],
+       "lengths": [
+        8,
+        1,
+        8,
+        12,
+        10,
+        61
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        4,
+        5,
+        191
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-width": {
+   "hash": "8bc19fbd0c0278f7203d358a394cc12b023734ced53ec441ddc634e238530dbe",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        8,
+        1,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        4,
+        5,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        12
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-width-per-seqlevel": {
+   "hash": "cd294a6ba73008c39f3e806238d40489335f1d66e141cefddbf823c5b4377ee8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1
+       ],
+       "lengths": [
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        4,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        7
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-coverage-zero-width": {
+   "hash": "9dd5faa1198137551f53d3eb92b00bf21501ed0ce7b7c3747e737b459ce8ff01",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        1,
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance": {
+   "hash": "d9d020ebddd9c96d2bf2e438b847f7b55f42b49de3df81369ab8e5353b720642",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance-different-seqnames-na": {
+   "hash": "b39ee158d83fac8676dda46080c2bb7094303074196efe21860186a93674f520",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance-empty": {
+   "hash": "f6008f7e0c40165ccff8ff323eed9886872260a563584de0dc1c819aa73e5bd1",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance-ignore-strand": {
+   "hash": "29d969694832f9d0f0e52d845cf44e264551976b20edd9dc1d8adc96d5174aa1",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0,
+      0,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance-recycle-length-1": {
+   "hash": "01dd5903bc74b7a24a8f07df0308c4f9075b706966ac5f1cce784ca8e5d221e7",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      null,
+      null,
+      15
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-distance-star-strand-ok": {
+   "hash": "858c7d93de0d85cd07cf064123c9bb1f4caa91e2d6800a7ad9cb9346364ec1b0",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-duplicated": {
+   "hash": "2ed12e7dec4297526b292de65ffe52595b7463b9df6d0808fd37a85cffd89d1e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      false,
+      true,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-duplicated-from-last": {
+   "hash": "cd2741529303f30e03010a365fc305b30eb45ce7c4b8f42d3cac2b1aeda4b130",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-duplicated-ignore-strand-unused-error": {
+   "hash": "0fd2554979c4723d7ed1babafc6af0be6daaf483e476292ec282715e43a02bdd",
+   "result": {
+    "error": "unused argument (ignore.strand = TRUE)",
+    "warnings": []
+   }
+  },
+  "gr-duplicated-ignores-names-mcols": {
+   "hash": "d19b6f286bab35e13ef1cf782f6e9e4519205af083a199150adc83fab9f4a75a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-any-maxgap-and-minoverlap-error": {
+   "hash": "cb2ca187f8b470573101056b73f29a4311550f273328ee497c5dbc7f243ca050",
+   "result": {
+    "error": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+    "warnings": []
+   }
+  },
+  "gr-fo-basic": {
+   "hash": "fe0f9a6a286447f6e00c13a8a8f40a0a5719b3f00aaca9c11d8cd74fe7e17618",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      5
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-different-seqnames-never-hit-even-with-huge-maxgap": {
+   "hash": "b9f4f8f2d028e7a759286f0c85636cdeb3cb945ffe3af5617f95c43ba00c8358",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-empty-query": {
+   "hash": "5a03c35c800a3db793c36dd720365fe593ba2c89cb2ec3535005bbc416105b83",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 0,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-empty-subject": {
+   "hash": "89571951dbde9c8075ab09cea3b9f4479e1b0a7745e7f98b4deac917bb7919ee",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-empty-subject-select-first": {
+   "hash": "57a0c34214345cb952c04e5f2367470faf66122ca7c71a135e35db5508f2ea78",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-ignore-strand": {
+   "hash": "2f77758cfa11fc622d9cda7f4aa583dc820619b98cf90c7d40fa8822124c3d24",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      1,
+      1,
+      2,
+      3,
+      5
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-maxgap": {
+   "hash": "92d1f35440a35de04bb174e9441414be3e3ba007b12f1df3ac6dee35774355dc",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      4
+     ],
+     "to": [
+      2,
+      5
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-minoverlap": {
+   "hash": "4bd666962066e339ad426aa87a844a557f4592399d27fc1a99f62b40f0a9c953",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      4
+     ],
+     "to": [
+      1,
+      5
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-select-arbitrary": {
+   "hash": "dd0dd87d9ba51bebdc36bfd8885738982e4e41c478442746fc7289c179ae45c0",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      null,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-select-first": {
+   "hash": "1691a91f5a80650de549bc5212363e83e7d48fbe1802a045ffddf8d0a732726a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      null,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-select-last": {
+   "hash": "65cbf49cb4777528f2b1f5f3964bf08646224ffa0f1d013be5b0070f3c162897",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      null,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-self": {
+   "hash": "afde41189a16542faff356cc28e4e3167dba036d58500023119ede35dbe38d59",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-self-drop-self": {
+   "hash": "8e64ddd7eb32d9a80911c66aaa13f88235eca7db7ee98e1e84323d36c42a0f31",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      4
+     ],
+     "to": [
+      2,
+      1,
+      4,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-seqinfo-disjoint-warns": {
+   "hash": "cbe5823327470149d65507411873b20f02b2148445be8db60740247fd2659ca8",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": [
+     "Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr2\n  - in 'y': chr3\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."
+    ]
+   }
+  },
+  "gr-fo-seqlength-conflict-error": {
+   "hash": "7285b937662e3a5d7bced6912252378b7ccfdea6b9949b2e151270f86da02474",
+   "result": {
+    "error": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 10\n  - in 'y': 20",
+    "warnings": []
+   }
+  },
+  "gr-fo-star-matches-any-strand": {
+   "hash": "7c6211a9d72680ccea9275492e7061d43367c822eb1744097a2b69953a81b564",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      3
+     ],
+     "to": [
+      1,
+      3,
+      2,
+      3,
+      1,
+      2,
+      3
+     ],
+     "nLnode": 3,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-type-error": {
+   "hash": "ace2c715117190296d1b77785227641f046c5beb8a575d543034261610b7ceb6",
+   "result": {
+    "error": "'arg' should be one of \u201cany\u201d, \u201cstart\u201d, \u201cend\u201d, \u201cwithin\u201d, \u201cequal\u201d",
+    "warnings": []
+   }
+  },
+  "gr-fo-type-within": {
+   "hash": "8aa30c363ca6b82d0d9dcbfe97757a67a2c586da70a1fa49e819fab1b5f3a3f4",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-fo-zero-width": {
+   "hash": "016b759d0c61de76b8d0e707624b89b5f7314bdea21d5df05e5ecb7007b1a463",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow": {
+   "hash": "f62070f0aec7ba685339af2c8ff41b8fa473f70435b0ec61d320589d3f3fc172",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      5,
+      null,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-all": {
+   "hash": "0e1cc296c8cc584c992f2dc9a3191f320b518c99155f9f50c984d7ff96a301d7",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      4,
+      4
+     ],
+     "to": [
+      5,
+      1,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-empty-range-at-1-first-seqlevel": {
+   "hash": "561b7035691581e3e42e29fcd011b4fff9cb8ae1a33b89b7fce3230433904680",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-empty-range-at-1-second-seqlevel": {
+   "hash": "9df3398ad07fbe97f8c78c7c25307f0cdec40846dd3b7dc003b7cd6939d9ed3a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-empty-subject-all": {
+   "hash": "a42f4814a8251198d71b4b0a2ffbbb3e65db123791540fd0d06de123e05229e4",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-ignore-strand": {
+   "hash": "7295fecc235c3ce0a9fc8962f5a6f07644ea4f5da1c9b224ee58ce957cb6f892",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null,
+      null,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-minus-strand-looks-right": {
+   "hash": "5b3cadb22f07434f390beb6325d27b6e73366a4145a66216d2c20ffc8b48cac1",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-follow-self": {
+   "hash": "82de3c6297f4c05626d03a444c33958ce820a3caf869e0ada05c31087e3653dc",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      4,
+      null,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest": {
+   "hash": "4f09ebdbcadfaebabe4ed41956245ca8a320729464708e7140159468b3e0570b",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      null,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-all": {
+   "hash": "3b4f8fd282e8f1ca05868562e69bc344c913882c9de83ae18d9a937b1d099615",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      5
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-empty-query": {
+   "hash": "a055befa7c92ff03fd4824556d9a5c82fdbb46a4725d0d85e98a7c08867c0d17",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-empty-subject": {
+   "hash": "7916d0eef3c517900771b0ee32c8212efb731beafec8ab8d85ffc8935f753cc7",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-empty-subject-all": {
+   "hash": "154bc6824ef127cfa767a51651f650d4928d50cf5568da61c834171f8c486d28",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-ignore-strand": {
+   "hash": "3b57a4e00c00d311efbc8a96b0751aa6d663c9c359176e1ffba0a8825df2a508",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      3,
+      5
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-other-seqname-only": {
+   "hash": "f0efb747011d9cbdd2b5dc84b3e78f116bf18c45f2fd670e5cf36d6b21fef54f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-select-first-error": {
+   "hash": "a76864da0daeca259f94f63ff0af074238cc0f7091911263c9162db8019c774c",
+   "result": {
+    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "gr-nearest-self": {
+   "hash": "d3d0fa0ae262fd6629107bd1d9608e65d4740f716660439484a00783b4be63f8",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      4,
+      null,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-tie-all": {
+   "hash": "b42fb74d0105064bb64f1045f712a1b7836c4e4b8907017d5490c74596a80499",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-tie-prefers-lower-index": {
+   "hash": "370af9f0300cae41c111f9c7b54e31f548f177c409c3fc121386e8866c9f9ede",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-nearest-tie-prefers-lower-index-swapped": {
+   "hash": "c1cfae7d34751bc902acd8ae47de1f00709248f80eb781e258962e33b5847f9f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-order": {
+   "hash": "0ad45a46ceb09c2e13763efba563b3b324c04efbeeca50dbd3b5addd5977364f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      4,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-order-decreasing": {
+   "hash": "a062a82e1d92448eca7e08df25fce100ba8a154ee46e5e7a464cac3998b1387b",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      4,
+      2,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-order-empty": {
+   "hash": "b8914577eda39f4b405ea7057d928166eb7ebebf7a25a71d41f41d2789a3ffa3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-order-ignore-strand-unused-error": {
+   "hash": "4dd97ee57292732dcbd705c3f9153fd8e1937c0fb40cdce8d7bb9ebd48993348",
+   "result": {
+    "error": "argument lengths differ",
+    "warnings": []
+   }
+  },
+  "gr-order-seqlevels-custom-order": {
+   "hash": "628b2d073bd66dfd64c277647ee21c4bffd6035b2cdc9455a2b20a1e7572db04",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      4,
+      3,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-order-strand-before-start": {
+   "hash": "66efba976f204ee5abbb8085e6251531f9ea9bd86695a07227b6ac4e7f780d2d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede": {
+   "hash": "57735fc51b97381100576ac36d16c080007f97aa08e215572e5326eb8b8aed5e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      null,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-all": {
+   "hash": "9227f30ead66f29747527a5c0c79ef40270accb45ba7b0d14dbabd2e623799d1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-empty-range-at-1-second-seqlevel": {
+   "hash": "6bb91c70e75cd2d077d0d34e4327ea03404ffea2a83c362e25e5725492fed5b4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-empty-subject": {
+   "hash": "93a267697c99cc3247cc25a2168adedc42740ceabe5abbab7cdcb3d1d0769937",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-ignore-strand": {
+   "hash": "42214c961df5e2f5eee1114573cda8494042bd442120ba64b68da9cb1656b6ef",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      5,
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-minus-strand-looks-left": {
+   "hash": "c9da34f9d1d2c70f78d2203a83d16606d8183e73fbd69caf319a217a843dcb6d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-plus-ignores-minus-subjects": {
+   "hash": "32dad97237048d109ea624a789edcde4800a191b5e918f8394eed8dbbe9b6d7f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-self": {
+   "hash": "26edd37d68ff56f8b0669f22f069876eb2cbc3d94134e779749b14e1c15b0473",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      4,
+      null,
+      null,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-precede-star-query-both-sides": {
+   "hash": "d8bba6de8fe741c1ddcacd5f0dc9290d71efb9cbbaa7859a27edfc337c550817",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      2
+     ],
+     "nLnode": 1,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "gr-rank-empty": {
+   "hash": "ad01bd76ad6cf934498368d2b9a4f3acc5e07848c3155e7417df16a001fa56a1",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-rank-ignore-strand": {
+   "hash": "00de6edf2483aad86c0c359ae3d481784e3b25136e0489679c35a83c337b83d6",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-rank-min": {
+   "hash": "a1c9f23408d73bc792719a28dfa7905f6435021a78550c1ec0491e7f0066ff34",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      4,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-rank-strand-matters": {
+   "hash": "ca6fba958d52bd5ab0e08e64ea92140615dcb933fe71ce0180e53d0bb377fa0b",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      3,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "gr-sort": {
+   "hash": "80cd6a52fb44bc1e56bf632f9e2b244b01a8c9e58058ec0c267cf88b96f9f8f5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      10,
+      30,
+      5
+     ],
+     "width": [
+      8,
+      8,
+      10,
+      5
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "b",
+      "d",
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        4,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-sort-decreasing": {
+   "hash": "2de27428959a4b3e5e41a2e705b73d28d874b007ce8afcbc85663f2e46b01819",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr2",
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      5,
+      30,
+      10,
+      1
+     ],
+     "width": [
+      5,
+      10,
+      8,
+      8
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-",
+      "+"
+     ],
+     "names": [
+      "c",
+      "d",
+      "b",
+      "a"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3,
+        4,
+        2,
+        1
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-sort-empty": {
+   "hash": "9767b274f1dabe96f7d41f02011a41bd5b3a71f38a6cce382592307cce09105f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-sort-ignore-strand": {
+   "hash": "a742bb5c383498ea720f523f99c2836818e26e924e03dbc636f313d9386cc237",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      10,
+      30,
+      5
+     ],
+     "width": [
+      8,
+      8,
+      10,
+      5
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+"
+     ],
+     "names": [
+      "a",
+      "b",
+      "d",
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        4,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-subset-by-overlaps": {
+   "hash": "b3bd92d98219a25e44bf242b6531fa7a040439d5fe673cfc69abe8121cecdd79",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      30
+     ],
+     "width": [
+      8,
+      8,
+      10
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-subset-by-overlaps-ignore-strand": {
+   "hash": "e4025c7bd206c4ab2405c1864a84df7424353072a32996074dd561acd38f73ab",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      10,
+      5,
+      30
+     ],
+     "width": [
+      8,
+      8,
+      5,
+      10
+     ],
+     "strand": [
+      "+",
+      "-",
+      "+",
+      "*"
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-subset-by-overlaps-invert": {
+   "hash": "84f8c7c865ccbf434a37f1c09b36d6fad86dc0ef11ee3636de44226038766867",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr2"
+     ],
+     "start": [
+      5
+     ],
+     "width": [
+      5
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": [
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-unique": {
+   "hash": "49284a3626fca0dcf1d5b1aa15f8575c6cba705eff3075d10388b56a15d246e1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "strand": [
+      "+",
+      "-"
+     ],
+     "names": [
+      "a",
+      "b"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gr-unique-from-last": {
+   "hash": "22ada78bc38fcd180c1809eec94e77c441085fd009259fa882bceb607e3627bc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      5,
+      1
+     ],
+     "width": [
+      2,
+      1
+     ],
+     "strand": [
+      "-",
+      "+"
+     ],
+     "names": [
+      "c",
+      "d"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  }
+ }
+}

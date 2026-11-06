@@ -1,0 +1,47 @@
+# GRanges parallel set ops: compatibility = same seqname and non-conflicting strand ("*" matches anything).
+one_def: &ONE {GRanges: {seqnames: [chr1], start: [5], width: [10], strand: ["+"], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}
+cases:
+  - {id: gr-punion, tags: [punion, names, mcols], inputs: {p: &p {GRanges: {seqnames: [chr1, chr1, chr2, chr1], start: [1, 10, 5, 30], width: [8, 8, 5, 10], strand: ["+", "+", "-", "*"], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}, q: &q {GRanges: {seqnames: [chr1, chr1, chr2, chr1], start: [5, 16, 8, 35], width: [10, 3, 10, 10], strand: ["+", "*", "-", "-"], names: [A, B, C, D], mcols: {k: [5, 6, 7, 8]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}}, call: {fn: punion, args: [$p, $q]}}
+  - {id: gr-pintersect, tags: [pintersect, names, mcols], inputs: {p: *p, q: *q}, call: {fn: pintersect, args: [$p, $q]}}
+  - {id: gr-psetdiff, tags: [psetdiff, names, mcols], inputs: {p: *p, q: *q}, call: {fn: psetdiff, args: [$p, $q]}}
+  - {id: gr-punion-ignore-strand, tags: [punion, strand], inputs: {p: *p, q: *q}, call: {fn: punion, args: [$p, $q], kwargs: {ignore.strand: true}}}
+  - {id: gr-pintersect-ignore-strand, tags: [pintersect, strand], inputs: {p: *p, q: *q}, call: {fn: pintersect, args: [$p, $q], kwargs: {ignore.strand: true}}}
+  - {id: gr-psetdiff-ignore-strand, tags: [psetdiff, strand], inputs: {p: *p, q: *q}, call: {fn: psetdiff, args: [$p, $q], kwargs: {ignore.strand: true}}}
+  - {id: gr-pintersect-strict-strand, tags: [pintersect, strand], inputs: {p: *p, q: *q}, call: {fn: pintersect, args: [$p, $q], kwargs: {strict.strand: true}}}
+  - {id: gr-pintersect-drop-nohit, tags: [pintersect], inputs: {p: *p, q: *q}, call: {fn: pintersect, args: [$p, $q], kwargs: {drop.nohit.ranges: true}}}
+  - {id: gr-pintersect-nohit-mixed, tags: [pintersect], inputs: {p: *p, q2: &q2 {GRanges: {seqnames: [chr2, chr1, chr2, chr1], start: [5, 12, 8, 35], width: [10, 3, 10, 10], strand: ["+", "*", "-", "-"], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, null]}}}}, call: {fn: pintersect, args: [$p, $q2]}}
+  - {id: gr-pintersect-nohit-mixed-drop, tags: [pintersect], inputs: {p: *p, q2: *q2}, call: {fn: pintersect, args: [$p, $q2], kwargs: {drop.nohit.ranges: true}}}
+  - {id: gr-punion-incompatible-seqname-error, tags: [punion, error], inputs: {p: *p, q2: *q2}, call: {fn: punion, args: [$p, $q2]}}
+  - {id: gr-punion-incompatible-strand-error, tags: [punion, error, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["-"]}}}, call: {fn: punion, args: [$a, $b]}}
+  - {id: gr-punion-plus-minus-ignore-strand, tags: [punion, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["-"]}}}, call: {fn: punion, args: [$a, $b], kwargs: {ignore.strand: true}}}
+  - {id: gr-punion-gap-error, tags: [punion, error], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [20], width: [5], strand: ["+"]}}}, call: {fn: punion, args: [$a, $b]}}
+  - {id: gr-punion-fill-gap, tags: [punion], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [20], width: [5], strand: ["+"]}}}, call: {fn: punion, args: [$a, $b], kwargs: {fill.gap: true}}}
+  - {id: gr-punion-keeps-x-strand-star, tags: [punion, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["*"]}}, b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["+"]}}}, call: {fn: punion, args: [$a, $b]}}
+  - {id: gr-pintersect-star-x-takes-y-strand, tags: [pintersect, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["*"]}}, b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["+"]}}}, call: {fn: pintersect, args: [$a, $b]}}
+  - {id: gr-psetdiff-star-x-takes-y-strand, tags: [psetdiff, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["*"]}}, b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["+"]}}}, call: {fn: psetdiff, args: [$a, $b]}}
+  - {id: gr-psetdiff-incompatible-unchanged, tags: [psetdiff, strand], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["-"]}}}, call: {fn: psetdiff, args: [$a, $b]}}
+  - {id: gr-psetdiff-split-error, tags: [psetdiff, error], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [4], width: [3], strand: ["+"]}}}, call: {fn: psetdiff, args: [$a, $b]}}
+  - {id: gr-psetdiff-split-incompatible-no-error, tags: [psetdiff, error], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["+"]}}, b: {GRanges: {seqnames: [chr2], start: [4], width: [3], strand: ["+"], seqinfo: {seqnames: [chr2, chr1]}}}}, call: {fn: psetdiff, args: [$a, $b]}}
+  - {id: gr-pintersect-disjoint-pair-not-a-hit, tags: [pintersect], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [7], width: [3], strand: ["+"]}}}, call: {fn: pintersect, args: [$a, $b]}}
+  - {id: gr-pintersect-adjacent-pair-is-hit, tags: [pintersect], inputs: {a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [6], width: [3], strand: ["+"]}}}, call: {fn: pintersect, args: [$a, $b]}}
+  - {id: gr-pintersect-zero-width-x, tags: [pintersect, zero-width], inputs: {a: {GRanges: {seqnames: [chr1], start: [5], width: [0], strand: ["+"]}}, b: {GRanges: {seqnames: [chr1], start: [1], width: [10], strand: ["+"]}}}, call: {fn: pintersect, args: [$a, $b]}}
+  - {id: gr-pintersect-recycle-y, tags: [pintersect, recycle], inputs: {p: *p, one: *ONE}, call: {fn: pintersect, args: [$p, $one]}}
+  - {id: gr-punion-recycle-y-error, tags: [punion, error], inputs: {p: *p, one: *ONE}, call: {fn: punion, args: [$p, $one]}}
+  - {id: gr-psetdiff-recycle-y-error, tags: [psetdiff, error], inputs: {p: *p, one: *ONE}, call: {fn: psetdiff, args: [$p, $one]}}
+  - {id: gr-pintersect-length-mismatch-error, tags: [pintersect, error], inputs: {p: *p, q: *q}, call: {fn: pintersect, args: [$p, {call: {fn: "[", args: [$q, [1, 2]]}}]}}
+  - {id: gr-pintersect-empty, tags: [pintersect, empty], inputs: {p: *p}, call: {fn: pintersect, args: [{call: {fn: "[", args: [$p, {int: []}]}}, {call: {fn: "[", args: [$p, {int: []}]}}]}}
+  - {id: gr-punion-empty, tags: [punion, empty], inputs: {p: *p}, call: {fn: punion, args: [{call: {fn: "[", args: [$p, {int: []}]}}, {call: {fn: "[", args: [$p, {int: []}]}}]}}
+  - {id: gr-psetdiff-empty, tags: [psetdiff, empty], inputs: {p: *p}, call: {fn: psetdiff, args: [{call: {fn: "[", args: [$p, {int: []}]}}, {call: {fn: "[", args: [$p, {int: []}]}}]}}
+  - id: gr-punion-seqinfo-merged-warns
+    tags: [punion, seqinfo, warning]
+    check_warnings: true
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], strand: ["+"], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}
+      b: {GRanges: {seqnames: [chr1], start: [3], width: [5], strand: ["+"], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 50]}}}
+    call: {fn: seqinfo, args: [{call: {fn: punion, args: [$a, $b]}}]}
+  - id: gr-pintersect-seqlength-conflict-error
+    tags: [pintersect, seqinfo, error]
+    inputs:
+      a: {GRanges: {seqnames: [chr1], start: [1], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [100]}}}
+      b: {GRanges: {seqnames: [chr1], start: [3], width: [5], seqinfo: {seqnames: [chr1], seqlengths: [50]}}}
+    call: {fn: pintersect, args: [$a, $b]}

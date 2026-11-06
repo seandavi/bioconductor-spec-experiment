@@ -1,0 +1,98 @@
+# IRanges inter-range ops: range, reduce, gaps, disjoin.
+# X = overlapping, adjacent and zero-width ranges: 5/0 1/10 20/0 12/3 13/2.
+x_def: &X
+  x: {IRanges: {start: [5, 1, 20, 12, 13], width: [0, 10, 0, 3, 2], names: [a, b, c, d, e], mcols: {m: [1, 2, 3, 4, 5]}}}
+cases:
+  - {id: range-basic, tags: [range], inputs: *X, call: {fn: range, args: [$x]}}
+  - {id: range-empty, tags: [range, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: range, args: [$x]}}
+  - {id: range-single-zero-width, tags: [range, zero-width], inputs: {x: {IRanges: {start: [20], width: [0]}}}, call: {fn: range, args: [$x]}}
+  - {id: range-zero-width-extends-end, tags: [range, zero-width], inputs: {x: {IRanges: {start: [1, 20], width: [3, 0]}}}, call: {fn: range, args: [$x]}}
+  - id: range-two-args
+    tags: [range]
+    inputs: {x: {IRanges: {start: [1], width: [5]}}, y: {IRanges: {start: [10], width: [3]}}}
+    call: {fn: range, args: [$x, $y]}
+
+  - {id: reduce-default, tags: [reduce, zero-width], inputs: *X, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-drop-empty, tags: [reduce, zero-width], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true}}}
+  - {id: reduce-min-gapwidth-0, tags: [reduce], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-min-gapwidth-2, tags: [reduce], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 2}}}
+  - {id: reduce-min-gapwidth-6, tags: [reduce], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 6}}}
+  - {id: reduce-min-gapwidth-negative-error, tags: [reduce, error], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: -1}}}
+  - {id: reduce-revmap, tags: [reduce, revmap], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-revmap-all-merged, tags: [reduce, revmap], inputs: *X, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true, min.gapwidth: 10}}}
+  - {id: reduce-drops-names-mcols, tags: [reduce, names, mcols], inputs: *X, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-empty, tags: [reduce, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-empty-revmap, tags: [reduce, empty, revmap], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-single-zero-width, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [20], width: [0]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-two-separate-zero-width, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [1, 5], width: [0, 0]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-duplicate-zero-width, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [1, 1], width: [0, 0]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-duplicate-zero-width-gap0, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [1, 1], width: [0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-adjacent-zero-width-gap0, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [1, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-zero-width-at-end-plus-1, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [4, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-zero-width-at-end-plus-1-gap0, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [4, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-zero-width-at-end-plus-2, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [5, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-zero-width-at-start, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [1, 1], width: [3, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-zero-width-inside-gap0, tags: [reduce, zero-width], inputs: {x: {IRanges: {start: [2, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-adjacent, tags: [reduce], inputs: {x: {IRanges: {start: [1, 4], width: [3, 3]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-adjacent-gap0, tags: [reduce], inputs: {x: {IRanges: {start: [1, 4], width: [3, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0}}}
+  - {id: reduce-gap1-default, tags: [reduce], inputs: {x: {IRanges: {start: [1, 5], width: [3, 3]}}}, call: {fn: reduce, args: [$x]}}
+  - {id: reduce-gap1-mingap2, tags: [reduce], inputs: {x: {IRanges: {start: [1, 5], width: [3, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 2}}}
+  - {id: reduce-gap1-mingap1-explicit, tags: [reduce], inputs: {x: {IRanges: {start: [1, 5], width: [3, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 1}}}
+  - {id: reduce-nested-ranges, tags: [reduce], inputs: {x: {IRanges: {start: [1, 3, 8], width: [10, 2, 1]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-revmap-zero-width-ties, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [1, 7, 7, 4], width: [0, 0, 0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-revmap-drop-empty, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [1, 7, 7, 4], width: [0, 0, 0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true, drop.empty.ranges: true}}}
+  - {id: reduce-revmap-start-ties, tags: [reduce, revmap], inputs: {x: {IRanges: {start: [3, 3, 3, 1], width: [5, 2, 5, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-revmap-unsorted-input, tags: [reduce, revmap], inputs: {x: {IRanges: {start: [20, 1, 10, 2], width: [3, 4, 5, 6]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-all-empty-drop, tags: [reduce, zero-width, empty], inputs: {x: {IRanges: {start: [1, 5], width: [0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true}}}
+  - {id: reduce-negative-coords, tags: [reduce], inputs: {x: {IRanges: {start: [-5, -2, 10], width: [4, 3, 2]}}}, call: {fn: reduce, args: [$x]}}
+
+  - {id: gaps-default, tags: [gaps, zero-width], inputs: *X, call: {fn: gaps, args: [$x]}}
+  - {id: gaps-start, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 0}}}
+  - {id: gaps-end, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {end: 30}}}
+  - {id: gaps-start-end, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 0, end: 30}}}
+  - {id: gaps-window-inside-cover, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 5, end: 12}}}
+  - {id: gaps-window-in-gap, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 15, end: 18}}}
+  - {id: gaps-window-after, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 22, end: 30}}}
+  - {id: gaps-window-negative, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: -10, end: -5}}}
+  - {id: gaps-window-reversed, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 10, end: 5}}}
+  - {id: gaps-window-empty, tags: [gaps, zero-width], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 10, end: 9}}}
+  - {id: gaps-window-far-reversed, tags: [gaps], inputs: *X, call: {fn: gaps, args: [$x], kwargs: {start: 10, end: 3}}}
+  - {id: gaps-empty-x, tags: [gaps, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: gaps, args: [$x]}}
+  - {id: gaps-empty-x-window, tags: [gaps, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1, end: 10}}}
+  - {id: gaps-empty-x-start-only, tags: [gaps, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1}}}
+  - {id: gaps-empty-x-end-only, tags: [gaps, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: gaps, args: [$x], kwargs: {end: 5}}}
+  - {id: gaps-full-cover, tags: [gaps], inputs: {x: {IRanges: {start: [1], width: [10]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1, end: 10}}}
+  - {id: gaps-only-zero-width, tags: [gaps, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1, end: 10}}}
+  - {id: gaps-only-zero-width-default, tags: [gaps, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: gaps, args: [$x]}}
+  - {id: gaps-only-zero-width-start-only, tags: [gaps, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1}}}
+  - {id: gaps-range-sticks-out, tags: [gaps], inputs: {x: {IRanges: {start: [1], width: [10]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1, end: 5}}}
+  - {id: gaps-range-sticks-out-end, tags: [gaps], inputs: {x: {IRanges: {start: [1], width: [10]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 1, end: 11}}}
+  - {id: gaps-adjacent-ranges, tags: [gaps], inputs: {x: {IRanges: {start: [1, 4], width: [3, 3]}}}, call: {fn: gaps, args: [$x], kwargs: {start: 0, end: 8}}}
+  - {id: gaps-unsorted-overlapping, tags: [gaps], inputs: {x: {IRanges: {start: [10, 1, 3], width: [3, 4, 5]}}}, call: {fn: gaps, args: [$x]}}
+
+  - {id: disjoin-default, tags: [disjoin, zero-width], inputs: *X, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-revmap, tags: [disjoin, revmap, zero-width], inputs: *X, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-empty, tags: [disjoin, empty], inputs: {x: {IRanges: {start: {int: []}, width: {int: []}}}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-zero-width-only, tags: [disjoin, zero-width], inputs: {x: {IRanges: {start: [1, 1]}, width: [0, 0]}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-nested, tags: [disjoin], inputs: {x: {IRanges: {start: [1, 2], width: [5, 2]}}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-overlap-1, tags: [disjoin], inputs: {x: {IRanges: {start: [1, 5], width: [5, 3]}}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-adjacent-revmap, tags: [disjoin, revmap], inputs: {x: {IRanges: {start: [1, 6], width: [5, 3]}}}, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-zero-width-splits-revmap, tags: [disjoin, revmap, zero-width], inputs: {x: {IRanges: {start: [3, 1, 3], width: [0, 5, 0]}}}, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-single-zero-width-revmap, tags: [disjoin, revmap, zero-width], inputs: {x: {IRanges: {start: [3], width: [0]}}}, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-zero-width-at-start, tags: [disjoin, zero-width], inputs: {x: {IRanges: {start: [1, 1], width: [0, 5]}}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-zero-width-at-end-plus-1, tags: [disjoin, zero-width], inputs: {x: {IRanges: {start: [6, 1], width: [0, 5]}}}, call: {fn: disjoin, args: [$x]}}
+  - {id: disjoin-duplicates-revmap, tags: [disjoin, revmap], inputs: {x: {IRanges: {start: [1, 1, 3], width: [4, 4, 5]}}}, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-unsorted-revmap, tags: [disjoin, revmap], inputs: {x: {IRanges: {start: [10, 1, 5], width: [5, 7, 8]}}}, call: {fn: disjoin, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: disjoin-drops-names-mcols, tags: [disjoin, names, mcols], inputs: *X, call: {fn: disjoin, args: [$x]}}
+  - {id: reduce-empty-duplicates-gap0-revmap, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [5, 5, 5, 5], width: [0, 3, 0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0, with.revmap: true}}}
+  - {id: reduce-empty-pairs-gap0-revmap, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [5, 5, 6, 6], width: [0, 0, 0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0, with.revmap: true}}}
+  - {id: reduce-empty-pairs-gap1-revmap, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [5, 5, 6, 6], width: [0, 0, 0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 1, with.revmap: true}}}
+  - {id: reduce-empty-pairs-gap2-revmap, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [5, 5, 6, 6], width: [0, 0, 0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 2, with.revmap: true}}}
+  - {id: reduce-triple-empty-gap0-revmap, tags: [reduce, revmap, zero-width], inputs: {x: {IRanges: {start: [1, 1, 1], width: [0, 0, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {min.gapwidth: 0, with.revmap: true}}}
+  - {id: reduce-nonempty-duplicates-revmap, tags: [reduce, revmap], inputs: {x: {IRanges: {start: [3, 3, 3], width: [2, 5, 2]}}}, call: {fn: reduce, args: [$x], kwargs: {with.revmap: true}}}
+  - {id: reduce-drop-empty-trailing-empty-extends-end, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, min.gapwidth: 2, with.revmap: true}}}
+  - {id: reduce-drop-empty-bridges-gap, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [1, 5, 8], width: [3, 0, 2]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, min.gapwidth: 4, with.revmap: true}}}
+  - {id: reduce-drop-empty-chain-of-empties, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [1, 5, 7, 9, 11], width: [3, 0, 0, 0, 2]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, min.gapwidth: 3, with.revmap: true}}}
+  - {id: reduce-drop-empty-leading-empty-keeps-nonempty-start, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [0, 1], width: [0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, min.gapwidth: 3, with.revmap: true}}}
+  - {id: reduce-drop-empty-cluster-of-only-empties-vanishes, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [1, 2, 20], width: [0, 0, 3]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, with.revmap: true}}}
+  - {id: reduce-drop-empty-no-bridge-at-gapwidth-1, tags: [reduce, zero-width, quirk], inputs: {x: {IRanges: {start: [1, 5], width: [3, 0]}}}, call: {fn: reduce, args: [$x], kwargs: {drop.empty.ranges: true, with.revmap: true}}}

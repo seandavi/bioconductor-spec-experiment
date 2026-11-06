@@ -1,0 +1,725 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "distance-adjacent-is-zero": {
+   "hash": "5797b3f46e3e65b3c8433fac1d4c659d3a9007c1fe70743347bbd06f831ba338",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-basic": {
+   "hash": "feeb7b0178f083f01181efe468a8577050a223b1cdf864db38b347a415ccefa5",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      0,
+      6
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-empty-both": {
+   "hash": "fd7e8533f27e548d88e1498dc9a355a0d4aa63e5eb88d9cba5256ef8d389d081",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-empty-first": {
+   "hash": "2c5e78fea9a947e199e94667073925cfb94025f9987381a13854b23039162735",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-int32-extremes": {
+   "hash": "e9204ab60454bdeef77f8e883df2f3c60d042802c4791de46dec1468d2a84f0d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": [
+     "NAs produced by integer overflow"
+    ]
+   }
+  },
+  "distance-negative-coords": {
+   "hash": "b011486e47e77215c1bc50e4d055412322f566bde35a2c6984eb9d63bf6cd558",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      13
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-overlap-is-zero": {
+   "hash": "0de5590ea44729f7365ef6edf3bb2ea497143138d35ba832f76c55b8938005cf",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-recycle-nonmultiple-warns": {
+   "hash": "4d19cabc2ab027c702b7a7361ed1abdc66123d24d89a090a2cdf5158b61b0774",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      1,
+      13
+     ],
+     "names": null
+    },
+    "warnings": [
+     "an argument will be fractionally recycled",
+     "an argument will be fractionally recycled"
+    ]
+   }
+  },
+  "distance-recycle-scalar": {
+   "hash": "ebbb737166146afd6d921878578dd77b0a6a203c11b760dc09ee1a170c56a78d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      13
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "distance-zero-width": {
+   "hash": "b0f54dd941123b77b3350b08b85d011bbb02266c552b5643474142dad1cab48a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "follow-adjacent": {
+   "hash": "19c4204f8107238f1494cdc5f88f7476b7a4cf3eee8e3032fdf4422ec75c64d3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "follow-all": {
+   "hash": "954c80fd7ebe9316c7994a51b3d322e3e1066fd964b90137cd71d0212d3fb6f3",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2,
+      2
+     ],
+     "to": [
+      2,
+      3,
+      2,
+      3
+     ],
+     "nLnode": 3,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "follow-basic": {
+   "hash": "9d15acc42c4a65eea8656f9e48fb73ed7c0513b282faadfa2674da0afafbf2de",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      3,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "follow-empty-subject": {
+   "hash": "46d7f9d606f14c75702299b8ec900e27174d9284400226944b1a5589558e807f",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "follow-select-first-error": {
+   "hash": "c485ab29126755492a41ed2a9192cce976a9760e90815c333b8c8f5164624de4",
+   "result": {
+    "error": "'arg' should be one of \u201clast\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "follow-self": {
+   "hash": "0729c4e646a3493b8a19941a7439d6d82c108f771960c8d5a3fdb9e07a006511",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      1,
+      2,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "follow-tie-takes-last-index": {
+   "hash": "5a21a40066f2adbe02a2b35e36e6b17bd0c36d38f78e0f443a3cbf80cbd0b4a3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-adjacent-counts-as-overlap": {
+   "hash": "63fcf62c0aa0c9e790e9002acfce464d922c4128fd3892a22ce5d4340ef74013",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-empty-query": {
+   "hash": "5fae70df8f071ed9015e1e8aa2be955c2ad8816ee7a2abc6319c049d264c0f4d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-empty-subject": {
+   "hash": "a13f29555178aaa10f7decfe0393ceb6dcd7abe30451ef7dfff2987de89b1a55",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-empty-subject-all": {
+   "hash": "6ce7aeeb33245b01cfbbbdae284ab4bd24e863f15adc801d2cd9541e087637b6",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 2,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "nearest-far-both-sides": {
+   "hash": "479580aa1dce9447c5aa6cb87261c3123abd57bd6ed7660695990ef9a16fe131",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-int32-extremes": {
+   "hash": "6ef1674062bfd809c21771d2fe30f49a44d1339b699ad9103133fb84d134eeaa",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": [
+     "NAs produced by integer overflow"
+    ]
+   }
+  },
+  "nearest-left-right-tie-all": {
+   "hash": "8e31d961990f4fb7d362e347c0beaefea34dd6e285f54844ce8cdece7bf91972",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1
+     ],
+     "to": [
+      1,
+      2,
+      3
+     ],
+     "nLnode": 1,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "nearest-left-right-tie-arbitrary": {
+   "hash": "5d3abd3438e5c734552c8aa050f448a2027573731d7fdc8549a01b390e5545c9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-left-right-tie-arbitrary-swapped": {
+   "hash": "e4c2888eddcc9ed89483be114e608457e8012ec0bba245236a62cd887db8b559",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-only-left": {
+   "hash": "db67e4eefb74b3128c74e378df61d1b1033115a4ca8bbd4b85e22f9eb3d70273",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-only-right": {
+   "hash": "e1036d942f93e3d47d7c2875b5804703cc4a93fa45954cd71457c99567e16874",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-overlap-all-includes-adjacent": {
+   "hash": "be08ff9d2c1f7cfda69af381f575a5df8c78284ec5b90efd6619baff4b5442b0",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1
+     ],
+     "to": [
+      1,
+      2
+     ],
+     "nLnode": 1,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "nearest-overlap-beats-adjacent": {
+   "hash": "20d57cc95e3b872150e39f1f71087de7f3b9f99726ffd22c47ae2409cf87cff8",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-select-first-error": {
+   "hash": "559b2571c75da46c2c1f5abc3e2104e3055f4473e88e7d656011aa230f2dac7c",
+   "result": {
+    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "nearest-self": {
+   "hash": "e6e8e993f966e506aaf2d0b7290537d75a8022db71b3b70f54c3143a5dc86eb6",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      1,
+      2,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-self-all": {
+   "hash": "c2c56371a533d896b936c1ee7d06bf8cc35b4329f315dd7c231e8bcd71a6f5ee",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      2,
+      1,
+      3,
+      2,
+      3
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "nearest-self-single": {
+   "hash": "f49502c6565436c38b63279b3af0929f8b4016826a0f9799bf78029c629cd861",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-unsorted-subject": {
+   "hash": "ffe851e8bbb087c7f9bdaca5100147a7e64b37e638bca8091c5617d5e244d3e9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-zero-width-query": {
+   "hash": "91d17853beabd6d9a85255230cadae96fa88e6276d771676631a0b8cc9a38538",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "nearest-zero-width-subject": {
+   "hash": "169960a11e8de47cb767970efc917beef051e41f736c58435cb806757c94efde",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-adjacent": {
+   "hash": "d618cac9cd9448f96f539448467863b9466be922d4a220a5c7c62f57328d3499",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-all": {
+   "hash": "527f2fb918e1128cd2c3c4af306e0ebcf6d5dcd47ec00a12305afb57a173f22b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2,
+      3
+     ],
+     "to": [
+      1,
+      3,
+      2,
+      4
+     ],
+     "nLnode": 3,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "precede-basic": {
+   "hash": "05f379f21cb16497425c2842bfbfe2ba79ecde6dd489719e39a98c67d245f5f0",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      4
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-empty-subject": {
+   "hash": "58e2f8ec112d02e374c5750b25b62666f49bbcdca72b700445e8195a98aebaea",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-empty-subject-all": {
+   "hash": "dc4439d9595845e29b56eb780ad0bc9988fd0fe7e02292fcf4504f58629c4211",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "precede-overlapping-not-preceded": {
+   "hash": "23bd9357d560e03621f8786e510972fafc721f6f51c2b94d0af77d8167dff2d2",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-select-last-error": {
+   "hash": "2bfb86165c06a53bb871a90bd3c18b903a0d3f344d2ec0d4ede3dd4047a4c166",
+   "result": {
+    "error": "'arg' should be one of \u201cfirst\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "precede-self": {
+   "hash": "3888ef90cd88e63c76e5ce910d24d849b03eb3ff364cdb80cf19d0bd0f6772ef",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      2,
+      3,
+      4,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-self-empty-range-precedes-itself": {
+   "hash": "a0ef2787fc65847757b42b55a34edbd92a53371b85107e6b6c447ee04a85d6b3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-tie-takes-first-index": {
+   "hash": "0a6ff0ca562f0533b87df3d3ea9b3419ccf7f4e356bb4999dab5d9dc0249774d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "precede-zero-width-x": {
+   "hash": "b11897cd77dc513eac493d2ddfccaced5ad5fe602ced08cd007117d1a5d02531",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  }
+ }
+}
