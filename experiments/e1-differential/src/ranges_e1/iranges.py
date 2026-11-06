@@ -9,7 +9,7 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import inter, intra
+from ._kernels import inter, intra, setops
 from ._meta import INT_MAX, Names
 
 
@@ -294,3 +294,41 @@ class IRanges:
         red = inter.disjoin(self._group0(), self._start, self._width, with_revmap)
         mc = _meta.revmap_frame(red.members) if with_revmap else None
         return self._new(red.start, red.width, None, mc)
+
+    # -- set operations ------------------------------------------------------
+    def _set_op(self, other: IRanges, fn: Any) -> Self:
+        _, s, w = fn(self._group0(), self._start, self._width, other._group0(), other._start, other._width)
+        return self._new(s, w)
+
+    def union(self, other: IRanges) -> Self:
+        return self._set_op(other, setops.union)
+
+    def intersect(self, other: IRanges) -> Self:
+        return self._set_op(other, setops.intersect)
+
+    def setdiff(self, other: IRanges) -> Self:
+        return self._set_op(other, setops.setdiff)
+
+    def _check_parallel(self, other: IRanges) -> None:
+        if len(self) != len(other):
+            raise ValueError("'x' and 'y' must have the same length")
+
+    def _parallel_result(self, s: np.ndarray, w: np.ndarray) -> Self:
+        """p* results keep x's names; mcols are dropped."""
+        return self._new(s, w, self._names, None)
+
+    def punion(self, other: IRanges, fill_gap: bool = False) -> Self:
+        self._check_parallel(other)
+        if not isinstance(fill_gap, (bool, np.bool_)):
+            raise ValueError("'fill.gap' must be TRUE or FALSE")
+        return self._parallel_result(*setops.punion(self._start, self._width, other._start, other._width, bool(fill_gap)))
+
+    def pintersect(self, other: IRanges, resolve_empty: str = "none") -> Self:
+        self._check_parallel(other)
+        return self._parallel_result(
+            *setops.pintersect(self._start, self._width, other._start, other._width, resolve_empty)
+        )
+
+    def psetdiff(self, other: IRanges) -> Self:
+        self._check_parallel(other)
+        return self._parallel_result(*setops.psetdiff(self._start, self._width, other._start, other._width))

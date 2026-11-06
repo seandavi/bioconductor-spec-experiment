@@ -1,0 +1,81 @@
+# IRanges set ops: union, intersect, setdiff, and parallel versions (see also grid_parallel.yaml).
+# X = 1/5 8/2 20/0 25/3 ; Y = 3/10 9/5 20/0 40/2
+x_def: &XY
+  x: {IRanges: {start: [1, 8, 20, 25], width: [5, 2, 0, 3], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}}}
+  y: {IRanges: {start: [3, 9, 20, 40], width: [10, 5, 0, 2]}}
+empty_def: &E {IRanges: {start: {int: []}, width: {int: []}}}
+cases:
+  - {id: union-basic, tags: [union], inputs: *XY, call: {fn: union, args: [$x, $y]}}
+  - {id: intersect-basic, tags: [intersect], inputs: *XY, call: {fn: intersect, args: [$x, $y]}}
+  - {id: setdiff-xy, tags: [setdiff], inputs: *XY, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: setdiff-yx, tags: [setdiff], inputs: *XY, call: {fn: setdiff, args: [$y, $x]}}
+  - {id: union-drops-names-mcols, tags: [union, names, mcols], inputs: *XY, call: {fn: union, args: [$x, $x]}}
+  - {id: union-with-empty, tags: [union, empty], inputs: {x: {IRanges: {start: [1, 8, 20], width: [5, 2, 0]}}, e: *E}, call: {fn: union, args: [$x, $e]}}
+  - {id: intersect-with-empty, tags: [intersect, empty], inputs: {x: {IRanges: {start: [1, 8], width: [5, 2]}}, e: *E}, call: {fn: intersect, args: [$x, $e]}}
+  - {id: setdiff-x-minus-empty, tags: [setdiff, empty], inputs: {x: {IRanges: {start: [1, 8, 20], width: [5, 2, 0]}}, e: *E}, call: {fn: setdiff, args: [$x, $e]}}
+  - {id: setdiff-empty-minus-x, tags: [setdiff, empty], inputs: {x: {IRanges: {start: [1, 8], width: [5, 2]}}, e: *E}, call: {fn: setdiff, args: [$e, $x]}}
+  - {id: union-both-empty, tags: [union, empty], inputs: {e: *E}, call: {fn: union, args: [$e, $e]}}
+  - {id: intersect-both-empty, tags: [intersect, empty], inputs: {e: *E}, call: {fn: intersect, args: [$e, $e]}}
+  - {id: union-zero-width-only, tags: [union, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: union, args: [$x, $x]}}
+  - {id: intersect-zero-width-in-range, tags: [intersect, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}, y: {IRanges: {start: [1], width: [10]}}}, call: {fn: intersect, args: [$x, $y]}}
+  - {id: setdiff-range-minus-zero-width, tags: [setdiff, zero-width], inputs: {x: {IRanges: {start: [1], width: [10]}}, y: {IRanges: {start: [5], width: [0]}}}, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: setdiff-zero-width-minus-range, tags: [setdiff, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}, y: {IRanges: {start: [1], width: [10]}}}, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: union-adjacent-merges, tags: [union], inputs: {x: {IRanges: {start: [1], width: [3]}}, y: {IRanges: {start: [4], width: [3]}}}, call: {fn: union, args: [$x, $y]}}
+  - {id: intersect-adjacent-empty, tags: [intersect], inputs: {x: {IRanges: {start: [1], width: [3]}}, y: {IRanges: {start: [4], width: [3]}}}, call: {fn: intersect, args: [$x, $y]}}
+  - {id: union-gap-stays, tags: [union], inputs: {x: {IRanges: {start: [1], width: [3]}}, y: {IRanges: {start: [5], width: [2]}}}, call: {fn: union, args: [$x, $y]}}
+  - {id: setdiff-tail, tags: [setdiff], inputs: {x: {IRanges: {start: [1], width: [6]}}, y: {IRanges: {start: [4], width: [3]}}}, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: setdiff-split, tags: [setdiff], inputs: {x: {IRanges: {start: [1], width: [20]}}, y: {IRanges: {start: [3, 10], width: [3, 3]}}}, call: {fn: setdiff, args: [$x, $y]}}
+  - {id: intersect-multiple, tags: [intersect], inputs: {x: {IRanges: {start: [1, 10], width: [5, 6]}}, y: {IRanges: {start: [3, 12], width: [9, 2]}}}, call: {fn: intersect, args: [$x, $y]}}
+  - {id: union-unsorted-overlapping, tags: [union], inputs: {x: {IRanges: {start: [30, 1, 4], width: [2, 3, 3]}}, y: {IRanges: {start: [31, 100], width: [10, 1]}}}, call: {fn: union, args: [$x, $y]}}
+  - {id: intersect-negative-coords, tags: [intersect], inputs: {x: {IRanges: {start: [-10], width: [15]}}, y: {IRanges: {start: [-3], width: [10]}}}, call: {fn: intersect, args: [$x, $y]}}
+  - {id: setdiff-self, tags: [setdiff], inputs: *XY, call: {fn: setdiff, args: [$x, $x]}}
+  - {id: intersect-self, tags: [intersect], inputs: *XY, call: {fn: intersect, args: [$x, $x]}}
+
+  - id: punion-basic
+    tags: [parallel]
+    inputs: &P
+      p: {IRanges: {start: [1, 5, 10, 20], width: [5, 3, 0, 4], names: [a, b, c, d], mcols: {m: [1, 2, 3, 4]}}}
+      q: {IRanges: {start: [3, 8, 10, 22], width: [5, 3, 0, 10], names: [w, x, y, z]}}
+    call: {fn: punion, args: [$p, $q]}
+  - {id: punion-fill-gap, tags: [punion], inputs: *P, call: {fn: punion, args: [$p, $q], kwargs: {fill.gap: true}}}
+  - {id: pintersect-basic, tags: [pintersect, names, mcols], inputs: *P, call: {fn: pintersect, args: [$p, $q]}}
+  - {id: psetdiff-basic, tags: [psetdiff, names, mcols], inputs: *P, call: {fn: psetdiff, args: [$p, $q]}}
+  - {id: punion-length-mismatch-error, tags: [punion, error], inputs: *P, call: {fn: punion, args: [$p, {call: {fn: "[", args: [$q, [1, 2]]}}]}}
+  - {id: pintersect-length-mismatch-error, tags: [pintersect, error], inputs: *P, call: {fn: pintersect, args: [$p, {call: {fn: "[", args: [$q, [1]]}}]}}
+  - {id: psetdiff-length-mismatch-error, tags: [psetdiff, error], inputs: *P, call: {fn: psetdiff, args: [$p, {call: {fn: "[", args: [$q, [1]]}}]}}
+  - id: punion-gap-error
+    tags: [punion, error]
+    inputs: {p: {IRanges: {start: [1], width: [3]}}, q: {IRanges: {start: [5], width: [2]}}}
+    call: {fn: punion, args: [$p, $q]}
+  - id: pintersect-ambiguous-error
+    tags: [pintersect, error]
+    inputs: {p: {IRanges: {start: [1], width: [3]}}, q: {IRanges: {start: [5], width: [2]}}}
+    call: {fn: pintersect, args: [$p, $q]}
+  - id: pintersect-ambiguous-bad-resolve-error
+    tags: [pintersect, error]
+    inputs: {p: {IRanges: {start: [1], width: [3]}}, q: {IRanges: {start: [5], width: [2]}}}
+    call: {fn: pintersect, args: [$p, $q], kwargs: {resolve.empty: foo}}
+  - id: pintersect-bad-resolve-not-needed
+    tags: [pintersect]
+    inputs: {p: {IRanges: {start: [1], width: [3]}}, q: {IRanges: {start: [2], width: [5]}}}
+    call: {fn: pintersect, args: [$p, $q], kwargs: {resolve.empty: foo}}
+  - id: psetdiff-split-error
+    tags: [psetdiff, error]
+    inputs: {p: {IRanges: {start: [1], width: [10]}}, q: {IRanges: {start: [4], width: [3]}}}
+    call: {fn: psetdiff, args: [$p, $q]}
+  - id: punion-fill-gap-not-logical-error
+    tags: [punion, error]
+    inputs: {p: {IRanges: {start: [1], width: [3]}}}
+    call: {fn: punion, args: [$p, $p], kwargs: {fill.gap: a}}
+  - id: pintersect-empty
+    tags: [pintersect, empty]
+    inputs: {e: *E}
+    call: {fn: pintersect, args: [$e, $e]}
+  - id: punion-empty
+    tags: [punion, empty]
+    inputs: {e: *E}
+    call: {fn: punion, args: [$e, $e]}
+  - id: psetdiff-empty
+    tags: [psetdiff, empty]
+    inputs: {e: *E}
+    call: {fn: psetdiff, args: [$e, $e]}
