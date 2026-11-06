@@ -79,6 +79,11 @@ def _named_or_plain(v):
     return _arg(v)
 
 
+def _per_seqlevel(x, v):
+    """GRanges `gaps`/`coverage` take per-seqlevel bounds as dicts keyed by seqlevel; keep R names."""
+    return _named_or_plain(v) if isinstance(x, GRanges) and v is not MISSING else v
+
+
 def _series(name: str, v) -> pl.Series:
     if isinstance(v, pl.Series):
         return v.alias(name)
@@ -415,7 +420,8 @@ class Adapter(AdapterBase):
         return _revmap_to_r_base(res, with_revmap)
 
     def op_gaps(self, *, x, start=MISSING, end=MISSING, ignore_strand=MISSING):
-        return _send(x, "gaps", start=start, end=end, ignore_strand=ignore_strand)
+        return _send(x, "gaps", start=_per_seqlevel(x, start), end=_per_seqlevel(x, end),
+                     ignore_strand=ignore_strand)
 
     def op_disjoin(self, *, x, with_revmap=MISSING, ignore_strand=MISSING):
         res = _send(x, "disjoin", with_revmap=with_revmap, ignore_strand=ignore_strand)
@@ -486,7 +492,7 @@ class Adapter(AdapterBase):
 
     # ---- coverage ----------------------------------------------------------
     def op_coverage(self, *, x, shift=MISSING, width=MISSING, weight=MISSING):
-        return _send(x, "coverage", shift=shift, width=width, weight=weight)
+        return _send(x, "coverage", shift=shift, width=_per_seqlevel(x, width), weight=weight)
 
     # ---- ordering ----------------------------------------------------------
     def op_order(self, *dots, decreasing=MISSING):
