@@ -8,7 +8,8 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _inter, _intra, _order, _setops, _validate as V
+from . import _inter, _intra, _order, _overlaps, _setops, _validate as V
+from .hits import Hits
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -226,6 +227,73 @@ class IRanges:
         """R ``psetdiff``: elementwise difference; error if it would split a range."""
         s, w = _setops.psetdiff_k(self._start, self._width, other._start, other._width)
         return IRanges._make(s, w, self._pnames(other))
+
+    # ----- overlaps ---------------------------------------------------------
+    def find_overlaps(
+        self,
+        subject: IRanges | None = None,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",
+        select: str = "all",
+        drop_self: bool = False,
+        drop_redundant: bool = False,
+    ) -> Hits | np.ndarray:
+        """R ``findOverlaps(query=self, subject)``.
+
+        ``select="all"`` gives ``Hits`` (0-based, sorted by query then subject;
+        R's within-query subject order is an implementation artifact);
+        otherwise an int array parallel to self with ``NO_MATCH`` for no hit.
+        With ``subject=None`` self is queried against itself and
+        ``drop_self`` / ``drop_redundant`` are allowed."""
+        if subject is None:
+            qi, si = _overlaps.overlap_pairs(
+                self._start, self._width, self._start, self._width, type, maxgap, minoverlap
+            )
+            keep = np.ones(len(qi), dtype=bool)
+            if drop_self:
+                keep &= qi != si
+            if drop_redundant:
+                keep &= qi <= si
+            qi, si = qi[keep], si[keep]
+            nsub = len(self)
+        else:
+            if drop_self or drop_redundant:
+                raise ValueError("'drop_self' and 'drop_redundant' require 'subject' to be omitted")
+            qi, si = _overlaps.overlap_pairs(
+                self._start, self._width, subject._start, subject._width, type, maxgap, minoverlap
+            )
+            nsub = len(subject)
+        if select == "all":
+            return Hits(qi, si, len(self), nsub)
+        return _overlaps.select_hits(qi, si, len(self), select, NO_MATCH)
+
+    def count_overlaps(
+        self, subject: IRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any"
+    ) -> np.ndarray:
+        """R ``countOverlaps``: number of subject hits per query range."""
+        qi, _ = _overlaps.overlap_pairs(
+            self._start, self._width, subject._start, subject._width, type, maxgap, minoverlap
+        )
+        return np.bincount(qi, minlength=len(self)).astype(np.int64)
+
+    def overlaps_any(
+        self, subject: IRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any"
+    ) -> np.ndarray:
+        """R ``overlapsAny``: bool per query range."""
+        return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
+
+    def subset_by_overlaps(
+        self,
+        ranges: IRanges,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",
+        invert: bool = False,
+    ) -> IRanges:
+        """R ``subsetByOverlaps(x=self, ranges)``."""
+        hit = self.overlaps_any(ranges, maxgap, minoverlap, type)
+        return self._take(np.flatnonzero(~hit if invert else hit))
 
     # ----- ordering ---------------------------------------------------------
     def _order_keys(self) -> list[np.ndarray]:

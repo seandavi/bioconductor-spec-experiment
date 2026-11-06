@@ -43,3 +43,21 @@ Format: `## YYYY-MM-DD HH:MM — topic`.
   `pintersect`).
 - `rank` default `ties_method="first"` (R: must be specified); `order(decreasing=True)`
   keeps ties in original order, like R.
+
+## 2026-11-05 23:55 — implementer: overlap predicate (derived empirically in R)
+
+The IRanges C code isn't readable here, so the `findOverlaps` predicate was
+inferred from small ad hoc R tables (one subject, sweep of query starts/widths)
+and is documented in `_overlaps.py`. Notable points:
+- `type="any"`: closed-interval overlap `qs <= se+g+1 and ss <= qe+g+1`; this
+  makes a width-0 query at p overlap `[a,b]` iff `a < p <= b`.
+- `maxgap` for start/end/equal = max allowed |difference| (-1 acts as 0).
+- `type="within"`: `maxgap` bounds how much wider the subject may be, but
+  **maxgap=0 acts as unlimited** (same as -1) — R quirk, reproduced and tested.
+- `minoverlap` is an extra conjunct (`overlap length >= m`) for every type.
+- Hits order: R does *not* sort subjects within a query (e.g. self-overlaps
+  give 1,3,2,5 for query 1). We always sort by (query, subject) and treat that
+  as a deliberate deviation; tests compare as sorted pairs.
+- `select="arbitrary"` returns the first hit.
+- Hypothesis brute-force test caught a kernel bug (candidate bound for
+  `type="end"` with empty subjects); fixed.
