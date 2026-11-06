@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import math
 from typing import Any
 
 SKIP_KEYS = {"kind", "warnings", "message", "candidates", "type"}
@@ -29,13 +28,12 @@ def _eq(a: Any, b: Any) -> bool:
         return a is b
     if isinstance(a, bool) != isinstance(b, bool):
         return False
-    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
-        return a == b or math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12)
-    return bool(a == b)
+    return bool(a == b)  # exact: ints (coordinates, indices) and R's full-precision doubles
 
 
 def _canon(v: Any) -> Any:
-    return sorted((_canon(e) for e in v), key=repr) if isinstance(v, list) else v
+    """`set` mode: ignore member order inside each element, keep the outer (row) order."""
+    return [sorted(e, key=repr) if isinstance(e, list) else e for e in v]
 
 
 def compare(spec: dict[str, Any], golden: dict[str, Any], actual: dict[str, Any]) -> list[str]:
@@ -51,6 +49,9 @@ def compare(spec: dict[str, Any], golden: dict[str, Any], actual: dict[str, Any]
     shared = [k for k in g if k in a and modes.get(k) != "ignore"]
     if cmp.get("rows") == "multiset":
         row_fields = [k for k in shared if isinstance(g[k], list) and not k.startswith("seqinfo.")]
+        lengths = {k: (len(g[k]), len(a[k])) for k in row_fields}
+        if len({n for pair in lengths.values() for n in pair}) > 1:
+            return problems + [f"rows (multiset): row-field lengths differ (golden, actual): {lengths}"]
         gr = sorted(map(repr, zip(*(g[k] for k in row_fields), strict=False)))
         ar = sorted(map(repr, zip(*(a[k] for k in row_fields), strict=False)))
         if gr != ar:
