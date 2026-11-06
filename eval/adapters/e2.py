@@ -417,7 +417,7 @@ class Adapter(AdapterBase):
         return _call(x, "resize", width=_ls(width), fix=_ls(fix), use_names=_sc(use_names),
                      ignore_strand=_sc(ignore_strand))
 
-    def op_flank(self, *, x, width=MISSING, start=MISSING, both=MISSING, use_names=MISSING, ignore_strand=MISSING):
+    def op_flank(self, *, x, width=MISSING, start=MISSING, both=MISSING, ignore_strand=MISSING):
         return _call(x, "flank", width=_ls(width), start=_ls(start), both=_sc(both), ignore_strand=_sc(ignore_strand))
 
     def op_promoters(self, *, x, upstream=MISSING, downstream=MISSING):
