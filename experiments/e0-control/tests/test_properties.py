@@ -118,7 +118,18 @@ def test_distance_is_symmetric_and_zero_when_overlapping(spec):
     x = make(spec)
     y = x[::-1]
     assert (x.distance(y) == y.distance(x)[::-1]).all()
-    assert (x.distance(x) == 0).all()
+    # R (2.47.3): empty ranges never overlap, so an empty range is at distance 1 from itself
+    assert (x.distance(x) == (x.width == 0).astype(int)).all()
+
+
+@SETTINGS
+@given(irange_lists)
+def test_distance_is_gap_plus_one_unless_overlapping(spec):
+    x = make(spec)
+    y = x[::-1]
+    lo = np.maximum(x.start, y.start)
+    hi = np.minimum(x.end, y.end)
+    assert (x.distance(y) == np.where(lo <= hi, 0, lo - hi)).all()
 
 
 # ---- GRanges ----------------------------------------------------------------------
