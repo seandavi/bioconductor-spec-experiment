@@ -92,3 +92,35 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-PSETDIFF-4 | y strictly inside x (would split it) is an error, including zero-width y | `?"setops"` |
 | IR-PSETDIFF-5 | zero-width y at x's start edge or beyond its end is not an error | `?"setops"` |
 | IR-SETDIFF-5 | `setdiff` handles nested/multiple overlaps on coverage | `?"setops"` |
+| IR-FO-ANY-1 | `findOverlaps` default (`type="any"`, `maxgap=-1`) hits ranges sharing at least one position | `?findOverlaps` |
+| IR-FO-ANY-2 | adjacent ranges (gap 0) do not overlap by default | `?findOverlaps` |
+| IR-FO-ANY-3 | zero-width range hits only a range strictly containing its position (needs a position on both sides); `maxgap=0` also hits boundaries; `minoverlap>=1` never hits | `?findOverlaps` |
+| IR-FO-ANY-4 | `maxgap=g`: hit iff gap `<= g` (gap = distance between nearest ends, 0 when adjacent) | `?findOverlaps` |
+| IR-FO-ANY-5 | `minoverlap=m`: hit iff shared width `>= m` | `?findOverlaps` |
+| IR-FO-ERR-1 | `maxgap < -1`, `minoverlap < 0`, both non-default with type any, bad `type`/`select` are errors | `?findOverlaps` |
+| IR-FO-START-1 | `type="start"` (default maxgap 0): starts equal | `?findOverlaps` |
+| IR-FO-START-2 | `type="start"`, `maxgap=g`: `abs(start diff) <= g`; ranges need not overlap | `?findOverlaps` |
+| IR-FO-END-1 | `type="end"`: ends equal | `?findOverlaps` |
+| IR-FO-END-2 | `type="end"`, `maxgap=g`: `abs(end diff) <= g` | `?findOverlaps` |
+| IR-FO-END-3 | start/end types with zero-width queries compare coordinates (`[s, s-1]`) | `?findOverlaps` |
+| IR-FO-WITHIN-1 | `type="within"`: query inside subject (`ss <= qs`, `qe <= se`) | `?findOverlaps` |
+| IR-FO-WITHIN-2 | `within` + `maxgap=g>0`: also `subject width - query width <= g`; `maxgap` 0 or -1 means no limit (R quirk) | `?findOverlaps` |
+| IR-FO-WITHIN-3 | zero-width query within a subject includes its boundaries; zero-width subject contains no non-empty query | `?findOverlaps` |
+| IR-FO-EQUAL-1 | `type="equal"` (default maxgap 0): same start and end | `?findOverlaps` |
+| IR-FO-EQUAL-2 | `equal` + `maxgap=g`: both start and end differences `<= g` | `?findOverlaps` |
+| IR-FO-EQUAL-3 | zero-width equal compares `[s, s-1]` | `?findOverlaps` |
+| IR-FO-MINOV-1 | `minoverlap` also applies to start/end/within/equal types | `?findOverlaps` |
+| IR-FO-ORDER-1 | all-hits are sorted by query then subject; Hits carry query/subject lengths | `?findOverlaps` |
+| IR-FO-ORDER-2 | `findOverlaps(x)` with no subject uses x as subject (self hits included) | `?findOverlaps` |
+| IR-FO-EMPTY-1 | zero-length query or subject gives zero hits; lengths preserved | `?findOverlaps` |
+| IR-FO-SELECT-1 | `select="first"`: lowest subject index per query; NA when no hit | `?findOverlaps` |
+| IR-FO-SELECT-2 | `select="last"`: highest subject index per query; NA when no hit | `?findOverlaps` |
+| IR-FO-SELECT-3 | `select="arbitrary"`: some hit per query (implementation-defined; ADR-0005) | `?findOverlaps` |
+| IR-FO-SELECT-4 | `select` with zero-length query or subject | `?findOverlaps` |
+| IR-COUNT-1 | `countOverlaps` = number of hits per query, same args as findOverlaps | `?countOverlaps` |
+| IR-COUNT-2 | `countOverlaps` with empty subject is all zero; no subject = self | `?countOverlaps` |
+| IR-COUNT-3 | R names the counts by query names; Python does not (ADR-0009) | `?countOverlaps` |
+| IR-OVANY-1 | `overlapsAny` = count > 0 | `?overlapsAny` |
+| IR-OVANY-2 | `overlapsAny` with zero-length query is zero-length | `?overlapsAny` |
+| IR-SUBSET-1 | `subsetByOverlaps` keeps queries with a hit, preserving order, names, mcols | `?subsetByOverlaps` |
+| IR-SUBSET-2 | `subsetByOverlaps(invert=TRUE)` keeps queries without a hit | `?subsetByOverlaps` |

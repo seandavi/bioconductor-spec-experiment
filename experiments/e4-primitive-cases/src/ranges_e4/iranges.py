@@ -8,7 +8,8 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, inter, intra, setops
+from . import _mcols, inter, intra, overlaps, setops
+from .hits import Hits
 from ._arrays import as_int, recycle
 
 
@@ -264,6 +265,35 @@ class IRanges:
 
     def psetdiff(self, y: Self) -> Self:
         return self._parallel(setops.psetdiff(self._coords(), y._coords()))
+
+    # overlaps ------------------------------------------------------------
+    def _overlap_pairs(self, subject: Self, maxgap: int, minoverlap: int, type: str) -> tuple[np.ndarray, np.ndarray]:
+        return overlaps.overlap_pairs(
+            self._start, self._width, subject._start, subject._width, int(maxgap), int(minoverlap), type
+        )
+
+    def find_overlaps(
+        self, subject: Self | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any", select: str = "all"
+    ) -> Hits | np.ndarray:
+        subject = self if subject is None else subject
+        q, s = self._overlap_pairs(subject, maxgap, minoverlap, type)
+        if select == "all":
+            return Hits(q, s, len(self), len(subject))
+        return overlaps.select_hits(q, s, len(self), select)
+
+    def count_overlaps(self, subject: Self | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any") -> np.ndarray:
+        subject = self if subject is None else subject
+        q, _ = self._overlap_pairs(subject, maxgap, minoverlap, type)
+        return np.bincount(q, minlength=len(self)).astype(np.int64)
+
+    def overlaps_any(self, subject: Self | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any") -> np.ndarray:
+        return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
+
+    def subset_by_overlaps(
+        self, subject: Self | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any", invert: bool = False
+    ) -> Self:
+        keep = self.overlaps_any(subject, maxgap, minoverlap, type)
+        return self[~keep if invert else keep]
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

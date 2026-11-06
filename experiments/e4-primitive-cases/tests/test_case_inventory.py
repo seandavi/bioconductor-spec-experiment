@@ -16,7 +16,7 @@ TARGET_OPS = {
     "promoters": "-PROMOTERS-", "range": "-RANGE-", "reduce": "-REDUCE-", "gaps": "-GAPS-",
     "disjoin": "-DISJOIN-", "union": "-UNION-", "intersect": "-INTERSECT-",
     "setdiff": "-SETDIFF-", "findOverlaps": "-FO-", "countOverlaps": "-COUNT-",
-    "overlapsAny": "-ANY-", "subsetByOverlaps": "-SUBSET-", "nearest": "-NEAREST-",
+    "overlapsAny": "-OVANY-", "subsetByOverlaps": "-SUBSET-", "nearest": "-NEAREST-",
     "precede": "-PRECEDE-", "follow": "-FOLLOW-", "distance": "-DISTANCE-",
     "coverage": "-COV-", "order": "-ORDER-", "sort": "-SORT-", "rank": "-RANK-",
     "duplicated": "-DUP-", "unique": "-UNIQUE-", "trim": "-TRIM-",
