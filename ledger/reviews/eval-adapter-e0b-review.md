@@ -1,0 +1,15 @@
+# e0b adapter review — changes requested
+
+1. **P1 · Thinness — `eval/adapters/e0b.py:82,225`: silent deduplication.** Named bounds and input metadata pairs become dictionaries without checking duplicate names; the last value wins before the port sees the input. Probe: two `v` metadata columns become only the second column. **Fix:** reject duplicate-key forms as `Unsupported` when the native mapping/frame cannot represent them; never silently collapse them. No duplicate metadata columns were found in the resolved inputs inspected.
+
+2. **P2 · Translation — `eval/adapters/e0b.py:385-386,439-440`: GRanges-only mapping translation also runs for IRanges.** A named scalar width/bound becomes a dictionary although `IRanges.coverage/gaps` require integers. Probe: named `width=10` raises `TypeError`; native `coverage(width=10)` succeeds. **Fix:** use `_mapping_or_arg` only for GRanges; use `_arg` for IRanges.
+
+3. **P2 · Translation — `eval/adapters/e0b.py:57-58`: scalar conversion can lose declared double storage.** `RVector("dbl", [1])` becomes Python `int`; coverage consequently projects an integer Rle, whereas native `weight=1.0` produces a double Rle. **Fix:** preserve the RVector storage type when unboxing non-NA numeric scalars. This was a synthetic probe; no such integer-encoded singleton double was found in resolved calls.
+
+4. **P2 · Unsupported — `eval/adapters/e0b.py:266-267`: factor seqnames are unnecessarily rejected.** The adapter already represents factors as Enum Series, and public `GRanges(seqnames, ranges)` accepts their string sequence directly (verified). This blocks resolved case `e2/granges-core/gr.ctor.factor-seqnames-levels`. **Fix:** pass the Series/string sequence through; leave the port's inferred seqlevel ordering and unused-level behavior untouched, even if wrong.
+
+5. **P2 · Unsupported — `eval/adapters/e0b.py:98-99,250-251`: supported metadata representations are blocked.** Constructor metadata rejects native Enum/List Series, although both public range constructors accept them in `mcols` (Enum verified). Standalone unnamed IntegerList inputs also lack a builder despite the existing List(Int64) translation at line 220. **Fix:** accept native supported Series in `_mcols_mapping` and add `build_IntegerList` using `_column_series`; retain unsupported declarations where names cannot be represented.
+
+No output-side sorting, clipping, deduplication, recomputation, or exception-to-value substitution found. Index shifts, NO_HIT translation, strand/Seqinfo input construction, revmap projection, and omission of absent defaults otherwise match the documented API. The four static setter exclusions have no direct public counterparts.
+
+Validation: `cd eval && just roundtrip e0b` exited 0 (5,866 distinct inputs; no failures). `cd eval && just adapter-check e0b` exited 0 (9,650 cases; 0 adapter errors, 1,327 unsupported, 1,727 port errors). Synthetic public-API probes: `/tmp/e0b-review-probes.py` and `/tmp/e0b-review-probes.log`. Both worktrees remain tracked-clean; no staged files. No source edits/commits, prohibited commands, expected values, scored results, or port tests were used.

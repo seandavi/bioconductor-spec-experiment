@@ -323,3 +323,48 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
   must stay thin; E1/E2/E4 adapters may not reuse those ports' own
   conformance adapters. Sol reviews thinness first (score inflation),
   then translation bugs (score deflation).
+
+## 2026-11-06 — Eval phase 2 (adapters) done; first-pass matrix
+
+- 7 adapters, 21 child runs (write/review/revise). Each branch touched only
+  `eval/adapters/<port>.{py,md}`; merged onto `eval` with `--no-ff`.
+  Transcript audit: no adapter writer read expected.jsonl or scored
+  results, ran `just run`/`report`, or read port tests/cases/goldens/ADRs.
+  They did read `build/results/<port>.jsonl` from `adapter-check` (raw
+  port outputs, no R values; permitted). Frozen ports still clean at tags.
+- Sol's adapter reviews caught thinness violations that would have
+  inflated scores, e.g. e0 adapter's `dict(zip(...))` silently deduping
+  repeated names; scalar NA strand → Python None letting the port default
+  to `*` where its vector form raises. All fixed before scoring.
+- Self-tests re-run before scoring: r_echo 9650/9650, mutant 0 disagreements.
+- 0 adapter_error for every port.
+
+Headline (heldout; fidelity = pass / (pass + mismatch + port_error_unexpected)):
+
+| port | heldout pass | fidelity on supported | all-pool pass |
+|---|---|---|---|
+| e1 | 85.1% | 97.2% | 89.3% |
+| e2 | 82.5% | 95.5% | 79.7% |
+| e4 | 75.4% | 94.4% | 74.3% |
+| e0 | 79.2% | 93.7% | 78.6% |
+| e3 | 73.3% | 92.9% | 72.5% |
+| e0b | 71.5% | 90.7% | 67.9% |
+| biocpy | 61.5% | 77.9% | 52.9% |
+
+- Ordering by fidelity tracks how much *recorded, adversarial* checking
+  against R each process did: E1 (red team) > E2 (suite + fuzz) > E4 >
+  E0 (ad hoc) > E3 (fuzz discarded) > E0b (no R). Pre-adjudication.
+- Pass rate vs fidelity: `unsupported` (missing R arguments such as
+  `use.names`, `na.last`, `method`; missing setters) costs 12–21 points
+  of pass rate; most ports' semantic fidelity is 91–97%.
+- Home advantage is real: E4 97.6% on its own suite vs 75.4% heldout;
+  E2 96.7% vs 82.5%. Held-out is the right headline.
+- E1's suite is the most discriminating for *other* ports (e0 73.6%, e4
+  67.4%, biocpy 44.0%); E1 itself scores 95.1% on E2's and 98.7% on E4's
+  suites. Caveat: E1's generators over-weight some ops (e0 coverage 117/511
+  on the e1 suite, likely the NA-weight quirk E1 cloned).
+- BiocPy 0.9.0 is clearly behind the agent ports on fidelity (77.9%). Must
+  be adjudicated carefully before saying anything to Jay: real community
+  package, one adapter author.
+- Adjudication launched: run e59b5cf9 (Opus classifies, Sol blind
+  spot-check, all BiocPy clusters).
