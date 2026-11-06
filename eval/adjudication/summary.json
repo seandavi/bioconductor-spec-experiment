@@ -1,0 +1,289 @@
+{
+ "e0": {
+  "classes": {
+   "port_bug": 494,
+   "declared_divergence": 501,
+   "r_accident": 284,
+   "adapter_fault": 70,
+   "harness_fault": 37
+  },
+  "classes_heldout": {
+   "port_bug": 122,
+   "declared_divergence": 22,
+   "r_accident": 35,
+   "adapter_fault": 8,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 7587,
+   "mismatch": 1186,
+   "unsupported": 677,
+   "port_error_unexpected": 200
+  },
+  "all": {
+   "pass": 7587,
+   "scored": 9650,
+   "supported": 8973,
+   "raw_fidelity": 0.7862,
+   "supported_fidelity": 0.8455,
+   "adjusted_denominator": 8081,
+   "adjusted_fidelity": 0.9389
+  },
+  "heldout": {
+   "pass": 2781,
+   "scored": 3510,
+   "supported": 2968,
+   "raw_fidelity": 0.7923,
+   "supported_fidelity": 0.937,
+   "adjusted_denominator": 2903,
+   "adjusted_fidelity": 0.958
+  },
+  "clusters": 84
+ },
+ "e0b": {
+  "classes": {
+   "port_bug": 1084,
+   "declared_divergence": 459,
+   "r_accident": 164,
+   "adapter_fault": 0,
+   "harness_fault": 60
+  },
+  "classes_heldout": {
+   "port_bug": 209,
+   "declared_divergence": 15,
+   "r_accident": 32,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 6556,
+   "port_error_unexpected": 638,
+   "mismatch": 1130,
+   "unsupported": 1326
+  },
+  "all": {
+   "pass": 6556,
+   "scored": 9650,
+   "supported": 8324,
+   "raw_fidelity": 0.6794,
+   "supported_fidelity": 0.7876,
+   "adjusted_denominator": 7641,
+   "adjusted_fidelity": 0.858
+  },
+  "heldout": {
+   "pass": 2510,
+   "scored": 3510,
+   "supported": 2767,
+   "raw_fidelity": 0.7151,
+   "supported_fidelity": 0.9071,
+   "adjusted_denominator": 2720,
+   "adjusted_fidelity": 0.9228
+  },
+  "clusters": 115
+ },
+ "e1": {
+  "classes": {
+   "port_bug": 184,
+   "declared_divergence": 83,
+   "r_accident": 229,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 41,
+   "declared_divergence": 41,
+   "r_accident": 5,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 8619,
+   "mismatch": 481,
+   "unsupported": 535,
+   "port_error_unexpected": 15
+  },
+  "all": {
+   "pass": 8619,
+   "scored": 9650,
+   "supported": 9115,
+   "raw_fidelity": 0.8932,
+   "supported_fidelity": 0.9456,
+   "adjusted_denominator": 8803,
+   "adjusted_fidelity": 0.9791
+  },
+  "heldout": {
+   "pass": 2987,
+   "scored": 3510,
+   "supported": 3074,
+   "raw_fidelity": 0.851,
+   "supported_fidelity": 0.9717,
+   "adjusted_denominator": 3028,
+   "adjusted_fidelity": 0.9865
+  },
+  "clusters": 38
+ },
+ "e2": {
+  "classes": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 238,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 6,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 7688,
+   "mismatch": 831,
+   "port_error_unexpected": 397,
+   "unsupported": 734
+  },
+  "all": {
+   "pass": 7688,
+   "scored": 9650,
+   "supported": 8916,
+   "raw_fidelity": 0.7967,
+   "supported_fidelity": 0.8623,
+   "adjusted_denominator": 8678,
+   "adjusted_fidelity": 0.8859
+  },
+  "heldout": {
+   "pass": 2896,
+   "scored": 3510,
+   "supported": 3032,
+   "raw_fidelity": 0.8251,
+   "supported_fidelity": 0.9551,
+   "adjusted_denominator": 3026,
+   "adjusted_fidelity": 0.957
+  },
+  "clusters": 5
+ },
+ "e3": {
+  "classes": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 10,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 2,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 6995,
+   "port_error_unexpected": 344,
+   "mismatch": 772,
+   "unsupported": 1539
+  },
+  "all": {
+   "pass": 6995,
+   "scored": 9650,
+   "supported": 8111,
+   "raw_fidelity": 0.7249,
+   "supported_fidelity": 0.8624,
+   "adjusted_denominator": 8101,
+   "adjusted_fidelity": 0.8635
+  },
+  "heldout": {
+   "pass": 2573,
+   "scored": 3510,
+   "supported": 2771,
+   "raw_fidelity": 0.733,
+   "supported_fidelity": 0.9285,
+   "adjusted_denominator": 2769,
+   "adjusted_fidelity": 0.9292
+  },
+  "clusters": 1
+ },
+ "e4": {
+  "classes": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 238,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 6,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 7172,
+   "mismatch": 1077,
+   "port_error_unexpected": 239,
+   "unsupported": 1162
+  },
+  "all": {
+   "pass": 7172,
+   "scored": 9650,
+   "supported": 8488,
+   "raw_fidelity": 0.7432,
+   "supported_fidelity": 0.845,
+   "adjusted_denominator": 8250,
+   "adjusted_fidelity": 0.8693
+  },
+  "heldout": {
+   "pass": 2645,
+   "scored": 3510,
+   "supported": 2801,
+   "raw_fidelity": 0.7536,
+   "supported_fidelity": 0.9443,
+   "adjusted_denominator": 2795,
+   "adjusted_fidelity": 0.9463
+  },
+  "clusters": 3
+ },
+ "biocpy": {
+  "classes": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 239,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 0,
+   "declared_divergence": 0,
+   "r_accident": 7,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 5108,
+   "unsupported": 1458,
+   "port_error_unexpected": 910,
+   "mismatch": 2174
+  },
+  "all": {
+   "pass": 5108,
+   "scored": 9650,
+   "supported": 8192,
+   "raw_fidelity": 0.5293,
+   "supported_fidelity": 0.6235,
+   "adjusted_denominator": 7953,
+   "adjusted_fidelity": 0.6423
+  },
+  "heldout": {
+   "pass": 2160,
+   "scored": 3510,
+   "supported": 2771,
+   "raw_fidelity": 0.6154,
+   "supported_fidelity": 0.7795,
+   "adjusted_denominator": 2764,
+   "adjusted_fidelity": 0.7815
+  },
+  "clusters": 4
+ }
+}

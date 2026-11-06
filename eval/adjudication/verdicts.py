@@ -33,6 +33,11 @@ R_RESOLVE_EMPTY = ("pintersect(x, x, resolve.empty=NA|TRUE|'a'|1:2|integer(0)) r
                    "empty intersection must be resolved (pintersect(x, y) with a non-overlapping pair)")
 R_CIRCULAR_PROBE = ("probe_circular.py: with every isCircular set FALSE R returns exactly the port's value, i.e. the "
                     "port computes linear semantics on a circular sequence")
+HF_NAN = ("runner/adapter_base.py:82,88 RVector.np() maps a dbl NA to NaN (only int/lgl/chr raise; ADAPTERS.md "
+          "'dbl NA and NaN both become nan') and adapters use it for weights (adapters/e0b.py:76; e0.py:64-67 mirrors "
+          "it), while spec/PROJECTION.md and COMPARATOR exact equality score NaN != NA. The port's answer equals R's "
+          "answer for the NaN input it was given: coverage(IRanges(c(1,2,5,8,11),width=c(1,3,3,3,2)), "
+          "weight=c(NaN,3,1,NaN,4)) is NaN 3 1 NaN 4")
 R_TRIM_NAMES = "trim(x, use.names=FALSE) keeps names(x) (R ignores the argument); shift(use.names=FALSE) drops them"
 
 RULES: list[tuple[str, str, str, str]] = [
@@ -130,10 +135,8 @@ RULES: list[tuple[str, str, str, str]] = [
      "e0:README.md 'Not implemented: circular-sequence wrap-around' (R errors on coverage width > circular length) and "
      "README.md Storage 'int64 ... R's overflow errors are not reproduced' (disjoin at 2^31-1)",
      "R errors from circular-length / int32 checks the port declares it does not implement"),
-    (r"^e0\|coverage\|mismatch\|nan_as_na\|na_weight_dbl$", AF,
-     "adapters/e0.py:64-67 turns R NA into NaN ('the port rejects it'); the port's NaN-weight answer equals R's "
-     "NaN-weight answer (coverage(x, weight=c(NaN,3,1,NaN,4)) is local NaN); output NaN is the adapter's own input",
-     "adapter feeds NaN for NA; the port never saw an NA weight"),
+    (r"^(e0|e0b)\|coverage\|mismatch\|nan_as_na\|na_weight_dbl$", HF, HF_NAN,
+     "double NA reaches the port as NaN by the harness's own conversion, then NaN is scored against NA"),
     (r"^e0\|coverage\|mismatch\|(nan_as_na\+)?num_type\|na_weight_int$", AF,
      "adapters/e0.py:64-67 converts an integer vector holding NA to a float64 NaN array; e0's as_weights "
      "(src/ranges_e0/_coverage.py:25-28) then computes double coverage. R got an integer weight",
@@ -197,7 +200,7 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e0\|setops\|mismatch\|diff\|out_of_bounds$", PB,
      "R GRanges intersect/setdiff clip to [1, seqlength] (gaps-based definition); e0 does not clip", "no clipping in set ops"),
     (r"^e0\|setops\|mismatch\|names\|-$", PB, "R: punion on unnamed x takes y's names", "p* op drops y's names"),
-    (r"^e0\|setops\|port_error:call\|ValueError:('resolve_empty'|The truth value)", RA, R_RESOLVE_EMPTY,
+    (r"^(e0|e0b)\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY,
      "R validates resolve.empty only when an empty intersection occurs"),
     (r"^e0\|(setops|inter|overlaps|nearest|intra)\|mismatch\|diff\|int32_edge$", DD,
      "e0:README.md Storage 'int64 (R: int32, so R's overflow errors are not reproduced)'. " + R_INT32,
@@ -255,4 +258,131 @@ RULES: list[tuple[str, str, str, str]] = [
      "duplicate empty ranges not merged at min.gapwidth=0"),
     (r"^e0\|intra\|r_error_port_value\|other:'length\(shift\)'", PB, "R errors when shift is longer than x (also for empty x)",
      "no length check"),
+
+    # ------------------------------------------------------------------ e0b
+    (r"^e0b\|(overlaps|nearest|coverage)\|mismatch\|equals_R_linear\|circular$", DD,
+     "e0b:README.md:84,102 'Circular wraparound is not implemented'; NOTES.md:27. " + R_CIRCULAR_PROBE,
+     "no circular wrap-around (declared)"),
+    (r"^e0b\|(overlaps|nearest|coverage|inter)\|mismatch\|diff\|circular$", DD,
+     "e0b:README.md:84,102 'Circular wraparound is not implemented'; examined cases differ by circular hits / "
+     "arbitrary picks among them, or gaps on circular sequences", "no circular wrap-around (declared)"),
+    (r"^e0b\|\*\|r_error_port_value\|length_validation\|circular$", DD,
+     "e0b:README.md:102 (no circular wrap-around): R's 'width cannot be greater than length of underlying circular "
+     "sequence' check does not exist in the port", "circular check not implemented (declared)"),
+    (r"^e0b\|\*\|r_error_port_value\|length_validation\|int32_edge$", DD, "e0b:README.md:52 'int64, no overflow check'. "
+     + R_INT32, "int64 arithmetic (declared)"),
+    (r"^e0b\|\*\|r_error_port_value\|length_validation\|-$", PB,
+     "R errors when Seqinfo seqlengths/isCircular are shorter than seqnames; e0b recycles them", "lenient Seqinfo lengths"),
+    (r"^e0b\|\*\|port_error:call\|rejects_recycling", DD,
+     "e0b:README.md:103 'Scalar-or-vector arguments are broadcast with length 1 or n only (no R-style full recycling)'",
+     "no cyclic recycling (declared)"),
+    (r"^e0b\|setops\|port_error:call\|ValueError:parallel operations require equal lengths", DD,
+     "e0b:README.md:103 (length 1 or n only); R recycles a length-1 y in GRanges pintersect", "no recycling (declared)"),
+    (r"^e0b\|\*\|port_error:call\|rejects_names_padding", PB, "R pads short names with NA (not recycling)",
+     "short names rejected instead of NA-padded"),
+    (r"^e0b\|\*\|port_error:call\|rejects_double_arg", PB,
+     "R truncates fractional coordinates/widths (IRanges(start=4, width=c(1.5,2.5,3.5)) -> widths 1 2 3); no e0b doc "
+     "declares rejecting them", "fractional arguments rejected"),
+    (r"^e0b\|(intra|construct|nearest|setops|inter|overlaps)\|(mismatch\|diff\|int32_edge|r_error_port_value\|int32_overflow)",
+     DD, "e0b:README.md:52 'Integers: int64, no overflow check'. " + R_INT32, "int64 arithmetic (declared)"),
+    (r"^e0b\|nearest\|mismatch\|diff\|(r_translation_dependent|coord_le0)$", RA,
+     "probe_translate.py: R's answer changes when every range is shifted +1000 (2 cases on circular seqinfo not "
+     "probed: zero-width subject at 0 / query at -2). " + R_SENTINEL, "R's GRanges sentinel collisions"),
+    (r"^e0b\|nearest\|port_error:call\|ValueError:select must be one of \('first', 'all'\), got 'last'\|r_translation", PB,
+     "follow(select='last') is R's API (precede: first/all, follow: last/all); e0b's follow accepts only first/all",
+     "follow rejects select='last'"),
+    (r"^e0b\|nearest\|r_error_port_value\|na_in_logic\|coord_le0$", RA, R_SENTINEL + "; R errors on valid input",
+     "R fails on valid input with coordinates <= 0"),
+    (r"^e0b\|nearest\|port_error:call\|ValueError:select must be one of \('first', 'all'\), got 'last'\|-$", PB,
+     "R: follow(select=) is 'last' or 'all' (follow 'first' errors); e0b's follow takes 'first'/'all'",
+     "follow uses precede's select vocabulary"),
+    (r"^e0b\|nearest\|r_error_port_value\|other:'arg' should be one of", PB,
+     "R: follow(select='first') errors (choices last/all); e0b accepts 'first'", "follow accepts select='first'"),
+    (r"^e0b\|(nearest|overlaps|ordering|setops)\|port_error:call\|ValueError:(select|type|unknown ties_method 'a'|unknown resolve_empty 'start')", PB,
+     "R match.arg partial matching ('a' -> 'all'/'any'/'average', 'start' -> 'start.x')", "no partial matching"),
+    (r"^e0b\|ordering\|port_error:call\|ValueError:unknown ties_method 'last'", PB, "R rank(ties.method='last') is valid",
+     "ties.method='last' unsupported"),
+    (r"^e0b\|ordering\|r_error_port_value\|rank_default_ties", RA, R_RANK,
+     "R's rank() default errors (S4 method defect); e0b has a working default (undeclared)"),
+    (r"^e0b\|\*\|r_error_port_value\|(flag_validation|scalar_validation|type_validation)", PB,
+     "R validates flags/scalars/types (isTRUEorFALSE, single integer); e0b coerces silently", "missing argument validation"),
+    (r"^e0b\|(nearest|overlaps)\|r_error_port_value\|na_in_logic\|na_arg$", PB, "R errors on NA flags", "NA flag accepted"),
+    (r"^e0b\|construct\|r_error_port_value\|na_input_rejected", PB, "R errors on NA seqnames / Seqinfo names", "accepts NA names"),
+    (r"^e0b\|accessors\|r_error_port_value\|na_input_rejected", PB, "R: mcols(x) with NA names errors (rownames)", "no error"),
+    (r"^e0b\|(overlaps|nearest|seqinfo)\|r_error_port_value\|(seqinfo_incompatible|other:The seqlevels)", PB,
+     "R errors on incompatible seqinfo / invalid seqinfo<-", "accepts incompatible seqinfo"),
+    (r"^e0b\|nearest\|port_error:call\|ValueError:conflicting", PB,
+     "R precede/follow/distance do not merge seqinfo (no error; nearest does via findOverlaps); e0b raises",
+     "raises on seqinfo conflicts R ignores in precede/follow/distance"),
+    (r"^e0b\|setops\|port_error:call\|ValueError:parallel operations require (identical seqnames|compatible strands)", PB,
+     "R GRanges pintersect flags non-hits (hit=FALSE), psetdiff passes x through for different seqnames/incompatible "
+     "strands (e2:NOTES.md fuzz table); e0b NOTES marks its strand rule UNVERIFIED", "p* ops raise where R returns"),
+    (r"^e0b\|setops\|port_error:call\|ValueError:some ranges do not overlap", PB,
+     "R GRanges pintersect has no resolve.empty: a disjoint pair is hit=FALSE, zero width at x's start",
+     "GRanges pintersect raises on disjoint pairs"),
+    (r"^e0b\|setops\|r_error_port_value\|other:some ranges in 'y'", PB, "R psetdiff errors when y is strictly inside x",
+     "no error"),
+    (r"^e0b\|setops\|mismatch\|(mcols|mcols\+strand|strand|names)\|-$", PB,
+     "R: GRanges pintersect adds a `hit` column, psetdiff/punion drop mcols, psetdiff takes y's strand for '*', "
+     "ignore.strand keeps x's strand, IRanges p* use y's names when x has none; e0b NOTES call its p* metadata "
+     "rules UNVERIFIED guesses", "p* metadata/strand rules"),
+    (r"^e0b\|setops\|mismatch\|diff\|out_of_bounds$", PB, "R GRanges intersect/setdiff clip to [1, seqlength]", "no clipping"),
+    (r"^e0b\|inter\|mismatch\|mcol_order\|-$", PB,
+     "R revmap lists input indices in order(x) (start, width) within each reduced range; e0b NOTES: 'indices ascending "
+     "... Order inside a revmap entry in R unknown. UNVERIFIED'", "revmap element order"),
+    (r"^e0b\|inter\|mismatch\|mcols\|-$", PB,
+     "R reduce(drop.empty.ranges=TRUE, with.revmap=TRUE) leaves dropped empty ranges out of revmap; e0b lists them",
+     "revmap includes dropped empty ranges"),
+    (r"^e0b\|inter\|mismatch\|diff\|(drop_empty_ranges|min_gapwidth_0)$", PB,
+     "R: empty ranges bridge clusters under drop.empty.ranges=TRUE and identical empties merge at min.gapwidth=0 "
+     "(e1:README.md 'R quirks reproduced'; e3:adr/0007, 0013)", "reduce empty-range rules"),
+    (r"^e0b\|inter\|mismatch\|diff\|(zero_width|coord_le0|strand|multi_seqlevel|na_arg)$", PB,
+     "R gaps: default window from non-empty ranges only, GRanges without seqlengths reports only strands with data, "
+     "start/end vectors per seqlevel, end=NA means data extent; reduce(min.gapwidth=1.5) truncates to 1. e0b NOTES "
+     "mark its gaps rule UNVERIFIED", "gaps/reduce bounds rules"),
+    (r"^e0b\|inter\|port_error:call\|(IndexError|ValueError:operands|TypeError:int)", PB,
+     "R gaps(start=/end=) take per-seqlevel vectors or NA; e0b crashes", "crash on vector/NA gap bounds"),
+    (r"^e0b\|coverage\|mismatch\|diff\|na_arg$", PB,
+     "R with NaN weights keeps NaN local (the port's actual input); e0b propagates NaN to later positions",
+     "NaN weight poisons later positions"),
+    (r"^e0b\|coverage\|mismatch\|diff\|zero_width$", PB,
+     "R coverage default width counts zero-width ranges' ends (coverage(IRanges(c(1,20), width=c(3,0))) has length 19)",
+     "zero-width ranges ignored for coverage length"),
+    (r"^e0b\|coverage\|port_error:call\|ValueError:(weight must be numeric|The truth value)", PB,
+     "R coverage(weight=<mcols column name>, width=<per-seqlevel vector>) work; e0b raises",
+     "column-name weights / per-seqlevel widths unsupported (raises)"),
+    (r"^e0b\|coverage\|port_error:call\|(IndexError|TypeError|UFuncTypeError|ValueError:operands)", PB,
+     "R recycles/truncates shift and width vectors and accepts a shift column name; e0b crashes inside numpy",
+     "coverage crashes on vector/double/column shift"),
+    (r"^e0b\|coverage\|r_error_port_value\|other:", PB, "R rejects width=NA/TRUE and reordered named widths",
+     "missing coverage validation"),
+    (r"^e0b\|subset_concat\|port_error:call\|(mcols_type_conflict_crash|SchemaError)", PB,
+     "R c() fills missing mcols columns with NA and coerces differing column types (int+dbl -> dbl, +chr -> chr); "
+     "e0b refuses differing columns and polars raises SchemaError on differing types", "c() with differing mcols"),
+    (r"^e0b\|subset_concat\|port_error:call\|AttributeError", PB, "R: c(<IRanges>, <IRanges>, 1L) coerces 1L", "crash"),
+    (r"^e0b\|subset_concat\|r_error_port_value\|other:subscript contains invalid names", PB,
+     "R: '' never matches a name in x[''] (error); e0b matches the empty name", "empty-string name subscript matches"),
+    (r"^e0b\|construct\|port_error:call\|ValueError:at least two", PB,
+     "R: IRanges(start=<int|lgl>) alone is the integer-set run form; IRanges() is empty", "start-only constructor raises"),
+    (r"^e0b\|construct\|port_error:call\|ValueError:strand must be", PB, "R: NA strand becomes '*'", "NA strand rejected"),
+    (r"^e0b\|construct\|port_error:call\|ValueError:seqlengths must be", PB, "R: Seqinfo(seqlengths=c(5, 6)) (double) is accepted",
+     "double seqlengths rejected"),
+    (r"^e0b\|construct\|port_error:call\|AttributeError", PB, "R: GRanges(seqinfo=<character>) is accepted", "crash"),
+    (r"^e0b\|construct\|mismatch\|(mcols|names|seqlevel_order)\|-$", PB,
+     "R keeps mcols of `ranges`, names whole doubles as '2' and logicals as 'TRUE', uses factor levels as seqlevels",
+     "constructor metadata rules"),
+    (r"^e0b\|accessors\|mismatch\|names\|-$", PB, "R mcols(x) has rownames = names(x)", "mcols() without rownames"),
+    (r"^e0b\|accessors\|mismatch\|diff\|", PB,
+     "R: mcols(<IRanges without columns>) is NULL, mcols(<GRanges without columns>) a 0-column DataFrame with "
+     "nrow = length(x); e0b returns a 0x0 frame", "mcols() of an object without columns"),
+    (r"^e0b\|overlaps\|mismatch\|names\|-$", PB, "R names countOverlaps by names(query)", "drops query names"),
+    (r"^e0b\|overlaps\|mismatch\|diff\|(zero_width|plain|strand|coord_le0_r_invariant)$", PB,
+     "probe_translate.py: R translation-invariant. R predicates: within with maxgap<=0 is unbounded, start/end/equal "
+     "need no overlap (only |difference| <= maxgap), fractional minoverlap truncates, '-' strand end/start mirror; "
+     "e0b NOTES mark its within/empty-range predicate UNVERIFIED", "overlap predicate differs from R"),
+    (r"^e0b\|nearest\|mismatch\|(diff\|(zero_width|strand|plain|multi_seqlevel|coord_le0_r_invariant)|row_order\|-)$", PB,
+     "probe_translate.py: R translation-invariant here. R: follow ties -> highest index (e3:adr/0010), '*' queries "
+     "take the subject's strand direction, zero-width self queries, GRanges nearest(all) keeps only the precede side "
+     "of a tie; e0b NOTES mark its strand rules UNVERIFIED", "nearest-family tie/strand rules differ from R"),
+    (r"^e0b\|intra\|r_error_port_value\|other:solving row", PB, "R narrow(width=) alone errors", "accepts width-only narrow"),
 ]

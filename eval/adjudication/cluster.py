@@ -60,7 +60,13 @@ R_ERROR_BUCKETS: list[tuple[str, str]] = [
 
 PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
     ("rejects_names_padding", r"'names' has length \d+ but \d+ was expected"),
+    ("rejects_names_padding", r"names has length \d+, expected \d+"),
+    # pintersect(resolve.empty=<invalid>) where no empty intersection arises; 'start' is a valid partial match
+    ("resolve_empty_validation", r"unknown resolve_empty (?!'start')|'resolve_empty' must be"),
+    ("mcols_type_conflict_crash", r"SchemaError|cannot combine: mcols columns differ"),
     ("rejects_recycling", r"has length \d+ but \d+ was expected|must be a single value or have the length|"
+                          r"must have length \d+ or \d+, got \d+|incompatible lengths:|requires equal lengths|"
+                          r"has \d+ rows, expected \d+|must be scalar or one per range|"
                           r"must have length \d+ or the length|has \d+ rows but object has length|"
                           r"lengths? .* (differ|must match)|"
                           r"not a multiple|must have the same length|recycl"),
@@ -150,7 +156,7 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
     feature = next((f for f in order if f in feats), "plain")
     if outcome == "port_error_unexpected":
         err = rec.get("error", {})
-        b = _bucket(err.get("message", ""), PORT_ERROR_BUCKETS)
+        b = _bucket(f"{err.get('type')}: {err.get('message', '')}", PORT_ERROR_BUCKETS)
         if rec.get("phase") == "build" and b is None:
             b = "build"
         detail = b or f"{err.get('type')}:{_msg(err.get('message', ''))}"
@@ -196,8 +202,8 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
             feature = "drop_empty_ranges"
     if cls == "r_error_port_value":
         # an NA flag R rejects vs an R failure on valid input: the input decides
-        feature = "-" if detail != "na_in_logic" else next(
-            (f for f in ("na_arg", "int32_edge", "coord_le0") if f in feats), "-")
+        feature = "-" if detail not in ("na_in_logic", "length_validation") else next(
+            (f for f in ("na_arg", "int32_edge", "circular", "coord_le0") if f in feats), "-")
     group = "*" if detail in CROSS_OP else FAMILY[op]
     sig = f"{port}|{group}|{cls}|{detail}|{feature}"
     return {"signature": sig, "port": port, "group": group, "op": op, "domain": exp["domain"], "class": cls,
