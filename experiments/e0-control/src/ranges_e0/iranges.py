@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _intra, _order, _validate as V
+from . import _inter, _intra, _order, _validate as V
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -159,6 +159,40 @@ class IRanges:
         s, w = _intra.promoters_k(self._start, self._width, upstream, downstream)
         return self._like(s, w, use_names)
 
+    # ----- inter-range ------------------------------------------------------
+    def range(self, *others: IRanges) -> IRanges:
+        """R ``range``: a single range spanning all inputs (names/mcols dropped)."""
+        s, w = _inter.range_k(*_pool(self, others))
+        return IRanges._make(s, w)
+
+    def reduce(
+        self, min_gapwidth: int = 1, drop_empty_ranges: bool = False, with_revmap: bool = False
+    ) -> IRanges:
+        """R ``reduce``: merge overlapping ranges, and ranges separated by a gap
+        narrower than ``min_gapwidth`` (default 1 merges adjacent ranges).
+        ``with_revmap`` adds a list column ``revmap`` of 0-based input indices,
+        in (start, end) order within each output range."""
+        s, w, rev = _inter.reduce_k(self._start, self._width, min_gapwidth, drop_empty_ranges, with_revmap)
+        mcols = None
+        if rev is not None:
+            mcols = pl.DataFrame({"revmap": pl.Series("revmap", [r.tolist() for r in rev], dtype=pl.List(pl.Int64))})
+        return IRanges._make(s, w, None, mcols)
+
+    def gaps(self, start: int | None = None, end: int | None = None) -> IRanges:
+        """R ``gaps``: uncovered positions within ``[start, end]`` (default: the
+        span of the input)."""
+        s, w = _inter.gaps_k(self._start, self._width, start, end)
+        return IRanges._make(s, w)
+
+    def disjoin(self, with_revmap: bool = False) -> IRanges:
+        """R ``disjoin``: disjoint pieces covering the same positions.
+        ``revmap`` lists the covering input indices in ascending order."""
+        s, w, rev = _inter.disjoin_k(self._start, self._width, with_revmap)
+        mcols = None
+        if rev is not None:
+            mcols = pl.DataFrame({"revmap": pl.Series("revmap", [r.tolist() for r in rev], dtype=pl.List(pl.Int64))})
+        return IRanges._make(s, w, None, mcols)
+
     # ----- ordering ---------------------------------------------------------
     def _order_keys(self) -> list[np.ndarray]:
         return [self._start, self._width]
@@ -229,6 +263,11 @@ class IRanges:
     def to_tuples(self) -> list[tuple[int, int]]:
         """``[(start, end), ...]`` as plain ints (handy for tests)."""
         return list(zip(self._start.tolist(), self.end.tolist()))
+
+
+def _pool(first: IRanges, others: tuple[IRanges, ...]) -> tuple[np.ndarray, np.ndarray]:
+    objs = (first, *others)
+    return np.concatenate([o._start for o in objs]), np.concatenate([o._width for o in objs])
 
 
 def _ro(a: np.ndarray) -> np.ndarray:
