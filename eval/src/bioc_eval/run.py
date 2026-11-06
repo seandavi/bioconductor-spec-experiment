@@ -58,6 +58,11 @@ def adapter_digest(name: str) -> str | None:
     return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
 
 
+def lock_digest(spec: dict) -> str | None:
+    lock = project_dir(spec) / "uv.lock"
+    return hashlib.sha256(lock.read_bytes()).hexdigest() if lock.exists() else None
+
+
 def score_file(raw: Path, scored: Path) -> Counter:
     expected = {r["id"]: r for r in iter_jsonl(BUILD / "expected.jsonl") if r["status"] == "ok"}
     got = {r["id"]: r for r in iter_jsonl(raw)}
@@ -118,7 +123,7 @@ def main() -> int:
     counts = score_file(raw, scored)
     oracle_meta = json.loads((BUILD / "oracle-meta.json").read_text())
     meta = {"port": ns.port, "tag": spec.get("tag"), "sha_before": before["head"], "sha_after": after["head"],
-            "clean_before": before["clean"], "clean_after": after["clean"], "adapter_sha256": adapter_digest(ns.port),
+            "clean_before": before["clean"], "clean_after": after["clean"], "adapter_sha256": adapter_digest(ns.port), "lock_sha256": lock_digest(spec),
             "run_seconds": seconds, "oracle_versions": oracle_meta["versions"], "outcomes": dict(counts)}
     (RESULTS / "scored" / f"{ns.port}.meta.json").write_text(json.dumps(meta, indent=1) + "\n")
     total = sum(counts.values())

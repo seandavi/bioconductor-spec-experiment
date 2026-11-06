@@ -37,7 +37,10 @@ def load_adapter(name: str, ctx: dict) -> AdapterBase:
     sys.path.insert(0, str(EVAL / "adapters"))
     if ctx.get("selftest_path"):
         sys.path.insert(0, str(EVAL / "selftest"))
-    spec = importlib.util.spec_from_file_location(f"adapter_{name}", EVAL / "adapters" / f"{name}.py")
+    path = EVAL / "adapters" / f"{name}.py"
+    if not path.exists():
+        raise SystemExit(f"no adapter for port {name!r}: expected {path}")
+    spec = importlib.util.spec_from_file_location(f"adapter_{name}", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     adapter = mod.Adapter()

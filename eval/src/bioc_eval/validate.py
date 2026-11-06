@@ -62,6 +62,18 @@ def main() -> int:
                     print(f"FAIL expected {rec['id']}: {errs[:2]}")
         print(f"expected: {m} checked, {b} invalid")
         bad += b
+    res = BUILD / "resolved.jsonl"
+    if res.exists():
+        m = b = 0
+        for rec in iter_jsonl(res):
+            m += 1
+            for name, proj in rec["inputs"].items():
+                if errs := [e.message[:160] for e in pv.iter_errors(proj)]:
+                    b += 1
+                    if b <= 20:
+                        print(f"FAIL resolved {rec['id']}.{name}: {errs[:2]}")
+        print(f"resolved: {m} checked, {b} invalid input projections")
+        bad += b
     return 1 if bad else 0
 
 
