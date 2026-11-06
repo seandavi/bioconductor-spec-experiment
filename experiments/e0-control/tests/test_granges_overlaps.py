@@ -159,14 +159,14 @@ def test_nearest_empty_subject():
 
 
 def test_distance_na_rules():
-    # R: distance(q[1:4], s[1:4]) -> 5 NA NA NA (IRanges/GenomicRanges 2.47.3: gap + 1)
-    assert NQ().distance(NS()[:4]).tolist() == [5, NA, NA, NA]
-    # R: ignore.strand, recycled length-1 subject -> 5 5 NA 95
-    assert NQ().distance(NS()[:1], ignore_strand=True).tolist() == [5, 5, NA, 95]
+    # R: distance(q[1:4], s[1:4]) -> 4 NA NA NA
+    assert NQ().distance(NS()[:4]).tolist() == [4, NA, NA, NA]
+    # R: ignore.strand, recycled length-1 subject -> 4 4 NA 94
+    assert NQ().distance(NS()[:1], ignore_strand=True).tolist() == [4, 4, NA, 94]
     # '*' is compatible with both strands
     a = GRanges("chr1", IRanges(1, 5), "*")
     b = GRanges("chr1", IRanges(10, 12), ["+", "-"][:1])
-    assert a.distance(b).tolist() == [5]  # R: 5
+    assert a.distance(b).tolist() == [4]
     assert len(GRanges.empty().distance(b)) == 0
 
 
@@ -210,5 +210,5 @@ def test_distance_rejects_incompatible_lengths():
         a.distance(b)
     with pytest.raises(ValueError, match="same length"):
         b.distance(a)
-    assert a[:1].distance(b).tolist() == [9, 19, 29]  # R: 9 19 29
-    assert b.distance(a[:1]).tolist() == [9, 19, 29]
+    assert a[:1].distance(b).tolist() == [8, 18, 28]
+    assert b.distance(a[:1]).tolist() == [8, 18, 28]

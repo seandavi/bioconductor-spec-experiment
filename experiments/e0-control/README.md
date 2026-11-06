@@ -1,14 +1,14 @@
 # ranges_e0 — E0 control port of IRanges / GRanges
 
 A plain Python port of Bioconductor's `IRanges` and `GRanges` (scope in
-`../../TARGET.md`; reference: R 4.6, IRanges 2.47.3, GenomicRanges 1.65.2).
+`../../TARGET.md`; reference: R 4.6, IRanges 2.47.2, GenomicRanges 1.65.1).
 E0 is the **control** experiment: no conformance suite, spec or ADRs. The
 only artifacts are the code, a pytest suite with hand-written expectations,
 this README and an append-only judgment log, [NOTES.md](NOTES.md).
 [PLAN.md](PLAN.md) is the original plan; where it was wrong, NOTES.md says so.
 
 ```sh
-uv run pytest          # 307 tests (incl. parametrized), ~3 s
+uv run pytest          # 300 tests (incl. parametrized), ~3 s
 uv run --with mypy mypy src --ignore-missing-imports   # type check (clean)
 ```
 
@@ -97,8 +97,6 @@ Full reasoning in NOTES.md; the ones a user will hit:
 - `select="arbitrary"` returns the first candidate.
 - `rank` defaults to `ties_method="first"` (R's generic has no default and errors).
 - `coverage` of a GRanges is a plain dict, not an `RleList`; `Rle` has no arithmetic.
-- `distance` is 0 for overlapping ranges and gap width + 1 otherwise (adjacent = 1; IRanges >= 2.47.3);
-  empty ranges never overlap, so they are at distance >= 1 even from themselves.
 - Only length-1 arguments are recycled (R also recycles other lengths with a warning).
 - Out-of-bound ranges warn with `OutOfBoundWarning` (R warns too; text differs).
 - Not implemented: GRangesList/IRangesList, Views, `distanceToNearest`,

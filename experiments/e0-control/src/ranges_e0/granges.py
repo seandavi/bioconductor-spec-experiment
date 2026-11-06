@@ -809,7 +809,7 @@ class GRanges:
         return Hits(q_all[o], s_all[o], n, len(sub))
 
     def distance(self, other: GRanges, ignore_strand: bool = False) -> np.ndarray:
-        """R ``distance``: 0 if overlapping, else gap width + 1 (IRanges >= 2.47.3); ``NO_MATCH`` (-1) where
+        """R ``distance``: gap width between paired ranges; ``NO_MATCH`` (-1) where
         the seqnames differ or (unless ``ignore_strand``) one range is ``+`` and
         the other ``-``. Length-1 arguments are recycled."""
         if len(self) == 0 or len(other) == 0:

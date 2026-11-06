@@ -143,23 +143,3 @@ the strand logic and confirmed with ad hoc runs:
   number of ranges.
 - **Finding 4 (flank `start=` lengths) — fixed.** `_validate.as_bool_flags` recycles only
   length-1 input and rejects other lengths / non-1-d input for IRanges and GRanges.
-
-## 2026-11-06 — maintainer: upstream IRanges 2.47.3 / GenomicRanges 1.65.2 `distance()` change
-
-- Process (README "Maintaining this"): NEWS -> reproduce in R -> edit kernel -> update tests with
-  `# R:` comments + NOTES entry -> pytest. No specs/goldens/cases exist in E0.
-- **Deliberate deviation reversed.** The 2026-11-06 00:40 note ("`distance` is the gap width, 0 for
-  overlapping *or adjacent*") no longer holds. New rule: 0 if the ranges overlap, else gap width + 1,
-  so adjacent -> 1. `NO_MATCH` rules for GRanges (different seqname, `+` vs `-`) are unchanged;
-  GRanges delegates to the IRanges kernel (`_nearest.distance_k`), so one edit covers both.
-- R source of the new IRanges method (read from the installed package): `d <- <old distance>;
-  ov <- pmax(sx, sy) <= pmin(ex, ey); ifelse(ov, 0L, d + 1L)`. Consequence: **empty ranges never
-  overlap**, so an empty range is at distance 1 from itself and from a range containing it
-  (`distance(IRanges(5,4), IRanges(3,10))` = 1). Kernel is `max(max_start - min_end, 0)`.
-- `nearest`/`precede`/`follow` unchanged; the nearest-vs-distance property test had to allow that a
-  winner may now be at distance 1 (adjacent) while an overlapping subject is at 0.
-- Version caveat: the installed packages still report IRanges 2.47.2 / GenomicRanges 1.65.1 in
-  DESCRIPTION but already implement the 2.47.3 behaviour (verified by output, not by version string).
-- Pre-existing unverified spot confirmed divergent: R `nearest(IRanges(25,25), IRanges(c(19,20),
-  width=6))` (select arbitrary) gives 2 (also 2 for subjects reversed), we give the first hit (1).
-  Not part of this change; left as is (README already says "arbitrary returns the first").

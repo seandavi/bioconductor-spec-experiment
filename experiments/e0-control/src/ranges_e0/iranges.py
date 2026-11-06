@@ -326,8 +326,8 @@ class IRanges:
         return self._nearest_result(res, len(sub))
 
     def distance(self, other: IRanges) -> np.ndarray:
-        """R ``distance(x, y)``: 0 for overlapping paired ranges, else gap width + 1
-        (adjacent ranges give 1; IRanges >= 2.47.3). Length-1 arguments are recycled."""
+        """R ``distance(x, y)``: gap width between paired ranges (0 if overlapping
+        or adjacent). Length-1 arguments are recycled."""
         return _nearest.distance_k(self._start, self._width, other._start, other._width)
 
     # ----- coverage ---------------------------------------------------------
