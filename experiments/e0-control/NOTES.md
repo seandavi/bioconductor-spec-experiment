@@ -87,3 +87,25 @@ and is documented in `_overlaps.py`. Notable points:
   (R wording differs).
 - `with_seqinfo` errors if the new seqinfo drops a level in use (R's `seqinfo<-`
   has more modes: pruning, renaming). Not reproduced.
+
+## 2026-11-06 01:30 — implementer: GRanges overlaps / nearest / coverage (stage 13)
+
+Read the GenomicRanges source (`.GenomicRanges_findPrecedeFollow`, `.nearest`) for
+the strand logic and confirmed with ad hoc runs:
+- `findOverlaps`: same seqname, strands compatible (`*` matches anything) unless
+  `ignore_strand`; the IRanges predicate is applied per pair, so maxgap/minoverlap/
+  type behave exactly as for IRanges.
+- `precede`/`follow`: `+` and `*`-subject look in the + direction for `+` queries;
+  `-` queries look the opposite way among `-`/`*` subjects; a `*` query tries both
+  (`+`/`*` subjects one way, only `-` subjects the other) and keeps the closer
+  side(s) — equal distance keeps both. `select="first"` = lowest subject index
+  among ties in either direction, `"last"` = highest.
+- GRanges `nearest` differs from IRanges `nearest` on equidistant neighbours:
+  `arbitrary` picks the lower subject index; `all` returns only the precede side.
+- `distance` returns -1 (NO_MATCH) for different seqnames or `+` vs `-`.
+- `coverage` returns a plain dict `{seqlevel: Rle}` (R: RleList) over every
+  seqlevel, ignoring strand.
+- Hits order: always sorted by (query, subject) — see the IRanges note.
+- Not implemented: `distanceToNearest`, `selectNearest`, `overlapsRanges`,
+  `findOverlaps` with integer vectors as query, `circle.length`/circular wrap,
+  `nthread`.
