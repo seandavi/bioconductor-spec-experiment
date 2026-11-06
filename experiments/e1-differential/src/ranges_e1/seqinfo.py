@@ -31,8 +31,20 @@ def _per_sequence(v: Any, n: int, what: str, check: Any, *, recycle: bool = Fals
     return tuple(vals)
 
 
+def _logical(x: Any) -> bool:
+    if not isinstance(x, (bool, np.bool_)):
+        raise ValueError("bad supplied 'isCircular' vector")
+    return bool(x)
+
+
+def _text(x: Any) -> str:
+    if not isinstance(x, (str, np.str_)):
+        raise ValueError("'genome' must be a character vector")
+    return str(x)
+
+
 def _length(x: Any) -> int:
-    if isinstance(x, bool):
+    if isinstance(x, (bool, str, np.bool_, np.str_)):
         raise ValueError("'seqlengths' must be integers")
     x = int(x)  # R truncates doubles (as.integer)
     if x < 0:
@@ -57,6 +69,8 @@ class Seqinfo:
         genome: Any = None,
     ) -> None:
         names = tuple(seqnames) if not isinstance(seqnames, str) else (seqnames,)
+        if any(s is not None and not isinstance(s, (str, np.str_)) for s in names):
+            raise ValueError("supplied 'seqlevels' must be a character vector")
         if any(s is None or s == "" for s in names):
             raise ValueError("supplied 'seqlevels' cannot contain NAs or empty strings (\"\")")
         if len(set(names)) != len(names):
@@ -64,8 +78,8 @@ class Seqinfo:
         n = len(names)
         object.__setattr__(self, "seqnames", names)
         object.__setattr__(self, "seqlengths", _per_sequence(seqlengths, n, "seqlengths", _length))
-        object.__setattr__(self, "is_circular", _per_sequence(is_circular, n, "isCircular", bool))
-        object.__setattr__(self, "genome", _per_sequence(genome, n, "genome", str, recycle=True))
+        object.__setattr__(self, "is_circular", _per_sequence(is_circular, n, "isCircular", _logical))
+        object.__setattr__(self, "genome", _per_sequence(genome, n, "genome", _text, recycle=True))
 
     def __len__(self) -> int:
         return len(self.seqnames)

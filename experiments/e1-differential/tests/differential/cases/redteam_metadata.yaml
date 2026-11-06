@@ -1004,7 +1004,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: literal strand "NA" is invalid, not a missing value to replace with "*".'
 - id: rt-meta-gr-strand-numeric
   tags:
   - redteam
@@ -1090,7 +1089,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: Seqinfo isCircular must be logical, not numeric or character truthiness.'
 - id: rt-meta-seqinfo-text-circular
   tags:
   - redteam
@@ -1111,7 +1109,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: Seqinfo isCircular must be logical, not numeric or character truthiness.'
 - id: rt-meta-seqinfo-empty
   tags:
   - redteam
@@ -1137,7 +1134,6 @@ cases:
     r: Seqinfo(c(1L, 2L))
     py: Seqinfo([1, 2])
   check_warnings: true
-  xfail: 'Bug: Seqinfo sequence names must be character strings.'
 - id: rt-meta-gr-set-seqinfo-reorder
   tags:
   - redteam

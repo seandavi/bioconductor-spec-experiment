@@ -25,10 +25,21 @@ STRANDS = ("+", "-", "*")
 PLUS, MINUS, STAR = 0, 1, 2
 
 
-def _as_str_list(v: Any, what: str) -> list[str | None]:
+def _as_str_list(v: Any, what: str, *, coerce: bool = False) -> list[str | None]:
+    """Character vector -> list; only None / masked entries are missing, "NA" is just text."""
     if isinstance(v, str):
         return [v]
-    return [None if x is None else str(x) for x in list(v)]
+    out: list[str | None] = []
+    for x in list(v):
+        if x is None or x is np.ma.masked:
+            out.append(None)
+        elif isinstance(x, (str, np.str_)):
+            out.append(str(x))
+        elif coerce and isinstance(x, (int, float, bool, np.number, np.bool_)):
+            out.append(_meta._name_text(x))  # as.character(), as R does for seqnames
+        else:
+            raise ValueError(f"'{what}' must be a character vector")
+    return out
 
 
 def _parse_strand(v: Any) -> np.ndarray:
@@ -36,7 +47,7 @@ def _parse_strand(v: Any) -> np.ndarray:
     out = np.empty(len(vals), dtype=np.int8)
     na = False
     for i, s in enumerate(vals):
-        if s is None or s == "NA":
+        if s is None:
             out[i], na = STAR, True
         elif s in STRANDS:
             out[i] = STRANDS.index(s)
@@ -70,7 +81,7 @@ class GRanges:
             ranges = IRanges(start=start, end=end, width=width)
         elif not isinstance(ranges, IRanges):
             raise TypeError("'ranges' must be an IRanges")
-        sn = _as_str_list(seqnames, "seqnames")
+        sn = _as_str_list(seqnames, "seqnames", coerce=True)
         if any(s is None for s in sn):
             raise ValueError("'seqnames' cannot contain NAs")
         st = _parse_strand("*" if strand is None else strand)
