@@ -1,0 +1,93 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-si-con-basic": {
+      "kind": "Seqinfo",
+      "seqnames": ["chr1", "chr2", "chr3"],
+      "seqlengths": [100, 200, 300],
+      "isCircular": [false, true, null],
+      "genome": ["hg19", "hg19", "hg19"],
+      "warnings": []
+    },
+    "gr-si-con-names-only": {
+      "kind": "Seqinfo",
+      "seqnames": ["a", "b"],
+      "seqlengths": [null, null],
+      "isCircular": [null, null],
+      "genome": [null, null],
+      "warnings": []
+    },
+    "gr-si-con-genome-vector": {
+      "kind": "Seqinfo",
+      "seqnames": ["a", "b"],
+      "seqlengths": [10, 20],
+      "isCircular": [false, false],
+      "genome": ["g1", null],
+      "warnings": []
+    },
+    "gr-si-con-genome-scalar-recycles": {
+      "kind": "Seqinfo",
+      "seqnames": ["a", "b"],
+      "seqlengths": [null, null],
+      "isCircular": [null, null],
+      "genome": ["g1", "g1"],
+      "warnings": []
+    },
+    "gr-si-con-empty": {
+      "kind": "Seqinfo",
+      "seqnames": [],
+      "seqlengths": [],
+      "isCircular": [],
+      "genome": [],
+      "warnings": []
+    },
+    "gr-si-con-duplicate-names": {
+      "kind": "error",
+      "message": "supplied 'seqlevels' cannot contain duplicated sequence names",
+      "warnings": []
+    },
+    "gr-si-con-negative-length": {
+      "kind": "error",
+      "message": "the supplied 'seqlengths' vector contains negative values",
+      "warnings": []
+    },
+    "gr-si-con-length-mismatch": {
+      "kind": "error",
+      "message": "the length of the supplied 'seqlengths' vector must be equal to the number of\n  sequences",
+      "warnings": []
+    },
+    "gr-si-acc-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["chr1", "chr2", "chr3"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-si-acc-seqlengths": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [100, 200, 300],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    },
+    "gr-si-acc-iscircular": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [false, true, null],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    },
+    "gr-si-acc-genome": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["hg19", "hg19", "hg19"],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    }
+  }
+}

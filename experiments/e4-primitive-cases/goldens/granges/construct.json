@@ -1,0 +1,345 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-con-basic": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr1", "chr2"],
+      "start": [1, 5, 9],
+      "end": [3, 7, 11],
+      "width": [3, 3, 3],
+      "strand": ["+", "-", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr2", "chr1"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-default-strand": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr1"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr2", "chr1"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-recycle-strand": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr1"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["-", "-"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr2", "chr1"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-recycle-seqname": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-con-seqlevels-appearance": {
+      "kind": "GRanges",
+      "seqnames": ["chrB", "chrA", "chrB", "chrC"],
+      "start": [1, 2, 3, 4],
+      "end": [1, 2, 3, 4],
+      "width": [1, 1, 1, 1],
+      "strand": ["*", "*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chrB", "chrA", "chrC"],
+        "seqlengths": [null, null, null],
+        "isCircular": [null, null, null],
+        "genome": [null, null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-names-mcols": {
+      "kind": "GRanges",
+      "seqnames": ["a", "b"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["*", "*"],
+      "names": ["n1", "n2"],
+      "mcols": {
+        "s": [1, 2],
+        "t": ["u", "v"]
+      },
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-from-start-end": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 5],
+      "end": [3, 5],
+      "width": [3, 1],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-con-empty": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": [],
+        "seqlengths": [],
+        "isCircular": [],
+        "genome": []
+      },
+      "warnings": []
+    },
+    "gr-con-zero-width": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [5, 1],
+      "end": [4, 0],
+      "width": [0, 0],
+      "strand": ["+", "-"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-con-with-seqinfo": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr1"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [false, true, null],
+        "genome": ["hg19", "hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-con-with-seqinfo-ref": {
+      "kind": "GRanges",
+      "seqnames": ["chr3", "chr1"],
+      "start": [1, 5],
+      "end": [3, 7],
+      "width": [3, 3],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [false, true, null],
+        "genome": ["hg19", "hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-con-seqinfo-no-lengths": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [1],
+      "end": [3],
+      "width": [3],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-con-seqname-not-in-seqinfo": {
+      "kind": "error",
+      "message": "'seqnames' contains sequence names with no entries in 'seqinfo'",
+      "warnings": []
+    },
+    "gr-con-bad-strand": {
+      "kind": "error",
+      "message": "strand values must be in '+' '-' '*'",
+      "warnings": []
+    },
+    "gr-con-na-seqname": {
+      "kind": "error",
+      "message": "'seqnames' cannot contain NAs",
+      "warnings": []
+    },
+    "gr-con-length-mismatch": {
+      "kind": "error",
+      "message": "'ranges' must have the length of the object to construct (3) or length 1",
+      "warnings": []
+    },
+    "gr-con-negative-width": {
+      "kind": "error",
+      "message": "each range must have a non-negative width",
+      "warnings": []
+    },
+    "gr-acc-seqnames": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["chr2", "chr1", "chr2"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-strand": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["+", "-", "*"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-start": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [1, 5, 9],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-end": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 7, 11],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-width": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3, 3, 3],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-names": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["a", "b", "c"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-ranges": {
+      "kind": "IRanges",
+      "start": [1, 5, 9],
+      "end": [3, 7, 11],
+      "width": [3, 3, 3],
+      "names": ["a", "b", "c"],
+      "mcols": {},
+      "warnings": []
+    },
+    "gr-acc-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["chr1", "chr2", "chr3"],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-seqlengths": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [100, 200, 300],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    },
+    "gr-acc-iscircular": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [false, true, null],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    },
+    "gr-acc-genome": {
+      "kind": "vector",
+      "type": "character",
+      "values": ["hg19", "hg19", "hg19"],
+      "names": ["chr1", "chr2", "chr3"],
+      "warnings": []
+    },
+    "gr-acc-seqinfo": {
+      "kind": "Seqinfo",
+      "seqnames": ["chr1", "chr2", "chr3"],
+      "seqlengths": [100, 200, 300],
+      "isCircular": [false, true, null],
+      "genome": ["hg19", "hg19", "hg19"],
+      "warnings": []
+    },
+    "gr-acc-length": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [3],
+      "names": null,
+      "warnings": []
+    },
+    "gr-acc-ranges-unnamed": {
+      "kind": "IRanges",
+      "start": [1],
+      "end": [3],
+      "width": [3],
+      "names": null,
+      "mcols": {},
+      "warnings": []
+    }
+  }
+}

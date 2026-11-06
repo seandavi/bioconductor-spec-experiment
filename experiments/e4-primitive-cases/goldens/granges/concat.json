@@ -1,0 +1,181 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-cat-merge-new-level": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr3"],
+      "start": [1, 1],
+      "end": [2, 2],
+      "width": [2, 2],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr3"],
+        "seqlengths": [100, 200, 300],
+        "isCircular": [false, false, null],
+        "genome": ["hg19", "hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-cat-merge-order": {
+      "kind": "GRanges",
+      "seqnames": ["chr3", "chr1"],
+      "start": [1, 1],
+      "end": [2, 2],
+      "width": [2, 2],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr3", "chr1", "chr2"],
+        "seqlengths": [300, 100, 200],
+        "isCircular": [null, false, false],
+        "genome": ["hg19", "hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-cat-na-filled-from-other": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1"],
+      "start": [1, 1],
+      "end": [2, 2],
+      "width": [2, 2],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, false],
+        "genome": ["hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-cat-na-filled-first": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1"],
+      "start": [1, 1],
+      "end": [2, 2],
+      "width": [2, 2],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, false],
+        "genome": ["hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-cat-genome-fill": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1"],
+      "start": [1, 1],
+      "end": [2, 2],
+      "width": [2, 2],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, false],
+        "genome": ["hg19", "hg19"]
+      },
+      "warnings": []
+    },
+    "gr-cat-conflict-length": {
+      "kind": "error",
+      "message": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 100\n  - in 'y': 150",
+      "warnings": []
+    },
+    "gr-cat-conflict-genome": {
+      "kind": "error",
+      "message": "sequence chr1 has incompatible genomes:\n  - in 'x': hg19\n  - in 'y': hg38",
+      "warnings": []
+    },
+    "gr-cat-conflict-circular": {
+      "kind": "error",
+      "message": "sequence chr1 has incompatible circularity flags:\n  - in 'x': FALSE\n  - in 'y': TRUE",
+      "warnings": []
+    },
+    "gr-cat-no-seqinfo": {
+      "kind": "GRanges",
+      "seqnames": ["a", "b", "a"],
+      "start": [1, 1, 2],
+      "end": [1, 1, 2],
+      "width": [1, 1, 1],
+      "strand": ["*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a", "b"],
+        "seqlengths": [null, null],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr-cat-strand-and-names": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 1],
+      "end": [1, 1],
+      "width": [1, 1],
+      "strand": ["+", "*"],
+      "names": ["n", ""],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["a"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-cat-mcols-fill": {
+      "kind": "GRanges",
+      "seqnames": ["a", "a"],
+      "start": [1, 1],
+      "end": [1, 1],
+      "width": [1, 1],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {
+        "s": [1, null],
+        "t": [null, "q"]
+      },
+      "seqinfo": {
+        "seqnames": ["a"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-cat-three": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr2", "chr4"],
+      "start": [1, 1, 1],
+      "end": [2, 2, 2],
+      "width": [2, 2, 2],
+      "strand": ["*", "*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2", "chr4"],
+        "seqlengths": [100, 200, 400],
+        "isCircular": [false, false, null],
+        "genome": ["hg19", "hg19", null]
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    }
+  }
+}

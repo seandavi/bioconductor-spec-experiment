@@ -1,0 +1,61 @@
+cases:
+  - id: gr-si-con-basic
+    clause: SI-CON-1
+    inputs:
+      x: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-names-only
+    clause: SI-CON-1
+    inputs:
+      x: {Seqinfo: {seqnames: [a, b]}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-genome-vector
+    clause: SI-CON-2
+    inputs:
+      x: {Seqinfo: {seqnames: [a, b], seqlengths: [10, 20], isCircular: [false, false], genome: [g1, null]}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-genome-scalar-recycles
+    clause: SI-CON-2
+    inputs:
+      x: {Seqinfo: {seqnames: [a, b], genome: g1}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-empty
+    clause: SI-CON-1
+    inputs:
+      x: {Seqinfo: {seqnames: []}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-duplicate-names
+    clause: SI-CON-3
+    inputs:
+      x: {Seqinfo: {seqnames: [a, a]}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-negative-length
+    clause: SI-CON-3
+    inputs:
+      x: {Seqinfo: {seqnames: [a], seqlengths: [-1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-con-length-mismatch
+    clause: SI-CON-3
+    inputs:
+      x: {Seqinfo: {seqnames: [a, b, c], seqlengths: [1, 2]}}
+    call: {op: identity, args: [x]}
+  - id: gr-si-acc-seqlevels
+    clause: SI-ACC-1
+    inputs:
+      x: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+    call: {op: seqlevels, args: [x]}
+  - id: gr-si-acc-seqlengths
+    clause: SI-ACC-1
+    inputs:
+      x: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+    call: {op: seqlengths, args: [x]}
+  - id: gr-si-acc-iscircular
+    clause: SI-ACC-1
+    inputs:
+      x: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+    call: {op: isCircular, args: [x]}
+  - id: gr-si-acc-genome
+    clause: SI-ACC-1
+    inputs:
+      x: {Seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300], isCircular: [false, true, null], genome: hg19}}
+    call: {op: genome, args: [x]}

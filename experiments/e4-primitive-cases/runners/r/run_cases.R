@@ -22,7 +22,9 @@ run_call <- function(call, inputs, kwargs_override = NULL) {
   args <- unname(lapply(call$args, function(n) inputs[[n]]))
   kw <- lapply(call$kwargs, resolve_kwarg, inputs = inputs)
   for (n in names(kwargs_override)) kw[[n]] <- kwargs_override[[n]]
-  do.call(call$op, c(args, kw))
+  res <- do.call(call$op, c(args, kw))
+  # Rle is out of scope as a class: per-range accessors project as plain chr vectors
+  if (call$op %in% c("seqnames", "strand")) as.character(res) else res
 }
 
 # Per-element allowed values for implementation-defined `select` results,

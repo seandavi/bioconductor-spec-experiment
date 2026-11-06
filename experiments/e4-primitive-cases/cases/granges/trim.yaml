@@ -1,0 +1,46 @@
+cases:
+  - id: gr-trim-basic
+    clause: GR-TRIM-1
+    inputs:
+      x: {GRanges: {seqnames: [chr1, chr1, chr1, chr1], start: [-5, 90, 1, 95], width: [10, 20, 100, 6], strand: ["+", "-", "*", "+"], mcols: {s: [1, 2, 3, 4]}, seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-circular-untouched
+    clause: GR-TRIM-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr2], start: [1, 150], width: [300, 10], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-unknown-length-untouched
+    clause: GR-TRIM-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1, chr2], start: [-5, 90], width: [10, 20], seqinfo: {seqnames: [chr1, chr2], seqlengths: [null, 100]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-fully-after
+    clause: GR-TRIM-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [200], width: [10], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-fully-before
+    clause: GR-TRIM-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [-20], width: [5], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-zero-width-after-end
+    clause: GR-TRIM-3
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [101], width: [0], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-no-seqlengths
+    clause: GR-TRIM-2
+    inputs:
+      x: {GRanges: {seqnames: [chr1], start: [-3], width: [5]}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-names-kept
+    clause: GR-TRIM-1
+    inputs:
+      x: {GRanges: {seqnames: [chr1, chr1], start: [-5, 50], width: [10, 10], names: [a, b], seqinfo: {seqnames: [chr1, chr2], seqlengths: [100, 200], isCircular: [false, true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-trim-empty
+    clause: GR-TRIM-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: trim, args: [x]}

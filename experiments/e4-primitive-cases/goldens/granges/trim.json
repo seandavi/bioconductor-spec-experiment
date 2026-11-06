@@ -1,0 +1,165 @@
+{
+  "generated_by": {
+    "R": "4.6.0",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6"
+  },
+  "cases": {
+    "gr-trim-basic": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1", "chr1", "chr1"],
+      "start": [1, 90, 1, 95],
+      "end": [4, 100, 100, 100],
+      "width": [4, 11, 100, 6],
+      "strand": ["+", "-", "*", "+"],
+      "names": null,
+      "mcols": {
+        "s": [1, 2, 3, 4]
+      },
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": ["GRanges object contains 2 out-of-bound ranges located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr-trim-circular-untouched": {
+      "kind": "GRanges",
+      "seqnames": ["chr2", "chr2"],
+      "start": [1, 150],
+      "end": [300, 159],
+      "width": [300, 10],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-trim-unknown-length-untouched": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr2"],
+      "start": [-5, 90],
+      "end": [4, 100],
+      "width": [10, 11],
+      "strand": ["*", "*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [null, 100],
+        "isCircular": [null, null],
+        "genome": [null, null]
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence chr2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr-trim-fully-after": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [101],
+      "end": [100],
+      "width": [0],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr-trim-fully-before": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [1],
+      "end": [0],
+      "width": [0],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr-trim-zero-width-after-end": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [101],
+      "end": [100],
+      "width": [0],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": []
+    },
+    "gr-trim-no-seqlengths": {
+      "kind": "GRanges",
+      "seqnames": ["chr1"],
+      "start": [-3],
+      "end": [1],
+      "width": [5],
+      "strand": ["*"],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1"],
+        "seqlengths": [null],
+        "isCircular": [null],
+        "genome": [null]
+      },
+      "warnings": []
+    },
+    "gr-trim-names-kept": {
+      "kind": "GRanges",
+      "seqnames": ["chr1", "chr1"],
+      "start": [1, 50],
+      "end": [4, 59],
+      "width": [4, 10],
+      "strand": ["*", "*"],
+      "names": ["a", "b"],
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": ["chr1", "chr2"],
+        "seqlengths": [100, 200],
+        "isCircular": [false, true],
+        "genome": [null, null]
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr-trim-empty": {
+      "kind": "GRanges",
+      "seqnames": [],
+      "start": [],
+      "end": [],
+      "width": [],
+      "strand": [],
+      "names": null,
+      "mcols": {},
+      "seqinfo": {
+        "seqnames": [],
+        "seqlengths": [],
+        "isCircular": [],
+        "genome": []
+      },
+      "warnings": []
+    }
+  }
+}

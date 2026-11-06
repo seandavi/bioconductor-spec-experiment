@@ -37,9 +37,9 @@ def _mcols(df: pl.DataFrame) -> dict[str, list[Any]]:
 def _seqinfo(si: Any) -> dict[str, Any]:
     return {
         "seqnames": list(si.seqnames),
-        "seqlengths": list(si.seqlengths_list),
-        "isCircular": list(si.is_circular_list),
-        "genome": list(si.genome_list),
+        "seqlengths": list(si.seqlengths.values()),
+        "isCircular": list(si.is_circular.values()),
+        "genome": list(si.genome.values()),
     }
 
 

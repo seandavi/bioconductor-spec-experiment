@@ -166,3 +166,28 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-DUP-4 | `duplicated` of zero-length is zero-length | `?"IRanges-class"` |
 | IR-UNIQUE-1 | `unique` keeps first occurrences with their names and mcols | `?"IRanges-class"` |
 | IR-UNIQUE-2 | `unique` of zero-length is zero-length | `?"IRanges-class"` |
+| GR-CON-1 | `GRanges(seqnames, ranges, strand)` stores seqnames, ranges and strand per range | `?GRanges` |
+| GR-CON-2 | strand defaults to `*`; length-1 seqnames/strand recycle | `?GRanges` |
+| GR-CON-3 | without `seqinfo`, seqlevels are the seqnames in order of first appearance | `?GRanges` |
+| GR-CON-4 | names and mcols are carried through; ranges may be given by start/end | `?GRanges` |
+| GR-CON-5 | zero-length and zero-width GRanges are valid | `?GRanges` |
+| GR-CON-6 | with `seqinfo`, seqlevels/lengths/circularity/genome come from it (unused levels kept) | `?GRanges` |
+| GR-CON-7 | seqname absent from seqinfo, NA seqname, bad strand, length mismatch, negative width are errors | `?GRanges` |
+| GR-ACC-1 | accessors: seqnames, strand, start, end, width, names, ranges, seqlevels, seqlengths, isCircular, genome, seqinfo, length | `?GRanges` |
+| SI-CON-1 | `Seqinfo(seqnames, seqlengths, isCircular, genome)`; omitted fields are NA | `?Seqinfo` |
+| SI-CON-2 | a scalar `genome` recycles to every sequence | `?Seqinfo` |
+| SI-CON-3 | duplicate names, negative length, vector length mismatch are errors | `?Seqinfo` |
+| SI-ACC-1 | `seqlevels`, `seqlengths`, `isCircular`, `genome` on Seqinfo (named vectors) | `?Seqinfo` |
+| GR-SUB-1 | integer/logical subscripts select ranges; repeats allowed | `?GRanges` |
+| GR-SUB-2 | character subscripts select by names | `?GRanges` |
+| GR-SUB-3 | subsetting keeps the full seqinfo (including unused seqlevels) | `?GRanges` |
+| GR-SUB-4 | out-of-bounds index or unknown name is an error | `?GRanges` |
+| GR-CAT-1 | `c()` merges seqinfo: x's seqlevels first, then new ones from later arguments | `?"c,GenomicRanges-method"` |
+| GR-CAT-2 | NA length/circularity/genome are filled from the other side | `?"c,GenomicRanges-method"` |
+| GR-CAT-3 | conflicting non-NA seqlength, circularity or genome for the same sequence is an error | `?"c,GenomicRanges-method"` |
+| GR-CAT-4 | no common seqlevels: warning only; levels are unioned | `?"c,GenomicRanges-method"` |
+| GR-CAT-5 | `c()` pads names with `""` and fills missing mcols with NA | `?"c,GenomicRanges-method"` |
+| GR-TRIM-1 | `trim` clamps ranges to `[1, seqlength]` on sequences of known length | `?"trim,GenomicRanges-method"` |
+| GR-TRIM-2 | circular sequences and sequences of unknown length are not trimmed | `?"trim,GenomicRanges-method"` |
+| GR-TRIM-3 | ranges wholly outside collapse to a zero-width range at the boundary (`[1,0]` or `[len+1,len]`) | `?"trim,GenomicRanges-method"` |
+| GR-TRIM-4 | `trim` of zero-length is zero-length | `?"trim,GenomicRanges-method"` |
