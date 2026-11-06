@@ -31,7 +31,7 @@ def run(cases: list[dict]) -> dict[str, dict]:
         with src.open("w") as fh:
             for c in cases:
                 fh.write(json.dumps({"id": c["id"], "inputs": c["inputs"], "call": c["call"],
-                                     "universe_call": None}) + "\n")
+                                     "universe_call": c.get("universe_call")}) + "\n")
         subprocess.run(["Rscript", str(ORACLE_R), str(src), str(dst)], check=True,
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         with dst.open() as fh:

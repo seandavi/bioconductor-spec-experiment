@@ -5,16 +5,24 @@ and end of every range input must not change the result (for index- and count-va
 Every such case without a circular sequence of known length is re-run in R with K = 1000 added; a different result means
 R's expected value is an artefact of where the ranges sit (e.g. the sentinel number line GRanges
 precede/follow/nearest build, which coordinates <= 0 cross).
-Writes probe_translate.jsonl: {id, translation_dependent (None: shifted input overflows), r_shifted}.
+R's shifted result is the translation-invariant answer a port can be held to where R's own value is
+the artefact; for select="arbitrary" calls the shifted select="all" universe (rule R3) is kept too.
+Writes probe_translate.jsonl: {id, translation_dependent (None: shifted input overflows), r_shifted,
+r_shifted_universe}.
 """
 from __future__ import annotations
 
 import copy
 import json
+import sys
 from pathlib import Path
 
 from load import EVAL
 from rprobe import literal_cases, run
+
+sys.path.insert(0, str(EVAL / "src"))
+from bioc_eval.common import load_ops  # noqa: E402
+from bioc_eval.oracle import universe_call  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "probe_translate.jsonl"
 K = 1000
@@ -56,12 +64,15 @@ def _circular_with_length(projected_inputs: dict) -> bool:
 def main() -> None:
     expected = {r["id"]: r for r in map(json.loads, (EVAL / "build" / "expected.jsonl").open())}
     resolved = {r["id"]: r for r in map(json.loads, (EVAL / "build" / "resolved.jsonl").open())}
+    ops = load_ops()
     todo = []
     for cid, c in literal_cases().items():
         e = expected.get(cid)
         if e is None or c["op"] not in OPS or _circular_with_length(resolved[cid]["inputs"]):
             continue
-        todo.append(translate(c))
+        tc = translate(c)
+        tc["universe_call"] = universe_call(tc, ops)
+        todo.append(tc)
     got = run(todo)
     n = 0
     with OUT.open("w") as fh:
@@ -70,7 +81,8 @@ def main() -> None:
             r1 = got[tc["id"]].get("result")
             dep = None if r1 is None else r1 != expected[cid]["result"]  # None: shifted input not buildable
             n += bool(dep)
-            fh.write(json.dumps({"id": cid, "translation_dependent": dep, "r_shifted": r1}) + "\n")
+            fh.write(json.dumps({"id": cid, "translation_dependent": dep, "r_shifted": r1,
+                                 "r_shifted_universe": got[tc["id"]].get("universe")}) + "\n")
     print(f"{len(todo)} nearest/overlap cases re-run shifted by {K}; R's result changes in {n}")
 
 
