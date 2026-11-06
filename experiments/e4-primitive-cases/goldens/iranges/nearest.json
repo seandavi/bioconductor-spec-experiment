@@ -176,8 +176,8 @@
     },
     "ir-follow-ties": {
       "kind": "Hits",
-      "query": [1],
-      "subject": [4],
+      "query": [1, 1, 1],
+      "subject": [1, 2, 3],
       "query_length": 1,
       "subject_length": 4,
       "warnings": []
@@ -185,7 +185,7 @@
     "ir-follow-ties-last": {
       "kind": "vector",
       "type": "integer",
-      "values": [4],
+      "values": [3],
       "names": null,
       "warnings": []
     },
