@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:39:59-0500"
+  },
+  "cases": {
+    "gr.nearest.default": {
+      "value": {"$int": [4, 4, 4, 6, 2, 5]},
+      "warnings": []
+    },
+    "gr.nearest.ignore-strand": {
+      "value": {"$int": [4, 4, 4, 5, 3, 6]},
+      "warnings": []
+    },
+    "gr.nearest.reversed": {
+      "value": {"$int": [1, 3, 2, 1, 6, 4]},
+      "warnings": []
+    },
+    "gr.nearest.other-seqname-only": {
+      "value": {"$int": [null]},
+      "warnings": []
+    },
+    "gr.nearest.names-dropped": {
+      "value": {"$int": [2]},
+      "warnings": []
+    },
+    "gr.nearest.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 5, 6]},
+        "to": {"$int": [4, 4, 4, 6, 2, 5]},
+        "nLnode": 6,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "gr.nearest.all.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 5, 6]},
+        "to": {"$int": [4, 4, 4, 5, 3, 6]},
+        "nLnode": 6,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "gr.nearest.self": {
+      "value": {"$int": [3, 3, 2, null]},
+      "warnings": []
+    },
+    "gr.nearest.self.ignore-strand": {
+      "value": {"$int": [2, 1, 2, null]},
+      "warnings": []
+    },
+    "gr.nearest.self.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3]},
+        "to": {"$int": [3, 3, 2]},
+        "nLnode": 4,
+        "nRnode": 4
+      },
+      "warnings": []
+    },
+    "gr.precede.default": {
+      "value": {"$int": [2, 4, 2, 6, null, 5]},
+      "warnings": []
+    },
+    "gr.precede.ignore-strand": {
+      "value": {"$int": [2, 2, 2, 5, null, 6]},
+      "warnings": []
+    },
+    "gr.precede.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 6]},
+        "to": {"$int": [2, 4, 2, 6, 5]},
+        "nLnode": 6,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "gr.precede.self": {
+      "value": {"$int": [3, null, 2, null]},
+      "warnings": []
+    },
+    "gr.follow.default": {
+      "value": {"$int": [4, 3, 4, null, 2, null]},
+      "warnings": []
+    },
+    "gr.follow.ignore-strand": {
+      "value": {"$int": [4, 4, 4, null, 3, 5]},
+      "warnings": []
+    },
+    "gr.follow.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 5]},
+        "to": {"$int": [4, 3, 4, 2]},
+        "nLnode": 6,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "gr.follow.self": {
+      "value": {"$int": [null, 3, 1, null]},
+      "warnings": []
+    },
+    "gr.distance.default": {
+      "value": {"$int": [5, null, 5, null, 5, 0]},
+      "warnings": []
+    },
+    "gr.distance.ignore-strand": {
+      "value": {"$int": [5, 5, 5, null, 5, 0]},
+      "warnings": []
+    },
+    "gr.distance.self": {
+      "value": {"$int": [0, 0, 0, 0, 0, 0]},
+      "warnings": []
+    },
+    "gr.distance.recycle": {
+      "value": {"$int": [85, 85, null, null, 85, 85]},
+      "warnings": []
+    },
+    "gr.distance.empty": {
+      "value": {"$int": []},
+      "warnings": []
+    },
+    "gr.nearest.empty-subject": {
+      "value": {"$lgl": [null, null, null, null, null, null]},
+      "warnings": []
+    },
+    "gr.nearest.empty-query": {
+      "value": {"$int": []},
+      "warnings": []
+    },
+    "gr.precede.empty-subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 0
+      },
+      "warnings": []
+    },
+    "gr.follow.empty-subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 0
+      },
+      "warnings": []
+    },
+    "gr.nearest.all.empty-subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 0
+      },
+      "warnings": []
+    }
+  }
+}
