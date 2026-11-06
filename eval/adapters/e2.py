@@ -404,6 +404,10 @@ class Adapter(AdapterBase):
     # ---------------------------------------------------------------- subset / concat
 
     def op_subset(self, *, x, i=MISSING):
+        if isinstance(x, Seqinfo):
+            if not isinstance(i, RVector) or i.type != "chr" or None in i.values:
+                raise Unsupported("subscript:Seqinfo needs character names")
+            return x.subset(i.list())
         _need_ranges(x, "[")
         return x[_subscript(x, i)]
 
