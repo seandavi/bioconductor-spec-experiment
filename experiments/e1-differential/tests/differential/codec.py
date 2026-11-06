@@ -40,11 +40,11 @@ def decode_vec(v: list[Any], typ: str | None = None) -> Any:
 
 def _series(name: str, values: Any) -> pl.Series:
     if isinstance(values, np.ma.MaskedArray):
-        return pl.Series(name, values.filled(0).tolist()).zip_with(
+        return pl.Series(name, values.filled(0)).zip_with(
             pl.Series(~np.ma.getmaskarray(values)), pl.Series([None] * len(values))
         )
     if isinstance(values, np.ndarray):
-        return pl.Series(name, values.tolist())
+        return pl.Series(name, values)
     return pl.Series(name, values)
 
 

@@ -33,7 +33,9 @@ def test_redteam_mark_is_strict_and_keeps_reason() -> None:
     collect([item])
     assert len(item.markers) == 1
     assert item.markers[0].name == "xfail"
-    assert item.markers[0].kwargs == {"reason": "Known circular overlap bug", "strict": True}
+    assert item.markers[0].kwargs == {
+        "reason": "Known circular overlap bug", "strict": True, "raises": pytest.fail.Exception,
+    }
 
 
 def test_redteam_mark_leaves_existing_cases_unchanged() -> None:

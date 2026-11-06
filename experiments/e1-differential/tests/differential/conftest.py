@@ -13,4 +13,4 @@ def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
             reason = case.spec["xfail"]
             if not isinstance(reason, str) or not reason.strip():
                 raise pytest.UsageError(f"{case.id}: xfail must be a nonempty reason")
-            item.add_marker(pytest.mark.xfail(reason=reason, strict=True))
+            item.add_marker(pytest.mark.xfail(reason=reason, strict=True, raises=pytest.fail.Exception))

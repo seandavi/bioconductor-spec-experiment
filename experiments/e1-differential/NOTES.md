@@ -74,3 +74,13 @@ Append-only. Timestamped judgment calls and human interventions.
   Seqinfo replacement silently remaps/drops levels: judgment call requiring an ADR,
   not an accepted divergence. Numeric-name case uses direct constructors to avoid
   the encoder's unrelated inability to JSON-serialize numpy scalar sequence names.
+- 2026-11-06T05:48:41Z red team: 46 empty/zero-width/ordering/negative-coordinate cases;
+  36 pass, 10 strict xfail. Default constructors, blank-name indexing, and typed NA
+  coverage weights diverge. Negative genomic nearest-family behavior needs an ADR:
+  R loses hits or errors; Python gives geometric answers. No decision accepted.
+- 2026-11-06T05:48:41Z harness correction: typed empty numpy metadata became Polars Null
+  through tolist(), falsely appearing as character metadata. Preserve array dtype
+  in the literal decoder; seven regression tests cover it. Four apparent port
+  failures now pass. Xfail only catches comparison failures, not harness crashes.
+- 2026-11-06T05:48:41Z validation: full suite 3888 passed, 52 xfailed. Source unchanged;
+  existing test expectations unchanged. All 119 red-team cases ran in R and Python.
