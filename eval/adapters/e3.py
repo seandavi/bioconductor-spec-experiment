@@ -252,8 +252,6 @@ class Adapter(AdapterBase):
         return _invoke_fn(IRanges, "IRanges", kw)
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING, _mcols=None):
-        if isinstance(seqnames, pl.Series):
-            raise Unsupported("argument:seqnames as a factor (port takes strings)")
         kw = {k: v for k, v in (("seqnames", seqnames), ("ranges", ranges), ("seqinfo", seqinfo)) if v is not MISSING}
         if "seqnames" in kw:
             kw["seqnames"] = _list(seqnames)
