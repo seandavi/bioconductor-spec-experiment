@@ -8,7 +8,7 @@
     "dbl": {"oneOf": [{"type": "number"}, {"enum": ["NaN", "Inf", "-Inf"]}, {"type": "null"}]},
     "chr": {"type": ["string", "null"]},
     "lgl": {"type": ["boolean", "null"]},
-    "ints": {"type": "array", "items": {"type": "integer"}},
+    "ints": {"type": "array", "items": {"type": ["integer", "null"]}},
     "names": {"oneOf": [{"type": "null"}, {"type": "array", "items": {"$ref": "#/$defs/chr"}}]},
     "typed_values": {
       "oneOf": [

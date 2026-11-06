@@ -91,7 +91,7 @@ class G:
             return 0
         return r.choice([1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 12])
 
-    def _coords(self, n: int, window=(-5, 60), maxw: int = 12) -> tuple[list[int], list[int]]:
+    def _coords(self, n: int, window=(-5, 60), maxw: int = 12, minw: int = 0) -> tuple[list[int], list[int]]:
         r = self.rng
         if self.extreme:
             top = r.random() < 0.7
@@ -106,7 +106,7 @@ class G:
             if r.random() < self.p_zero:
                 widths.append(0)
             else:
-                widths.append(r.choice([1, 1, 2, 3, 4, 5, 6, 8, maxw]))
+                widths.append(max(minw, r.choice([1, 1, 2, 3, 4, 5, 6, 8, maxw])))
         return starts, widths
 
     def mcol(self, n: int, complex_ok: bool = False) -> dict:
@@ -159,12 +159,12 @@ class G:
 
     def ranges(self, n: int | None = None, *, gr: bool | None = None, si: SeqinfoSpec | None = None,
                si_ref: str | None = None, names: bool | None = None, mcols: bool | None = None,
-               strand: str | None = None, window=(-5, 60), maxw: int = 12, complex_mcols: bool = False,
-               form: str | None = None) -> Ranges:
+               strand: str | None = None, window=(-5, 60), maxw: int = 12, minw: int = 0,
+               complex_mcols: bool = False, form: str | None = None) -> Ranges:
         r = self.rng
         gr = (self.cls == "GRanges") if gr is None else gr
         n = self.size() if n is None else n
-        start, width = self._coords(n, window, maxw)
+        start, width = self._coords(n, window, maxw, minw)
         rs = Ranges(start, width, self.names_for(n, names), self.mcols_for(n, mcols, complex_mcols),
                     form=form or r.choice(["sw", "sw", "se", "ew"]))
         if gr:
@@ -216,6 +216,33 @@ class G:
             b = self.ranges(n_b, si=b_si, si_ref=b_ref, **rkw)
             if self.cls == "GRanges" and b_si is a_si and a.seqnames:
                 pass
+        self.add("x", a)
+        self.add("y", b)
+        return a, b
+
+    def parallel_pair(self, n: int | None = None, m: int | None = None, **kw) -> tuple[Ranges, Ranges]:
+        """x of length n and y of length m (default n) with y[i] a nudged copy of x[i % n], so pairs are compatible."""
+        r = self.rng
+        si = ref = None
+        if self.cls == "GRanges":
+            si, ref = self.shared_seqinfo(**{k: v for k, v in kw.items() if k in ("small_lengths", "min_levels")})
+        rkw = {k: v for k, v in kw.items() if k not in ("small_lengths", "min_levels")}
+        a = self.ranges(n, si=si, si_ref=ref, **rkw)
+        m = a.n if m is None else m
+        if a.n == 0:
+            b = self.ranges(m, si=si, si_ref=ref, **rkw)
+        else:
+            idx = [i % a.n for i in range(m)]
+            b = Ranges([a.start[i] + r.choice([-2, -1, 0, 0, 1, 2]) for i in idx],
+                       [max(0, a.width[i] + r.choice([-2, 0, 0, 1, 3])) for i in idx], None, [],
+                       form=r.choice(["sw", "se", "ew"]))
+            if r.random() < self.p_names:
+                b.names = self.names_for(m, True)
+            if a.is_gr:
+                b.seqnames = [a.seqnames[i] if r.random() < 0.9 else r.choice(a.effective_levels()) for i in idx]
+                st = a.strand
+                b.strand = None if st is None else [st[i] if r.random() < 0.8 else r.choice("+-*") for i in idx]
+                b.seqinfo, b.seqinfo_ref = si, ref
         self.add("x", a)
         self.add("y", b)
         return a, b

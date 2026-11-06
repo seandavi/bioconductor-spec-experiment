@@ -23,8 +23,8 @@ the oracle must format doubles itself.
 |---|---|---|
 | `vector` | `type` (`int` `dbl` `chr` `lgl`), `values`, `names` (`null` or list) | atomic vector; `names(x)` |
 | `NULL` | — | `NULL` |
-| `IRanges` | `start`, `width` (int lists), `names`, `mcols` | any `IntegerRanges` (IRanges, NormalIRanges, ...) |
-| `GRanges` | `seqnames` (chr), `start`, `width`, `strand` (chr of `+ - *`), `names`, `mcols`, `seqinfo` | any `GenomicRanges` |
+| `IRanges` | `start`, `width` (int lists; NA → `null`, since R returns NA widths on int32 overflow), `names`, `mcols` | any `IntegerRanges` (IRanges, NormalIRanges, ...) |
+| `GRanges` | `seqnames` (chr), `start`, `width` (as IRanges), `strand` (chr of `+ - *`), `names`, `mcols`, `seqinfo` | any `GenomicRanges` |
 | `Seqinfo` | `seqnames` (chr), `seqlengths` (int\|null), `isCircular` (lgl\|null), `genome` (chr\|null) | `seqlevels`, `unname(seqlengths)`, `unname(isCircular)`, `unname(genome)` |
 | `DataFrame` | `nrow`, `rownames` (`null` or chr), `columns` | `DataFrame` |
 | `Factor` | `levels` (chr), `codes` (1-based int\|null) | `factor` (not inside an Rle) |

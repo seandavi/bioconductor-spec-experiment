@@ -11,7 +11,7 @@ from gen_data import (
 
 def unary(g: G, extra=None, *, gr_kw=None, mcols: bool | None = None, **rkw):
     """Input x only, plus optional pre-sampled chosen args."""
-    x = g.ranges(**rkw)
+    x = g.ranges(mcols=mcols, **rkw)
     g.add("x", x)
     chosen = {"x": {"$ref": "x"}}
     chosen.update(extra or {})
@@ -22,9 +22,9 @@ def ref(name: str) -> dict:
     return {"$ref": name}
 
 
-def ignore_strand(g: G, chosen: dict, p: float = 0.3) -> None:
+def ignore_strand(g: G, chosen: dict, p: float = 0.3, p_na: float = 0.08) -> None:
     if g.cls == "GRanges" and g.rng.random() < p:
-        chosen["ignore.strand"] = g.flag(0.15) if g.rng.random() < 0.9 else (g.rng.random() < 0.6)
+        chosen["ignore.strand"] = g.flag(p_na)
         g.tag("strand")
 
 
@@ -39,7 +39,7 @@ def op_IRanges(g: G):
     g.begin(["width", "end", "names"])
     n = g.size()
     s, w = g._coords(n)
-    form = r.choice(["sw", "se", "ew", "sw", "se", "s", "e", "w", "sew", "none"])
+    form = r.choice(["sw", "se", "ew", "sw", "se", "ew", "sw", "se", "s", "e", "w", "sew", "none"])
     if n == 0:
         g.tag("empty")
     if 0 in w:
@@ -267,11 +267,11 @@ def op_set_seqinfo(g: G):
     target = variant_seqinfo(r, si) if r.random() < 0.8 else SeqinfoSpec(list(levels), si.lengths, si.circular, si.genome)
     g.seqinfo_input("val", target)
     ch: dict = {"x": ref("x")}
-    if r.random() < 0.5 and x is not None:
+    if r.random() < 0.85:
         new2old = [(levels.index(lv) + 1) if lv in levels else None for lv in target.levels]
         ch["new2old"] = ivec(g.arg("new2old", new2old, [[0] * len(new2old), [99] * len(new2old)]))
-    if r.random() < 0.5:
-        ch["pruning.mode"] = g.arg("pruning.mode", r.choice(["error", "coarse", "fine", "tidy"]), ["bogus"])
+    if r.random() < 0.6:
+        ch["pruning.mode"] = g.arg("pruning.mode", r.choice(["error", "coarse", "tidy"]), ["bogus"])
     ch["value"] = ref("val")
     return mk_call(r, g.entry, ch)
 
@@ -357,7 +357,7 @@ def op_trim(g: G):
 
 def _subscript(g: G, n: int, names: list[str] | None):
     r = g.rng
-    kinds = ["pos", "pos", "neg", "lgl", "lgl_short", "zero", "na", "oob", "dbl", "names", "emptyint", "all", "ok_rep"]
+    kinds = ["pos", "pos", "neg", "lgl", "lgl_short", "zero", "na", "na", "oob", "dbl", "names", "emptyint", "all", "ok_rep"]
     kind = r.choice(kinds)
     if kind == "pos" or (kind in ("neg", "ok_rep", "all") and n == 0):
         return ivec([r.randint(1, n) for _ in range(r.randint(0, 5))]) if n else ivec([])
@@ -439,7 +439,7 @@ def op_c(g: G):
         dots.append(ivec([1]))
         g.tag("invalid")
     if r.random() < 0.25:
-        ch["ignore.mcols"] = r.random() < 0.6
+        ch["ignore.mcols"] = g.flag(0.1)
     return mk_call(r, g.entry, ch, dots=dots)
 
 
@@ -462,15 +462,16 @@ def op_shift(g: G):
 def op_narrow(g: G):
     r = g.rng
     g.begin(["start", "end", "width"])
-    x, ch = unary(g, maxw=14)
-    combo = r.choice(["start", "end", "width", "se", "sw", "ew", "se", "all3"])
+    g.p_zero = 0.0 if r.random() < 0.85 else g.p_zero  # mostly legal narrowing; zero-width inputs stay possible
+    x, ch = unary(g, minw=7, maxw=14)
+    combo = r.choice(["start", "end", "width", "se", "sw", "ew", "se", "sw", "all3"])
     n = x.n
-    if "start" in combo or combo in ("se", "sw", "all3"):
-        ch["start"] = g.arg("start", g.int_arg(n, -4, 5, na_p=0.07), [ivec([100]), ivec([None])])
+    if combo in ("start", "se", "sw", "all3"):
+        ch["start"] = g.arg("start", g.int_arg(n, 1, 3, na_p=0.05) if r.random() < 0.9 else g.int_arg(n, -4, 5), [ivec([100]), ivec([None])])
     if combo in ("end", "se", "ew", "all3"):
-        ch["end"] = g.arg("end", g.int_arg(n, -5, 6, na_p=0.07), [ivec([-100])])
+        ch["end"] = g.arg("end", g.int_arg(n, 4, 6, na_p=0.05) if r.random() < 0.6 else g.int_arg(n, -3, -1), [ivec([-100])])
     if combo in ("width", "sw", "ew", "all3"):
-        ch["width"] = g.arg("width", g.int_arg(n, 0, 6, na_p=0.07), [ivec([-1]), ivec([99])])
+        ch["width"] = g.arg("width", g.int_arg(n, 0, 4, na_p=0.05), [ivec([-1]), ivec([99])])
     if combo == "all3":
         g.tag("invalid")
     out = {k: ch[k] for k in ("x", "start", "end", "width") if k in ch}
@@ -602,21 +603,21 @@ def op_parallel(g: G):
     g.begin(["y", "fill.gap", "resolve.empty"], p_bad=0.08)
     n = g.size()
     mode = r.random()
-    nb = n if mode < 0.8 else (1 if mode < 0.9 else max(n + r.randint(1, 3), 1))
-    x, y = g.pair(n_a=n, n_b=nb, maxw=8)
-    if mode >= 0.9:
+    nb = n if mode < 0.85 else (1 if mode < 0.93 else max(n + r.randint(1, 3), 1))
+    x, y = g.parallel_pair(n, nb, maxw=8)
+    if mode >= 0.93:
         g.tag("invalid")
     ch: dict = {"x": ref("x"), "y": ref("y")}
     op = g.entry["op"]
     if op == "punion" and r.random() < 0.6:
         ch["fill.gap"] = g.arg("fill.gap", g.flag(0.03), [cvec(["a"])])
-    if op == "pintersect":
+    if op == "pintersect" and g.cls == "IRanges":
         if r.random() < 0.5:
             ch["resolve.empty"] = g.arg("resolve.empty", r.choice(["none", "max.start", "start.x"]), ["bogus"])
         if r.random() < 0.4:
             ch["drop.nohit.ranges"] = g.flag(0.03)
-        if g.cls == "GRanges" and r.random() < 0.3:
-            ch["strict.strand"] = g.flag()
+    if op == "pintersect" and g.cls == "GRanges" and r.random() < 0.3:
+        ch["strict.strand"] = g.flag()
     ignore_strand(g, ch, 0.4)
     return mk_call(r, g.entry, ch)
 
@@ -625,12 +626,20 @@ def op_parallel(g: G):
 
 def _overlap_common(g: G, ch: dict, *, with_type=True, with_gap=True, selects=False):
     r = g.rng
-    if with_gap and r.random() < 0.5:
-        ch["maxgap"] = g.arg("maxgap", g.int_arg(0, -1, 12, na_p=0.04, dbl_p=0.05), [cvec(["a"]), ivec([1, 2])])
-    if with_gap and r.random() < 0.5:
-        ch["minoverlap"] = g.arg("minoverlap", g.int_arg(0, 0, 6, na_p=0.04, dbl_p=0.05), [-2, cvec(["a"])])
+    typ = None
     if with_type and r.random() < 0.7:
-        ch["type"] = g.arg("type", r.choice(["any", "start", "end", "within", "equal", "any", "within"]), ["bogus", "ANY", ivec([1])])
+        typ = g.arg("type", r.choice(["any", "start", "end", "within", "equal", "any", "within"]), ["bogus", "ANY", ivec([1])])
+    only_one = typ in (None, "any") and g.bad_slot not in ("maxgap", "minoverlap")  # R: type "any" takes one of them
+    use_gap = with_gap and r.random() < 0.5
+    use_min = with_gap and r.random() < 0.5
+    if only_one and use_gap and use_min:
+        use_gap, use_min = (True, False) if r.random() < 0.5 else (False, True)
+    if use_gap:
+        ch["maxgap"] = g.arg("maxgap", g.int_arg(0, -1, 12, na_p=0.04, dbl_p=0.05), [cvec(["a"]), ivec([1, 2])])
+    if use_min:
+        ch["minoverlap"] = g.arg("minoverlap", g.int_arg(0, 0, 6, na_p=0.04, dbl_p=0.05), [-2, cvec(["a"])])
+    if typ is not None:
+        ch["type"] = typ
     if selects and r.random() < 0.8:
         ch["select"] = g.arg("select", r.choice(["all", "first", "last", "arbitrary", "all", "arbitrary"]), ["bogus", "ALL"])
 
@@ -651,8 +660,6 @@ def op_findOverlaps(g: G):
         ch["drop.self"] = g.flag()
         ch["drop.redundant"] = g.flag()
     ignore_strand(g, ch, 0.35)
-    if r.random() < 0.04:
-        ch["nthread"] = 1
     return mk_call(r, g.entry, ch)
 
 
@@ -699,8 +706,9 @@ def op_nearest_like(g: G):
     else:
         ch["subject"] = ref("y")
     if r.random() < 0.7:
-        ch["select"] = g.arg("select", r.choice(["arbitrary", "all"]) if g.entry["op"] == "nearest" else r.choice(["first", "last", "all"]) if r.random() < 0.5 else r.choice(["all", "arbitrary"]), ["bogus", "ALL"])
-    ignore_strand(g, ch, 0.6)
+        legal = {"nearest": ["arbitrary", "all"], "precede": ["first", "all"], "follow": ["last", "all"]}[g.entry["op"]]
+        ch["select"] = g.arg("select", r.choice(legal), ["bogus", "ALL", "first" if g.entry["op"] == "follow" else "last"])
+    ignore_strand(g, ch, 0.7, 0.15)
     return mk_call(r, g.entry, ch)
 
 
@@ -709,9 +717,9 @@ def op_distance(g: G):
     g.begin(["y"], p_bad=0.06)
     n = g.size()
     mode = r.random()
-    nb = n if mode < 0.8 else (1 if mode < 0.9 else n + 2)
-    x, y = g.pair(n_a=n, n_b=nb, maxw=6)
-    if mode >= 0.9:
+    nb = n if mode < 0.85 else (1 if mode < 0.93 else n + 2)
+    x, y = g.parallel_pair(n, nb, maxw=6)
+    if mode >= 0.93:
         g.tag("invalid_possible")
     ch = {"x": ref("x"), "y": ref("y")}
     ignore_strand(g, ch, 0.6)
@@ -838,8 +846,8 @@ def op_rank(g: G):
     ch: dict = {"x": ref("x")}
     if r.random() < 0.3:
         ch["na.last"] = g.flag(0.2)
-    if r.random() < 0.7:
-        ch["ties.method"] = g.arg("ties.method", r.choice(["average", "first", "last", "min", "max", "random"][:5]), ["bogus"])
+    if r.random() < 0.88:
+        ch["ties.method"] = g.arg("ties.method", r.choice(["average", "first", "last", "min", "max"]), ["bogus"])
     ignore_strand(g, ch, 0.4)
     return mk_call(r, g.entry, ch)
 
