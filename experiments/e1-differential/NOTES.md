@@ -26,3 +26,15 @@ Append-only. Timestamped judgment calls and human interventions.
   (e.g. 5/0,5/0,5/3 -> revmap [1],[3]). Modelled as "drop output range equal to previous".
   `gaps` and `disjoin` also ignore empty ranges as coverage; `disjoin` still
   breaks other ranges at an empty range's position (probed).
+- 2026-11-06 01:10 overlaps: predicates fitted to R on an exhaustive 24x24 pool
+  (types x maxgap x minoverlap), see `_kernels/overlaps.py` docstring. Facts found:
+  `within` ignores maxgap<=0; minoverlap only applies when >0; `any` uses the
+  two-sided gap test (so empty ranges behave); `any` with maxgap>=0 and minoverlap>0 errors.
+- 2026-11-06 01:10 overlaps: hit order within a query is engine-dependent. R builds an
+  NCList on the shorter side (ties -> subject). nq>=ns: subjects in (start asc, width desc,
+  idx) order; nq<ns: index order. `select="arbitrary"` = first hit in that order
+  (subject mode) or last-seen = max index (query mode). Matched exactly; no ADR needed.
+  `first`/`last` are min/max subject index in both modes.
+- 2026-11-06 01:10 ADR-0003: counts are plain arrays; R's query names stripped by the adapter.
+- 2026-11-06 01:10 drop.redundant: modelled as "drop (i,j), i>j, if (j,i) is also a hit";
+  matches R on symmetric (any/equal) and asymmetric (within/start) grids.

@@ -9,7 +9,8 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import inter, intra, setops
+from ._kernels import inter, intra, overlaps, setops
+from .hits import Hits
 from ._meta import INT_MAX, Names
 
 
@@ -332,3 +333,67 @@ class IRanges:
     def psetdiff(self, other: IRanges) -> Self:
         self._check_parallel(other)
         return self._parallel_result(*setops.psetdiff(self._start, self._width, other._start, other._width))
+
+    # -- overlaps ------------------------------------------------------------
+    def _pairs(self, subject: IRanges, maxgap: int, minoverlap: int, type_: str) -> tuple[np.ndarray, np.ndarray]:
+        """Hit pairs for (self as query, subject); subclasses add compatibility filters."""
+        return overlaps.find(self._start, self._width, subject._start, subject._width, maxgap, minoverlap, type_)
+
+    def find_overlaps(
+        self,
+        subject: IRanges | None = None,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",  # noqa: A002 - R's argument name
+        select: str = "all",
+        drop_self: bool = False,
+        drop_redundant: bool = False,
+    ) -> Hits | np.ma.MaskedArray:
+        """Overlaps of self (query) with `subject`; `subject=None` means self-overlaps.
+
+        select="all" -> Hits; "first" / "last" / "arbitrary" -> masked array of 0-based
+        subject indices (masked = no hit).
+        """
+        overlaps.check_args(type, int(maxgap), int(minoverlap))
+        if select not in ("all", "first", "last", "arbitrary"):
+            raise ValueError("'arg' should be one of \"all\", \"first\", \"last\", \"arbitrary\"")
+        self_hits = subject is None
+        subj = self if subject is None else subject
+        q, s = self._pairs(subj, int(maxgap), int(minoverlap), type)
+        if self_hits:
+            keep = np.ones(len(q), dtype=bool)
+            if drop_self:
+                keep &= q != s
+            if drop_redundant:  # drop (i, j), i > j, when its mirror (j, i) is also a hit
+                n = len(self)
+                key = set((q * n + s).tolist())
+                mirror = np.array([(b * n + a) in key for a, b in zip(q.tolist(), s.tolist())], dtype=bool)
+                keep &= ~((q > s) & mirror)
+            q, s = q[keep], s[keep]
+        hits = Hits(q, s, len(self), len(subj))
+        if select == "arbitrary" and overlaps.uses_query_nclist(len(self), len(subj)):
+            select = "last"  # R's engine reports the last-seen subject in this mode
+        return hits if select == "all" else hits.select(select)
+
+    def count_overlaps(
+        self, subject: IRanges | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any"  # noqa: A002
+    ) -> np.ndarray:
+        hits = self.find_overlaps(subject, maxgap, minoverlap, type)
+        assert isinstance(hits, Hits)
+        return hits.count_by_query()
+
+    def overlaps_any(
+        self, subject: IRanges | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any"  # noqa: A002
+    ) -> np.ndarray:
+        return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
+
+    def subset_by_overlaps(
+        self,
+        subject: IRanges,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",  # noqa: A002
+        invert: bool = False,
+    ) -> Self:
+        hit = self.overlaps_any(subject, maxgap, minoverlap, type)
+        return self[~hit if invert else hit]

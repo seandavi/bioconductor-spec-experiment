@@ -209,7 +209,8 @@ def evaluate(case: Case, r: dict[str, Any], py: dict[str, Any], universe: dict[s
         if r_err and p_err:
             return None
         return f"R {'errors: ' + r['error'] if r_err else 'ok'}; Python {'errors: ' + py['error'] if p_err else 'ok'}"
-    d = codec.first_diff(r["value"], py["value"])
+    fn = case.spec.get("call", {}).get("fn")
+    d = codec.first_diff(adapter.normalize_r(fn, r["value"]), py["value"])
     if d:
         return d
     if case.spec.get("check_warnings") and bool(r["warnings"]) != bool(py["warnings"]):

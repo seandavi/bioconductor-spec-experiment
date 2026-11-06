@@ -103,6 +103,17 @@ ADAPTERS: dict[str, Adapter] = {
 }
 
 
+# R returns these with the query's names; Python returns plain arrays (ADR-0004).
+R_UNNAMED = {"countOverlaps"}
+
+
+def normalize_r(fn: str | None, value: Any) -> Any:
+    """Strip R-only vector names where an ADR says Python does not carry them."""
+    if fn in R_UNNAMED and isinstance(value, dict) and value.get("class") == "vector":
+        return {**value, "names": None}
+    return value
+
+
 def call_fn(fn: str, args: list[Any], kwargs: dict[str, Any]) -> Any:
     ad = ADAPTERS.get(fn, Adapter())
     kw = {snake(k): v for k, v in kwargs.items()}

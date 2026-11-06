@@ -1,0 +1,1282 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "any-bad-args-error": {
+   "hash": "26fc5cc1f72bc0f9529ddc4154b2f77a68c29f7e2d8d93a0632a5aa4aa6084ff",
+   "result": {
+    "error": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+    "warnings": []
+   }
+  },
+  "any-basic": {
+   "hash": "940d2a4f83277ec4acefa8e8896d1cf5e0436bb14c315416ee8d47b4515f07af",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      true,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "any-empty-subject": {
+   "hash": "c5d19a8c4890963d2cd639357dfeb3e15ec97e62d8567db3dfecea809838b64e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "any-maxgap": {
+   "hash": "8f48c68cdbd5f0ac32267d83d1dd1e46558a9a3eb418a5a9dd5e49adb015557e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "any-reversed-within": {
+   "hash": "af863113ea3ccb27a8f2649a3a70d82d4705c0bb6fa82f08537ccdd803571172",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      true,
+      true,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "any-self": {
+   "hash": "880c7b86b66cca49fb999a2e238719af4d1634ef0a72d5be1060f95671be0a3e",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "any-type-within": {
+   "hash": "790c92e69a67667a074e4b2c08ffbe362d8affe899f93b9119db6940ecac6732",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      true,
+      true,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "count-basic": {
+   "hash": "2a71b9281b9069b51af848023c9ed6e8accbe2793100aa8dc1ecdfa9413860bb",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      3,
+      1,
+      0
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "count-empty-query": {
+   "hash": "82113133b6814d2f12d3727c2ccd009490b2798fd230cc470ebd6ca9c62c21e4",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "count-empty-subject": {
+   "hash": "c0f72389db7fb9b72b9a73fc2088e3c5dd879559044f9362d70260d21960030c",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "count-maxgap": {
+   "hash": "bf551742c1de59985fc5323206cbf20716bf749c39af48d9689b12f9cd4ba476",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      3,
+      3,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "count-minoverlap": {
+   "hash": "5f94a3a6ca94c399fdeb416cfdef20ef9b4c0fad3b76b7ea06ccdf94ff41b7fc",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      1,
+      1,
+      0
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "count-self": {
+   "hash": "195776ba3d52c1f6aaf51b3f31eefed8441f884df42f09ae83ce7c80ea6e76f5",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      2,
+      1,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "count-unnamed-query": {
+   "hash": "62b7af8e6c4adba1aabfb106b5fe82753a76d53b74df72e77ec96966063fe4b6",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "count-within": {
+   "hash": "0ac3294032a3d5a4661e67b9d332768f3bbd4fc33f86165eb719806e8e0ac232",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      1,
+      1,
+      0
+     ],
+     "names": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "fo-any-maxgap-and-minoverlap-error": {
+   "hash": "3f0c22cde0451c7e8ca6b68f4b8651ea7926a5a752effa4201a4f2879e0b7651",
+   "result": {
+    "error": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+    "warnings": []
+   }
+  },
+  "fo-basic": {
+   "hash": "3cc799c74f94876986188ad9c41a259f48880821c8176aa3573288df06e8264c",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      2,
+      3
+     ],
+     "to": [
+      1,
+      1,
+      2,
+      3,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-default-adjacent-no-hit": {
+   "hash": "53b0fdae4b55555450e3efc919b32d8b005ec9a23366a42e6ccee32702857532",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-duplicate-subjects": {
+   "hash": "93147b9cc86c41aa71a779624bb80c1b1287e2430580c6fb509d8e3fca88a140",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1
+     ],
+     "to": [
+      1,
+      2,
+      3
+     ],
+     "nLnode": 1,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "fo-empty-query": {
+   "hash": "b62bd4ea348ca3ad28ce528b3c32be320e44cb9407622cd4dc21a8e1428e05d8",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 0,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-empty-query-select-last": {
+   "hash": "ee4b11454dc5b99435af5b0ff3252f529714c54ae857e41caf84b1d163660951",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-empty-subject": {
+   "hash": "e4f34d8a20abcdf66539dc8fdc060cc25b842dd9a983bb1775dd22d011edcc9c",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
+    "warnings": []
+   }
+  },
+  "fo-empty-subject-select-first": {
+   "hash": "2955e284496577c23e369608221dd095dfbca02dbd1b6ced9cbd6dfa351a6fa3",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-hit-order-nested-subjects": {
+   "hash": "e9ff7174aef43784717fc98bd14945ae6e181fa839c347b4ca7ca1d4342b66f6",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      4,
+      6
+     ],
+     "nLnode": 1,
+     "nRnode": 6
+    },
+    "warnings": []
+   }
+  },
+  "fo-int32-extremes": {
+   "hash": "6069c2d4b9cd734ad6538617f8cd40623da1dc99b56385aab6c4c2b981245ed8",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-int32-huge-maxgap": {
+   "hash": "3af28f037882ed6d21e0a2e29a06764399d4f4efc5b49a9d4c0973aea7999e72",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-0-adjacent": {
+   "hash": "1429f6cf4ce38ec47669cfca69f5059d2c5ed7342dbb9048ee9b927e0c60c260",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-2": {
+   "hash": "5b9fded58821b45fd9f5349e480d2cd590a1c1f8c0a27eb61e18a71cf910560e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      1,
+      2,
+      3,
+      1,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-end": {
+   "hash": "74e51f5e52fae2e7c949843191b89d99afa4455047d4334a849c0e0e99e3d614",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      4
+     ],
+     "to": [
+      2,
+      3,
+      1,
+      2,
+      3,
+      1,
+      2,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-equal": {
+   "hash": "8275e0b9b8a051082e192eb838b2c9c11373ce22219d2c52f9319536db0ccd29",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      2,
+      2,
+      3
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-large": {
+   "hash": "5b543e267156ed1e2611654e783e64510070e6a08009bef5250e4721ca9e6c1e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-start": {
+   "hash": "ed3cbc3e7268cf765af5028ea3c16066e60998eb443e0e9b5f48f3837c15c879",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      2,
+      3,
+      3
+     ],
+     "to": [
+      1,
+      1,
+      2,
+      3,
+      2,
+      3
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-maxgap-too-negative-error": {
+   "hash": "81f5ce8647c3ce2170329ba7a23537d9114eac9f5903c9a7e619330624e99068",
+   "result": {
+    "error": "'maxgap' must be >= -1",
+    "warnings": []
+   }
+  },
+  "fo-maxgap-within": {
+   "hash": "61b75ce62a997583f23f0d9c65da6d70fd7b502ebaf731e5ec16a16f40b7ecc1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-minoverlap-2": {
+   "hash": "d56384d5e604da48caf0bbfc51ae2118d30229a4327c61df5c843f70b5ab1044",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2,
+      3
+     ],
+     "to": [
+      1,
+      1,
+      2,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-minoverlap-large": {
+   "hash": "0683e23a76dbecb3f1139e2360c9d093f4ea775683173d0d8021dcbd37c1b624",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-minoverlap-negative-error": {
+   "hash": "75a5908771330535bfb110060fb69dd07f5e5f82f059caf5d4baa84c71778214",
+   "result": {
+    "error": "'minoverlap' cannot be negative",
+    "warnings": []
+   }
+  },
+  "fo-minoverlap-within": {
+   "hash": "a1d0637c96a8d367212cd62443e4457c2a1f69f5aec51e2504a0b87883bf702e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      3
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-select-arbitrary": {
+   "hash": "cb11194c49b2deca9454779f0e1772577642678fd8f56c06ea170b240bfffc42",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      1,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-select-arbitrary-nested": {
+   "hash": "dddef4a0eaa0c8e0d478ec1684af75815c2e9248e8887cda5be5254f9064b1a5",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      6,
+      5,
+      6
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-select-bad-error": {
+   "hash": "407a88f0584acfbbd0a8a2c0608b9b211121e59962ecee1151164002f3d9c8d1",
+   "result": {
+    "error": "'arg' should be one of \u201call\u201d, \u201cfirst\u201d, \u201clast\u201d, \u201carbitrary\u201d",
+    "warnings": []
+   }
+  },
+  "fo-select-duplicate-subjects": {
+   "hash": "8b14cb125cf7cff4739f6a366025db1ba8337f41537610157d1054d59f721733",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-select-first": {
+   "hash": "7305da9267b4c2a5a9b8775daf5cac7c9d847f4e571deafae53d4ab1dfab2d55",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      1,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-select-last": {
+   "hash": "fc4e31fd40bff50d37c87afb36ec091ba42f7e0b32de30b8ca1a131ca12b9ee7",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      3,
+      1,
+      null
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-self": {
+   "hash": "bdb72a96f16518a761842fc7e37e82a8d04e2ec70a730df19b9924b5230c115d",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      3,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      1,
+      2,
+      1,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-drop-redundant-only": {
+   "hash": "8ca8de8a3d6e84fdbc64931160d8bd50ffb7505c23b061efa4fc39e42fb23431",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      2,
+      4
+     ],
+     "to": [
+      1,
+      2,
+      3,
+      2,
+      4
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-drop-self": {
+   "hash": "8600031e1b761ee080fbcee7d12b2950935234130d73a77d3b86809d7ee0119b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2,
+      3
+     ],
+     "to": [
+      2,
+      3,
+      1,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-drop-self-redundant": {
+   "hash": "3fd290048baa5ab2ec4c5cd9b050a1c7339f938c92a5ea4e7ecc6ce881220012",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1
+     ],
+     "to": [
+      2,
+      3
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-select-first": {
+   "hash": "675cb5dbf7ebb5fe7756917e55bb6165881aadb9e76693c16c5b4a51294ff7af",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      1,
+      4
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-within-drop-redundant": {
+   "hash": "80b26ad3cb62bfa584742fc4a6685e113538e93c094b9786a75f679324fa4477",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      3,
+      3
+     ],
+     "to": [
+      1,
+      1,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-self-within-drop-self": {
+   "hash": "329be8c265e1dfff2c8e261735fef8abdcd800d3a2da0784399c3377cc739c07",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      3,
+      3
+     ],
+     "to": [
+      1,
+      1,
+      2
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-type-bad-error": {
+   "hash": "7322b27857b916936d86c3c5b913a75c79d4d3b7d750dea6d81ab1f3e9a14666",
+   "result": {
+    "error": "'arg' should be one of \u201cany\u201d, \u201cstart\u201d, \u201cend\u201d, \u201cwithin\u201d, \u201cequal\u201d",
+    "warnings": []
+   }
+  },
+  "fo-type-end": {
+   "hash": "0aed2ed9209c99a161852f1af2e745e05f2c2fa86cd13cceae42d80475b4fb1a",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      3
+     ],
+     "to": [
+      2,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-type-equal": {
+   "hash": "c6d3ec80c7217b3fb6ea0bcd1d99814fdbbfbde0609cca3b201f2e98ca62c061",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-type-start": {
+   "hash": "af5200d62ebe23d460aa83700b2391bd8bd90f3d41da621a6fa778010039f986",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-type-within": {
+   "hash": "e47941e3f1091f3cf90e0d96324291617d3f59855467fe560b211bdcfd8db87e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      2,
+      3
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-unsorted-query": {
+   "hash": "fab7f8eab426f2ea4edc28cd9d9c6ddca04a890e22cddd9d579eb0f7000a443a",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      3
+     ],
+     "to": [
+      3,
+      2,
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "fo-within-maxgap-and-minoverlap-ok": {
+   "hash": "06f5b62edf12a857bd7485d860819560160955a0cd03613b5dfbb57d18bed880",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 4,
+     "nRnode": 4
+    },
+    "warnings": []
+   }
+  },
+  "fo-zero-width-both-same-position": {
+   "hash": "88b9f9aa07622bf30e2c2899c4162e74d49271c79882b51d0eea7c7a9e1767b1",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-zero-width-equal-type": {
+   "hash": "10dbdb48f09849e215cc1e9587c2b17acf0e0643ea43614f17a3689565db359e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 1,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "fo-zero-width-inside": {
+   "hash": "b6c975f8aae07c57763e06818a8757a704d04f8354573b57e962aece1db2d06a",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      4
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 4,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-zero-width-minoverlap-1": {
+   "hash": "470d0967b89cdd260157a8ffaffa25834d798e327e9dde4e138bf268a20639b7",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "fo-zero-width-subject": {
+   "hash": "b54078209181b2af02300e6a5235682ae31a96b4a257889044c4f8a29189d51f",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      2
+     ],
+     "to": [
+      2,
+      1,
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 3
+    },
+    "warnings": []
+   }
+  },
+  "subset-basic": {
+   "hash": "a824503975011eaa901ab937b0b1ca630beb365fa2d29ca21ad75833e1f8622e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-empty-subject": {
+   "hash": "76a980799568653ee2ae778dffec36d7c1e14ddc822ae4603941b794b578081b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "subset-empty-subject-invert": {
+   "hash": "a6e8edb63b9c2635db387776a1b8b099341fbdb5514ac0d038d2c81ddc1475c0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "subset-invert": {
+   "hash": "2757cd97e21fe58b9e00f2ac39fcfb85af5997bb9ac1f4a584148cfd91d242ec",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      15
+     ],
+     "width": [
+      0
+     ],
+     "names": [
+      "d"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-minoverlap": {
+   "hash": "5376e553e818404a4e37fff3c610c06d77f7a48f5eec32000948c140ae6eb999",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": [
+      "b",
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "subset-type-within": {
+   "hash": "a9ac7168906ac0e9ee590bce388e47153073b24dc9f6261e577953ea4be2f95a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": [
+      "b",
+      "c"
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  }
+ }
+}
