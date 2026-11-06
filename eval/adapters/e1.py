@@ -73,6 +73,8 @@ def _vec(v):
 def _named_or_plain(v):
     """Named R vector -> dict keyed by seqlevel (the port's convention); otherwise `_arg`."""
     if isinstance(v, RVector) and v.names is not None:
+        if len(set(v.names)) != len(v.names):  # a dict would collapse the entries
+            raise Unsupported("named vector with duplicate names")
         return dict(zip(v.names, v.list()))
     return _arg(v)
 
