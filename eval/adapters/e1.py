@@ -89,6 +89,11 @@ def _series(name: str, v) -> pl.Series:
         return v.alias(name)
     if isinstance(v, RVector):
         return pl.Series(name, v.list(), dtype=_POLARS_TYPE[v.type])
+    if isinstance(v, np.ndarray):  # a nested call's vector: keep its dtype, masked entries -> null
+        data = np.ma.getdata(v)
+        dtype = pl.String if data.dtype.kind in "OUS" else pl.Series(data).dtype
+        mask = np.ma.getmaskarray(v)
+        return pl.Series(name, [None if m else x for x, m in zip(data.tolist(), mask.tolist())], dtype=dtype)
     raise Unsupported(f"mcols column of {type(v).__name__}")
 
 
