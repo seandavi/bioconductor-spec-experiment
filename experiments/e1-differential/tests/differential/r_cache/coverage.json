@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
  "entries": {
   "cov-adjacent-ranges-merge-runs": {
    "hash": "004f26288761a79badb1f9a11856876fb64887504d78b93e4fa9b3b65774a408",

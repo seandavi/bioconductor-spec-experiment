@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
  "entries": {
   "gr-flank-both": {
    "hash": "c22442ea1af251333390940fb88fe63a9c8825cbac395a426b8918643b268c91",

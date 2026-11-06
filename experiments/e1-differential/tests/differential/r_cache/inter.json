@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
  "entries": {
   "disjoin-adjacent-revmap": {
    "hash": "ec14bea1e7191a9fefab47fc5df7ff5aa9a7eab4ef9f9779159669c07627de65",

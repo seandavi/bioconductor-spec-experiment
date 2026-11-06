@@ -70,20 +70,29 @@ def r_available() -> bool:
 _versions: str | None = None
 
 
+def script_digest() -> str:
+    """Digest of the R-side scripts; any change to them invalidates every cached R result."""
+    blob = R_SCRIPT.read_bytes() + (R_SCRIPT.parent / "encode.R").read_bytes()
+    return hashlib.sha256(blob).hexdigest()[:12]
+
+
 def r_versions() -> str:
+    """R + package versions, spelled exactly as run_cases.R reports them."""
     global _versions
     if _versions is None:
-        out = subprocess.run(
+        _versions = subprocess.run(
             ["Rscript", "-e",
              'suppressWarnings(suppressMessages({library(IRanges);library(GenomicRanges)}));'
-             'cat("R", as.character(getRversion()), "; IRanges", as.character(packageVersion("IRanges")),'
-             '"; GenomicRanges", as.character(packageVersion("GenomicRanges")),'
-             '"; S4Vectors", as.character(packageVersion("S4Vectors")))'],
+             'cat(paste0("R ", getRversion(), "; IRanges ", packageVersion("IRanges"),'
+             '"; GenomicRanges ", packageVersion("GenomicRanges"), "; S4Vectors ", packageVersion("S4Vectors")))'],
             capture_output=True, text=True, check=True,
-        ).stdout
-        scripts = hashlib.sha256((R_SCRIPT.read_bytes() + (R_SCRIPT.parent / "encode.R").read_bytes())).hexdigest()[:12]
-        _versions = f"{out.strip()}; harness {scripts}"
+        ).stdout.strip()
     return _versions
+
+
+def fingerprint(r_version_string: str) -> str:
+    """The one string persisted in (and compared against) a cache file."""
+    return f"{r_version_string}; harness {script_digest()}"
 
 
 def _cache_path(file: str) -> Path:
@@ -103,9 +112,10 @@ def refresh_cache(file: str, cases: list[Case], *, force: bool) -> dict[str, Any
     if file in _fresh:
         return _fresh[file]
     doc = _load_cache(file)
-    ver_ok = True
     if r_available():
-        ver_ok = doc.get("versions") == r_versions()
+        ver_ok = doc.get("versions") == fingerprint(r_versions())
+    else:  # offline: R versions are unknowable, but script changes are not
+        ver_ok = str(doc.get("versions") or "").endswith(f"harness {script_digest()}")
     stale = [
         c for c in cases
         if force or not ver_ok or doc["entries"].get(c.id, {}).get("hash") != c.hash
@@ -113,14 +123,16 @@ def refresh_cache(file: str, cases: list[Case], *, force: bool) -> dict[str, Any
     if stale and r_available():
         results, ver = run_r(stale)
         if not ver_ok or force:
-            doc = {"versions": ver, "entries": {}}
-        doc["versions"] = ver
+            doc = {"versions": None, "entries": {}}
+        doc["versions"] = fingerprint(ver)
         for c in stale:
             doc["entries"][c.id] = {"hash": c.hash, "result": results[c.id]}
         live = {c.id for c in cases}
         doc["entries"] = {k: doc["entries"][k] for k in sorted(doc["entries"]) if k in live}
         CACHE_DIR.mkdir(exist_ok=True)
         _cache_path(file).write_text(json.dumps(doc, indent=1) + "\n")
+    elif stale and not ver_ok:
+        doc = {"versions": doc.get("versions"), "entries": {}}  # nothing in it can be trusted offline
     _fresh[file] = doc
     return doc
 
