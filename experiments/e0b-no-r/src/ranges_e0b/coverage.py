@@ -28,7 +28,7 @@ def coverage_kernel(
     nonempty = e >= s
     s, e, w = s[nonempty], e[nonempty], w[nonempty]
     if width is None:
-        width = int(e.max()) if len(e) else 0
+        width = max(int(e.max()), 0) if len(e) else 0
     if width < 0:
         raise ValueError("width must be non-negative")
     s, e = np.maximum(s, 1), np.minimum(e, width)
