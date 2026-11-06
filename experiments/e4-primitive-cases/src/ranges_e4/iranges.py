@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, inter, intra
+from . import _mcols, inter, intra, setops
 from ._arrays import as_int, recycle
 
 
@@ -238,6 +238,32 @@ class IRanges:
     def disjoin(self, with_revmap: bool = False) -> Self:
         s, w, members = inter.disjoin(self._start, self._width)
         return self._from_runs(s, w, members if with_revmap else None)
+
+    # set operations -----------------------------------------------------
+    def union(self, y: Self) -> Self:
+        return self._from_runs(*setops.union(self._coords(), y._coords()))
+
+    def intersect(self, y: Self) -> Self:
+        return self._from_runs(*setops.intersect(self._coords(), y._coords()))
+
+    def setdiff(self, y: Self) -> Self:
+        return self._from_runs(*setops.setdiff(self._coords(), y._coords()))
+
+    def _coords(self) -> setops.Coords:
+        return self._start, self._width
+
+    def _parallel(self, coords: setops.Coords) -> Self:
+        """Parallel ops keep x's names and drop mcols (as R)."""
+        return self._make(*coords, self._names)
+
+    def punion(self, y: Self, fill_gap: bool = False) -> Self:
+        return self._parallel(setops.punion(self._coords(), y._coords(), fill_gap))
+
+    def pintersect(self, y: Self, resolve_empty: str = "none") -> Self:
+        return self._parallel(setops.pintersect(self._coords(), y._coords(), resolve_empty))
+
+    def psetdiff(self, y: Self) -> Self:
+        return self._parallel(setops.psetdiff(self._coords(), y._coords()))
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

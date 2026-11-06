@@ -64,3 +64,31 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-DISJOIN-2 | `disjoin` ignores zero-width ranges | `?disjoin` |
 | IR-DISJOIN-3 | `disjoin(with.revmap=TRUE)` lists covering range indices per segment, ascending | `?disjoin` |
 | IR-DISJOIN-4 | `disjoin` of zero-length input is zero-length; duplicates collapse | `?disjoin` |
+| IR-UNION-1 | `union` = non-empty coverage of x and y, normalised (sorted, merged incl. adjacent) | `?"setops"` |
+| IR-UNION-2 | `union` with zero-length input | `?"setops"` |
+| IR-UNION-3 | `union` merges adjacent ranges | `?"setops"` |
+| IR-UNION-4 | `union` drops zero-width ranges | `?"setops"` |
+| IR-UNION-5 | `union` normalises x even when y is empty; result has no names/mcols | `?"setops"` |
+| IR-INTERSECT-1 | `intersect` = positions covered by both | `?"setops"` |
+| IR-INTERSECT-2 | `intersect` with zero-length input is zero-length | `?"setops"` |
+| IR-INTERSECT-3 | `intersect` of adjacent ranges is empty | `?"setops"` |
+| IR-INTERSECT-4 | `intersect` drops zero-width ranges | `?"setops"` |
+| IR-INTERSECT-5 | `intersect` works on coverage, not on individual ranges | `?"setops"` |
+| IR-SETDIFF-1 | `setdiff(x, y)` = covered by x and not by y | `?"setops"` |
+| IR-SETDIFF-2 | `setdiff` with zero-length input | `?"setops"` |
+| IR-SETDIFF-3 | `setdiff` may split or remove ranges | `?"setops"` |
+| IR-SETDIFF-4 | `setdiff` ignores zero-width ranges in y; drops them in x | `?"setops"` |
+| IR-PUNION-1 | `punion` = `[min start, max end]` per pair; a gap between the pair is an error | `?"setops"` |
+| IR-PUNION-2 | `punion(fill.gap=TRUE)` fills the gap | `?"setops"` |
+| IR-PUNION-3 | `punion` gap test uses `max(start) > min(end) + 1`, so a zero-width range beside the other member is fine | `?"setops"` |
+| IR-PUNION-4 | parallel ops require equal lengths (no recycling) | `?"setops"` |
+| IR-PINTERSECT-1 | `pintersect` of a pair with a gap is an ambiguous empty range: error by default | `?"setops"` |
+| IR-PINTERSECT-2 | `pintersect` result keeps x's names, drops mcols | `?"setops"` |
+| IR-PINTERSECT-3 | adjacent or zero-width pairs give an unambiguous empty range at `[max start, min end]` | `?"setops"` |
+| IR-PINTERSECT-4 | `resolve.empty="start"` puts ambiguous empties at start(x); `"max.start"` at max start | `?"setops"` |
+| IR-PSETDIFF-1 | `psetdiff` subtracts y from x pairwise | `?"setops"` |
+| IR-PSETDIFF-2 | `psetdiff` outcomes by overlap geometry (left, right, cover, disjoint) | `?"setops"` |
+| IR-PSETDIFF-3 | zero-width x is returned unchanged | `?"setops"` |
+| IR-PSETDIFF-4 | y strictly inside x (would split it) is an error, including zero-width y | `?"setops"` |
+| IR-PSETDIFF-5 | zero-width y at x's start edge or beyond its end is not an error | `?"setops"` |
+| IR-SETDIFF-5 | `setdiff` handles nested/multiple overlaps on coverage | `?"setops"` |
