@@ -64,17 +64,15 @@ class _DF:
 # ---------------------------------------------------------------- argument conversion
 
 def _sc(v: Any) -> Any:
-    """Length-1 R vector -> Python scalar (None = NA / NULL); MISSING passes through."""
-    return v if v is MISSING or v is None else v.scalar()
+    """R vector -> Python scalar if length 1, else list (the port sees the vector R would); None = NULL; MISSING passes."""
+    if not isinstance(v, RVector):
+        return v
+    return v.scalar() if len(v) == 1 else v.list()
 
 
 def _ls(v: Any) -> Any:
-    """R vector -> Python list (None = NA / NULL); MISSING passes through."""
-    return v if v is MISSING or v is None else v.list()
-
-
-def _one_or_list(v: Any) -> Any:
-    return v if v is MISSING or v is None else (v.scalar() if len(v) == 1 else v.list())
+    """R vector -> Python list (None = NA / NULL); MISSING and native objects pass through."""
+    return v.list() if isinstance(v, RVector) else v
 
 
 def _present(**kw: Any) -> dict:
@@ -142,8 +140,6 @@ def _subscript(x: Any, i: Any) -> Any:
         raise Unsupported("subscript:missing")
     if i is None:
         raise Unsupported("subscript:NULL")
-    if isinstance(i, np.ndarray):  # nested port result handed straight back (already the port's own base)
-        return i
     vals = i.list()
     if any(v is None for v in vals):
         raise Unsupported("subscript:NA")
@@ -431,7 +427,7 @@ class Adapter(AdapterBase):
     def op_gaps(self, *, x, start=MISSING, end=MISSING, ignore_strand=MISSING):
         def bound(v: Any) -> Any:
             if v is MISSING or v is None or not isinstance(x, GRanges):
-                return _one_or_list(v)
+                return _sc(v)
             # GRanges.gaps documents a {seqlevel: bound} mapping, a sequence, or a scalar
             return dict(zip(v.names, v.list())) if v.names is not None else v.list()
 
@@ -514,14 +510,14 @@ class Adapter(AdapterBase):
     def op_coverage(self, *, x, shift=MISSING, width=MISSING, weight=MISSING):
         def width_arg(v: Any) -> Any:
             if v is MISSING or v is None or not isinstance(x, GRanges):
-                return _one_or_list(v)
-            return dict(zip(v.names, v.list())) if v.names is not None else _one_or_list(v)
+                return _sc(v)
+            return dict(zip(v.names, v.list())) if v.names is not None else _sc(v)
 
         def weight_arg(v: Any) -> Any:
             # GRanges.coverage documents a string weight as an mcols column name
             if v is MISSING or v is None:
                 return v
-            return v.scalar() if v.type == "chr" else v.list()
+            return _sc(v) if v.type == "chr" else v.list()
 
         return _call(x, "coverage", shift=_ls(shift), width=width_arg(width), weight=weight_arg(weight))
 
