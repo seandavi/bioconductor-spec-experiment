@@ -223,8 +223,8 @@
    },
    "overlaps": {
     "e1": {
-     "mismatch": 383,
-     "pass": 299,
+     "mismatch": 382,
+     "pass": 300,
      "port_error_unexpected": 8,
      "unsupported": 158
     },
@@ -234,13 +234,13 @@
      "unsupported": 6
     },
     "e2": {
-     "mismatch": 44,
-     "pass": 111,
+     "mismatch": 43,
+     "pass": 112,
      "unsupported": 40
     },
     "e4": {
-     "mismatch": 27,
-     "pass": 70,
+     "mismatch": 26,
+     "pass": 71,
      "port_error_unexpected": 1,
      "unsupported": 15
     },

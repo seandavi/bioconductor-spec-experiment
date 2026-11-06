@@ -186,3 +186,8 @@ queried pairs. Example: `e1/redteam_circular/rt-circ-origin-coverage` (chrM leng
 - BiocPy has no divergence docs; its smaller clusters share one evidence/rationale (`verdicts.py` last rule).
 - The adapter fixes' broader `unsupported` rules (144 former passes) shrink the supported denominator; that is a
   scoring-scope choice in the adapters, not adjudicated here.
+
+## Post-verification fix (orchestrator)
+
+- Sol's verify note 1: `adapters/biocpy.py` used `selected or Hits`; an empty selected vector is falsy, so 3 empty-query `select=` cases misprojected. Now `is not None`. BiocPy re-scored, `cluster.py --write` + `build.py --check` re-run: 0 unmatched signatures, **adapter_fault = 0 for every port**. BiocPy adjusted held-out unchanged (81.3%).
+- Sol's verify note 2 stands: 144 former passes became `unsupported` after the vector-form fixes; part of the adjusted-score movement is scope, not fidelity. Read adjusted fidelity together with raw pass rate.

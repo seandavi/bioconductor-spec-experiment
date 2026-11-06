@@ -35,7 +35,7 @@ Pass rate = pass / scored; unsupported, adapter errors and port errors stay in t
 | e2 | 2891/3510 (82.4%) [mism116 unsup487 perr16] | 3128/4385 (71.3%) [mism649 unsup239 perr369] | 84/119 (70.6%) [mism27 unsup4 perr4] | *891/921 (96.7%) [mism15 unsup15] | 685/715 (95.8%) [mism23 unsup4 perr3] | 7679/9650 (79.6%) |
 | e3 | 2571/3510 (73.2%) [mism142 unsup745 perr52] | 2916/4385 (66.5%) [mism532 unsup700 perr237] | 61/119 (51.3%) [mism25 unsup18 perr15] | 805/921 (87.4%) [mism31 unsup64 perr21] | 639/715 (89.4%) [mism39 unsup21 perr16] | 6992/9650 (72.5%) |
 | e4 | 2642/3510 (75.3%) [mism121 unsup717 perr30] | 2950/4385 (67.3%) [mism885 unsup382 perr168] | 61/119 (51.3%) [mism30 unsup14 perr14] | 815/921 (88.5%) [mism30 unsup62 perr14] | *698/715 (97.6%) [mism8 unsup1 perr8] | 7166/9650 (74.3%) |
-| biocpy | 2192/3510 (62.5%) [mism398 unsup796 perr124] | 1944/4385 (44.3%) [mism1339 unsup761 perr341] | 41/119 (34.5%) [mism38 unsup18 perr22] | 570/921 (61.9%) [mism172 unsup152 perr27] | 419/715 (58.6%) [mism161 unsup86 perr49] | 5166/9650 (53.5%) |
+| biocpy | 2192/3510 (62.5%) [mism398 unsup796 perr124] | 1945/4385 (44.4%) [mism1338 unsup761 perr341] | 41/119 (34.5%) [mism38 unsup18 perr22] | 571/921 (62.0%) [mism171 unsup152 perr27] | 420/715 (58.7%) [mism160 unsup86 perr49] | 5169/9650 (53.6%) |
 
 Cell: `pass/scored (rate) [mism = mismatch, adapt = adapter_error, unsup = unsupported, perr = port_error_unexpected]`.
 
@@ -303,20 +303,20 @@ e4 heldout by input feature:
 | intra | 216/300 (72.0%) [mism7 unsup76 perr1] | 303/363 (83.5%) [mism35 unsup25] | 0/2 (0.0%) [mism2] | 117/126 (92.9%) [mism5 unsup4] | 73/88 (83.0%) [mism7 unsup2 perr6] |
 | inter | 242/300 (80.7%) [mism17 unsup27 perr14] | 302/405 (74.6%) [mism90 perr13] | 8/12 (66.7%) [mism3 perr1] | 93/101 (92.1%) [mism6 perr2] | 93/104 (89.4%) [mism5 perr6] |
 | setops | 113/360 (31.4%) [mism62 unsup157 perr28] | 108/441 (24.5%) [mism154 unsup163 perr16] | 1/4 (25.0%) [mism1 unsup2] | 45/107 (42.1%) [mism16 unsup41 perr5] | 36/108 (33.3%) [mism22 unsup36 perr14] |
-| overlaps | 119/300 (39.7%) [mism65 unsup107 perr9] | 299/848 (35.3%) [mism383 unsup158 perr8] | 7/23 (30.4%) [mism10 unsup6] | 111/195 (56.9%) [mism44 unsup40] | 70/113 (61.9%) [mism27 unsup15 perr1] |
+| overlaps | 119/300 (39.7%) [mism65 unsup107 perr9] | 300/848 (35.4%) [mism382 unsup158 perr8] | 7/23 (30.4%) [mism10 unsup6] | 112/195 (57.4%) [mism43 unsup40] | 71/113 (62.8%) [mism26 unsup15 perr1] |
 | nearest | 187/300 (62.3%) [mism49 unsup42 perr22] | 217/582 (37.3%) [mism215 unsup65 perr85] | 8/15 (53.3%) [mism5 unsup2] | 43/76 (56.6%) [mism16 unsup13 perr4] | 36/67 (53.7%) [mism17 unsup1 perr13] |
 | coverage | 6/120 (5.0%) [mism69 unsup42 perr3] | 22/511 (4.3%) [mism203 unsup175 perr111] | 0/12 (0.0%) [mism5 unsup6 perr1] | 3/51 (5.9%) [mism39 unsup9] | 1/54 (1.9%) [mism45 unsup8] |
 | ordering | 140/300 (46.7%) [mism49 unsup110 perr1] | 63/200 (31.5%) [mism79 unsup56 perr2] | 2/11 (18.2%) [mism6 unsup2 perr1] | 19/57 (33.3%) [mism18 unsup19 perr1] | 21/56 (37.5%) [mism17 unsup17 perr1] |
 
-Mismatch kinds (a case counts once per kind): rule used {'row4': 388, 'exact': 1363, 'R2': 278, 'R3': 79}
+Mismatch kinds (a case counts once per kind): rule used {'row4': 388, 'exact': 1360, 'R2': 278, 'R3': 79}
 
 | source | kind | length | names | not_in_universe | order | r_error_port_value | type | value |
 |---|---|---|---|---|---|---|---|---|
 | heldout | 13 | 111 | 32 | 9 | 9 | 49 | 96 | 115 |
-| e1 | 26 | 406 | 28 | 52 | 40 | 300 | 154 | 452 |
+| e1 | 25 | 406 | 28 | 52 | 40 | 300 | 154 | 452 |
 | e1-redteam | 0 | 21 | 3 | 1 | 2 | 8 | 3 | 5 |
-| e2 | 4 | 43 | 13 | 2 | 17 | 18 | 47 | 43 |
-| e4 | 3 | 58 | 17 | 2 | 14 | 13 | 47 | 39 |
+| e2 | 3 | 43 | 13 | 2 | 17 | 18 | 47 | 43 |
+| e4 | 2 | 58 | 17 | 2 | 14 | 13 | 47 | 39 |
 
 biocpy heldout by input feature:
 
@@ -343,7 +343,7 @@ biocpy heldout by input feature:
 | e2 | frozen/e2-conformance | 70f0c0b/70f0c0b | True/True | 7e5b545dba05 | 2.5 |
 | e3 | frozen/e3-spec-adr | e0e4b41/e0e4b41 | True/True | 5f4b93fb9311 | 2.7 |
 | e4 | frozen/e4-primitive-cases | 9e2fa35/9e2fa35 | True/True | 8ef3dd27f66b | 5.7 |
-| biocpy | None | None/None | True/True | 70e3a7630a45 | 40.5 |
+| biocpy | None | None/None | True/True | f8dee8297d7a | 39.4 |
 
 ## Self-tests
 

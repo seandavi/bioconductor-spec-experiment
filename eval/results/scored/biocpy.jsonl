@@ -4293,7 +4293,7 @@
 {"id":"e1/overlaps/fo-default-adjacent-no-hit","source":"e1","op":"findOverlaps","outcome":"pass","rule":"R2"}
 {"id":"e1/overlaps/fo-duplicate-subjects","source":"e1","op":"findOverlaps","outcome":"pass","rule":"R2"}
 {"id":"e1/overlaps/fo-empty-query","source":"e1","op":"findOverlaps","outcome":"pass","rule":"R2"}
-{"id":"e1/overlaps/fo-empty-query-select-last","source":"e1","op":"findOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'vector'","port":"'Hits'","kinds":["kind"]}}
+{"id":"e1/overlaps/fo-empty-query-select-last","source":"e1","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e1/overlaps/fo-empty-subject","source":"e1","op":"findOverlaps","outcome":"pass","rule":"R2"}
 {"id":"e1/overlaps/fo-empty-subject-select-first","source":"e1","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e1/overlaps/fo-hit-order-nested-subjects","source":"e1","op":"findOverlaps","outcome":"pass","rule":"R2"}
@@ -5222,7 +5222,7 @@
 {"id":"e2/iranges-overlaps/ir.ov.empty.count.query","source":"e2","op":"countOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$.type","r":"'int'","port":"'dbl'","kinds":["type"]}}
 {"id":"e2/iranges-overlaps/ir.ov.empty.count.subject","source":"e2","op":"countOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$.type","r":"'int'","port":"'dbl'","kinds":["type"]}}
 {"id":"e2/iranges-overlaps/ir.ov.empty.query","source":"e2","op":"findOverlaps","outcome":"pass","rule":"R2"}
-{"id":"e2/iranges-overlaps/ir.ov.empty.query.first","source":"e2","op":"findOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'vector'","port":"'Hits'","kinds":["kind"]}}
+{"id":"e2/iranges-overlaps/ir.ov.empty.query.first","source":"e2","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e2/iranges-overlaps/ir.ov.empty.subject","source":"e2","op":"findOverlaps","outcome":"pass","rule":"R2"}
 {"id":"e2/iranges-overlaps/ir.ov.empty.subject.first","source":"e2","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e2/iranges-overlaps/ir.ov.empty.subset","source":"e2","op":"subsetByOverlaps","outcome":"pass","rule":"exact"}
@@ -6041,7 +6041,7 @@
 {"id":"e4/iranges-overlaps/ir-fo-minoverlap-within","source":"e4","op":"findOverlaps","outcome":"pass","rule":"R2"}
 {"id":"e4/iranges-overlaps/ir-fo-select-arbitrary","source":"e4","op":"findOverlaps","outcome":"pass","rule":"R3"}
 {"id":"e4/iranges-overlaps/ir-fo-select-arbitrary-nohit","source":"e4","op":"findOverlaps","outcome":"pass","rule":"R3"}
-{"id":"e4/iranges-overlaps/ir-fo-select-empty","source":"e4","op":"findOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$","r":"'vector'","port":"'Hits'","kinds":["kind"]}}
+{"id":"e4/iranges-overlaps/ir-fo-select-empty","source":"e4","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e4/iranges-overlaps/ir-fo-select-first","source":"e4","op":"findOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"1","port":"2","kinds":["value"]}}
 {"id":"e4/iranges-overlaps/ir-fo-select-first-within","source":"e4","op":"findOverlaps","outcome":"pass","rule":"exact"}
 {"id":"e4/iranges-overlaps/ir-fo-select-last","source":"e4","op":"findOverlaps","outcome":"mismatch","rule":"exact","detail":{"path":"$.values[0]","r":"5","port":"1","kinds":["value"]}}

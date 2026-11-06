@@ -309,7 +309,8 @@ class Adapter(AdapterBase):
         if isinstance(res, BiocFrame):
             select = (kw or {}).get("select")
             if isinstance(select, RVector) and select.type == "chr" and select.values in (["first"], ["last"], ["arbitrary"]):
-                return self._selected_hits(res, n_query) or _Hits(res, n_query, n_subject)
+                selected = self._selected_hits(res, n_query)
+                return selected if selected is not None else _Hits(res, n_query, n_subject)
             return _Hits(res, n_query, n_subject)
         return _index_vector(res)
 

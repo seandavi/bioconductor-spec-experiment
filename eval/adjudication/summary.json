@@ -250,7 +250,7 @@
    "port_bug": 2639,
    "declared_divergence": 0,
    "r_accident": 29,
-   "adapter_fault": 3,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "classes_heldout": {
@@ -261,19 +261,19 @@
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 5166,
+   "pass": 5169,
    "unsupported": 1813,
    "port_error_unexpected": 563,
-   "mismatch": 2108
+   "mismatch": 2105
   },
   "all": {
-   "pass": 5166,
+   "pass": 5169,
    "scored": 9650,
    "supported": 7837,
-   "raw_fidelity": 0.5353,
-   "supported_fidelity": 0.6592,
-   "adjusted_denominator": 7805,
-   "adjusted_fidelity": 0.6619
+   "raw_fidelity": 0.5356,
+   "supported_fidelity": 0.6596,
+   "adjusted_denominator": 7808,
+   "adjusted_fidelity": 0.662
   },
   "heldout": {
    "pass": 2192,
@@ -284,6 +284,6 @@
    "adjusted_denominator": 2696,
    "adjusted_fidelity": 0.8131
   },
-  "clusters": 199
+  "clusters": 198
  }
 }
