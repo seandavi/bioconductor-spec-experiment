@@ -66,7 +66,7 @@ enc <- function(x) {
   }
   if (is(x, "RleList")) {
     return(list(class = u("RleList"), names = enc_names(x),
-      elements = lapply(as.list(x), enc)))
+      elements = unname(lapply(as.list(x), enc))))
   }
   if (is(x, "Rle")) {
     v <- runValue(x)

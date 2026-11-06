@@ -65,3 +65,43 @@ class Hits:
             out = np.full(self._nq, np.iinfo(np.int64).max, dtype=np.int64)
             np.minimum.at(out, self._q, self._s)
         return np.ma.masked_array(np.where(has, out, 0), mask=~has)
+
+
+def overlap_result(
+    q: np.ndarray,
+    s: np.ndarray,
+    n_query: int,
+    n_subject: int,
+    *,
+    select: str,
+    self_hits: bool,
+    drop_self: bool = False,
+    drop_redundant: bool = False,
+    query_is_shorter: bool | np.ndarray = False,
+) -> Hits | np.ma.MaskedArray:
+    """Turn raw overlap pairs into R's findOverlaps result.
+
+    `select="arbitrary"` mimics R's engines: with self-overlaps or a shorter query R reports the
+    last-seen subject (max index); otherwise the first hit in engine order.
+    """
+    if select not in ("all", "first", "last", "arbitrary"):
+        raise ValueError("'arg' should be one of \"all\", \"first\", \"last\", \"arbitrary\"")
+    if self_hits:
+        keep = np.ones(len(q), dtype=bool)
+        if drop_self:
+            keep &= q != s
+        if drop_redundant:  # drop (i, j), i > j, when its mirror (j, i) is also a hit
+            key = set((q * n_query + s).tolist())
+            mirror = np.array([(b * n_query + a) in key for a, b in zip(q.tolist(), s.tolist())], dtype=bool)
+            keep &= ~((q > s) & mirror)
+        q, s = q[keep], s[keep]
+    hits = Hits(q, s, n_query, n_subject)
+    if select == "all":
+        return hits
+    if select == "arbitrary":
+        if self_hits:
+            return hits.select("last")
+        shorter = np.broadcast_to(np.asarray(query_is_shorter, dtype=bool), (n_query,))
+        if shorter.any():  # per-query engine mode (GRanges runs it per seqlevel)
+            return np.ma.where(shorter, hits.select("last"), hits.select("arbitrary"))
+    return hits.select(select)

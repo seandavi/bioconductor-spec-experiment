@@ -10,9 +10,14 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import inter, intra, setops
+from ._kernels import coverage as coverage_kernel
+from ._kernels import inter, intra, overlaps, setops
+from ._kernels import nearest as nearest_kernel
+from ._kernels import order as order_kernel
 from ._meta import Names
+from .hits import Hits, overlap_result
 from .iranges import IRanges
+from .rle import Rle
 from .seqinfo import Seqinfo
 
 STRANDS = ("+", "-", "*")
@@ -536,3 +541,289 @@ class GRanges:
             start[idx], width[idx] = s, w
         strand = np.where(ok, self._merged_strand(st_b, ok, ignore_strand), self._strand).astype(np.int8)
         return self._new(self._seq_in(si), start, width, strand, self._names, None, si, check=True)
+
+    # -- overlaps ----------------------------------------------------------------
+    _LIFT = 1 << 33  # separates seqlevels on one axis, as in the set-op kernels
+
+    def _union_codes(self, other: GRanges) -> tuple[np.ndarray, np.ndarray]:
+        """Seqlevel codes of both objects over the union of their seqlevels (no merge checks)."""
+        levels = list(dict.fromkeys([*self._seqinfo.seqnames, *other._seqinfo.seqnames]))
+        index = {s: i for i, s in enumerate(levels)}
+        a = np.array([index[s] for s in self._seqinfo.seqnames], dtype=np.int64)[self._seq]
+        b = np.array([index[s] for s in other._seqinfo.seqnames], dtype=np.int64)[other._seq]
+        return a, b
+
+    def _strand_ok(self, other_strand: np.ndarray, q: np.ndarray, s: np.ndarray, ignore_strand: bool) -> np.ndarray:
+        if ignore_strand:
+            return np.ones(len(q), dtype=bool)
+        a, b = self._strand[q], other_strand[s]
+        return (a == b) | (a == STAR) | (b == STAR)
+
+    def _pairs(
+        self, subject: GRanges, maxgap: int, minoverlap: int, type_: str, ignore_strand: bool
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Overlap pairs plus, per query, whether R's engine walked an NCList built on the query.
+
+        R runs the engine per seqlevel and builds the NCList on the shorter side of each group
+        (ties -> subject), which fixes hit order and `select="arbitrary"`.
+        """
+        si, qa, sb = self._merged_with(subject)
+        n_lev = len(si)
+        nq = np.bincount(qa, minlength=n_lev)
+        ns = np.bincount(sb, minlength=n_lev)
+        q, s = overlaps.find(
+            self.start + qa * self._LIFT, self.width, subject.start + sb * self._LIFT, subject.width,
+            maxgap, minoverlap, type_, ncl_order=(nq >= ns)[sb],
+        )
+        ok = self._strand_ok(subject._strand, q, s, ignore_strand)
+        return q[ok], s[ok], (nq < ns)[qa]
+
+    def find_overlaps(
+        self,
+        subject: GRanges | None = None,
+        maxgap: int = -1,
+        minoverlap: int = 0,
+        type: str = "any",  # noqa: A002 - R's argument name
+        select: str = "all",
+        ignore_strand: bool = False,
+        drop_self: bool = False,
+        drop_redundant: bool = False,
+    ) -> Hits | np.ma.MaskedArray:
+        """Overlaps with `subject` (None = self); same seqname and compatible strand required."""
+        overlaps.check_args(type, int(maxgap), int(minoverlap))
+        subj = self if subject is None else subject
+        q, s, shorter = self._pairs(subj, int(maxgap), int(minoverlap), type, bool(ignore_strand))
+        return overlap_result(
+            q, s, len(self), len(subj), select=select, self_hits=subject is None,
+            drop_self=drop_self, drop_redundant=drop_redundant, query_is_shorter=shorter,
+        )
+
+    def count_overlaps(
+        self, subject: GRanges | None = None, maxgap: int = -1, minoverlap: int = 0,
+        type: str = "any", ignore_strand: bool = False,  # noqa: A002
+    ) -> np.ndarray:
+        hits = self.find_overlaps(subject, maxgap, minoverlap, type, ignore_strand=ignore_strand)
+        assert isinstance(hits, Hits)
+        return hits.count_by_query()
+
+    def overlaps_any(
+        self, subject: GRanges | None = None, maxgap: int = -1, minoverlap: int = 0,
+        type: str = "any", ignore_strand: bool = False,  # noqa: A002
+    ) -> np.ndarray:
+        return self.count_overlaps(subject, maxgap, minoverlap, type, ignore_strand) > 0
+
+    def subset_by_overlaps(
+        self, subject: GRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any",  # noqa: A002
+        invert: bool = False, ignore_strand: bool = False,
+    ) -> Self:
+        hit = self.overlaps_any(subject, maxgap, minoverlap, type, ignore_strand)
+        return self[~hit if invert else hit]
+
+    # -- nearest / precede / follow / distance -------------------------------------
+    def _geometry_hits(
+        self, qpos: np.ndarray, spool: np.ndarray, qa: np.ndarray, sb: np.ndarray, subject: GRanges,
+        precede_geometry: bool,
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """(query, subject) pairs, all ties (ascending subject index): first subject starting after each query ends (precede geometry)
+        or last subject ending before it starts (follow geometry), on the same seqlevel."""
+        empty = np.empty(0, dtype=np.int64)
+        if len(qpos) == 0 or len(spool) == 0:
+            return empty, empty
+        L = self._LIFT
+        if precede_geometry:
+            qi, si = nearest_kernel.precede(self.end[qpos] + qa[qpos] * L, subject.start[spool] + sb[spool] * L, True)
+        else:
+            qi, si = nearest_kernel.follow(self.start[qpos] + qa[qpos] * L, subject.end[spool] + sb[spool] * L, True)
+        q, s = qpos[qi], spool[si]
+        same = qa[q] == sb[s]
+        # R quirk: it offsets each seqlevel by k*maxend and uses k*maxend as sentinels, so a subject
+        # coordinate of 0 (an empty range at 1 for "follow", start 0 for "precede") on any seqlevel
+        # but the first collides with a sentinel and the whole hit is dropped.
+        coord = subject.start[s] if precede_geometry else subject.end[s]
+        same &= ~((coord == 0) & (sb[s] >= 1))
+        return q[same], s[same]
+
+    def _precede_follow(
+        self, subject: GRanges, where: str, ignore_strand: bool
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """R's .GenomicRanges_findPrecedeFollow: all tied hits, sorted by (query, subject)."""
+        empty = np.empty(0, dtype=np.int64)
+        if len(self) == 0 or len(subject) == 0:
+            return empty, empty
+        qa, sb = self._union_codes(subject)
+        qst = np.full(len(self), PLUS, dtype=np.int8) if ignore_strand else self._strand
+        sst = np.full(len(subject), PLUS, dtype=np.int8) if ignore_strand else subject._strand
+        plus_geom_precede = where == "precede"
+        s_plus = np.flatnonzero(sst != MINUS)
+        s_minus_incl = np.flatnonzero(sst != PLUS)
+        s_minus_only = np.flatnonzero(sst == MINUS)
+        q_plus, q_minus, q_star = (np.flatnonzero(qst == c) for c in (PLUS, MINUS, STAR))
+        pq, ps = self._geometry_hits(q_plus, s_plus, qa, sb, subject, plus_geom_precede)
+        mq, ms = self._geometry_hits(q_minus, s_minus_incl, qa, sb, subject, not plus_geom_precede)
+        spq, sps = self._geometry_hits(q_star, s_plus, qa, sb, subject, plus_geom_precede)
+        smq, sms = self._geometry_hits(q_star, s_minus_only, qa, sb, subject, not plus_geom_precede)
+        both = np.intersect1d(spq, smq)
+        sq, ss = np.concatenate([spq, smq]), np.concatenate([sps, sms])
+        if len(both):
+            gap = np.maximum(np.maximum(self.start[sq], subject.start[ss]) - np.minimum(self.end[sq], subject.end[ss]) - 1, 0)
+            best = {int(b): int(gap[sq == b].min()) for b in both}
+            keep = np.array([int(a) not in best or int(g) == best[int(a)] for a, g in zip(sq, gap)], dtype=bool)
+            sq, ss = sq[keep], ss[keep]
+        q_all, s_all = np.concatenate([pq, mq, sq]), np.concatenate([ps, ms, ss])
+        order = np.lexsort((s_all, q_all))  # R's Hits come back sorted by (query, subject)
+        return q_all[order], s_all[order]
+
+    def _pick_one(self, q: np.ndarray, s: np.ndarray, last: bool) -> np.ma.MaskedArray:
+        out = np.zeros(len(self), dtype=np.int64)
+        has = np.zeros(len(self), dtype=bool)
+        if len(q):
+            if last:
+                out[q] = s  # last write wins
+            else:
+                out[q[::-1]] = s[::-1]
+            has[q] = True
+        return np.ma.masked_array(out, mask=~has)
+
+    def precede(self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
+        if select not in ("first", "all"):
+            raise ValueError("'arg' should be one of \"first\", \"all\"")
+        subj = self if subject is None else subject
+        q, s = self._precede_follow(subj, "precede", bool(ignore_strand))
+        return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=False)
+
+    def follow(self, subject: GRanges | None = None, select: str = "last", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
+        if select not in ("last", "all"):
+            raise ValueError("'arg' should be one of \"last\", \"all\"")
+        subj = self if subject is None else subject
+        q, s = self._precede_follow(subj, "follow", bool(ignore_strand))
+        return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=True)
+
+    def nearest(
+        self, subject: GRanges | None = None, select: str = "arbitrary", ignore_strand: bool = False
+    ) -> Hits | np.ma.MaskedArray:
+        """Overlap (maxgap 0) first, else the nearer of precede/follow; ties favour the lower index."""
+        if select not in ("arbitrary", "all"):
+            raise ValueError("'arg' should be one of \"arbitrary\", \"all\"")
+        subj = self if subject is None else subject
+        all_ = select == "all"
+        ol = self.find_overlaps(subject, maxgap=0, select=select, ignore_strand=ignore_strand, drop_self=subject is None)
+        olv = ol.select("first") if isinstance(ol, Hits) else ol
+        miss = np.flatnonzero(np.ma.getmaskarray(olv))
+        if len(miss) == 0:
+            return ol
+        sub = self._take(miss)
+        pq, ps = sub._precede_follow(subj, "precede", ignore_strand)
+        fq, fs = sub._precede_follow(subj, "follow", ignore_strand)
+        if len(pq) == 0 and len(fq) == 0 and bool(np.ma.getmaskarray(olv).all()):
+            return Hits(np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64), len(self), len(subj)) if all_ else olv
+        p = sub._pick_one(pq, ps, last=False)  # first precede / last follow per query
+        f = sub._pick_one(fq, fs, last=True)
+        pm, fm = np.ma.getmaskarray(p), np.ma.getmaskarray(f)
+
+        def dist(idx: np.ma.MaskedArray, m: np.ndarray) -> np.ndarray:
+            i = np.where(m, 0, np.ma.getdata(idx))
+            return np.where(m, -1, np.maximum(np.maximum(sub.start, subj.start[i]) - np.minimum(sub.end, subj.end[i]) - 1, 0))
+
+        pd, fd = dist(p, pm), dist(f, fm)
+        both = ~pm & ~fm
+        pdata, fdata = np.ma.getdata(p), np.ma.getdata(f)
+        pnearest = np.where(both, np.where(pd == fd, pdata < fdata, pd < fd), fm)
+        if not all_:
+            res = np.ma.getdata(olv).copy()
+            mask = np.ma.getmaskarray(olv).copy()
+            res[miss] = np.where(pnearest, pdata, fdata)
+            mask[miss] = np.where(pnearest, pm, fm)
+            return np.ma.masked_array(res, mask=mask)
+        assert isinstance(ol, Hits)
+        tie = both & (pd == fd)
+        take_p = pnearest | tie
+        take_f = ~pnearest & ~tie
+        kp = take_p[pq]
+        kf = take_f[fq]
+        qs = np.concatenate([ol.query_hits, miss[pq[kp]], miss[fq[kf]]])
+        ss = np.concatenate([ol.subject_hits, ps[kp], fs[kf]])
+        order = np.lexsort((ss, qs))
+        return Hits(qs[order], ss[order], len(self), len(subj))
+
+    def distance(self, other: GRanges, ignore_strand: bool = False) -> np.ma.MaskedArray:
+        """Parallel gap; NA when seqnames differ or strands are "+" vs "-" (unless ignored)."""
+        d = self._ranges.distance(other._ranges)
+        n = len(d)
+        if n == 0:
+            return d
+        reps = np.arange(n)
+        ia, ib = reps % len(self), reps % len(other)
+        qa, sb = self._union_codes(other)
+        bad = qa[ia] != sb[ib]
+        if not ignore_strand:
+            bad |= (self._strand[ia].astype(int) + other._strand[ib].astype(int)) == 1  # "+" with "-"
+        return np.ma.masked_array(np.ma.getdata(d), mask=np.ma.getmaskarray(d) | bad)
+
+    # -- coverage -------------------------------------------------------------------
+    def coverage(self, shift: Any = 0, width: Any = None, weight: Any = 1) -> dict[str, Rle]:
+        """Per-seqlevel coverage (strand ignored); width defaults to seqlengths, else the max end."""
+        if isinstance(weight, str):
+            if self._mcols is None or weight not in self._mcols.columns:
+                raise ValueError(f"no mcols column named {weight!r}")
+            weight = self._mcols[weight].to_numpy()
+        start, wt = self._ranges._coverage_inputs(shift, weight)
+        levels = self._seqinfo.seqnames
+        widths = self._per_seqlevel(width, "width") if width is not None else list(self._seqinfo.seqlengths)
+        if np.ma.isMaskedArray(width) or (width is not None and not isinstance(width, (int, np.integer, dict, list, tuple, np.ndarray))):
+            raise ValueError("'width' must be NULL or an integer vector")
+        out: dict[str, Rle] = {}
+        end = start + self.width - 1
+        for code, name in enumerate(levels):
+            sel = self._seq == code
+            total = widths[code]
+            if total is None:
+                total = int(max(end[sel].max(initial=0), 0))
+            if total < 0:
+                raise ValueError("'width' cannot be negative")
+            st, wd, w_ = start[sel], self.width[sel], wt[sel]
+            circ_len = self._seqinfo.seqlengths[code] if self._seqinfo.is_circular[code] else None
+            if circ_len:
+                if width is not None and total > circ_len:
+                    raise ValueError(f"'width' cannot be greater than the length of the underlying circular sequence")
+                st, wd, w_ = self._wrap_circular(st, wd, w_, circ_len)
+            vals, lens = coverage_kernel.coverage(st, wd, w_, int(total))
+            out[name] = Rle(vals, lens)
+        return out
+
+    @staticmethod
+    def _wrap_circular(
+        start: np.ndarray, width: np.ndarray, weight: np.ndarray, length: int
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Fold ranges onto a circular sequence of `length`: whole turns, then up to two pieces."""
+        ok = width > 0
+        start, width, weight = start[ok], width[ok], weight[ok]
+        first = (start - 1) % length + 1
+        turns, rem = width // length, width % length
+        spill = np.maximum(first + rem - 1 - length, 0)
+        st = np.concatenate([np.ones(len(start), dtype=np.int64), first, np.ones(len(start), dtype=np.int64)])
+        wd = np.concatenate([np.where(turns > 0, length, 0), np.minimum(rem, length - first + 1), spill])
+        wt = np.concatenate([weight * turns, weight, weight])
+        return st, wd, wt
+
+    # -- ordering --------------------------------------------------------------------
+    def _order_keys(self, ignore_strand: bool = False) -> list[np.ndarray]:
+        keys = [self._seq.astype(np.int64)]
+        if not ignore_strand:
+            keys.append(self._strand.astype(np.int64))
+        return [*keys, self.start, self.width]
+
+    def order(self, decreasing: bool = False) -> np.ndarray:
+        return order_kernel.order(self._order_keys(), IRanges._flag(decreasing, "decreasing"))
+
+    def sort(self, decreasing: bool = False, ignore_strand: bool = False) -> Self:
+        decreasing = IRanges._flag(decreasing, "decreasing")
+        return self._take(order_kernel.order(self._order_keys(bool(ignore_strand)), decreasing))
+
+    def rank(self, ties_method: str = "average", ignore_strand: bool = False) -> np.ndarray:
+        return order_kernel.rank(self._order_keys(bool(ignore_strand)), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> np.ndarray:
+        return order_kernel.duplicated(self._order_keys(), IRanges._flag(from_last, "fromLast"))
+
+    def unique(self, from_last: bool = False) -> Self:
+        return self[~self.duplicated(from_last)]

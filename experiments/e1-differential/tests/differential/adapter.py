@@ -96,6 +96,7 @@ ADAPTERS: dict[str, Adapter] = {
     "runValue": Adapter(call=lambda a, k: a[0].values),
     "runLength": Adapter(call=lambda a, k: a[0].lengths),
     "as.vector": Adapter(call=lambda a, k: a[0].decode()),
+    "[[": Adapter(call=lambda a, k: a[0][a[1]]),
     "identity": Adapter(call=lambda a, k: a[0]),
     "length": Adapter(call=lambda a, k: len(a[0])),
     "findOverlaps": Adapter(post=_post_select),

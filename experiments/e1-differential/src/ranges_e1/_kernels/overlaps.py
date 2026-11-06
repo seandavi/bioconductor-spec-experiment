@@ -25,7 +25,8 @@ def uses_query_nclist(nq: int, ns: int) -> bool:
 
 
 def find(
-    qs: np.ndarray, qw: np.ndarray, ss: np.ndarray, sw: np.ndarray, maxgap: int, minoverlap: int, type_: str
+    qs: np.ndarray, qw: np.ndarray, ss: np.ndarray, sw: np.ndarray, maxgap: int, minoverlap: int, type_: str,
+    ncl_order: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Return (query_idx, subject_idx) of all matching pairs.
 
@@ -33,6 +34,8 @@ def find(
     (an NCList is built on the shorter side, ties -> subject):
     - nq >= ns: subjects in NCList order (start asc, width desc, index asc)
     - nq <  ns: subjects in index order
+    `ncl_order` (per subject) overrides the choice: True = NCList order. GRanges decides it
+    per seqlevel group, since R runs the engine group by group.
 
     Predicates were fitted against R on an exhaustive pool incl. empty ranges (see NOTES.md):
     - any:    qs-se-1 <= maxgap and ss-qe-1 <= maxgap
@@ -44,7 +47,9 @@ def find(
     empty = np.empty(0, dtype=np.int64)
     if nq == 0 or ns == 0:
         return empty, empty
-    perm = np.lexsort((np.arange(ns), -sw, ss)) if nq >= ns else np.arange(ns)
+    if ncl_order is None:
+        ncl_order = np.full(ns, nq >= ns)
+    perm = np.lexsort((np.arange(ns), np.where(ncl_order, -sw, 0), np.where(ncl_order, ss, 0)))
     ss, sw = ss[perm], sw[perm]
     qe, se = qs + qw - 1, ss + sw - 1
     g = max(maxgap, 0)

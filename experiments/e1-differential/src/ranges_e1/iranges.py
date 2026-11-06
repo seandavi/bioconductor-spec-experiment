@@ -15,7 +15,7 @@ from ._kernels import coverage as coverage_kernel
 from ._kernels import inter, intra, overlaps, setops
 from ._kernels import order as order_kernel
 from ._kernels import nearest as nearest_kernel
-from .hits import Hits
+from .hits import Hits, overlap_result
 from .rle import Rle
 from ._meta import INT_MAX, Names
 
@@ -361,25 +361,13 @@ class IRanges:
         subject indices (masked = no hit).
         """
         overlaps.check_args(type, int(maxgap), int(minoverlap))
-        if select not in ("all", "first", "last", "arbitrary"):
-            raise ValueError("'arg' should be one of \"all\", \"first\", \"last\", \"arbitrary\"")
-        self_hits = subject is None
         subj = self if subject is None else subject
         q, s = self._pairs(subj, int(maxgap), int(minoverlap), type)
-        if self_hits:
-            keep = np.ones(len(q), dtype=bool)
-            if drop_self:
-                keep &= q != s
-            if drop_redundant:  # drop (i, j), i > j, when its mirror (j, i) is also a hit
-                n = len(self)
-                key = set((q * n + s).tolist())
-                mirror = np.array([(b * n + a) in key for a, b in zip(q.tolist(), s.tolist())], dtype=bool)
-                keep &= ~((q > s) & mirror)
-            q, s = q[keep], s[keep]
-        hits = Hits(q, s, len(self), len(subj))
-        if select == "arbitrary" and (self_hits or overlaps.uses_query_nclist(len(self), len(subj))):
-            select = "last"  # R's engines report the last-seen subject in these modes
-        return hits if select == "all" else hits.select(select)
+        return overlap_result(
+            q, s, len(self), len(subj), select=select, self_hits=subject is None,
+            drop_self=drop_self, drop_redundant=drop_redundant,
+            query_is_shorter=overlaps.uses_query_nclist(len(self), len(subj)),
+        )
 
     def count_overlaps(
         self, subject: IRanges | None = None, maxgap: int = -1, minoverlap: int = 0, type: str = "any"  # noqa: A002
