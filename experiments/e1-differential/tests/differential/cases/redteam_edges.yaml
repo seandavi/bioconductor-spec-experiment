@@ -816,7 +816,7 @@ cases:
         - 3
   check_warnings: true
   xfail: 'Bug: typed missing numeric coverage weights are valid in R and produce NA runs.'
-- id: rt-edge-trim-unknown-length
+- id: rt-edge-trim-circularity-unknown
   tags:
   - redteam
   - edges
@@ -843,7 +843,7 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-- id: rt-edge-trim-linear-length
+- id: rt-edge-trim-circularity-linear
   tags:
   - redteam
   - edges
@@ -870,7 +870,7 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-- id: rt-edge-trim-circular-length
+- id: rt-edge-trim-circularity-circular
   tags:
   - redteam
   - edges

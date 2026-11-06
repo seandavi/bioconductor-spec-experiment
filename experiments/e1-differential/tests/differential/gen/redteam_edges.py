@@ -75,9 +75,9 @@ for tag, kind in (("ir", "IRanges"), ("gr", "GRanges")):
     add(f"{tag}-coverage-typed-na", {"x": {kind: weight_x}}, "coverage", weight={"int": [1, None, 3]})
     add(f"{tag}-coverage-overlap-na", {"x": {kind: weight_x}}, "coverage", weight={"num": [None, 2, 3]})
 
-# Unknown circularity is not FALSE for trim/out-of-bounds validation in R.
+# Compare unknown circularity with explicit linear/circular sequences of known length.
 for circular, suffix in ((None, "unknown"), (False, "linear"), (True, "circular")):
-    add(f"trim-{suffix}-length", {"x": {"GRanges": {"seqnames": ["chr1"], "start": [-2], "width": [8],
+    add(f"trim-circularity-{suffix}", {"x": {"GRanges": {"seqnames": ["chr1"], "start": [-2], "width": [8],
         "seqinfo": {"seqnames": ["chr1"], "seqlengths": [3], "is_circular": [circular]}}}}, "trim")
 
 # Empty ranges alone still define extent for some R operations.

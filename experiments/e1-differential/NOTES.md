@@ -84,3 +84,9 @@ Append-only. Timestamped judgment calls and human interventions.
   failures now pass. Xfail only catches comparison failures, not harness crashes.
 - 2026-11-06T05:48:41Z validation: full suite 3888 passed, 52 xfailed. Source unchanged;
   existing test expectations unchanged. All 119 red-team cases ran in R and Python.
+- 2026-11-06T05:52:43Z red-team report: per-case tables cover all 119 cases. Classified 47
+  bug cases, 5 unresolved ADR judgments, 67 agreements. Renamed three trim cases
+  to say circularity (their seqlength is known); inputs/results are unchanged.
+  Fresh-R new-case run: 67 passed, 52 xfailed. Cache-only full run: 3888 passed,
+  52 xfailed. Unmasked origin-overlap case fails as expected. Regeneration and
+  compileall pass. No source edits or accepted ADRs; independent review pending.

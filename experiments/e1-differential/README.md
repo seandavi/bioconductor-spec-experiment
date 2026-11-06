@@ -84,12 +84,15 @@ drop subjects with coordinate 0 on non-first seqlevels (sentinel collision).
 file I/O, `mcols` row names, `circle.length` arguments, comparison operators (`==`, `<`, `match`).
 
 ## Status
-Unit tests (`tests/unit`: properties on random input, class behaviour, harness self-tests) and
-3.6k differential cases (783 handwritten, 2818 generated) and 207 unit tests pass; `mypy src` is clean
-(`uvx mypy src --ignore-missing-imports`).
+3720 differential cases and 220 unit tests: **3888 passed, 52 xfailed** after red-team testing.
+The 119 new cases expose 47 bug cases and 5 ADR judgments; differences remain unresolved.
+[Red-team results](REDTEAM.md) link every case's R/Python comparison. `src/` was unchanged.
+The implementation-stage `mypy src` check was clean (`uvx mypy src --ignore-missing-imports`).
 
 ### Where the harness has been pushed (and where to push next)
 Generators in `tests/differential/gen/` cover: exhaustive small pools (parallel ops, overlaps, nearest),
 seeded random pools (IRanges/GRanges, large nested inputs), metadata propagation, mcols type mixes,
 malformed arguments to every op, constructors, and random seqinfo pairs (warnings compared).
+The red team added circular-origin/periodic overlaps, empty/zero-width interactions, ordering ties,
+metadata recycling, missing weights, and validation adversaries. See `REDTEAM.md`.
 Untested by design: values near ±2^31 (ADR-0005), `random` ties, `seqlevels<-`, performance at 1e5+ ranges.

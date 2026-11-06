@@ -1043,8 +1043,8 @@
     "warnings": []
    }
   },
-  "rt-edge-trim-circular-length": {
-   "hash": "a0dd419e3d482af36e0af037dd09b7fbbe0809f3f2992d780cf9bbfc755ee3b4",
+  "rt-edge-trim-circularity-circular": {
+   "hash": "d49cc9a4758dab15adb1531a28a137051a701c49761b278384987c496b900dd1",
    "result": {
     "value": {
      "class": "GRanges",
@@ -1081,8 +1081,8 @@
     "warnings": []
    }
   },
-  "rt-edge-trim-linear-length": {
-   "hash": "20506ac062ff69ac04a9270b866503ee4129a71471dd992778b058fb520517e2",
+  "rt-edge-trim-circularity-linear": {
+   "hash": "c33d21facddd8ef93dbca7318086ef58e283132d580db0e02a6b3fdc80b47b53",
    "result": {
     "value": {
      "class": "GRanges",
@@ -1121,8 +1121,8 @@
     ]
    }
   },
-  "rt-edge-trim-unknown-length": {
-   "hash": "9e525a5503271c0586d1649e7a2add064c2448bf01a661ac9532f4fdf7ecd442",
+  "rt-edge-trim-circularity-unknown": {
+   "hash": "353066b90c22d07374335d357ba22fb1e62ece4419ce021be827cf300498e53b",
    "result": {
     "value": {
      "class": "GRanges",
