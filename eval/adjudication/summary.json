@@ -1,289 +1,289 @@
 {
  "e0": {
   "classes": {
-   "port_bug": 492,
-   "declared_divergence": 502,
-   "r_accident": 281,
-   "adapter_fault": 74,
-   "harness_fault": 37
+   "port_bug": 444,
+   "declared_divergence": 501,
+   "r_accident": 55,
+   "adapter_fault": 0,
+   "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 119,
-   "declared_divergence": 22,
-   "r_accident": 35,
-   "adapter_fault": 11,
+   "port_bug": 116,
+   "declared_divergence": 21,
+   "r_accident": 33,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 7587,
-   "mismatch": 1186,
-   "unsupported": 677,
-   "port_error_unexpected": 200
+   "pass": 7530,
+   "mismatch": 819,
+   "unsupported": 1120,
+   "port_error_unexpected": 181
   },
   "all": {
-   "pass": 7587,
+   "pass": 7530,
    "scored": 9650,
-   "supported": 8973,
-   "raw_fidelity": 0.7862,
-   "supported_fidelity": 0.8455,
-   "adjusted_denominator": 8079,
-   "adjusted_fidelity": 0.9391
+   "supported": 8530,
+   "raw_fidelity": 0.7803,
+   "supported_fidelity": 0.8828,
+   "adjusted_denominator": 7974,
+   "adjusted_fidelity": 0.9443
   },
   "heldout": {
-   "pass": 2781,
+   "pass": 2773,
    "scored": 3510,
-   "supported": 2968,
-   "raw_fidelity": 0.7923,
-   "supported_fidelity": 0.937,
-   "adjusted_denominator": 2900,
-   "adjusted_fidelity": 0.959
+   "supported": 2943,
+   "raw_fidelity": 0.79,
+   "supported_fidelity": 0.9422,
+   "adjusted_denominator": 2889,
+   "adjusted_fidelity": 0.9598
   },
-  "clusters": 86
+  "clusters": 71
  },
  "e0b": {
   "classes": {
-   "port_bug": 1073,
+   "port_bug": 1066,
    "declared_divergence": 459,
-   "r_accident": 165,
-   "adapter_fault": 11,
-   "harness_fault": 60
+   "r_accident": 52,
+   "adapter_fault": 0,
+   "harness_fault": 0
   },
   "classes_heldout": {
    "port_bug": 206,
    "declared_divergence": 15,
-   "r_accident": 33,
-   "adapter_fault": 3,
+   "r_accident": 29,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 6556,
-   "port_error_unexpected": 638,
-   "mismatch": 1130,
-   "unsupported": 1326
+   "pass": 6539,
+   "port_error_unexpected": 627,
+   "mismatch": 950,
+   "unsupported": 1534
   },
   "all": {
-   "pass": 6556,
+   "pass": 6539,
    "scored": 9650,
-   "supported": 8324,
-   "raw_fidelity": 0.6794,
-   "supported_fidelity": 0.7876,
-   "adjusted_denominator": 7629,
-   "adjusted_fidelity": 0.8594
+   "supported": 8116,
+   "raw_fidelity": 0.6776,
+   "supported_fidelity": 0.8057,
+   "adjusted_denominator": 7605,
+   "adjusted_fidelity": 0.8598
   },
   "heldout": {
-   "pass": 2510,
+   "pass": 2505,
    "scored": 3510,
-   "supported": 2767,
-   "raw_fidelity": 0.7151,
-   "supported_fidelity": 0.9071,
-   "adjusted_denominator": 2716,
-   "adjusted_fidelity": 0.9242
+   "supported": 2755,
+   "raw_fidelity": 0.7137,
+   "supported_fidelity": 0.9093,
+   "adjusted_denominator": 2711,
+   "adjusted_fidelity": 0.924
   },
-  "clusters": 116
+  "clusters": 109
  },
  "e1": {
   "classes": {
-   "port_bug": 181,
+   "port_bug": 404,
    "declared_divergence": 83,
-   "r_accident": 229,
-   "adapter_fault": 3,
+   "r_accident": 3,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "classes_heldout": {
    "port_bug": 38,
    "declared_divergence": 41,
-   "r_accident": 5,
-   "adapter_fault": 3,
+   "r_accident": 3,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 8619,
-   "mismatch": 481,
-   "unsupported": 535,
-   "port_error_unexpected": 15
+   "pass": 8617,
+   "mismatch": 478,
+   "unsupported": 543,
+   "port_error_unexpected": 12
   },
   "all": {
-   "pass": 8619,
+   "pass": 8617,
    "scored": 9650,
-   "supported": 9115,
-   "raw_fidelity": 0.8932,
-   "supported_fidelity": 0.9456,
-   "adjusted_denominator": 8800,
-   "adjusted_fidelity": 0.9794
+   "supported": 9107,
+   "raw_fidelity": 0.893,
+   "supported_fidelity": 0.9462,
+   "adjusted_denominator": 9021,
+   "adjusted_fidelity": 0.9552
   },
   "heldout": {
-   "pass": 2987,
+   "pass": 2984,
    "scored": 3510,
-   "supported": 3074,
-   "raw_fidelity": 0.851,
-   "supported_fidelity": 0.9717,
-   "adjusted_denominator": 3025,
+   "supported": 3066,
+   "raw_fidelity": 0.8501,
+   "supported_fidelity": 0.9733,
+   "adjusted_denominator": 3022,
    "adjusted_fidelity": 0.9874
   },
-  "clusters": 38
+  "clusters": 34
  },
  "e2": {
   "classes": {
-   "port_bug": 790,
-   "declared_divergence": 178,
-   "r_accident": 255,
-   "adapter_fault": 5,
+   "port_bug": 789,
+   "declared_divergence": 404,
+   "r_accident": 29,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 95,
-   "declared_divergence": 30,
-   "r_accident": 8,
-   "adapter_fault": 3,
+   "port_bug": 94,
+   "declared_divergence": 32,
+   "r_accident": 6,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 7688,
-   "mismatch": 831,
-   "port_error_unexpected": 397,
-   "unsupported": 734
+   "pass": 7679,
+   "mismatch": 830,
+   "port_error_unexpected": 392,
+   "unsupported": 749
   },
   "all": {
-   "pass": 7688,
+   "pass": 7679,
    "scored": 9650,
-   "supported": 8916,
-   "raw_fidelity": 0.7967,
-   "supported_fidelity": 0.8623,
-   "adjusted_denominator": 8478,
+   "supported": 8901,
+   "raw_fidelity": 0.7958,
+   "supported_fidelity": 0.8627,
+   "adjusted_denominator": 8468,
    "adjusted_fidelity": 0.9068
   },
   "heldout": {
-   "pass": 2896,
+   "pass": 2891,
    "scored": 3510,
-   "supported": 3032,
-   "raw_fidelity": 0.8251,
-   "supported_fidelity": 0.9551,
-   "adjusted_denominator": 2991,
-   "adjusted_fidelity": 0.9682
-  },
-  "clusters": 89
- },
- "e3": {
-  "classes": {
-   "port_bug": 659,
-   "declared_divergence": 397,
-   "r_accident": 57,
-   "adapter_fault": 3,
-   "harness_fault": 0
-  },
-  "classes_heldout": {
-   "port_bug": 158,
-   "declared_divergence": 6,
-   "r_accident": 32,
-   "adapter_fault": 2,
-   "harness_fault": 0
-  },
-  "outcomes": {
-   "pass": 6995,
-   "port_error_unexpected": 344,
-   "mismatch": 772,
-   "unsupported": 1539
-  },
-  "all": {
-   "pass": 6995,
-   "scored": 9650,
-   "supported": 8111,
-   "raw_fidelity": 0.7249,
-   "supported_fidelity": 0.8624,
-   "adjusted_denominator": 7654,
-   "adjusted_fidelity": 0.9139
-  },
-  "heldout": {
-   "pass": 2573,
-   "scored": 3510,
-   "supported": 2771,
-   "raw_fidelity": 0.733,
-   "supported_fidelity": 0.9285,
-   "adjusted_denominator": 2731,
-   "adjusted_fidelity": 0.9421
+   "supported": 3023,
+   "raw_fidelity": 0.8236,
+   "supported_fidelity": 0.9563,
+   "adjusted_denominator": 2985,
+   "adjusted_fidelity": 0.9685
   },
   "clusters": 86
  },
+ "e3": {
+  "classes": {
+   "port_bug": 657,
+   "declared_divergence": 397,
+   "r_accident": 56,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "classes_heldout": {
+   "port_bug": 157,
+   "declared_divergence": 6,
+   "r_accident": 31,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 6992,
+   "port_error_unexpected": 341,
+   "mismatch": 769,
+   "unsupported": 1548
+  },
+  "all": {
+   "pass": 6992,
+   "scored": 9650,
+   "supported": 8102,
+   "raw_fidelity": 0.7246,
+   "supported_fidelity": 0.863,
+   "adjusted_denominator": 7649,
+   "adjusted_fidelity": 0.9141
+  },
+  "heldout": {
+   "pass": 2571,
+   "scored": 3510,
+   "supported": 2765,
+   "raw_fidelity": 0.7325,
+   "supported_fidelity": 0.9298,
+   "adjusted_denominator": 2728,
+   "adjusted_fidelity": 0.9424
+  },
+  "clusters": 84
+ },
  "e4": {
   "classes": {
-   "port_bug": 893,
+   "port_bug": 1105,
    "declared_divergence": 147,
-   "r_accident": 271,
-   "adapter_fault": 5,
+   "r_accident": 56,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "classes_heldout": {
    "port_bug": 103,
    "declared_divergence": 21,
+   "r_accident": 27,
+   "adapter_fault": 0,
+   "harness_fault": 0
+  },
+  "outcomes": {
+   "pass": 7166,
+   "mismatch": 1074,
+   "port_error_unexpected": 234,
+   "unsupported": 1176
+  },
+  "all": {
+   "pass": 7166,
+   "scored": 9650,
+   "supported": 8474,
+   "raw_fidelity": 0.7426,
+   "supported_fidelity": 0.8456,
+   "adjusted_denominator": 8271,
+   "adjusted_fidelity": 0.8664
+  },
+  "heldout": {
+   "pass": 2642,
+   "scored": 3510,
+   "supported": 2793,
+   "raw_fidelity": 0.7527,
+   "supported_fidelity": 0.9459,
+   "adjusted_denominator": 2745,
+   "adjusted_fidelity": 0.9625
+  },
+  "clusters": 82
+ },
+ "biocpy": {
+  "classes": {
+   "port_bug": 2639,
+   "declared_divergence": 0,
    "r_accident": 29,
    "adapter_fault": 3,
    "harness_fault": 0
   },
-  "outcomes": {
-   "pass": 7172,
-   "mismatch": 1077,
-   "port_error_unexpected": 239,
-   "unsupported": 1162
-  },
-  "all": {
-   "pass": 7172,
-   "scored": 9650,
-   "supported": 8488,
-   "raw_fidelity": 0.7432,
-   "supported_fidelity": 0.845,
-   "adjusted_denominator": 8065,
-   "adjusted_fidelity": 0.8893
-  },
-  "heldout": {
-   "pass": 2645,
-   "scored": 3510,
-   "supported": 2801,
-   "raw_fidelity": 0.7536,
-   "supported_fidelity": 0.9443,
-   "adjusted_denominator": 2748,
-   "adjusted_fidelity": 0.9625
-  },
-  "clusters": 85
- },
- "biocpy": {
-  "classes": {
-   "port_bug": 2476,
-   "declared_divergence": 0,
-   "r_accident": 271,
-   "adapter_fault": 337,
-   "harness_fault": 0
-  },
   "classes_heldout": {
-   "port_bug": 525,
+   "port_bug": 504,
    "declared_divergence": 0,
-   "r_accident": 30,
-   "adapter_fault": 56,
+   "r_accident": 18,
+   "adapter_fault": 0,
    "harness_fault": 0
   },
   "outcomes": {
-   "pass": 5108,
-   "unsupported": 1458,
-   "port_error_unexpected": 910,
-   "mismatch": 2174
+   "pass": 5166,
+   "unsupported": 1813,
+   "port_error_unexpected": 563,
+   "mismatch": 2108
   },
   "all": {
-   "pass": 5108,
+   "pass": 5166,
    "scored": 9650,
-   "supported": 8192,
-   "raw_fidelity": 0.5293,
-   "supported_fidelity": 0.6235,
-   "adjusted_denominator": 7584,
-   "adjusted_fidelity": 0.6735
+   "supported": 7837,
+   "raw_fidelity": 0.5353,
+   "supported_fidelity": 0.6592,
+   "adjusted_denominator": 7805,
+   "adjusted_fidelity": 0.6619
   },
   "heldout": {
-   "pass": 2160,
+   "pass": 2192,
    "scored": 3510,
-   "supported": 2771,
-   "raw_fidelity": 0.6154,
-   "supported_fidelity": 0.7795,
-   "adjusted_denominator": 2685,
-   "adjusted_fidelity": 0.8045
+   "supported": 2714,
+   "raw_fidelity": 0.6245,
+   "supported_fidelity": 0.8077,
+   "adjusted_denominator": 2696,
+   "adjusted_fidelity": 0.8131
   },
-  "clusters": 200
+  "clusters": 199
  }
 }

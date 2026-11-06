@@ -37,35 +37,31 @@ R_RESOLVE_EMPTY = ("pintersect(x, x, resolve.empty=NA|TRUE|'a'|1:2|integer(0)) r
                    "empty intersection must be resolved (pintersect(x, y) with a non-overlapping pair)")
 R_CIRCULAR_PROBE = ("probe_circular.py: with every isCircular set FALSE R returns exactly the port's value, i.e. the "
                     "port computes linear semantics on a circular sequence")
-HF_NAN = ("runner/adapter_base.py:82,88 RVector.np() maps a dbl NA to NaN (only int/lgl/chr raise; ADAPTERS.md "
-          "'dbl NA and NaN both become nan') and adapters use it for weights (adapters/e0b.py:76; e0.py:64-67 mirrors "
-          "it), while spec/PROJECTION.md and COMPARATOR exact equality score NaN != NA. The port's answer equals R's "
-          "answer for the NaN input it was given: coverage(IRanges(c(1,2,5,8,11),width=c(1,3,3,3,2)), "
-          "weight=c(NaN,3,1,NaN,4)) is NaN 3 1 NaN 4")
 R_TRIM_NAMES = "trim(x, use.names=FALSE) keeps names(x) (R ignores the argument); shift(use.names=FALSE) drops them"
 
-AF_SEQINFO_CHR = ("GRanges(seqinfo=<character>) is valid R (seqlevels given as names); every port's GRanges takes a "
-                  "Seqinfo object only, and the adapters pass the R character vector through (adapters/e0.py, e0b.py, "
-                  "e1.py, e2.py, e3.py, biocpy.py op_GRanges), so the port dereferences .seqnames on a str/RVector")
-
-AF_COLUMN_ARG = ("R's coverage(weight=, shift=) accept an mcols column name; the port's coverage takes numbers only for "
-                 "that class (e0 README API table; e0b iranges.py:374 / granges.py:595; e2 iranges.py:358 IRanges weight "
-                 "and both shifts; e4 shift; BiocPy coverage), yet the adapters forward the string instead of raising "
-                 "Unsupported")
-AF_C_ATOMIC = ("R's c(<IRanges>, <IRanges>, 1L) coerces the integer operand to a range; no port's concat accepts a "
-               "non-ranges operand, and the adapters pass the R vector straight in (TypeError / AttributeError inside "
-               "the port's concat)")
-
 RULES: list[tuple[str, str, str, str]] = [
-    (r"\|coverage\|port_error:call\|mcols_column_name_arg", AF, AF_COLUMN_ARG,
-     "adapter forwards a column-name weight/shift the port API does not take"),
-    (r"\|subset_concat\|port_error:call\|c_atomic_operand", AF, AF_C_ATOMIC,
-     "adapter forwards an atomic c() operand the port API does not take"),
-    (r"\|construct\|port_error:(call|project)\|AttributeError:'(str|RVector)' object has no attribute '(seqnames|_lengths|get_seqnames)'", AF,
-     AF_SEQINFO_CHR, "adapter forwards a character seqinfo the port API cannot take (should build a Seqinfo or raise Unsupported)"),
     # ------------------------------------------------------------------ cross-port R accidents
-    (r"\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA,
+    (r"\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA + "; the port's value is the local-NA sum with R's type",
      "R's NA-weight coverage is not a sum here (NA leaks past the NA range / depends on order)"),
+    # R's value is defective AND the port has its own defect on the same case: the port's defect counts
+    (r"^e2\|coverage\|.*\|r_nonlocal_na\+port_wrong$", DD,
+     "e2:NOTES.md:27 'coverage: ... NA weight gives garbage (not pinned)': e2 refuses NA weights (IRanges) or computes "
+     "with NaN (GRanges); " + R_COV_NA, "R's NA coverage is defective; e2's NA-weight handling is its declared one"),
+    (r"\|coverage\|.*\|r_nonlocal_na\+port_wrong$", PB,
+     "probe_coverage_na.local_na applied to the port's value: not the local-NA sum with R's type and lengths (e1: NaN "
+     "in a double Rle where R has NA_integer_/NA_real_, same positions as R; e4/BiocPy: NA weights as 0 or a crash). "
+     + R_COV_NA, "R's NA coverage is defective, but the port is wrong there too (crash / NaN / NA as 0 / type)"),
+    (r"\|nearest\|.*\|r_translation_dependent\+port_wrong$", PB,
+     "probe_translate.py r_shifted (+ select='all' universe for R3): the port's value differs from R's answer for the "
+     "same case shifted by +1000, e.g. heldout/precede/GRanges/40 R 6 5 3 NA 2, shifted 6 5 4 8 2, e0b/BiocPy 2 5 3 8 9",
+     "R's value is a sentinel artefact, but the port also misses the translation-invariant answer"),
+    (r"\|nearest\|r_error_port_value\|na_in_logic\|coord_le0\+port_wrong$", PB,
+     "e1/redteam_edges/rt-edge-gr-negative-follow: R errors; shifted +1000 R gives 2->1, 4->3 (as e0-e4); the port "
+     "adds 3->2", "R fails on valid input, and the port misses R's shifted answer"),
+    (r"^(e2|biocpy)\|overlaps\|mismatch\|diff\|maxgap_int32_max$", RA,
+     "findOverlaps(IRanges(1,1), IRanges(2147483642,2147483642), maxgap=2147483645) hits; maxgap 2147483646 or "
+     "2147483647 loses the hit (non-monotonic in maxgap: int32 overflow). The port finds the hit. " + R_INT32,
+     "R's maxgap near 2^31 overflows"),
     (r"\|setops\|port_error:call\|rejects_valid_resolve_empty", PB,
      "R's resolve.empty accepts 'start.x' and its unique prefix 'start' (match.arg); e4 spells the choice 'start' and "
      "rejects 'start.x' (src/ranges_e4/setops.py:66-67, clauses.md:88), e0/e2/e3 reject the partial 'start'",
@@ -77,8 +73,6 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^(e0|e0b|e2|e3|e4|biocpy)\|intra\|port_error:call\|ValueError:'?fix'? must", RA, R_RESIZE_EMPTY,
      "R skips fix validation on empty input only"),
     # ------------------------------------------------------------------ e1
-    (r"^e1\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA,
-     "R's NA-weight coverage is not a sum here; e1 reproduces the defect but cannot be held to it"),
     (r"^e1\|coverage\|mismatch\|nan_as_na\|na_weight_dbl$", PB,
      "e1:src/ranges_e1/iranges.py:512 weights become float NaN; Rle values keep NaN; README.md:30 says NA is a "
      "masked entry; e1's own harness hides it (tests/differential/adapter.py:241 'NaN = NA')",
@@ -100,7 +94,7 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e1\|overlaps\|mismatch\|diff\|circular$", DD,
      "e1:adrs/0008-circular-maxgap-hits.md (pins div-circ-end-maxgap-*); R: same pair hits alone, misses in context",
      "circular maxgap>0 end/start: one pairwise rule where R is engine-path dependent"),
-    (r"^e1\|(overlaps|setops|inter)\|mismatch\|diff\|int32_edge$", DD, "e1:adrs/0005-coordinate-overflow-is-an-error.md; " + R_INT32,
+    (r"^e1\|(overlaps|setops|inter)\|mismatch\|diff\|(int32_edge|maxgap_int32_max)$", DD, "e1:adrs/0005-coordinate-overflow-is-an-error.md; " + R_INT32,
      "int64 arithmetic near 2^31 by ADR-0005 (R wraps)"),
     (r"^e1\|\*\|r_error_port_value\|length_validation", DD, "e1:adrs/0005-coordinate-overflow-is-an-error.md; " + R_INT32,
      "disjoin at end=2^31-1: R's int32 end+1 overflow errors; e1 computes exactly (ADR-0005)"),
@@ -161,12 +155,6 @@ RULES: list[tuple[str, str, str, str]] = [
      "e0:README.md 'Not implemented: circular-sequence wrap-around' (R errors on coverage width > circular length) and "
      "README.md Storage 'int64 ... R's overflow errors are not reproduced' (disjoin at 2^31-1)",
      "R errors from circular-length / int32 checks the port declares it does not implement"),
-    (r"^(e0|e0b)\|coverage\|mismatch\|nan_as_na\|na_weight_dbl$", HF, HF_NAN,
-     "double NA reaches the port as NaN by the harness's own conversion, then NaN is scored against NA"),
-    (r"^e0\|coverage\|mismatch\|(nan_as_na\+)?num_type\|na_weight_int$", AF,
-     "adapters/e0.py:64-67 converts an integer vector holding NA to a float64 NaN array; e0's as_weights "
-     "(src/ranges_e0/_coverage.py:25-28) then computes double coverage. R got an integer weight",
-     "integer NA weights reach the port as doubles: the type change is the adapter's"),
     (r"^e0\|coverage\|mismatch\|nan_as_na\+num_type\|na_weight_dbl$", PB,
      "e0:src/ranges_e0/_coverage.py:28 + GRanges per-seqlevel default: seqlevels without ranges get an int Rle "
      "although weights are double (R: double for every seqlevel)", "empty seqlevels of a double-weighted coverage are integer"),
@@ -177,10 +165,6 @@ RULES: list[tuple[str, str, str, str]] = [
      "R with NaN weights (the port's actual input) keeps NaN local: coverage(IRanges(c(1,2,5,8,11),width=c(1,3,3,3,2)), "
      "weight=c(NaN,3,1,NaN,4)) = NaN 3 1 NaN 4; e0 returns all-NaN (NaN enters the running sum and never leaves)",
      "a NaN weight poisons every later position"),
-    (r"^e0\|coverage\|port_error:call\|mcols_column_name_arg", AF,
-     "R's coverage(weight=\"col\") names an mcols column; e0's coverage takes numbers only (README API table, "
-     "_coverage.py:13 as_weights); adapters/e0.py passes the string through instead of raising Unsupported",
-     "adapter passes a column-name weight the port's API does not have"),
     (r"^e0\|coverage\|r_error_port_value\|other:", PB,
      "R rejects width=NA/TRUE, shift longer than x, and named width not identical to seqlevels(x); e0 accepts them",
      "missing argument validation in coverage"),
@@ -199,12 +183,6 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e0\|\*\|port_error:call\|rejects_double_arg", DD,
      "e0:NOTES.md 23:20 'Fractional floats rejected'; R truncates (IRanges(start=1.5) -> 1) and accepts logical start runs",
      "fractional / logical coordinates rejected (declared)"),
-    (r"^e0\|\*\|port_error:call\|na_arg_crash", AF,
-     "adapters/e0.py:64-67 passes R NA as NaN, which the e0 port documents no meaning for; gaps then fails "
-     "converting NaN to int. R: gaps(x, start=NA) means 'use the data'", "NA bound mistranslated to NaN"),
-    (r"^e0\|inter\|mismatch\|diff\|na_arg$", AF,
-     "adapters/e0.py:14 maps NA in lgl to None, which is e0's 'argument absent' default (seqlength bound); "
-     "R's gaps(end=NA) means 'max end of the data', a different call", "NA bound mistranslated to the default"),
     (r"^e0\|inter\|port_error:call\|TypeError:only N-dimensional", PB,
      "R recycles a gaps start/end vector over seqlevels; e0 crashes (TypeError) on a length-2 bound",
      "crash on per-seqlevel bound vectors"),
@@ -228,7 +206,7 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e0\|setops\|mismatch\|names\|-$", PB, "R: punion on unnamed x takes y's names", "p* op drops y's names"),
     (r"^(e0|e0b)\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY,
      "R validates resolve.empty only when an empty intersection occurs"),
-    (r"^e0\|(setops|inter|overlaps|nearest|intra)\|mismatch\|diff\|int32_edge(_distance)?$", DD,
+    (r"^e0\|(setops|inter|overlaps|nearest|intra)\|mismatch\|diff\|(int32_edge(_distance)?|maxgap_int32_max)$", DD,
      "e0:README.md Storage 'int64 (R: int32, so R's overflow errors are not reproduced)'. " + R_INT32,
      "int64 arithmetic near 2^31 (declared)"),
     (r"^e0\|(intra|construct)\|r_error_port_value\|int32_overflow", DD,
@@ -309,7 +287,7 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e0b\|\*\|port_error:call\|rejects_double_arg", PB,
      "R truncates fractional coordinates/widths (IRanges(start=4, width=c(1.5,2.5,3.5)) -> widths 1 2 3); no e0b doc "
      "declares rejecting them", "fractional arguments rejected"),
-    (r"^e0b\|(intra|construct|nearest|setops|inter|overlaps)\|(mismatch\|diff\|int32_edge|r_error_port_value\|int32_overflow)",
+    (r"^e0b\|(intra|construct|nearest|setops|inter|overlaps)\|(mismatch\|diff\|(int32_edge|maxgap_int32_max)|r_error_port_value\|int32_overflow)",
      DD, "e0b:README.md:52 'Integers: int64, no overflow check'. " + R_INT32, "int64 arithmetic (declared)"),
     (r"^e0b\|nearest\|mismatch\|diff\|(r_translation_dependent|coord_le0)$", RA,
      "probe_translate.py: R's answer changes when every range is shifted +1000 (2 cases on circular seqinfo not "
@@ -513,7 +491,7 @@ RULES: list[tuple[str, str, str, str]] = [
      "R recycles a scalar genome over seqnames (Seqinfo(c('a','b','c'), genome='hg')); e3's own CORE.3/ADR-0006 say "
      "length-1 values recycle", "length-1 genome rejected (contradicts its own rule)"),
     (r"^e3\|\*\|port_error:call\|rejects_names_padding", PB, "R pads short names with NA (not recycling)", "short names rejected"),
-    (r"^e3\|(intra|construct|setops|inter|overlaps)\|(mismatch\|diff\|int32_edge|r_error_port_value\|int32_overflow)", DD,
+    (r"^e3\|(intra|construct|setops|inter|overlaps)\|(mismatch\|diff\|(int32_edge|maxgap_int32_max)|r_error_port_value\|int32_overflow)", DD,
      "e3:adr/0005-int64.md 'Results beyond int32 range are valid in Python and are not refused'. " + R_INT32,
      "int64 arithmetic (declared)"),
     (r"^e3\|\*\|r_error_port_value\|length_validation\|int32_edge$", DD, "e3:adr/0005-int64.md. " + R_INT32, "int64 (declared)"),
@@ -605,7 +583,7 @@ RULES: list[tuple[str, str, str, str]] = [
      "e4:adr/0007-vector-args-recycle-from-one.md 'length-1 recycles; any other length != n raises' (zero length too)",
      "no cyclic recycling (declared)"),
     (r"^e4\|\*\|port_error:call\|rejects_names_padding", PB, "R pads short names with NA (not recycling)", "short names rejected"),
-    (r"^e4\|(intra|construct|setops|inter|overlaps|nearest)\|(mismatch\|diff\|int32_edge|r_error_port_value\|int32_overflow|port_error:call\|int32_overflow)", DD,
+    (r"^e4\|(intra|construct|setops|inter|overlaps|nearest)\|(mismatch\|diff\|(int32_edge|maxgap_int32_max)|r_error_port_value\|int32_overflow|port_error:call\|int32_overflow)", DD,
      "e4:adr/0006-int32-overflow-raises.md, adr/0010-r-overflow-defects-not-ported.md. " + R_INT32,
      "int32 overflow raises / R overflow defects not ported (declared)"),
     (r"^e4\|\*\|r_error_port_value\|length_validation\|int32_edge$", DD, "e4:adr/0010-r-overflow-defects-not-ported.md "
@@ -670,29 +648,45 @@ RULES: list[tuple[str, str, str, str]] = [
 
     # ------------------------------------------------------------------ biocpy (iranges 0.7.3, genomicranges 0.9.0)
     (r"^biocpy\|overlaps\|mismatch\|select_result_as_hits", AF,
-     "adapters/biocpy.py:292-296 `_search` projects every BiocFrame result as Hits; for findOverlaps(select='first'|"
-     "'last'|'arbitrary') the port's frame already holds one subject per query, so R's integer vector is a pure "
-     "representation change (adapters/biocpy.md documents projecting it as Hits)", "select= result projected as Hits"),
-    (r"^biocpy\|(overlaps|\*)\|port_error:call\|type_equal_unavailable", AF,
-     "BiocPy find_overlaps/count_overlaps/subset_by_overlaps document query_type in {any, start, end, within}; R's "
-     "type='equal' is a form the port API lacks, so the adapter should raise Unsupported (ADAPTERS.md) instead of "
-     "passing it (adapters/biocpy.py `_OVERLAP_ARGS` type -> query_type)", "type='equal' passed to a port without it"),
+     "adapters/biocpy.py:312 `return self._selected_hits(res, n_query) or _Hits(...)`: for an empty query the "
+     "selection is RVector('int', []), falsy through RVector.__len__ (runner/adapter_base.py:63), so the projectable "
+     "integer(0) falls back to Hits (e4/iranges-overlaps/ir-fo-select-empty: R integer(0), port Hits 0x5)",
+     "empty select= result projected as Hits"),
+    (r"^biocpy\|overlaps\|mismatch\|select_not_applied", PB,
+     "BiocPy find_overlaps(select='first'|'last'|'arbitrary') returns several subjects for one query (e1/grid_circular/"
+     "circ-long0-fo-first: query 7 -> subjects 1 and 3; R first 1, last 3); the adapter cannot project it "
+     "(adapters/biocpy.py `_selected_hits` returns None) and keeps Hits", "select= not applied by the port"),
+    (r"^biocpy\|overlaps\|mismatch\|hits_not_sorted_by_query", PB,
+     "rule R2 (spec/COMPARATOR.md) requires Hits in non-decreasing query order; BiocPy find_overlaps returns them "
+     "sorted by subject (heldout/findOverlaps/IRanges/58: R from 2 3 4 4 5 5, port 2 3 4 5 4 5); same pairs",
+     "findOverlaps Hits not sorted by query"),
+    (r"^biocpy\|overlaps\|mismatch\|diff\|int32_edge$", PB,
+     "heldout/findOverlaps/GRanges/63 (maxgap=0, select='last'): R and e0-e4 give subject 2 for queries 6-9 "
+     "(chrY:2147483615-2147483623 vs chrY:2147483616-2147483618 '*'); BiocPy only for query 8",
+     "overlaps near 2^31 missed"),
+    (r"^biocpy\|nearest\|mismatch\|diff\|int32_edge_distance$", PB,
+     "R ?distance: NA when the distance exceeds int32; BiocPy returns 0 for ranges ~2^31 apart "
+     "(e4/iranges-edge/ir-edge-distance-overflow-is-na)", "distance beyond int32 is 0"),
+    (r"^biocpy\|intra\|mismatch\|diff\|port_int32_wrap$", PB,
+     "e1/granges_intra/gr-shift-overflow-error: shift(x, 2147483647) gives BiocPy starts -2147483639... (int32 "
+     "wrap-around); R's NA starts are invalid too (" + R_INT32_NA + "), but a silently wrapped coordinate is the port's own "
+     "defect", "int32 wrap-around to negative coordinates"),
     (r"^biocpy\|(overlaps|nearest|coverage|setops|seqinfo|subset_concat|inter|ordering)\|mismatch\|equals_R_linear\|circular$", PB,
      R_CIRCULAR_PROBE + "; BiocPy documents no circular limitation", "circular sequences treated as linear"),
     (r"^biocpy\|nearest\|(mismatch\|diff\|(r_translation_dependent|int32_edge)|port_error:call\|IndexError:only integers.*\|r_translation_dependent)", RA,
      "probe_translate.py: R's answer moves with the coordinates / overflows near 2^31. " + R_SENTINEL,
      "R's GRanges sentinel collisions"),
     (r"^biocpy\|nearest\|r_error_port_value\|na_in_logic\|coord_le0$", RA, R_SENTINEL, "R fails on valid input"),
-    (r"^biocpy\|(overlaps|setops|inter)\|mismatch\|diff\|int32_edge$", RA, R_INT32, "R's int32 arithmetic gives a wrong answer"),
-    (r"^biocpy\|intra\|mismatch\|diff\|int32_edge$", RA, R_INT32_NA + " (BiocPy wraps to negative int32, also wrong)",
-     "R's overflow result is not a contract"),
+    (r"^biocpy\|(setops|inter)\|mismatch\|diff\|int32_edge$", RA, R_INT32, "R's int32 arithmetic gives a wrong answer"),
+    (r"^biocpy\|intra\|mismatch\|diff\|int32_edge$", RA, R_INT32_NA + "; BiocPy gives the int64 arithmetic answer "
+     "(promoters(IRanges(2147483642, width=3), 0, 100): width 100)", "R's overflow result is not a contract"),
     (r"^biocpy\|\*\|r_error_port_value\|length_validation\|int32_edge$", RA, R_INT32, "R errors on valid input at 2^31-1"),
     (r"^biocpy\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY, "lazy R validation"),
     (r"^biocpy\|coverage\|mismatch\|num_type", PB,
      "BiocPy coverage returns float64 arrays for integer coverage (R integer Rle); adapter projects dtype faithfully",
      "coverage is double"),
-    (r"^biocpy\|overlaps\|mismatch\|(num_type|num_type\+names|nan_as_na)\|-$", PB,
-     "BiocPy count_overlaps returns float64 (R integer) and NaN/names differ", "countOverlaps type"),
+    (r"^biocpy\|overlaps\|mismatch\|(num_type|num_type\+names)\|-$", PB,
+     "BiocPy count_overlaps returns float64 (R integer); names differ", "countOverlaps type"),
     (r"^biocpy\|nearest\|port_error:call\|IndexError:only integers", PB,
      "GenomicRanges.precede/follow crash inside the port (genomicranges/GenomicRanges.py:2578, 2658 `ret_result[q]`); "
      "reproduced directly in the port venv", "GRanges precede/follow crash"),
@@ -704,7 +698,20 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^biocpy\|(seqinfo|setops|subset_concat|inter|overlaps|nearest)\|r_error_port_value\|seqinfo_incompatible", PB,
      "R errors on incompatible seqlengths/circularity/genome; BiocPy merges silently (keeps NA)", "no seqinfo conflict check"),
     (r"^biocpy\|coverage\|port_error:call\|TypeError:int\(\) argument", PB,
-     "the adapter passes NA weights as None (faithful); BiocPy coverage crashes converting None to int", "NA weights crash"),
+     "every member is IRanges coverage (array weights are its documented API; scalar-only GRanges weight vectors are "
+     "Unsupported since adapter fef1051); the adapter passes NA as None and the port crashes converting None to int. "
+     "9 members are R-order-sensitive (probe_coverage_na order_dependent) but R's value at the given order is the "
+     "local-NA sum, so the port is held to it", "NA weights crash"),
+    (r"^biocpy\|(coverage|intra)\|port_error:call\|Exception:input length N exceeds expected length N", PB,
+     "heldout/coverage/IRanges/41: coverage(<empty IRanges>, shift=4) is integer(0) in R; BiocPy's array-valued "
+     "IRanges.coverage normalizes the scalar shift to length 1 and rejects it against 0 ranges (also width=69 in "
+     "heldout/coverage/IRanges/17, resize of an empty GRanges in heldout/resize/GRanges/43)",
+     "scalar argument on empty input raises"),
+    (r"^biocpy\|accessors\|r_error_port_value\|na_input_rejected", PB,
+     "e1/construct/ir-mcols-accessor-na-names: R mcols(IRanges(names=c('a',NA))) errors (NA rownames); BiocPy has "
+     "already turned the NA name into the string 'None' and returns the frame. mcols(x, use.names=FALSE) succeeds in R "
+     "but asks for different semantics, so it is no equivalent-call evidence of an R accident",
+     "NA name stored as 'None'; no NA-rownames error"),
     (r"^biocpy\|coverage\|mismatch\|diff\|na_arg$", PB, "BiocPy counts masked (NA) weights as 0; R's local answer is NA",
      "NA weights treated as 0"),
     (r"^biocpy\|", PB,
