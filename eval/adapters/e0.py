@@ -477,10 +477,10 @@ class Adapter(AdapterBase):
     # ---- coverage ------------------------------------------------------------------------------------------------------------------------
     def op_coverage(self, *, x, **kw):
         width = kw.get("width")
-        if isinstance(width, RVector) and len(width) > 1:
+        if isinstance(width, RVector) and (len(width) > 1 or width.names is not None):
             if width.names is None:
                 raise Unsupported("argument:width unnamed vector")
-            kw["width"] = name_mapping(width)  # the port takes {seqname: length}
+            kw["width"] = name_mapping(width)  # the port takes {seqname: length}, also for one name
         return self._method("coverage", x, **kw)
 
     # ---- ordering -------------------------------------------------------------------------------------------------------------------------------
