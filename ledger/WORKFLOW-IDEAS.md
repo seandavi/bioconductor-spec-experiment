@@ -152,3 +152,13 @@ real port failures behind a projection bug.
 Try: when the instrument is wrong, repair it and re-measure. Exclusion
 classes are for genuinely uncomparable cases only, and every exclusion
 class gets the blind check (idea 16).
+
+## 18. Invest in detection, not propagation
+
+Seen: given a release note, all six approaches propagated an upstream
+change correctly in 1–4 minutes. Only the approaches with re-runnable R
+goldens detected it without being told.
+Try: for any port of an evolving reference, the one non-negotiable artifact
+is a cheap drift check run on every upstream upgrade (CI on Bioc devel).
+Key it on *behavior* (re-run R), not on version strings (E1's cache missed
+a same-version change).

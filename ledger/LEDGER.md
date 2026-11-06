@@ -449,3 +449,37 @@ e0 79.0, e4 75.3, e3 73.2, e0b 71.4, biocpy 62.5.
   E1 to the exact case.
 - Propagation launched (run 6347cf83): same release note to all six,
   Sonnet, each following its own README maintenance procedure; E0b without R.
+
+## 2026-11-06 — Maintenance replay: propagation and scoring (run 6347cf83)
+
+- One release note to all six (Sonnet, parallel; E0b without R). All done in
+  **5 min total**; 3–4 commits each; every replay worktree clean.
+- Scored the updated `replay/<exp>` ports against the patched-R oracle
+  (`eval/replay/` on branch eval-replay):
+
+| port | distance cases pass, before → after (of 93) | regressions elsewhere |
+|---|---|---|
+| e0 | 89 → 89 | 0 |
+| e0b (no R) | 71 → 71 | 0 |
+| e1 | 93 → 93 | 0 |
+| e2 | 88 → 88 | 0 |
+| e3 | 84 → 84 | 0 |
+| e4 | 84 → 84 | 0 |
+| biocpy (not updated, control) | 37 → 0 | 0 |
+
+- **Propagation was easy for everyone once told.** Every port kept exactly the
+  distance cases it passed before and regressed nothing, including E0b from
+  the release note alone. Residual distance failures are the same
+  pre-existing gaps (unsupported args etc.).
+- The trap several agents caught unprompted: `nearest` shared its internal
+  metric with `distance`; a naive edit would have broken `nearest` (NEWS
+  says it is unchanged). E2, E3, E4 split the metric; E3 wrote ADR-0015.
+- E1 noticed its version-keyed cache stayed stale (4,746 green) and forced
+  `--refresh-r`; it also found and fixed 2 of its own mistranslated cases.
+  E3 used its gitignored scratch fuzz (50k pairs) to verify: the discarded
+  evidence turned out to be its only R check.
+- **Answer to Sean's maintenance question:** with agents, propagation is
+  cheap (minutes) for every approach. The cost that differs is *detection*:
+  E1/E2/E4 learn of the change automatically and precisely within seconds
+  of an R upgrade; E0/E0b/E3 learn only if someone reads NEWS. The value
+  of keeping R-generated goldens is noticing, not fixing.
