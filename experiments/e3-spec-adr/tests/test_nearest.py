@@ -12,9 +12,9 @@ Q = ir((4, 4), (8, 9), (13, 14), (0, 0), (15, 15), (26, 30), (6, 6), (10, 10), (
 
 @pytest.mark.spec("NEAR.1")
 def test_distance_values() -> None:
-    cases = [((1, 3), (4, 6), 0), ((1, 3), (5, 6), 1), ((1, 3), (2, 5), 0), ((5, 4), (1, 3), 1),
-             ((11, 10), (1, 10), 0), ((12, 11), (1, 10), 1), ((5, 4), (5, 4), 0), ((5, 4), (6, 5), 1),
-             ((5, 4), (9, 8), 4), ((1, 10), (5, 6), 0), ((10, 12), (1, 3), 6)]
+    cases = [((1, 3), (4, 6), 1), ((1, 3), (5, 6), 2), ((1, 3), (2, 5), 0), ((5, 4), (1, 3), 2),
+             ((11, 10), (1, 10), 1), ((12, 11), (1, 10), 2), ((5, 4), (5, 4), 1), ((5, 4), (6, 5), 2),
+             ((5, 4), (9, 8), 5), ((1, 10), (5, 6), 0), ((10, 12), (1, 3), 7)]
     for a, b, d in cases:
         assert ir(a).distance(ir(b)).tolist() == [d], (a, b)
         assert ir(b).distance(ir(a)).tolist() == [d], (b, a)
@@ -23,8 +23,8 @@ def test_distance_values() -> None:
 @pytest.mark.spec("NEAR.1")
 def test_distance_recycles_length_one_and_refuses_mismatch() -> None:
     x = ir((1, 3), (1, 3), (10, 12), (5, 4), (5, 6), (1, 10), (8, 7))
-    assert x.distance(ir((5, 6))).tolist() == [1, 1, 3, 0, 0, 0, 1]
-    assert ir((5, 6)).distance(x).tolist() == [1, 1, 3, 0, 0, 0, 1]
+    assert x.distance(ir((5, 6))).tolist() == [2, 2, 4, 1, 0, 0, 2]
+    assert ir((5, 6)).distance(x).tolist() == [2, 2, 4, 1, 0, 0, 2]
     with pytest.raises(ValueError):
         x.distance(ir((1, 2), (3, 4)))
     assert ir().distance(ir()).tolist() == []
@@ -99,3 +99,11 @@ def test_follow_first_is_highest_index_of_ties() -> None:
     assert na(S.follow()) == [None, 0, 1, 2, 2]
     with pytest.raises(ValueError):
         x.follow(S, select="last")
+
+
+@pytest.mark.spec("NEAR.1", "NEAR.2")
+def test_nearest_ties_adjacent_with_overlapping_although_distance_differs() -> None:
+    subjects = ir((5, 7), (1, 3), (4, 4))
+    q = ir((4, 4))
+    assert q.distance(subjects).tolist() == [1, 1, 0]
+    assert q.nearest(subjects, select="all").pairs() == [(0, 0), (0, 1), (0, 2)]

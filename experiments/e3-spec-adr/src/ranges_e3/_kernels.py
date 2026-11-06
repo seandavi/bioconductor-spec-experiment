@@ -418,9 +418,18 @@ def select_pairs(qi: IntArray, si: IntArray, nq: int, select: str) -> MaskedInts
 # --- nearest / precede / follow / distance (spec 70-nearest.md) ---
 
 
-def distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
-    """NEAR.1 (elementwise, arrays already aligned)."""
+def gap_width(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
+    """Number of positions strictly between two ranges, 0 if adjacent or overlapping.
+
+    This is the metric ``nearest`` ranks by (NEAR.2); ``distance`` (NEAR.1) is not.
+    """
     return np.maximum(0, np.maximum(qs - se, ss - qe) - 1)
+
+
+def distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
+    """NEAR.1 (elementwise, arrays already aligned): 0 if overlapping, else gap width + 1."""
+    overlap = np.maximum(qs, ss) <= np.minimum(qe, se)
+    return np.where(overlap, 0, gap_width(qs, qe, ss, se) + 1)
 
 
 def _expand_groups(

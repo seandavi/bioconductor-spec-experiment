@@ -544,7 +544,7 @@ class GRanges:
         if len(qi) == 0:
             return qi, si
         r, t = self._ranges, target._ranges
-        d = _kernels.distance(r._start[qi], r._end[qi], t._start[si], t._end[si])
+        d = _kernels.gap_width(r._start[qi], r._end[qi], t._start[si], t._end[si])
         starts = np.flatnonzero(np.concatenate([[True], qi[1:] != qi[:-1]]))
         counts = np.diff(np.append(starts, len(qi)))
         best = np.repeat(np.minimum.reduceat(d, starts), counts)
