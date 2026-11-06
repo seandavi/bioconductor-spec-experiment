@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, intra
+from . import _mcols, inter, intra
 from ._arrays import as_int, recycle
 
 
@@ -209,6 +209,35 @@ class IRanges:
             ),
             use_names,
         )
+
+    # inter-range ---------------------------------------------------------
+    @classmethod
+    def _from_runs(
+        cls, start: np.ndarray, width: np.ndarray, members: list[np.ndarray] | None = None
+    ) -> Self:
+        """Result of a collapsing op: no names; ``revmap`` mcols if members given."""
+        mcols = None
+        if members is not None:
+            mcols = pl.DataFrame({"revmap": pl.Series("revmap", [m.tolist() for m in members], dtype=pl.List(pl.Int64))})
+        return cls._make(start, width, None, mcols)
+
+    def range(self, *others: Self) -> Self:
+        allr = self.concat(self, *others) if others else self
+        return self._from_runs(*inter.range_of(allr._start, allr._width))
+
+    def reduce(self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False) -> Self:
+        s, w, members = inter.reduce_runs(self._start, self._width, int(min_gapwidth), drop_empty_ranges)
+        return self._from_runs(s, w, members if with_revmap else None)
+
+    def gaps(self, start: int | None = None, end: int | None = None) -> Self:
+        for v, nm in ((start, "start"), (end, "end")):
+            if v is not None and not isinstance(v, (int, np.integer)):
+                raise TypeError(f"'{nm}' must be a single integer or None")
+        return self._from_runs(*inter.gaps(self._start, self._width, start, end))
+
+    def disjoin(self, with_revmap: bool = False) -> Self:
+        s, w, members = inter.disjoin(self._start, self._width)
+        return self._from_runs(s, w, members if with_revmap else None)
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

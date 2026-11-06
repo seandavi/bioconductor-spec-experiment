@@ -46,3 +46,21 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-PROMOTERS-1 | `promoters`: `[start-upstream, start+downstream-1]` (defaults 2000/200) | `?promoters` |
 | IR-PROMOTERS-2 | `promoters` with negative upstream/downstream is an error | `?promoters` |
 | IR-INTRA-EMPTY-1 | intra-range ops on a zero-length IRanges return zero-length IRanges | `?"intra-range-methods"` |
+| IR-RANGE-1 | `range` is `[min(start), max(end)]` over all ranges (zero-width included); drops names/mcols | `?range` |
+| IR-RANGE-2 | `range` of a zero-length IRanges is zero-length; `range(x, y)` pools both | `?range` |
+| IR-REDUCE-1 | `reduce` merges overlapping ranges; adjacent ranges merge at the default `min.gapwidth=1` | `?reduce` |
+| IR-REDUCE-2 | `min.gapwidth=0` keeps adjacent ranges separate; larger values also merge gaps `< min.gapwidth` | `?reduce` |
+| IR-REDUCE-3 | zero-width ranges are kept unless they touch/lie inside another range (default) | `?reduce` |
+| IR-REDUCE-4 | `drop.empty.ranges=TRUE` removes zero-width ranges before merging | `?reduce` |
+| IR-REDUCE-5 | `reduce` result has no names or input mcols; input order and duplicates do not matter | `?reduce` |
+| IR-REDUCE-6 | `with.revmap=TRUE` adds `revmap`: member indices per result range, in `order(x)` order | `?reduce` |
+| IR-REDUCE-7 | negative `min.gapwidth` is an error; zero-length input reduces to zero-length | `?reduce` |
+| IR-GAPS-1 | `gaps` default bounds are the extent of the non-empty coverage: only interior gaps | `?gaps` |
+| IR-GAPS-2 | `gaps(start=, end=)` complements within `[start, end]`, including leading/trailing gaps | `?gaps` |
+| IR-GAPS-3 | `gaps` with one bound given uses the coverage extent for the other | `?gaps` |
+| IR-GAPS-4 | `gaps` ignores zero-width ranges; no non-empty coverage and a missing bound gives zero-length | `?gaps` |
+| IR-GAPS-5 | `gaps` with `end < start - 1` or all-covered bounds gives zero-length | `?gaps` |
+| IR-DISJOIN-1 | `disjoin` splits at every start and end+1; adjacent ranges stay separate | `?disjoin` |
+| IR-DISJOIN-2 | `disjoin` ignores zero-width ranges | `?disjoin` |
+| IR-DISJOIN-3 | `disjoin(with.revmap=TRUE)` lists covering range indices per segment, ascending | `?disjoin` |
+| IR-DISJOIN-4 | `disjoin` of zero-length input is zero-length; duplicates collapse | `?disjoin` |

@@ -1,0 +1,292 @@
+cases:
+  - id: ir-range-basic
+    clause: IR-RANGE-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: range, args: [x]}
+  - id: ir-range-zero-width
+    clause: IR-RANGE-1
+    inputs:
+      x: {IRanges: {start: [5, 6], width: [0, 0]}}
+    call: {op: range, args: [x]}
+  - id: ir-range-empty
+    clause: IR-RANGE-2
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: range, args: [x]}
+  - id: ir-range-two-args
+    clause: IR-RANGE-2
+    inputs:
+      x: {IRanges: {start: [1], width: [2]}}
+      z: {IRanges: {start: [10], width: [2]}}
+    call: {op: range, args: [x, z]}
+  - id: ir-reduce-basic
+    clause: IR-REDUCE-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-adjacent
+    clause: IR-REDUCE-1
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-mg0
+    clause: IR-REDUCE-2
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 0}}
+  - id: ir-reduce-mg0-full
+    clause: IR-REDUCE-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 0}}
+  - id: ir-reduce-mg2
+    clause: IR-REDUCE-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 2}}
+  - id: ir-reduce-mg3
+    clause: IR-REDUCE-2
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 2]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 3}}
+  - id: ir-reduce-mg-exact-gap
+    clause: IR-REDUCE-2
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [2, 2]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 2}}
+  - id: ir-reduce-zero-only
+    clause: IR-REDUCE-3
+    inputs:
+      x: {IRanges: {start: [5, 5, 7], width: [0, 0, 0]}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-zero-inside
+    clause: IR-REDUCE-3
+    inputs:
+      x: {IRanges: {start: [1, 3], width: [5, 0]}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-zero-touching
+    clause: IR-REDUCE-3
+    inputs:
+      x: {IRanges: {start: [1, 6], width: [5, 0]}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-zero-touching-mg0
+    clause: IR-REDUCE-3
+    inputs:
+      x: {IRanges: {start: [1, 6], width: [5, 0]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 0}}
+  - id: ir-reduce-zero-inside-mg0
+    clause: IR-REDUCE-3
+    inputs:
+      x: {IRanges: {start: [1, 3], width: [5, 0]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 0}}
+  - id: ir-reduce-drop-empty
+    clause: IR-REDUCE-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x], kwargs: {drop.empty.ranges: true}}
+  - id: ir-reduce-drop-empty-all
+    clause: IR-REDUCE-4
+    inputs:
+      x: {IRanges: {start: [5, 6], width: [0, 0]}}
+    call: {op: reduce, args: [x], kwargs: {drop.empty.ranges: true}}
+  - id: ir-reduce-unsorted-dups
+    clause: IR-REDUCE-5
+    inputs:
+      x: {IRanges: {start: [10, 1, 5, 5], width: [2, 2, 2, 2], names: [a, b, c, d]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 3}}
+  - id: ir-reduce-drops-mcols
+    clause: IR-REDUCE-5
+    inputs:
+      x: {IRanges: {start: [1, 2], width: [2, 2], names: [a, b], mcols: {s: [1, 2]}}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-revmap
+    clause: IR-REDUCE-6
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-reduce-revmap-drop-empty
+    clause: IR-REDUCE-6
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true, drop.empty.ranges: true}}
+  - id: ir-reduce-revmap-unsorted
+    clause: IR-REDUCE-6
+    inputs:
+      x: {IRanges: {start: [10, 1, 5, 5], width: [2, 2, 2, 2]}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true, min.gapwidth: 4}}
+  - id: ir-reduce-revmap-mg0
+    clause: IR-REDUCE-6
+    inputs:
+      x: {IRanges: {start: [1, 4, 4, 2], width: [3, 3, 1, 1]}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true, min.gapwidth: 0}}
+  - id: ir-reduce-revmap-empty
+    clause: IR-REDUCE-7
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-reduce-empty
+    clause: IR-REDUCE-7
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: reduce, args: [x]}
+  - id: ir-reduce-negative-mg
+    clause: IR-REDUCE-7
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: -1}}
+  - id: ir-gaps-default
+    clause: IR-GAPS-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-gaps-single-range
+    clause: IR-GAPS-1
+    inputs:
+      x: {IRanges: {start: [5], width: [3]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-gaps-start-end
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2]}}
+    call: {op: gaps, args: [x], kwargs: {start: 0, end: 30}}
+  - id: ir-gaps-start-end-inside
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 8, end: 20}}
+  - id: ir-gaps-bounds-narrower
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [5, 8], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 6, end: 7}}
+  - id: ir-gaps-bounds-before
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 3}}
+  - id: ir-gaps-bounds-far
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2]}}
+    call: {op: gaps, args: [x], kwargs: {start: 50, end: 60}}
+  - id: ir-gaps-negative-coords
+    clause: IR-GAPS-2
+    inputs:
+      x: {IRanges: {start: [-5, 3], width: [2, 2]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-gaps-start-only
+    clause: IR-GAPS-3
+    inputs:
+      x: {IRanges: {start: [8, 12], width: [3, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1}}
+  - id: ir-gaps-end-only
+    clause: IR-GAPS-3
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {end: 20}}
+  - id: ir-gaps-end-only-narrow
+    clause: IR-GAPS-3
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {end: 7}}
+  - id: ir-gaps-start-only-late
+    clause: IR-GAPS-3
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 9}}
+  - id: ir-gaps-zero-width-default
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [5, 7], width: [0, 3]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-gaps-zero-width-no-split
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [1, 5, 10], width: [2, 0, 2]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-gaps-zero-only-bounds
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [5, 5], width: [0, 0]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 10}}
+  - id: ir-gaps-zero-only-missing-bound
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [5, 5], width: [0, 0]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1}}
+  - id: ir-gaps-empty-input-missing-bound
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: gaps, args: [x], kwargs: {start: 1}}
+  - id: ir-gaps-empty-input-bounds
+    clause: IR-GAPS-4
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 10}}
+  - id: ir-gaps-end-before-start
+    clause: IR-GAPS-5
+    inputs:
+      x: {IRanges: {start: [5, 9], width: [2, 3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 7, end: 6}}
+  - id: ir-gaps-covered
+    clause: IR-GAPS-5
+    inputs:
+      x: {IRanges: {start: [1], width: [10]}}
+    call: {op: gaps, args: [x], kwargs: {start: 3, end: 8}}
+  - id: ir-gaps-empty-bounds
+    clause: IR-GAPS-5
+    inputs:
+      x: {IRanges: {start: [5], width: [2]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 0}}
+  - id: ir-disjoin-basic
+    clause: IR-DISJOIN-1
+    inputs:
+      x: {IRanges: {start: [1, 5, 3, 10, 11, 20, 25, 25], width: [2, 3, 6, 0, 3, 1, 0, 2], names: [a, b, c, d, e, f, g, h], mcols: {s: [1, 2, 3, 4, 5, 6, 7, 8]}}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-nested
+    clause: IR-DISJOIN-1
+    inputs:
+      x: {IRanges: {start: [1, 5], width: [10, 3]}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-adjacent
+    clause: IR-DISJOIN-1
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-negative
+    clause: IR-DISJOIN-1
+    inputs:
+      x: {IRanges: {start: [-3, 0], width: [4, 4]}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-zero-ignored
+    clause: IR-DISJOIN-2
+    inputs:
+      x: {IRanges: {start: [1, 3, 3], width: [5, 2, 0]}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-zero-only
+    clause: IR-DISJOIN-2
+    inputs:
+      x: {IRanges: {start: [5, 5], width: [0, 0]}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-revmap
+    clause: IR-DISJOIN-3
+    inputs:
+      x: {IRanges: {start: [1, 3], width: [5, 5]}}
+    call: {op: disjoin, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-disjoin-revmap-nested
+    clause: IR-DISJOIN-3
+    inputs:
+      x: {IRanges: {start: [10, 1, 5, 5], width: [2, 10, 2, 3]}}
+    call: {op: disjoin, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-disjoin-empty
+    clause: IR-DISJOIN-4
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: disjoin, args: [x]}
+  - id: ir-disjoin-duplicates
+    clause: IR-DISJOIN-4
+    inputs:
+      x: {IRanges: {start: [2, 2, 2], width: [3, 3, 3]}}
+    call: {op: disjoin, args: [x]}
