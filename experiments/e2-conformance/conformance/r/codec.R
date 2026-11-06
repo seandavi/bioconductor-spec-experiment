@@ -209,7 +209,7 @@ decode <- function(tree, fx = list()) {
       si <- if (!is.null(tree$seqinfo)) g("seqinfo") else Seqinfo(unique(sn))
       gr <- GRanges(seqnames = factor(sn, levels = seqlevels(si)),
                     ranges = dec_ranges(tree, fx),
-                    strand = if (is.null(tree$strand)) "*" else g("strand"),
+                    strand = if (is.null(tree$strand)) rep("*", length(sn)) else g("strand"),
                     seqinfo = si)
       gr
     },
