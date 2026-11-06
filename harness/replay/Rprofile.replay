@@ -1,0 +1,19 @@
+# Maintenance replay: simulate an upstream behavior change in distance().
+# Restores the pre-Bioc-2.13 rule: overlapping ranges -> 0; otherwise gap + 1
+# (so adjacent ranges -> 1). Patches the IntegerRanges method only; the
+# GenomicRanges method delegates to it, so GRanges follows.
+.First <- function() {
+  if (!requireNamespace("IRanges", quietly = TRUE)) return(invisible())
+  sig <- c("IntegerRanges", "IntegerRanges")
+  orig <- methods::getMethod("distance", sig, where = asNamespace("IRanges"))
+  methods::setMethod(methods::getGeneric("distance", package = "IRanges"), sig, function(x, y, ...) {
+    d <- orig(x, y, ...)
+    n <- length(d)
+    if (n == 0L) return(d)
+    sx <- rep_len(BiocGenerics::start(x), n); ex <- rep_len(BiocGenerics::end(x), n)
+    sy <- rep_len(BiocGenerics::start(y), n); ey <- rep_len(BiocGenerics::end(y), n)
+    ov <- pmax(sx, sy) <= pmin(ex, ey)
+    as.integer(ifelse(is.na(d), NA_integer_, ifelse(ov, 0L, d + 1L)))
+  }, where = globalenv())
+  invisible()
+}

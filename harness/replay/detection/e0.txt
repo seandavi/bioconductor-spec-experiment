@@ -1,0 +1,5 @@
+306 passed in 10.26s
+
+real	0m12.987s
+user	0m4.349s
+sys	0m0.728s

@@ -1,0 +1,8 @@
+Rscript runners/r/run_cases.R --check
+DRIFT: /Users/davsean/Documents/git/bioconductor-spec-experiment.worktrees/replay-e4-primitive-cases/experiments/e4-primitive-cases/goldens/granges/nearest.json 
+DRIFT: /Users/davsean/Documents/git/bioconductor-spec-experiment.worktrees/replay-e4-primitive-cases/experiments/e4-primitive-cases/goldens/iranges/nearest.json 
+error: Recipe `check-goldens` failed on line 6 with exit code 1
+
+real	0m3.914s
+user	0m3.320s
+sys	0m0.073s

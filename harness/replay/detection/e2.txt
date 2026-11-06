@@ -1,0 +1,16 @@
+Rscript conformance/r/run.R check
+R fail gr.distance.default 
+R fail gr.distance.ignore-strand 
+R fail gr.distance.recycle 
+R fail ir.distance.basic 
+R fail ir.distance.symmetric 
+R fail ir.distance.self 
+R fail ir.distance.recycle 
+R fail ir.distance.recycle-left 
+R fail ir.distance.fractional-recycle 
+R check: 921 cases, 9 not passing
+error: Recipe `check-r` failed on line 17 with exit code 1
+
+real	0m5.796s
+user	0m5.296s
+sys	0m0.097s

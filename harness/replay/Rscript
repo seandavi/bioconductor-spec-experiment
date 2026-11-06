@@ -1,0 +1,4 @@
+#!/bin/sh
+# Replay R: real Rscript with the distance() behavior change loaded.
+export R_PROFILE_USER="/Users/davsean/Documents/git/bioconductor-spec-experiment.worktrees/replay-env/Rprofile.replay"
+exec "/usr/local/bin/Rscript" "$@"
