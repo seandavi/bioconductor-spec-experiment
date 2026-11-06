@@ -6,6 +6,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
+from . import intra
 from ._sew import (
     IntArray,
     concat_mcols,
@@ -153,3 +154,28 @@ class IRanges:
 
     def concat(self, *others: "IRanges") -> Self:
         return self.combine([self, *others])
+
+    # --- intra-range ---------------------------------------------------------
+
+    def shift(self, shift: Any) -> Self:
+        """Move ranges by `shift` (scalar or per-range)."""
+        return self._replace(*intra.shift(self._start, self._width, shift))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        """Narrow relative to each range; negative start/end count from the range end."""
+        return self._replace(*intra.narrow(self._start, self._width, start, end, width))
+
+    def resize(self, width: Any, fix: str | Sequence[str] = "start") -> Self:
+        """Set width, keeping `fix` ("start", "end" or "center") in place."""
+        codes = intra.parse_fix(fix, len(self))  # type: ignore[arg-type]
+        return self._replace(*intra.resize(self._start, self._width, width, codes))
+
+    def flank(self, width: Any, start: Any = True, both: bool = False) -> Self:
+        """Flanking ranges at the start (or end); negative width flanks inward."""
+        at_start = intra.as_bool_array(start, len(self), "start")
+        return self._replace(*intra.flank(self._start, self._width, width, at_start, both))
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> Self:
+        """`upstream` + `downstream` ranges around the start (all ranges treated as `+`)."""
+        minus = np.zeros(len(self), dtype=bool)
+        return self._replace(*intra.promoters(self._start, self._width, upstream, downstream, minus))
