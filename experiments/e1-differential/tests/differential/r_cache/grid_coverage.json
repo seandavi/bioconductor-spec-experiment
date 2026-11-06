@@ -1,0 +1,1825 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "cov0-gr-circ": {
+   "hash": "aea22a3012769333d4933202708d591268feb10010ae9052a6249ba6061ad968",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1
+       ],
+       "lengths": [
+        5,
+        3,
+        1,
+        24,
+        4,
+        1,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        3,
+        1,
+        9,
+        2,
+        2,
+        5,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        4,
+        3,
+        2,
+        0,
+        1
+       ],
+       "lengths": [
+        1,
+        3,
+        4,
+        1,
+        2,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov0-gr-plain": {
+   "hash": "ef949ca359da6e17aef515958f0b39d55b2438b0023191e7fa7a884f25def3ef",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        1,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        5,
+        3,
+        5,
+        1,
+        26
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1,
+        2,
+        1
+       ],
+       "lengths": [
+        1,
+        2,
+        1,
+        4,
+        1,
+        7,
+        8,
+        2,
+        7,
+        1,
+        3,
+        1,
+        15
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2
+       ],
+       "lengths": [
+        14,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequences a and c.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov0-ir": {
+   "hash": "1d6dd905b9a642867e2f6a9f4f282ffb51e1df72ac9a7364075d269e283bf106",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      3,
+      4,
+      5,
+      4,
+      3,
+      1,
+      2,
+      1,
+      2,
+      1,
+      0,
+      1,
+      2,
+      1,
+      2,
+      1
+     ],
+     "lengths": [
+      1,
+      2,
+      1,
+      1,
+      4,
+      4,
+      2,
+      1,
+      1,
+      7,
+      2,
+      7,
+      1,
+      3,
+      1,
+      15
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov1-gr-circ": {
+   "hash": "9e11c9ad42861ba3dec2b64aed9384d9690128592f1b83f0abaaf378bdd20e86",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -1,
+        0
+       ],
+       "lengths": [
+        3,
+        8,
+        29
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        6,
+        4,
+        0,
+        2,
+        6
+       ],
+       "lengths": [
+        4,
+        2,
+        6,
+        10,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        7,
+        2,
+        5,
+        4,
+        7
+       ],
+       "lengths": [
+        1,
+        1,
+        5,
+        4,
+        4
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence a. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "cov1-gr-plain": {
+   "hash": "23569650853ad1c5715e3386717a5904a3d62dd3485aed0005d32438c1985666",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        0,
+        -1,
+        0,
+        1,
+        5,
+        8,
+        4,
+        3
+       ],
+       "lengths": [
+        1,
+        1,
+        1,
+        8,
+        6,
+        5,
+        4,
+        4,
+        7,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        2,
+        -2,
+        0,
+        1
+       ],
+       "lengths": [
+        4,
+        1,
+        1,
+        6,
+        13,
+        50
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequences a and c.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov1-ir": {
+   "hash": "d348a0ada40d2bdef7cc5a72ff61a00b12805dd88ed4ce0726026debc2d0df31",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      -2,
+      0,
+      -1,
+      -3,
+      1,
+      -3,
+      -2,
+      0,
+      1,
+      5,
+      6,
+      9,
+      5,
+      4,
+      5,
+      2,
+      1
+     ],
+     "lengths": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      5,
+      5,
+      3,
+      1,
+      4,
+      7,
+      4,
+      5,
+      15,
+      14
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov10-gr-circ": {
+   "hash": "6c0ad029a472c9a7ebcd5bbde52172a57093be8cfdcae9af86abae8c28a4bdf1",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        40
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        3,
+        4,
+        5,
+        1,
+        0,
+        4
+       ],
+       "lengths": [
+        6,
+        1,
+        2,
+        5,
+        1,
+        4,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        8,
+        10,
+        12,
+        10,
+        8
+       ],
+       "lengths": [
+        5,
+        2,
+        3,
+        2,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov10-gr-plain": {
+   "hash": "df76a55c8319f967637acd7b87855f7892086b933c9c1818499907f2e5b5efe7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2
+       ],
+       "lengths": [
+        22,
+        18
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -1
+       ],
+       "lengths": [
+        31,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 4 out-of-bound ranges located on sequences c and a.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov10-ir": {
+   "hash": "88eeda19962c0ac888f37777532d241b777946b5ff516882a4b5bc48be1b2dbf",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      4,
+      6,
+      5,
+      6,
+      7,
+      9,
+      5,
+      4,
+      2
+     ],
+     "lengths": [
+      19,
+      3,
+      9,
+      1,
+      2,
+      1,
+      4,
+      1,
+      15,
+      17
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov11-gr-circ": {
+   "hash": "3e90e958ca31e2d0f18c58d1128e7985b6ae63a002527fa2a4d94959d90f74c7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        8,
+        8,
+        13,
+        8,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        5,
+        20
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        1
+       ],
+       "lengths": [
+        6,
+        1,
+        8
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov11-gr-plain": {
+   "hash": "ccc1d809fa12fe8767471e841f2ba2089cda51c2d575ef2a490a78e5f78ab2a7",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        8,
+        8,
+        24
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        2,
+        3,
+        1
+       ],
+       "lengths": [
+        5,
+        20,
+        4,
+        7,
+        1,
+        7
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov11-ir": {
+   "hash": "1d9ab04cc57dd0b58fd43616d1705262f2320e32915595c6797249ff1d40088c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      2,
+      1,
+      0,
+      2,
+      3,
+      1
+     ],
+     "lengths": [
+      5,
+      3,
+      8,
+      9,
+      4,
+      7,
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov2-gr-circ": {
+   "hash": "dd7a188d5aad93f816caf167884bf659a702e98732158a9d3b123a1880c7e38a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        3
+       ],
+       "lengths": [
+        1,
+        3,
+        4,
+        12,
+        3,
+        2,
+        12,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        3,
+        2
+       ],
+       "lengths": [
+        3,
+        8,
+        14
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        2,
+        1,
+        2,
+        1,
+        0
+       ],
+       "lengths": [
+        6,
+        1,
+        2,
+        3,
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 4 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov2-gr-plain": {
+   "hash": "87cf15d5be66bb3888d45b80b691f2a2a959274c179fd448ff3a4093689b1a09",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        8,
+        29,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1
+       ],
+       "lengths": [
+        1,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        9,
+        3,
+        3
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 10 out-of-bound ranges located on sequences c and a.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov2-ir": {
+   "hash": "9a44f88b934ddb5a21bcc133bf0333d7522360fb808cba5e4359473a4444238c",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      1,
+      0,
+      1,
+      0,
+      2,
+      3,
+      2,
+      3,
+      4,
+      3,
+      4,
+      3,
+      4,
+      3,
+      2,
+      1
+     ],
+     "lengths": [
+      1,
+      3,
+      4,
+      1,
+      3,
+      8,
+      1,
+      2,
+      2,
+      3,
+      1,
+      1,
+      6,
+      1,
+      3,
+      5,
+      31,
+      4
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov3-gr-circ": {
+   "hash": "9b7ffaadda7857650e064cd8769f17c5eab9486e4f3eb3287df9bb4c3e83fa46",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        15,
+        20,
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        -2,
+        2,
+        0,
+        -1,
+        0,
+        -2
+       ],
+       "lengths": [
+        1,
+        3,
+        8,
+        1,
+        8,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov3-gr-plain": {
+   "hash": "18daa44c5ffa5d3414f6d04f670d2956360583c30d829f2f701db8e075f96a29",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        -2,
+        0
+       ],
+       "lengths": [
+        4,
+        36
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -1,
+        0,
+        3,
+        7,
+        3
+       ],
+       "lengths": [
+        12,
+        1,
+        2,
+        11,
+        3,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence c. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "cov3-ir": {
+   "hash": "e7612a024eb2174193bb5ed18d3a30a579d9ad8c7279c05c4c45768b4f0337a3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      -2,
+      0,
+      -1,
+      0,
+      3,
+      7,
+      3
+     ],
+     "lengths": [
+      4,
+      8,
+      1,
+      2,
+      11,
+      3,
+      6
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov4-gr-circ": {
+   "hash": "8dc77972fbb3e9a22c7b5407b88be9a5e1ef67cbca05332a316b6ed3b74cb8ad",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        26,
+        1,
+        13
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        -9,
+        -8,
+        -5,
+        -8,
+        -7,
+        -8,
+        -9
+       ],
+       "lengths": [
+        2,
+        2,
+        1,
+        10,
+        1,
+        8,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 3 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov4-gr-plain": {
+   "hash": "0b6e5e5ed7b6e1f958720d3780919c5f1289046b292775d02b8c1adb7fafe2cd",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        40
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0,
+        -1,
+        -2,
+        0
+       ],
+       "lengths": [
+        15,
+        1,
+        24,
+        3,
+        47,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 7 out-of-bound ranges located on sequences c and a.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov4-ir": {
+   "hash": "523dc7681724fd085b0cdaa1a57fcd1539dcb6e55a189514a81cde54f5905cae",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      0,
+      3,
+      0,
+      -1,
+      -2,
+      -4,
+      -2,
+      -4,
+      -3,
+      0,
+      -3,
+      -1,
+      1
+     ],
+     "lengths": [
+      15,
+      1,
+      10,
+      1,
+      13,
+      3,
+      3,
+      4,
+      1,
+      1,
+      2,
+      1,
+      35,
+      6,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov5-gr-circ": {
+   "hash": "05c84d9e836bf8dc13b6d552b4d6fc0f0168c08a2839c027c3521f3f67278781",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        6,
+        8,
+        10
+       ],
+       "lengths": [
+        1,
+        1,
+        13,
+        17,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        3,
+        0
+       ],
+       "lengths": [
+        11,
+        8,
+        6
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        6,
+        8,
+        10,
+        8,
+        6
+       ],
+       "lengths": [
+        6,
+        2,
+        1,
+        4,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 4 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov5-gr-plain": {
+   "hash": "71f4dbcdb0be7befe5433762041d02c8eb68a1627de165a7c7816231764de8b8",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4,
+        6,
+        8,
+        13,
+        11
+       ],
+       "lengths": [
+        2,
+        13,
+        17,
+        4,
+        3,
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2
+       ],
+       "lengths": [
+        1,
+        50
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 5 out-of-bound ranges located on sequences a and c.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov5-ir": {
+   "hash": "b90da310bbf119482e3ca7a25194008ff1cacf48c212794cb2933f74e8fff3f4",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      6,
+      8,
+      10,
+      12,
+      17,
+      15,
+      13,
+      10,
+      8,
+      4,
+      2
+     ],
+     "lengths": [
+      1,
+      1,
+      13,
+      8,
+      9,
+      4,
+      3,
+      1,
+      4,
+      7,
+      1,
+      13,
+      8
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov6-gr-circ": {
+   "hash": "3135ca2560a6bf069cd613944047860cade6dc2259798a808012b4704a6c4137",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2
+       ],
+       "lengths": [
+        1,
+        4
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        2,
+        3
+       ],
+       "lengths": [
+        3,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        4,
+        6,
+        5,
+        6
+       ],
+       "lengths": [
+        3,
+        1,
+        2,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov6-gr-plain": {
+   "hash": "2aebd23cd2294538b778299a5755a792b5fa14b528ad6744ae3d013bc8dde611",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        5
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0
+       ],
+       "lengths": [
+        5,
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        3
+       ],
+       "lengths": [
+        1,
+        2,
+        4,
+        4,
+        2,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 8 out-of-bound ranges located on sequences c and a.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov6-ir": {
+   "hash": "7bc068625192ee36d839286ec44d35431e84fd74428b267eb22299459a3b4635",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      3,
+      2,
+      3,
+      4,
+      3,
+      4,
+      3
+     ],
+     "lengths": [
+      1,
+      2,
+      2,
+      2,
+      6,
+      6,
+      1,
+      1,
+      13
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov7-gr-circ": {
+   "hash": "5ec8b3df537867465e495eedba41715be1d763b15095dbe943207bc076b2155f",
+   "result": {
+    "error": "'width[1]' cannot be greater than length of underlying circular sequence",
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov7-gr-plain": {
+   "hash": "e27d1d36c34c9e7a5f17197057519782b7e909247c8509c0e9dc9a4109a5d85a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -1
+       ],
+       "lengths": [
+        3,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        -1
+       ],
+       "lengths": [
+        10
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 11 out-of-bound ranges located on sequences c and a.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov7-ir": {
+   "hash": "9d06b9b53ae858a6ad32b9b37e276bd542a0a7996dc1c3e6328461a37ea59410",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      4,
+      3,
+      1,
+      3,
+      7,
+      3,
+      2,
+      6,
+      5,
+      8,
+      7
+     ],
+     "lengths": [
+      3,
+      3,
+      2,
+      2,
+      1,
+      6,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov8-gr-circ": {
+   "hash": "00ce2c1fe2fbb5a04e1192fe955bfb3a34abd43c4ff3e90316bb11209d9c939a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2
+       ],
+       "lengths": [
+        22,
+        18
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        -2,
+        0,
+        -2,
+        -4,
+        -2
+       ],
+       "lengths": [
+        12,
+        5,
+        5,
+        1,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence a. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov8-gr-plain": {
+   "hash": "b1fa0a4c2e58e0541e3f6064271fafd8300833040950e08c1e8d88be5ddab39d",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        0
+       ],
+       "lengths": [
+        22,
+        1,
+        17
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        0,
+        -2
+       ],
+       "lengths": [
+        17,
+        20,
+        4,
+        8
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence c. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."
+    ]
+   }
+  },
+  "cov8-ir": {
+   "hash": "a95b1390ccfbc303b69284601968e22f298f384af82612660645f0426d905811",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      -2,
+      -6,
+      -4,
+      -2,
+      -4,
+      -2
+     ],
+     "lengths": [
+      17,
+      5,
+      1,
+      14,
+      4,
+      1,
+      7
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov9-gr-circ": {
+   "hash": "03c396dbf9e96bddc93c0b2072a4d007ef1e6d78ed0c147a214b35b7f33ddd41",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4
+       ],
+       "lengths": [
+        37,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        0
+       ],
+       "lengths": [
+        3,
+        20,
+        2
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        -1,
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        6,
+        3,
+        3,
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "cov9-gr-plain": {
+   "hash": "a00660a6c6aa62296ea47a3be90fdca09675b4a32ed1e4d1b78558d55b62d7c3",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        4
+       ],
+       "lengths": [
+        37,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -2,
+        0,
+        1
+       ],
+       "lengths": [
+        3,
+        20,
+        21,
+        3
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        15
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "GRanges object contains 2 out-of-bound ranges located on sequence c. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "cov9-ir": {
+   "hash": "644f8a919d5b251aecf10bdd3b95418feb13412bfe745502d6177298d62e523e",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      -2,
+      -1,
+      0,
+      4,
+      0,
+      1
+     ],
+     "lengths": [
+      3,
+      20,
+      3,
+      11,
+      3,
+      4,
+      3
+     ]
+    },
+    "warnings": []
+   }
+  }
+ }
+}
