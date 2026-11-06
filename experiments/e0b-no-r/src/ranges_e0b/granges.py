@@ -268,3 +268,52 @@ class GRanges:
 
     def concat(self, *others: "GRanges") -> Self:
         return self.combine([self, *others])
+
+    # --- intra-range -----------------------------------------------------------
+    # shift and narrow ignore strand; resize, flank and promoters treat `-` as
+    # reversed (their "start" is the range end) and `*` as `+`.
+
+    def _minus(self) -> BoolArray:
+        return self._strand == MINUS
+
+    def shift(self, shift: Any) -> Self:
+        return self._with_coords(*intra.shift(self._ranges.start, self._ranges.width, shift))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        return self._with_coords(*intra.narrow(self._ranges.start, self._ranges.width, start, end, width))
+
+    def resize(self, width: Any, fix: str | Sequence[str] = "start") -> Self:
+        codes = intra.parse_fix(fix, len(self))  # type: ignore[arg-type]
+        swap = self._minus() & (codes != intra.FIX_CENTER)
+        codes = np.where(swap, 1 - codes, codes)
+        return self._with_coords(*intra.resize(self._ranges.start, self._ranges.width, width, codes))
+
+    def flank(self, width: Any, start: Any = True, both: bool = False) -> Self:
+        at_start = intra.as_bool_array(start, len(self), "start") != self._minus()
+        return self._with_coords(*intra.flank(self._ranges.start, self._ranges.width, width, at_start, both))
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> Self:
+        return self._with_coords(
+            *intra.promoters(self._ranges.start, self._ranges.width, upstream, downstream, self._minus())
+        )
+
+    # --- ordering --------------------------------------------------------------
+    # Key: (seqlevel position, strand + < - < *, start, width).
+
+    def _order_keys(self) -> list[IntArray]:
+        return [self._seq, self._strand, self._ranges.start, self._ranges.width]
+
+    def order(self, decreasing: bool = False) -> IntArray:
+        return ordering.order_keys(self._order_keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> Self:
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "average") -> Any:
+        return ordering.rank_keys(self._order_keys(), ties_method)
+
+    def duplicated(self) -> Any:
+        return ordering.duplicated_keys(self._order_keys())
+
+    def unique(self) -> Self:
+        return self[~self.duplicated()]
