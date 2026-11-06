@@ -102,7 +102,7 @@ def _isnum(x: Any) -> bool:
 def first_diff(r: Any, p: Any, path: str = "$") -> str | None:
     """First difference between two canonical values, or None if equal.
 
-    int/num compare by value (|d| <= 1e-9); everything else strictly.
+    int/num compare by value (isclose: rel 1e-12, abs 1e-9; R's JSON keeps 15 digits); everything else strictly.
     Errors compare equal if both sides are errors (messages ignored).
     """
     if isinstance(r, dict) and isinstance(p, dict):
@@ -126,7 +126,7 @@ def first_diff(r: Any, p: Any, path: str = "$") -> str | None:
                 return d
         return None
     if _isnum(r) and _isnum(p):
-        if r == p or (math.isfinite(r) and math.isfinite(p) and abs(r - p) <= 1e-9):
+        if r == p or (math.isfinite(r) and math.isfinite(p) and math.isclose(r, p, rel_tol=1e-12, abs_tol=1e-9)):
             return None
         return f"{path}: {r!r} != {p!r}"
     if r == p and type(r) is type(p):

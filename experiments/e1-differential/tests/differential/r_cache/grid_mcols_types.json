@@ -1,0 +1,11096 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "mcols-column-named-hit-and-revmap": {
+   "hash": "01bf6d0ee7ec61598b6455c681e52ef1618fa0dad6eb075767a5c99cdc18e43c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false
+       ],
+       "names": null
+      },
+      "revmap": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        8
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-chr": {
+   "hash": "293c5a55fa5fe0d86af6d6a27f92e8ebdca0de913bb023894c02a6d40d66f3be",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-dbl": {
+   "hash": "e3301479ef13a367d796dc6e04c7037ac528341b207de8e646f9e58d2d8db7b5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1.5",
+        "2.5"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-dbl-long": {
+   "hash": "f4bc89a07e969cfd86ba9da1833343a18a83c5ddf45d9ee97d3170a5844cfdbd",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "0.1",
+        "1234567.12345679"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-dbl-whole": {
+   "hash": "4eeac6b3c35f3bfe6bd08e7bfce50ac0270c139c0c6ff6bea919d8d40266b9a0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "2",
+        "30"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-int": {
+   "hash": "e4811215c632f31d00f4db1e4e2d12d1053a7477a39010031fb5498473c7eb40",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1",
+        "2"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-lgl": {
+   "hash": "579251f032e10879a8c96b1cd0a3eedec4c2b625a909615d2c447f42c36548fb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "TRUE",
+        "FALSE"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-na-chr": {
+   "hash": "3694dea1c9d1f4fba87e187dd3e8d2a5edcaf8cd2607dab2f8df707cab3ad5f8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-na-dbl": {
+   "hash": "bd8508e695ae1d8a0ae6da9de6f2300526c07879462555a3d9a833c0c0759599",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1.5",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-na-int": {
+   "hash": "76da2a10194f366e9a245a497c1af71558e94750de04f9f8b83463451f1304f6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-chr-na-lgl": {
+   "hash": "bdbc63b29f96ee65d5c9e379911641fc2a4200f261b416d3bf453b3ca6643e47",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "TRUE",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-chr": {
+   "hash": "639aa2ead3382f06fcd8a29aacc48f702c81667b00a56b129ca6eaee1197b06e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        "2.5",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-dbl": {
+   "hash": "1576b26a7feccdc07229d5c41e550377e6193b8494fa4cc9320c46a4485058e4",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-dbl-long": {
+   "hash": "aa5539268f1b2855542d179b86c170ab52f668b0c53f5ab6d97bcf0721d1d34c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-dbl-whole": {
+   "hash": "764ab35c2a2a91dfef855525b00d7b9c94633247761be2a41239f640ef7d2a92",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-int": {
+   "hash": "df82f4e465666272d2930d68b38e40a8d229b76db24b9f1799459f09cf11be07",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-lgl": {
+   "hash": "fc0316ff47d35086db58f2b316308e26e4311da2e71c80e6a7ae6f27fe1a2c87",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-chr": {
+   "hash": "bfccdd8f73842bc605c284467f7899c83fcdb4b02a5147d07dfa2549c47336a8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "0.1",
+        "1234567.12345679",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-dbl": {
+   "hash": "682255ef65e14fda0607aefefd9bd0e2615f1564001feddf2ec2b82e0d4f96ba",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-dbl-long": {
+   "hash": "98bfed2483493df9baab7361d2cff5f552f836763da5e9a44c33a2795a67c4f0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-dbl-whole": {
+   "hash": "e3676b28b267ad6994d63fa0ea61e45448aa312647e1a0c80408bc579c7f6030",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-int": {
+   "hash": "49b28abeb81ed49e1aea9693336da0899d5d979bc9b4c609d4bfad1230902b53",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-lgl": {
+   "hash": "1c410d1f5a3d2c9d042b8cb832bf27fb37ddaa1db6dde2e438d07006ccb31dff",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-na-chr": {
+   "hash": "9fcf04adb64413c8ad367200b21f4362e01930155b416acdf51a588a24923f63",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "0.1",
+        "1234567.12345679",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-na-dbl": {
+   "hash": "de92da709fb9693c4a269ef23f340abcc1f8753d1f3080102753d4e4138f1674",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-na-int": {
+   "hash": "72321142aecebf024edb15df6083257e92af0fc28063e2593bdc8a5ea929ecec",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-long-na-lgl": {
+   "hash": "6551a5984766c9e1129e2d89907d4c0fafbf6ad5c4d33d3064c78be0f2638a16",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-na-chr": {
+   "hash": "d207aa150a11b3909dc64752f113035b6602da6321bc0f26fa30abc75e5a361e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        "2.5",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-na-dbl": {
+   "hash": "7f70ee434808b6e19df0bb94f52400e3a8a24f202a3db6cc43301e0f02198f31",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-na-int": {
+   "hash": "c56684aad04172eea6a222fc2768b64b00e5f00e2d63561ac04bd7bba73c4db5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-na-lgl": {
+   "hash": "339538ab60d9fc1654254b75915eeeedf0c59d02795be4ef4f4a996eb776a078",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-chr": {
+   "hash": "9ef676c1253748a280b7615e38769d9ae39ae9669189dc8ce2072f55ef99c4c3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "2",
+        "30",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-dbl": {
+   "hash": "ba0a2c85215d7fc6e08bfb59793114d30d03ca9ef697e588c91b41b522cdd559",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-dbl-long": {
+   "hash": "ff0c4a07e309a7771f47de6019053b6ea79c845f1e4e65c666399b241a987048",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-dbl-whole": {
+   "hash": "2a7bef008274a0244c6180c128d3660504e4d1853589a604f8c7513bb897e7d5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-int": {
+   "hash": "4c5d74407b4c5e2f93343474b925d7559f23a7bc6a7a62816e4e41fe66dc44a7",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-lgl": {
+   "hash": "c2b204838f3990c56a5e2e30ae761df921ae79f6489907a3234852eff5898cbe",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-na-chr": {
+   "hash": "42de9a33d3e9660db5bfcd9d91a43e839d26b23f053bc975c48d474defb95b56",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "2",
+        "30",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-na-dbl": {
+   "hash": "7005b5c6c935910801c1a4a81df0cacd4825f790c91323b316725fb4a43050b3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-na-int": {
+   "hash": "49c8bbc3941c50b21fd596c8366f87253d5afbc9ffd487be745d803d78c8e96d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-dbl-whole-na-lgl": {
+   "hash": "dd48e9f293b61571957408b78dec36329dc6ea39ccb61ba574b0e8c31495ba0b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-chr": {
+   "hash": "c7156767d8526f48138227bebbf1db2a74191b0a831a9f559d650518abd4c65d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        "2",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-dbl": {
+   "hash": "12f1c9b29d2e792ab6d72d64875a4999e189ca6b3b963c2e3e32a6d5a0d11599",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-dbl-long": {
+   "hash": "b8092b5429983c4c461d21de359f26ef56785a7ed9e499950e0396b4a3fd4170",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-dbl-whole": {
+   "hash": "4f20a62d769cdc5634e247393aca940481b59497779f3cc06d7c2354af22e08b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-int": {
+   "hash": "2814e5de07e66dbdb9d15ee29ad362805b86e0fd3a7f4e5a82ad403b649ac968",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-lgl": {
+   "hash": "31a37625dc8dd604044e9ff42eb3ea4b0847bb539c6462cfa015e3f7bc4bb5a3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-na-chr": {
+   "hash": "5eb87f69d8f3b072fcc639cc72a6ac7abf4da0be27a98f4bd56529944b14684d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        "2",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-na-dbl": {
+   "hash": "9e42878d7e91aa1763403ad58372e389d3d67ad91720e3c5cc640d712c57fe3a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-na-int": {
+   "hash": "7d3d2d85d76c6927b490c106d28ccc69dcfea184946e6f4b1dc55ae4e65bd05d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-int-na-lgl": {
+   "hash": "bc5383869b44b64203431d34b8dcf78528d86666484af5e30c0744c56fd00faa",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-chr": {
+   "hash": "b53d84ba69a2aa67a4661e687c0acd4516a524c4684e76075061f4e7dc0e8712",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        "FALSE",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-dbl": {
+   "hash": "d87513936c0160879c37ff5dde6da263470ae6ec28b34c57ccc9b99b455f81a3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-dbl-long": {
+   "hash": "27532225418d8a2f71b674c1fa82dfb64abfe571447569b4fa6560b05eb01956",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-dbl-whole": {
+   "hash": "27a34d3a49cdbe8937a79e1d355fbcb2b4ed715be31c30bd92c75b5d22a9534f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-int": {
+   "hash": "20f3769c1a853a51761ce1bbab0585297f25204b3d0babbc77fe68c44a85502d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-lgl": {
+   "hash": "6e11a41e5a8a1d00b41cfc045ae44c134e336d2a360162113bdb10b01ce3d14a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-na-chr": {
+   "hash": "51c16922f7b7fc982db1aab9f605a3ed2c6aa6353855cb66d150d30f2aae4343",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        "FALSE",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-na-dbl": {
+   "hash": "b113fa5f118a6124ece99194349119052205e17a413bfed47f8221495daebf11",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-na-int": {
+   "hash": "cadea45422d903392830828a453e983a51c830c3579727691c6d6b40b03302b8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        0,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-lgl-na-lgl": {
+   "hash": "8698220da4c12ed680b71324f6d9ec1bc0b9c2165e9e7ff6f31bd459384e90c0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-chr": {
+   "hash": "f159094fa0b011c2b5a7b1f3c6e9f16261ca33e3c3a9f154ddbd8e41e6747bac",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-dbl": {
+   "hash": "d8cdf48ba3e7e0bf641bd95490cb20f8c86920677a1b90af04b6ebb33c343749",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1.5",
+        "2.5"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-dbl-long": {
+   "hash": "7669271889af68c27e013af2b9dc7b9294e00cd16daa72f3ba13c276ec513221",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "0.1",
+        "1234567.12345679"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-dbl-whole": {
+   "hash": "91b4038d527b0a9e28c8da807616641bcc1744be5383501cc96109702bd0cd00",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "2",
+        "30"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-int": {
+   "hash": "36ace6ba0d62d6e843d2db4f729f4780fda4e5223a7a951f69e6eaf8c1e95a80",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1",
+        "2"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-lgl": {
+   "hash": "6e2c2dc731b77710e50e44505b94cebd4fc35544f882943e5e5db0e1e84689e4",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "TRUE",
+        "FALSE"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-na-chr": {
+   "hash": "f118038508af79129d967c2eeaa2fe25aa675c46737d8a1374e04ebc5552008a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-na-dbl": {
+   "hash": "b3e53cfc70160502479577c802c731b855b1ec10da5a2f6bdf8e99156e7b4415",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1.5",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-na-int": {
+   "hash": "f396a32234e28e47219909ea91021cc39a15900343ecc95787248011d915d916",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-chr-na-lgl": {
+   "hash": "849cf32dba6d00c044168dfd1a9d88d476b237d8b7042f24db1af8dd243b1539",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "TRUE",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-chr": {
+   "hash": "8a05ed341770bca7d57c94f080e0dff2d91002db06e83ff680fddc10542dd4ea",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-dbl": {
+   "hash": "4768fd10868b1c58bbcbde4ef05fbffc18a90479a8776dbf16c420bccac7a1f8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-dbl-long": {
+   "hash": "76a1219586f3942c65a92bae51c26582083bcf3671d934e1bb3d039d1ba9eb3e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-dbl-whole": {
+   "hash": "5b65012b3bded854a414e8fcb140a1658e47a4bf98389cb20e4e3c8496af6acc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-int": {
+   "hash": "12df3003bde05a8142a0287edfad06d425becd194e8f316a1ab82226d71a8f2e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-lgl": {
+   "hash": "9745ec79f36e37ae7d96a9bc77c31582b78b7287414d85aea7b1ebcd7542ff56",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-na-chr": {
+   "hash": "0a8768af3a191dd531cc5a9289f133906e29cb71295808e249557d760610499e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-na-dbl": {
+   "hash": "0e080cfc4757d5c285c28ed9d99342bd83d63c48e0edfd6df854abb5d376ff3b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-na-int": {
+   "hash": "4153ef515844dbabd9143602e57a6955d215531f7c7d876ada2144f271c63837",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-dbl-na-lgl": {
+   "hash": "b9fad8c27d47d5377f235e6aeb43c7fc761da6f7f639316e5c8bc4a03b38bbb5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-chr": {
+   "hash": "8cfc08b7cb5cdc50c012b7b11f1e03455590dbe3c8e50c751bd3133fa784ead5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-dbl": {
+   "hash": "67482f135162af7c45277b39311324904c9ec19895c0a09d6bc3ed1ad33af0c3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-dbl-long": {
+   "hash": "44332d7b3ec3dea830b3c2a07395d5667fc552c0db257225c73f8444d38a0749",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-dbl-whole": {
+   "hash": "7acb7f630d0c4be9cffca8386fdae0b9762a699f41f8f4e1eb7d79a9f661caee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-int": {
+   "hash": "7ce4c93564cdd0bd27c1b38355d9fca2c87447f9c102e59ed88addf3c7fb8724",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-lgl": {
+   "hash": "3faf49785ad6f3621e295c93620789d17fcb953450c60d166116b1460483464c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        0
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-na-chr": {
+   "hash": "7f9551632ec8064f0852e360e615ea5a96789db4437178bfc124bb2f59c56257",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-na-dbl": {
+   "hash": "4e16e5bc6f0ea9b941702391a8a95335b17f255b1a4770e3f165d964ccf8d053",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-na-int": {
+   "hash": "2e864fb8fbe842e3ae3b7f70de6bb1d30659bcd3ab2b2b5e06d8e06f7d504d7c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-int-na-lgl": {
+   "hash": "b034cb41b43e8fc1f4596bb96ee638513d5700357789d6bbcf76dd72a779bd90",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-chr": {
+   "hash": "d72dbebeaec4217ab5adbf09cbdea9e91fbfe589a57ca07cb398b1335d603679",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-dbl": {
+   "hash": "2ff63af1128710fbb899b493e56a36d3abedc3912633a76a619721cda1e43c6c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-dbl-long": {
+   "hash": "bb20bb78046045ced6cbd9d5d7ea6a174f0efe008ce78a4cee4393174f6dae02",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-dbl-whole": {
+   "hash": "20b2dff3b73aa911d8629908b318e3db1a1a1546b97275b2244e8557ab6313cb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-int": {
+   "hash": "331dc9a42555dfae2bdd469a01acc5d2c49e115345fc8307c007a626419630ec",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-lgl": {
+   "hash": "6c6c2634b8a2d064eda7aaeba9e24559456fcf6e3be741652e8d7ec8253e5628",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null,
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-na-chr": {
+   "hash": "bf65906b8fdd5ba79017ccb1c3f31b396cdbe326e0455ae5cfdcc0951fd3e34a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-na-dbl": {
+   "hash": "34e055c7b16e531431ce1f186aa98f90bd0539a24bf8093055e592f343d3cc12",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-na-int": {
+   "hash": "d2b6ac0952815546e200e438ee7a71a2549c9693198ee6df372137d0e5f66a59",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-gr-concat-na-lgl-na-lgl": {
+   "hash": "4988d20e3ac29f673be9cf08e40f5a8c73dfe0ba5b2c685093298c156e089767",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "c",
+      "c",
+      "c",
+      "c"
+     ],
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null,
+        true,
+        null
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "c"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-chr": {
+   "hash": "b203a779ac1d2e6afe3da086971127daf005c4d0993703a8da6d79f5ad4f7ef3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-dbl": {
+   "hash": "49cb0a5ff43fe16dcb3f9020fedccbec4c38f9728bb9533d81e0204ef792789e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1.5",
+        "2.5"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-dbl-long": {
+   "hash": "4e67ac35f9e17638b693f1e5307aaa49297f87adc3b0b38c60b9b8d50c6abf70",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "0.1",
+        "1234567.12345679"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-dbl-whole": {
+   "hash": "dcbe47e2a5ae2231407c3bb476e137acbc1a95e9b02ec8bcc62b67098a382321",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "2",
+        "30"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-int": {
+   "hash": "336c508aa165fb59c378b4ebd030a2fc347fc4a18bab7d50207f7c61db1b9ed9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1",
+        "2"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-lgl": {
+   "hash": "949219503d71928fb8882128415b75c2860030fcd88a9d4e390af6d5ea503e56",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "TRUE",
+        "FALSE"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-na-chr": {
+   "hash": "89c72d40f4ae823adcfc82576eaaa4302b66f3ac2c0fef9f285e0f597b9929df",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-na-dbl": {
+   "hash": "f2a6d6116316a1a8481fe0a22ee86f626ba4eb9461247783360397cf7c2151f3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1.5",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-na-int": {
+   "hash": "16984e477a6aa46ae75dc53cb11e65eb1a77d6d8fc5a17e92771ef24edbf0d14",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "1",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-chr-na-lgl": {
+   "hash": "c9ff8c18352924d25dcc7416208f01600d58af3ee13b01defe3920ba06dedb53",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "TRUE",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-chr": {
+   "hash": "26e9aa1ad070041ee0b8e87d8f4f5e1fd00b7739346922d3d5b37f662d5968b0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        "2.5",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-dbl": {
+   "hash": "e09d9d5d060c21d501ceec3852fe740f1017bb6265f33289e0ef58636172b951",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-dbl-long": {
+   "hash": "7fe168ab69a119cab3addd49a371627d7e4a20516b31c89540212d736101ef69",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-dbl-whole": {
+   "hash": "42c22b2de7371fed28e91adf6c80e84ea60d7608336aa3a853e909f6571e2f0d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-int": {
+   "hash": "850ebd87f9d1d362ad012c04fd264023a8a010005f38f6186528f0afa2f2d38a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-lgl": {
+   "hash": "643cc0adb733d4f5aa5028f229e23193c1c72b6ccd71f52bb2e72eb3841deb77",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-chr": {
+   "hash": "60eb9b1957781a4666832639dd11852ba53699118d2908d1f4c77b1b19144291",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "0.1",
+        "1234567.12345679",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-dbl": {
+   "hash": "3c8955147f946a2111dd452135eb85cd0e7be409682834d9cc9505ed7e7c8e0d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-dbl-long": {
+   "hash": "7e5a8df444d127675b982d1b09bf9d1fa346ff1993ad2ca6f81306ada2a7093d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-dbl-whole": {
+   "hash": "d796f56ba5edef4a5c35b7ff6ca44ea3b6c3ecf9c781078f323c74781709b584",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-int": {
+   "hash": "b413130512c44f3f436db7211a8980e43bdd08867598f4ad2c04a18aaa0e3c28",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-lgl": {
+   "hash": "c84d7815d66c783993b1a27d56c65a45e640340a7e88bfc8339a0e1002d3215b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-na-chr": {
+   "hash": "e652fbebaf8e72e8f8a80d5389e401596bfa3fddc9b817e10b28e77d9e83a144",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "0.1",
+        "1234567.12345679",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-na-dbl": {
+   "hash": "11507f821e6794642b02c347f07365693b7973b961dee76eb27cd0bbb6201bf2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-na-int": {
+   "hash": "1a538cd43a46e0519819b76be1995bbe1615b256aee4d3da1514b3c8c5409004",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-long-na-lgl": {
+   "hash": "98ff6fce23bc4ec3b0fa5dd86a88832f878d101424027af76c1e38694b4dd168",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-na-chr": {
+   "hash": "2e3c8750fad0547d0bdba7ae2a899419c34d8559c4ba6e255af00633b59adf3a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        "2.5",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-na-dbl": {
+   "hash": "b0d0ac56f0c6106fff08d79a95ef570c73f4f9d69284316e3fd3de2500d3be58",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-na-int": {
+   "hash": "4c2051038b245328cb98c973f912c0ebbaa94c57b9eda401a6fa4704eeb6957c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-na-lgl": {
+   "hash": "c380d364d684768a3c7281bbc939658e876940b74539b21553a00de4a81254b3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-chr": {
+   "hash": "07a28fdac0480ad4882136f0f5b1408af35e5cf318dbc5fabc9047601f8cc239",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "2",
+        "30",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-dbl": {
+   "hash": "a4936f551f27df9ed0ad678cc0303f3517b65d2fc6815f6220587337cee6e930",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-dbl-long": {
+   "hash": "fdccb72f65437f2efc20add78cdeffceffc7cdd18fc75d8a949fe142f078017b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-dbl-whole": {
+   "hash": "a939135bc7672d006676bf550c86e1cdbe41e5ec208605b63b190c7d57aa4844",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-int": {
+   "hash": "7b63b28d572a1fdf339059cd15f5bd13ef8f57dce683409b7d48accd9cc49232",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-lgl": {
+   "hash": "e4da939c0a232ced99e115b5d7c8ea73ef3e1147a52454eff378652eac80a196",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-na-chr": {
+   "hash": "a8eb4acfd71d8155bcae77831179245a6865c6b912679fc865a7ea7b5f075e8d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "2",
+        "30",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-na-dbl": {
+   "hash": "5eea25f1185c3f79773f2f72bb30809d1fc6a5453c96731f239c78524da8cdbf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-na-int": {
+   "hash": "1ff7cda5c188c4d50aa518bc9f37e6f1f5a2329dd4824af55f175cdc1750df32",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-dbl-whole-na-lgl": {
+   "hash": "238d4361537e1dc8eeaa0337d3eb751d3bf4f4f631f50657b4d1d61a317f9482",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-chr": {
+   "hash": "a4f10c547b87c3fbefe67d1c5daf435214d29034d96f0356acbb1c18b92625c0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-dbl": {
+   "hash": "1b8a8cdce897d30c581891e22c25876bf65d16fab0c7fac3de02432b63ab7532",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-dbl-long": {
+   "hash": "3d555c00f59ce929e1a0a91510251767b19502f36fd41b6e169de6a789915a10",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-dbl-whole": {
+   "hash": "d1db148ff7214d3adb39648b46db5169cbca7a46166bbe53e47782078b6545fe",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-int": {
+   "hash": "fd643b6c388710fe4b99b5f3077bcaea8a3e3ced7dce3c501f297a5166999a57",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-lgl": {
+   "hash": "b9dc818c2f9790d3e21519a5f7034ae7f1a2bb2046867980527bf41bf4b8a476",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-na-chr": {
+   "hash": "9e380d894e863bd362190ef0980d5ab7b23dfb195f2bd050e40c9c583de7af15",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-na-dbl": {
+   "hash": "cd5b4a47a4e0230076c5bab94d656851a8b6c2418a6147ffe20ff554d247a9db",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-na-int": {
+   "hash": "06a824d757e57ad900a948cf9beb0e18b49b3ca97a8cfaea739553bf6100129f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-empty-na-lgl": {
+   "hash": "4c4f53a35ed17c3e259cc5aa38a37d375a93fc1b0618cbdcaeba0e06cb9d3e5f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-chr": {
+   "hash": "35f261b4399ea003b718f61a2d343582291660f6b6d2d3ef96d8172a82b471e3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        "2",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-dbl": {
+   "hash": "7a0d818866a7948fe1738f7a40832a9b585cce5750faa726124be9200e7acbb7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-dbl-long": {
+   "hash": "ef3e461a02bc91f93cfa19e5217c98a5ec7c4f6645fd85c6bb2977fdc8f6c783",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-dbl-whole": {
+   "hash": "f8d6185a2382838e868355ebf8d143ba461bcd7ff018a5168f9f0e73685588f6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-int": {
+   "hash": "a15372b09dfcc4f697463f473b0f8513a8ab8c9916c1224379c58ec33204736f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-lgl": {
+   "hash": "3398a9e76fb6a349e968553c85a6c4b1f04e43f9a4483610a6e7460b2f0e3e14",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-na-chr": {
+   "hash": "06e634ee74993e8d4d4717f5c3e63ed3ef537ba93046904257cb557a8c777deb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        "2",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-na-dbl": {
+   "hash": "ebe4b297671259f5e122a0871f3b1a4cfa52a54de9aadd79a4f4e3af957fbde8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        2,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-na-int": {
+   "hash": "62eebd0aeff88e971ac5ac07ab06dc21a872c522fc1d168d37772800cab60b23",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-int-na-lgl": {
+   "hash": "973d66029587edc9762ddfe1667d5c66618e7344f58211d20961ba356b212145",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-chr": {
+   "hash": "ec1f1610924bb0ce8f74f17db398de001925885f38d2b26285d5e28d1a74227c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        "FALSE",
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-dbl": {
+   "hash": "22b9ef4a2199c84f2977d3875b7f8985cf6e0e67ef616cead2604d07eb09db26",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-dbl-long": {
+   "hash": "cf174d0e68601c939c9eaa31b664d445ed66dc945ab19dcf14397079ad9a3e49",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-dbl-whole": {
+   "hash": "20c4aa6f694a86a8cab5b2f9fde82b78dddcdf88334f0b96d41e53d8dfb48d19",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-int": {
+   "hash": "b89d2c696a28660991e955d317150e1d73eb203ef4bc318560cd8e656801eb4b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        0,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-lgl": {
+   "hash": "27bdef1a7963fccca5ec3cff7770935cb6fd39d1215841d96860a6e48fb92f64",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-na-chr": {
+   "hash": "d1edd214530bfab773e9ac80a45f584d06e31cdf44a8130bb61d5b3c40980ff2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        "FALSE",
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-na-dbl": {
+   "hash": "8ec1357d236cbf00e87fff697ed26eda0701ccaa5bf76fdfcdd832e12a34b092",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        0,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-na-int": {
+   "hash": "3ca606d5caba40c158df7c816c809124d5fddb53667c2f7bc01984715b1e943e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        0,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-lgl-na-lgl": {
+   "hash": "9988ce981f77f24908cd8a3ee93471e5f0809b0e9ed01af9263f62e3f20903f9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-chr": {
+   "hash": "ba307b52ff9a59cdcb0c3aa9479ebdc8355e683f65794ea659fcf070d7e5bce7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-dbl": {
+   "hash": "6d67d3f5505601697e767980001d93062aa86b0330bdcbec28d8e0cb463c6eb0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1.5",
+        "2.5"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-dbl-long": {
+   "hash": "e53c3f82e4250ccff97aff19330ed6b09efb9552ccdc493c1183197136e982df",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "0.1",
+        "1234567.12345679"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-dbl-whole": {
+   "hash": "6756c9b41ba55e1f2f6fa9e4c54fc5adcbfdc45159a3d6ae57876a31eb77d947",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "2",
+        "30"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-int": {
+   "hash": "2d49347870d61e4d8eab73449f687e83cfcb977474ad3871f942a3809806e752",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1",
+        "2"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-lgl": {
+   "hash": "6707ce63a54a80061f52494881c1c27d7421cd5abab232f8895a81c1699daf58",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "TRUE",
+        "FALSE"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-na-chr": {
+   "hash": "60af654a925ef8f71b373c8c004d49df0fe6c23656d6848272bfa434efbc4a84",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-na-dbl": {
+   "hash": "f30e33b5e68b80731a1e24e45410995d842ae3c72935b843c789e826522a51f0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1.5",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-na-int": {
+   "hash": "1c7e5f4e7c4dad350611e38441900fef3c234cde89499b60ccd99127c85da1ae",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "1",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-chr-na-lgl": {
+   "hash": "95fa984dcbd96a8b640ea9e9f0d01036bebe872fcc4bc29f9fe8a2025533801c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null,
+        "TRUE",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-chr": {
+   "hash": "7fd845629cfd8c7b7755f19bba8caf54bc1f011f8dc71e2ac83b98fed0c3b9c8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-dbl": {
+   "hash": "1aa16f65a91173b2fde31c57f675001528298dbfef342166bfe30910e6fc05ff",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-dbl-long": {
+   "hash": "5bff48001c6204c087f3c760c7bc03e10781936abc0c2b85a27b461650e73891",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-dbl-whole": {
+   "hash": "85c3010c98d8b8f352731512d02a1141c858373839704cc9bbf96c5a356e2f6e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-int": {
+   "hash": "92a5f4544ec305a1bef1fbe924f0a98eea14e3d5b2edac990825c82d5e5c1647",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-lgl": {
+   "hash": "a75cd90a212b91f4d27de759306ad2650ad2aa2bcc2fcff28a20954c190282e0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-na-chr": {
+   "hash": "bb206fae01def7237ade710f90eaadb241a65db0f9376cd5730ebe93260ce757",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1.5",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-na-dbl": {
+   "hash": "fa751926bb7cd66fc66a093fc30a9b3a21d11deab5d4418f4b60a29f8911c856",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-na-int": {
+   "hash": "682659bc7b89a8a3cc6635fded97af7c7a72b26cb92cb7c8ffb762560da7e652",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-dbl-na-lgl": {
+   "hash": "69a9dc6bef0bec430dfe9e28c32debb1f3291fa939e56e2b69ebdc031823d98e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-chr": {
+   "hash": "f8b0de0a2284e441ad9c12f76b9fd6a25bf693291bb02526721a59c7303e5c4f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-dbl": {
+   "hash": "02591d362c3a547af7ec806ed5b7ec0fc566e4383417bd050814b034129d0f78",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-dbl-long": {
+   "hash": "8e82039b4d0ca2cca20aafc74dd267e593596d21b3024e7cd686bbcc3e6d3985",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-dbl-whole": {
+   "hash": "e6a995afa74e42dca7d2cff2925b3f0e818b5d82a02bf40337285ff9f63306d7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-int": {
+   "hash": "0f4d2fbfbd832537cf8cb22afb294195f7049df39495bda1f62ebf7dbcc1106d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-lgl": {
+   "hash": "ab91434357234e51ebc34c3f77842345595eca4581e3b6bfbe30e8fc678d286e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        0
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-na-chr": {
+   "hash": "c3262153f73b0436c004101d776903a7fdd614e23e8fc477df045436ce40616f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "1",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-na-dbl": {
+   "hash": "c8f68252fe4fa29f5b7a34fc72537d989e8fc328c63912d0d9a88d044f27beb6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-na-int": {
+   "hash": "98009e8108e110196dd2f7ced64416a2289da92a7f2f4537c61fe8c6af263831",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-int-na-lgl": {
+   "hash": "a60d33799df7e268d0380edd3453a5b70af6bd4e7b096835a664f95db1f9c8d2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-chr": {
+   "hash": "9fea5056bcdeb244f72348cb05800d1925846145c1eb0dcc328ebcc43234f8cb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        null,
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-dbl": {
+   "hash": "798ca67b0073e90dcd5a8cab6d3703094f831e442c3b3861b41c49c4644f361d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-dbl-long": {
+   "hash": "c4892c40f5cda69ad0e08a3461f068eecccbc9838ea28b0e383cbd39e2a5f13d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-dbl-whole": {
+   "hash": "6479f96c456c3638c4a4b692dae3b9a749c97b9fe009cd8297d9026b46e0e1a4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-int": {
+   "hash": "d9f4f7f5a23ea97591d3ae42b043dc23e0134085ea5af33f4d42dcd02483ab3e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-lgl": {
+   "hash": "d8ca6aed0b1f5aa6ed7459f049c097867fef53713823b003205670f96b1a06fc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null,
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-na-chr": {
+   "hash": "40aa01fa20f1dfe7a7c166708b562525e8222eecbb71d1b9714079429330f13e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "TRUE",
+        null,
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-na-dbl": {
+   "hash": "94000f1c782253ce0dff135053f2ebc6c59fc7d9e57f96467d9154fbed5191ce",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1,
+        null,
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-na-int": {
+   "hash": "aa331c22bccdad593c013b4bb749745117175c4460925b8be84beffc1fee69b1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null,
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-concat-na-lgl-na-lgl": {
+   "hash": "13c7a557afc8fbd05f4a5c70866cf01d56c92e68e11f3ba208740eef76861379",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      5,
+      6
+     ],
+     "width": [
+      3,
+      3,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null,
+        true,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-chr": {
+   "hash": "29b17abd8f34bbdc3819a42dfdfb352a45ba378eb8bbb94a23e84faf087b178b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-dbl": {
+   "hash": "bab140f73497ba6d2492d15228862a827d6b30f255b90da38202b61097f1284b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-dbl-long": {
+   "hash": "67ca320340bb18d0da327d291fc2acfc290d2fa78ea6ade70eafacffbd1912a6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-dbl-whole": {
+   "hash": "2b9dfdf4c729180dd14ccf027500dc82664515b689c82871e8eaf2eb380398c6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-int": {
+   "hash": "8bb4966a79f94fbc1ac6164911ceed33e80df5a44b1d20d84fe6115c2e9b69ed",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-lgl": {
+   "hash": "a5c12c8f55788866fa83e27543ee149e2eb8b0795fa9cd9c9a431d3dd2f206bf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-na-chr": {
+   "hash": "e5248de8c2af049ea8c737c713b55b45b7ce8dc9fee1ccb2d1dcf9d152eab6d4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-na-dbl": {
+   "hash": "784ede8219da52b3974b8f93c3fc4b418849d5787d513ab2e94bfbae4aed4c44",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-na-int": {
+   "hash": "3fd75c262818e08b2c49722bd8155728d248308180ae03ed52ba4ad8f07b623a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-empty-subset-na-lgl": {
+   "hash": "cbc063753e778c487b69fd2259527a72fb6b86d079cee70c82d56d31eb5a82c4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-chr": {
+   "hash": "fcd38412adb7869fc2b287a9a0617cfc499e2f146ac2682520d26a2757e19c5c",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-dbl": {
+   "hash": "90885daf1f5e504dc99c385ba99afd308f8a3fd501294ac7cd2196aa947efee4",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-dbl-long": {
+   "hash": "b6ff66eab4e1dfc8fbef8b5b548e46f62a3b8565474a6ddeaa54069d289ad69f",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-dbl-whole": {
+   "hash": "4e876d9dd76ce5be55477ed16a081efc81c2786fc4539b06d7dfe2c20f60142f",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-int": {
+   "hash": "235a59f80ba42ac14707d606486f66c696e86bcc1bb8137bf65b5722c48afcf3",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-lgl": {
+   "hash": "7c0a940d32f249bfd1b2da06af40d5e368f0e00dd05a3ff9dcb00d3172a81671",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-na-chr": {
+   "hash": "da27dbc59d2282e7249c1fdfdd0082a76713b5d5c3258e23a9812cfb9d048f52",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-na-dbl": {
+   "hash": "383dd4dec2ccdcf8b03ad57f69c50073f5783fa3b0946aad91224b1ba4da123d",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-na-int": {
+   "hash": "a51e865ced4f82c39685ae1fbc2feb69e52b87b62046543f24f89f8be740b5d7",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-getter-na-lgl": {
+   "hash": "cf930b64365020851f2c30662747e473ae55e207b4942d79d089f209c4c735ca",
+   "result": {
+    "value": {
+     "class": "DataFrame",
+     "columns": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null
+       ],
+       "names": null
+      }
+     },
+     "nrow": 2
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-chr": {
+   "hash": "7eb19c33af585e16dc5680f62522eee8bd63c01cc44abe07c4dcda1732fc266b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-dbl": {
+   "hash": "6c68742dcb70ae22c642c5a5a8c92b0d5b17fbff111f634985be2b3294207efe",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        2.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-dbl-long": {
+   "hash": "39d0a9dadaa0ba4d5eac99b9b5daebde3537708fcace7994e883555af3b3dbaf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        0.1,
+        1234567.12345679
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-dbl-whole": {
+   "hash": "84f5c1a96a337150de6d88df9b7abf754ffabce5150c56b82141e45baf79947b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2,
+        30
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-int": {
+   "hash": "51c04acd31f2ca7dd936f0b103b530d4c6dacf8eb8b875e5b6336c499c672070",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-lgl": {
+   "hash": "f9ad5d56a3bd5d9717a6e1248d74eb0424c8807fd802f5e5c79dc18528083c54",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-na-chr": {
+   "hash": "bb5a161e3d1c9c721976ef4f50be978cb75895f61b53ca775b8a70c285754c9c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-na-dbl": {
+   "hash": "292dd727b6b24022e997566f25631b179043afe52d2c45394f606fae4ee6ad10",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1.5,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-na-int": {
+   "hash": "acdf4a39223dff8a9856fd012b56cb9a1f09d268d42d426840193df9c3acf590",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-roundtrip-na-lgl": {
+   "hash": "f049e874f9116d6db39452d78d3d129bcab793323d6788effcdd6aec4e51b8ed",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        null
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-chr": {
+   "hash": "21e2005f5b4fcf19e2ea45260944c1a66b93181cf7fc09dd0107b27fcd9743a4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "b",
+        "a",
+        "a"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-dbl": {
+   "hash": "f8b70aacf36b3b6f96b8f517e8675a398b4410185da39e1e0e7e9d25f1a99803",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        2.5,
+        1.5,
+        1.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-dbl-long": {
+   "hash": "19b44ef9974cedab8da715fab903a6aeba45872cfd411cba270212f1b4dd6469",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        1234567.12345679,
+        0.1,
+        0.1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-dbl-whole": {
+   "hash": "17337952d0bd57eceb61726cdb66a333abc24e965ace17e894006879f8867deb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        30,
+        2,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-int": {
+   "hash": "525e175831c4639edb3a80310207e886ea26a385636e04f4e6a59881411b3fe8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        1,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-lgl": {
+   "hash": "455c02d161237cfbdbbc9fb04ee190f25cbac09aadb65cb08f1f01bb477991ad",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-na-chr": {
+   "hash": "649549186c29cb8fbeb776f685c1298624a8aaf10f3dc01d828b22388ad1edec",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        null,
+        "a",
+        "a"
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-na-dbl": {
+   "hash": "1996d0d19496f37da20e4d4c3d6529c37b0dcb831b8bd451cb422e0bc963d069",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "num",
+       "values": [
+        null,
+        1.5,
+        1.5
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-na-int": {
+   "hash": "229dd7874820f0da5b43edf1781b4edf03b8df8e14939dae24691a0980236afc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        null,
+        1,
+        1
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-ir-subset-na-lgl": {
+   "hash": "3418fa967e63c209026330056caf3bbed814bbe228060bf52706049305cde101",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      1,
+      1
+     ],
+     "width": [
+      3,
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        null,
+        true,
+        true
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "mcols-two-columns-order": {
+   "hash": "cd8c31be34d6f4f22c79239d906942674a1b532a75f75dcae2b4f68c2d29cb2d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        2,
+        3
+       ],
+       "names": null
+      },
+      "b": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        null
+       ],
+       "names": null
+      },
+      "c": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        null,
+        4
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  }
+ }
+}

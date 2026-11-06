@@ -159,6 +159,11 @@ def concat_mcols(parts: Sequence[tuple[pl.DataFrame | None, int]]) -> pl.DataFra
             df[name] if df is not None and name in df.columns else pl.Series(name, [None] * n, dtype=dt)
             for df, n in parts
         ]
+        if any(p.dtype == pl.String for p in pieces):  # R coerces to character with as.character()
+            pieces = [
+                p if p.dtype == pl.String else pl.Series(name, [_name_text(v) for v in p.to_list()], dtype=pl.String)
+                for p in pieces
+            ]
         series.append(pl.concat([p.to_frame() for p in pieces], how="vertical_relaxed")[name])
     return pl.DataFrame(series)
 

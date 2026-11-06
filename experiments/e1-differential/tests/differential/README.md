@@ -36,7 +36,7 @@ cases:
   (asserts Python equals the ADR-sanctioned value; `{error: true}` for "Python errors").
 
 ## Comparison
-Structural; int vs num by value (1e-9), everything else strict. Errors: pass iff both error
+Structural; int vs num by value (`isclose`, rel 1e-12 / abs 1e-9), everything else strict. Errors: pass iff both error
 (messages ignored). Warnings ignored unless `check_warnings`. mcols column order matters.
 
 ## Canonical values (what both sides emit)
