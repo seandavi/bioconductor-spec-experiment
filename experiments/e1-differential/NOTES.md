@@ -21,3 +21,8 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-05 23:58 retracted: the apparent integer-overflow divergence was a
   harness artifact (warning muffling). R errors for integer inputs too; no ADR.
   Lesson: a divergence is only real after checking the harness did not alter R.
+- 2026-11-06 00:20 R quirk (matched, no ADR): `reduce(min.gapwidth=0)` merges
+  identical empty ranges but silently drops the repeats from `revmap`
+  (e.g. 5/0,5/0,5/3 -> revmap [1],[3]). Modelled as "drop output range equal to previous".
+  `gaps` and `disjoin` also ignore empty ranges as coverage; `disjoin` still
+  breaks other ranges at an empty range's position (probed).

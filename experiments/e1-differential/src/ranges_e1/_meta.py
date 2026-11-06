@@ -192,3 +192,9 @@ def resolve_index(i: Any, n: int, names: Names | None) -> np.ndarray:
     if ((a >= n) | (a < -n)).any():
         raise IndexError("subscript contains out-of-bounds indices")
     return np.where(a < 0, a + n, a)
+
+
+def revmap_frame(members: Sequence[np.ndarray]) -> pl.DataFrame:
+    """One-column mcols holding 0-based member positions (R's `revmap`)."""
+    col = pl.Series("revmap", [m.tolist() for m in members], dtype=pl.List(pl.Int64))
+    return pl.DataFrame([col])

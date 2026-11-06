@@ -1,0 +1,1666 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "disjoin-adjacent-revmap": {
+   "hash": "ec14bea1e7191a9fefab47fc5df7ff5aa9a7eab4ef9f9779159669c07627de65",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      6
+     ],
+     "width": [
+      5,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         2
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-default": {
+   "hash": "9b198ac4e2c6e0626059d55faad42f5fbdab4237761414714290e03a661b3d83",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      12,
+      13
+     ],
+     "width": [
+      4,
+      6,
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-drops-names-mcols": {
+   "hash": "20fb3af8346ab969e52d45557091fe191d816a9ba951a2d583f5de2d620ad5ba",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      12,
+      13
+     ],
+     "width": [
+      4,
+      6,
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-duplicates-revmap": {
+   "hash": "f9ec3ad5767c433f54689e9758b490898aa3d783597632310eeb9cdc9fd86948",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1,
+         2
+        ],
+        [
+         1,
+         2,
+         3
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-empty": {
+   "hash": "a20aa2ad4d1627703d9852ae98030042689a14aabe24aa29992f12c92a45cf28",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-nested": {
+   "hash": "837ebda397b0b2949c79347eb7b6cdbe57ce634efd2491cf43095910f3aa7885",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-overlap-1": {
+   "hash": "00bac99e31da47784baa8e9049d0dfcaa02d0c3a11cfa0af3a36fa71754773d0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      6
+     ],
+     "width": [
+      4,
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-revmap": {
+   "hash": "727c1b248efd4726e82ec4d9fb7daa74fd3c71bb3cbc01395571e76c51b6d3db",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      12,
+      13
+     ],
+     "width": [
+      4,
+      6,
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2
+        ],
+        [
+         2
+        ],
+        [
+         4
+        ],
+        [
+         4,
+         5
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-single-zero-width-revmap": {
+   "hash": "df6c5bc7140bd4412cdcc3378295fb15aad7d56ae0aae2e5cf1fb34e0526d457",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-unsorted-revmap": {
+   "hash": "0f95a12760081f7f614d3a38669e228f84419dd3c61386a7a50929aa264f451d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      8,
+      10,
+      13
+     ],
+     "width": [
+      4,
+      3,
+      2,
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2
+        ],
+        [
+         2,
+         3
+        ],
+        [
+         3
+        ],
+        [
+         1,
+         3
+        ],
+        [
+         1
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-zero-width-at-end-plus-1": {
+   "hash": "fb705323c0f0e1d61f6ea2157283866bf9d899dbfbc36eb690bbfe3d0d64b28f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-zero-width-at-start": {
+   "hash": "6cb78783c373e046d9835779e5ad7a43815b1efe99fbd4a77074a57ec35a53ad",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-zero-width-only": {
+   "hash": "ff37d4929772029e9b153888a1caaf7e2dc68d488d9a79064f9a3240403a7bc6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "disjoin-zero-width-splits-revmap": {
+   "hash": "61cb791bd10ba8813616eda2598bea3e2b38bf835e9ebd461f9253aa55190481",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3
+     ],
+     "width": [
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2
+        ],
+        [
+         2
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "gaps-adjacent-ranges": {
+   "hash": "56375f3d31242479b82f46c1fd7d7f0c7d6a4c4fb1698ba41da6e40206340de7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      7
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-default": {
+   "hash": "ce5187a42f3628fa651c86c32a4f3d5fd5fba6d4c60b74e0519c8191d5318292",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      11
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-empty-x": {
+   "hash": "4688f028831a0128c5d1b45f0fefa7d38f0c6feb87071791ce6482ea5d808905",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-empty-x-end-only": {
+   "hash": "c706c564af231d577cd9e0876f6b8564985678d9ca8b8fb6c39453adbf40d9d2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-empty-x-start-only": {
+   "hash": "4f5855f73fd86e686cbb2740cba55c9cdd753098d9ff2d0f81aef0430c8b0183",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-empty-x-window": {
+   "hash": "cf9b0860c56ea5b0619da9eaf8af07acf54c124b301cb258d96bc2826904163b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      10
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-end": {
+   "hash": "96c1d7bdc3ca7f09a6edff2b601efdede771ceffffc9945a084b9f8bada4e90d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      11,
+      15
+     ],
+     "width": [
+      1,
+      16
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-full-cover": {
+   "hash": "6c6019386d5bbb3ee934ca82c8d6044209335205a54f1c53186e74376846af27",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-only-zero-width": {
+   "hash": "f84a70af146f5a1351e0d4b05f731a6e9b06f4cc2f2d341a0913c3cdfab1a802",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      10
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-only-zero-width-default": {
+   "hash": "70ce2f59486f7c1b80f8051a750c9ac14257409b4345420c0a7704349da55e5a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-only-zero-width-start-only": {
+   "hash": "34c5306480b10f84aa75fd76285436c9485ca3e3d38723a039f269263e400f24",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-range-sticks-out": {
+   "hash": "0517dc2fd3bc31320f8f686ca59bb40cdd3d9c7bc5a7979c1ecf65e881b758a4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-range-sticks-out-end": {
+   "hash": "c5e12bf2b0d0bd0106231db2469ef4dd696bf3b897c26568274fca59244c20a2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      11
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-start": {
+   "hash": "40a442b6e7e16330b990b0caaec58f70f6f6348140de5f5ce66b0d2ad7b2cc84",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      11
+     ],
+     "width": [
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-start-end": {
+   "hash": "8027a40a72785855dfc409ec6f32b70c4fa253e51b5a425220661aa7ee2f7894",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      11,
+      15
+     ],
+     "width": [
+      1,
+      1,
+      16
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-unsorted-overlapping": {
+   "hash": "50df41d7540275d5c2e2de1ce7adcd256c95e9a9b5877213f455d6f6e7bfdadf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      8
+     ],
+     "width": [
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-after": {
+   "hash": "1eef26dc0b51a27e09ab7d0db18dfcb0bb304d6eed3c079ce1a97d6d17addb6e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      22
+     ],
+     "width": [
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-empty": {
+   "hash": "3e8389dc68f46e320f6c6e3e85061d344011bbc561ead7611d6ac4a943b0414f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-far-reversed": {
+   "hash": "8cc7e0ff5303ea55c4d2a57da1fab3f227df33b900d0855b4428353185a24f8b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-in-gap": {
+   "hash": "38c740ad55a966e4338dbacf4200982eeabf80ce1dea4165f107c369544f3079",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      15
+     ],
+     "width": [
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-inside-cover": {
+   "hash": "90f78399a48bb6073a986b2dc00782f707bddaa5afe0fb0525b012296b9d0de2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      11
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-negative": {
+   "hash": "2248a04721424e6da6d929ddebeee6db27ac624bd2ba012e4cb08d930728131f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -10
+     ],
+     "width": [
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "gaps-window-reversed": {
+   "hash": "96a2dc980b1b3953be6d27ee3117635869d950ef5cdb0a8489b3d38fc3401366",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "range-basic": {
+   "hash": "22f656d180b0d0ee8e699ee2ec90d6378e9061bd9800a61b9f91948ca2bd693c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      19
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "range-empty": {
+   "hash": "9d34a892d98059c4df1fb0b5e756edd61214f90d4a38fb6078dd995cb46a6283",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "range-single-zero-width": {
+   "hash": "7cabb85517d74b60fc714ac2ec3a5f52ef9e4b767f358e3b7b35942d669fb388",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      20
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "range-two-args": {
+   "hash": "e82370b898eab10753d01102acf1a8ba336480dc2e9e5140ab09223071484770",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      12
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "range-zero-width-extends-end": {
+   "hash": "7c3814ea3fbd1b491ba6977e3844a09229cb89fe5b7fa8a9b429684b1abf365d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      19
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-adjacent": {
+   "hash": "8dfadb65567c4efe0f294ec9c77f187103d692bb48eda4a95c761130574123de",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      6
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-adjacent-gap0": {
+   "hash": "d1fabe06387b2ce212a597171111540537d82f9b582ae44fca47bc0e0b625f49",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      4
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-adjacent-zero-width-gap0": {
+   "hash": "68de2cb7c4750f42d51f122b7167064f6f20f7bc95ea08c392ba4ee455bf6165",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      1
+     ],
+     "width": [
+      0,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-all-empty-drop": {
+   "hash": "a20982635ac9027f0c05cb973d12edafe59e468e4746ecf834764f57d704a81c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-default": {
+   "hash": "039b73b9975fce35d39b8ac085db3e77bbc4bf2bfae2356f7d761eeb239ad16c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      12,
+      20
+     ],
+     "width": [
+      10,
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-drop-empty": {
+   "hash": "19d0e2b6a3ec952dd4c99043cad8af309e9ca995f4a43b8f8d82f0e73307e59f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      12
+     ],
+     "width": [
+      10,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-drops-names-mcols": {
+   "hash": "e3b08b798e544d43335dbb26df98cc8f8977782c26e38d060c56383f4c71e866",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      12,
+      20
+     ],
+     "width": [
+      10,
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-duplicate-zero-width": {
+   "hash": "49cd21d8b3578c43e1231fba8cb89005e665d123f06d9c0633863fea41560c79",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-duplicate-zero-width-gap0": {
+   "hash": "6277e645450ede66f4dc8719e39ce397858fb65743b2a1d440a523ee4a9a3a65",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty": {
+   "hash": "c2f5204de4e329c8d288cec37f285a27d18860c1aa6765e74a3127d41b5604e8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty-duplicates-gap0-revmap": {
+   "hash": "3da47f42901b60b68e29a273e1462a07a7f1c447d633e8f56d06eed909dfbe32",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      5
+     ],
+     "width": [
+      0,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         2
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty-pairs-gap0-revmap": {
+   "hash": "4022de7ca6f8a6f2841c5b2b49a98839d9a60231dab112c11651d5227e23e5a0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      6
+     ],
+     "width": [
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty-pairs-gap1-revmap": {
+   "hash": "144ba2f595d9ed65761640959608650aa48bb8c1cb0966ade14797679f6e3c59",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      6
+     ],
+     "width": [
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1,
+         2
+        ],
+        [
+         3,
+         4
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty-pairs-gap2-revmap": {
+   "hash": "cb35744d26e81ae22d723d2f31c52ecbb844f4725ac2e0d6bdb9ff163953dac8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1,
+         2,
+         3,
+         4
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-empty-revmap": {
+   "hash": "a16cbed2aaf7f5ce20b0f009b582b5f1495378361e29d230753fb96bb5d668bb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": []
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-gap1-default": {
+   "hash": "32fc763f4cf2996335000b2b77bfc7663497c94fd379f90f4dbae4556d098711",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-gap1-mingap1-explicit": {
+   "hash": "1299e65200de622b363d50de76a85a57e882f201935710561792c9fbbad3a910",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-gap1-mingap2": {
+   "hash": "f775e8ca7b9314702fdf27b93a6f27107a4b913cbf22226c5f65f4d58f8b228c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      7
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-min-gapwidth-0": {
+   "hash": "a1320960a4d219863693109e8639ea9a99c3cdeefc0b6dd2c6434476a68484fd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      12,
+      20
+     ],
+     "width": [
+      10,
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-min-gapwidth-2": {
+   "hash": "6c4511b8078c1f11225dea0733622d3d983d9c360e05e3c6c8d8b1bcd0d3e826",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      20
+     ],
+     "width": [
+      14,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-min-gapwidth-6": {
+   "hash": "4a836b5e02cc2e1fe65162477d55963f95c76bc3201b17e6622a38e34178106b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      19
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-min-gapwidth-negative-error": {
+   "hash": "0b0d3d6ee65460d7741460ebbfcaa066c90bb13db6c2733274e9496a6fc2d048",
+   "result": {
+    "error": "'min.gapwidth' must be non-negative",
+    "warnings": []
+   }
+  },
+  "reduce-negative-coords": {
+   "hash": "f93b3917f63228ff1e220b69278b8c072b9d511d416d23cbab21c0261a3587b6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -5,
+      10
+     ],
+     "width": [
+      6,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-nested-ranges": {
+   "hash": "570f5563e435c2a8b0655b6f54f1ce240c058bcd24ef7d1ebabf1f682761bbae",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      10
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1,
+         2,
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-nonempty-duplicates-revmap": {
+   "hash": "ab7dbfa997b86fb90b46ee2ab6d7f3afa04a33f75256d9fd340dfbef690f0705",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      3
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1,
+         3,
+         2
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap": {
+   "hash": "149d38db3d762ac72a5e28b826fecbc12ce3ce41a7a2cad73c9b6487958f820c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      12,
+      20
+     ],
+     "width": [
+      10,
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2,
+         1
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap-all-merged": {
+   "hash": "1b63dabc181486ca10acb2c51a8d57ad058c3a5a6fe5d3b0126f34d2acb34231",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      19
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2,
+         1,
+         4,
+         5,
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap-drop-empty": {
+   "hash": "fa85afc1516fb9492707f5593ac44f6fd8e60237e5c3b3e48324b1dc8a5ce9cd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         4
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap-start-ties": {
+   "hash": "8a18c8e965832be2c0ba6993a062c7054ca9fab70b1394ee2d71bc8208c28ce3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      7
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         4,
+         2,
+         1,
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap-unsorted-input": {
+   "hash": "0b3709e72bd39ff67554f01dda1aa12cd8427b9dcfdb0c8fb2aecb29f756d12c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      10,
+      20
+     ],
+     "width": [
+      7,
+      5,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         2,
+         4
+        ],
+        [
+         3
+        ],
+        [
+         1
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-revmap-zero-width-ties": {
+   "hash": "9dc05fe73b4ebc847145a25dc55f1b8f85685ccd629b1baa080c4fb77c50f3ac",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      4
+     ],
+     "width": [
+      0,
+      3
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         4,
+         2,
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-single-zero-width": {
+   "hash": "47ec6c1a9e843eb422111171b3805f8d6a32cf9036f074415a318ff4e2c979cf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      20
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-triple-empty-gap0-revmap": {
+   "hash": "a4cdc53caca27f04018906d09f19b798c471975ce640f5c4c8267e28f7a5fe49",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      0
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "reduce-two-separate-zero-width": {
+   "hash": "bf13a2cb00322130ab0929a3578cc347765067518307e59cdba45960743f2ca3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-zero-width-at-end-plus-1": {
+   "hash": "198fb9b318d80bba8d4a00de27661080fc84986eae328c86e1d769c0eb0f4efd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-zero-width-at-end-plus-1-gap0": {
+   "hash": "2484eb04a51e0a25fbaf5fd5db9797c357bb86a8127d4dec54b5c970882a31c7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      4
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-zero-width-at-end-plus-2": {
+   "hash": "3068e1d12d63403215e2e93b435237da7cd4dfed75d696631df8d8078ae6422b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-zero-width-at-start": {
+   "hash": "03978d6c3a5bf9496ac42f00ddd5c0b00b2fcd4b1709a6e587370f5336bd17de",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      1
+     ],
+     "width": [
+      0,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "reduce-zero-width-inside-gap0": {
+   "hash": "f6ef104fca8b0247bab5ba07a13fa6a84c249942e3559740519e589bab527b68",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  }
+ }
+}

@@ -9,7 +9,7 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import intra
+from ._kernels import inter, intra
 from ._meta import INT_MAX, Names
 
 
@@ -257,3 +257,40 @@ class IRanges:
         down = self._int_arg(downstream, "downstream", longer="truncate")
         s, w = intra.promoters(self._start, self._width, up, down)
         return self._new(s, w, *self._meta_kept(use_names))
+
+    # -- inter-range ---------------------------------------------------------
+    def _group0(self) -> np.ndarray:
+        return np.zeros(len(self), dtype=np.int64)
+
+    def range(self, *others: IRanges) -> Self:
+        """Smallest range covering everything (zero-width ranges included)."""
+        x = self.concat([self, *others]) if others else self
+        red = inter.range_(x._group0(), x._start, x._width)
+        return self._new(red.start, red.width)
+
+    def reduce(
+        self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False
+    ) -> Self:
+        if min_gapwidth < 0:
+            raise ValueError("'min.gapwidth' must be non-negative")
+        red = inter.reduce(self._group0(), self._start, self._width, int(min_gapwidth), bool(drop_empty_ranges))
+        mc = _meta.revmap_frame(red.members) if with_revmap else None
+        return self._new(red.start, red.width, None, mc)
+
+    def gaps(self, start: int | None = None, end: int | None = None) -> Self:
+        """Uncovered stretches within [start, end]; defaults to the extent of non-empty ranges."""
+        ne = self._width > 0
+        have = bool(ne.any())
+        lo = start if start is not None else (int(self._start[ne].min()) if have else None)
+        hi = end if end is not None else (int(self.end[ne].max()) if have else None)
+        if lo is None or hi is None:
+            return self._new(*(np.empty(0, dtype=np.int64),) * 2)
+        _, s, w = inter.gaps(
+            self._group0(), self._start, self._width, np.array([lo], dtype=np.int64), np.array([hi], dtype=np.int64)
+        )
+        return self._new(s, w)
+
+    def disjoin(self, with_revmap: bool = False) -> Self:
+        red = inter.disjoin(self._group0(), self._start, self._width, with_revmap)
+        mc = _meta.revmap_frame(red.members) if with_revmap else None
+        return self._new(red.start, red.width, None, mc)
