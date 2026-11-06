@@ -483,3 +483,15 @@ e0 79.0, e4 75.3, e3 73.2, e0b 71.4, biocpy 62.5.
   E1/E2/E4 learn of the change automatically and precisely within seconds
   of an R upgrade; E0/E0b/E3 learn only if someone reads NEWS. The value
   of keeping R-generated goldens is noticing, not fixing.
+
+## 2026-11-06 — Merged to main
+
+- All branches merged into `main` with `--no-ff` (no conflicts): 6 `exp/*`,
+  6 `replay/*`, `eval` (incl. 7 adapter merges), `eval-replay`, `ledger`.
+  Secret scan over merged content: clean.
+- Then reverted the 6 replay merges (`git revert -m 1`): those ports encode
+  the *simulated* distance() rule, not real R, and main should hold the
+  evaluated ports. Each experiment on main is now byte-identical to its
+  `frozen/<exp>` tag; replay work stays on `replay/<exp>` and in history.
+  (Orchestrator slip: should have merged replays only as history from the
+  start. Caught by checking main's content after the merge.)
