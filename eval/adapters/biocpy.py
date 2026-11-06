@@ -232,7 +232,8 @@ class Adapter(AdapterBase):
         if kind == "Factor":
             return self.build_Factor(p)
         if kind == "IntegerList":
-            return [np.array(e, dtype=np.int32) for e in p["elements"]]
+            return [np.ma.masked_array(np.array([0 if v is None else v for v in e], dtype=np.int32),
+                                       mask=[v is None for v in e]) for e in p["elements"]]
         return _rvector_column(RVector(p["type"], p["values"]))
 
     def _frame(self, columns: list, nrow: int, rownames: list | None = None) -> BiocFrame:
