@@ -221,3 +221,45 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
 - Mutable-accessor/aliasing bugs now seen in E0b, E2 (and E3 subscripts):
   the most common defect class across ports, and invisible to any
   R-vs-Python comparison. Only language-local review catches it.
+
+## 2026-11-06 — E1 differential + red team done (harness v2)
+
+| Stage | Model | Wall time |
+|---|---|---|
+| plan | Opus | 4.7 min |
+| implement | Sonnet | 72.5 min |
+| red team | Sol | 15.0 min |
+| review | Sol | 5.4 min |
+| revise | Sonnet | 35.6 min |
+| **total** | | **133 min** |
+
+- ~2,920 lines src; harness ~2,050 lines Python + ~205 lines R; 41k lines
+  of case YAML (783 hand-written + 2,818 from 15 seeded generators, then
+  red-team and revise additions); 4 MB committed R result cache (keyed by
+  R/package versions + harness-script digest, so pytest runs without R);
+  8 ADRs; 45 commits. Verified: 4,746 passed, 0 xfail (12 s, cache hits).
+  Isolation: 1 audit hit, benign (a `cd` to a mistyped nonexistent dir,
+  then into its own worktree). Red-team commits (00:42–00:52) touched only
+  cases and tests/unit, never src/. Reviewer wrote only its output.
+- **The red team was the highest-yield stage of the whole experiment.**
+  After 3,601 differential cases were green, Sol wrote 119 adversarial
+  cases in 15 min: 67 agreed, **52 diverged (47 bugs, 5 judgment calls)**.
+  Clusters: circular seqinfo (17: overlaps across the origin, count/any/
+  subset, nearest), metadata recycling/validation, empty/default inputs,
+  `pintersect` existing `hit` column. Revise cleared all 52: fixes plus
+  ADR-0007 (nearest family with coordinates ≤ 0) and ADR-0008 (circular
+  maxgap).
+- **Red team expanded scope.** E1 is the only port with circular-sequence
+  semantics; E0, E0b and E3 list circular wrap-around as not done. TARGET
+  lists `isCircular` but not wrap semantics explicitly; the red team
+  treated R behavior as the scope. Scope = what the adversary tests.
+- **Contract vs accident, live.** Reviewer suggested NA coverage weights
+  stay local to their range. Revise rejected it with evidence: on 4,000
+  random layouts, R has two internal engines; NA stays local only when the
+  ranges tile the window, otherwise everything from the first NA range on
+  is NA. E1 cloned that exactly (0 mismatches). This is Hervé's
+  overspecification point in one case: R-normative-by-default copied what
+  is almost certainly an implementation accident. A human would likely
+  write an ADR saying "implementation-defined" instead.
+- Cost: E1 is ~2× E2 and ~3× E0 in wall time. Most of the extra is
+  implement (generators + R runs) and the revise round on 52 cases.

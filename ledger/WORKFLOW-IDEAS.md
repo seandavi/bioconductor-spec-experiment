@@ -115,3 +115,22 @@ Try: make "random differential run against the reference" an explicit,
 committed stage in every pipeline that has the reference available,
 after hand-authored cases and before review. Commit seeds and failures as
 cases.
+
+## 14. A different-model adversary after "green" is the best-value stage
+
+Seen: E1's red team (Sol, 15 min) found 52 divergences after the
+implementer's 3,601 differential cases passed. Same-author cases share
+the author's blind spots, even when generated at scale.
+Try: in any pipeline with a reference, add a time-boxed adversary from a
+different model family *after* the suite is green, with authority over
+cases only (never src). Feed its failures to revise as fix-or-ADR.
+
+## 15. "R is normative" needs an escape hatch for accidents
+
+Seen: E1 reverse-engineered and cloned R's NA-weight coverage behavior,
+which depends on which of two internal engines R picks. Every agent
+treats "R is normative" literally.
+Try: brief agents that when matching R requires reproducing a
+path-dependent or engine-dependent quirk, they stop and write a
+"contract or accident?" ADR stub instead of cloning. Batch the stubs for
+a human (this is exactly where Hervé's judgment is needed).

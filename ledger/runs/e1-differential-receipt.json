@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "workflowRunId": "447d7fce-4b93-4567-88c2-d5370ace01f9",
+  "state": "complete",
+  "createdAt": 1793946871589,
+  "entries": {
+    "plan": {
+      "key": "plan",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "2eb7c31a-cec4-46e3-b1b8-5c23a34e52f0"
+        ]
+      },
+      "latestRunId": "2eb7c31a-cec4-46e3-b1b8-5c23a34e52f0",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "implement": {
+      "key": "implement",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "c1cbec0e-2005-416d-96ed-b835cef1e0c8"
+        ]
+      },
+      "latestRunId": "c1cbec0e-2005-416d-96ed-b835cef1e0c8",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "redteam": {
+      "key": "redteam",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "3e218388-954e-4741-8370-dccfd55b53ce"
+        ]
+      },
+      "latestRunId": "3e218388-954e-4741-8370-dccfd55b53ce",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "review": {
+      "key": "review",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "outputReference": "/Users/davsean/.pi/agent/sessions/--Users-davsean-Documents-git-bioconductor-spec-experiment--/subagent-artifacts/outputs/447d7fce-4b93-4567-88c2-d5370ace01f9/reviews/e1-differential-review.md",
+      "continuation": {
+        "runIds": [
+          "71c1925b-b075-4144-b4a4-21babece956b"
+        ]
+      },
+      "latestRunId": "71c1925b-b075-4144-b4a4-21babece956b",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "revise": {
+      "key": "revise",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "c1cbec0e-2005-416d-96ed-b835cef1e0c8",
+          "d404ca1f-f210-4c22-8a0b-58aef015e2a2"
+        ]
+      },
+      "latestRunId": "d404ca1f-f210-4c22-8a0b-58aef015e2a2",
+      "resumability": {
+        "state": "resumable"
+      }
+    }
+  },
+  "argsDigest": "af3c20b62aedd876a1b3476b4285d647466aca7b047712943dd1e9f774b6d3dd",
+  "workflowChildren": {
+    "version": 1,
+    "parentToolCallId": "toolu_01A24gTxkzEafdFQSWAkpoL8",
+    "workflowRunId": "447d7fce-4b93-4567-88c2-d5370ace01f9",
+    "inventoryComplete": true,
+    "workflowState": "completed",
+    "children": [
+      {
+        "childId": "plan",
+        "state": "completed",
+        "runId": "2eb7c31a-cec4-46e3-b1b8-5c23a34e52f0",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "claude-bridge/claude-opus-5-5:high"
+      },
+      {
+        "childId": "implement",
+        "state": "completed",
+        "runId": "c1cbec0e-2005-416d-96ed-b835cef1e0c8",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "claude-bridge/claude-sonnet-5-5:high"
+      },
+      {
+        "childId": "redteam",
+        "state": "completed",
+        "runId": "3e218388-954e-4741-8370-dccfd55b53ce",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "openai-codex/gpt-6.1-sol:high"
+      },
+      {
+        "childId": "review",
+        "state": "completed",
+        "runId": "71c1925b-b075-4144-b4a4-21babece956b",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "openai-codex/gpt-6.1-sol:high"
+      },
+      {
+        "childId": "revise",
+        "state": "completed",
+        "runId": "d404ca1f-f210-4c22-8a0b-58aef015e2a2",
+        "agent": "worker",
+        "sessionName": "worker: You are reviving a previous subagent conversation. Origin...",
+        "model": "claude-bridge/claude-sonnet-5-5:high"
+      }
+    ]
+  }
+}
