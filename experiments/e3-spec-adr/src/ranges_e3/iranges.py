@@ -217,12 +217,16 @@ class IRanges:
         gs, ge, order, bounds = _kernels.reduce_scan(self._start, self._end, int(min_gapwidth), drop_empty_ranges)
         out = self._new(gs, ge - gs + 1)
         if with_revmap:
-            out = out.with_mcols(pl.DataFrame([_mcols.revmap_series(_kernels.split_groups(order, bounds))]))
+            groups = _kernels.split_groups(order, bounds)
+            if drop_empty_ranges:  # zero-width joiners shape the group but are not listed (INTER.5)
+                groups = [g[self._width[g] > 0] for g in groups]
+            out = out.with_mcols(pl.DataFrame([_mcols.revmap_series(groups)]))
         return out
 
     def gaps(self, start: int | None = None, end: int | None = None) -> Self:
         """INTER.6."""
-        bounds = _kernels.span(self._start, self._end)
+        pos = self._width > 0
+        bounds = _kernels.span(self._start[pos], self._end[pos])
         lo = start if start is not None else (None if bounds is None else bounds[0])
         hi = end if end is not None else (None if bounds is None else bounds[1])
         if lo is None or hi is None:

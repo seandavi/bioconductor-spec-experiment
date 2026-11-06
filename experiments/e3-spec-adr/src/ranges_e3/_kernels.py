@@ -29,7 +29,9 @@ def narrow(
 ) -> tuple[IntArray, IntArray]:
     """INTRA.2. Relative arguments may be negative; refuses results outside the range."""
     given = (rel_start is not None, rel_end is not None, rel_width is not None)
-    if sum(given) == 0 or sum(given) == 3 or given == (False, False, True):
+    if sum(given) == 0:
+        return start, width
+    if sum(given) == 3 or given == (False, False, True):
         raise ValueError("narrow needs start and/or end, plus optionally width (not width alone)")
     end = start + width - 1
     a = None if rel_start is None else np.where(rel_start < 0, width + rel_start + 1, rel_start)
@@ -121,6 +123,18 @@ def reduce_scan(
     new = np.empty(n, dtype=np.bool_)
     new[0] = True
     new[1:] = s[1:] > cummax[:-1] + min_gap
+    if min_gap == 0 and n > 1:
+        # INTER.3 / ADR-0013: an unabsorbed zero-width range equal to its predecessor vanishes
+        twin = new.copy()
+        twin[0] = False
+        twin[1:] &= (e[1:] < s[1:]) & (e[:-1] < s[:-1]) & (s[1:] == s[:-1])
+        if twin.any():
+            order, s, e = order[~twin], s[~twin], e[~twin]
+            n = len(s)
+            cummax = np.maximum.accumulate(e)
+            new = np.empty(n, dtype=np.bool_)
+            new[0] = True
+            new[1:] = s[1:] > cummax[:-1] + min_gap
     bounds = np.flatnonzero(new).astype(np.int64)
     last = np.append(bounds[1:] - 1, n - 1)
     return s[bounds], cummax[last], order, bounds

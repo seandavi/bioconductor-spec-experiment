@@ -51,6 +51,25 @@ def test_reduce_zero_width_ranges() -> None:
     assert se(ir((5, 7), (8, 7)).reduce(min_gapwidth=0)) == [(5, 7), (8, 7)]
 
 
+@pytest.mark.spec("INTER.3")
+def test_reduce_gap_zero_drops_repeated_zero_width() -> None:
+    r = ir((14, 13), (14, 13), (14, 20)).reduce(min_gapwidth=0, with_revmap=True)
+    assert se(r) == [(14, 13), (14, 20)] and r.mcols["revmap"].to_list() == [[0], [2]]
+    assert se(ir((14, 13), (14, 13), (14, 13)).reduce(min_gapwidth=0)) == [(14, 13)]
+    assert se(ir((14, 13), (15, 14), (14, 13)).reduce(min_gapwidth=0)) == [(14, 13), (15, 14)]
+    assert se(ir((10, 12), (13, 12), (13, 12)).reduce(min_gapwidth=0)) == [(10, 12), (13, 12)]
+    assert ir((14, 13), (14, 13)).reduce(min_gapwidth=1, with_revmap=True).mcols["revmap"].to_list() == [[0, 1]]
+    absorbed = ir((10, 20), (14, 13), (14, 13)).reduce(min_gapwidth=0, with_revmap=True)
+    assert absorbed.mcols["revmap"].to_list() == [[0, 1, 2]]
+
+
+@pytest.mark.spec("INTER.4", "INTER.5")
+def test_reduce_drop_empty_revmap_lists_only_positive_width() -> None:
+    r = ir((7, 6), (14, 13), (3, 5), (19, 19), (12, 16)).reduce(min_gapwidth=2, drop_empty_ranges=True, with_revmap=True)
+    assert se(r) == [(3, 6), (12, 16), (19, 19)]
+    assert r.mcols["revmap"].to_list() == [[2], [4], [3]]
+
+
 @pytest.mark.spec("INTER.4")
 def test_reduce_drop_empty_ranges() -> None:
     assert se(ir((1, 3), (5, 4), (10, 13)).reduce(drop_empty_ranges=True)) == [(1, 3), (10, 13)]
@@ -97,6 +116,9 @@ def test_gaps_edge_inputs() -> None:
     assert se(ir((1, 3), (4, 6)).gaps(1, 8)) == [(7, 8)]
     assert se(ir((5, 4)).gaps()) == []
     assert se(ir((5, 4)).gaps(1, 10)) == [(1, 10)]
+    assert se(ir((1, 2), (5, 5), (13, 12)).gaps(start=1)) == [(3, 4)]
+    assert se(ir((25, 26), (12, 14), (13, 13), (10, 9), (12, 12), (19, 21)).gaps(end=14)) == []
+    assert se(ir((2, 4), (2, 2), (19, 18)).gaps(start=15)) == []
 
 
 @pytest.mark.spec("INTER.7")

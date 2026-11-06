@@ -40,9 +40,14 @@ def test_narrow_zero_width_results() -> None:
 
 
 @pytest.mark.spec("INTRA.2")
+def test_narrow_without_arguments_is_identity() -> None:
+    assert se(ir((10, 13), (5, 4)).narrow()) == [(10, 13), (5, 4)]
+
+
+@pytest.mark.spec("INTRA.2")
 @pytest.mark.parametrize(
     "kwargs",
-    [{}, {"width": 3}, {"start": 1, "end": 3, "width": 3}, {"start": -5}, {"start": 6},
+    [{"width": 3}, {"start": 1, "end": 3, "width": 3}, {"start": -5}, {"start": 6},
      {"start": 4, "end": 2}, {"end": 5}, {"end": -6}, {"start": 1, "width": 5}, {"end": 4, "width": 5}],
 )
 def test_narrow_refusals(kwargs: dict[str, int]) -> None:
