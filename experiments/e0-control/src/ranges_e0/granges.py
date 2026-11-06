@@ -15,7 +15,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _intra, _order, _validate as V
+from . import _inter, _intra, _order, _setops, _validate as V
 from .iranges import IRanges
 from .seqinfo import Seqinfo
 
@@ -350,6 +350,213 @@ class GRanges:
         """R ``promoters``: window around the TSS (start of ``+``/``*``, end of ``-`` ranges)."""
         s, w = _intra.promoters_k(self._start, self._width, upstream, downstream, self._neg(False))
         return self._intra_result(s, w, use_names)
+
+    # ----- grouping seam ----------------------------------------------------
+    def _group_key(self, ignore_strand: bool) -> np.ndarray:
+        strand = np.full(len(self), STAR, dtype=I64) if ignore_strand else self._strand.astype(I64)
+        return self._seq.astype(I64) * 3 + strand
+
+    def _groups(self, ignore_strand: bool) -> dict[int, np.ndarray]:
+        """``{seq * 3 + strand: row indices}`` in key order (seqlevel, then ``+ - *``).
+        With ``ignore_strand`` every row is in the ``*`` group of its seqlevel."""
+        key = self._group_key(ignore_strand)
+        if len(key) == 0:
+            return {}
+        order = np.argsort(key, kind="stable")
+        ks = key[order]
+        cuts = np.flatnonzero(np.diff(ks)) + 1
+        return {int(ks[i]): part for i, part in zip(np.concatenate(([0], cuts)), np.split(order, cuts))}
+
+    def _assemble(
+        self,
+        parts: list[tuple[int, np.ndarray, np.ndarray]],
+        seqinfo: Seqinfo | None = None,
+        revmap: list[np.ndarray] | None = None,
+    ) -> GRanges:
+        """Build a GRanges from per-group results ``(key, start, width)``."""
+        seqinfo = self._seqinfo if seqinfo is None else seqinfo
+        if parts:
+            seq = np.concatenate([np.full(len(st), k // 3, dtype=np.int32) for k, st, _ in parts])
+            strand = np.concatenate([np.full(len(st), k % 3, dtype=np.int8) for k, st, _ in parts])
+            start = np.concatenate([st for _, st, _ in parts])
+            width = np.concatenate([w for _, _, w in parts])
+        else:
+            seq, strand = np.array([], dtype=np.int32), np.array([], dtype=np.int8)
+            start = width = np.array([], dtype=I64)
+        mcols = None
+        if revmap is not None:
+            mcols = pl.DataFrame({"revmap": pl.Series("revmap", [r.tolist() for r in revmap], dtype=pl.List(pl.Int64))})
+        return GRanges._make(seq, start, width, strand, seqinfo, None, mcols)
+
+    # ----- inter-range -------------------------------------------------------
+    def range(self, *others: GRanges, ignore_strand: bool = False) -> GRanges:
+        """R ``range``: one range per (seqlevel, strand) group present."""
+        pooled = GRanges.concat(self, *others) if others else self
+        parts = []
+        for key, idx in pooled._groups(ignore_strand).items():
+            st, w = _inter.range_k(pooled._start[idx], pooled._width[idx])
+            parts.append((key, st, w))
+        return pooled._assemble(parts)
+
+    def reduce(
+        self,
+        min_gapwidth: int = 1,
+        drop_empty_ranges: bool = False,
+        with_revmap: bool = False,
+        ignore_strand: bool = False,
+    ) -> GRanges:
+        """R ``reduce``, per (seqlevel, strand) group; ``revmap`` holds 0-based
+        indices into this object."""
+        parts, revs = [], []
+        for key, idx in self._groups(ignore_strand).items():
+            st, w, rev = _inter.reduce_k(
+                self._start[idx], self._width[idx], min_gapwidth, drop_empty_ranges, with_revmap
+            )
+            parts.append((key, st, w))
+            if rev is not None:
+                revs.extend(idx[r] for r in rev)
+        return self._assemble(parts, revmap=revs if with_revmap else None)
+
+    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> GRanges:
+        """R ``disjoin``, per (seqlevel, strand) group."""
+        parts, revs = [], []
+        for key, idx in self._groups(ignore_strand).items():
+            st, w, rev = _inter.disjoin_k(self._start[idx], self._width[idx], with_revmap)
+            parts.append((key, st, w))
+            if rev is not None:
+                revs.extend(idx[r] for r in rev)
+        return self._assemble(parts, revmap=revs if with_revmap else None)
+
+    def gaps(self, start: int | None = 1, end: int | None = None, ignore_strand: bool = False) -> GRanges:
+        """R ``gaps``: uncovered positions in ``[start, end]`` for *every* seqlevel
+        and strand (``+ - *``, or just ``*`` with ``ignore_strand``), including
+        groups without ranges. ``end=None`` uses the seqlengths; a sequence of
+        unknown length has no trailing gap and no gaps at all when empty."""
+        groups = self._groups(ignore_strand)
+        strands = (STAR,) if ignore_strand else (PLUS, MINUS, STAR)
+        empty = np.array([], dtype=I64)
+        parts = []
+        for i, length in enumerate(self._seqinfo._lengths):
+            gap_end = end if end is not None else length
+            for strand in strands:
+                key = i * 3 + strand
+                if ignore_strand:
+                    idx = np.concatenate([v for k, v in groups.items() if k // 3 == i] or [empty])
+                else:
+                    idx = groups.get(key, empty)
+                st, w = _inter.gaps_k(self._start[idx], self._width[idx], start, gap_end)
+                if len(st):
+                    parts.append((key, st, w))
+        return self._assemble(parts)
+
+    # ----- set operations -----------------------------------------------------
+    def _pair_groups(
+        self, other: GRanges, ignore_strand: bool
+    ) -> tuple[Seqinfo, GRanges, GRanges]:
+        """Both operands with seqinfo merged and seq codes re-expressed in it."""
+        si = self._seqinfo.merge(other._seqinfo)
+        x = self._replace(seq=_recode(self._seq, self._seqinfo, si), seqinfo=si)
+        y = other._replace(seq=_recode(other._seq, other._seqinfo, si), seqinfo=si)
+        return si, x, y
+
+    def _setop(self, other: GRanges, kernel: Any, keys_from: str, ignore_strand: bool) -> GRanges:
+        si, x, y = self._pair_groups(other, ignore_strand)
+        gx, gy = x._groups(ignore_strand), y._groups(ignore_strand)
+        empty = np.array([], dtype=I64)
+        if keys_from == "any":
+            keys = sorted(set(gx) | set(gy))
+        elif keys_from == "x":
+            keys = sorted(gx)
+        else:
+            keys = sorted(set(gx) & set(gy))
+        parts = []
+        for key in keys:
+            ix, iy = gx.get(key, empty), gy.get(key, empty)
+            st, w = kernel(x._start[ix], x._width[ix], y._start[iy], y._width[iy])
+            if len(st):
+                parts.append((key, st, w))
+        return x._assemble(parts, si)
+
+    def union(self, other: GRanges, ignore_strand: bool = False) -> GRanges:
+        """R ``union``: per (seqlevel, strand) group; ``*`` is its own group."""
+        return self._setop(other, _setops.union_k, "any", ignore_strand)
+
+    def intersect(self, other: GRanges, ignore_strand: bool = False) -> GRanges:
+        return self._setop(other, _setops.intersect_k, "common", ignore_strand)
+
+    def setdiff(self, other: GRanges, ignore_strand: bool = False) -> GRanges:
+        return self._setop(other, _setops.setdiff_k, "x", ignore_strand)
+
+    def _pairwise_setup(self, other: GRanges, ignore_strand: bool) -> tuple[Seqinfo, GRanges, GRanges, np.ndarray]:
+        if len(self) != len(other):
+            raise ValueError("'x' and 'y' must have the same length")
+        si, x, y = self._pair_groups(other, ignore_strand)
+        if ignore_strand:
+            y = y._replace(strand=x._strand)
+        compat = (x._seq == y._seq) & ((x._strand == STAR) | (y._strand == STAR) | (x._strand == y._strand))
+        return si, x, y, compat
+
+    def punion(self, other: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> GRanges:
+        """R ``punion``: strand/seqname must be compatible (``*`` matches anything);
+        the result keeps this object's strand and names, drops mcols."""
+        si, x, y, compat = self._pairwise_setup(other, ignore_strand)
+        if not compat.all():
+            raise ValueError("'x' and 'y' elements must have compatible 'seqnames' and 'strand' values")
+        s, w = _setops.punion_k(x._start, x._width, y._start, y._width, fill_gap)
+        return x._replace(start=s, width=w, mcols=pl.DataFrame())
+
+    def pintersect(
+        self,
+        other: GRanges,
+        drop_nohit_ranges: bool = False,
+        ignore_strand: bool = False,
+        strict_strand: bool = False,
+    ) -> GRanges:
+        """R ``pintersect``. Pairs on different seqnames/strands (or disjoint) are
+        "no hit": they become the empty range at ``start(x)`` and the result gets a
+        logical mcol ``hit`` (unless ``drop_nohit_ranges``, which removes them).
+        Unless ``strict_strand``, ``*`` on one side adopts the other side's strand."""
+        if len(other) != len(self):
+            if len(other) != 1:
+                raise ValueError("'y' must have the length of 'x' or length 1")
+            other = other._take(np.zeros(len(self), dtype=np.int64))
+        x_orig_strand = self._strand
+        si, x, y = self._pair_groups(other, ignore_strand)
+        if ignore_strand:
+            y = y._replace(strand=x._strand)
+        elif not strict_strand:
+            xs, ys = x._strand.copy(), y._strand.copy()
+            xs = np.where((x._strand == STAR) & (y._strand != STAR), y._strand, xs)
+            ys = np.where((y._strand == STAR) & (x._strand != STAR), x._strand, ys)
+            x, y = x._replace(strand=xs), y._replace(strand=ys)
+        new_start = np.maximum(x._start, y._start)
+        new_end = np.minimum(x.end, y.end)
+        is_hit = (x._seq == y._seq) & (x._strand == y._strand) & (new_end >= new_start - 1)
+        if drop_nohit_ranges:
+            keep = np.flatnonzero(is_hit)
+            x = x._take(keep)
+            return x._replace(start=new_start[keep], width=new_end[keep] - new_start[keep] + 1)
+        nohit = ~is_hit
+        new_start = np.where(nohit, x._start, new_start)
+        new_end = np.where(nohit, x._start - 1, new_end)
+        strand = x._strand
+        if not (ignore_strand or strict_strand):
+            strand = np.where(nohit, x_orig_strand, strand)
+        mcols = x._mcols.with_columns(pl.Series("hit", is_hit.tolist(), dtype=pl.Boolean)) if x._mcols.width else (
+            pl.DataFrame({"hit": pl.Series("hit", is_hit.tolist(), dtype=pl.Boolean)})
+        )
+        return x._replace(start=new_start, width=new_end - new_start + 1, strand=strand, mcols=mcols)
+
+    def psetdiff(self, other: GRanges, ignore_strand: bool = False) -> GRanges:
+        """R ``psetdiff``: pairs that are not compatible keep ``x``'s range; a ``*``
+        strand in ``x`` is resolved from ``y``. Drops mcols."""
+        si, x, y, ok = self._pairwise_setup(other, ignore_strand)
+        s, w = x._start.copy(), x._width.copy()
+        if ok.any():
+            ps, pw = _setops.psetdiff_k(x._start[ok], x._width[ok], y._start[ok], y._width[ok])
+            s[ok], w[ok] = ps, pw
+        strand = np.where(x._strand == STAR, y._strand, x._strand)
+        return x._replace(start=s, width=w, strand=strand, mcols=pl.DataFrame())
 
     # ----- ordering ----------------------------------------------------------
     def _order_keys(self, ignore_strand: bool = False) -> list[np.ndarray]:
