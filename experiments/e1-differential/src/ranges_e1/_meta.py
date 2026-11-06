@@ -14,7 +14,7 @@ INT_MAX = 2**31 - 1
 
 
 def as_int_array(x: Any, what: str = "value") -> np.ndarray:
-    """Coerce to int64 ndarray; floats must be whole numbers; NA -> error."""
+    """Coerce a numeric vector to int64 like R's as.integer: doubles truncate; NA, logical or text is an error."""
     if np.ma.isMaskedArray(x):
         if np.ma.getmaskarray(x).any():
             raise ValueError(f"{what} cannot contain NAs")
@@ -28,15 +28,11 @@ def as_int_array(x: Any, what: str = "value") -> np.ndarray:
     if a.ndim != 1:
         raise ValueError(f"{what} must be 1-dimensional")
     if a.dtype.kind == "f":
-        if np.isnan(a).any():
+        if np.isnan(a).any() or (np.abs(a) > INT_MAX).any():
             raise ValueError(f"{what} cannot contain NAs")
-        if (a != np.trunc(a)).any():
-            raise ValueError(f"{what} must be whole numbers")
-        a = a.astype(np.int64)
-    elif a.dtype.kind == "b":
-        a = a.astype(np.int64)
+        a = np.trunc(a).astype(np.int64)
     elif a.dtype.kind not in "iu":
-        raise ValueError(f"{what} must be integer")
+        raise ValueError(f"{what} must be numeric vectors")
     return a.astype(np.int64, copy=False)
 
 
@@ -92,10 +88,23 @@ def recycle_arg(
     return np.resize(a, n)
 
 
+def _name_text(v: Any) -> str | None:
+    """R's as.character for one element of a names vector (None = NA)."""
+    if v is None or v is np.ma.masked:
+        return None
+    if isinstance(v, (bool, np.bool_)):
+        return "TRUE" if v else "FALSE"
+    if isinstance(v, (float, np.floating)):
+        if v != v:
+            return None
+        return str(int(v)) if float(v).is_integer() and abs(v) < 1e15 else f"{float(v):.15g}"
+    return str(v)
+
+
 def check_names(names: Any, n: int) -> Names | None:
     if names is None:
         return None
-    seq = [None if v is None else str(v) for v in list(names)]
+    seq = [_name_text(v) for v in list(names)]
     if len(seq) > n:
         raise ValueError(f"attempt to set too many names ({len(seq)}) on object of length {n}")
     seq.extend([None] * (n - len(seq)))

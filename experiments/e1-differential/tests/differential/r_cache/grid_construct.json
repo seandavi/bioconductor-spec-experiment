@@ -1,0 +1,5460 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "ctor-gr-seq-blank-strand-bad": {
+   "hash": "da98d30d32a04a81af34c81476bcb663ca7d6c6d6907759b6e464f529bc1d743",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-dot": {
+   "hash": "53f66d6988ea8b1d56eafbb344a85005988e181fc345a0a0f6803a3c7f27b858",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-empty": {
+   "hash": "87eb65c33065a29f7456ce3a6a78e3e19df3c366edaf6ee3d54a3de7c12c7c07",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-four": {
+   "hash": "f23ee32aaf8c7d4cc3ca8754376b3b8b893fcb812b4d5977e54070191af78c5a",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-mixed": {
+   "hash": "abecba685ae2e9012ffd79926587a8157e13a01f4ec674b43573ad8ec891b695",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-na": {
+   "hash": "740492cc9191cbbcecb28d113e8897428ece45874c1a3eed13e460855117700c",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-num": {
+   "hash": "1412d332dfae4aef4789a22a8986bdf5be76ec84f2747cc18e9f5ce6acf0ca1f",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-plus": {
+   "hash": "4139512069101eab51772e31a99823381a9cf81bae44789d03ff0f8bf77c4122",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-blank-strand-two": {
+   "hash": "b75e2cb2c30387823171cd65b333f1693ce6eaf3a2d77d3bb3913dc85df954cb",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-bad": {
+   "hash": "2fb0943427c5c08b055d18fcf0f5171a61085b160153a1854d4d36feef6987b7",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-dot": {
+   "hash": "42482b906a93d6ce65e096115386833307b87665c3143c48e3915c4d59425b6d",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-empty": {
+   "hash": "d2a89e8d5af31b054749a0a78b0b8000b3a848630a848fcc4b704e36d8a3a8d2",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-four": {
+   "hash": "6fcceec16354254c7405d6cf36b0b3bda4e299c7565d3c29fbf8184582fc78e0",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-mixed": {
+   "hash": "2131eb14f26a16334bae0b000a1b6aa4809d34b70af14b266cefb8229abba5d7",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-na": {
+   "hash": "4ad5335b5a0982013eac8094e6a7f4c7cf6761ef99a947e9be4bf1d1330a0f24",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-empty-strand-num": {
+   "hash": "43c90f7e130fa8d979eb7205019257893149ecb22dccccf9477909af9f15a7bf",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-plus": {
+   "hash": "701ec91388572a865d425090f0343a7db8901d25b6972578e0ffe4a6ba9a6f29",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-empty-strand-two": {
+   "hash": "cd123abe03ebb0c13b3af3753638fee91a9e6e086c015c8485ebbc3fa9fe1b3c",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-bad": {
+   "hash": "6484236c574351e2edf051d62fc9019616c07f31410ebd81fc7f958ddb80714a",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-dot": {
+   "hash": "4125c7d0e8909d3bab43532429a136565887d2044ca83b001d380b59154669be",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-empty": {
+   "hash": "5abd4dbfdbc8c903b43425063e317e7799792185fc2c76c057da4556b4ef9f1d",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-four": {
+   "hash": "c6ee8b05a6627d8afa59097c26ac6723460f8ddbfb4155a92e967dc861fc8104",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-mixed": {
+   "hash": "4ce77657e788908656f619a131e5386d09b37dff6443f2a9ce67c5f2ae5e99a9",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-na": {
+   "hash": "83cdfbc8fc8861c34088d273e7dee3490994afd7bb449a273eaff7c80e3ec94a",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-four-strand-num": {
+   "hash": "53b96b9bb7be9bf174bd0f4c4b4509f708ee8d8bf37b7411e8a767c70028b2e0",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-plus": {
+   "hash": "d37e695f99669be9f9f67e8e1de7c862b902e7f7db874df747213e5aa88ed5f9",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-four-strand-two": {
+   "hash": "86ce22c11ca1f9fe8a0bcaf8c8609b1968996abbd94ebc9f71e68313ec9c4a0e",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-bad": {
+   "hash": "c0ea6e6961ac83809deb1f8c484ffd4b8aafa8706be0a457f20c3bd074e87349",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-dot": {
+   "hash": "a56279740c6e831b535aac2b121059053e8939cd0eab4fdbbd7471aac2f3b501",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-empty": {
+   "hash": "bf21500ec6932a5de355be262917a4d9ec251f031de6342696e8523f8f435ab0",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-four": {
+   "hash": "a3b470a1606fa35c422dfab5ab3e49d904d373a82713b5e5460cefffe9c19401",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-mixed": {
+   "hash": "2041d700bae50179080480a4e123ec0e2050b9345d0662d957d59514d4381a6e",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-na": {
+   "hash": "b56fba5b3f8b36207b0ebb72da579cc8824d228d4353b0a0ccbfda8a5621f2cb",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-num": {
+   "hash": "b48a0d2e80f58efc83434c61075e117be8caa7647da80560c4676dd85fade32a",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-plus": {
+   "hash": "5dd1e212a1592e4d9fb911defb690121c7ec7e43cccf1f0c2db7520bdd57e95f",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-na-strand-two": {
+   "hash": "742fba131b941a155033c56c34159bcb427aa65ffd00f81b5b57e3ca71f02dc0",
+   "result": {
+    "error": "'seqnames' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-bad": {
+   "hash": "521dbcdc2f1bfe4f991626a410ea6199582df0607f3379954f82e272ad7dd2d1",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-dot": {
+   "hash": "96cc788b1071a42fa901e2f0da3b746f3f5ee358c2e82a0774fa4d9a91e5e795",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-empty": {
+   "hash": "d5dd9402241b4e8b47eb981fd83e931602182ab185cae7c3b59e7f866e63c23d",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-four": {
+   "hash": "5cef2dbd21d542b497467a99a320caaffde20c8d46cfdc68f0c5d7f8be8b8c49",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-mixed": {
+   "hash": "4dfb8ebdd5d4d75fa77461b200b856567d634498178f695efec05e4b3b78cf30",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "1",
+      "2",
+      "3"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "1",
+       "2",
+       "3"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-na": {
+   "hash": "4932c3eea281c00f2bf364e53fd3346b76b60168601db9e2a6cb3951c7372a9c",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "1",
+      "2",
+      "3"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "1",
+       "2",
+       "3"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-num-strand-num": {
+   "hash": "02c179f02e8052907269fc5439bf75667241dbf346f5d132112d31e7074aaa64",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-plus": {
+   "hash": "c854d70218a90caf8286e47ac00eb0eeeeaa51b411408ff3adb9e5c1179c034b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "1",
+      "2",
+      "3"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "1",
+       "2",
+       "3"
+      ],
+      "seqlengths": [
+       null,
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-num-strand-two": {
+   "hash": "3c1592e5e4524f15542ce00161f5e98305bdfdd6ebaf0d19baf6c4900a0a3c82",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-bad": {
+   "hash": "77ae4535c5c4b808bdffb609703e0063b677b8b4670d5ce9d17e3d9ef8db96e1",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-dot": {
+   "hash": "39ed33df688f2dd3dcf9707426707e09938b61203e51177d506eda6258d4ee7a",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-empty": {
+   "hash": "1c57b92c1aae1a3baadd07c8a4e142ca0c3f8b1ab77b38b024fd87c977495cbb",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-four": {
+   "hash": "ba1e1f623faa71d35cc580f752af5f18f29b1ce7c33350db3f9fc1371cc23823",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-mixed": {
+   "hash": "fc83073bf80d50aa4eaaa5a41870b36c05dcdb0c6df11984c0e8e84d479dae9b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-na": {
+   "hash": "b489be12f67441da97968140b168c1c1a52280fe780002f4c1fde8c725486ce2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-one-strand-num": {
+   "hash": "89349c669729e7772b479db41be0358d0c06cff2093dd0d1cfe8eb13f72b3f60",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-plus": {
+   "hash": "48ec427bbbf54937b086d8eda5d80358988e98e6105235b6b1300006a99be889",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-one-strand-two": {
+   "hash": "2dd5d070fb931da024a7a28aa033bed7a6290bebd8d2201f9cae917beced6a56",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-bad": {
+   "hash": "701e9e85948d1ff3e1d298fd940835cf073b84f307bc5be7c95b5af13999afb0",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-dot": {
+   "hash": "b9ec9739aa775a99b6d3f0608d5b8ad847ffd80b823d81fb92289daa52830c62",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-empty": {
+   "hash": "403599a7620f35161c422251c4a5c704408d45fc22fe9885f9646dcf0f3fe670",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-four": {
+   "hash": "d1f3be8c2812f14c8f2b88efec10206efd6e8b2b9e7914d2bd5bb703ddfd6813",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-mixed": {
+   "hash": "13adb9b2aabe4cd22aabfac46f830c66f250bab0cc56150ee9c8d470df74269b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-na": {
+   "hash": "a3532231529570cef371e9a64ff524fbadd0b94cd87cea9d0d23ac8b94d7fa23",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-three-strand-num": {
+   "hash": "c9aaf83b905109638cb51febf5f91308fe8852cf75cf87a05d4c1a1366bd4d6b",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-plus": {
+   "hash": "f1649be81ae441e212d55705e4e833030b7a262004ce1d510ef18b4144afb6f2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-three-strand-two": {
+   "hash": "7813305f1e0d03fd49c9cb511c197b4399361fd4aca920ce41c998dd1bd0e9e8",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-bad": {
+   "hash": "e2db6f1e6275154362b0b705a75996aae7ce164c75625948e65504dd709352b5",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-dot": {
+   "hash": "e6bf5930bbebfe2c3da3511eafba8207bcc03887f9eeb5a6392b550863aea26a",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-empty": {
+   "hash": "37b71e0891942066da8c221145f63bb52ca8e79387e41757383e0e278cf6265a",
+   "result": {
+    "error": "'strand' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-four": {
+   "hash": "3033cf6d25a6382494c8b626615a272bcdfc91ae8e35fc64d8ac578076e5b6a8",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (4) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-mixed": {
+   "hash": "41f12840dee16d7218bebe4c686242a6106427d1a331ba3b30bd44a46ea5ff38",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-na": {
+   "hash": "81188fcc0c323678b9714f2c291519ef74ed275d57b5687c4dfbfc65fd013422",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "ctor-gr-seq-two-strand-num": {
+   "hash": "eeba9f7d96fb82b8dcd85e626df6ca5eef0033699f0b7bcbe91d692249d4fa31",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-plus": {
+   "hash": "cc7f43010bb50cdb7272a052fc36bc5154115d69657669b338ef98aa7d686060",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seq-two-strand-two": {
+   "hash": "dbbd63ab8ae46760ef2338964d7b7da979b510ba27dbdbcf2896646c52c75706",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-blank": {
+   "hash": "1bad5c3a6b5bf455b245eb7409137d204ae13339576d2690ba80066133489e76",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-circ": {
+   "hash": "7fbbf83d3e30dacee726b543ddbd95f484aacf000fb6f37f4ce9f0e94c528d15",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       200
+      ],
+      "is_circular": [
+       true,
+       false
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-circshort": {
+   "hash": "d73adc6d1b359ec5397b9ce58e7368e37429cad61a382b42ac68fc211f4f1e72",
+   "result": {
+    "error": "the length of the supplied 'isCircular' vector must be equal to the number of\n  sequences",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-dbll": {
+   "hash": "05561e80f0c40f1ddffb4b072678420da3ee9e788db9223f9ddb6e86bc3034da",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       10,
+       20
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-dup": {
+   "hash": "c49b26a2865c21742a85cac5270ac86cd354b22f203cac297aa2c741637418a3",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain duplicated sequence names",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-empty": {
+   "hash": "e3988dcf1e421d29b8a6ddbba915597accf29ca4eb34ff66c530f7e5d6cd2617",
+   "result": {
+    "error": "'seqnames' contains sequence names with no entries in 'seqinfo'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-extra": {
+   "hash": "0a7d2905e0da633b1cc11e9f2dfce4cc4f7d8e6ef3e7ff23679e1b303e015cd0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chrX"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       50
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-genome1": {
+   "hash": "3188e08023556e2ef4e94b042e823c1cb767a45e1039d7f2def1aac776021f06",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       "h",
+       "h"
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-genome2": {
+   "hash": "6c2c0342affa2f26adba4d50481a277e2e5c894b12bb2f1cc3cbc29344b07ed5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       "h",
+       "g"
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-genome3": {
+   "hash": "bf92c5fae471be3354d3a65b8e57a8665a6d2b7c107fe394799835a9b7de89a1",
+   "result": {
+    "error": "when the length of the supplied 'genome' vector is not 1, then it must be\n  equal to the number of sequences",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-negl": {
+   "hash": "edf7198c9260f58409750c3a47d054c4940185da4cdfea6c850f3ae8b3d5484e",
+   "result": {
+    "error": "the supplied 'seqlengths' vector contains negative values",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-ok": {
+   "hash": "317ec057873ed3d5294786c9416a3d46056500faf5ad9c8792b29b700160a96f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       200
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-onlyone": {
+   "hash": "5a1ca836f98e73dcaeabf6080d9ec24356f6e7a52efc427ace8a0a42e4f527f3",
+   "result": {
+    "error": "'seqnames' contains sequence names with no entries in 'seqinfo'",
+    "warnings": []
+   }
+  },
+  "ctor-gr-seqinfo-shortl": {
+   "hash": "8b768e5077c5df038139ea4afc2eceebcd6927651220b4e39f32794a72f17472",
+   "result": {
+    "error": "the length of the supplied 'seqlengths' vector must be equal to the number of\n  sequences",
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-dbl": {
+   "hash": "84ecc951a19374355e0acdee523a50a29921e2f67557a23223a4e3f3f8fa58ba",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-dblwhole": {
+   "hash": "ed2c1a406b7c023e016664426af1b726b5d642a718a78802bc14e9b5e2395b7a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-empty": {
+   "hash": "ab923b5ae1203362f2057ebda4dd3b3e15488acb7fba6f268617303835410dc8",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (1) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-int1": {
+   "hash": "118b386ad2d1f680964f08099507a8b885c9266adcaec0441a67d3c05dccdfb2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      4,
+      4,
+      4
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-int2": {
+   "hash": "5b260d32f936f80baefd88cf56813aaa906a14e790fc983b48cd2f4fe681dfa5",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-gr-start-int3": {
+   "hash": "2d0acc76db9416551bbcb4d0ddc8380029f9879a76b4188983e304f991573e06",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-int4": {
+   "hash": "8c37200207b942d0787100ab0f8e8b656bd8ee31f0b8e8029d4b8cdd1a2e410a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-gr-start-lgl": {
+   "hash": "24fac6bbb32d3a7f3b9d87dc1560a3f89530de1aa927b24b7912b6431001ac6f",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-na": {
+   "hash": "33f80fe54ba63c82b984032a3f505fa60962630ae376eb42df82e20b9671bb8a",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-neg": {
+   "hash": "fde5d88961454dcc86467624665561ec4a6cc0f6a9d8f886334b14b7ca5e95b2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-negw": {
+   "hash": "650ab4de4a4c5155c746e8cfc8b5d5f21ed01bf39b69d5e2de813486e70de17a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-str": {
+   "hash": "2afb565f5d58e28f3117e1dfbf1a10ceeba83450d19c90dadd79f161a23bc94f",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-gr-start-width0": {
+   "hash": "d5da85f4af203c617907f64744f807bc05e511a4216bd107e4c830de91fc7180",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-dbl": {
+   "hash": "fd039dbb2fc4f66bcd56ca33ffeb10bce78a084ecc1d6590b945ed6cbdb4a71d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-dblwhole": {
+   "hash": "6468d205c8907598778aad53fdd571348a20f80dfcffa0ca20524f90b5a15780",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-empty": {
+   "hash": "4f6e3a1c4a69659f0e5250b6c1ab7e7d9ccdc7d2f9c6aa62e04d1a4a5f1b46dc",
+   "result": {
+    "error": "'ranges' must have the length of the object to construct (3) or length 1",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-int1": {
+   "hash": "321bcd04c2ee27e3ef08eb9fdf69d6f9f6ee6943d9302955d364beb388908d4d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-int2": {
+   "hash": "cb7a418c92b0dffbae3bb2bd05f235d714f2896565cffeb97b6c12933bebab6f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-gr-width-int3": {
+   "hash": "d3d686871936c6b44acc7d946679ab3d0c1e0f4e7a5a967c958c4bd24a9f6c07",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-int4": {
+   "hash": "419591b317a0aad08ded378a638c78dc957c2e5b4abebb3ef5c0197ff7eb3340",
+   "result": {
+    "error": "'seqnames' must have the length of the object to construct (4) or length 1",
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-gr-width-lgl": {
+   "hash": "71610d32acd209d7edeba8d77b74afd42b1ef815b6a4b88d7181e1d90405eb20",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-na": {
+   "hash": "db5bbf6f5837972a9209b18c3cdba0549cc852ffe8e0dad6484269c2b370eb77",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-neg": {
+   "hash": "72aa2227c16035a6c4acf31972923f4984222b755cb8f3a800dfe70c6c8d968c",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-negw": {
+   "hash": "a5bf4d0842ad0f67083beb918bcf310d492a894693b678f4ba50db62012ee0ff",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-str": {
+   "hash": "1a49c4a956d29a3ab0e1d4d956bd90a6a287e971e31ad9da7b301630e3c7bc55",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-gr-width-width0": {
+   "hash": "a1b470acaf0d4a1f2351ec1f104dcc0a327ff754a4d75ba2ed8bf9890a81a41f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-dbl-width-int3": {
+   "hash": "394a4885d801c78f46151aa9579e9ce4b93ed5f0314253e44d50988dcf872b0a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      -2,
+      -5
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-empty-width-int3": {
+   "hash": "76b6cbe48bd6144f7467aa4ba58416b5fdbbb453c71294d09e4e396485c374e7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-int1-width-int3": {
+   "hash": "524085cd82a65e35b1ed43a5ab4f303d2a89e1bbbb95fbc1bfa501a4c61f4c4b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      0,
+      -4
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-int3-width-int1": {
+   "hash": "e23a13952983f17d5ba6a903c417d96ba49470a3882998fb6aa5f01dc0b38639",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      2,
+      6
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-int3-width-int3": {
+   "hash": "c16b73b699f1cc14cbf32482e5f697a0e8dddb9ff7ac7f147f6d53e14bf67682",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      1,
+      1
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-int3-width-neg": {
+   "hash": "5899063d0a43f9f5f00033c7cdf96ebe1fce0d31e33ef7867ee0e40f2d821f60",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-int3-width-width0": {
+   "hash": "0a693fa5cfac22e718e13c36ccedc336b9f0d4548713232f31d64d032d7876cb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      6,
+      10
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-na-width-int3": {
+   "hash": "ebf3473165e4704a58649b56e49fbee2bb460a0d91e44f33fb73dc627fb91b70",
+   "result": {
+    "error": "'end' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-neg-width-int3": {
+   "hash": "be1e40b1965ac46f6edb197573a4dfff520e5bc93d36c76f06bb800b7ca70db3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -5,
+      -8
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-end-str-width-int3": {
+   "hash": "b326bc1eff072cdbcfeba5067f43a4ecf48daa494d3623e7abb4020aa0ac6a1f",
+   "result": {
+    "error": "'end' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-dbl": {
+   "hash": "04757a6a8b25e439664392c9bdd26b32b6d74f969417aa683c7a9cd888720a96",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "1.5",
+      "2.5",
+      "3.5"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-dblwhole": {
+   "hash": "b0a1949a3c127b55d1ad96efbc0a473c3fe93f1529490b6fa436d9fad46841e7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "2",
+      "3",
+      "4"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-empty": {
+   "hash": "57e9d36202a8be43c5ec2ecc6e1d40d2a7551744c3741f62f9801d9bdfe5485b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      null,
+      null,
+      null
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-int1": {
+   "hash": "d23393800c716ee27e9acda1a407b08540aa6cec8253991724a4f0506c83a2c3",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "4",
+      null,
+      null
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-int2": {
+   "hash": "95c2b90dc0bbf8cb23f36bb47cf6c994e4eedef71a955be1678e0af4781dce43",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "1",
+      "2",
+      null
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-int3": {
+   "hash": "ce30e6f3c65426b14e773fa4a180888df2e648272d636690d17f5e3e6fadbec1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "1",
+      "5",
+      "9"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-int4": {
+   "hash": "d7df9aaadea5f2406507c874dcfa4770b1f44afcc69e788fb36deaf9295138ce",
+   "result": {
+    "error": "attempt to set too many names (4) on IRanges object of length 3",
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-lgl": {
+   "hash": "db03b27fc8fa92b4ffda15e1008f67d58122e6420487927594c5e0e0b41cf9fc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "TRUE",
+      "FALSE",
+      "TRUE"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-na": {
+   "hash": "8456296caaf3ba1d4666279c1cc9d931e534d36202be9cb14c85b2ac676e8646",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "1",
+      null,
+      "3"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-neg": {
+   "hash": "daa6fe5c8912c089b478d959c5e5b3da7fb16ce955ef3cfc6a9291db045313a5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "-2",
+      "-1",
+      "0"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-negw": {
+   "hash": "e2ae25e2acf0e3c691f6b547b37fecc5bc2dd4d2b59fcce8839f8252e9dbb1a1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "-1",
+      "2",
+      "3"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-str": {
+   "hash": "6ab199780e03ab5a0c83d42a42d472f83778ff5d82dc8c5b84e96ce8bc7fe5b7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-names-width0": {
+   "hash": "88e8ddcc02887b9dce2aadf5e2e9e258a250959b4a4f3047a900a20c2a8fc3af",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "0",
+      "0",
+      "0"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-end-int3": {
+   "hash": "70e0e09b8a4985e6fa2ab17993bdcf25b3259662021db1d38db98b7eecec743e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      4,
+      7
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-dbl": {
+   "hash": "8be3852e3fccafd4e6e0d0ec6a559730be0d687efc827151c41834246ad6e923",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-dblwhole": {
+   "hash": "74926231d070bf64f1acf81c55862560f06053a779a7e6f78355533ef6da0c92",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-empty": {
+   "hash": "25965be7ec7336988b6317417791e6fb40a14a8c4adfeef42ee2f4891047d846",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-int1": {
+   "hash": "f1f986c9cadf344b9ec9e77ff8c15fd626fa2702370704c41dffe6bbb7e83d92",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-int2": {
+   "hash": "bf0842337394ef798d4a670b05d20879730a36b5841b8d3711ad0fccc5ca6f28",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-dbl-width-int3": {
+   "hash": "733c6c507d906c181f52e05f6eee1c4fe6ab33caf47848592fd3e311f433450d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-int4": {
+   "hash": "faac381cd1640e43a2e728ece98223352a8c50895912a3b37abb4f48f4f050fc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      1
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-dbl-width-lgl": {
+   "hash": "9a7ce43e30334d5117bec48ce816a3dffeb55d23734a3aa60434ce67c43bfcc6",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-na": {
+   "hash": "fc812567b3e27511f03562b6c80b02776806adc028150d2f687a9dae96abc0e1",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-neg": {
+   "hash": "b99752fbef3340281499ecfaa848a2a8ce69be2050c3ce11f34d6ae984e7942c",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-negw": {
+   "hash": "3f35322142d7b025820ac798577262f4fca533489f2e82ba67a186fc0546a7a4",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-str": {
+   "hash": "eebf7bf0e8a77b8f50f7faed006e739a700bc999e6b73e64719c2e4ce609acdf",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dbl-width-width0": {
+   "hash": "9644d4e1ef78bfaffaf3bd62f055ceb65bb453713a2b4029a60116e30ede455e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-dbl": {
+   "hash": "83c1c7e4716d0647c96d47c54ba0a1353e67dd4ffcc003c6c6468e0e82c3bffe",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-dblwhole": {
+   "hash": "a30bad0fcbea04d4aa0e19027a717d16b514bf06e54328d47a643fceedf57621",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-empty": {
+   "hash": "b03d1d7243ef4f221bc3115861686d6ad036e65a51fbdc1069f8972eb205741e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-int1": {
+   "hash": "012d2c0b8968453e6b760ad797aa840a8aebedb9dc24594f549540803b0beb6b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-int2": {
+   "hash": "5b5555fef75180687b724c35e4e39c3752bf723dd46e4788abfa18a62b3719ea",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-dblwhole-width-int3": {
+   "hash": "503ea98b1462cdb21129ad39c8925403839ff5517378e32f478fbd4c5661797d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-int4": {
+   "hash": "29c903b53b14cd00fd07293ab6e10a53ca43aef7eedd7fca0dadbda9f3d2804e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4,
+      2
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-dblwhole-width-lgl": {
+   "hash": "dfcba0537bf5c397a8b53acf5270dba1eeb31558427476e936f53f70ab9f9e1e",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-na": {
+   "hash": "3ca75123d9f74d9d77c949cfc3841bc50913e138ff71b990cda9d40f2041bc5f",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-neg": {
+   "hash": "609a958487a934536f15ad2d0487d234995ae07047c85046ecaabc614efbdd5d",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-negw": {
+   "hash": "15d75ba725fee28f0dca92bfcbcfd907ff05ba709ff93c700baf8662e2bb69d0",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-str": {
+   "hash": "0fdbccae9f97aa41741be988f7a59384b10fa1eccaa7227e8e1a0b05d1d9d9b7",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-dblwhole-width-width0": {
+   "hash": "bb70f1e7cb2f3d146e570df65f3e09b4116f3fa10512002a1b3b2a6faef890d5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      3,
+      4
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-end-int3": {
+   "hash": "c77892e5742baea8543e8bc5d83ded7049be6c3496bda83d5dba6eaf755c3a3c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-dbl": {
+   "hash": "d5786dab0edd38e50ce44a090ec7ac83cf41e1e8db127bf56fc6d23c385a86d2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-dblwhole": {
+   "hash": "696afb0520f38f214d42ec6c7b5ba3a9fbcb73d05e010717ac8799b49395d5a7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-empty": {
+   "hash": "2946c736ba41f07b16098645e68ed6860f65083e005492a06102a205b9cf3dae",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-int1": {
+   "hash": "b19f47010bda178ae4f20de032934e52df4ef1b057753d6c82f4b8116663863e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-int2": {
+   "hash": "cfa438ba376375b39814241381d7d337bda7a2d670df5064888e37b0c4bda332",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-int3": {
+   "hash": "7ad9927cb6799c9aaa5951b2edd057893877f0c808d6fa0a94aa1d901e43206a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-int4": {
+   "hash": "53f4a4e2c8fb2e24d34d3c82e7c219058256fb954889fd2b00197f5fddcf8e36",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-lgl": {
+   "hash": "5ce0cfae2fe708d9b26b7390dd06ac9a216fe5a0272b1110a628b6cd24fa78b9",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-na": {
+   "hash": "2ec1f44127968ba91110ac63d2d7cf775e08305fdd77c0a773dd056b1c50724a",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-neg": {
+   "hash": "4c5e2ebba0ce6b70446df6896c4918f2d3641ce57e21b97c5d250b285af718b1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-negw": {
+   "hash": "71e29d7daeae64778de108141b50b3ec681e014d64a799aead70c4f6b5f3e81c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-str": {
+   "hash": "633f2f74ed9a37fc09bb639862519a273149c10a4bd75919f7177d8ae5d71a15",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-empty-width-width0": {
+   "hash": "affff4e44c277e4dd8d140807d0c46ad63e25af7915dde1f2686a0c49db638fd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-end-int3": {
+   "hash": "ff01876df161972c7b2b3e9e1582fd2ab3115fa731e68b5d9074f20a6d6e56d7",
+   "result": {
+    "error": "each range must have an end that is greater or equal to its start minus one",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-dbl": {
+   "hash": "907f1f439e893a78b764f68a3c0eac27437daf5348a2c58a094b7487dcbb7567",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-dblwhole": {
+   "hash": "901d322d5372cdd734f90c8465b871a383cd34d4674ae5b0c5a513e4a1412a3a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4,
+      4
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-empty": {
+   "hash": "2ddb347f8fcfdeee5d87b2268a6bd2ba1aaf49a29ef1ed4d0451de639ca04865",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-int1": {
+   "hash": "022b72bc19af3b92344d249f1c0f59f36d694ab71f4cde8f628709425142899d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-int2": {
+   "hash": "529dd17a3f40a41553b08747d96faf8f64e9b1a57d330bac38399444ab9831b9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-int3": {
+   "hash": "dcf512f422c710e5381a4009961725daabd78f2e7678adc8a2e15ddc5c6437c7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4,
+      4
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-int4": {
+   "hash": "a7b8226b50ff49c57bf1170bfdddcd32da8e3ba1bd3b80ce8580543fd4eb82c5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4,
+      4,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-lgl": {
+   "hash": "5ef55b4daa02bcef85d61f6472435a2d58fb88a2d8af923a3180b5d72a91186d",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-na": {
+   "hash": "427ceb85ce4c693641dc8eb12de12b0a1a1aef582dd53af53b8578782ce201f9",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-neg": {
+   "hash": "a7934d31597a10b4d00eaccae92ccb0030d654b9b735e76215a8634c18a16512",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-negw": {
+   "hash": "69983924c8441e3e188edcac0e6d80dc8c44002a60fa4f79d9524c9241d3546b",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-str": {
+   "hash": "eaaec29f493b649c371ae6dab20cd9013893fab44d8540ba3baef09a3f9e4829",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int1-width-width0": {
+   "hash": "8d48969fb23859cccdcde5b263909243420c3b27fa020a498e113967c472b943",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4,
+      4,
+      4
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-dbl": {
+   "hash": "a3c49dca7ed70e0944722cb1e423cc5e046aa4ca6a19f056c6e6b4ba323ba8d9",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int2-width-dblwhole": {
+   "hash": "37e52f7cfe04f700e6440341e43769a4c2dfc05933a9ea5c29bfe222fab748ef",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int2-width-empty": {
+   "hash": "5f1b6efdd84778b424b86e3f129281053220600035cff6742b57c5a3cf8cf9d6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-int1": {
+   "hash": "6b48e1f76eddb4b6a43cb9cc8cb2f8ecb6bf9d463a33b330a952d78fca5c4f30",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-int2": {
+   "hash": "dd40ad8a376caf0d1b8852cd1f0eb5dde95d70896f10a2c9b638f49873b20591",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-int3": {
+   "hash": "29404df6deb8e1956f530048626b942640eca3bfb482a402e231b4a61ea3e571",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int2-width-int4": {
+   "hash": "68737996a3f97e2b4d9d5bd242fedd85e6a1aa35e78c5a071ec4d694e87a8b89",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1,
+      2
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-lgl": {
+   "hash": "1aa65b38c43e86ce0fd7b1f1b2e0088a2b3e39440adbc08e2918c625bb7e7b09",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-na": {
+   "hash": "844699abd495e4f0422d5d510e6b6033fc4712f9a944e0f5f04c540edef89022",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-neg": {
+   "hash": "e85e097ccbc6a1988f48ca6557ecad7c9c8eb5247e315e96bebffa8513b159b7",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-negw": {
+   "hash": "193cc6ad7dad27eb030473564fdf80d1cb398c74926cba14a867e30b3996224e",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-str": {
+   "hash": "65878495f4f42625e85c0b445bfe1f8622c19b6e05d0cc172796ccae7b4d56f3",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int2-width-width0": {
+   "hash": "3abc110b8a6c56de3e9f1b8d1cbd1866c4f37c25af1c764d647a77761add3ffb",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      1
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int3-end-int1": {
+   "hash": "51925b6e0edd6ca1de5bfb68ac6553ac05ed92d12630e6bb95f0b197cfb0c371",
+   "result": {
+    "error": "each range must have an end that is greater or equal to its start minus one",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-end-int3": {
+   "hash": "e446c7dcb36a85dbb5feccf676e385923c0c50a476e1aa82bbcb34eba7d465f2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-end-neg": {
+   "hash": "813345d355896b50c54c2b30b760becc3c57909246382313c9ca08c250efecab",
+   "result": {
+    "error": "each range must have an end that is greater or equal to its start minus one",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-end-width0": {
+   "hash": "4a009b09aface60d399b554264716c1b1b457e66f097bea93f0fb9e77a5ed5e9",
+   "result": {
+    "error": "each range must have an end that is greater or equal to its start minus one",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-dbl": {
+   "hash": "436a34a8da9af58fc913bdd2167d4ff07ac90b443b4c6aa5fd8dc99558c042c1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-dblwhole": {
+   "hash": "d9702a16905aa640c0c9bd7b2de549d953a6e89397ae25531a5133b57f8462b1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-empty": {
+   "hash": "247314e3dab0ecfb2067789c12f220c621bd8ebff9df6c03badec8be10570b46",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-int1": {
+   "hash": "18a8e5d5298d7dcca0321b6599a09812ce9177851accb7c2eb22a4e4643f7c5d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-int2": {
+   "hash": "267e243d9d07bc83ea94e4f25c43e4d9d794cafb48bf156d862884fb390bcdba",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int3-width-int3": {
+   "hash": "77061a8fd1650339fe9fc3fbc90400db78e6b4d431664bbfc6dbd6a421fb322f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-int4": {
+   "hash": "aab74c080e092bf6a2a12651ad50844a653978ad501803fa55077ae6343c5ec1",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9,
+      1
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int3-width-lgl": {
+   "hash": "dd65f53fe593235a06d8360b4ca434f1148ca2225c224360528d1704573d3d9c",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-na": {
+   "hash": "40c83b4505c59387a98d598e79714a3c8bcb42e88155f3b25a2981ab4fc45011",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-neg": {
+   "hash": "804cbb8b3faf8607f9f46abd7172b43a4a59fba41196fe7eb588ba82f79428fc",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-negw": {
+   "hash": "832b72aa6783d173bba686cdf6d262f2cc973c8592f8151210a662999ed0cfd5",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-str": {
+   "hash": "525aebed83e40b5f0b2c8923a20fed0401653d72e50dd9eaf6811990fa889ed8",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int3-width-width0": {
+   "hash": "db5dbb38590a9ee7496140361543ddf0ac96dc35c22013800285b0e1e4853604",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-dbl": {
+   "hash": "051c429c5d064fb8795d426928f63af578e0dc1978780f9e4ebd56fd48e2cdfc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int4-width-dblwhole": {
+   "hash": "28f63b494a5e0e5f9d5e7804fe57ec52995df5025d6d3af18aa6ad9a9d913b5e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      2,
+      3,
+      4,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int4-width-empty": {
+   "hash": "b45934862ffcbeaa8f055ee9c30f523edd1d74c7e04470a5ef471f79b307ded8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-int1": {
+   "hash": "6bc5307728e3958d5c471d4253733d4cf5426ddf4c1217280dce31b2d84b902d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      4,
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-int2": {
+   "hash": "a70aec1c7227e74d1aff58df76ada44d728d307a0250dddabdb9b1d57008b445",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-int3": {
+   "hash": "efab76d9d6d8898e086c19382855354a6108e2509e214d4e72d0900e3bc4f7dc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      5,
+      9,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-int4-width-int4": {
+   "hash": "6c5ecd3dbc903f652e5bacf6c7a30b90bcb336e37126e51f8c1d03881fbb3e57",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-lgl": {
+   "hash": "0e9bb97910a704bac4067eee0ae5271c51215b5d9020603436c9858568ada5f2",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-na": {
+   "hash": "9a1d8e7fdf4b9ddceaead486e51d43f2c7e72a954f8662e21b852a988919b4a9",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-neg": {
+   "hash": "8a02410136f698be1562e56baf9d14a5271313c1de38b53680a9be1c52f17389",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-negw": {
+   "hash": "47b1ed461329c7e90e896bdccc451f484b276704407ebfe1a0fc06a15983586b",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-str": {
+   "hash": "0bdd873a3247f89fb340bdae977cf4452cd9d436311d7a43fc5cde02b5473bba",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-int4-width-width0": {
+   "hash": "85f7ad86d2a22bbf9e696ae6c7a887cd2908cd5d6055e46e2434a753c349d275",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "width": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-lgl-width-dbl": {
+   "hash": "cc52f476bfb5ab9352b9198206569829ccc5d614418fccb3d2f6fc7caea7d464",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-dblwhole": {
+   "hash": "dcd0b699f62f1865a114d9b04c5601ca3f0bf1946695ccee1446f543691afeaa",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-empty": {
+   "hash": "3db3761ce4db5bcf7fca63b871c5309f8365edd798234893d2bbdf71cad69b93",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-int1": {
+   "hash": "94ea1ec19a494bd763844ae9d5c848007545f41d7aed3b3240af99667e3b6e17",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-int2": {
+   "hash": "964bc3341616856bf1fa2e9ce44028a5050a059de279d9a7b241b5ead68a9863",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-int3": {
+   "hash": "61a903231d6cf2e23a6602411d2eb4901028d66a659f121e630254b895d88a7a",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-int4": {
+   "hash": "1cd139ef7968e31243bca71ade4dd9d12ef13ca816775b162fbab6b6f9c69c4a",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-lgl": {
+   "hash": "9fe9d7dcccc18ad1ef414a499b0084ba8e7d2f99ed0b24acdd4473c78eef451b",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-na": {
+   "hash": "9bd6d370d026f6294347594c031d75772d6b6d13c46f894d676db91bdd6f90b4",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-neg": {
+   "hash": "07540da861c6fe8730887fb8748757495bc56c88357c87e62d2be2d8f8114eca",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-negw": {
+   "hash": "838c25dcc45f1fbfdf5368fbe2ea865708f818da01388cbc183b9011641299d8",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-str": {
+   "hash": "64a1706e18356c43c6171a46d1201169fa99dc243f5afe54c338b91c3edb8486",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-lgl-width-width0": {
+   "hash": "39ca624b91c8e04070dde5fb58a05451d5ba9ec118be3b5f7f3e9ce47f8ee4b9",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-end-int3": {
+   "hash": "b87ec4c6b975abca64d2ccbe499df01d9bcac3e2206fa9579987b660316c67c5",
+   "result": {
+    "error": "'start' or 'end' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-dbl": {
+   "hash": "7d12cb9fc1e5cc4962f93ac2b693fdd38128dd5a103185b686c7f8246f353359",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-dblwhole": {
+   "hash": "252136d9694afbd64a63108fd4c9cf9c642eb8ea6f54464f6aa0a20bf43f1879",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-empty": {
+   "hash": "62af399da57607d38c0a6935e47a9df916af89723b5ecd7bb3336faf44b689fc",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-int1": {
+   "hash": "8b6cdc509bef7a97f4051e51033db78ad1c180a9fdbccac282fa3fd9c75364ab",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-int2": {
+   "hash": "12ad866f01039a7b2ab114d134fd1bd15adbca26cf81c99bc00e40bfa7f1b6ad",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-int3": {
+   "hash": "eb1d3d8400392a32cdbb7b4de039e269473105e4463b093e66b43e2ac05c16bc",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-int4": {
+   "hash": "68c0e69ee5f1659317c7a9466ffa6e6c2ee8ae0491e967f44995396c7f029e0c",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-lgl": {
+   "hash": "e96f9bf1a1a296277557a00079681583354191ef37872f6fe9c462073a154273",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-na": {
+   "hash": "2d8cd5e1c8d9cd7adfbe9983fd1c1e3a44956a6a22af62436c941974b7277942",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-neg": {
+   "hash": "f35e47c5e0f1a72e019fa9cc22d46dd9b33af7f6c3101936002a9d74652509bc",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-negw": {
+   "hash": "6cb72b93c5bf3c1bc34c13e6ccb90ee6e1ee6e88ab21e22eb22aa25193054d67",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-str": {
+   "hash": "26b5d9a34bc999ed330e20e70ccf260b85ab926a1b5485d7be6b304dc7ca220f",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-na-width-width0": {
+   "hash": "716660ab50e39c7b88e95577774ac65f40cfab95723b7ef01654cf6f1091b87b",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-end-int3": {
+   "hash": "824e07a9bd528a4ac09e161c347d244d7b5fde6a3e15d3a3301c5984fe1709cf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      4,
+      7,
+      10
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-dbl": {
+   "hash": "3927c937b2de6d09c52624b48df04e2e84683ec74b48ab068d6e72f940a8de5c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-dblwhole": {
+   "hash": "5e41a1e5099722dc49ea3791ec4ed80e20b565272ecf2a8ac07274eccee6ca62",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-empty": {
+   "hash": "ca9333834c062c9c983c91321f120c854fc37b36d32f03cf9ae2d696e9fefe74",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-int1": {
+   "hash": "1eb70c2dc5cf9d68222a2706c366211549e382a75c5f090a0e689e6e68293030",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-int2": {
+   "hash": "0676c3ef85535c073cdb1de06e9ad69246e7cfef3e1c5504584f4e8e3e951d04",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-neg-width-int3": {
+   "hash": "d617ff4b397b930d96ac135d39ad1afcc9b8d6e2974cd0322a0a7420b82d780b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-int4": {
+   "hash": "e8b1dfe5b8b6aedfb3125f2628fd26c27a739b486b3e3155ab52f06568501df2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0,
+      -2
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-neg-width-lgl": {
+   "hash": "1dfbee6edcd9d539c0bdec7dd2060d47e47fed8d17678768103cc70c8ce371fd",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-na": {
+   "hash": "d91f7ad608274a2ec2008e75d7cb4b0f99f2cd02fa0787ad907e7524ab0a6203",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-neg": {
+   "hash": "65b4d16156760e4a078e614fd81211180ab5fcc55039d31fae978df7b78f0f57",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-negw": {
+   "hash": "942916c019f05d189cda5fe47eca77cee0228742b426e8bf92a173c6d65564d2",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-str": {
+   "hash": "9315ba1ee4fedc6de0ec6ec20684dd6a959a17ce83a287d6ac8115e250bae8e5",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-neg-width-width0": {
+   "hash": "c066e7b10285d37090a9e6e85074fd4d330db922a47705aebb19689a5c769619",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2,
+      -1,
+      0
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-dbl": {
+   "hash": "b474e2618e0ddcaa3e63b309ae7130d52690e379c422784ae1a88bb02f596469",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-dblwhole": {
+   "hash": "325a902a6b4b761c5d1a41986afc3e75791556dff0f937332750719046cf5a0d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-empty": {
+   "hash": "987d80c64dab2fbccd4c44e4ae1024417261f34973b168489940b3d9fafdd834",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-int1": {
+   "hash": "ca496e854c0c8cb31b8b929aaf5d7451874c5d7b0e57d9210b50cee30919b562",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-int2": {
+   "hash": "76c953a14160a8a1448ff28cd197175d556aeec22f7ecc2cb8297c964f86554f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-negw-width-int3": {
+   "hash": "ed13c29535a2c42586200a42fe0f18e73a96d6e1713b3efa7caec18c6c4bf7ed",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-int4": {
+   "hash": "cb0028f5276a3376092ce8a0936a96ef7405dee1fd3d3bd8b099ef39f9be585d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3,
+      -1
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-negw-width-lgl": {
+   "hash": "3a64abe842ce1326a759eac7c116f727de9ced651783bc34cf04db4143bd5a23",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-na": {
+   "hash": "9181cfd0f880ae1ccf7e6db6ba44457165d4fcc9ba802d145502ca59fa633b01",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-neg": {
+   "hash": "dff5d6d3976cdec1bf64c0f28ae254f479557d862e3175dfd9a2ddf1eb998769",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-negw": {
+   "hash": "e67f96c322320cdd4e0a02a9ecf654c313f44cfee86fc73a3f1056de6a84c4cb",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-str": {
+   "hash": "cf08ac1817bd7402599c6257f89062db4059522241154084498dafd50e6b8a50",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-negw-width-width0": {
+   "hash": "119428e293dcd833c3d4a543c78e94980eb5786c9f05e4ad6986bb1118e0e784",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2,
+      3
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-dbl": {
+   "hash": "c9ab2037d7126009ec4ed295d934ea74d827360632e2d0441071f1514e69380a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-dblwhole": {
+   "hash": "c34aed5666bf357cd75cf3d16a4fe97a4b134db9f16376bc8dd7aa895aa600d0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-empty": {
+   "hash": "7707b042fb00c0c0b07f99c500e8dc36db4cb6f10e29818d7b4819b0c6716878",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-int1": {
+   "hash": "143e6b1b115ecdb70010a7880554d19d8a771f2c528d6d77a54a57dd411c3441",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-int2": {
+   "hash": "a352d8f6b180a0931a4dd66106f1c2e08d9754c979976eccb33b2f319b0df594",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-int3": {
+   "hash": "c8cca113741efd57d1b4c9df1f35a499eaedc461ee35d4ab49f66cfd63f1bd1f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-int4": {
+   "hash": "fa2760d526cdd8aa5db25651d72313c892776e271a155b3aea4e17fcc118a9a5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-lgl": {
+   "hash": "d7a25f08f78acd1de114dc6d7826b69906ac8df09b20f84488584fa7be906e97",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3
+     ],
+     "width": [
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-na": {
+   "hash": "db5d76d39fcf3dabfa1e43ec339f6de0bcaf331b5695d79d21e16a7bea7c1e4a",
+   "result": {
+    "error": "cannot create an IRanges object from an integer vector with missing values",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-neg": {
+   "hash": "a561334c671e204de8086a92d81bf3767d01d10406cc7558ad116720bb937041",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -2
+     ],
+     "width": [
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-negw": {
+   "hash": "4e055da4cd2e73b64e2988f46fe7aa60299dde491c571f439bd9a00f53087a70",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      2
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-str": {
+   "hash": "07a348aa29ad7235b0613a423a88a0fe0f8c472387a3c2aad7b891d78b9c2012",
+   "result": {
+    "error": "The character vector to convert to an IRanges object must contain strings of\n  the form \"start-end\" or \"start..end\", with end >= start - 1, or just \"pos\".\n  For example: \"2501-2900\", \"2501..2900\", or \"740\".",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-only-width0": {
+   "hash": "ee92d79684a682a8d234b21600a35d389a992205f696a238143f111b775445d6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-end-int3": {
+   "hash": "f8375a79e983eeb687406a0cd00c85665fa6a64225a1d5ecd817623b2ca15c70",
+   "result": {
+    "error": "'start' and 'end' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-dbl": {
+   "hash": "ed785580469be72e4f06bfb269e876f48dbbe243aa0d1ac1dc2e192665d2c2a5",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-dblwhole": {
+   "hash": "37fb524f5a35beb0f5c00949e169e48519218ad713753a8d80ccd20577bace9d",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-empty": {
+   "hash": "2fa1077cebe8f2ec0c1109ad3185e37f04fea1308305da26cb25075bd63722a1",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-int1": {
+   "hash": "eed6ec8c45e9076206c04743c6a6682b7a21908897afe847f1288e032218da1d",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-int2": {
+   "hash": "4b6298ebf74b74bef4d221ee760f031d20e282d26bac79a93383ed8c3540b2e1",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-int3": {
+   "hash": "c09061ea8a6cc2e4586174da80339a43c7ad4a2fdbbaa9bceebfeda0b2aae537",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-int4": {
+   "hash": "bf8d736ac28bd63cf2e61f401d873ace2f540aa92becf42ec0a334396b3797e1",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-lgl": {
+   "hash": "3f72851564768b518d8575d3d30b64ddbcb78e76b9bf6fa7fc880110697acd78",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-na": {
+   "hash": "dcc780cf725e54132007fe2faf889b2d286f0f082863876c91a69ef53ad6b2de",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-neg": {
+   "hash": "024177c0a514663f6f81455b77882543e65f56600f8f9a11557201c71ba931df",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-negw": {
+   "hash": "1dcc1a5dd72f75f08ecb29c8dd8aa4db5d50d1d6a5c825c05e6bea66abdc6e94",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-str": {
+   "hash": "8caebc52a031511db2c7d66cf5816a3d40303e226050c01501e2800ef5fecaab",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-str-width-width0": {
+   "hash": "eec372876456dcb32bf8fbcb0e684ce53220e09eee381e54ae617602b337ecc1",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-dbl": {
+   "hash": "b089e5b28e2656faa22b212415f189933c840b3b5bc776f5047620f06a75b109",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      2,
+      3
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-dblwhole": {
+   "hash": "47457a51f3438d318c7baba6b0b51a4b89a6a8c2fab6a270ba5d5fe9dc2aee9f",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-empty": {
+   "hash": "f153af33e13b8f32bd11f1140872f0fa1350d22a37d44be655e967363b7fd011",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-int1": {
+   "hash": "24e12ac1618cc3b3fcc9342766431aa9514e1fb9bd291c8c54de6668cd0b6b58",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-int2": {
+   "hash": "a8ae02b285fe20e13c7ce6323fb99555e27e8789b602a2ecc930804680d81c5d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-width0-width-int3": {
+   "hash": "89f0502eb89df0063f578020828121595948ab6d731986d27b874a7bea94df18",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      5,
+      9
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-int4": {
+   "hash": "c264c26de9ae2bb014d8155004cc182ce568643bb723ba846169fe3559614a9c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "width": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": [
+     "longer object length is not a multiple of shorter object length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-start-width0-width-lgl": {
+   "hash": "e4951fa27ae1002f1bdb41e7c2d74e7ef53bc4108ddb7cc218968ab9e09f92e5",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-na": {
+   "hash": "70a8001c3d4542396805bc1bc427ff47d36c78f652c588fc5c907327484e81cf",
+   "result": {
+    "error": "'start' or 'width' cannot contain NAs",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-neg": {
+   "hash": "81f856013c6b7e80ca8833923243ed0237e158b3ea81e2f521f1895af2f73dd9",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-negw": {
+   "hash": "98fae3a9e7db39c76c2db395973d93a296160eda393297cfd2acbc04ee749674",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-str": {
+   "hash": "40c470d6677add724136daa8703f4fe97f209e28bffb127cf5a747a493dfa0e1",
+   "result": {
+    "error": "'start' and 'width' must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-start-width0-width-width0": {
+   "hash": "aa1dfedf425568498254f6f08aca7690f6fb6b291aa102581f0522d94c84fef4",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      0,
+      0
+     ],
+     "width": [
+      0,
+      0,
+      0
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-dbl": {
+   "hash": "be7ef6d55c6ee0f7935828d6495599f8057b3f0d1ddc73e55aabc0a794f043f4",
+   "result": {
+    "error": "In range 1: the supplied 'width' (1) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-dblwhole": {
+   "hash": "a62239713ebc430bc4752af059531835b24deafccfa3f4a4e18fc9e6181e9899",
+   "result": {
+    "error": "In range 2: the supplied 'width' (3) doesn't match the width\n  inferred from the supplied 'start' and 'end' (1).",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-empty": {
+   "hash": "ca0f8db9c5deae27f4e2c3222aef4137ca5822ca9358c430d4bb215d2445389a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-int1": {
+   "hash": "2cd7240d53b11c1ecc369e0ea42bedb89d7434c7fa607e4cfc042f43143663c5",
+   "result": {
+    "error": "In range 1: the supplied 'width' (4) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-int2": {
+   "hash": "753c94c23d87393acaa546c40d95a666bd43ce25b3d14924634f19769493012f",
+   "result": {
+    "error": "In range 1: the supplied 'width' (1) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-three-int3": {
+   "hash": "536b6baffb7e1f8f82bd93be3166ce458c1b808f5c3ccb7b3211f3f570085952",
+   "result": {
+    "error": "In range 1: the supplied 'width' (1) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-int4": {
+   "hash": "a77a62ccecafb5ec8d74b67d4f490727f73a08e68691e9e23574f08a2a4d9737",
+   "result": {
+    "error": "In range 1: the supplied 'width' (1) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length",
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "ctor-ir-three-lgl": {
+   "hash": "766dad9cbfcfd5dfbf2f49fb6c6261714eda61d4e3af80963ff3b23924998584",
+   "result": {
+    "error": "'start', 'end', and 'width', must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-na": {
+   "hash": "50eb15793b22df447f9f86d20aca4f5a0c536f8d4f5078599b69219b051c9bfb",
+   "result": {
+    "error": "In range 1: the supplied 'width' (1) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-neg": {
+   "hash": "6f296c99d7029e7a30882780fbfe3fada459d46a5dd7dff59598f030618409ce",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-negw": {
+   "hash": "f8bf58d2c61e65cb23bb2bfaf68151f29bbd4358623cda45f9e111f9fff1d689",
+   "result": {
+    "error": "each range must have a non-negative width",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-str": {
+   "hash": "09283103dce7ba974a4487736456f4418fe21fc72331e1f371f3c184403fda89",
+   "result": {
+    "error": "'start', 'end', and 'width', must be numeric vectors",
+    "warnings": []
+   }
+  },
+  "ctor-ir-three-width0": {
+   "hash": "42d5d64f3abb84084f36ac55e1f35fb26c0ab72e08bbb51557c7b24cd110cad5",
+   "result": {
+    "error": "In range 1: the supplied 'width' (0) doesn't match the width\n  inferred from the supplied 'start' and 'end' (2).",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-blank": {
+   "hash": "1a6127f668fbf55a42b95df8c9a082c7975b8508fabdf84738d3f5a9c9f2bcf9",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-circ": {
+   "hash": "41ce4885709e993dcc04eb4c3584f36790f235602e6a801acd07b72fe300d4b4",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      100,
+      200
+     ],
+     "is_circular": [
+      true,
+      false
+     ],
+     "genome": [
+      null,
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-circshort": {
+   "hash": "294214e64cd94dede29b3718160406e4034c97282f9198b1a1df7dca4fb0d9d7",
+   "result": {
+    "error": "the length of the supplied 'isCircular' vector must be equal to the number of\n  sequences",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-dbll": {
+   "hash": "76e31752b45b2cfe495759e2b33ddad861178584c5734aca2c477e2804b214bf",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      10,
+      20
+     ],
+     "is_circular": [
+      null,
+      null
+     ],
+     "genome": [
+      null,
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-dup": {
+   "hash": "333b02dcda39e37319d3a0054b9b1a823b895de3a623e81589bc9768aca02762",
+   "result": {
+    "error": "supplied 'seqlevels' cannot contain duplicated sequence names",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-empty": {
+   "hash": "2ba64be892852d05aa0f6498fa70fa1af3fbafcaf6f371a054376101bd212f71",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [],
+     "seqlengths": [],
+     "is_circular": [],
+     "genome": []
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-extra": {
+   "hash": "6e503cab1702e02296dc2d03b62d242f30a2caeca62db3479b1af0178a72cfef",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chrX"
+     ],
+     "seqlengths": [
+      100,
+      200,
+      50
+     ],
+     "is_circular": [
+      null,
+      null,
+      null
+     ],
+     "genome": [
+      null,
+      null,
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-genome1": {
+   "hash": "5fca2577ea2e16712122a0e01fa9da220b1b2303588517dc50112ec3e4b23826",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      null,
+      null
+     ],
+     "is_circular": [
+      null,
+      null
+     ],
+     "genome": [
+      "h",
+      "h"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-genome2": {
+   "hash": "4b9fc60a59b7ee3c67868a5484e290a115c3a43d218f818d57efb9474730d507",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      null,
+      null
+     ],
+     "is_circular": [
+      null,
+      null
+     ],
+     "genome": [
+      "h",
+      "g"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-genome3": {
+   "hash": "97a8720d644787c6b9b0780b9a40612bac6a86b2d68b0ec69d204bd4e8ad7e17",
+   "result": {
+    "error": "when the length of the supplied 'genome' vector is not 1, then it must be\n  equal to the number of sequences",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-negl": {
+   "hash": "39d4b46446c40438e55ce8fab8a6fe4d1d505c462cb443d83415d59043e06bb4",
+   "result": {
+    "error": "the supplied 'seqlengths' vector contains negative values",
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-ok": {
+   "hash": "ac013730310f1f85ad1292c87cb706601a1c39cdded5e75697490b33ab62659a",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "seqlengths": [
+      100,
+      200
+     ],
+     "is_circular": [
+      null,
+      null
+     ],
+     "genome": [
+      null,
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-onlyone": {
+   "hash": "8ad556bc469107adf13083de98b99ba8171135b253481e05bf2f942032a35a2c",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [
+      "chr1"
+     ],
+     "seqlengths": [
+      null
+     ],
+     "is_circular": [
+      null
+     ],
+     "genome": [
+      null
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "ctor-seqinfo-shortl": {
+   "hash": "c06a375452234433255727fbd4238ad955a061f7ac0c0981c9ed5fcc12dd70c2",
+   "result": {
+    "error": "the length of the supplied 'seqlengths' vector must be equal to the number of\n  sequences",
+    "warnings": []
+   }
+  }
+ }
+}
