@@ -13,3 +13,11 @@ Append-only. Timestamped judgment calls and human interventions.
   outside others (`20-19`) and absorbs one inside; zero-width `5-4` overlaps
   `1-10`, `11-10` does not; `gaps(GRanges)` with seqlengths emits full-length
   gaps on empty strands.
+- 2026-11-05 23:55 harness: R-side warning handler records but must NOT muffle.
+  Muffling changed R's control flow (`IRanges(start=2147483647, width=2)` with
+  doubles errors only if the coercion warning propagates).
+- 2026-11-05 23:55 R quirk: `IRanges(start=<int vec>)` alone builds runs of
+  consecutive +1 integers (and TRUE-runs for logical); implemented, not an ADR.
+- 2026-11-05 23:58 retracted: the apparent integer-overflow divergence was a
+  harness artifact (warning muffling). R errors for integer inputs too; no ADR.
+  Lesson: a divergence is only real after checking the harness did not alter R.

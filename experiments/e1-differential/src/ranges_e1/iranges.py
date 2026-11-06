@@ -41,6 +41,21 @@ def _solve_sew(
     return s, w
 
 
+def _runs(x: Any) -> tuple[np.ndarray, np.ndarray]:
+    """`IRanges(start=<vector>)`: logical -> runs of TRUE; integer -> runs of +1 steps."""
+    a = np.asarray(x)
+    if a.dtype.kind == "b":
+        idx = np.flatnonzero(a) + 1
+    else:
+        idx = _meta.as_int_array(x, "'start'")
+    if len(idx) == 0:
+        return np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64)
+    breaks = np.flatnonzero(np.diff(idx) != 1) + 1
+    first = np.concatenate([[0], breaks])
+    last = np.concatenate([breaks, [len(idx)]]) - 1
+    return idx[first], idx[last] - idx[first] + 1
+
+
 def _validate(start: np.ndarray, width: np.ndarray) -> None:
     if (width < 0).any():
         raise ValueError("each range must have a non-negative width")
@@ -64,7 +79,10 @@ class IRanges:
         names: Iterable[str | None] | None = None,
         mcols: Any = None,
     ) -> None:
-        s, w = _solve_sew(start, end, width)
+        if start is not None and end is None and width is None:
+            s, w = _runs(start)
+        else:
+            s, w = _solve_sew(start, end, width)
         _validate(s, w)
         self._init(s, w, _meta.check_names(names, len(s)), _meta.check_mcols(mcols, len(s)))
 

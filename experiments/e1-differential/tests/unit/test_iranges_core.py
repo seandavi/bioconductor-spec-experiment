@@ -14,8 +14,9 @@ def test_construct_pairs() -> None:
 
 
 def test_construct_errors() -> None:
+    assert IRanges(start=[1, 2, 3, 7]).width.tolist() == [3, 1]  # R: runs of +1
     with pytest.raises(ValueError):
-        IRanges(start=1)
+        IRanges(end=1)
     with pytest.raises(ValueError):
         IRanges(start=5, end=3)
     with pytest.raises(ValueError):
