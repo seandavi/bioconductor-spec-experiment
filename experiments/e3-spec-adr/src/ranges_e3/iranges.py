@@ -320,6 +320,54 @@ class IRanges:
         hit = self.overlaps_any(subject, max_gap, min_overlap, type)
         return self._take(np.flatnonzero(~hit if invert else hit).astype(np.int64))
 
+    # --- nearest / precede / follow / distance (spec 70-nearest.md) ---
+
+    def _neighbors(
+        self,
+        subject: IRanges | None,
+        select: str,
+        allowed: tuple[str, ...],
+        pairs: Any,
+    ) -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        if select not in allowed:
+            raise ValueError(f"select must be one of {allowed}")
+        target = self if subject is None else subject
+        qi, si = pairs(target)
+        if select == "all":
+            return Hits(qi, si, len(self), len(target))
+        return _kernels.select_pairs(qi, si, len(self), "last" if select == "last" else "first")
+
+    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """NEAR.2. ``subject=None`` searches ``self`` excluding each range itself."""
+        return self._neighbors(
+            subject, select, ("arbitrary", "all"),
+            lambda t: _kernels.nearest_pairs(self._start, self._end, t._start, t._end, subject is None),
+        )
+
+    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """NEAR.3."""
+        return self._neighbors(
+            subject, select, ("first", "all"), lambda t: _kernels.precede_pairs(self._end, t._start)
+        )
+
+    def follow(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:  # type: ignore[type-arg]
+        """NEAR.4 (``first`` is the highest-index tie, ADR-0010)."""
+        if select not in ("first", "all"):
+            raise ValueError("select must be 'first' or 'all'")
+        return self._neighbors(
+            subject, "last" if select == "first" else "all", ("last", "all"),
+            lambda t: _kernels.follow_pairs(self._start, t._end),
+        )
+
+    def distance(self, y: IRanges) -> IntArray:
+        """NEAR.1."""
+        n, m = len(self), len(y)
+        if n != m and 1 not in (n, m):
+            raise ValueError("distance needs equal lengths or one of length 1")
+        if 0 in (n, m):
+            return _mcols.empty_int()
+        return _kernels.distance(self._start, self._end, y._start, y._end)
+
     def __repr__(self) -> str:
         shown = ", ".join(f"[{s},{e}]" for s, e in zip(self._start[:6], self.end[:6]))
         more = ", ..." if len(self) > 6 else ""

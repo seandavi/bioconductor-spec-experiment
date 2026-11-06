@@ -398,3 +398,81 @@ def select_pairs(qi: IntArray, si: IntArray, nq: int, select: str) -> np.ma.Mask
             out[qi[::-1]] = si[::-1]
         has[qi] = True
     return masked_ints(out, ~has)
+
+
+# --- nearest / precede / follow / distance (spec 70-nearest.md) ---
+
+
+def distance(qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray) -> IntArray:
+    """NEAR.1 (elementwise, arrays already aligned)."""
+    return np.maximum(0, np.maximum(qs - se, ss - qe) - 1)
+
+
+def _expand_groups(
+    queries: IntArray, order: IntArray, lo: IntArray, hi: IntArray
+) -> tuple[IntArray, IntArray]:
+    """Pairs ``(query, order[lo:hi])`` for each listed query."""
+    count = hi - lo
+    total = int(count.sum())
+    if total == 0:
+        return _EMPTY, _EMPTY
+    within = np.arange(total) - np.repeat(np.cumsum(count) - count, count)
+    return np.repeat(queries, count).astype(np.int64), order[np.repeat(lo, count) + within].astype(np.int64)
+
+
+def precede_pairs(qe: IntArray, ss: IntArray) -> tuple[IntArray, IntArray]:
+    """NEAR.3: for each query the subjects sharing the smallest start ``> qe`` (ascending index)."""
+    if len(ss) == 0 or len(qe) == 0:
+        return _EMPTY, _EMPTY
+    order = np.argsort(ss, kind="stable")
+    sv = ss[order]
+    pos = np.searchsorted(sv, qe, "right")
+    ok = np.flatnonzero(pos < len(ss))
+    lo = pos[ok]
+    return _expand_groups(ok, order, lo, np.searchsorted(sv, sv[lo], "right"))
+
+
+def follow_pairs(qs: IntArray, se: IntArray) -> tuple[IntArray, IntArray]:
+    """NEAR.4: for each query the subjects sharing the largest end ``< qs`` (ascending index)."""
+    if len(se) == 0 or len(qs) == 0:
+        return _EMPTY, _EMPTY
+    order = np.argsort(se, kind="stable")
+    ev = se[order]
+    pos = np.searchsorted(ev, qs, "left") - 1
+    ok = np.flatnonzero(pos >= 0)
+    hi = pos[ok] + 1
+    return _expand_groups(ok, order, np.searchsorted(ev, ev[pos[ok]], "left"), hi)
+
+
+def nearest_pairs(
+    qs: IntArray, qe: IntArray, ss: IntArray, se: IntArray, exclude_self: bool
+) -> tuple[IntArray, IntArray]:
+    """NEAR.2: all subjects at minimal distance, sorted by (query, subject)."""
+    nq, ns = len(qs), len(ss)
+    if nq == 0 or ns == 0:
+        return _EMPTY, _EMPTY
+    q0, s0 = find_overlaps(qs, qe, ss, se, 0, 0, "any")  # every pair at distance 0
+    if exclude_self:
+        keep = q0 != s0
+        q0, s0 = q0[keep], s0[keep]
+    rest = np.flatnonzero(np.bincount(q0, minlength=nq) == 0)
+    by_start, by_end = np.argsort(ss, kind="stable"), np.argsort(se, kind="stable")
+    sv, ev = ss[by_start], se[by_end]
+    # nearest candidates beyond distance 0: smallest start > qe+1, largest end < qs-1
+    right = np.searchsorted(sv, qe[rest] + 1, "right")
+    left = np.searchsorted(ev, qs[rest] - 1, "left") - 1
+    has_r, has_l = right < ns, left >= 0
+    inf = np.iinfo(np.int64).max
+    d_r = np.where(has_r, sv[np.minimum(right, ns - 1)] - qe[rest] - 1, inf)
+    d_l = np.where(has_l, qs[rest] - ev[np.maximum(left, 0)] - 1, inf)
+    best = np.minimum(d_r, d_l)
+    take_r = has_r & (d_r == best)
+    take_l = has_l & (d_l == best)
+    pr = np.flatnonzero(take_r)
+    pl_ = np.flatnonzero(take_l)
+    rq, rs = _expand_groups(rest[pr], by_start, right[pr], np.searchsorted(sv, sv[right[pr]], "right"))
+    lq, ls = _expand_groups(rest[pl_], by_end, np.searchsorted(ev, ev[left[pl_]], "left"), left[pl_] + 1)
+    qi = np.concatenate([q0, rq, lq]).astype(np.int64)
+    si = np.concatenate([s0, rs, ls]).astype(np.int64)
+    srt = np.lexsort((si, qi))
+    return qi[srt], si[srt]
