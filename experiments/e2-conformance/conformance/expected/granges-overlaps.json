@@ -1,0 +1,600 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:39:32-0500"
+  },
+  "cases": {
+    "gr.ov.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 2, 3, 1, 2, 3, 6, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 6, 7]},
+        "to": {"$int": [1, 3, 2, 3, 1, 2, 3, 5, 4, 5, 1, 3, 6]},
+        "nLnode": 8,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "gr.ov.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5, 6]},
+        "to": {"$int": [1, 2, 3, 6, 1, 2, 3, 6, 1, 2, 3, 6, 4, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8]},
+        "to": {"$int": [1, 6, 2, 3, 6, 2, 3, 8, 4, 5, 1, 6, 3, 7, 3]},
+        "nLnode": 8,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.self.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5, 6, 6, 6, 6, 7, 8, 8]},
+        "to": {"$int": [1, 6, 6, 2, 3, 8, 6, 2, 3, 8, 4, 5, 1, 6, 2, 3, 7, 2, 3]},
+        "nLnode": 8,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.cross-seqname-only": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2]},
+        "to": {"$int": [1, 2]},
+        "nLnode": 2,
+        "nRnode": 3
+      },
+      "warnings": []
+    },
+    "gr.ov.cross-seqname-nostrand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2]},
+        "to": {"$int": [1, 2]},
+        "nLnode": 2,
+        "nRnode": 3
+      },
+      "warnings": []
+    },
+    "gr.ov.type.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 2, 3, 1, 2, 3, 6, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.any.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5, 6]},
+        "to": {"$int": [1, 2, 3, 6, 1, 2, 3, 6, 1, 2, 3, 6, 4, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3]},
+        "to": {"$int": [6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.start.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3]},
+        "to": {"$int": [6, 6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 3, 3]},
+        "to": {"$int": [6, 8, 6, 8]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.end.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3]},
+        "to": {"$int": [6, 8, 6, 8, 6, 8]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3]},
+        "to": {"$int": [6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.within.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3]},
+        "to": {"$int": [6, 6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3]},
+        "to": {"$int": [6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.type.equal.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3]},
+        "to": {"$int": [6, 6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.maxgap0": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 8, 2, 3, 1, 2, 3, 6, 8, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.maxgap3": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 8, 2, 3, 1, 2, 3, 6, 8, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.maxgap50": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 8, 2, 3, 1, 2, 3, 6, 8, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.maxgap3.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 6]},
+        "to": {"$int": [6, 6, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.minoverlap1": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 6]},
+        "to": {"$int": [1, 3, 6, 2, 3, 1, 2, 3, 6, 5, 4, 5, 7]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.minoverlap5": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 3, 3, 3, 3, 5]},
+        "to": {"$int": [1, 3, 6, 2, 3, 1, 2, 3, 6, 4]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.minoverlap9": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3]},
+        "to": {"$int": [6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.minoverlap5.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3]},
+        "to": {"$int": [6, 6]},
+        "nLnode": 7,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.select.first": {
+      "value": {"$int": [1, 2, 1, 5, 4, 7, null]},
+      "warnings": []
+    },
+    "gr.ov.select.first.ignore-strand": {
+      "value": {"$int": [1, 1, 1, 4, 4, 7, null]},
+      "warnings": []
+    },
+    "gr.ov.select.first.within": {
+      "value": {"$int": [6, null, 6, null, null, null, null]},
+      "warnings": []
+    },
+    "gr.ov.select.last": {
+      "value": {"$int": [6, 3, 6, 5, 5, 7, null]},
+      "warnings": []
+    },
+    "gr.ov.select.last.ignore-strand": {
+      "value": {"$int": [6, 6, 6, 5, 5, 7, null]},
+      "warnings": []
+    },
+    "gr.ov.select.last.within": {
+      "value": {"$int": [6, null, 6, null, null, null, null]},
+      "warnings": []
+    },
+    "gr.ov.select.arbitrary.unique": {
+      "value": {"$int": [1, 2]},
+      "warnings": []
+    },
+    "gr.ov.select.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2]},
+        "to": {"$int": [1, 2]},
+        "nLnode": 2,
+        "nRnode": 3
+      },
+      "warnings": []
+    },
+    "gr.ov.seqinfo.reordered-levels": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 4, 5]},
+        "to": {"$int": [2, 2, 1, 1]},
+        "nLnode": 7,
+        "nRnode": 2
+      },
+      "warnings": []
+    },
+    "gr.ov.seqinfo.reordered-levels.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2]},
+        "to": {"$int": [4, 5, 1, 3]},
+        "nLnode": 2,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "gr.ov.seqinfo.disjoint-levels": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 7,
+        "nRnode": 1
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "gr.ov.seqinfo.incompatible": {
+      "error": {
+        "message": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 1000\n  - in 'y': 999",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.ov.count.seqinfo-incompatible": {
+      "error": {
+        "message": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 1000\n  - in 'y': 999",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.ov.count": {
+      "value": {"$int": [3, 2, 4, 1, 2, 1, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.count.ignore-strand": {
+      "value": {"$int": [4, 4, 4, 2, 2, 1, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.count.within": {
+      "value": {"$int": [1, 0, 1, 0, 0, 0, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.count.maxgap": {
+      "value": {"$int": [4, 2, 5, 1, 2, 1, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.count.minoverlap": {
+      "value": {"$int": [3, 2, 4, 0, 1, 0, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.anyq": {
+      "value": {"$lgl": [true, true, true, true, true, true, false]},
+      "warnings": []
+    },
+    "gr.ov.anyq.ignore-strand": {
+      "value": {"$lgl": [true, true, true, true, true, true, false]},
+      "warnings": []
+    },
+    "gr.ov.anyq.type-equal": {
+      "value": {"$lgl": [true, false, true, false, false, false, false]},
+      "warnings": []
+    },
+    "gr.ov.anyq.maxgap": {
+      "value": {"$lgl": [true, true, true, true, true, true, false]},
+      "warnings": []
+    },
+    "gr.ov.subset": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2", "chrM"]},
+        "start": {"$int": [10, 10, 10, 100, 100, 3]},
+        "width": {"$int": [10, 10, 10, 10, 10, 4]},
+        "strand": {"$chr": ["+", "-", "*", "+", "*", "+"]},
+        "names": {"$chr": ["a", "b", "c", "d", "e", "f"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.subset.invert": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1"]},
+        "start": {"$int": [300]},
+        "width": {"$int": [5]},
+        "strand": {"$chr": ["+"]},
+        "names": {"$chr": ["g"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "score": {"$dbl": [7.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.subset.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2", "chrM"]},
+        "start": {"$int": [10, 10, 10, 100, 100, 3]},
+        "width": {"$int": [10, 10, 10, 10, 10, 4]},
+        "strand": {"$chr": ["+", "-", "*", "+", "*", "+"]},
+        "names": {"$chr": ["a", "b", "c", "d", "e", "f"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.subset.invert.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1"]},
+        "start": {"$int": [300]},
+        "width": {"$int": [5]},
+        "strand": {"$chr": ["+"]},
+        "names": {"$chr": ["g"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "score": {"$dbl": [7.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.subset.within": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [10, 10]},
+        "width": {"$int": [10, 10]},
+        "strand": {"$chr": ["+", "*"]},
+        "names": {"$chr": ["a", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "score": {"$dbl": [1.5, 3.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.empty.query": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 0,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.empty.subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 7,
+        "nRnode": 0
+      },
+      "warnings": []
+    },
+    "gr.ov.empty.subject.first": {
+      "value": {"$int": [null, null, null, null, null, null, null]},
+      "warnings": []
+    },
+    "gr.ov.empty.count": {
+      "value": {"$int": [0, 0, 0, 0, 0, 0, 0], "names": ["a", "b", "c", "d", "e", "f", "g"]},
+      "warnings": []
+    },
+    "gr.ov.empty.anyq": {
+      "value": {"$lgl": [false, false, false, false, false, false, false]},
+      "warnings": []
+    },
+    "gr.ov.empty.subset": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": {"$chr": []},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "score": {"$dbl": []}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.ov.zero.query": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 4, 4, 4]},
+        "to": {"$int": [1, 4, 2, 3, 6]},
+        "nLnode": 4,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.zero.query.ignore-strand": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 4, 4]},
+        "to": {"$int": [1, 6, 4, 2, 3, 6]},
+        "nLnode": 4,
+        "nRnode": 8
+      },
+      "warnings": []
+    },
+    "gr.ov.zero.subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 2, 3, 3]},
+        "to": {"$int": [4, 2, 4, 2, 4]},
+        "nLnode": 7,
+        "nRnode": 4
+      },
+      "warnings": []
+    },
+    "gr.ov.zero.both.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4]},
+        "to": {"$int": [1, 2, 3, 4]},
+        "nLnode": 4,
+        "nRnode": 4
+      },
+      "warnings": []
+    }
+  }
+}
