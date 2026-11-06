@@ -10,6 +10,24 @@ from ._validate import as_int_array, recycle
 from .rle import Rle
 
 
+def as_weights(weight: Any, n: int) -> np.ndarray:
+    """Per-range weights: a scalar or length-1 value recycles; otherwise the length
+    must be ``n``. Integral values give int64, anything else float64."""
+    w = np.asarray(weight)
+    if w.ndim == 0:
+        w = w.reshape(1)
+    if w.ndim != 1:
+        raise ValueError("'weight' must be a single value or a one-dimensional sequence")
+    if w.size == 1:
+        w = np.repeat(w, n)
+    elif len(w) != n:
+        raise ValueError(f"'weight' must be a single value or have the length of the ranges ({n})")
+    if w.dtype.kind in "iub":
+        return w.astype(np.int64)
+    w = w.astype(np.float64)
+    return w.astype(np.int64) if np.all(w == np.floor(w)) else w
+
+
 def coverage_k(
     start: np.ndarray,
     width: np.ndarray,
@@ -27,17 +45,7 @@ def coverage_k(
     sh = recycle(as_int_array(shift, "shift"), n, "shift") if n else np.array([], dtype=np.int64)
     s = start + sh
     e = s + width - 1
-    w = np.asarray(weight)
-    if w.ndim == 0:
-        w = np.repeat(w, n)
-    if len(w) != n:
-        raise ValueError("'weight' must be a single value or have the length of the ranges")
-    if w.dtype.kind in "iub":
-        w = w.astype(np.int64)
-    else:
-        w = w.astype(np.float64)
-        if np.all(w == np.floor(w)):
-            w = w.astype(np.int64)
+    w = as_weights(weight, n)
     if length is None:
         length = int(max(0, e.max())) if n else 0
     if length < 0:

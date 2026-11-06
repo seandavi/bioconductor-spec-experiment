@@ -136,3 +136,10 @@ the strand logic and confirmed with ad hoc runs:
   pair `(1,1)` twice, `nearest(IRanges(c(5,10,3), c(4,12,6)))` is `3 3 1`, and the GRanges
   equivalents also return 1. R is normative, so the behaviour (including the duplicated
   pair) is kept; regression tests now document it with the R values.
+- **Finding 2 (GRanges.distance length mismatch) — fixed.** Operands must each have length 1
+  or the common length; R would recycle with a warning, we keep the strict convention.
+- **Finding 3 (coverage weights) — fixed.** `_coverage.as_weights` is shared by IRanges and
+  GRanges and runs before grouping: scalar/length-1 recycle, other lengths must equal the
+  number of ranges.
+- **Finding 4 (flank `start=` lengths) — fixed.** `_validate.as_bool_flags` recycles only
+  length-1 input and rejects other lengths / non-1-d input for IRanges and GRanges.

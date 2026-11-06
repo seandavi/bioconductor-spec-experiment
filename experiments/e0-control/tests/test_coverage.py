@@ -82,3 +82,24 @@ def test_coverage_matches_dense_count(spec, width):
     assert r.to_numpy().tolist() == dense.tolist()
     if width is None:
         assert dense.sum() <= int(x.width.sum())
+
+
+def test_weight_recycling_and_validation():
+    # review finding 3: scalar / length-1 recycle; other lengths must match the ranges
+    import pytest
+
+    from ranges_e0 import GRanges
+
+    x = IRanges([1, 3], width=2)
+    assert x.coverage(weight=[2]).to_numpy().tolist() == [2, 2, 2, 2]
+    assert x.coverage(weight=2).to_numpy().tolist() == [2, 2, 2, 2]
+    assert x.coverage(weight=[1, 2]).to_numpy().tolist() == [1, 1, 2, 2]
+    for bad in ([1, 2, 3], [[1, 2]]):
+        with pytest.raises(ValueError, match="weight"):
+            x.coverage(weight=bad)
+    g = GRanges("chr1", IRanges([1, 3], width=2))
+    assert g.coverage(weight=[2])["chr1"].to_numpy().tolist() == [2, 2, 2, 2]
+    assert g.coverage(weight=[1, 2])["chr1"].to_numpy().tolist() == [1, 1, 2, 2]
+    for bad in ([1, 2, 999], [[1, 2]]):
+        with pytest.raises(ValueError, match="weight"):
+            g.coverage(weight=bad)

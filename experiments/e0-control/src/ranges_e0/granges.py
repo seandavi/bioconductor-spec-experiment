@@ -834,8 +834,7 @@ class GRanges:
         Default length per level: its seqlength if known, else the largest end."""
         n = len(self)
         sh = V.recycle(V.as_int_array(shift, "shift"), n, "shift") if n else np.array([], dtype=I64)
-        wt = np.asarray(weight)
-        wt = np.repeat(wt, n) if wt.ndim == 0 else wt
+        wt = _coverage.as_weights(weight, n)
         out: dict[str, Rle] = {}
         for i, name in enumerate(self._seqinfo.seqnames):
             rows = np.flatnonzero(self._seq == i)
@@ -846,7 +845,7 @@ class GRanges:
             else:
                 length = self._seqinfo._lengths[i]
             out[name] = _coverage.coverage_k(
-                self._start[rows], self._width[rows], sh[rows], length, wt[rows] if len(wt) else 1
+                self._start[rows], self._width[rows], sh[rows], length, wt[rows]
             )
         return out
 
