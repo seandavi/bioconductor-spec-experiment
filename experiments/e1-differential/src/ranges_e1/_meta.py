@@ -1,0 +1,169 @@
+"""Shared helpers for names, mcols and R-style indexing (internal)."""
+
+from __future__ import annotations
+
+from collections.abc import Sequence
+from typing import Any
+
+import numpy as np
+import polars as pl
+
+Names = tuple[str | None, ...]
+INT_MAX = 2**31 - 1
+
+
+def as_int_array(x: Any, what: str = "value") -> np.ndarray:
+    """Coerce to int64 ndarray; floats must be whole numbers; NA -> error."""
+    if np.ma.isMaskedArray(x):
+        if np.ma.getmaskarray(x).any():
+            raise ValueError(f"{what} cannot contain NAs")
+        x = np.ma.getdata(x)
+    a = np.asarray(x)
+    if a.dtype == object:
+        if any(v is None for v in a.ravel()):
+            raise ValueError(f"{what} cannot contain NAs")
+        a = a.astype(float) if any(isinstance(v, float) for v in a.ravel()) else a.astype(np.int64)
+    a = np.atleast_1d(a)
+    if a.ndim != 1:
+        raise ValueError(f"{what} must be 1-dimensional")
+    if a.dtype.kind == "f":
+        if np.isnan(a).any():
+            raise ValueError(f"{what} cannot contain NAs")
+        if (a != np.trunc(a)).any():
+            raise ValueError(f"{what} must be whole numbers")
+        a = a.astype(np.int64)
+    elif a.dtype.kind == "b":
+        a = a.astype(np.int64)
+    elif a.dtype.kind not in "iu":
+        raise ValueError(f"{what} must be integer")
+    return a.astype(np.int64, copy=False)
+
+
+def recycle(arrays: Sequence[np.ndarray | None]) -> list[np.ndarray | None]:
+    """Recycle non-None arrays to the longest length, as R does."""
+    lens = [len(a) for a in arrays if a is not None]
+    n = 0 if 0 in lens else max(lens, default=0)
+    out: list[np.ndarray | None] = []
+    for a in arrays:
+        if a is None:
+            out.append(None)
+        elif len(a) == n:
+            out.append(a)
+        elif len(a) == 0:
+            raise ValueError("cannot recycle a zero-length argument")
+        else:
+            out.append(np.resize(a, n))
+    return out
+
+
+def recycle_to(a: np.ndarray, n: int, what: str) -> np.ndarray:
+    """Recycle `a` to length `n`; zero-length only when n == 0."""
+    if len(a) == n:
+        return a
+    if n == 0:
+        return a[:0]
+    if len(a) == 0:
+        raise ValueError(f"'{what}' has length 0 but 'x' has length {n}")
+    return np.resize(a, n)
+
+
+def check_names(names: Any, n: int) -> Names | None:
+    if names is None:
+        return None
+    seq = [None if v is None else str(v) for v in list(names)]
+    if len(seq) > n:
+        raise ValueError(f"attempt to set too many names ({len(seq)}) on object of length {n}")
+    seq.extend([None] * (n - len(seq)))
+    return tuple(seq)
+
+
+def check_mcols(mcols: Any, n: int) -> pl.DataFrame | None:
+    if mcols is None:
+        return None
+    df = pl.DataFrame(mcols) if not isinstance(mcols, pl.DataFrame) else mcols
+    if df.width == 0:
+        return None
+    if df.height != n:
+        raise ValueError(f"mcols has {df.height} rows but object has length {n}")
+    return df
+
+
+def take_names(names: Names | None, pos: np.ndarray) -> Names | None:
+    if names is None:
+        return None
+    return tuple(names[i] for i in pos)
+
+
+def take_mcols(mcols: pl.DataFrame | None, pos: np.ndarray) -> pl.DataFrame | None:
+    if mcols is None:
+        return None
+    return mcols[pos.tolist()] if len(pos) else mcols.clear()
+
+
+def concat_names(parts: Sequence[tuple[Names | None, int]]) -> Names | None:
+    """Concatenate names; unnamed parts contribute "" (R behaviour)."""
+    if all(nm is None for nm, _ in parts):
+        return None
+    out: list[str | None] = []
+    for nm, n in parts:
+        out.extend(nm if nm is not None else [""] * n)
+    return tuple(out)
+
+
+def concat_mcols(parts: Sequence[tuple[pl.DataFrame | None, int]]) -> pl.DataFrame | None:
+    """Row-bind mcols; columns = union in first-seen order, NA-filled."""
+    cols: dict[str, pl.DataType] = {}
+    for df, _ in parts:
+        if df is not None:
+            for name, dt in df.schema.items():
+                cols.setdefault(name, dt)
+    if not cols:
+        return None
+    series: list[pl.Series] = []
+    for name, dt in cols.items():
+        pieces = [
+            df[name] if df is not None and name in df.columns else pl.Series(name, [None] * n, dtype=dt)
+            for df, n in parts
+        ]
+        series.append(pl.concat([p.to_frame() for p in pieces], how="vertical_relaxed")[name])
+    return pl.DataFrame(series)
+
+
+def resolve_index(i: Any, n: int, names: Names | None) -> np.ndarray:
+    """Python-style subscript -> int64 positions (0-based, validated)."""
+    if isinstance(i, slice):
+        return np.arange(n, dtype=np.int64)[i]
+    if isinstance(i, (int, np.integer)) and not isinstance(i, (bool, np.bool_)):
+        i = [int(i)]
+    if isinstance(i, str):
+        i = [i]
+    if np.ma.isMaskedArray(i):
+        raise IndexError("subscript contains NAs")
+    a = np.asarray(i)
+    if a.size == 0:
+        return np.empty(0, dtype=np.int64)
+    if a.dtype.kind == "b":
+        if a.ndim != 1 or len(a) != n:
+            raise IndexError(f"logical subscript has length {a.size}, expected {n}")
+        return np.flatnonzero(a).astype(np.int64)
+    if a.dtype.kind in "US" or a.dtype == object and any(isinstance(v, str) for v in a.ravel()):
+        if names is None:
+            raise IndexError("cannot subset by name when names are None")
+        lookup: dict[str, int] = {}
+        for k, nm in enumerate(names):
+            if nm is not None:
+                lookup.setdefault(nm, k)
+        try:
+            return np.array([lookup[str(v)] for v in a.ravel()], dtype=np.int64)
+        except KeyError as e:
+            raise IndexError(f"subscript contains invalid names: {e}") from None
+    if a.dtype.kind == "f":
+        if np.isnan(a).any():
+            raise IndexError("subscript contains NAs")
+        a = a.astype(np.int64)
+    if a.dtype.kind not in "iu":
+        raise IndexError("unsupported subscript type")
+    a = a.astype(np.int64).ravel()
+    if ((a >= n) | (a < -n)).any():
+        raise IndexError("subscript contains out-of-bounds indices")
+    return np.where(a < 0, a + n, a)
