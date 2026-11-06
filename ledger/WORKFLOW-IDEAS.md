@@ -134,3 +134,21 @@ Try: brief agents that when matching R requires reproducing a
 path-dependent or engine-dependent quirk, they stop and write a
 "contract or accident?" ADR stub instead of cloning. Batch the stubs for
 a human (this is exactly where Hervé's judgment is needed).
+
+## 16. Blind second adjudicator with frozen labels
+
+Seen: Sol recorded its own class for each sampled cluster, hashed the
+file, and only then read Opus's rationale. 92% agreement, and the 8%
+disagreements were the most valuable output (the BiocPy over-excusal).
+Try: any LLM-judged classification at scale gets a blind second judge
+from a different model family on a stratified sample, labels frozen
+before comparison. Report agreement per class; investigate classes that
+shrink a denominator first.
+
+## 17. Never fix a measurement by excluding cases; fix the instrument
+
+Seen: "adapter_fault" was excluded from adjusted fidelity, which hid 148
+real port failures behind a projection bug.
+Try: when the instrument is wrong, repair it and re-measure. Exclusion
+classes are for genuinely uncomparable cases only, and every exclusion
+class gets the blind check (idea 16).

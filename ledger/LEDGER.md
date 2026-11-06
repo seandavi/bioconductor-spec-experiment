@@ -368,3 +368,40 @@ Headline (heldout; fidelity = pass / (pass + mismatch + port_error_unexpected)):
   package, one adapter author.
 - Adjudication launched: run e59b5cf9 (Opus classifies, Sol blind
   spot-check, all BiocPy clusters).
+
+## 2026-11-06 — Adjudication (run e59b5cf9, 68 min) + blind spot-check
+
+- Opus: 10,394 non-pass outcomes in 700 rule-matched clusters
+  (`eval/adjudication/verdicts.py` rules over `cluster.py` signatures; re-runnable).
+  Ranking unchanged by adjudication. Adjusted held-out fidelity (first pass):
+  e1 98.7, e2 96.8, e4 96.2, e0 95.9, e3 94.2, e0b 92.4, biocpy 80.5.
+- **Zulip seqlevel claim confirmed with evidence.** BiocPy genomicranges
+  0.9.0 sorts seqlevels lexically (`GenomicRanges.py:186`): `chr2, chr10,
+  chr1, chrX` → `chr1, chr10, chr2, chrX`. R and all six agent ports use
+  first appearance. Sean's 5-minute agent finding from the Zulip thread
+  holds up under a 9,650-case evaluation.
+- Circular semantics: only E1 implements them (309/312 overlaps, 44/44
+  nearest, 29/29 coverage, all thanks to its red team). E4 does circular
+  coverage only. E2 and E4 compute linear answers *without declaring it*
+  (largest port_bug clusters, 233 and 251 cases); E0/E0b/E3 declare it.
+- Every port except E1 accepts invalid flags like `ignore.strand=NA` where
+  R errors: validation of R-invalid input is the systematic blind spot.
+- NA-weight coverage (1,239 cases) classed r_accident with evidence: R's
+  auto method differs from `method="naive"` on the same input (non-local
+  NA). Clear-cut contract-vs-accident case for a human (idea 15).
+- Sol blind spot-check (labels frozen + hashed before reading rationales):
+  **91.7% cluster agreement (111/121), 92.8% case agreement**; 100% on
+  r_accident and declared_divergence samples; 2/3 on adapter_fault.
+- **Key correction: adapter_fault over-excused BiocPy.** The 224-case
+  `select=first/last/arbitrary` cluster was a projection bug, but after a
+  representation-only repair in /tmp, **148/224 still fail** (port really
+  misses hits, e.g. `-` query vs `*` subject). Also S050: fixing the
+  `incomparables` forwarding uncovers a real `unique` defect. Excluding
+  "adapter faults" from the denominator would have flattered BiocPy.
+- Policy lesson: excluding cases from a denominator (adapter_fault,
+  r_accident) is where adjudication can quietly flatter a port. Fix the
+  adapter and re-score instead; and a port with its own defect on an
+  r_accident case is still a port_bug.
+- Fix-up launched (run 5836111b): Sonnet fixes adapter/harness faults
+  (thin), re-scores all ports; Opus (resumed) re-adjudicates with Sol's
+  splits; Sol verifies.
