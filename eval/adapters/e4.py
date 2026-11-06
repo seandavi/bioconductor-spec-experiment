@@ -229,6 +229,8 @@ class Adapter(AdapterBase):
         return IRanges(**kw, mcols=_frame(_mcols))
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING, _mcols=()):
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = {"seqnames": _strs(seqnames), "ranges": ranges, "strand": _strs(strand), "seqinfo": seqinfo}
         kw = {k: v for k, v in kw.items() if v is not MISSING}
         if "seqnames" not in kw:
@@ -336,6 +338,8 @@ class Adapter(AdapterBase):
 
     def op_c(self, *dots, x):
         self._need("c", x)
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         return type(x).concat(x, *dots)
 
     # ------------------------------------------------------------ intra-range
@@ -454,6 +458,10 @@ class Adapter(AdapterBase):
     # ------------------------------------------------------------ coverage
 
     def op_coverage(self, *, x, shift=MISSING, width=MISSING, weight=MISSING):
+        if isinstance(shift, RVector) and shift.type == "chr":
+            raise Unsupported("coverage: shift as an mcols column name")  # the port takes numbers only
+        if isinstance(weight, RVector) and weight.type == "chr" and not isinstance(x, GRanges):
+            raise Unsupported("coverage: weight as an mcols column name on IRanges")  # only GRanges.coverage takes one
         w = _scalar("weight", weight) if isinstance(weight, RVector) and weight.type == "chr" else _np(weight)
         if isinstance(x, GRanges) and isinstance(width, RVector) and width.names is not None:
             # GRanges.coverage documents width as a seqname -> width mapping; unnamed widths stay positional
