@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _intra, _validate as V
+from . import _intra, _order, _validate as V
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -158,6 +158,29 @@ class IRanges:
         """R ``promoters``: ``[start - upstream, start + downstream - 1]``."""
         s, w = _intra.promoters_k(self._start, self._width, upstream, downstream)
         return self._like(s, w, use_names)
+
+    # ----- ordering ---------------------------------------------------------
+    def _order_keys(self) -> list[np.ndarray]:
+        return [self._start, self._width]
+
+    def order(self, decreasing: bool = False) -> np.ndarray:
+        """R ``order``: 0-based permutation sorting by start, then width."""
+        return _order.order_k(self._order_keys(), decreasing)
+
+    def sort(self, decreasing: bool = False) -> IRanges:
+        return self._take(self.order(decreasing))
+
+    def rank(self, ties_method: str = "first") -> np.ndarray:
+        """R ``rank``: 1-based ranks. Deviation: R requires an explicit
+        ``ties.method`` for IRanges; here the default is ``"first"``."""
+        return _order.rank_k(self._order_keys(), ties_method)
+
+    def duplicated(self, from_last: bool = False) -> np.ndarray:
+        """R ``duplicated``: equality on (start, width); names/mcols ignored."""
+        return _order.duplicated_k(self._order_keys(), from_last)
+
+    def unique(self, from_last: bool = False) -> IRanges:
+        return self._take(np.flatnonzero(~self.duplicated(from_last)))
 
     # ----- subsetting / combining ----------------------------------------
     def __getitem__(self, index: Any) -> IRanges:
