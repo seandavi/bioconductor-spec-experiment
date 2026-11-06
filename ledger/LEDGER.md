@@ -263,3 +263,24 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
   write an ADR saying "implementation-defined" instead.
 - Cost: E1 is ~2× E2 and ~3× E0 in wall time. Most of the extra is
   implement (generators + R runs) and the revise round on 52 cases.
+
+## 2026-11-06 — Eval phase 1 launched (run d1cf855d)
+
+- Ports frozen as tags: e0 18042e1, e0b 3615722, e1 c5fa8df, e2 70f0c0b,
+  e3 e0e4b41, e4 9e2fa35. BiocPy: iranges 0.7.3, genomicranges 0.9.0
+  (same genomicranges version as Sean's Zulip ADR example).
+- Design choices, and why:
+  - Live R oracle in a fresh `eval` harness; no experiment's goldens used
+    (otherwise one suite's semantics referee everyone).
+  - Pool = inputs/calls converted from E1, E2, E4 suites (tagged by source)
+    + `heldout` seeded random cases written from TARGET.md only. Report per
+    source: own-suite cells are flagged as home advantage; held-out is the
+    fairest column.
+  - Each port runs in its own venv; runner imports stdlib + numpy only.
+  - Outcome categories separate adapter faults from port mismatches;
+    self-test adapters `r_echo` (must be 100%) and `mutant` (must fail
+    exactly its perturbations) guard the oracle (idea 9).
+  - Planner owns the contract artifacts (schema, projection, comparator,
+    ADAPTERS.md), per idea 11.
+- Next: 7 adapters in parallel worktrees, matrix run, adjudication (Opus,
+  Sol spot-check), maintenance replay, then `--no-ff` merges.
