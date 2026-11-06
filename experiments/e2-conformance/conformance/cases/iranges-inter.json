@@ -1,6 +1,7 @@
 {
   "group": "iranges-inter",
   "clauses": {
+    "IR.REDUCE.DROPEMPTY": "with drop.empty.ranges=TRUE an empty range still extends the group it follows (gap < min.gapwidth) but never starts a group and never appears in revmap",
     "IR.RANGE": "range(x, ...) returns the single smallest range covering all inputs (empty input gives empty output)",
     "IR.REDUCE.BASIC": "reduce merges overlapping and adjacent ranges, returns them sorted by start, and drops names and mcols",
     "IR.REDUCE.MINGAP": "reduce merges ranges whose gap is < min.gapwidth; min.gapwidth=0 keeps adjacent ranges apart",
@@ -11,6 +12,7 @@
     "IR.DISJOIN": "disjoin splits ranges into the unique non-overlapping pieces, sorted, dropping zero-width input; with.revmap lists contributing inputs"
   },
   "fixtures": {
+    "de": {"$type": "IRanges", "start": [8, 20, 18, 7, 9, 3, 2], "width": [8, 0, 1, 5, 1, 8, 0]},
     "x": {"$type": "IRanges", "start": [20, 1, 5, 22, 12, 13], "width": [5, 3, 4, 2, 0, 2],
           "names": ["a", "b", "c", "d", "e", "f"],
           "mcols": {"$type": "DFrame", "columns": {"score": [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]}}},
@@ -78,6 +80,12 @@
     {"id": "ir.disjoin.empty", "clause": "IR.DISJOIN", "op": "disjoin", "args": [{"$ref": "e"}], "kwargs": {}},
     {"id": "ir.disjoin.revmap", "clause": "IR.DISJOIN", "op": "disjoin", "args": [{"$ref": "ov"}], "kwargs": {"with.revmap": true}},
     {"id": "ir.disjoin.revmap.x", "clause": "IR.DISJOIN", "op": "disjoin", "args": [{"$ref": "x"}], "kwargs": {"with.revmap": true}},
-    {"id": "ir.disjoin.duplicates", "clause": "IR.DISJOIN", "op": "disjoin", "args": [{"$ref": "ov"}], "kwargs": {}}
+    {"id": "ir.disjoin.duplicates", "clause": "IR.DISJOIN", "op": "disjoin", "args": [{"$ref": "ov"}], "kwargs": {}},
+    {"id": "ir.reduce.dropempty.extends-group", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$ref": "de"}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 2}},
+    {"id": "ir.reduce.dropempty.extends-group.mingap1", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$ref": "de"}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 1}},
+    {"id": "ir.reduce.dropempty.extends-group.mingap3", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$ref": "de"}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 3}},
+    {"id": "ir.reduce.dropempty.revmap-excludes-empty", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$ref": "de"}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 3, "with.revmap": true}},
+    {"id": "ir.reduce.dropempty.empty-before-does-not-start", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$type": "IRanges", "start": [10, 8], "width": [2, 0]}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 3}},
+    {"id": "ir.reduce.dropempty.chain-of-empties", "clause": "IR.REDUCE.DROPEMPTY", "op": "reduce", "args": [{"$type": "IRanges", "start": [10, 14, 16], "width": [2, 0, 0]}], "kwargs": {"drop.empty.ranges": true, "min.gapwidth": 3}}
   ]
 }

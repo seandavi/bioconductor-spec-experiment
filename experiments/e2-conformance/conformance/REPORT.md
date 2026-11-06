@@ -11,20 +11,20 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | granges-coverage | 21 | 5 | 21 | 21 | 0 | 0 |
 | granges-inter | 38 | 8 | 38 | 38 | 0 | 0 |
 | granges-intra | 57 | 8 | 57 | 57 | 0 | 0 |
-| granges-nearest | 27 | 7 | 27 | 24 | 3 | 0 |
+| granges-nearest | 32 | 8 | 32 | 29 | 3 | 0 |
 | granges-order | 26 | 8 | 26 | 26 | 0 | 0 |
 | granges-overlaps | 62 | 11 | 62 | 62 | 0 | 0 |
-| granges-setops | 48 | 9 | 48 | 48 | 0 | 0 |
+| granges-setops | 57 | 12 | 57 | 57 | 0 | 0 |
 | iranges-core | 66 | 15 | 66 | 66 | 0 | 0 |
 | iranges-coverage | 30 | 6 | 30 | 30 | 0 | 0 |
-| iranges-inter | 57 | 8 | 57 | 57 | 0 | 0 |
+| iranges-inter | 63 | 9 | 63 | 63 | 0 | 0 |
 | iranges-intra | 69 | 8 | 69 | 69 | 0 | 0 |
-| iranges-nearest | 41 | 7 | 41 | 41 | 0 | 0 |
+| iranges-nearest | 44 | 8 | 44 | 44 | 0 | 0 |
 | iranges-order | 31 | 6 | 31 | 30 | 1 | 0 |
 | iranges-overlaps | 133 | 14 | 133 | 133 | 0 | 0 |
 | iranges-setops | 50 | 8 | 50 | 50 | 0 | 0 |
 | seqinfo | 45 | 6 | 45 | 45 | 0 | 0 |
-| **total** | **882** | **145** | **882** | **878** | **4** | **0** |
+| **total** | **905** | **151** | **905** | **901** | **4** | **0** |
 
 ## Clauses
 
@@ -84,6 +84,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `GR.NEAREST.TIE` | 5 | 5 | 5 | nearest(select='all'): subjects within gap 0 win; otherwise the nearer of the precede/follow candidates wins; on an exact distance tie only the precede side is returned (R quirk) |
 | `GR.NEAREST` | 4 | 4 | 4 | nearest(x, subject) considers only subjects on the same seqname and a compatible strand ('*' matches any); overlaps are distance 0; NA if no candidate; ignore.strand=TRUE ignores strand |
 | `GR.NEAREST.ALL` | 2 | 2 | 2 | nearest(select='all') returns Hits with every tied candidate |
 | `GR.NEAREST.SELF` | 3 | 3 | 3 | nearest(x) with no subject excludes the range itself |
@@ -125,6 +126,9 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `GR.PINTERSECT.NOHIT` | 2 | 2 | 2 | pintersect: a pair without a hit (clash or no overlap) keeps x's original strand and becomes a zero-width range at start(x) with hit=FALSE |
+| `GR.PSETDIFF.STRAND` | 2 | 2 | 2 | psetdiff result strand is x's, except '*' takes y's strand, for every pair including those whose seqnames differ |
+| `GR.SETOPS.CLIP` | 5 | 5 | 5 | intersect/setdiff on GRanges are defined through gaps (setdiff = gaps(union(gaps(x, end=L), y), end=L)), so positions below 1 or above L vanish; L is the seqlength, or the last position of x and y when the seqlength is unknown |
 | `GR.UNION` | 5 | 5 | 5 | union(x, y) = reduce(c(x, y)) per (seqname, strand); ignore.strand=TRUE ignores strand and returns '*'; seqinfo is merged |
 | `GR.INTERSECT` | 6 | 6 | 6 | intersect(x, y) is the per-(seqname, strand) intersection of the covered positions; '*' on one side does NOT match '+'/'-' unless ignore.strand=TRUE |
 | `GR.SETDIFF` | 5 | 5 | 5 | setdiff(x, y) is the per-(seqname, strand) difference of covered positions; ignore.strand=TRUE ignores strand |
@@ -170,6 +174,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `IR.REDUCE.DROPEMPTY` | 6 | 6 | 6 | with drop.empty.ranges=TRUE an empty range still extends the group it follows (gap < min.gapwidth) but never starts a group and never appears in revmap |
 | `IR.RANGE` | 5 | 5 | 5 | range(x, ...) returns the single smallest range covering all inputs (empty input gives empty output) |
 | `IR.REDUCE.BASIC` | 5 | 5 | 5 | reduce merges overlapping and adjacent ranges, returns them sorted by start, and drops names and mcols |
 | `IR.REDUCE.MINGAP` | 7 | 7 | 7 | reduce merges ranges whose gap is < min.gapwidth; min.gapwidth=0 keeps adjacent ranges apart |
@@ -196,6 +201,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `IR.NEIGHBOUR.SELF` | 3 | 3 | 3 | precede(x)/follow(x) without a subject are precede(x, x)/follow(x, x): a zero-width range can be its own neighbour (only nearest(x) excludes self) |
 | `IR.NEAREST.ANY` | 6 | 6 | 6 | nearest(x, subject) returns, per query, the 1-based index of the closest subject; overlapping subjects are distance 0; NA when subject is empty |
 | `IR.NEAREST.ALL` | 4 | 4 | 4 | nearest(select='all') returns Hits with every subject tied at the minimum distance |
 | `IR.NEAREST.TIES` | 2 | 2 | 2 | with select='arbitrary' and tied subjects R picks one (pinned only where unambiguous); ties between subjects at equal distance are all returned by select='all' |

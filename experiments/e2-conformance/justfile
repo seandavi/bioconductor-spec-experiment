@@ -29,3 +29,7 @@ test:
 
 types:
     uv run --with mypy mypy --strict src
+
+# Random R-vs-Python differential run (throw-away cases). Example: just fuzz --seed 3 --n 3000
+fuzz *args:
+    uv run python -m ranges_e2.conformance.fuzz {{args}}

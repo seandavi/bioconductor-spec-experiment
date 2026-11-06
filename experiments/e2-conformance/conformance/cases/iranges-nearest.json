@@ -2,6 +2,7 @@
   "group": "iranges-nearest",
   "compare": "hits-query-grouped",
   "clauses": {
+    "IR.NEIGHBOUR.SELF": "precede(x)/follow(x) without a subject are precede(x, x)/follow(x, x): a zero-width range can be its own neighbour (only nearest(x) excludes self)",
     "IR.NEAREST.ANY": "nearest(x, subject) returns, per query, the 1-based index of the closest subject; overlapping subjects are distance 0; NA when subject is empty",
     "IR.NEAREST.ALL": "nearest(select='all') returns Hits with every subject tied at the minimum distance",
     "IR.NEAREST.TIES": "with select='arbitrary' and tied subjects R picks one (pinned only where unambiguous); ties between subjects at equal distance are all returned by select='all'",
@@ -11,6 +12,7 @@
     "IR.DISTANCE": "distance(x, y) is parallel: 0 for overlapping or adjacent ranges, otherwise the number of positions strictly between them; the shorter argument recycles to the longer length (warning if not a multiple); names are dropped"
   },
   "fixtures": {
+    "zself": {"$type": "IRanges", "start": [5, 10, 10], "width": [0, 0, 3]},
     "q": {"$type": "IRanges", "start": [7, 20, 1, 12, 50, 9], "width": [1, 1, 2, 0, 5, 3]},
     "s": {"$type": "IRanges", "start": [10, 15, 3, 30, 6], "width": [3, 3, 2, 2, 1]},
     "tie": {"$type": "IRanges", "start": [10, 30, 10, 10], "width": [2, 2, 2, 3]},
@@ -63,6 +65,9 @@
     {"id": "ir.distance.recycle-left", "clause": "IR.DISTANCE", "op": "distance", "args": [{"$ref": "one"}, {"$ref": "d1"}], "kwargs": {}},
     {"id": "ir.distance.fractional-recycle", "clause": "IR.DISTANCE", "op": "distance", "args": [{"$ref": "d1"}, {"$ref": "q"}], "kwargs": {}},
     {"id": "ir.distance.empty", "clause": "IR.DISTANCE", "op": "distance", "args": [{"$ref": "e"}, {"$ref": "e"}], "kwargs": {}},
-    {"id": "ir.distance.names", "clause": "IR.DISTANCE", "op": "distance", "args": [{"$ref": "named"}, {"$ref": "named"}], "kwargs": {}}
+    {"id": "ir.distance.names", "clause": "IR.DISTANCE", "op": "distance", "args": [{"$ref": "named"}, {"$ref": "named"}], "kwargs": {}},
+    {"id": "ir.precede.self.zero-width", "clause": "IR.NEIGHBOUR.SELF", "op": "precede", "args": [{"$ref": "zself"}], "kwargs": {}},
+    {"id": "ir.follow.self.zero-width", "clause": "IR.NEIGHBOUR.SELF", "op": "follow", "args": [{"$ref": "zself"}], "kwargs": {}},
+    {"id": "ir.precede.self.same-as-two-arg", "clause": "IR.NEIGHBOUR.SELF", "op": "precede", "args": [{"$ref": "zself"}, {"$ref": "zself"}], "kwargs": {}}
   ]
 }

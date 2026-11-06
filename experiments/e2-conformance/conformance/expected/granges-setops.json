@@ -5,7 +5,7 @@
     "GenomicRanges": "1.65.1",
     "S4Vectors": "0.51.6",
     "Seqinfo": "1.3.0",
-    "generated": "2026-11-05T23:56:42-0500"
+    "generated": "2026-11-06T00:09:37-0500"
   },
   "cases": {
     "gr.union.basic": {
@@ -989,6 +989,217 @@
           "seqlengths": {"$int": [1000, 500]},
           "isCircular": {"$lgl": [null, null]},
           "genome": {"$chr": ["hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.setdiff.clips-below-one": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c1", "c2", "c3"]},
+        "start": {"$int": [1, 10, 1, 1]},
+        "width": {"$int": [1, 5, 4, 3]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr.intersect.clips-below-one": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c1", "c2", "c3"]},
+        "start": {"$int": [1, 10, 1, 1]},
+        "width": {"$int": [2, 5, 4, 3]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 2 out-of-bound ranges located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr.setdiff.clips-above-seqlength": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c2", "c3"]},
+        "start": {"$int": [35, 25, 50]},
+        "width": {"$int": [6, 6, 5]},
+        "strand": {"$chr": ["+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": ["GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 3 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr.intersect.clips-above-seqlength": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c2", "c3"]},
+        "start": {"$int": [35, 25, 50]},
+        "width": {"$int": [6, 6, 5]},
+        "strand": {"$chr": ["+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": ["GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 4 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 2 out-of-bound ranges located on sequences c1 and c2.\n  Note that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr.setdiff.range-entirely-below-one": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": ["GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.", "GRanges object contains 1 out-of-bound range located on sequence c2. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."]
+    },
+    "gr.psetdiff.star-takes-y-strand-across-seqnames": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c3", "c2"]},
+        "start": {"$int": [10, 10, 5]},
+        "width": {"$int": [5, 5, 5]},
+        "strand": {"$chr": ["-", "-", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.psetdiff.star-takes-y-strand-ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c3", "c2"]},
+        "start": {"$int": [10, 10, 5]},
+        "width": {"$int": [5, 5, 0]},
+        "strand": {"$chr": ["*", "*", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.nohit-keeps-original-x-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c3", "c2"]},
+        "start": {"$int": [10, 10, 5]},
+        "width": {"$int": [0, 0, 0]},
+        "strand": {"$chr": ["*", "*", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "hit": {"$lgl": [false, false, false]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.pintersect.nohit-no-overlap-compatible": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["c1", "c1"]},
+        "start": {"$int": [10, 11]},
+        "width": {"$int": [0, 1]},
+        "strand": {"$chr": ["*", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "hit": {"$lgl": [false, true]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["c1", "c2", "c3"]},
+          "seqlengths": {"$int": [40, 30, null]},
+          "isCircular": {"$lgl": [null, null, null]},
+          "genome": {"$chr": ["g", "g", "g"]}
         }
       },
       "warnings": []

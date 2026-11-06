@@ -28,18 +28,16 @@ def reduce_ranges(
     """Merge ranges whose gap is < min_gapwidth. Output sorted by start.
 
     A range starts a new group when `start - (max end+1 so far) >= min_gapwidth`; identical
-    zero-width ranges always collapse (R quirk, pinned by IR.REDUCE.EMPTY).
-    revmap members are listed in (start, width, index) order.
+    zero-width ranges always collapse (R quirk, pinned by IR.REDUCE.EMPTY). With drop_empty,
+    empties are handled by `_reduce_drop_empty`. revmap members are in (start, width, index) order.
     """
     if min_gapwidth < 0:
         raise ValueError("min.gapwidth must be non-negative")
-    idx = np.arange(len(start), dtype=np.int64)
-    if drop_empty:
-        keep = width > 0
-        idx = idx[keep]
-    if len(idx) == 0:
+    if len(start) == 0:
         return _empty(), _empty(), ([] if with_revmap else None)
-    order = idx[np.lexsort((width[idx], start[idx]))]
+    if drop_empty and np.any(width == 0):
+        return _reduce_drop_empty(start, width, min_gapwidth, with_revmap)
+    order = np.lexsort((width, start))
     s = start[order]
     w = width[order]
     excl = s + w
@@ -57,6 +55,34 @@ def reduce_ranges(
     if with_revmap:
         revmap = [chunk for chunk in np.split(order, first[1:])]
     return out_start, out_excl - out_start, revmap
+
+
+def _reduce_drop_empty(
+    start: IntArray, width: IntArray, min_gapwidth: int, with_revmap: bool
+) -> tuple[IntArray, IntArray, Revmap | None]:
+    """reduce(drop.empty.ranges=TRUE) in the presence of empty ranges.
+
+    R still lets an empty range extend the group it follows (gap < min_gapwidth) but an empty
+    range never starts a group and never appears in a revmap.
+    """
+    order = np.lexsort((width, start))
+    out_start: list[int] = []
+    out_excl: list[int] = []
+    members: list[list[int]] = []
+    for j in order.tolist():
+        s, w = int(start[j]), int(width[j])
+        if out_start and s - out_excl[-1] < min_gapwidth:
+            out_excl[-1] = max(out_excl[-1], s + w)
+            if w > 0:
+                members[-1].append(j)
+        elif w > 0:
+            out_start.append(s)
+            out_excl.append(s + w)
+            members.append([j])
+    rs = np.array(out_start, dtype=np.int64)
+    rw = np.array(out_excl, dtype=np.int64) - rs
+    revmap = [np.array(m, dtype=np.int64) for m in members] if with_revmap else None
+    return rs, rw, revmap
 
 
 def gaps_ranges(

@@ -5,7 +5,7 @@
     "GenomicRanges": "1.65.1",
     "S4Vectors": "0.51.6",
     "Seqinfo": "1.3.0",
-    "generated": "2026-11-05T23:56:42-0500"
+    "generated": "2026-11-06T00:09:36-0500"
   },
   "cases": {
     "ir.range.one": {
@@ -871,6 +871,98 @@
         "mcols": {
           "$type": "DFrame",
           "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.extends-group": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 18]},
+        "width": {"$int": [13, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.extends-group.mingap1": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 18]},
+        "width": {"$int": [13, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.extends-group.mingap3": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3]},
+        "width": {"$int": [17]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.revmap-excludes-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3]},
+        "width": {"$int": [17]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [6, 4, 1, 5, 3]
+              ],
+              "names": null
+            }
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.empty-before-does-not-start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10]},
+        "width": {"$int": [2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.reduce.dropempty.chain-of-empties": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [10]},
+        "width": {"$int": [6]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
           "columns": {}
         }
       },

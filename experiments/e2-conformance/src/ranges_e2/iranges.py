@@ -338,17 +338,15 @@ class IRanges:
     def precede(self, subject: "IRanges | None" = None, select: str = "first") -> Hits | npt.NDArray[np.int64]:
         if select not in ("first", "all"):
             raise ValueError("select must be 'first' or 'all'")
-        me = subject is None
-        sj = self if subject is None else subject
-        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "precede", self_exclude=me)
+        sj = self if subject is None else subject  # R does not exclude self for precede/follow
+        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "precede")
         return _ties_result(ties, len(self), len(sj), select)
 
     def follow(self, subject: "IRanges | None" = None, select: str = "last") -> Hits | npt.NDArray[np.int64]:
         if select not in ("last", "all"):
             raise ValueError("select must be 'last' or 'all'")
-        me = subject is None
         sj = self if subject is None else subject
-        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "follow", self_exclude=me)
+        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), "follow")
         return _ties_result(ties, len(self), len(sj), select)
 
     def distance(self, other: "IRanges") -> npt.NDArray[np.int64]:

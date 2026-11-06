@@ -102,3 +102,27 @@ contracts and which are accidents** (~25 quirks listed in the Phase A entries).
 - `seqlevels<-` on data: rename if nothing in common and same length, else map by name (drop unused / add new). Matches every case; other partial-overlap forms are untested.
 - R locale: levels are first-appearance order, so no case depends on collation.
 - Python `IRanges.rank()` defaults to `"average"` (R's own default errors).
+
+## 2026-11-06 — differential fuzzing found what hand-authored cases missed
+
+`ranges_e2.conformance.fuzz` (random inputs for every op, R goldens in a temp dir). First run on
+1476 cases: 46 divergences. Findings, all fixed in the library and promoted to named clauses (+23 cases, 905 total):
+
+| Finding | Clause | Fix |
+|---|---|---|
+| `reduce(drop.empty.ranges=TRUE)`: an empty range still extends the group it follows, never starts one, never enters `revmap` | IR.REDUCE.DROPEMPTY | new sweep `_reduce_drop_empty` |
+| GRanges `setdiff/intersect` are `gaps(union(gaps(x,end=L),y),end=L)`: positions < 1 or > L vanish (L = seqlength, else last position) | GR.SETOPS.CLIP | re-implemented as R defines them (my earlier per-group sweep was equivalent only for in-range data) |
+| `psetdiff(GRanges)`: `*` takes y's strand for every pair, even across seqnames | GR.PSETDIFF.STRAND | strand rule |
+| `pintersect(GRanges)`: a no-hit pair keeps x's *original* strand (also for compatible, non-overlapping pairs) | GR.PINTERSECT.NOHIT | strand rule |
+| `nearest(GRanges, select="all")` = overlaps(maxgap 0), else nearer of precede/follow; exact tie keeps only the precede side | GR.NEAREST.TIE | ported the structure of R's algorithm on top of my precede/follow |
+| `precede(x)` / `follow(x)` without subject do not exclude self (zero-width ranges) | IR.NEIGHBOUR.SELF | removed self-exclusion (only `nearest(x)` drops self) |
+
+After the fixes, ~15k random in-domain cases (starts >= 1): the only divergences left are the
+documented xfail quirk and GRanges precede/follow/nearest involving a range with end <= 0 (R's
+offset+sentinel number line; see README "Known limits"). With starts down to -2: 49/3000.
+
+Lesson (process): the hand-authored suite looked complete (882 cases, every clause covered) yet
+missed 6 behaviours; each was found within minutes by random generation. Cases-as-data made
+promotion trivial: the fuzz case JSON is already in the suite's format. A suite built *only* from
+hand-picked cases would have shipped these as hidden divergences.
+Cost of fuzzing: ~150 lines of generator (`fuzz.py`) + one R call per batch.

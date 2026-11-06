@@ -408,8 +408,8 @@ class GRanges:
 
     def gaps(
         self,
-        start: int | Sequence[int] | Mapping[str, int] | None = None,
-        end: int | Sequence[int] | Mapping[str, int | None] | None = None,
+        start: int | Sequence[int | None] | Mapping[str, int | None] | None = None,
+        end: int | Sequence[int | None] | Mapping[str, int | None] | None = None,
         ignore_strand: bool = False,
     ) -> "GRanges":
         """Gaps for every seqlevel and strand (or '*' only with ignore_strand), within [start, end].
@@ -446,37 +446,37 @@ class GRanges:
     def union(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
         return self.concat(y).reduce(drop_empty_ranges=True, ignore_strand=ignore_strand)
 
-    def _binary_groups(self, y: "GRanges", ignore_strand: bool) -> tuple[Seqinfo, dict[int, IntArray], dict[int, IntArray]]:
-        si = self._seqinfo.merge(y._seqinfo)
-        xk = self._recode_keys(si, ignore_strand)
-        yk = y._recode_keys(si, ignore_strand)
-        gx = {int(k): np.nonzero(xk == k)[0] for k in np.unique(xk)}
-        gy = {int(k): np.nonzero(yk == k)[0] for k in np.unique(yk)}
-        return si, gx, gy
-
-    def _recode_keys(self, si: Seqinfo, ignore_strand: bool) -> IntArray:
-        st = np.full(len(self), STAR, dtype=np.int64) if ignore_strand else self._strand.astype(np.int64)
-        return self._recode(si).astype(np.int64) * 3 + st
-
-    def intersect(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
-        si, gx, gy = self._binary_groups(y, ignore_strand)
-        pieces = []
-        for k in sorted(set(gx) & set(gy)):
-            s, w = _inter.intersect_ranges(self._s()[gx[k]], self._w()[gx[k]], y._s()[gy[k]], y._w()[gy[k]])
-            if len(s):
-                pieces.append((k // 3, k % 3, s, w))
-        return self._assemble(pieces, seqinfo=si)
+    def _aligned_for_setops(
+        self, y: "GRanges", ignore_strand: bool
+    ) -> tuple["GRanges", "GRanges", list[int | None]]:
+        """x and y on the merged seqinfo, plus per-level end bounds: seqlength, else the last position."""
+        if ignore_strand:
+            x, y = self._with(strand=np.full(len(self), STAR, dtype=np.int8)), y._with(
+                strand=np.full(len(y), STAR, dtype=np.int8)
+            )
+        else:
+            x = self
+        si = x._seqinfo.merge(y._seqinfo)
+        x = x._with(seq=x._recode(si), seqinfo=si)
+        y = y._with(seq=y._recode(si), seqinfo=si)
+        last: list[int | None] = []
+        for lv in range(len(si)):
+            ends = [int((g._s() + g._w() - 1)[g._seq == lv].max()) for g in (x, y) if np.any(g._seq == lv)]
+            last.append(max(ends) if ends else None)
+        bounds = [L if L is not None else last[i] for i, L in enumerate(si.seqlengths)]
+        return x, y, bounds
 
     def setdiff(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
-        si, gx, gy = self._binary_groups(y, ignore_strand)
-        pieces = []
-        for k in sorted(gx):
-            ys = y._s()[gy[k]] if k in gy else np.zeros(0, dtype=np.int64)
-            yw = y._w()[gy[k]] if k in gy else np.zeros(0, dtype=np.int64)
-            s, w = _inter.setdiff_ranges(self._s()[gx[k]], self._w()[gx[k]], ys, yw)
-            if len(s):
-                pieces.append((k // 3, k % 3, s, w))
-        return self._assemble(pieces, seqinfo=si)
+        """Positions in x not in y, per seqname and strand, as R defines it:
+        gaps(union(gaps(x, end=L), y), end=L), so positions outside 1..L are dropped.
+        """
+        x, y, bounds = self._aligned_for_setops(y, ignore_strand)
+        return x.gaps(end=bounds).union(y).gaps(end=bounds)
+
+    def intersect(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
+        """R: setdiff(x, gaps(y, end=L)); same 1..L clipping as setdiff."""
+        x, y, bounds = self._aligned_for_setops(y, ignore_strand)
+        return x.setdiff(y.gaps(end=bounds))
 
     def _parallel_setup(
         self, y: "GRanges", ignore_strand: bool, allow_recycle_y: bool = False
@@ -517,7 +517,7 @@ class GRanges:
         hit = ok & (w >= 0)
         out_s = np.where(hit, s, xs)
         out_w = np.where(hit, w, 0)
-        out_strand = np.where(ok, strand, self._strand)
+        out_strand = np.where(hit, strand, self._strand)
         hit_col = pl.Series("hit", hit.tolist(), dtype=pl.Boolean)
         base = self._ranges._mcols
         mcols = pl.DataFrame([hit_col]) if base is None else base.with_columns(hit_col)
@@ -528,15 +528,15 @@ class GRanges:
         return res
 
     def psetdiff(self, y: "GRanges", ignore_strand: bool = False) -> "GRanges":
-        si, y, ok, strand = self._parallel_setup(y, ignore_strand)
+        si, y, ok, _ = self._parallel_setup(y, ignore_strand)
+        strand = self._strand if ignore_strand else np.where(self._strand == STAR, y._strand, self._strand)
         xs, xw = self._s(), self._w()
         out_s, out_w = xs.copy(), xw.copy()
         if ok.any():
             sel = np.nonzero(ok)[0]
             r = IRanges._make(xs[sel], xw[sel]).psetdiff(IRanges._make(y._s()[sel], y._w()[sel]))
             out_s[sel], out_w[sel] = r._s(), r._w()
-        out_strand = np.where(ok, strand, self._strand)
-        return GRanges._make(self._recode(si), out_strand, IRanges._make(out_s, out_w, self._ranges._names), si)
+        return GRanges._make(self._recode(si), strand, IRanges._make(out_s, out_w, self._ranges._names), si)
 
     # ---- overlaps ---------------------------------------------------------------------------------------
 
@@ -630,13 +630,64 @@ class GRanges:
     def nearest(
         self, subject: "GRanges | None" = None, select: str = "arbitrary", ignore_strand: bool = False
     ) -> Hits | npt.NDArray[np.int64]:
+        """Nearest subject, built the way R builds it from overlaps, precede and follow.
+
+        1. Subjects within gap 0 (overlapping or adjacent, strand-compatible) win outright.
+        2. Otherwise compare the precede and follow candidates by distance; the nearer side wins.
+        3. select='all': on a distance tie only the precede side is returned (R quirk, pinned
+           by the suite family GR.NEAREST*). subject=None searches x against itself, excluding
+           self only in step 1 (R does the same).
+        """
         if select not in ("arbitrary", "all"):
             raise ValueError("select must be 'arbitrary' or 'all'")
-        me = subject is None
+        self_mode = subject is None
         sj = self if subject is None else subject
-        mask, _ = self._pair_masks(sj, ignore_strand)
-        ties = _nearest.nearest_ties(self._s(), self._w(), sj._s(), sj._w(), mask, me)
-        return _ties_result(ties, len(self), len(sj), select)
+        nq = len(self)
+        oq, os_ = self._overlap_pairs(sj, 0, 0, "any", ignore_strand)
+        if self_mode:
+            keep = oq != os_
+            oq, os_ = oq[keep], os_[keep]
+        first_hit = np.full(nq, NA_INDEX, dtype=np.int64)
+        if len(oq):
+            big = np.iinfo(np.int64).max
+            tmp = np.full(nq, big, dtype=np.int64)
+            np.minimum.at(tmp, oq, os_)
+            first_hit = np.where(tmp == big, NA_INDEX, tmp)
+        mask, reverse = self._pair_masks(sj, ignore_strand)
+        rest = np.nonzero(first_hit == NA_INDEX)[0]
+        sub = self._take(rest)
+        mask_r = lambda i: mask(int(rest[i]))  # noqa: E731 - rebinds the sub-query index to x's
+        rev_r = lambda i: reverse(int(rest[i]))  # noqa: E731
+        p0 = _nearest.directional_ties(sub._s(), sub._w(), sj._s(), sj._w(), "precede", rev_r, mask_r)
+        f0 = _nearest.directional_ties(sub._s(), sub._w(), sj._s(), sj._w(), "follow", rev_r, mask_r)
+        p = np.array([t[0] if len(t) else NA_INDEX for t in p0], dtype=np.int64)
+        f = np.array([t[-1] if len(t) else NA_INDEX for t in f0], dtype=np.int64)
+
+        def dist_to(idx: IntArray) -> IntArray:
+            ok = idx >= 0
+            safe = np.where(ok, idx, 0)
+            if len(sj) == 0:
+                return np.full(len(idx), NA_INDEX, dtype=np.int64)
+            d = _nearest.pair_distance(sub._s(), sub._s() + sub._w() - 1, sj._s()[safe], sj._s()[safe] + sj._w()[safe] - 1)
+            return np.where(ok, d, NA_INDEX)
+
+        pd, fd = dist_to(p), dist_to(f)
+        both = (p >= 0) & (f >= 0)
+        p_nearest = np.where(both, np.where(pd == fd, p < f, pd < fd), f < 0)
+        if select == "arbitrary":
+            out = first_hit.copy()
+            out[rest] = np.where(p_nearest, p, f)
+            return out
+        p_nearest = p_nearest | (both & (pd == fd))
+        qs = [oq]
+        ss = [os_]
+        for k, qi in enumerate(rest.tolist()):
+            chosen = p0[k] if p_nearest[k] else f0[k]
+            qs.append(np.full(len(chosen), qi, dtype=np.int64))
+            ss.append(chosen)
+        q_all, s_all = np.concatenate(qs), np.concatenate(ss)
+        order = np.lexsort((s_all, q_all))
+        return Hits(q_all[order], s_all[order], nq, len(sj))
 
     def precede(
         self, subject: "GRanges | None" = None, select: str = "first", ignore_strand: bool = False
@@ -655,10 +706,9 @@ class GRanges:
     def _directional(
         self, subject: "GRanges | None", kind: str, select: str, ignore_strand: bool
     ) -> Hits | npt.NDArray[np.int64]:
-        me = subject is None
-        sj = self if subject is None else subject
+        sj = self if subject is None else subject  # R does not exclude self for precede/follow
         mask, reverse = self._pair_masks(sj, ignore_strand)
-        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), kind, reverse, mask, me)
+        ties = _nearest.directional_ties(self._s(), self._w(), sj._s(), sj._w(), kind, reverse, mask)
         return _ties_result(ties, len(self), len(sj), select)
 
     def distance(self, other: "GRanges", ignore_strand: bool = False) -> npt.NDArray[np.int64]:

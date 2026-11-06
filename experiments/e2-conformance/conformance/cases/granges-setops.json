@@ -1,6 +1,9 @@
 {
   "group": "granges-setops",
   "clauses": {
+    "GR.PINTERSECT.NOHIT": "pintersect: a pair without a hit (clash or no overlap) keeps x's original strand and becomes a zero-width range at start(x) with hit=FALSE",
+    "GR.PSETDIFF.STRAND": "psetdiff result strand is x's, except '*' takes y's strand, for every pair including those whose seqnames differ",
+    "GR.SETOPS.CLIP": "intersect/setdiff on GRanges are defined through gaps (setdiff = gaps(union(gaps(x, end=L), y), end=L)), so positions below 1 or above L vanish; L is the seqlength, or the last position of x and y when the seqlength is unknown",
     "GR.UNION": "union(x, y) = reduce(c(x, y)) per (seqname, strand); ignore.strand=TRUE ignores strand and returns '*'; seqinfo is merged",
     "GR.INTERSECT": "intersect(x, y) is the per-(seqname, strand) intersection of the covered positions; '*' on one side does NOT match '+'/'-' unless ignore.strand=TRUE",
     "GR.SETDIFF": "setdiff(x, y) is the per-(seqname, strand) difference of covered positions; ignore.strand=TRUE ignores strand",
@@ -12,6 +15,11 @@
     "GR.PSETOPS.LEN": "punion and psetdiff require equal lengths; pintersect recycles a length-1 y but otherwise requires equal lengths"
   },
   "fixtures": {
+    "clipx": {"$type": "GRanges", "seqnames": ["c1", "c1", "c2", "c3"], "start": [-3, 10, 1, -1], "width": [6, 5, 4, 5], "strand": ["+", "+", "-", "*"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}},
+    "clipbig": {"$type": "GRanges", "seqnames": ["c1", "c2", "c3"], "start": [35, 25, 50], "width": [10, 10, 5], "strand": ["+", "-", "*"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}},
+    "clipy": {"$type": "GRanges", "seqnames": ["c1", "c2"], "start": [2, 36], "width": [2, 2], "strand": ["+", "-"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}},
+    "pdx": {"$type": "GRanges", "seqnames": ["c1", "c3", "c2"], "start": [10, 10, 5], "width": [5, 5, 5], "strand": ["*", "*", "+"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}},
+    "pdy": {"$type": "GRanges", "seqnames": ["c2", "c1", "c2"], "start": [12, 12, 5], "width": [5, 5, 5], "strand": ["-", "-", "-"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}},
     "si": {"$type": "Seqinfo", "seqnames": ["chr1", "chr2"], "seqlengths": {"$int": [1000, 500]}, "genome": "hg"},
     "x": {"$type": "GRanges", "seqnames": ["chr1", "chr1", "chr1", "chr2"], "start": [1, 10, 10, 5], "width": [8, 5, 5, 5],
           "strand": ["+", "+", "-", "*"], "seqinfo": {"$ref": "si"}},
@@ -80,6 +88,15 @@
     {"id": "gr.pintersect.recycles-length-1", "clause": "GR.PSETOPS.LEN", "op": "pintersect", "args": [{"$ref": "x"}, {"$ref": "pone"}], "kwargs": {}},
     {"id": "gr.pintersect.len-mismatch", "clause": "GR.PSETOPS.LEN", "op": "pintersect", "args": [{"$ref": "x"}, {"$ref": "pnames"}], "kwargs": {}},
     {"id": "gr.psetdiff.len-mismatch", "clause": "GR.PSETOPS.LEN", "op": "psetdiff", "args": [{"$ref": "x"}, {"$ref": "pone"}], "kwargs": {}},
-    {"id": "gr.pintersect.empty", "clause": "GR.PSETOPS.LEN", "op": "pintersect", "args": [{"$ref": "e"}, {"$ref": "e"}], "kwargs": {}}
+    {"id": "gr.pintersect.empty", "clause": "GR.PSETOPS.LEN", "op": "pintersect", "args": [{"$ref": "e"}, {"$ref": "e"}], "kwargs": {}},
+    {"id": "gr.setdiff.clips-below-one", "clause": "GR.SETOPS.CLIP", "op": "setdiff", "args": [{"$ref": "clipx"}, {"$ref": "clipy"}], "kwargs": {}},
+    {"id": "gr.intersect.clips-below-one", "clause": "GR.SETOPS.CLIP", "op": "intersect", "args": [{"$ref": "clipx"}, {"$ref": "clipx"}], "kwargs": {}},
+    {"id": "gr.setdiff.clips-above-seqlength", "clause": "GR.SETOPS.CLIP", "op": "setdiff", "args": [{"$ref": "clipbig"}, {"$ref": "clipy"}], "kwargs": {}},
+    {"id": "gr.intersect.clips-above-seqlength", "clause": "GR.SETOPS.CLIP", "op": "intersect", "args": [{"$ref": "clipbig"}, {"$ref": "clipbig"}], "kwargs": {}},
+    {"id": "gr.setdiff.range-entirely-below-one", "clause": "GR.SETOPS.CLIP", "op": "setdiff", "args": [{"$type": "GRanges", "seqnames": ["c2"], "start": [-5], "width": [3], "strand": ["+"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}}, {"$type": "GRanges", "seqnames": ["c1"], "start": [1], "width": [1], "strand": ["+"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}}], "kwargs": {}},
+    {"id": "gr.psetdiff.star-takes-y-strand-across-seqnames", "clause": "GR.PSETDIFF.STRAND", "op": "psetdiff", "args": [{"$ref": "pdx"}, {"$ref": "pdy"}], "kwargs": {}},
+    {"id": "gr.psetdiff.star-takes-y-strand-ignore-strand", "clause": "GR.PSETDIFF.STRAND", "op": "psetdiff", "args": [{"$ref": "pdx"}, {"$ref": "pdy"}], "kwargs": {"ignore.strand": true}},
+    {"id": "gr.pintersect.nohit-keeps-original-x-strand", "clause": "GR.PINTERSECT.NOHIT", "op": "pintersect", "args": [{"$ref": "pdx"}, {"$ref": "pdy"}], "kwargs": {}},
+    {"id": "gr.pintersect.nohit-no-overlap-compatible", "clause": "GR.PINTERSECT.NOHIT", "op": "pintersect", "args": [{"$type": "GRanges", "seqnames": ["c1", "c1"], "start": [10, 10], "width": [3, 3], "strand": ["*", "+"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}}, {"$type": "GRanges", "seqnames": ["c1", "c1"], "start": [30, 11], "width": [2, 1], "strand": ["+", "+"], "seqinfo": {"$type": "Seqinfo", "seqnames": ["c1", "c2", "c3"], "seqlengths": {"$int": [40, 30, null]}, "genome": "g"}}], "kwargs": {}}
   ]
 }
