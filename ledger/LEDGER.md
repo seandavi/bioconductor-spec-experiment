@@ -172,3 +172,52 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
   The approaches differ less in whether R gets consulted than in **what
   evidence is kept**: nothing (E0 comments), prose examples (E3),
   re-runnable goldens (E4).
+
+## 2026-11-06 — E2 formal conformance (with serialization) done (harness v2)
+
+| Stage | Wall time |
+|---|---|
+| plan | 3.9 min |
+| implement | 51.3 min |
+| review | 3.2 min |
+| revise | 3.3 min |
+| **total** | **62 min** |
+
+- ~2,270 lines package src; harness ~1,630 lines Python (codec, op
+  adapters, runner, report) + ~430 lines R (codec, runner, selftest);
+  FORMAT.md 574 words; 380 KB R-generated expected outputs; 921 cases over
+  ~155 clauses; 34 commits. Verified: pytest 2037 passed, 4 xfailed;
+  `Rscript conformance/r/run.R check` → 921 cases, 0 not passing.
+  Isolation 0 findings; reviewer wrote only its output.
+- **Serialization was cheap. My prediction was wrong.** Format: typed
+  JSON (`$int/$dbl/$chr/$lgl` tags, NA as null, `$type` objects for
+  IRanges/GRanges/Seqinfo/DFrame/Hits/Rle/RleList/IntegerList). R codec +
+  JSON writer + selftest: ~1 commit, no redesign. Python codec: ~1 commit,
+  797/797 goldens round-tripped on the first run. The agent's own
+  verdict: "Biggest unexpected cost was not serialization but reading
+  goldens to find which R behaviours are contracts and which are
+  accidents" (~25 quirks).
+- Where the real harness cost went: **per-op adapters** (`ops.py`, ~750
+  lines, largest harness file). R calling conventions leak there: 1-based/
+  negative/zero subscripts, NA arguments, `...` varargs, named vectors,
+  `ignore.strand` only on GRanges, partial R defaults. Same layer E4 kept
+  thin by `do.call` on the R side.
+- Codec hacks that survived: `revmap` special-cased *by column name*
+  (0-based list ↔ 1-based IntegerList); the reviewer found the general
+  IntegerList/Factor mcols path broken (finding 3), fixed by typing columns
+  independently of name.
+- Committed its fuzz (`conformance/fuzz.py`, random R-vs-Python). Found 6
+  behaviors the 900 hand-authored cases missed (reduce drop.empty.ranges,
+  GRanges setdiff/intersect clipping, p* strand rules, nearest ties,
+  precede/follow self). Fourth experiment to fuzz unprompted; the first
+  to keep it. Overlap with E3's fuzz finds is high (clipping, p* strand),
+  which suggests these are the real hotspots.
+- Known gap: GRanges precede/follow/nearest with start/end ≤ 0 leak
+  across sequences in R (sentinel number line); not cloned.
+- Review: 3 major (mutable accessors: `x.width[0] = -5` worked;
+  `c()` truncated double mcols to the first frame's int dtype; codec
+  partial vs FORMAT.md), 2 minor (R runner ignored per-case compare mode;
+  clause wording vs cases). All fixed, +16 cases.
+- Mutable-accessor/aliasing bugs now seen in E0b, E2 (and E3 subscripts):
+  the most common defect class across ports, and invisible to any
+  R-vs-Python comparison. Only language-local review catches it.

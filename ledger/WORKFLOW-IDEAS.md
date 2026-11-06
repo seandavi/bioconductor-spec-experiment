@@ -94,3 +94,24 @@ Seen: E3's planner wrote "S1–S4 write the spec" as stages, so the
 implementer (Sonnet) wrote the spec, not the planner (Opus).
 Try: plan briefs say explicitly which stages the planner owns. If a
 design artifact matters (spec, case schema), the planner writes it.
+
+## 12. Keep a standing "port defect checklist" for reviewers
+
+Seen: aliasing/mutability (E0b, E2), missing-value subscripts (E3),
+length/recycling validation (E0), metadata dtype truncation on concat (E2).
+None is an R-fidelity issue; all are found by probing Python contracts.
+Try: a short checklist the reviewer always runs: mutate every accessor
+result; feed NA/masked values to every index-taking method; wrong-length
+vector args; mixed-dtype mcols through c(); empty inputs everywhere. Turn
+it into a reusable probe script per class after one more round.
+
+## 13. Fuzz is the step every approach converges on — schedule it
+
+Seen: E0 (ad hoc probes), E2, E3 (fuzz) all fuzzed against R without
+being told to; E2's and E3's fuzz found the same hotspots (seqlength
+clipping, p* strand rules, nearest ties). Hand-authored cases (900 in E2)
+missed them.
+Try: make "random differential run against the reference" an explicit,
+committed stage in every pipeline that has the reference available,
+after hand-authored cases and before review. Commit seeds and failures as
+cases.
