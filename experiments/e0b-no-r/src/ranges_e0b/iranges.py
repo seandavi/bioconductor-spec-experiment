@@ -6,7 +6,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import inter, intra, ordering
+from . import inter, intra, ordering, setops
 from ._sew import (
     IntArray,
     empty_int,
@@ -257,3 +257,38 @@ class IRanges:
         """Disjoint pieces, split wherever any range starts or ends."""
         s, e, _ = inter.disjoin_kernel(self._start, self.end, self._group0())
         return self._from_ends(s, e)
+
+    # --- set operations ------------------------------------------------------
+    # Normalised results (reduced, non-empty), no names or mcols.
+
+    def union(self, other: "IRanges") -> Self:
+        s, e, _ = setops.union_kernel(
+            self._start, self.end, self._group0(), other._start, other.end, other._group0()
+        )
+        return self._from_ends(s, e)
+
+    def intersect(self, other: "IRanges") -> Self:
+        s, e, _ = setops.sweep_kernel(
+            self._start, self.end, self._group0(), other._start, other.end, other._group0(), "intersect"
+        )
+        return self._from_ends(s, e)
+
+    def setdiff(self, other: "IRanges") -> Self:
+        s, e, _ = setops.sweep_kernel(
+            self._start, self.end, self._group0(), other._start, other.end, other._group0(), "setdiff"
+        )
+        return self._from_ends(s, e)
+
+    # Parallel versions pair x[i] with y[i]; the result keeps x's names and mcols.
+
+    def punion(self, other: "IRanges", fill_gap: bool = False) -> Self:
+        s, e = setops.punion(self._start, self.end, other._start, other.end, fill_gap)
+        return self._replace(s, e - s + 1)
+
+    def pintersect(self, other: "IRanges", resolve_empty: str = "none") -> Self:
+        s, e = setops.pintersect(self._start, self.end, other._start, other.end, resolve_empty)
+        return self._replace(s, e - s + 1)
+
+    def psetdiff(self, other: "IRanges") -> Self:
+        s, e = setops.psetdiff(self._start, self.end, other._start, other.end)
+        return self._replace(s, e - s + 1)
