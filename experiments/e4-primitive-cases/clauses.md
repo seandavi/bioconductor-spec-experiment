@@ -207,3 +207,49 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | GR-PROMOTERS-2 | `promoters` defaults 2000/200 (may go out of bounds, warning only) | `?promoters` |
 | GR-PROMOTERS-3 | negative upstream/downstream is an error | `?promoters` |
 | GR-INTRA-1 | intra-range ops on zero-length GRanges return zero-length GRanges with seqinfo | `?"intra-range-methods"` |
+| GR-RANGE-1 | `range` is computed per (seqlevel, strand) group; output sorted by seqlevel, strand (+ - *), position | `?range` |
+| GR-RANGE-2 | `range(ignore.strand=TRUE)` merges strands per seqlevel; result strand `*` | `?range` |
+| GR-RANGE-3 | `range` of zero-length is zero-length with seqinfo | `?range` |
+| GR-REDUCE-1 | `reduce` runs per (seqlevel, strand); `*` is its own group (not merged with `+`/`-`) | `?reduce` |
+| GR-REDUCE-2 | `reduce(ignore.strand=TRUE)` merges across strands; result strand `*` | `?reduce` |
+| GR-REDUCE-3 | `min.gapwidth` and `drop.empty.ranges` apply per group as for IRanges | `?reduce` |
+| GR-REDUCE-4 | `with.revmap=TRUE`: `revmap` holds indices into the whole input | `?reduce` |
+| GR-REDUCE-5 | `reduce` of zero-length keeps seqinfo | `?reduce` |
+| GR-REDUCE-6 | output order follows seqlevels order (not alphabetical), then strand + - * | `?reduce` |
+| GR-DISJOIN-1 | `disjoin` per (seqlevel, strand) group | `?disjoin` |
+| GR-DISJOIN-2 | `disjoin(ignore.strand=TRUE)` pools strands; result `*` | `?disjoin` |
+| GR-DISJOIN-3 | `disjoin(with.revmap=TRUE)` indexes the whole input | `?disjoin` |
+| GR-DISJOIN-4 | `disjoin` of zero-length keeps seqinfo | `?disjoin` |
+| GR-GAPS-1 | `gaps` returns, for every seqlevel and each strand, the gaps within `[1, seqlength]` (unused sequences/strands give whole-sequence gaps) | `?gaps` |
+| GR-GAPS-2 | `gaps(ignore.strand=TRUE)`: one `*` group per seqlevel | `?gaps` |
+| GR-GAPS-3 | `start`/`end` are scalars applied to every group, overriding 1 / seqlength | `?gaps` |
+| GR-GAPS-4 | zero-length input: whole-sequence gaps where lengths are known; unused level without length gives nothing | `?gaps` |
+| GR-GAPS-5 | unknown seqlength: the end defaults to the group's coverage extent (as IRanges); groups without ranges yield nothing | `?gaps` |
+| GR-GAPS-6 | ranges beyond seqlength are clipped; circular sequences are not special; seqlength 0 gives nothing | `?gaps` |
+| GR-UNION-1 | `union` per (seqlevel, strand) group; strands `+`,`-`,`*` never mix | `?"setops"` |
+| GR-UNION-2 | `union(ignore.strand=TRUE)` pools strands; result `*` | `?"setops"` |
+| GR-UNION-3 | `*` is not a wildcard in set operations | `?"setops"` |
+| GR-UNION-4 | set ops with a zero-length argument | `?"setops"` |
+| GR-UNION-5 | result seqinfo is the merge of both; seqlevel order x first | `?"setops"` |
+| GR-INTERSECT-1 | `intersect` per group | `?"setops"` |
+| GR-INTERSECT-2 | `intersect(ignore.strand=TRUE)` | `?"setops"` |
+| GR-INTERSECT-3 | `intersect` of `+` with `*` is empty | `?"setops"` |
+| GR-INTERSECT-4 | `intersect` with a zero-length argument | `?"setops"` |
+| GR-INTERSECT-5 | result seqinfo is the merge of both | `?"setops"` |
+| GR-SETDIFF-1 | `setdiff` per group | `?"setops"` |
+| GR-SETDIFF-2 | `setdiff(ignore.strand=TRUE)` | `?"setops"` |
+| GR-SETDIFF-3 | `setdiff` of `+` minus `*` removes nothing | `?"setops"` |
+| GR-SETDIFF-4 | `setdiff` with a zero-length argument | `?"setops"` |
+| GR-SETDIFF-5 | result seqinfo is the merge of both | `?"setops"` |
+| GR-PUNION-1 | `punion` pairs: compatible seqname and strand required; result keeps x's names/seqnames/strand, drops mcols | `?"setops"` |
+| GR-PUNION-2 | `punion` result strand is x's even when x is `*` | `?"setops"` |
+| GR-PUNION-3 | `punion` gap rule as IRanges (`fill.gap`) | `?"setops"` |
+| GR-PUNION-4 | incompatible pair or length mismatch is an error | `?"setops"` |
+| GR-PINTERSECT-1 | `pintersect` adds logical mcol `hit` (compatible pair with non-ambiguous intersection); non-hits are `[start(x), start(x)-1]`; x's mcols kept | `?"setops"` |
+| GR-PINTERSECT-2 | adjacent and zero-width-inside pairs are hits with an empty range; zero-width outside is a miss | `?"setops"` |
+| GR-PINTERSECT-3 | hit strand is x's, or y's when x is `*` | `?"setops"` |
+| GR-PINTERSECT-4 | strand/seqname mismatch is a miss (`ignore.strand=TRUE` ignores strand only); no error | `?"setops"` |
+| GR-PSETDIFF-1 | `psetdiff` subtracts compatible pairs; keeps x's names, drops mcols | `?"setops"` |
+| GR-PSETDIFF-2 | incompatible pairs return x unchanged | `?"setops"` |
+| GR-PSETDIFF-3 | compatible pair strand is x's, or y's when x is `*` | `?"setops"` |
+| GR-PSETDIFF-4 | y strictly inside x is an error | `?"setops"` |

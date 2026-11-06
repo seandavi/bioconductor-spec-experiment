@@ -1,0 +1,295 @@
+cases:
+  - id: gr-union
+    clause: GR-UNION-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-ignore-strand
+    clause: GR-UNION-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-union-star-vs-plus
+    clause: GR-UNION-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-plus-vs-star
+    clause: GR-UNION-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-empty-x
+    clause: GR-UNION-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-empty-y
+    clause: GR-UNION-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-seqinfo-merged
+    clause: GR-UNION-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [10]}}}
+      z: {GRanges: {seqnames: [b], start: [1], width: [5], seqinfo: {seqnames: [b], seqlengths: [20]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-union-seqlevel-order
+    clause: GR-UNION-5
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [z, a]}}}
+      z: {GRanges: {seqnames: [a, z], start: [2, 2], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [a, z]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-intersect
+    clause: GR-INTERSECT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-ignore-strand
+    clause: GR-INTERSECT-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-intersect-star-vs-plus
+    clause: GR-INTERSECT-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-plus-vs-star
+    clause: GR-INTERSECT-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-empty-x
+    clause: GR-INTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-empty-y
+    clause: GR-INTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-seqinfo-merged
+    clause: GR-INTERSECT-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [10]}}}
+      z: {GRanges: {seqnames: [b], start: [1], width: [5], seqinfo: {seqnames: [b], seqlengths: [20]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-intersect-seqlevel-order
+    clause: GR-INTERSECT-5
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [z, a]}}}
+      z: {GRanges: {seqnames: [a, z], start: [2, 2], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [a, z]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-setdiff
+    clause: GR-SETDIFF-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-ignore-strand
+    clause: GR-SETDIFF-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-setdiff-star-vs-plus
+    clause: GR-SETDIFF-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-plus-vs-star
+    clause: GR-SETDIFF-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [3], width: [2], strand: ["*"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-empty-x
+    clause: GR-SETDIFF-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 10, 1], width: [5, 5, 5], strand: ["+", "+", "*"], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-empty-y
+    clause: GR-SETDIFF-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 10, 1], width: [5, 5, 5], strand: ["+", "-", "+"], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [a, b]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-seqinfo-merged
+    clause: GR-SETDIFF-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [10]}}}
+      z: {GRanges: {seqnames: [b], start: [1], width: [5], seqinfo: {seqnames: [b], seqlengths: [20]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-setdiff-seqlevel-order
+    clause: GR-SETDIFF-5
+    inputs:
+      x: {GRanges: {seqnames: [z, a], start: [1, 1], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [z, a]}}}
+      z: {GRanges: {seqnames: [a, z], start: [2, 2], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [a, z]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-union-seqinfo-conflict
+    clause: GR-UNION-5
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [10]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [5], seqinfo: {seqnames: [a], seqlengths: [11]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-punion
+    clause: GR-PUNION-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 5, 1], width: [5, 5, 5], strand: ["+", "-", "*"], names: [n0, n1, n2], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [3, 5, 3], width: [5, 3, 2], strand: ["+", "-", "+"], names: [n0, n1, n2], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-ignore-strand
+    clause: GR-PUNION-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 5], width: [5, 5], strand: ["+", "-"], names: [n0, n1], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a], start: [3, 5], width: [5, 3], strand: ["-", "+"], names: [n0, n1], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-punion-star-first
+    clause: GR-PUNION-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["*"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-star-second
+    clause: GR-PUNION-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["*"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-gap-error
+    clause: GR-PUNION-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [2], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [10], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-fill-gap
+    clause: GR-PUNION-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [2], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [10], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z], kwargs: {fill.gap: true}}
+  - id: gr-punion-diff-seqnames-error
+    clause: GR-PUNION-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b], start: [3], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-strand-mismatch-error
+    clause: GR-PUNION-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-punion-length-mismatch
+    clause: GR-PUNION-4
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 5, 1], width: [5, 5, 5], strand: ["+", "-", "*"], names: [n0, n1, n2], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-pintersect-hit-column
+    clause: GR-PINTERSECT-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a, a, a, b], start: [1, 1, 1, 10, 1, 1], width: [5, 5, 5, 5, 5, 5], strand: ["+", "+", "-", "*", "*", "+"], names: [n0, n1, n2, n3, n4, n5], mcols: {s: [1, 2, 3, 4, 5, 6]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, a, a, b, b], start: [3, 10, 3, 3, 3, 3], width: [5, 2, 5, 5, 5, 5], strand: ["+", "+", "-", "+", "*", "+"], names: [n0, n1, n2, n3, n4, n5], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-adjacent
+    clause: GR-PINTERSECT-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [6], width: [3], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-zero-width-inside
+    clause: GR-PINTERSECT-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [3], width: [0], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-zero-width-outside
+    clause: GR-PINTERSECT-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [30], width: [0], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-star-first
+    clause: GR-PINTERSECT-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["*"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-star-second
+    clause: GR-PINTERSECT-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["*"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-strand-mismatch
+    clause: GR-PINTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-strand-mismatch-ignore
+    clause: GR-PINTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [3], width: [5], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-pintersect-diff-seqnames
+    clause: GR-PINTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b], start: [3], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-pintersect-diff-seqnames-ignore
+    clause: GR-PINTERSECT-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [b], start: [3], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: pintersect, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-psetdiff
+    clause: GR-PSETDIFF-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [1, 1, 1], width: [5, 5, 5], strand: ["+", "-", "*"], names: [n0, n1, n2], mcols: {s: [1, 2, 3]}, seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, a, b], start: [1, 3, 1], width: [2, 3, 2], strand: ["+", "-", "+"], names: [n0, n1, n2], seqinfo: {seqnames: [a, b]}}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: gr-psetdiff-incompatible-unchanged
+    clause: GR-PSETDIFF-2
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 1], width: [5, 5], strand: ["+", "+"], names: [n0, n1], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a, b], start: [1, 1], width: [2, 2], strand: ["-", "+"], names: [n0, n1], seqinfo: {seqnames: [a, b]}}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: gr-psetdiff-ignore-strand
+    clause: GR-PSETDIFF-2
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [2], strand: ["-"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: psetdiff, args: [x, z], kwargs: {ignore.strand: true}}
+  - id: gr-psetdiff-star
+    clause: GR-PSETDIFF-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [5], strand: ["*"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [1], width: [2], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: gr-psetdiff-split-error
+    clause: GR-PSETDIFF-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [10], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+      z: {GRanges: {seqnames: [a], start: [4], width: [2], strand: ["+"], names: [n0], seqinfo: {seqnames: [a, b]}}}
+    call: {op: psetdiff, args: [x, z]}

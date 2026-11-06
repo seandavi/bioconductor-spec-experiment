@@ -1,0 +1,176 @@
+cases:
+  - id: gr-range
+    clause: GR-RANGE-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: range, args: [x]}
+  - id: gr-range-ignore-strand
+    clause: GR-RANGE-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: range, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-range-empty
+    clause: GR-RANGE-3
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: range, args: [x]}
+  - id: gr-reduce
+    clause: GR-REDUCE-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x]}
+  - id: gr-reduce-ignore-strand
+    clause: GR-REDUCE-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-reduce-min-gapwidth
+    clause: GR-REDUCE-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 3}}
+  - id: gr-reduce-min-gapwidth-0
+    clause: GR-REDUCE-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {min.gapwidth: 0}}
+  - id: gr-reduce-drop-empty
+    clause: GR-REDUCE-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {drop.empty.ranges: true}}
+  - id: gr-reduce-revmap
+    clause: GR-REDUCE-4
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true}}
+  - id: gr-reduce-revmap-ignore-strand
+    clause: GR-REDUCE-4
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true, ignore.strand: true}}
+  - id: gr-reduce-empty
+    clause: GR-REDUCE-5
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: reduce, args: [x]}
+  - id: gr-reduce-seqlevel-order
+    clause: GR-REDUCE-6
+    inputs:
+      x: {GRanges: {seqnames: [z, a, z], start: [1, 1, 5], width: [2, 2, 2], strand: ["+", "+", "+"], seqinfo: {seqnames: [z, a]}}}
+    call: {op: reduce, args: [x]}
+  - id: gr-reduce-strand-order
+    clause: GR-REDUCE-6
+    inputs:
+      x: {GRanges: {seqnames: [a, a, a], start: [1, 1, 1], width: [2, 2, 2], strand: ["*", "-", "+"]}}
+    call: {op: reduce, args: [x]}
+  - id: gr-reduce-star-not-merged-with-plus
+    clause: GR-REDUCE-1
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 2], width: [5, 5], strand: ["+", "*"]}}
+    call: {op: reduce, args: [x]}
+  - id: gr-disjoin
+    clause: GR-DISJOIN-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: disjoin, args: [x]}
+  - id: gr-disjoin-ignore-strand
+    clause: GR-DISJOIN-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: disjoin, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-disjoin-revmap
+    clause: GR-DISJOIN-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: disjoin, args: [x], kwargs: {with.revmap: true}}
+  - id: gr-disjoin-empty
+    clause: GR-DISJOIN-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: disjoin, args: [x]}
+  - id: gr-gaps
+    clause: GR-GAPS-1
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-ignore-strand
+    clause: GR-GAPS-2
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-gaps-start-end
+    clause: GR-GAPS-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 60}}
+  - id: gr-gaps-start-only
+    clause: GR-GAPS-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x], kwargs: {start: 4}}
+  - id: gr-gaps-end-only
+    clause: GR-GAPS-3
+    inputs:
+      x: {GRanges: {seqnames: [chr2, chr1, chr1, chr2, chr1, chr1, chr2], start: [5, 10, 12, 7, 50, 1, 100], width: [3, 4, 3, 2, 5, 0, 10], strand: ["+", "+", "-", "+", "*", "+", "-"], names: [a, b, c, d, e, f, g], mcols: {s: [1, 2, 3, 4, 5, 6, 7]}, seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x], kwargs: {end: 12}}
+  - id: gr-gaps-empty-input
+    clause: GR-GAPS-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [chr1, chr2, chr3], seqlengths: [100, 200, 300]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-no-seqlengths
+    clause: GR-GAPS-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b], start: [2, 10, 5, 5], width: [3, 3, 3, 0], strand: ["+", "+", "-", "*"]}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-no-seqlengths-ignore
+    clause: GR-GAPS-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b], start: [2, 10, 5, 5], width: [3, 3, 3, 0], strand: ["+", "+", "-", "*"]}}
+    call: {op: gaps, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-gaps-no-seqlengths-end
+    clause: GR-GAPS-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b], start: [2, 10, 5, 5], width: [3, 3, 3, 0], strand: ["+", "+", "-", "*"]}}
+    call: {op: gaps, args: [x], kwargs: {end: 20}}
+  - id: gr-gaps-no-seqlengths-start
+    clause: GR-GAPS-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b, b], start: [2, 10, 5, 5], width: [3, 3, 3, 0], strand: ["+", "+", "-", "*"]}}
+    call: {op: gaps, args: [x], kwargs: {start: 4}}
+  - id: gr-gaps-mixed-lengths
+    clause: GR-GAPS-5
+    inputs:
+      x: {GRanges: {seqnames: [a, a, b], start: [2, 10, 5], width: [3, 3, 3], strand: ["+", "+", "-"], seqinfo: {seqnames: [a, b], seqlengths: [30, null]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-beyond-seqlength
+    clause: GR-GAPS-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [25], width: [10], strand: ["+"], seqinfo: {seqnames: [a], seqlengths: [30]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-edges-covered
+    clause: GR-GAPS-6
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 28], width: [2, 3], strand: ["+", "+"], seqinfo: {seqnames: [a], seqlengths: [30]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-fully-covered
+    clause: GR-GAPS-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [30], strand: ["+"], seqinfo: {seqnames: [a], seqlengths: [30]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-circular
+    clause: GR-GAPS-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [a], seqlengths: [30], isCircular: [true]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-zero-seqlength
+    clause: GR-GAPS-6
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [0], seqinfo: {seqnames: [a], seqlengths: [0]}}}
+    call: {op: gaps, args: [x]}
+  - id: gr-gaps-unused-level-no-length
+    clause: GR-GAPS-4
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [2], width: [3], strand: ["+"], seqinfo: {seqnames: [a, z]}}}
+    call: {op: gaps, args: [x]}

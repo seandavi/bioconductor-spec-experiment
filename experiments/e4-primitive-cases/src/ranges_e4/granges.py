@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _mcols, intra
+from . import _group, _mcols, inter, intra, setops
 from .iranges import IRanges, resolve_subscript
 from .seqinfo import Seqinfo
 
@@ -216,6 +216,132 @@ class GRanges:
             ),
             use_names,
         )
+
+    # inter-range ---------------------------------------------------------
+    def _from_groups(self, out: _group.Collected, seqinfo: Seqinfo | None = None) -> Self:
+        codes, strands, start, width = out.flat()
+        mcols = None
+        if out.has_members:
+            mcols = pl.DataFrame({"revmap": pl.Series("revmap", [m.tolist() for m in out.members], dtype=pl.List(pl.Int64))})
+        return self._make(codes, strands, IRanges._make(start, width), mcols, seqinfo or self._seqinfo)
+
+    def _by_group(self, kernel: Any, ignore_strand: bool) -> Self:
+        return self._from_groups(
+            _group.by_group(self._seqcodes, self._strand, self._ranges._start, self._ranges._width, kernel, ignore_strand)
+        )
+
+    def range(self, ignore_strand: bool = False) -> Self:
+        return self._by_group(lambda s, w: (*inter.range_of(s, w), None), ignore_strand)
+
+    def reduce(
+        self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False, ignore_strand: bool = False
+    ) -> Self:
+        def kernel(s: np.ndarray, w: np.ndarray) -> _group.Result:
+            rs, rw, members = inter.reduce_runs(s, w, int(min_gapwidth), drop_empty_ranges)
+            return rs, rw, members if with_revmap else None
+
+        return self._by_group(kernel, ignore_strand)
+
+    def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> Self:
+        def kernel(s: np.ndarray, w: np.ndarray) -> _group.Result:
+            rs, rw, members = inter.disjoin(s, w)
+            return rs, rw, members if with_revmap else None
+
+        return self._by_group(kernel, ignore_strand)
+
+    def gaps(self, start: int | None = None, end: int | None = None, ignore_strand: bool = False) -> Self:
+        """Gaps per (seqlevel, strand) within ``[start, end]``; default ``[1, seqlength]``.
+
+        Every seqlevel gets a group for each strand (just ``*`` when ignoring
+        strand), so unused sequences yield whole-sequence gaps.
+        """
+        lo = 1 if start is None else start
+        lengths = self._seqinfo._seqlengths
+        strands = (2,) if ignore_strand else (0, 1, 2)
+        all_keys = [c * 3 + st for c in range(len(self._seqinfo)) for st in strands]
+        out = _group.Collected()
+        k = _group.keys(self._seqcodes, self._strand, ignore_strand)
+        for key in all_keys:
+            idx = np.flatnonzero(k == key)
+            hi = end if end is not None else lengths[key // 3]
+            s, w = inter.gaps(self._ranges._start[idx], self._ranges._width[idx], lo, hi)
+            out.add(key, s, w)
+        return self._from_groups(out)
+
+    # set operations ------------------------------------------------------
+    def _set_op(self, y: Self, kernel: Any, ignore_strand: bool) -> Self:
+        si = self._seqinfo.merge(y._seqinfo)
+        lookup = {s: i for i, s in enumerate(si.seqnames)}
+
+        def mapped(g: Self) -> np.ndarray:
+            return np.array([lookup[s] for s in g._seqinfo.seqnames], dtype=np.int64)[g._seqcodes]
+
+        xk = _group.keys(mapped(self), self._strand, ignore_strand)
+        yk = _group.keys(mapped(y), y._strand, ignore_strand)
+        out = _group.by_group_pair(xk, (self._ranges._start, self._ranges._width), yk, (y._ranges._start, y._ranges._width), kernel)
+        return self._from_groups(out, si)
+
+    def union(self, y: Self, ignore_strand: bool = False) -> Self:
+        return self._set_op(y, setops.union, ignore_strand)
+
+    def intersect(self, y: Self, ignore_strand: bool = False) -> Self:
+        return self._set_op(y, setops.intersect, ignore_strand)
+
+    def setdiff(self, y: Self, ignore_strand: bool = False) -> Self:
+        return self._set_op(y, setops.setdiff, ignore_strand)
+
+    # parallel set operations ---------------------------------------------
+    def _pair_compat(self, y: Self, ignore_strand: bool) -> tuple[np.ndarray, Seqinfo, np.ndarray]:
+        """(compatible mask, merged seqinfo, y's codes in merged seqinfo)."""
+        if len(self) != len(y):
+            raise ValueError("'x' and 'y' must have the same length")
+        si = self._seqinfo.merge(y._seqinfo)
+        lookup = {s: i for i, s in enumerate(si.seqnames)}
+        xc = np.array([lookup[s] for s in self._seqinfo.seqnames], dtype=np.int64)[self._seqcodes] if len(self) else self._seqcodes
+        yc = np.array([lookup[s] for s in y._seqinfo.seqnames], dtype=np.int64)[y._seqcodes] if len(self) else y._seqcodes
+        ok = xc == yc
+        if not ignore_strand:
+            ok &= (self._strand == y._strand) | (self._strand == 2) | (y._strand == 2)
+        return ok, si, xc
+
+    def _pair_result(self, si: Seqinfo, xc: np.ndarray, strand: np.ndarray, start: np.ndarray, width: np.ndarray, mcols: pl.DataFrame | None) -> Self:
+        return self._make(xc, strand, IRanges._make(start, width, self._ranges._names), mcols, si)
+
+    def _resolved_strand(self, y: Self, ignore_strand: bool) -> np.ndarray:
+        """Strand of a compatible pair: x's, or y's when x is `*` (unless ignoring strand)."""
+        if ignore_strand:
+            return self._strand
+        return np.where(self._strand == 2, y._strand, self._strand)
+
+    def punion(self, y: Self, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
+        ok, si, xc = self._pair_compat(y, ignore_strand)
+        if not ok.all():
+            raise ValueError("'x' and 'y' elements must have compatible 'seqnames' and 'strand' values")
+        s, w = setops.punion(self._ranges._coords(), y._ranges._coords(), fill_gap)
+        return self._pair_result(si, xc, self._strand, s, w, None)
+
+    def pintersect(self, y: Self, ignore_strand: bool = False) -> Self:
+        """Adds a logical ``hit`` mcol: compatible pair with a non-ambiguous intersection."""
+        ok, si, xc = self._pair_compat(y, ignore_strand)
+        xs, xe = self._ranges._start, self._ranges.end
+        s, e = np.maximum(xs, y._ranges._start), np.minimum(xe, y._ranges.end)
+        hit = ok & (e >= s - 1)
+        start = np.where(hit, s, xs)
+        width = np.where(hit, e - s + 1, 0)
+        strand = np.where(hit, self._resolved_strand(y, ignore_strand), self._strand)
+        hit_col = pl.Series("hit", hit.tolist(), dtype=pl.Boolean)
+        mcols = self._mcols.with_columns(hit_col) if self._mcols.width else pl.DataFrame([hit_col])
+        return self._pair_result(si, xc, strand, start, width, mcols)
+
+    def psetdiff(self, y: Self, ignore_strand: bool = False) -> Self:
+        ok, si, xc = self._pair_compat(y, ignore_strand)
+        s, w = self._ranges._start.copy(), self._ranges._width.copy()
+        if ok.any():
+            xs = (s[ok], w[ok])
+            ns, nw = setops.psetdiff(xs, (y._ranges._start[ok], y._ranges._width[ok]))
+            s[ok], w[ok] = ns, nw
+        strand = np.where(ok, self._resolved_strand(y, ignore_strand), self._strand)
+        return self._pair_result(si, xc, strand, s, w, None)
 
     # seqinfo-aware -------------------------------------------------------
     def trim(self) -> Self:
