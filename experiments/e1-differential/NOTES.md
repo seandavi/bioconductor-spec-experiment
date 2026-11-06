@@ -66,3 +66,11 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-06T05:46Z red team: unresolved cases use reasoned, strict xfail marks via
   a collection hook. They still execute both sides; fixes produce XPASS failures.
   Existing expectations and src remain unchanged. No divergences were accepted.
+- 2026-11-06T05:44:49Z correction: the two preceding red-team entries used an estimated
+  05:46 timestamp; the first red-team commit actually completed at 05:42:33Z.
+- 2026-11-06T05:44:49Z red team: 40 metadata/validation cases: 25 strict xfails, 15 passes.
+  Found metadata recycling errors, overwritten-hit collision, lost masked logical NA,
+  coverage column/NA handling gaps, invalid Seqinfo/strand coercions, and unrecycled names.
+  Seqinfo replacement silently remaps/drops levels: judgment call requiring an ADR,
+  not an accepted divergence. Numeric-name case uses direct constructors to avoid
+  the encoder's unrelated inability to JSON-serialize numpy scalar sequence names.

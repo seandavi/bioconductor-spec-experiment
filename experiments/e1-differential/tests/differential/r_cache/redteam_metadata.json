@@ -1,0 +1,1371 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "rt-meta-gr-construct-mcols-divisor": {
+   "hash": "c270bea3ad97dece2ab2fe0eaec9457e43495b6ef86170b6e5148957f1a071f3",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7,
+        8
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-construct-mcols-nondivisor": {
+   "hash": "196ae395a555fcd8106f8230aad26e2905dc3ed0e652f113affa3c5183ef08c1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "You supplied a metadata column of length 2 to set on an object of length 3.\n  However please note that the latter is not a multiple of the former."
+    ]
+   }
+  },
+  "rt-meta-gr-construct-mcols-scalar": {
+   "hash": "7cb01efe20d181b3ae5aff787a29198ca0f36570d1fa984f2e5d80b8eb216247",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        7,
+        7
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-construct-mcols-zero": {
+   "hash": "3da45993b77e31cd30c74dbcdebe2d6dc66603065b8a1608e3a6ccc0b4cbc00d",
+   "result": {
+    "error": "trying to set a zero length metadata column on a non-zero length object",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-coverage-na-column": {
+   "hash": "fa955dcfb3af129e96769b7367a33b4f0b2fd37d49e0e7b0367cb03646469a84",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        null,
+        3
+       ],
+       "lengths": [
+        2,
+        2,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-coverage-shift-column": {
+   "hash": "738de814ee622cae7e92049196c477e43c671f0b779f149c6338906db3b6264f",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0,
+        1,
+        0,
+        1
+       ],
+       "lengths": [
+        2,
+        1,
+        2,
+        1,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-coverage-weight-column": {
+   "hash": "aa0ca86e4ca34d4121d2d1748d1c4b575c58c58854871a940256c0b9fe28c0e5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "lengths": [
+        2,
+        2,
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-flank-na-logical": {
+   "hash": "b3b1d81af57d6457120e50969a46bdb8d177dae97eeb70252874bf7330fc622d",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-nonreserved-control": {
+   "hash": "7498865e11a8129282bb93db9f7cc5c97c59b2572f5da446626302892255b3bf",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false,
+        false
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-pintersect-existing-hit-drop": {
+   "hash": "860193c31283a7f69699d34b35102df5c95a94e1e180d9a93450cd4280de9080",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      2,
+      5
+     ],
+     "width": [
+      1,
+      2
+     ],
+     "strand": [
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r2"
+     ],
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        false,
+        false
+       ],
+       "names": null
+      },
+      "label": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "c"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-pintersect-existing-hit-keep": {
+   "hash": "153084202d2ffcabbc5198a37e8bbcfcfdbcd307dadd3d37e3154b319b7e4131",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      2,
+      3,
+      5
+     ],
+     "width": [
+      1,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "hit": {
+       "class": "vector",
+       "type": "lgl",
+       "values": [
+        true,
+        false,
+        true
+       ],
+       "names": null
+      },
+      "label": {
+       "class": "vector",
+       "type": "chr",
+       "values": [
+        "a",
+        "b",
+        "c"
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-recycle-range-names": {
+   "hash": "f24171af247b7123bf393b9e1558a7aae85cf74ff39f924c461185bbffe63c4a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "a",
+      "b"
+     ],
+     "start": [
+      1,
+      1
+     ],
+     "width": [
+      2,
+      2
+     ],
+     "strand": [
+      "*",
+      "*"
+     ],
+     "names": [
+      "only",
+      "only"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "a",
+       "b"
+      ],
+      "seqlengths": [
+       null,
+       null
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-reserved-seqnames": {
+   "hash": "9f896d1735662be6a3e1743f5697efff4c10cbc3b6224884bde83fdbdc210e67",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "seqnames": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-reserved-start": {
+   "hash": "aaee636e79edcb687c55b6045ad5efb898d6d7f609f85c77fe18ba624393472a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "start": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-reserved-strand": {
+   "hash": "8c3f6b2e468e40f48d314e195ed0df8317dabbed1870bfe59724d8445e7e9bce",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "strand": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-reserved-width": {
+   "hash": "4385c4c4f7999e0cacba138a3cdfb9c2b38e15b814ef21362b6991291629c7ee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "width": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-mcols-divisor": {
+   "hash": "e91ca722ec97d906fe49526678e0452683fbd29a903a1688b73b7ea8339b050f",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7,
+        8
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-mcols-nondivisor": {
+   "hash": "52948259712dcfd946a0b45c5396d46b295b97f5bb8c3ebe6f7b389395d3b41a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "You supplied a metadata column of length 2 to set on an object of length 3.\n  However please note that the latter is not a multiple of the former."
+    ]
+   }
+  },
+  "rt-meta-gr-set-mcols-scalar": {
+   "hash": "6f74fc8649c92a087fc57c029378d6e5ec83c2a22285ee68e4ece46416451f88",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "+",
+      "+"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        7,
+        7
+       ],
+       "names": null
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-mcols-zero": {
+   "hash": "f758f62036dd50af6be7e8736ce263effa301b7264cc7a184cd1558e1ad30f63",
+   "result": {
+    "error": "trying to set a zero length metadata column on a non-zero length object",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-seqinfo-drop-unused": {
+   "hash": "ada6b72533a52336da6ed91b51f8de59e901d16ddad6a1256d4805d993dff6be",
+   "result": {
+    "error": "The seqlevels in the supplied Seqinfo object are not the same as the\n  seqlevels in 'x'. To map them to the seqlevels of the same name in 'x', the\n  easiest way is to propagate them to 'x' with:\n\n    seqlevels(x) <- seqlevels(new_seqinfo)\n\n  before calling the 'seqinfo()' setter. Note that you might need to specify a\n  pruning mode (via the 'pruning.mode' argument) if this operation will drop\n  seqlevels that are in use in 'x'.\n  For any more complicated mapping, please use the 'new2old' argument.",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-seqinfo-drop-used": {
+   "hash": "4304fc32475ab6f307c8b85f22aa67f260cdd9447d04d37fdc1034f13ac873b2",
+   "result": {
+    "error": "The seqlevels in the supplied Seqinfo object are not the same as the\n  seqlevels in 'x'. To map them to the seqlevels of the same name in 'x', the\n  easiest way is to propagate them to 'x' with:\n\n    seqlevels(x) <- seqlevels(new_seqinfo)\n\n  before calling the 'seqinfo()' setter. Note that you might need to specify a\n  pruning mode (via the 'pruning.mode' argument) if this operation will drop\n  seqlevels that are in use in 'x'.\n  For any more complicated mapping, please use the 'new2old' argument.",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-set-seqinfo-reorder": {
+   "hash": "20c7cd0c540a0fec596936d07bf0adfc8d1ed85e9dd06379d1455e8914a177de",
+   "result": {
+    "error": "The seqlevels in the supplied Seqinfo object are not in the same order as the\n  seqlevels in 'x'. Please reorder the seqlevels in 'x' with:\n\n    seqlevels(x) <- seqlevels(new_seqinfo)\n\n  before calling the 'seqinfo()' setter.\n  For any more complicated mapping between the new and old seqlevels (e.g. for\n  a mapping that will result in the renaming of some seqlevels in 'x'), please\n  use the 'new2old' argument.",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-strand-numeric": {
+   "hash": "b252be6cb915308ad51399d03ae42daa3fad085c07c8c985c9639e955240d4e3",
+   "result": {
+    "error": "strand values must be in '1' '-1' 'NA'",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-strand-text-na": {
+   "hash": "3bac88311732e0449b3ff6e627a6b6d2fe4fc62169cd394d4d3023e2eb603ffb",
+   "result": {
+    "error": "strand values must be in '+' '-' '*'",
+    "warnings": []
+   }
+  },
+  "rt-meta-gr-strand-typed-missing": {
+   "hash": "b542f5f85141da7c14650d9c9de66efae9c1d20d899101ff9ec91aee5da88373",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "*",
+      "-"
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1"
+      ],
+      "seqlengths": [
+       null
+      ],
+      "is_circular": [
+       null
+      ],
+      "genome": [
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "missing values in 'strand' converted to \"*\""
+    ]
+   }
+  },
+  "rt-meta-ir-construct-mcols-divisor": {
+   "hash": "732404c67883cc03e44027157532cba13fbc027db0a771bcca4d03ebee7c6dd8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7,
+        8
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-construct-mcols-nondivisor": {
+   "hash": "16574a28b410cf6f16c0f51f0d5fc59a0db540c05770a1ed29ce388c60c62054",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": [
+     "You supplied a metadata column of length 2 to set on an object of length 3.\n  However please note that the latter is not a multiple of the former."
+    ]
+   }
+  },
+  "rt-meta-ir-construct-mcols-scalar": {
+   "hash": "1676cb1796a10a572ed0e3ed8a39db7405af38b04dfa976312ffe0b7ae236d01",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        7,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-construct-mcols-zero": {
+   "hash": "7cbfe99f084185fb677d1abd31b750368a59347ce979ffcc0dcb17e681e86bec",
+   "result": {
+    "error": "trying to set a zero length metadata column on a non-zero length object",
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-coverage-weight-column": {
+   "hash": "5ddc2883cd2b1669e4fbbc0a9ae9526aa4221faf5b35efc1e6e912931e198f28",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      2,
+      3
+     ],
+     "lengths": [
+      2,
+      2,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-flank-na-logical": {
+   "hash": "0068b100333ba1df65e44fb0daf2785cae3f349defcf7aa50663ec9b9d225799",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-set-mcols-divisor": {
+   "hash": "93c47f38774c8bd1c17592744c5430d7aead4f83b05250d0e6eeb05b32e1b0a8",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7,
+        8
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-set-mcols-nondivisor": {
+   "hash": "50cb5106ca92735ed4869b2e1d4705d71d2286ccb328b5b291130cb8c855d779",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        8,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": [
+     "You supplied a metadata column of length 2 to set on an object of length 3.\n  However please note that the latter is not a multiple of the former."
+    ]
+   }
+  },
+  "rt-meta-ir-set-mcols-scalar": {
+   "hash": "505d9a29165206cace054ad979e86207eef77c0f92f34163f36914664cc28866",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      3,
+      5
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "r0",
+      "r1",
+      "r2"
+     ],
+     "mcols": {
+      "score": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        7,
+        7,
+        7
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-ir-set-mcols-zero": {
+   "hash": "629e05d85cec4f993686cc82bd6cb7cd3ec73cf75bb24a744a954abaac6c9cae",
+   "result": {
+    "error": "trying to set a zero length metadata column on a non-zero length object",
+    "warnings": []
+   }
+  },
+  "rt-meta-seqinfo-empty": {
+   "hash": "a5900331d39acae707ade1cce674030175a676c7e6431c20bf0aa9e3bec2649d",
+   "result": {
+    "value": {
+     "class": "Seqinfo",
+     "seqnames": [],
+     "seqlengths": [],
+     "is_circular": [],
+     "genome": []
+    },
+    "warnings": []
+   }
+  },
+  "rt-meta-seqinfo-numeric-circular": {
+   "hash": "e59e4d73c46ee9e0d4f7b15e42a0f88ded47600ca4438428407a37fb18887f59",
+   "result": {
+    "error": "bad supplied 'isCircular' vector",
+    "warnings": []
+   }
+  },
+  "rt-meta-seqinfo-numeric-names": {
+   "hash": "97e2af82c5a953fd7d9363c5a80ee011cd88108e2b36595b60b39a2d08a2e395",
+   "result": {
+    "error": "supplied 'seqlevels' must be a character vector",
+    "warnings": []
+   }
+  },
+  "rt-meta-seqinfo-text-circular": {
+   "hash": "93a0f377824b2b2f0f6179c0da0bbfab243a91e66a5657a18aff4aecd090805f",
+   "result": {
+    "error": "bad supplied 'isCircular' vector",
+    "warnings": []
+   }
+  }
+ }
+}
