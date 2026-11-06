@@ -300,6 +300,8 @@ class Adapter(AdapterBase):
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING,
                    seqlengths=MISSING, _mcols=()):
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = {"seqnames": seqnames, "ranges": ranges, "strand": strand, "seqinfo": seqinfo,
               "seqlengths": seqlengths}
         mc = _frame(list(_mcols))
@@ -400,6 +402,8 @@ class Adapter(AdapterBase):
         return x[_subscript(i, len(x))]
 
     def op_c(self, *dots, x):
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         concat = getattr(type(x), "concat", None)
         if concat is None or not isinstance(x, _RANGES):
             raise Unsupported(f"c on {type(x).__name__}")
