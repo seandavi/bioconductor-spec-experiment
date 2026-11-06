@@ -1,0 +1,5 @@
+suppressMessages({library(IRanges);library(GenomicRanges)})
+f <- function(x) paste0("(", paste(ifelse(is.na(x),"NA",x), collapse=","), ")")
+s <- function(x) paste(sprintf("[%d,%d]", start(x), end(x)), collapse=" ")
+p <- function(label, x) cat(label, ":", if (is(x,"IRanges")) s(x) else if (is(x,"Hits")) paste0("hits ", paste(sprintf("%d-%d",queryHits(x),subjectHits(x)),collapse=" ")) else f(x), "\n")
+ir <- function(s,w) IRanges(s,width=w)

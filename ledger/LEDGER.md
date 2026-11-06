@@ -130,3 +130,45 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
   *harness*, not the port: "exact" comparison applied float tolerance to
   integers, so an off-by-one coordinate would pass. A conformance suite's
   comparator is itself code that needs review and tests.
+
+## 2026-11-06 — E3 spec + ADRs done (harness v2)
+
+| Stage | Wall time |
+|---|---|
+| plan | 2.9 min |
+| implement (spec S1–S4 + code) | 45.6 min |
+| review | 3.9 min |
+| revise | 1.3 min |
+| **total** | **54 min** |
+
+- Spec: 85 clauses (later 86, GR.19 added in revise) in 11 files,
+  ~4,400 words / 325 lines; 14 ADRs, ~1,400 words. ~2,020 lines src,
+  ~1,780 lines tests, 177 tests, 21 commits. Verified: 177 passed;
+  isolation 0 findings; reviewer wrote only its output.
+- Traceability test: every live clause must be cited by a test and every
+  cited id must exist (`@pytest.mark.spec(...)`). Allow-list empty.
+- Handoff glitch: the planner wrote spec stages S1–S4 *for the
+  implementer*, so the Sonnet implementer wrote the spec. In E3 the "spec
+  author" is Sonnet, not Opus. (Not wrong per brief; note for comparison.)
+- **Approach drift, third time: unprompted differential testing.** The
+  implementer built a throwaway R fuzz (R generates random cases and
+  answers, Python compared; ~110k comparisons) in `spec/scratch/`,
+  *gitignored*. It found real corner cases now in spec + ADR-0013/14:
+  `reduce(min_gapwidth=0)` drops repeated zero-width ranges; GRanges
+  `intersect`/`setdiff` clip to seqlengths but `union` doesn't; per-op
+  result-strand rules in parallel ops; `*` query nearest merges +/* and
+  mirrored − candidates. The brief said a harness was "not required", not
+  forbidden. Scripts (1,129 lines of R probes) copied to
+  `ledger/evidence/e3-scratch/`; the 9.7 MB of TSVs left in the worktree.
+- Consequence: E3's spec is better than "spec alone" would produce, but the
+  evidence behind it is not in the repo. Its long-term artifact is prose +
+  examples; the reproducible check was thrown away.
+- Review: 1 major (masked/NA subscripts silently selected data, violating
+  the spec's own CORE.9; an NA `find_overlaps(select="first")` result
+  indexed row 0), 2 minor (spec vs tests disagreed on seqinfo merging in
+  set ops: tests were defining undocumented semantics). All fixed; the
+  spec gained GR.19.
+- Pattern across E0, E3, E4: given R, agents *always* probe it heavily.
+  The approaches differ less in whether R gets consulted than in **what
+  evidence is kept**: nothing (E0 comments), prose examples (E3),
+  re-runnable goldens (E4).

@@ -77,3 +77,20 @@ Try: a review checklist item for any experiment with a harness: mutate
 one golden / one Python result and confirm the harness fails ("mutation
 smoke"). E4's implementer did this for golden drift; nobody did it for the
 comparator until the reviewer.
+
+## 10. Agents throw away their best evidence; make keeping it the default
+
+Seen: E3 built a 110k-comparison R fuzz and gitignored it; E0 ran ~280 R
+probes and kept only `# R:` comments. The verification happened; its
+record didn't survive.
+Try: a standing rule in every brief: any script that runs the reference
+gets committed under `evidence/` (with versions), even if throwaway.
+Cheap to keep, and it turns ad hoc probing into a re-runnable regression
+check after an upstream change.
+
+## 11. Planner stages should say who does them
+
+Seen: E3's planner wrote "S1–S4 write the spec" as stages, so the
+implementer (Sonnet) wrote the spec, not the planner (Opus).
+Try: plan briefs say explicitly which stages the planner owns. If a
+design artifact matters (spec, case schema), the planner writes it.

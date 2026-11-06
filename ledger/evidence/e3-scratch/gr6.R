@@ -1,0 +1,21 @@
+suppressWarnings(source("spec/scratch/h.R"))
+z <- function(l, v) cat(l, ":", paste(ifelse(is.na(v),"NA",v-1L), collapse=","), "\n")
+al <- function(l,h) cat(l, ":", paste(sprintf("%d-%d", queryHits(h)-1L, subjectHits(h)-1L), collapse=" "), "\n")
+g <- function(...) GRanges(...)
+S <- g(c("a","a"), IRanges(c(1,10),width=3), strand="+")
+Q <- g("a", IRanges(6,width=2), strand="+")
+al("tie +", nearest(Q,S,select="all")); z("tie + arb", nearest(Q,S))
+al("tie ign", nearest(Q,S,select="all",ignore.strand=TRUE))
+Q2 <- g("a", IRanges(6,width=2), strand="*"); S2 <- g(c("a","a"), IRanges(c(1,10),width=3), strand="*")
+al("tie **", nearest(Q2,S2,select="all")); z("tie ** arb", nearest(Q2,S2)); 
+S3 <- g(c("a","a"), IRanges(c(10,1),width=3), strand="+")
+al("tie swapped", nearest(Q,S3,select="all")); z("tie sw arb", nearest(Q,S3))
+al("tie ign swapped", nearest(Q,S3,select="all",ignore.strand=TRUE))
+Qm <- g("a", IRanges(6,width=2), strand="-"); Sm <- g(c("a","a"), IRanges(c(1,10),width=3), strand="-")
+al("tie minus", nearest(Qm,Sm,select="all")); 
+# same-position ties (overlap ties)
+S4 <- g(c("a","a"), IRanges(c(5,5),width=c(3,4)), strand="+"); al("ovl tie", nearest(Q,S4,select="all"))
+S5 <- g(c("a","a","a"), IRanges(c(1,10,10),width=3), strand="+"); al("3 tie", nearest(Q,S5,select="all"))
+# overlap and adjacency
+S6 <- g(c("a","a"), IRanges(c(2,8),width=c(4,3)), strand="+"); al("ovl+adj", nearest(g("a",IRanges(5,6),strand="+"),S6,select="all"))
+S7 <- g(c("a","a"), IRanges(c(2,7),width=c(3,3)), strand="+"); al("adj+adj", nearest(g("a",IRanges(5,6),strand="+"),S7,select="all"))

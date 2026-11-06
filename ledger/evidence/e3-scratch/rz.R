@@ -1,0 +1,11 @@
+source("spec/scratch/h.R")
+rv <- function(l,x,...) { r <- reduce(x, with.revmap=TRUE, ...); cat(l,":", s(r), " revmap:", paste(sapply(mcols(r)$revmap, function(v) paste0("(",paste(v-1L,collapse=","),")")),collapse=" "), "\n") }
+rv("3x zero", IRanges(c(14,14,14),c(13,13,13)), min.gapwidth=0)
+rv("zero,zero diff", IRanges(c(14,15,14),c(13,14,13)), min.gapwidth=0)
+rv("pos then 2 zero after gap", IRanges(c(10,14,14),c(12,13,13)), min.gapwidth=0)
+rv("2 zero then pos", IRanges(c(14,14,14),c(13,13,20)), min.gapwidth=0)
+rv("2 zero then pos inside", IRanges(c(14,14,10),c(13,13,20)), min.gapwidth=0)
+rv("2 zero adjacent to pos end", IRanges(c(10,13,13),c(12,12,12)), min.gapwidth=0)
+rv("2 zero adjacent to pos end mg1", IRanges(c(10,13,13),c(12,12,12)), min.gapwidth=1)
+rv("zero mg0 drop", IRanges(c(14,14),c(13,13)), min.gapwidth=0, drop.empty.ranges=TRUE)
+rv("pos pos zero zero", IRanges(c(1,1,7,7),c(3,3,6,6)), min.gapwidth=0)
