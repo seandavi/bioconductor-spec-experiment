@@ -8,7 +8,7 @@ a simulated upstream change.
 - [TARGET.md](TARGET.md): what gets built, and when it counts as done
 - [PROTOCOL.md](PROTOCOL.md): the experiments, isolation rules, metrics
 - [QUESTIONS.md](QUESTIONS.md): R behaviors that look like accidents, where a person should decide what a port must match
-- `background/`: the Bioconductor Zulip discussion that prompted this
+- `background/`: a paraphrased summary of the Bioconductor Zulip discussion that prompted this
 
 ## Experiments
 
