@@ -754,4 +754,6 @@ class GRanges:
 
 
 def _series_values(v: Any) -> Any:
+    if isinstance(v, (pl.Series, list)):
+        return v
     return v.tolist() if isinstance(v, np.ndarray) else v
