@@ -507,11 +507,11 @@ class GRanges:
             ok = same_seq & ((self._strand == st_b) | (self._strand == STAR) | (st_b == STAR))
         return si, other.start[rep], other.width[rep], st_b, ok
 
-    def _merged_strand(self, st_b: np.ndarray, ok: np.ndarray, ignore_strand: bool) -> np.ndarray:
-        """Strand of a compatible pair: x's, unless x is "*" (then y's); x's when strands are ignored."""
+    def _merged_strand(self, st_b: np.ndarray, ignore_strand: bool) -> np.ndarray:
+        """Pair strand: x's, unless x is "*" (then y's) -- whether or not the pair is compatible."""
         if ignore_strand:
             return self._strand
-        return np.where(ok & (self._strand == STAR), st_b, self._strand).astype(np.int8)
+        return np.where(self._strand == STAR, st_b, self._strand).astype(np.int8)
 
     @flags("fill_gap", "ignore_strand")
     def punion(self, other: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
@@ -520,6 +520,14 @@ class GRanges:
             raise ValueError("'x' and 'y' elements must have compatible 'seqnames' and 'strand' values")
         s, w = setops.punion(self.start, self.width, ys, yw, bool(fill_gap))
         return self._new(self._seq_in(si), s, w, self._strand, self._names, None, si, check=True)
+
+    def _restricted(self, merged: Seqinfo) -> Seqinfo:
+        """`merged` limited to this object's own seqlevels, in its order (what pintersect returns)."""
+        idx = [merged.index(s) for s in self._seqinfo.seqnames]
+        return Seqinfo(
+            self._seqinfo.seqnames, [merged.seqlengths[i] for i in idx],
+            [merged.is_circular[i] for i in idx], [merged.genome[i] for i in idx],
+        )
 
     def _seq_in(self, si: Seqinfo) -> np.ndarray:
         """This object's seqlevel codes expressed in the (merged) seqinfo `si`."""
@@ -539,17 +547,18 @@ class GRanges:
         hit = ok & (w >= 0)
         start = np.where(hit, s, self.start)
         width = np.where(hit, w, 0)
-        strand = np.where(hit, self._merged_strand(st_b, ok, ignore_strand), self._strand).astype(np.int8)
+        strand = np.where(hit, self._merged_strand(st_b, ignore_strand), self._strand).astype(np.int8)
         names, mcols = self._names, self._mcols
+        out_si = self._restricted(si)
         if drop_nohit_ranges:
             keep = np.flatnonzero(hit)
             return self._new(
-                self._seq_in(si)[keep], start[keep], width[keep], strand[keep],
-                _meta.take_names(names, keep), _meta.take_mcols(mcols, keep), si, check=True,
+                self._seq[keep], start[keep], width[keep], strand[keep],
+                _meta.take_names(names, keep), _meta.take_mcols(mcols, keep), out_si, check=True,
             )
         hit_col = pl.DataFrame([pl.Series("hit", hit.tolist(), dtype=pl.Boolean)])
         mc = hit_col if mcols is None else pl.concat([mcols, hit_col], how="horizontal")
-        return self._new(self._seq_in(si), start, width, strand, names, mc, si, check=True)
+        return self._new(self._seq, start, width, strand, names, mc, out_si, check=True)
 
     @flags("ignore_strand")
     def psetdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
@@ -559,7 +568,7 @@ class GRanges:
         if len(idx):
             s, w = setops.psetdiff(start[idx], width[idx], ys[idx], yw[idx])
             start[idx], width[idx] = s, w
-        strand = np.where(ok, self._merged_strand(st_b, ok, ignore_strand), self._strand).astype(np.int8)
+        strand = self._merged_strand(st_b, ignore_strand)
         return self._new(self._seq_in(si), start, width, strand, self._names, None, si, check=True)
 
     # -- overlaps ----------------------------------------------------------------

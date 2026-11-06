@@ -56,3 +56,6 @@ Append-only. Timestamped judgment calls and human interventions.
   int32-overflow territory (ADR-0005 generalised; 2147483647 dropped from the generator).
 - 2026-11-06 00:35 deviation from PLAN: psetdiff returns IRanges (R does too), so no list-return
   ADR; `compare: arbitrary` machinery exists in the harness but no case needs it (engine pick is modelled).
+- 2026-11-06 00:50 GRanges parallel ops (found by a random seqinfo-pair grid, 640 cases): pintersect
+  returns x's seqlevels only (values merged from y; y just validates/warns); pintersect strand =
+  merged only for hits, else x's; psetdiff strand = merged always; punion strand = x's.
