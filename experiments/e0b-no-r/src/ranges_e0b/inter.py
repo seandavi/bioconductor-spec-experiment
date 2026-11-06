@@ -8,7 +8,7 @@ import numpy as np
 
 from ._sew import IntArray, empty_int
 
-Triple = tuple[IntArray, IntArray, IntArray]
+type Triple = tuple[IntArray, IntArray, IntArray]
 
 
 def _empty3() -> Triple:

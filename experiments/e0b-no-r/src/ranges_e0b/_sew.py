@@ -7,8 +7,8 @@ import numpy as np
 import numpy.typing as npt
 import polars as pl
 
-IntArray = npt.NDArray[np.int64]
-BoolArray = npt.NDArray[np.bool_]
+type IntArray = npt.NDArray[np.int64]
+type BoolArray = npt.NDArray[np.bool_]
 
 NO_HIT = -1
 """Missing index (R `NA`) in positional results such as `select="first"`."""

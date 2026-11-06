@@ -13,7 +13,6 @@ from ._sew import (
     BoolArray,
     IntArray,
     concat_mcols,
-    concat_names,
     empty_int,
     normalize_mcols,
     resolve_index,
@@ -401,7 +400,9 @@ class GRanges:
         info = self._seqinfo if other._seqinfo == self._seqinfo else self._seqinfo.merge(other._seqinfo)
         return info, _remap(self._seq, self._seqinfo, info), _remap(other._seq, other._seqinfo, info)
 
-    def _set_args(self, other: "GRanges", ignore_strand: bool) -> tuple[Seqinfo, tuple[IntArray, ...]]:
+    def _set_args(
+        self, other: "GRanges", ignore_strand: bool
+    ) -> tuple[Seqinfo, tuple[IntArray, IntArray, IntArray, IntArray, IntArray, IntArray]]:
         info, a_seq, b_seq = self._align(other)
         star = STAR if ignore_strand else None
         ga = a_seq * 3 + (star if star is not None else self._strand)
@@ -410,15 +411,18 @@ class GRanges:
 
     def union(self, other: "GRanges", ignore_strand: bool = False) -> Self:
         info, args = self._set_args(other, ignore_strand)
-        return self._from_groups(*setops.union_kernel(*args), seqinfo=info)
+        s, e, g = setops.union_kernel(*args)
+        return self._from_groups(s, e, g, info)
 
     def intersect(self, other: "GRanges", ignore_strand: bool = False) -> Self:
         info, args = self._set_args(other, ignore_strand)
-        return self._from_groups(*setops.sweep_kernel(*args, "intersect"), seqinfo=info)
+        s, e, g = setops.sweep_kernel(*args, "intersect")
+        return self._from_groups(s, e, g, info)
 
     def setdiff(self, other: "GRanges", ignore_strand: bool = False) -> Self:
         info, args = self._set_args(other, ignore_strand)
-        return self._from_groups(*setops.sweep_kernel(*args, "setdiff"), seqinfo=info)
+        s, e, g = setops.sweep_kernel(*args, "setdiff")
+        return self._from_groups(s, e, g, info)
 
     def _parallel_args(
         self, other: "GRanges", ignore_strand: bool, keep_x_strand: bool = False

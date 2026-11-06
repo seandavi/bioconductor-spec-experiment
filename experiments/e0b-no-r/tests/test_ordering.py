@@ -1,5 +1,6 @@
 import numpy as np
-from hypothesis import given, strategies as st
+from hypothesis import given
+from hypothesis import strategies as st
 
 from ranges_e0b import IRanges
 

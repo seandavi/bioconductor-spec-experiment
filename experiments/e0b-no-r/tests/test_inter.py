@@ -1,6 +1,6 @@
+from helpers import iranges_st, positions, runs, se
 from hypothesis import given
 
-from helpers import iranges_st, positions, runs, se
 from ranges_e0b import IRanges
 
 

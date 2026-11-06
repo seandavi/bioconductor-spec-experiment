@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
+from helpers import iranges_st
 from hypothesis import given
 
-from helpers import iranges_st
 from ranges_e0b import IRanges, Rle
 
 

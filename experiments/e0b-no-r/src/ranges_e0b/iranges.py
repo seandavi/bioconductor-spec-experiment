@@ -7,18 +7,18 @@ import numpy as np
 import polars as pl
 
 from . import coverage, inter, intra, nearest, ordering, overlaps, setops
-from .rle import Rle
-from .overlaps import Hits
 from ._sew import (
     IntArray,
-    empty_int,
     concat_mcols,
     concat_names,
+    empty_int,
     normalize_mcols,
     resolve_index,
     solve_sew,
     take_mcols,
 )
+from .overlaps import Hits
+from .rle import Rle
 
 
 class IRanges:

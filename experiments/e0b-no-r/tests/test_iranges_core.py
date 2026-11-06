@@ -1,5 +1,4 @@
 import numpy as np
-import polars as pl
 import pytest
 
 from ranges_e0b import IRanges

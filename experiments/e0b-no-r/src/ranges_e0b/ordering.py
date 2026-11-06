@@ -36,20 +36,19 @@ def rank_keys(keys: Sequence[IntArray], method: str = "average") -> npt.NDArray[
     order = order_keys(keys)
     gid = _tie_groups(keys, order)
     pos = np.arange(1, n + 1, dtype=np.int64)
-    if n:
-        first = np.zeros(gid[-1] + 1, dtype=np.int64)
-        last = np.zeros_like(first)
-        # sorted positions are increasing, so assignment order picks min / max
-        first[gid[::-1]] = pos[::-1]
-        last[gid] = pos
-    out: npt.NDArray[np.float64] | IntArray
+    ngroups = int(gid[-1]) + 1 if n else 0
+    first = np.zeros(ngroups, dtype=np.int64)
+    last = np.zeros(ngroups, dtype=np.int64)
+    # sorted positions are increasing, so assignment order picks min / max
+    first[gid[::-1]] = pos[::-1]
+    last[gid] = pos
     if method == "average":
-        out = np.empty(n, dtype=np.float64)
-        out[order] = (first[gid] + last[gid]) / 2 if n else []
-    else:
-        out = np.empty(n, dtype=np.int64)
-        src = {"first": pos, "min": first[gid] if n else pos, "max": last[gid] if n else pos}[method]
-        out[order] = src
+        avg = np.empty(n, dtype=np.float64)
+        avg[order] = (first[gid] + last[gid]) / 2
+        return avg
+    src = {"first": pos, "min": first[gid], "max": last[gid]}[method]
+    out = np.empty(n, dtype=np.int64)
+    out[order] = src
     return out
 
 

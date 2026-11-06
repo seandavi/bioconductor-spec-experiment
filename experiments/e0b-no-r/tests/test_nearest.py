@@ -1,7 +1,7 @@
 import pytest
-from hypothesis import given, strategies as st
-
 from helpers import iranges_st
+from hypothesis import given
+
 from ranges_e0b import NO_HIT, IRanges
 
 

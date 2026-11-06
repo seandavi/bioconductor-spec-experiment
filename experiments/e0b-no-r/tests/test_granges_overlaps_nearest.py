@@ -1,8 +1,8 @@
-import warnings
 
 import numpy as np
 import pytest
-from hypothesis import given, strategies as st
+from hypothesis import given
+from hypothesis import strategies as st
 
 from ranges_e0b import NO_HIT, GRanges, IRanges, Seqinfo
 
