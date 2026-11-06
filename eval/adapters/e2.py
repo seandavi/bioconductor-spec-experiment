@@ -187,8 +187,7 @@ class Adapter(AdapterBase):
                 cols.append(pl.Series(name, col["values"] if col["type"] != "dbl" else RVector("dbl", col["values"]).list(),
                                       dtype=_POLARS_DTYPE[col["type"]]))
             elif kind == "Factor":
-                lv = col["levels"]
-                cols.append(pl.Series(name, [None if c is None else lv[c - 1] for c in col["codes"]], dtype=pl.Enum(lv)))
+                cols.append(_enum_series(name, col["levels"], [None if c is None else c - 1 for c in col["codes"]]))
             elif kind == "IntegerList":
                 # a column named revmap is index-valued: the port stores it 0-based (shift -1 here, +1 on projection)
                 shift = -1 if name == _REVMAP else 0
