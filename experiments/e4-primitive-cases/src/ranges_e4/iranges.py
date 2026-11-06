@@ -10,6 +10,8 @@ import polars as pl
 
 from . import _mcols, inter, intra, nearest, overlaps, setops
 from .hits import Hits
+from .rle import Rle
+from . import coverage as _coverage
 from ._arrays import as_int, recycle
 
 
@@ -321,6 +323,13 @@ class IRanges:
         sa, wa = np.broadcast_to(a._start, (n,)), np.broadcast_to(a._width, (n,))
         sb, wb = np.broadcast_to(b._start, (n,)), np.broadcast_to(b._width, (n,))
         return nearest.distance(sa, wa, sb, wb)
+
+    # coverage ------------------------------------------------------------
+    def coverage(self, shift: Any = 0, width: int | None = None, weight: Any = 1) -> Rle:
+        dense = _coverage.coverage_dense(
+            self._start, self._width, shift, _coverage.check_length(width), weight
+        )
+        return Rle.encode(dense)
 
     def __repr__(self) -> str:
         rows = ", ".join(f"[{s},{e}]" for s, e in zip(self._start.tolist(), self.end.tolist(), strict=True))

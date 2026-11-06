@@ -1,0 +1,128 @@
+cases:
+  - id: ir-cov-basic
+    clause: IR-COV-1
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-single
+    clause: IR-COV-1
+    inputs:
+      x: {IRanges: {start: [1], width: [3]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-stacked
+    clause: IR-COV-1
+    inputs:
+      x: {IRanges: {start: [1, 1, 1], width: [3, 3, 3]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-leading-gap
+    clause: IR-COV-1
+    inputs:
+      x: {IRanges: {start: [4], width: [2]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-adjacent-merge
+    clause: IR-COV-1
+    inputs:
+      x: {IRanges: {start: [1, 4], width: [3, 3]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-zero-width-ignored
+    clause: IR-COV-2
+    inputs:
+      x: {IRanges: {start: [3, 8], width: [0, 0]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-zero-width-extends-length
+    clause: IR-COV-2
+    inputs:
+      x: {IRanges: {start: [2, 9], width: [2, 0]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-empty
+    clause: IR-COV-3
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-empty-width
+    clause: IR-COV-3
+    inputs:
+      x: {IRanges: {start: [], width: []}}
+    call: {op: coverage, args: [x], kwargs: {width: 5}}
+  - id: ir-cov-shift
+    clause: IR-COV-4
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {shift: 2}}
+  - id: ir-cov-shift-vector
+    clause: IR-COV-4
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {shift: [0, 1, 2, 3, 4]}}
+  - id: ir-cov-shift-negative
+    clause: IR-COV-5
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {shift: -1}}
+  - id: ir-cov-start-before-1
+    clause: IR-COV-5
+    inputs:
+      x: {IRanges: {start: [-2], width: [5]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-cov-shift-below-1
+    clause: IR-COV-5
+    inputs:
+      x: {IRanges: {start: [2], width: [3]}}
+    call: {op: coverage, args: [x], kwargs: {shift: -3}}
+  - id: ir-cov-width-pad
+    clause: IR-COV-6
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {width: 20}}
+  - id: ir-cov-width-truncate
+    clause: IR-COV-6
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {width: 8}}
+  - id: ir-cov-width-exact
+    clause: IR-COV-6
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {width: 15}}
+  - id: ir-cov-width-zero
+    clause: IR-COV-6
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {width: 0}}
+  - id: ir-cov-width-and-shift
+    clause: IR-COV-6
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {shift: 3, width: 12}}
+  - id: ir-cov-weight-scalar
+    clause: IR-COV-7
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: 2}}
+  - id: ir-cov-weight-vector
+    clause: IR-COV-7
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2, 3, 4, 5]}}
+  - id: ir-cov-weight-fraction
+    clause: IR-COV-7
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: 0.5}}
+  - id: ir-cov-weight-negative
+    clause: IR-COV-7
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: -1}}
+  - id: ir-cov-weight-zero
+    clause: IR-COV-7
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: 0}}
+  - id: ir-cov-weight-cyclic
+    clause: IR-COV-8
+    inputs:
+      x: {IRanges: {start: [2, 4, 4, 10, 15], width: [5, 2, 0, 3, 1], names: [a, b, c, d, e]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2]}}
+    adr: ADR-0007
+    python: {expect_error: true}

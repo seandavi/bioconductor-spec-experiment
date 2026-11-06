@@ -143,3 +143,11 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-DISTANCE-2 | length-1 argument recycles | `?distance` |
 | IR-DISTANCE-3 | zero-length inputs give zero-length output | `?distance` |
 | IR-DISTANCE-4 | R recycles cyclically with a warning; Python errors (ADR-0007) | `?distance` |
+| IR-COV-1 | `coverage` is per-position depth for positions 1..max(end), run-length encoded (adjacent equal runs merge) | `?coverage` |
+| IR-COV-2 | zero-width ranges add no depth, but their end still counts toward the result length | `?coverage` |
+| IR-COV-3 | coverage of zero-length input is zero-length (or `width` zeros) | `?coverage` |
+| IR-COV-4 | `shift` moves ranges before counting (scalar or per-range); length grows accordingly | `?coverage` |
+| IR-COV-5 | positions below 1 are dropped | `?coverage` |
+| IR-COV-6 | `width` pads with zeros or truncates; `width=0` gives zero-length | `?coverage` |
+| IR-COV-7 | `weight` multiplies each range's contribution (scalar or per-range; negative and fractional allowed) | `?coverage` |
+| IR-COV-8 | R recycles weight cyclically with a warning; Python errors (ADR-0007) | `?coverage` |
