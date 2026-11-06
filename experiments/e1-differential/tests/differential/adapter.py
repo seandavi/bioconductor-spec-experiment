@@ -93,6 +93,9 @@ def _post_idx(res: Any, args: list[Any], kw: dict[str, Any]) -> Any:
 ADAPTERS: dict[str, Adapter] = {
     "[": Adapter(call=_subset),
     "c": Adapter(call=_concat),
+    "runValue": Adapter(call=lambda a, k: a[0].values),
+    "runLength": Adapter(call=lambda a, k: a[0].lengths),
+    "as.vector": Adapter(call=lambda a, k: a[0].decode()),
     "identity": Adapter(call=lambda a, k: a[0]),
     "length": Adapter(call=lambda a, k: len(a[0])),
     "findOverlaps": Adapter(post=_post_select),

@@ -2,5 +2,6 @@
 
 from .hits import Hits
 from .iranges import IRanges
+from .rle import Rle
 
-__all__ = ["Hits", "IRanges"]
+__all__ = ["Hits", "IRanges", "Rle"]

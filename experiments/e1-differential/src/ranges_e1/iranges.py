@@ -11,8 +11,11 @@ import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import inter, intra, nearest as nearest_kernel, overlaps, setops
+from ._kernels import coverage as coverage_kernel
+from ._kernels import inter, intra, overlaps, setops
+from ._kernels import nearest as nearest_kernel
 from .hits import Hits
+from .rle import Rle
 from ._meta import INT_MAX, Names
 
 
@@ -490,3 +493,38 @@ class IRanges:
         if over.any():
             warnings.warn("NAs produced by integer overflow", UserWarning, stacklevel=2)
         return np.ma.masked_array(np.where(over, 0, d), mask=over)
+
+    # -- coverage ------------------------------------------------------------
+    def _coverage_inputs(
+        self, shift: Any, weight: Any
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """Shifted starts and weights, recycled to len(self) (warn if not a divisor)."""
+        n = len(self)
+        sh = np.atleast_1d(np.asarray(shift))
+        if sh.dtype.kind == "f":
+            sh = np.trunc(sh)
+        sh = _meta.as_int_array(sh, "'shift'")
+        wt = np.atleast_1d(np.asarray(weight))
+        if wt.dtype.kind not in "iufb":
+            raise ValueError("'weight' must be an integer or numeric vector")
+        if np.ma.isMaskedArray(weight) or (wt.dtype.kind == "f" and np.isnan(wt).any()):
+            raise ValueError("'weight' cannot contain NAs")
+        wt = wt.astype(np.int64) if wt.dtype.kind in "iub" else wt.astype(np.float64)
+        sh = _meta.recycle_arg(sh, n, "shift", longer="truncate")
+        wt = _meta.recycle_arg(wt, n, "weight", longer="truncate")
+        return self._start + sh, wt
+
+    def coverage(self, shift: Any = 0, width: int | None = None, weight: Any = 1) -> Rle:
+        """Depth of coverage over positions 1..width as an Rle.
+
+        Default width is the largest end after shifting (0 if none).
+        """
+        start, wt = self._coverage_inputs(shift, weight)
+        if width is None:
+            total = int(max((start + self._width - 1).max(initial=0), 0))
+        else:
+            total = int(width)
+            if total < 0:
+                raise ValueError("'width' cannot be negative")
+        vals, lens = coverage_kernel.coverage(start, self._width, wt, total)
+        return Rle(vals, lens)

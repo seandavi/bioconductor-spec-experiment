@@ -1,0 +1,45 @@
+# IRanges coverage (Rle) and Rle accessors.
+x_def: &X
+  x: {IRanges: {start: [1, 3, 10], width: [4, 3, 2], names: [a, b, c]}}
+empty_def: &E {IRanges: {start: {int: []}, width: {int: []}}}
+cases:
+  - {id: cov-basic, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x]}}
+  - {id: cov-width-pad, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {width: 15}}}
+  - {id: cov-width-truncate, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {width: 5}}}
+  - {id: cov-width-zero, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {width: 0}}}
+  - {id: cov-width-na-default, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {width: null}}}
+  - {id: cov-width-negative-error, tags: [coverage, error], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {width: -1}}}
+  - {id: cov-shift, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {shift: 2}}}
+  - {id: cov-shift-vector, tags: [coverage], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {shift: [0, 1, 2]}}}
+  - {id: cov-shift-negative, tags: [coverage], inputs: {x: {IRanges: {start: [1], width: [5]}}}, call: {fn: coverage, args: [$x], kwargs: {shift: -2}}}
+  - {id: cov-shift-negative-width, tags: [coverage], inputs: {x: {IRanges: {start: [1], width: [5]}}}, call: {fn: coverage, args: [$x], kwargs: {shift: -2, width: 3}}}
+  - {id: cov-shift-entirely-negative, tags: [coverage], inputs: {x: {IRanges: {start: [1], width: [5]}}}, call: {fn: coverage, args: [$x], kwargs: {shift: -9}}}
+  - {id: cov-shift-recycle-warns, tags: [coverage, warning], check_warnings: true, inputs: *X, call: {fn: coverage, args: [$x], kwargs: {shift: [1, 2]}}}
+  - {id: cov-weight-int, tags: [coverage, weight], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: 2}}}
+  - {id: cov-weight-vector, tags: [coverage, weight], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: [1, 2, 3]}}}
+  - {id: cov-weight-double, tags: [coverage, weight], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: {num: [1.5]}}}}
+  - {id: cov-weight-double-vector, tags: [coverage, weight], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: {num: [1.5, 2, 3]}}}}
+  - {id: cov-weight-zero, tags: [coverage, weight], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: coverage, args: [$x], kwargs: {weight: 0}}}
+  - {id: cov-weight-zero-width-padded, tags: [coverage, weight], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: coverage, args: [$x], kwargs: {weight: 0, width: 10}}}
+  - {id: cov-weight-negative, tags: [coverage, weight], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: coverage, args: [$x], kwargs: {weight: -1}}}
+  - {id: cov-weight-recycle-warns, tags: [coverage, weight, warning], check_warnings: true, inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: [1, 2]}}}
+  - {id: cov-weight-na-error, tags: [coverage, weight, error], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: [null]}}}
+  - {id: cov-weight-string-error, tags: [coverage, weight, error], inputs: *X, call: {fn: coverage, args: [$x], kwargs: {weight: a}}}
+  - {id: cov-empty, tags: [coverage, empty], inputs: {e: *E}, call: {fn: coverage, args: [$e]}}
+  - {id: cov-empty-width, tags: [coverage, empty], inputs: {e: *E}, call: {fn: coverage, args: [$e], kwargs: {width: 5}}}
+  - {id: cov-zero-width-only, tags: [coverage, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-zero-width-only-padded, tags: [coverage, zero-width], inputs: {x: {IRanges: {start: [5], width: [0]}}}, call: {fn: coverage, args: [$x], kwargs: {width: 10}}}
+  - {id: cov-zero-width-mixed, tags: [coverage, zero-width], inputs: {x: {IRanges: {start: [1, 2], width: [0, 3]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-zero-width-extends-default-width, tags: [coverage, zero-width], inputs: {x: {IRanges: {start: [1, 20], width: [3, 0]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-negative-start, tags: [coverage], inputs: {x: {IRanges: {start: [-2], width: [6]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-negative-start-shifted, tags: [coverage], inputs: {x: {IRanges: {start: [-2], width: [6]}}}, call: {fn: coverage, args: [$x], kwargs: {shift: 3}}}
+  - {id: cov-all-negative, tags: [coverage], inputs: {x: {IRanges: {start: [-10], width: [3]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-identical-ranges, tags: [coverage], inputs: {x: {IRanges: {start: [1, 1, 1], width: [3, 3, 3]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-adjacent-ranges-merge-runs, tags: [coverage], inputs: {x: {IRanges: {start: [1, 4], width: [3, 3]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-weights-cancel-to-same-run, tags: [coverage, weight], inputs: {x: {IRanges: {start: [1, 3], width: [2, 2]}}}, call: {fn: coverage, args: [$x], kwargs: {weight: [2, -2]}}}
+  - {id: cov-nested, tags: [coverage], inputs: {x: {IRanges: {start: [1, 3, 4], width: [10, 5, 1]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-huge-width-sparse, tags: [coverage, int32], inputs: {x: {IRanges: {start: [5, 1000000000], width: [2, 3]}}}, call: {fn: coverage, args: [$x]}}
+  - {id: cov-runValue, tags: [coverage, rle], inputs: *X, call: {fn: runValue, args: [{call: {fn: coverage, args: [$x]}}]}}
+  - {id: cov-runLength, tags: [coverage, rle], inputs: *X, call: {fn: runLength, args: [{call: {fn: coverage, args: [$x]}}]}}
+  - {id: cov-as-vector, tags: [coverage, rle], inputs: *X, call: {fn: as.vector, args: [{call: {fn: coverage, args: [$x], kwargs: {width: 14}}}]}}
+  - {id: cov-length, tags: [coverage, rle], inputs: *X, call: {fn: length, args: [{call: {fn: coverage, args: [$x], kwargs: {width: 14}}}]}}
