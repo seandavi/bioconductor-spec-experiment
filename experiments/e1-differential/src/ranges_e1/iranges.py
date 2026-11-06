@@ -88,7 +88,9 @@ class IRanges:
         names: Iterable[str | None] | None = None,
         mcols: Any = None,
     ) -> None:
-        if start is not None and end is None and width is None:
+        if start is None and end is None and width is None:
+            s = w = np.empty(0, dtype=np.int64)  # IRanges() is empty
+        elif start is not None and end is None and width is None:
             s, w = _runs(start)
         else:
             s, w = _solve_sew(start, end, width)

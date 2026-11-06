@@ -65,7 +65,7 @@ class GRanges:
 
     def __init__(
         self,
-        seqnames: Any,
+        seqnames: Any = None,
         ranges: IRanges | None = None,
         *,
         start: Any = None,
@@ -77,6 +77,10 @@ class GRanges:
         seqinfo: Seqinfo | None = None,
         seqlengths: Any = None,
     ) -> None:
+        if seqnames is None:
+            if ranges is not None or start is not None or end is not None or width is not None or strand is not None:
+                raise ValueError("'seqnames' must be supplied")
+            seqnames = []  # GRanges() is empty
         if ranges is None:
             ranges = IRanges(start=start, end=end, width=width)
         elif not isinstance(ranges, IRanges):
@@ -86,8 +90,10 @@ class GRanges:
             raise ValueError("'seqnames' cannot contain NAs")
         st = _parse_strand("*" if strand is None else strand)
         n = max(len(sn), len(ranges), len(st))
-        if 0 in (len(sn), len(ranges), len(st)):
+        if 0 in (len(sn), len(ranges)) or (strand is not None and len(st) == 0):
             n = 0
+        if strand is None:
+            st = np.full(n, STAR, dtype=np.int8)  # default "*" recycles to any length, including 0
         for what, k in (("seqnames", len(sn)), ("ranges", len(ranges)), ("strand", len(st))):
             if k != n and not (k == 1 and n > 0):
                 raise ValueError(f"'{what}' must have the length of the object to construct ({n}) or length 1")
@@ -731,6 +737,8 @@ class GRanges:
     def precede(self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
         select = _args.match_arg(select, ("first", "all"))
         subj = self if subject is None else subject
+        if len(self) == 0 or len(subj) == 0:  # R returns empty Hits whatever `select` says
+            return Hits(np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64), len(self), len(subj))
         q, s = self._precede_follow(subj, "precede", ignore_strand)
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=False)
 
@@ -738,6 +746,8 @@ class GRanges:
     def follow(self, subject: GRanges | None = None, select: str = "last", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
         select = _args.match_arg(select, ("last", "all"))
         subj = self if subject is None else subject
+        if len(self) == 0 or len(subj) == 0:  # R returns empty Hits whatever `select` says
+            return Hits(np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64), len(self), len(subj))
         q, s = self._precede_follow(subj, "follow", ignore_strand)
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=True)
 
@@ -757,8 +767,10 @@ class GRanges:
         sub = self._take(miss)
         pq, ps = sub._precede_follow(subj, "precede", ignore_strand)
         fq, fs = sub._precede_follow(subj, "follow", ignore_strand)
-        if len(pq) == 0 and len(fq) == 0 and bool(np.ma.getmaskarray(olv).all()):
-            return Hits(np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64), len(self), len(subj)) if all_ else olv
+        if len(subj) == 0:  # R's early exit: its precede/follow return empty Hits, so nothing to compare
+            if all_:
+                return Hits(np.empty(0, dtype=np.int64), np.empty(0, dtype=np.int64), len(self), len(subj))
+            return np.ma.masked_array(np.zeros(len(self), dtype=bool), mask=True)  # R: rep(NA, n), a logical vector
         p = sub._pick_one(pq, ps, last=False)  # first precede / last follow per query
         f = sub._pick_one(fq, fs, last=True)
         pm, fm = np.ma.getmaskarray(p), np.ma.getmaskarray(f)

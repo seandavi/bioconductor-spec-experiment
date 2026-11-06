@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
  "entries": {
   "gr-any": {
    "hash": "9461812b69ea571417a2634f6de396138e9a2c3131ee81dc2bd6615217bf86e9",
@@ -310,14 +310,62 @@
   "gr-coverage-empty-known-lengths": {
    "hash": "7b668a445b6ef13111e01dd8264690dff64667e84a081b3888a392f882268cf3",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2",
+      "chr3"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        100
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        200
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        300
+       ]
+      }
+     ]
+    },
     "warnings": []
    }
   },
   "gr-coverage-empty-unknown-lengths": {
    "hash": "a82f3618fff1b8529347cda6ce4f70ce824940a30c017c0e3acffa375ffb2c6d",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [],
+       "lengths": []
+      }
+     ]
+    },
     "warnings": []
    }
   },
@@ -881,7 +929,12 @@
   "gr-distance-empty": {
    "hash": "f6008f7e0c40165ccff8ff323eed9886872260a563584de0dc1c819aa73e5bd1",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -1032,21 +1085,40 @@
   "gr-fo-empty-query": {
    "hash": "5a03c35c800a3db793c36dd720365fe593ba2c89cb2ec3535005bbc416105b83",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 0,
+     "nRnode": 1
+    },
     "warnings": []
    }
   },
   "gr-fo-empty-subject": {
    "hash": "89571951dbde9c8075ab09cea3b9f4479e1b0a7745e7f98b4deac917bb7919ee",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
     "warnings": []
    }
   },
   "gr-fo-empty-subject-select-first": {
    "hash": "57a0c34214345cb952c04e5f2367470faf66122ca7c71a135e35db5508f2ea78",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -1371,7 +1443,13 @@
   "gr-follow-empty-subject-all": {
    "hash": "a42f4814a8251198d71b4b0a2ffbbb3e65db123791540fd0d06de123e05229e4",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
     "warnings": []
    }
   },
@@ -1464,21 +1542,39 @@
   "gr-nearest-empty-query": {
    "hash": "a055befa7c92ff03fd4824556d9a5c82fdbb46a4725d0d85e98a7c08867c0d17",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
     "warnings": []
    }
   },
   "gr-nearest-empty-subject": {
    "hash": "7916d0eef3c517900771b0ee32c8212efb731beafec8ab8d85ffc8935f753cc7",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      null
+     ],
+     "names": null
+    },
     "warnings": []
    }
   },
   "gr-nearest-empty-subject-all": {
    "hash": "154bc6824ef127cfa767a51651f650d4928d50cf5568da61c834171f8c486d28",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
     "warnings": []
    }
   },
@@ -1619,7 +1715,12 @@
   "gr-order-empty": {
    "hash": "b8914577eda39f4b405ea7057d928166eb7ebebf7a25a71d41f41d2789a3ffa3",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -1715,7 +1816,13 @@
   "gr-precede-empty-subject": {
    "hash": "93a267697c99cc3247cc25a2168adedc42740ceabe5abbab7cdcb3d1d0769937",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 0
+    },
     "warnings": []
    }
   },
@@ -1801,7 +1908,12 @@
   "gr-rank-empty": {
    "hash": "ad01bd76ad6cf934498368d2b9a4f3acc5e07848c3155e7417df16a001fa56a1",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [],
+     "names": null
+    },
     "warnings": []
    }
   },
@@ -2007,7 +2119,38 @@
   "gr-sort-empty": {
    "hash": "9767b274f1dabe96f7d41f02011a41bd5b3a71f38a6cce382592307cce09105f",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2",
+       "chr3"
+      ],
+      "seqlengths": [
+       100,
+       200,
+       300
+      ],
+      "is_circular": [
+       null,
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null,
+       null
+      ]
+     }
+    },
     "warnings": []
    }
   },

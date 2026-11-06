@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
  "entries": {
   "subset-grn-all": {
    "hash": "6f84f2e6f7487af3613adde517389a1deee6c56335d54c7bc2359b435c8a294c",
@@ -353,7 +353,7 @@
   "subset-grn-empty-object-int": {
    "hash": "06adf00ae5f94d05e29f8fe67936ee22bc789061cf1dca04f1ad39da5efc7142",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "error": "subscript contains out-of-bounds indices",
     "warnings": []
    }
   },

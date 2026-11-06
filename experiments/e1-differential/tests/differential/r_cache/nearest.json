@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
  "entries": {
   "distance-adjacent-is-zero": {
    "hash": "5797b3f46e3e65b3c8433fac1d4c659d3a9007c1fe70743347bbd06f831ba338",

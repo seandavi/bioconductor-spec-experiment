@@ -222,7 +222,7 @@ def resolve_index(i: Any, n: int, names: Names | None) -> np.ndarray:
             raise IndexError("cannot subset by name when names are None")
         lookup: dict[str, int] = {}
         for k, nm in enumerate(names):
-            if nm is not None:
+            if nm:  # NA and blank names are never matched
                 lookup.setdefault(nm, k)
         try:
             return np.array([lookup[str(v)] for v in a.ravel()], dtype=np.int64)

@@ -46,8 +46,10 @@ granges_lit <- function(l) {
   g <- function(k) if (is.null(l[[k]])) NULL else decode(l[[k]])
   ir <- IRanges(start = g("start"), end = g("end"), width = g("width"), names = g("names"))
   si <- if (is.null(l$seqinfo)) NULL else seqinfo_lit(l$seqinfo)
-  st <- g("strand"); if (is.null(st)) st <- "*"
-  x <- GRanges(seqnames = g("seqnames"), ranges = ir, strand = st, seqinfo = si)
+  # omit `strand` when absent: GRanges() defaults it, whereas an explicit "*" cannot recycle to length 0
+  args <- list(seqnames = g("seqnames"), ranges = ir, seqinfo = si)
+  if (!is.null(l$strand)) args$strand <- g("strand")
+  x <- do.call(GRanges, args)
   if (!is.null(l$mcols)) mcols(x) <- df_lit(l$mcols)
   x
 }

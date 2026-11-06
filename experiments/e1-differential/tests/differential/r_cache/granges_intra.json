@@ -1,5 +1,5 @@
 {
- "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness 5155c675b1da",
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
  "entries": {
   "gr-flank-both": {
    "hash": "c22442ea1af251333390940fb88fe63a9c8825cbac395a426b8918643b268c91",
@@ -166,7 +166,22 @@
   "gr-flank-empty": {
    "hash": "5dab4ac02522342cc7b91cae6d9e851bffb7456eec7d17c9236d4c4b4fb0c268",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [],
+      "seqlengths": [],
+      "is_circular": [],
+      "genome": []
+     }
+    },
     "warnings": []
    }
   },
@@ -826,7 +841,22 @@
   "gr-intra-empty": {
    "hash": "8537d9b2959f3b085babd15b415ab871a481709d4f213da158d9dd6cbeeba670",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [],
+      "seqlengths": [],
+      "is_circular": [],
+      "genome": []
+     }
+    },
     "warnings": []
    }
   },
@@ -1112,7 +1142,22 @@
   "gr-promoters-empty": {
    "hash": "3586b82ee8c86e70544101fda8897cf91c4c109ecb30e6f6c167fd86de3638ef",
    "result": {
-    "error": "'seqnames' must have the length of the object to construct (1) or length 1",
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [],
+      "seqlengths": [],
+      "is_circular": [],
+      "genome": []
+     }
+    },
     "warnings": []
    }
   },

@@ -63,6 +63,8 @@ def r_subscript(i: Any, n: int) -> Any:
 def to_one_based(v: Any) -> Any:
     """Index-valued Python result -> R's 1-based convention (masked stays NA)."""
     if isinstance(v, np.ma.MaskedArray):
+        if v.dtype.kind == "b":  # all-NA logical vector (R's rep(NA, n)): no indices to shift
+            return v
         return np.ma.masked_array(np.ma.getdata(v) + 1, mask=np.ma.getmask(v))
     if isinstance(v, np.ndarray):
         return v + 1
