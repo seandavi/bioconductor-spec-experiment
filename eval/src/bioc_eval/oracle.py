@@ -18,7 +18,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from .common import BUILD, EVAL, case_hash, canonical, iter_jsonl, load_ops, load_pool, write_jsonl
+from .common import BUILD, EVAL, RESULTS, case_hash, canonical, iter_jsonl, load_ops, load_pool, write_jsonl
 
 sys.path.insert(0, str(EVAL / "runner"))
 from binding import BindError, bind  # noqa: E402
@@ -212,7 +212,7 @@ def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, su
         new_rows.append({"fp": fp, "key": k, "rec": rec})
     if new_rows:
         CACHE.parent.mkdir(parents=True, exist_ok=True)
-        with CACHE.open("a") as fh:
+        with CACHE.open("w" if fresh and subset is None else "a") as fh:
             for row in new_rows:
                 fh.write(json.dumps(row, separators=(",", ":")) + "\n")
     resolved, expected = [], []
@@ -240,6 +240,11 @@ def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, su
             "excluded": len(pool) - len(resolved), "r_ran": len(uniq), "r_seconds": round(r_seconds, 1),
             "wall_seconds": round(time.time() - t0, 1), "workers": workers}
     (out_dir / "oracle-meta.json").write_text(json.dumps(meta, indent=1) + "\n")
+    if subset is None and len(uniq) >= len(pool) // 2:  # a (nearly) full R run: keep its timing for the report
+        RESULTS.mkdir(exist_ok=True)
+        (RESULTS / "oracle-timing.json").write_text(json.dumps(
+            {"versions": versions, "cases": len(pool), "r_ran": len(uniq), "r_seconds": meta["r_seconds"],
+             "workers": workers}, indent=1) + "\n")
     return meta
 
 

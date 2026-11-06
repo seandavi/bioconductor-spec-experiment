@@ -25,6 +25,8 @@ uv run --frozen --project <port dir> python eval/runner/run_port.py --port <port
 
 Per case: build each input fresh (`build`) → evaluate the call tree
 (`$call` innermost first, via `call`) → `project` the result → one JSONL record.
+The runner holds the 30 s timeout (`SIGALRM`, a `BaseException`, so a port's broad `except Exception` cannot swallow it).
+An argument list R would reject (`BindError`) is a `port_error` with `origin: bind`; the oracle shows R errors there too.
 
 ## Interface
 
@@ -85,9 +87,14 @@ zero-length names → null):
 | `p_null()` | |
 | `p_iranges(start, width, names, mcols)` / `p_granges(seqnames, start, width, strand, names, mcols, seqinfo)` | `mcols` = list of `(name, column projection)` |
 | `p_seqinfo(seqnames, seqlengths, is_circular, genome)` | |
-| `p_dataframe(nrow, columns, rownames=None)` / `p_factor(levels, codes)` / `p_integerlist(elements, names=None)` | codes and elements as the port gives them, shifted if index-valued |
+| `p_dataframe(nrow, columns, rownames=None)` | `columns` = list of `(name, column projection)` |
+| `p_factor(levels, codes, base=1)` | `base=0` for 0-based codes (negative = NA); output is 1-based |
+| `p_integerlist(elements, names=None, shift=0)` | `shift` is added to every non-NA element (use `shift=1` for 0-based index lists such as `revmap`) |
 | `p_hits(from_, to, n_left, n_right)` | **1-based** in |
-| `p_rle(values, lengths=None)` / `p_rlelist(names, rles)` | dense or run form; normalized to maximal runs |
+| `p_rle(values, lengths=None, type=None)` / `p_rlelist(names, rles)` | dense or run form; normalized to maximal runs (NA and NaN each form their own runs) |
+
+`RVector.np()` returns int64 / float64 / bool / object arrays and raises on NA in int/lgl/chr (dbl NA and NaN both become `nan`);
+use `.np_masked()` when NA must survive. `RVector` and `None` results are projected by the base; `project` only sees port natives.
 
 ## Allowed vs forbidden
 
@@ -151,4 +158,8 @@ Mutant perturbations (first applicable in a hash-seeded cycle):
 | raise `Unsupported` | any | `unsupported` |
 
 `fakeport` (`eval/selftest/fakeport/`) is a stdlib package that only raises,
-so the traceback rule is exercised for real.
+so the traceback rule is exercised for real. Both adapters read `expected.jsonl` through `setup(ctx)` (passed only to
+self-test ports) and override `run_case(case, stage)`; `r_echo` raises an R error through `fakeport`, so it is a `port_error`.
+`mutant` writes `build/results/mutant.predicted.jsonl` (`id`, `predicted`, `perturbation`). Bump and drop are not applied to
+R3 cases (any in-universe value passes, so `mismatch` is not guaranteed); `swap_universe` is their control.
+`just selftest` fails unless `r_echo` scores 100 % and every mutant outcome equals its prediction.

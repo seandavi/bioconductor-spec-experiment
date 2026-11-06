@@ -25,7 +25,7 @@ Port record statuses are assigned by the runner (ADAPTERS.md, "Classification").
 
 | Rule | Applies when | Pass iff |
 |---|---|---|
-| R3 `arbitrary_in_universe` | `findOverlaps` with `kwargs.select == "arbitrary"`, or `nearest` with `select` absent or `"arbitrary"`; and R result kind is `vector` | port is `vector` of R's `type`, same length, `names` equal; per query *i*: port[*i*] is `null` iff `universe` has no hit for *i*, else port[*i*] ∈ `universe` hits of *i* |
+| R3 `arbitrary_in_universe` | `findOverlaps` with `kwargs.select == "arbitrary"`, or `nearest` with `select` absent or `"arbitrary"`; and R result kind is `vector` | port is `vector` of R's `type`, same length, `names` equal; per query *i*: allowed = `universe` hits of *i* ∪ {R's own value for *i*, if not NA}; port[*i*] is `null` iff allowed is empty, else port[*i*] ∈ allowed |
 | R2 `hits_query_set` | R result is `Hits` and `sorted_by_query` is true | port is `Hits`; `nLnode`, `nRnode` equal; port `from` non-decreasing; sorted (from, to) pair lists equal (multiset) |
 | `exact` | everything else | deep equality (below) |
 
@@ -39,7 +39,7 @@ int/chr/lgl leaves equal; dbl leaves equal as IEEE doubles (`"NaN"` = `"NaN"`,
 |---|---|---|
 | R1 | both error → pass; messages not compared | Error text is R-specific; error *occurrence* is the contract. |
 | R2 | Hits compared as a set within each query (query order still exact) | R returns `SortedByQueryHits`: sorted query order is a class invariant, subject order within a query is NCList traversal order and undocumented. Measured in R 4.6 / IRanges 2.47.2: 403 of 3000 random GRanges `findOverlaps` calls emitted within-query subject indices out of order. Applies to every R result whose class is `SortedByQuery*` (`findOverlaps`, `nearest/precede/follow(select="all")`), decided by the oracle's `sorted_by_query`, not by op name. |
-| R3 | `select = "arbitrary"`: any of R's `select = "all"` hits | `?findOverlaps`: "arbitrary" returns an arbitrary overlapping subject. `?nearest`: ties are resolved "arbitrary for nearest" (its default). The oracle stores the `select = "all"` result of the same call as `universe`. |
+| R3 | `select = "arbitrary"`: any of R's `select = "all"` hits | `?findOverlaps`: "arbitrary" returns an arbitrary overlapping subject. `?nearest`: ties are resolved "arbitrary for nearest" (its default). The oracle stores the `select = "all"` result of the same call as `universe`. R's own pick is always allowed too: in R 4.6 / GenomicRanges 1.65.1, `nearest(<GRanges>)` picks the lower-index tie while `select="all"` returns only the higher one (`nearest(GRanges("chr1",IRanges(20,21)), GRanges("chr1",IRanges(c(10,27,33),width=c(5,3,1))))` is 1, `select="all"` is {2}); IRanges returns both. |
 
 Not relaxed (deliberately): doubles (no tolerance; see diff kind `float_ulp`),
 vector `names`, storage `type`, row order of ranges, `revmap` element order,
