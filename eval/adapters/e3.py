@@ -279,7 +279,7 @@ class Adapter(AdapterBase):
         return _rng(x, "names").names
 
     def op_length(self, *, x):
-        if not isinstance(x, (IRanges, GRanges, Seqinfo)):
+        if not isinstance(x, (IRanges, GRanges, Seqinfo, Hits, Rle)):
             raise Unsupported(f"length: {type(x).__name__}")
         return RVector("int", [len(x)])
 
