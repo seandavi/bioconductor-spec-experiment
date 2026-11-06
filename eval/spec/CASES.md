@@ -68,6 +68,8 @@ projects it (PROJECTION.md). Ports only ever see the projection.
 
 ## Hash
 
-`sha256` of canonical JSON (`sort_keys`, no whitespace) of `{"inputs", "call"}`.
+`sha256` of canonical JSON (`sort_keys`, no whitespace) of `{"inputs", "call"}`, except that every `kwargs`
+object and `inputs` object is hashed as an ordered list of `[name, value]` pairs: extra named arguments become
+mcols columns in call order, so `IRanges(.., aa=1, bb=2)` and `(.., bb=2, aa=1)` are different cases.
 Ids, tags and source are not hashed. The oracle cache keys on
 (R + package versions, oracle script digest, case hash).

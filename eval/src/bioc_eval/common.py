@@ -23,9 +23,28 @@ def canonical(obj: Any) -> str:
     return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
+def _ordered(node: Any) -> Any:
+    """Hash view: sorted keys for unordered structural mappings, ordered pairs where order is semantic.
+
+    Call `kwargs` (extra named arguments become mcols columns in call order) and `inputs` (evaluation order)
+    are written as [name, value] pairs in their given order.
+    """
+    if isinstance(node, dict):
+        out = {}
+        for k, v in node.items():
+            if k in ("kwargs", "inputs") and isinstance(v, dict):
+                out[k] = [[kk, _ordered(vv)] for kk, vv in v.items()]
+            else:
+                out[k] = _ordered(v)
+        return out
+    if isinstance(node, list):
+        return [_ordered(v) for v in node]
+    return node
+
+
 def case_hash(case: dict) -> str:
-    """sha256 of canonical {inputs, call} (CASES.md, Hash)."""
-    payload = {"inputs": case["inputs"], "call": case["call"]}
+    """sha256 of canonical JSON of {inputs, call}; argument and input order are preserved (CASES.md, Hash)."""
+    payload = _ordered({"inputs": case["inputs"], "call": case["call"]})
     return hashlib.sha256(canonical(payload).encode()).hexdigest()
 
 

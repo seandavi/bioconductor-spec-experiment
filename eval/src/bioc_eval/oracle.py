@@ -179,19 +179,22 @@ def features_of(case: dict, inputs_proj: dict, errored: bool) -> list[str]:
 
 # ------------------------------------------------------------------ main
 
-def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, subset: set[str] | None = None) -> dict:
+def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, subset: set[str] | None = None,
+          cache: Path | None = None, pool: list[dict] | None = None) -> dict:
     out_dir = out_dir or BUILD
     out_dir.mkdir(parents=True, exist_ok=True)
     ops = load_ops()
-    pool = load_pool()
+    CACHE_FILE = cache or CACHE
+    pool_arg = pool
+    pool = pool if pool is not None else load_pool()
     if subset is not None:
         pool = [c for c in pool if c["id"] in subset]
     t0 = time.time()
     versions = r_versions()
     fp = fingerprint(versions)
     cache: dict[str, dict] = {}
-    if CACHE.exists() and not fresh:
-        for row in iter_jsonl(CACHE):
+    if CACHE_FILE.exists() and not fresh:
+        for row in iter_jsonl(CACHE_FILE):
             if row["fp"] == fp:
                 cache[row["key"]] = row["rec"]
     keyed = [(c, hashlib.sha256(f"{fp}|{case_hash(c)}".encode()).hexdigest()) for c in pool]
@@ -211,8 +214,8 @@ def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, su
         cache[k] = rec
         new_rows.append({"fp": fp, "key": k, "rec": rec})
     if new_rows:
-        CACHE.parent.mkdir(parents=True, exist_ok=True)
-        with CACHE.open("w" if fresh and subset is None else "a") as fh:
+        CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with CACHE_FILE.open("w" if fresh and subset is None else "a") as fh:
             for row in new_rows:
                 fh.write(json.dumps(row, separators=(",", ":")) + "\n")
     resolved, expected = [], []
@@ -240,7 +243,7 @@ def build(workers: int = 4, fresh: bool = False, out_dir: Path | None = None, su
             "excluded": len(pool) - len(resolved), "r_ran": len(uniq), "r_seconds": round(r_seconds, 1),
             "wall_seconds": round(time.time() - t0, 1), "workers": workers}
     (out_dir / "oracle-meta.json").write_text(json.dumps(meta, indent=1) + "\n")
-    if subset is None and len(uniq) >= len(pool) // 2:  # a (nearly) full R run: keep its timing for the report
+    if subset is None and pool_arg is None and len(uniq) >= len(pool) // 2:  # a (nearly) full R run: keep its timing for the report
         RESULTS.mkdir(exist_ok=True)
         (RESULTS / "oracle-timing.json").write_text(json.dumps(
             {"versions": versions, "cases": len(pool), "r_ran": len(uniq), "r_seconds": meta["r_seconds"],

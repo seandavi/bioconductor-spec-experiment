@@ -114,3 +114,24 @@ def test_second_run_identical():
     ops = load_ops()
     cases = [case(i, op, inp, c) for i, (op, inp, c, _) in enumerate(HAND)]
     assert run_r(cases, ops, workers=1) == run_r(cases, ops, workers=2)
+
+
+def test_kwarg_order_is_part_of_the_case_hash_and_survives_dedup_and_cache(tmp_path):
+    """IRanges(.., aa=, bb=) vs (.., bb=, aa=): mcols column order differs in R, so the cases must not share a result."""
+    from bioc_eval import oracle
+    from bioc_eval.common import case_hash
+
+    def mk(cid, order):
+        kw = {"start": {"int": [1]}, "width": {"int": [2]}}
+        kw.update({k: {"int": [v]} for k, v in order})
+        return {"id": cid, "source": "heldout", "op": "IRanges", "inputs": {}, "call": call("IRanges", **kw)}
+
+    a, b = mk("heldout/IRanges/IRanges/0", [("aa", 3), ("bb", 4)]), mk("heldout/IRanges/IRanges/1", [("bb", 4), ("aa", 3)])
+    assert case_hash(a) != case_hash(b)
+    cache = tmp_path / "cache.jsonl"
+    for round_ in ("cold", "from cache"):
+        meta = oracle.build(workers=1, out_dir=tmp_path / round_.replace(" ", "_"), cache=cache, pool=[a, b])
+        exp = {r["id"]: r for r in map(__import__("json").loads, (tmp_path / round_.replace(" ", "_") / "expected.jsonl").read_text().splitlines())}
+        cols = lambda cid: [n for n, _ in exp[cid]["result"]["mcols"]]
+        assert cols(a["id"]) == ["aa", "bb"] and cols(b["id"]) == ["bb", "aa"], round_
+        assert meta["r_ran"] == (2 if round_ == "cold" else 0)
