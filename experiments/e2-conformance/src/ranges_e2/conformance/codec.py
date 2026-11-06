@@ -203,12 +203,21 @@ def _decode_iranges(tree: dict[str, Any], fx: dict[str, Any]) -> IRanges:
     return IRanges(arr("start"), arr("end"), arr("width"), None if names is None else names.strings(), frame)
 
 
+REVMAP = "revmap"  # the one IntegerList column that holds input indices (0-based in Python, 1-based in the format)
+
+
 def _decode_dframe(tree: dict[str, Any], fx: dict[str, Any]) -> DFrameOut:
     cols = []
     for name, col in tree["columns"].items():
         if isinstance(col, dict) and col.get("$type") == "IntegerList":
-            lists = [[int(i) - 1 for i in el] for el in col["elements"]]
+            if col.get("names") is not None:
+                raise TypeError(f"IntegerList column {name} with names is not supported")
+            shift = 1 if name == REVMAP else 0  # other lists are plain values, kept as written
+            lists = [[int(i) - shift for i in el] for el in col["elements"]]
             cols.append(pl.Series(name, lists, dtype=pl.List(pl.Int32)))
+        elif isinstance(col, dict) and col.get("$type") == "Factor":
+            f = decode(col, fx)
+            cols.append(pl.Series(name, f.to_list(), dtype=pl.Enum(list(f.levels))))
         else:
             v = decode(col, fx)
             if not isinstance(v, Vec):
@@ -268,8 +277,13 @@ def _enc_column(name: str, s: pl.Series) -> Tree:
         return enc_vec("lgl", s.to_list())
     if dt in (pl.Utf8, pl.String):
         return enc_vec("chr", s.to_list())
-    if isinstance(dt, pl.List) and name == "revmap":
-        return {"$type": "IntegerList", "elements": [[i + 1 for i in el] for el in s.to_list()], "names": None}
+    if isinstance(dt, pl.List):
+        shift = 1 if name == REVMAP else 0
+        return {"$type": "IntegerList", "elements": [[i + shift for i in el] for el in s.to_list()], "names": None}
+    if isinstance(dt, pl.Enum):
+        levels = dt.categories.to_list()
+        codes = [None if v is None else levels.index(v) for v in s.to_list()]
+        return encode_factor(Factor(tuple(levels), np.array([-1 if c is None else c for c in codes], dtype=np.int64)))
     raise TypeError(f"cannot encode column {name} of type {dt}")
 
 

@@ -1,6 +1,7 @@
 {
   "group": "granges-core",
   "clauses": {
+    "GR.MCOLS.LISTFACTOR": "IntegerList and factor metadata columns survive GRanges subsetting and combining",
     "GR.C.MCOLS.TYPES": "c() widens metadata column types to a common type (integer + double -> double, in either argument order); values are never truncated",
     "GR.CTOR": "GRanges(seqnames, ranges, strand) builds one range per element; strand defaults to '*'; levels default to the unique seqnames in order of first appearance",
     "GR.CTOR.STRAND": "strand accepts '+', '-', '*' (a length-1 strand recycles); NA becomes '*'; other values are errors",
@@ -36,7 +37,8 @@
     "ir": {"$type": "IRanges", "start": [1, 5, 9], "width": [2, 2, 2]},
     "irn": {"$type": "IRanges", "start": [1, 5, 9], "width": [2, 2, 2], "names": ["p", "q", "r"]},
     "gmi": {"$type": "GRanges", "seqnames": ["chr1"], "start": [1], "width": [2], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"score": [1]}}},
-    "gmd": {"$type": "GRanges", "seqnames": ["chr2", "chr1"], "start": [5, 9], "width": [2, 2], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"score": [2.75, 3.5]}}}
+    "gmd": {"$type": "GRanges", "seqnames": ["chr2", "chr1"], "start": [5, 9], "width": [2, 2], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"score": [2.75, 3.5]}}},
+    "gl": {"$type": "GRanges", "seqnames": ["chr1", "chr2", "chr1"], "start": [1, 5, 12], "width": [3, 4, 0], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"groups": {"$type": "IntegerList", "elements": [[1, 2], [], [3]], "names": null}, "f": {"$type": "Factor", "levels": {"$chr": ["lo", "hi"]}, "codes": {"$int": [1, 2, null]}}, "n": [1.5, 2.5, 3.5]}}}
   },
   "cases": [
     {"id": "gr.ctor.basic", "clause": "GR.CTOR", "op": "GRanges", "args": [], "kwargs": {"seqnames": ["chr1", "chr2", "chr1"], "ranges": {"$ref": "ir"}, "strand": ["+", "-", "*"]}},
@@ -122,6 +124,9 @@
     {"id": "gr.mcols.set.recycles-divisor", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "g"}], "kwargs": {"value": {"$type": "DFrame", "columns": {"k": [1, 2]}}}},
     {"id": "gr.c.mcols.int-then-dbl", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "gmi"}, {"$ref": "gmd"}], "kwargs": {}},
     {"id": "gr.c.mcols.dbl-then-int", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "gmd"}, {"$ref": "gmi"}], "kwargs": {}},
-    {"id": "gr.c.mcols.na-fill-then-dbl", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "g"}, {"$ref": "gmd"}], "kwargs": {}}
+    {"id": "gr.c.mcols.na-fill-then-dbl", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "g"}, {"$ref": "gmd"}], "kwargs": {}},
+    {"id": "gr.mcols.listfactor.subset", "clause": "GR.MCOLS.LISTFACTOR", "op": "[", "args": [{"$ref": "gl"}, [3, 1]], "kwargs": {}},
+    {"id": "gr.mcols.listfactor.c", "clause": "GR.MCOLS.LISTFACTOR", "op": "c", "args": [{"$ref": "gl"}, {"$ref": "gl"}], "kwargs": {}},
+    {"id": "gr.mcols.listfactor.get", "clause": "GR.MCOLS.LISTFACTOR", "op": "mcols", "args": [{"$ref": "gl"}], "kwargs": {}}
   ]
 }

@@ -15,7 +15,8 @@ objs <- list(
   hits = findOverlaps(ir, ir), cov = coverage(ir),
   grcov = coverage(gr), int = c(a = 1L, b = NA), dbl = c(1.5, NaN, -Inf, NA),
   chr = c("x", NA), lgl = c(TRUE, NA), fac = factor(c("a", "b", NA)),
-  seqn = seqnames(gr), nul = NULL, empty = integer(0))
+  seqn = seqnames(gr), nul = NULL, empty = integer(0),
+  dfl = DataFrame(groups = IntegerList(1:2, integer(0), 3L), f = factor(c("lo", NA, "hi"), levels = c("lo", "hi", "unused"))))
 bad <- 0
 for (nm in names(objs)) {
   t1 <- from_json(to_json(encode(objs[[nm]])))
