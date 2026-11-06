@@ -272,7 +272,9 @@ class GRanges:
     # shift and narrow ignore strand; resize, flank and promoters treat `-` as
     # reversed (their "start" is the range end) and `*` as `+`.
 
-    def _minus(self) -> BoolArray:
+    def _minus(self, ignore_strand: bool = False) -> BoolArray:
+        if ignore_strand:
+            return np.zeros(len(self), dtype=bool)
         return self._strand == MINUS
 
     def shift(self, shift: Any) -> Self:
@@ -281,19 +283,21 @@ class GRanges:
     def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
         return self._with_coords(*intra.narrow(self._ranges.start, self._ranges.width, start, end, width))
 
-    def resize(self, width: Any, fix: str | Sequence[str] = "start") -> Self:
+    def resize(self, width: Any, fix: str | Sequence[str] = "start", ignore_strand: bool = False) -> Self:
         codes = intra.parse_fix(fix, len(self))  # type: ignore[arg-type]
-        swap = self._minus() & (codes != intra.FIX_CENTER)
+        swap = self._minus(ignore_strand) & (codes != intra.FIX_CENTER)
         codes = np.where(swap, 1 - codes, codes)
         return self._with_coords(*intra.resize(self._ranges.start, self._ranges.width, width, codes))
 
-    def flank(self, width: Any, start: Any = True, both: bool = False) -> Self:
-        at_start = intra.as_bool_array(start, len(self), "start") != self._minus()
+    def flank(self, width: Any, start: Any = True, both: bool = False, ignore_strand: bool = False) -> Self:
+        at_start = intra.as_bool_array(start, len(self), "start") != self._minus(ignore_strand)
         return self._with_coords(*intra.flank(self._ranges.start, self._ranges.width, width, at_start, both))
 
-    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> Self:
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, ignore_strand: bool = False) -> Self:
         return self._with_coords(
-            *intra.promoters(self._ranges.start, self._ranges.width, upstream, downstream, self._minus())
+            *intra.promoters(
+                self._ranges.start, self._ranges.width, upstream, downstream, self._minus(ignore_strand)
+            )
         )
 
     # --- ordering --------------------------------------------------------------
