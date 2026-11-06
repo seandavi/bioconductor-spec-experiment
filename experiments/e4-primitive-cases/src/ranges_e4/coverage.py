@@ -45,3 +45,35 @@ def check_length(width: Any) -> int | None:
     if width is None:
         return None
     return int(as_int(width, "width")[0])
+
+
+def coverage_circular(start: np.ndarray, width: np.ndarray, shift: Any, length: int, weight: Any) -> np.ndarray:
+    """Depth on a circular sequence of ``length`` positions: ranges wrap modulo ``length``.
+
+    A range of width w covers every position ``w // length`` times, plus one
+    more over the remaining ``w % length`` positions after its (wrapped) start.
+    """
+    n = len(start)
+    sh = arg_vector(shift, n, "shift") if n else np.zeros(0, np.int64)
+    w = np.asarray(weight)
+    if w.ndim == 0 or len(w) == 1:
+        w = np.repeat(w.reshape(-1)[:1], n)
+    elif len(w) != n:
+        raise ValueError(f"'weight' has length {len(w)}, expected 1 or {n}")
+    dtype = np.float64 if w.dtype.kind == "f" else np.int64
+    w = w.astype(dtype)
+    pos = width > 0
+    s0 = (start[pos] + sh[pos] - 1) % length
+    full, rem, wt = width[pos] // length, width[pos] % length, w[pos]
+    delta = np.zeros(length + 1, dtype=dtype)
+    base = (full * wt).sum()
+    r = rem > 0
+    fits = r & (s0 + rem <= length)
+    wraps = r & (s0 + rem > length)
+    np.add.at(delta, s0[fits], wt[fits])
+    np.add.at(delta, s0[fits] + rem[fits], -wt[fits])
+    np.add.at(delta, s0[wraps], wt[wraps])
+    delta[length] -= wt[wraps].sum()
+    delta[0] += wt[wraps].sum()
+    np.add.at(delta, s0[wraps] + rem[wraps] - length, -wt[wraps])
+    return np.cumsum(delta)[:length] + base

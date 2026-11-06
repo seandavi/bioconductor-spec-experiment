@@ -45,7 +45,7 @@ def resolve_subscript(
             raise ValueError("subscript contains invalid names")
         lookup: dict[str, int] = {}
         for pos, nm in enumerate(names.tolist()):
-            if nm is not None:
+            if nm:  # NA and "" never match, as in R
                 lookup.setdefault(nm, pos)
         try:
             return np.array([lookup[s] for s in arr.tolist()], dtype=np.int64)
@@ -322,7 +322,7 @@ class IRanges:
         n = max(len(a), len(b)) if len(a) and len(b) else 0
         sa, wa = np.broadcast_to(a._start, (n,)), np.broadcast_to(a._width, (n,))
         sb, wb = np.broadcast_to(b._start, (n,)), np.broadcast_to(b._width, (n,))
-        return nearest.distance(sa, wa, sb, wb)
+        return nearest.mask_int32_overflow(nearest.distance(sa, wa, sb, wb))
 
     # coverage ------------------------------------------------------------
     def coverage(self, shift: Any = 0, width: int | None = None, weight: Any = 1) -> Rle:

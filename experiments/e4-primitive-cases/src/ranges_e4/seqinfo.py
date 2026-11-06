@@ -35,8 +35,8 @@ class Seqinfo:
         genome: Any = None,
     ) -> None:
         names = tuple(seqnames)
-        if any(s is None for s in names):
-            raise ValueError("seqnames cannot contain NA")
+        if any(s is None or s == "" for s in names):
+            raise ValueError("seqnames cannot contain NA or empty strings")
         if len(set(names)) != len(names):
             raise ValueError("seqnames must be unique")
         lengths = _broadcast(seqlengths, len(names), "seqlengths")

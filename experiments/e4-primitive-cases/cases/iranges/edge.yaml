@@ -1,0 +1,233 @@
+cases:
+  - id: ir-edge-max-end
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: identity, args: [x]}
+  - id: ir-edge-width-int-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [1], width: [2147483647]}}
+    call: {op: identity, args: [x]}
+  - id: ir-edge-min-start
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [-2147483646], width: [5]}}
+    call: {op: identity, args: [x]}
+  - id: ir-edge-shift-overflow
+    clause: IR-EDGE-2
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: shift, args: [x], kwargs: {shift: 5}}
+  - id: ir-edge-shift-underflow
+    clause: IR-EDGE-2
+    inputs:
+      x: {IRanges: {start: [-2147483642], width: [3]}}
+    call: {op: shift, args: [x], kwargs: {shift: -10}}
+  - id: ir-edge-shift-to-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: shift, args: [x], kwargs: {shift: 0}}
+  - id: ir-edge-resize-overflow
+    clause: IR-EDGE-3
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: resize, args: [x], kwargs: {width: 100}}
+    adr: ADR-0006
+    python: {expect_error: true}
+  - id: ir-edge-resize-end-fits
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638], width: [10]}}
+    call: {op: resize, args: [x], kwargs: {width: 100, fix: end}}
+  - id: ir-edge-flank-end-overflow
+    clause: IR-EDGE-3
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: flank, args: [x], kwargs: {width: 5, start: false}}
+    adr: ADR-0006
+    python: {expect_error: true}
+  - id: ir-edge-promoters-overflow
+    clause: IR-EDGE-3
+    inputs:
+      x: {IRanges: {start: [2147483642], width: [3]}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 0, downstream: 100}}
+    adr: ADR-0006
+    python: {expect_error: true}
+  - id: ir-edge-reduce-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: reduce, args: [x]}
+  - id: ir-edge-gaps-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-edge-gaps-to-max
+    clause: IR-EDGE-5
+    inputs:
+      x: {IRanges: {start: [5], width: [3]}}
+    call: {op: gaps, args: [x], kwargs: {start: 1, end: 2147483647}}
+    adr: ADR-0010
+    python: {skip: "R returns wrong gaps ([1,2^31-1],[8,2^31-1]) when end is 2^31-1; Python returns [1,4],[8,2^31-1]"}
+  - id: ir-edge-range-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+    call: {op: range, args: [x]}
+  - id: ir-edge-union-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+      z: {IRanges: {start: [1], width: [1]}}
+    call: {op: union, args: [x, z]}
+  - id: ir-edge-setdiff-max
+    clause: IR-EDGE-5
+    inputs:
+      x: {IRanges: {start: [1], width: [2147483647]}}
+      z: {IRanges: {start: [5], width: [3]}}
+    call: {op: setdiff, args: [x, z]}
+    adr: ADR-0010
+    python: {skip: "R drops the hole ([1,2^31-1]) when a range ends at 2^31-1; Python returns [1,4],[8,2^31-1]"}
+  - id: ir-edge-narrow-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [1], width: [2147483647]}}
+    call: {op: narrow, args: [x], kwargs: {start: 2}}
+  - id: ir-edge-punion-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483643], width: [5]}}
+      z: {IRanges: {start: [1], width: [2]}}
+    call: {op: punion, args: [x, z], kwargs: {fill.gap: true}}
+  - id: ir-edge-fo-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [2147483638, 1], width: [10, 3]}}
+      z: {IRanges: {start: [2147483644], width: [2]}}
+    call: {op: findOverlaps, args: [x, z]}
+  - id: ir-edge-nearest-max
+    clause: IR-EDGE-1
+    inputs:
+      x: {IRanges: {start: [1], width: [1]}}
+      z: {IRanges: {start: [2147483642], width: [1]}}
+    call: {op: nearest, args: [x, z]}
+  - id: ir-edge-distance-overflow-is-na
+    clause: IR-EDGE-4
+    inputs:
+      x: {IRanges: {start: [-2147483642], width: [1]}}
+      z: {IRanges: {start: [2147483642], width: [1]}}
+    call: {op: distance, args: [x, z]}
+  - id: ir-edge-disjoin-end-int-max
+    clause: IR-EDGE-5
+    inputs:
+      x: {IRanges: {start: [1, 2147483642], width: [2147483647, 6]}}
+    call: {op: disjoin, args: [x]}
+    adr: ADR-0010
+    python: {skip: "R fails computing end+1 at 2^31-1; Python handles it"}
+  - id: ir-edge-fo-maxgap-int-max
+    clause: IR-EDGE-5
+    inputs:
+      x: {IRanges: {start: [1], width: [1]}}
+      z: {IRanges: {start: [2147483642], width: [1]}}
+    call: {op: findOverlaps, args: [x, z], kwargs: {maxgap: 2147483647}}
+    adr: ADR-0010
+    python: {skip: "R overflows on maxgap=2^31-1 and finds no hit; Python finds the hit"}
+  - id: ir-edge-na-start
+    clause: IR-EDGE-6
+    inputs:
+      x: {IRanges: {start: [1, null], width: [2, 2]}}
+    call: {op: identity, args: [x]}
+  - id: ir-edge-na-width
+    clause: IR-EDGE-6
+    inputs:
+      x: {IRanges: {start: [1, 2], width: [2, null]}}
+    call: {op: identity, args: [x]}
+  - id: ir-edge-sub-empty-name-never-matches
+    clause: IR-EDGE-7
+    inputs:
+      i: {chr: ['']}
+      x: {IRanges: {start: [1, 2], width: [1, 1], names: ['', x]}}
+    call: {op: "[", args: [x, i]}
+  - id: ir-edge-sub-duplicate-names-first
+    clause: IR-EDGE-7
+    inputs:
+      i: {chr: [a]}
+      x: {IRanges: {start: [1, 2, 3], width: [1, 1, 1], names: [a, a, b]}}
+    call: {op: "[", args: [x, i]}
+  - id: ir-edge-names-na-concat
+    clause: IR-EDGE-7
+    inputs:
+      x: {IRanges: {start: [1], width: [1], names: [null]}}
+      z: {IRanges: {start: [1], width: [1]}}
+    call: {op: c, args: [x, z]}
+  - id: ir-edge-all-zero-order
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [5, 3, 5], width: [0, 0, 0]}}
+    call: {op: order, args: [x]}
+  - id: ir-edge-all-zero-rank
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [5, 3, 5], width: [0, 0, 0]}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: ir-edge-all-zero-duplicated
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [5, 5, 5], width: [0, 0, 0]}}
+    call: {op: duplicated, args: [x]}
+  - id: ir-edge-all-zero-self-overlaps-maxgap0
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [4, 5, 6], width: [0, 0, 0]}}
+    call: {op: findOverlaps, args: [x], kwargs: {maxgap: 0}}
+  - id: ir-edge-all-zero-nearest
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [1, 9], width: [0, 0]}}
+      z: {IRanges: {start: [5, 7], width: [0, 0]}}
+    call: {op: nearest, args: [x, z], kwargs: {select: all}}
+  - id: ir-edge-all-zero-coverage
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [5, 5, 5], width: [0, 0, 0]}}
+    call: {op: coverage, args: [x]}
+  - id: ir-edge-all-zero-reduce-drop
+    clause: IR-EDGE-8
+    inputs:
+      x: {IRanges: {start: [5, 5, 5], width: [0, 0, 0]}}
+    call: {op: reduce, args: [x], kwargs: {drop.empty.ranges: true}}
+  - id: ir-edge-single-range-reduce
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+    call: {op: reduce, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-edge-single-range-gaps
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+    call: {op: gaps, args: [x]}
+  - id: ir-edge-single-range-disjoin
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+    call: {op: disjoin, args: [x], kwargs: {with.revmap: true}}
+  - id: ir-edge-single-range-nearest-self
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+      z: {IRanges: {start: [3], width: [2]}}
+    call: {op: nearest, args: [x, z]}
+  - id: ir-edge-single-range-precede-none
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+      z: {IRanges: {start: [3], width: [2]}}
+    call: {op: precede, args: [x, z]}
+  - id: ir-edge-single-range-rank
+    clause: IR-EDGE-9
+    inputs:
+      x: {IRanges: {start: [3], width: [2]}}
+    call: {op: rank, args: [x], kwargs: {ties.method: average}}

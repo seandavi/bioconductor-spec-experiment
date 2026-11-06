@@ -1,0 +1,229 @@
+cases:
+  - id: gr-edge-circular-shift-no-wrap
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [5, 28], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: shift, args: [x], kwargs: {shift: 5}}
+  - id: gr-edge-circular-resize
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [5, 28], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: resize, args: [x], kwargs: {width: 10}}
+  - id: gr-edge-circular-flank
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [5, 28], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: flank, args: [x], kwargs: {width: 10}}
+  - id: gr-edge-circular-promoters
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [5, 28], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: promoters, args: [x], kwargs: {upstream: 10, downstream: 3}}
+  - id: gr-edge-circular-trim-after-shift
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [10, 33], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: trim, args: [x]}
+  - id: gr-edge-circular-reduce
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [10, 33], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: reduce, args: [x]}
+  - id: gr-edge-circular-coverage-wraps
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c], start: [10, 33], width: [3, 3], strand: ["+", "+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-circular-coverage-mixed
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c, c, d], start: [-2, 28, 10, 5, 18], width: [5, 5, 70, 0, 6], seqinfo: {seqnames: [c, d], seqlengths: [30, 20], isCircular: [true, false]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-circular-coverage-weight
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c, c, d], start: [-2, 28, 10, 5, 18], width: [5, 5, 70, 0, 6], seqinfo: {seqnames: [c, d], seqlengths: [30, 20], isCircular: [true, false]}}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2, 3, 4, 5]}}
+  - id: gr-edge-circular-coverage-shift
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c, c, d], start: [-2, 28, 10, 5, 18], width: [5, 5, 70, 0, 6], seqinfo: {seqnames: [c, d], seqlengths: [30, 20], isCircular: [true, false]}}}
+    call: {op: coverage, args: [x], kwargs: {shift: 10}}
+  - id: gr-edge-circular-coverage-width-truncates
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c, c, d], start: [-2, 28, 10, 5, 18], width: [5, 5, 70, 0, 6], seqinfo: {seqnames: [c, d], seqlengths: [30, 20], isCircular: [true, false]}}}
+    call: {op: coverage, args: [x], kwargs: {width: 12}}
+  - id: gr-edge-circular-coverage-width-too-big
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c, c, d], start: [-2, 28, 10, 5, 18], width: [5, 5, 70, 0, 6], seqinfo: {seqnames: [c, d], seqlengths: [30, 20], isCircular: [true, false]}}}
+    call: {op: coverage, args: [x], kwargs: {width: [40, 15]}}
+  - id: gr-edge-circular-coverage-full-wraps
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c, c, c], start: [1, 31, 61], width: [30, 30, 5], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-circular-coverage-wrap-end
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c], start: [25], width: [10], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-circular-coverage-wrap-start
+    clause: GR-EDGE-6
+    inputs:
+      x: {GRanges: {seqnames: [c], start: [-5], width: [10], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-circular-concat-flags
+    clause: GR-EDGE-1
+    inputs:
+      x: {GRanges: {seqnames: [c], start: [1], width: [1], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true], genome: g1}}}
+      z: {GRanges: {seqnames: [c], start: [1], width: [1], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true], genome: g1}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-edge-seqname-empty-string
+    clause: GR-EDGE-2
+    inputs:
+      x: {GRanges: {seqnames: [""], start: [1], width: [1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-edge-seqname-with-space
+    clause: GR-EDGE-2
+    inputs:
+      x: {GRanges: {seqnames: ["chr 1"], start: [1], width: [1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-edge-seqname-unicode
+    clause: GR-EDGE-2
+    inputs:
+      x: {GRanges: {seqnames: [é], start: [1], width: [1]}}
+    call: {op: seqlevels, args: [x]}
+  - id: gr-edge-seqname-repeats-order
+    clause: GR-EDGE-2
+    inputs:
+      x: {GRanges: {seqnames: [b, a, b], start: [1, 2, 3], width: [1, 1, 1]}}
+    call: {op: identity, args: [x]}
+  - id: gr-edge-seqlength-zero
+    clause: GR-EDGE-3
+    inputs:
+      x: {GRanges: {seqnames: [a], start: [1], width: [1], seqinfo: {seqnames: [a], seqlengths: [0]}}}
+    call: {op: seqlengths, args: [x]}
+  - id: gr-edge-names-na
+    clause: GR-EDGE-3
+    inputs:
+      x: {GRanges: {seqnames: [a, a], start: [1, 2], width: [1, 1], names: [x, null]}}
+    call: {op: names, args: [x]}
+  - id: gr-edge-empty-sort
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: sort, args: [x]}
+  - id: gr-edge-empty-unique
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: unique, args: [x]}
+  - id: gr-edge-empty-order
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: order, args: [x]}
+  - id: gr-edge-empty-duplicated
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: duplicated, args: [x]}
+  - id: gr-edge-empty-rank
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: rank, args: [x], kwargs: {ties.method: min}}
+  - id: gr-edge-empty-range-ignore
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: range, args: [x], kwargs: {ignore.strand: true}}
+  - id: gr-edge-empty-concat-first
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: c, args: [x, z]}
+  - id: gr-edge-empty-count-overlaps
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: countOverlaps, args: [x, z]}
+  - id: gr-edge-empty-subset-by-overlaps
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: subsetByOverlaps, args: [x, z]}
+  - id: gr-edge-empty-nearest
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: nearest, args: [x, z]}
+  - id: gr-edge-empty-distance
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: distance, args: [x, z]}
+  - id: gr-edge-empty-setdiff
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: setdiff, args: [x, z]}
+  - id: gr-edge-empty-union-both
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: union, args: [x, z]}
+  - id: gr-edge-empty-intersect-both
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: intersect, args: [x, z]}
+  - id: gr-edge-empty-pintersect
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: pintersect, args: [x, z]}
+  - id: gr-edge-empty-punion
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: punion, args: [x, z]}
+  - id: gr-edge-empty-psetdiff
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: psetdiff, args: [x, z]}
+  - id: gr-edge-empty-coverage
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-empty-precede-returns-hits-in-r
+    clause: GR-EDGE-5
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: precede, args: [x, z]}
+    adr: ADR-0010
+    python: {skip: "R returns a (zero-hit) Hits object for a zero-length query; Python returns the select-shaped vector"}
+  - id: gr-edge-empty-follow-returns-hits-in-r
+    clause: GR-EDGE-5
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: [], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+      z: {GRanges: {seqnames: [c], start: [5], width: [3], strand: ["+"], seqinfo: {seqnames: [c], seqlengths: [30], isCircular: [true]}}}
+    call: {op: follow, args: [x, z]}
+    adr: ADR-0010
+    python: {skip: "R returns a (zero-hit) Hits object for a zero-length query; Python returns the select-shaped vector"}

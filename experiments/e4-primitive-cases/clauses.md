@@ -295,3 +295,18 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | GR-DUP-1 | `duplicated` on (seqname, strand, start, width) | `?"GRanges-class"` |
 | GR-DUP-2 | strand matters; names and mcols do not | `?"GRanges-class"` |
 | GR-UNIQUE-1 | `unique` keeps first occurrences with names/mcols | `?"GRanges-class"` |
+| IR-EDGE-1 | values up to the int32 limit (end = 2147483647, width = 2147483647, start = -2147483646) behave normally | `?IRanges` |
+| IR-EDGE-2 | arithmetic that leaves the int32 range after `shift` is an error in R and Python | `?"intra-range-methods"` |
+| IR-EDGE-3 | R yields NA coordinates (with a warning) for resize/flank/promoters past int32; Python raises (ADR-0006) | `?"intra-range-methods"` |
+| IR-EDGE-4 | `distance` beyond int32 is NA in R; Python masks it | `?distance` |
+| IR-EDGE-5 | R integer-overflow defects (disjoin at int32 end, maxgap = int32 max, Hits for zero-length precede/follow) are not ported (ADR-0010) | `?disjoin` |
+| IR-EDGE-6 | NA start or width is an error | `?IRanges` |
+| IR-EDGE-7 | `""` and NA names never match a character subscript; duplicate names match first; `c()` pads names | `?"[,Vector-method"` |
+| IR-EDGE-8 | all-zero-width inputs for order, rank, duplicated, overlaps, nearest, coverage, reduce | `?IRanges` |
+| IR-EDGE-9 | single-range inputs for reduce, gaps, disjoin, nearest, precede, rank | `?IRanges` |
+| GR-EDGE-1 | circular seqlevels: no wrapping in intra-range ops, reduce, coverage; only `trim` skips them | `?GRanges` |
+| GR-EDGE-2 | seqnames: empty string is an error; spaces and unicode are fine; repeats keep first-appearance order | `?GRanges` |
+| GR-EDGE-3 | seqlength 0 is valid; NA in names is carried through | `?GRanges` |
+| GR-EDGE-4 | every operation accepts zero-length GRanges and keeps seqinfo | `?GRanges` |
+| GR-EDGE-5 | zero-length query to `precede`/`follow` returns Hits in R (ADR-0010) | `?precede` |
+| GR-EDGE-6 | `coverage` on a circular sequence of known length wraps ranges modulo the length; `width` can only truncate (larger is an error) | `?coverage` |

@@ -53,8 +53,8 @@ class GRanges:
         if len(names_in) == 0:
             n = len(ranges)
         sq = _recycled(names_in, n, "seqnames")
-        if any(s is None for s in sq):
-            raise ValueError("'seqnames' cannot contain NAs")
+        if any(s is None or s == "" for s in sq):
+            raise ValueError("'seqnames' cannot contain NAs or empty strings")
         if len(ranges) == 1 and n != 1:
             ranges = IRanges.concat(*([ranges] * n))
         if len(ranges) != n:
@@ -480,7 +480,7 @@ class GRanges:
         if not ignore_strand:
             qs_, ys_ = bc(self._strand), bc(y._strand)
             ok = ok & ((qs_ == ys_) | (qs_ == 2) | (ys_ == 2))
-        return np.ma.MaskedArray(d, mask=~ok)
+        return np.ma.MaskedArray(d, mask=~ok | (d > 2**31 - 1))
 
     # coverage ------------------------------------------------------------
     def coverage(self, shift: Any = 0, width: Any = None, weight: Any = 1) -> dict[str, Rle]:
@@ -511,11 +511,20 @@ class GRanges:
         out: dict[str, Rle] = {}
         for c, name in enumerate(self._seqinfo.seqnames):
             idx = np.flatnonzero(self._seqcodes == c)
-            length = widths[c] if widths[c] is not None else self._seqinfo._seqlengths[c]
+            seqlen = self._seqinfo._seqlengths[c]
             wc = w_arr if w_arr.ndim == 0 or len(w_arr) == 1 else w_arr[idx]
-            dense = _coverage.coverage_dense(
-                self._ranges._start[idx], self._ranges._width[idx], shift_arr[idx], length, wc
-            )
+            if self._seqinfo._is_circular[c] and seqlen:
+                # circular: ranges wrap around the sequence; `width` can only truncate
+                if widths[c] is not None and widths[c] > seqlen:
+                    raise ValueError("'width' cannot be greater than the length of a circular sequence")
+                dense = _coverage.coverage_circular(
+                    self._ranges._start[idx], self._ranges._width[idx], shift_arr[idx], seqlen, wc
+                )[: widths[c]]
+            else:
+                length = widths[c] if widths[c] is not None else seqlen
+                dense = _coverage.coverage_dense(
+                    self._ranges._start[idx], self._ranges._width[idx], shift_arr[idx], length, wc
+                )
             out[name] = Rle.encode(dense)
         return out
 

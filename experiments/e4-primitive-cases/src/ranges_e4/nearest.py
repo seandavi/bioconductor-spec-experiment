@@ -21,6 +21,11 @@ def distance(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -> 
     return np.maximum(0, np.maximum(xs, ys) - np.minimum(xe, ye) - 1)
 
 
+def mask_int32_overflow(d: np.ndarray) -> np.ma.MaskedArray:
+    """R integer arithmetic overflows to NA; mirror that for distances beyond int32."""
+    return np.ma.MaskedArray(d, mask=d > 2**31 - 1)
+
+
 def _collect(per_query: list[np.ndarray]) -> Pairs:
     q = [np.full(len(h), i, dtype=np.int64) for i, h in enumerate(per_query) if len(h)]
     if not q:
