@@ -5,7 +5,7 @@
     "GenomicRanges": "1.65.1",
     "S4Vectors": "0.51.6",
     "Seqinfo": "1.3.0",
-    "generated": "2026-11-06T00:09:36-0500"
+    "generated": "2026-11-06T11:18:18-0500"
   },
   "cases": {
     "ir.nearest.default": {
@@ -205,27 +205,27 @@
       "warnings": []
     },
     "ir.distance.basic": {
-      "value": {"$int": [0, 1, 0, 5, 0]},
+      "value": {"$int": [0, 2, 0, 6, 1]},
       "warnings": []
     },
     "ir.distance.symmetric": {
-      "value": {"$int": [0, 1, 0, 5, 0]},
+      "value": {"$int": [0, 2, 0, 6, 1]},
       "warnings": []
     },
     "ir.distance.self": {
-      "value": {"$int": [0, 0, 0, 0, 0]},
+      "value": {"$int": [0, 0, 0, 1, 0]},
       "warnings": []
     },
     "ir.distance.recycle": {
-      "value": {"$int": [6, 2, 0, 0, 7]},
+      "value": {"$int": [7, 3, 0, 1, 8]},
       "warnings": []
     },
     "ir.distance.recycle-left": {
-      "value": {"$int": [6, 2, 0, 0, 7]},
+      "value": {"$int": [7, 3, 0, 1, 8]},
       "warnings": []
     },
     "ir.distance.fractional-recycle": {
-      "value": {"$int": [3, 12, 7, 2, 28, 5]},
+      "value": {"$int": [4, 13, 8, 3, 29, 6]},
       "warnings": ["an argument will be fractionally recycled", "an argument will be fractionally recycled"]
     },
     "ir.distance.empty": {
