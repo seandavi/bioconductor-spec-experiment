@@ -117,6 +117,10 @@ def _to_column(name: str, native: Any) -> pl.Series:
                 name, [[None if v is None else v - 1 for v in e] for e in native.to_list()], dtype=native.dtype
             )
         return native.alias(name)
+    if isinstance(native, np.ndarray):  # public accessor result used as metadata; keep dtype, mask -> null
+        data = pl.Series(name, np.ma.getdata(native))
+        mask = np.ma.getmaskarray(native)
+        return data.zip_with(pl.Series(~mask), pl.Series(name, [None] * len(data), dtype=data.dtype))
     raise Unsupported(f"mcols column of {type(native).__name__}")
 
 
