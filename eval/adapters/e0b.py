@@ -393,7 +393,8 @@ class Adapter(AdapterBase):
         return _invoke(x, "reduce", **kw)
 
     def op_gaps(self, *, x, start=MISSING, end=MISSING, **kw):
-        bounds = {k: _mapping_or_arg(v, k) for k, v in (("start", start), ("end", end)) if v is not MISSING}
+        convert = _mapping_or_arg if isinstance(x, GRanges) else _arg  # Mapping bounds are GRanges-only
+        bounds = {k: convert(v, k) for k, v in (("start", start), ("end", end)) if v is not MISSING}
         return _invoke(x, "gaps", **kw, **bounds)
 
     def op_disjoin(self, *, x, **kw):
@@ -447,7 +448,8 @@ class Adapter(AdapterBase):
 
     # ---- coverage ------------------------------------------------------------------------------------------
     def op_coverage(self, *, x, width=MISSING, **kw):
-        bounds = {} if width is MISSING else {"width": _mapping_or_arg(width, "width")}
+        convert = _mapping_or_arg if isinstance(x, GRanges) else _arg  # Mapping width is GRanges-only
+        bounds = {} if width is MISSING else {"width": convert(width, "width")}
         return _invoke(x, "coverage", **kw, **bounds)
 
     # ---- ordering ------------------------------------------------------------------------------------------
