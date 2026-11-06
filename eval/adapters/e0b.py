@@ -281,8 +281,6 @@ class Adapter(AdapterBase):
             raise UnknownArgument("seqlengths")
         if seqnames is MISSING or ranges is MISSING:
             raise Unsupported("GRanges: port requires seqnames and ranges")
-        if isinstance(seqnames, pl.Series):
-            raise Unsupported("argument:seqnames as a factor (the port has no factor seqnames)")
         kw = {} if strand is MISSING else {"strand": _arg(strand, "strand")}
         if seqinfo is not MISSING:
             kw["seqinfo"] = seqinfo
