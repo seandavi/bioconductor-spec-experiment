@@ -52,3 +52,25 @@ def test_decode_vectors() -> None:
     assert codec.decode({"chr": []}) == []
     assert codec.decode({"int": []}).dtype.kind == "i"
     assert codec.decode({"NULL": []}) is None
+
+
+def test_arbitrary_comparison_accepts_any_member_of_the_hit_set() -> None:
+    universe = {"value": {"class": "Hits", "from": [1, 1, 3], "to": [2, 5, 4], "nLnode": 3, "nRnode": 5}}
+    ok = {"value": {"class": "vector", "type": "int", "values": [5, None, 4]}}
+    bad_member = {"value": {"class": "vector", "type": "int", "values": [3, None, 4]}}
+    missing = {"value": {"class": "vector", "type": "int", "values": [2, 1, 4]}}
+    assert harness._arbitrary_ok(universe, ok) is None  # noqa: SLF001
+    assert harness._arbitrary_ok(universe, bad_member) is not None  # noqa: SLF001
+    assert harness._arbitrary_ok(universe, missing) is not None  # noqa: SLF001
+
+
+def test_divergence_pins_python_value() -> None:
+    case = harness.Case("d", "f", {"id": "d", "divergence": {"adr": "0000", "python": {"error": True}}})
+    assert harness.evaluate(case, {"value": 1}, {"error": "x"}) is None
+    assert harness.evaluate(case, {"value": 1}, {"value": 1}) is not None
+
+
+def test_python_internal_errors_fail_even_if_r_errors() -> None:
+    case = harness.Case("e", "f", {"id": "e"})
+    msg = harness.evaluate(case, {"error": "r"}, {"error": "TypeError: x", "bug": True})
+    assert msg is not None and "internal" in msg
