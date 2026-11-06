@@ -126,7 +126,7 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-SUBSET-2 | `subsetByOverlaps(invert=TRUE)` keeps queries without a hit | `?subsetByOverlaps` |
 | IR-NEAREST-1 | `nearest` (default `select="arbitrary"`) returns one subject among the minimum-distance ones (ADR-0005) | `?nearest` |
 | IR-NEAREST-2 | `nearest(select="all")` returns every subject at the minimum distance, sorted by query then subject | `?nearest` |
-| IR-NEAREST-3 | distance is 0 for overlapping and for adjacent subjects, so they tie | `?nearest` |
+| IR-NEAREST-3 | `nearest` ranks by gap width, which is 0 for overlapping and for adjacent subjects, so they tie (not `distance()`, which is 1 for adjacent) | `?nearest` |
 | IR-NEAREST-4 | equidistant subjects on both sides all tie | `?nearest` |
 | IR-NEAREST-5 | zero-width queries/subjects use `[s, s-1]` coordinates | `?nearest` |
 | IR-NEAREST-6 | empty subject gives NA (select arbitrary) or no hits (all); empty query gives zero-length | `?nearest` |
@@ -139,7 +139,7 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-FOLLOW-2 | `follow(select="all")` returns all subjects tied on that end | `?follow` |
 | IR-FOLLOW-3 | ties on end; adjacent subjects count (end = start(x)-1) | `?follow` |
 | IR-FOLLOW-4 | empty subject gives NA; `select` other than last/all is an error | `?follow` |
-| IR-DISTANCE-1 | `distance` is `max(0, max(starts) - min(ends) - 1)` per pair (0 if overlapping or adjacent) | `?distance` |
+| IR-DISTANCE-1 | `distance` per pair is 0 if overlapping, else `max(starts) - min(ends)` (gap width + 1, so adjacent = 1); R >= IRanges 2.47.3 (before: gap width, adjacent = 0). `nearest`/`precede`/`follow` unchanged | `?distance` |
 | IR-DISTANCE-2 | length-1 argument recycles | `?distance` |
 | IR-DISTANCE-3 | zero-length inputs give zero-length output | `?distance` |
 | IR-DISTANCE-4 | R recycles cyclically with a warning; Python errors (ADR-0007) | `?distance` |
