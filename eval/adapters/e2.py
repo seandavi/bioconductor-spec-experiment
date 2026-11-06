@@ -349,7 +349,8 @@ class Adapter(AdapterBase):
         return RVector("chr", list(_seqinfo_of(x, "seqlevels").seqnames))
 
     def op_seqlengths(self, *, x):
-        return RVector("int", list(_seqinfo_of(x, "seqlengths").seqlengths))
+        si = _seqinfo_of(x, "seqlengths")
+        return RVector("int", list(si.seqlengths), list(si.seqnames))
 
     def op_isCircular(self, *, x):
         return RVector("lgl", list(_seqinfo_of(x, "isCircular").is_circular))
