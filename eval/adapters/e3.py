@@ -252,6 +252,8 @@ class Adapter(AdapterBase):
         return _invoke_fn(IRanges, "IRanges", kw)
 
     def op_GRanges(self, *, seqnames=MISSING, ranges=MISSING, strand=MISSING, seqinfo=MISSING, _mcols=None):
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a Seqinfo")
         kw = {k: v for k, v in (("seqnames", seqnames), ("ranges", ranges), ("seqinfo", seqinfo)) if v is not MISSING}
         if "seqnames" in kw:
             kw["seqnames"] = _list(seqnames)
@@ -448,6 +450,8 @@ class Adapter(AdapterBase):
 
     # ---- coverage
     def op_coverage(self, *, x, **kw):
+        if isinstance(kw.get("shift"), RVector) and kw["shift"].type == "chr":
+            raise Unsupported("coverage: shift as an mcols column name")  # the port takes integers only
         return _invoke(_rng(x, "coverage"), "coverage", **_args(**kw))
 
     # ---- ordering
