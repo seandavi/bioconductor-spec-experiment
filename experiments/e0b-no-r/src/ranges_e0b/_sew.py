@@ -105,12 +105,12 @@ def resolve_index(i: Any, n: int, names: Sequence[str] | None) -> IntArray:
         except KeyError as err:
             raise KeyError(f"name not found: {err.args[0]!r}") from None
     a = np.asarray(i)
-    if a.size == 0:
-        return empty_int()
     if a.dtype.kind == "b":
         if a.shape != (n,):
             raise ValueError(f"boolean mask must have length {n}, got shape {a.shape}")
         return np.flatnonzero(a).astype(np.int64)
+    if a.size == 0:
+        return empty_int()
     if a.dtype.kind in "iu":
         a = a.astype(np.int64, copy=False).ravel()
         if np.any(a < -n) or np.any(a >= n):

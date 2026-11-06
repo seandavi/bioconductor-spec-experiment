@@ -89,3 +89,13 @@ def test_with_seqinfo_empty_object_and_used_level_removed() -> None:
         x.with_seqinfo(Seqinfo(["a"]))
 
 
+# --- finding 4: boolean mask length is always validated ------------------------------
+
+
+@pytest.mark.parametrize("x", [IRanges(start=[1, 2], width=1), GRanges("c", IRanges(start=[1, 2], width=1))])
+def test_empty_boolean_mask_wrong_length_raises(x) -> None:  # type: ignore[no-untyped-def]
+    with pytest.raises(ValueError):
+        x[np.array([], dtype=bool)]
+    assert len(x[[]]) == 0  # an empty positional subset stays valid
+    assert len(x[np.array([False, False])]) == 0
+    assert len(x[np.array([], dtype=np.int64)]) == 0
