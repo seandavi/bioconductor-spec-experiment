@@ -489,9 +489,10 @@ class IRanges:
         return Hits(qs_[order], ss_[order], n, len(subj))
 
     def distance(self, other: IRanges) -> np.ma.MaskedArray:
-        """Parallel gap between ranges: 0 when they overlap or touch (R: distance).
+        """Parallel distance between ranges (R: distance, IRanges >= 2.47.3).
 
-        A gap beyond int32 is NA (masked), as R's integer arithmetic overflows to NA.
+        0 when they overlap; otherwise the gap width plus one, so touching ranges are 1 apart.
+        A distance beyond int32 is NA (masked), as R's integer arithmetic overflows to NA.
         """
         a, b = len(self), len(other)
         if a == 0 or b == 0:
@@ -501,7 +502,7 @@ class IRanges:
             warnings.warn("longer object length is not a multiple of shorter object length", UserWarning, stacklevel=2)
         xs, xe = np.resize(self._start, n), np.resize(self.end, n)
         ys, ye = np.resize(other._start, n), np.resize(other.end, n)
-        d = np.maximum(np.maximum(xs, ys) - np.minimum(xe, ye) - 1, 0)
+        d = np.maximum(np.maximum(xs, ys) - np.minimum(xe, ye), 0)
         over = d > INT_MAX
         if over.any():
             warnings.warn("NAs produced by integer overflow", UserWarning, stacklevel=2)
