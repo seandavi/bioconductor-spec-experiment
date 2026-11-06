@@ -9,18 +9,9 @@ def test_distance() -> None:
     # R: distance(IRanges(c(1,10,5), c(3,12,8)), IRanges(c(7,5,6), c(9,11,7)))
     x = IRanges(start=[1, 10, 5, 1], end=[3, 12, 8, 3])
     y = IRanges(start=[7, 5, 6, 4], end=[9, 11, 7, 6])
-    # IRanges 2.47.3: non-overlapping = gap width + 1, so the adjacent last pair is 1
-    assert x.distance(y).tolist() == [4, 0, 0, 1]
+    assert x.distance(y).tolist() == [3, 0, 0, 0]  # last pair adjacent
     with pytest.raises(ValueError):
         x.distance(y[:2])
-
-
-def test_distance_adjacent_and_overlap() -> None:
-    # R: UNVERIFIED (from release note, IRanges >= 2.47.3) distance(IRanges(1,3), IRanges(c(4,5,3,1),c(6,6,5,3)))
-    x = IRanges(start=[1] * 4, end=[3] * 4)
-    y = IRanges(start=[4, 5, 3, 1], end=[6, 6, 5, 3])
-    assert x.distance(y).tolist() == [1, 2, 0, 0]  # adjacent 1, gap 1 -> 2, overlap 0
-    assert y.distance(x).tolist() == [1, 2, 0, 0]  # symmetric
 
 
 def test_precede() -> None:

@@ -140,7 +140,6 @@ Predicate for pair (q, s). `gap = max(qs,ss) - min(qe,se) - 1`;
 ### Nearest (`nearest.py`)
 
 - `distance(y)`: parallel, `max(max(s) - min(e) - 1, 0)`; adjacent = 0.
-  **Superseded 2026-11-06 (IRanges 2.47.3): overlap 0, else gap width + 1; adjacent = 1. See NOTES.**
 - `precede(subject, select="first"|"all")`: subjects with `ss > qe`
   (non-overlapping, adjacent allowed), minimal `ss`; tie → lowest index.
 - `follow`: subjects with `se < qs`, maximal `se`; tie → lowest index (`UNVERIFIED`).

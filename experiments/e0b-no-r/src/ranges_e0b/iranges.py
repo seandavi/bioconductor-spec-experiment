@@ -359,14 +359,14 @@ class IRanges:
         return self._nearest_family("follow", subject, select, ("first", "all"))
 
     def nearest(self, subject: "IRanges | None" = None, select: str = "arbitrary") -> Any:
-        """Closest subject; overlapping or adjacent (gap 0) win; unchanged by the distance() redefinition.
+        """Closest subject; overlapping or adjacent (distance 0) win.
 
         "arbitrary" is deterministic: the lowest index among ties.
         """
         return self._nearest_family("nearest", subject, select, ("arbitrary", "all"))
 
     def distance(self, other: "IRanges") -> IntArray:
-        """Parallel distance; 0 if overlapping, else gap width + 1 (adjacent is 1)."""
+        """Parallel distance; 0 for overlapping or adjacent ranges."""
         return nearest.distance(self._start, self.end, other._start, other.end)
 
     # --- coverage ------------------------------------------------------------
