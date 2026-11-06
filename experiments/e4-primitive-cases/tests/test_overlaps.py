@@ -79,7 +79,8 @@ def test_count_and_any_and_subset_agree() -> None:
 def test_nearest_family_against_brute_force() -> None:
     for seed in range(25):
         q, s = rand(seed, 8), rand(seed + 300, 9)
-        dist = [[int(q[[i]].distance(s[[j]])[0]) for j in range(len(s))] for i in range(len(q))]
+        # nearest ties overlapping and adjacent subjects: its metric is the gap, not distance()
+        dist = [[max(0, max(q.start[i], s.start[j]) - min(q.end[i], s.end[j]) - 1) for j in range(len(s))] for i in range(len(q))]
         h = q.nearest(s, select="all")
         got: dict[int, list[int]] = {}
         for a, b in zip(h.query.tolist(), h.subject.tolist(), strict=True):
@@ -95,3 +96,10 @@ def test_nearest_family_against_brute_force() -> None:
             c = [j for j in range(len(s)) if s.end[j] < qs[i]]
             want = [j for j in c if s.end[j] == max(s.end[k] for k in c)] if c else []
             assert fol.subject[fol.query == i].tolist() == want
+
+
+def test_distance_is_gap_plus_one_unless_overlapping() -> None:
+    """IRanges 2.47.3 / GenomicRanges 1.65.2: overlap 0, adjacent 1, otherwise gap width + 1."""
+    x = IRanges(start=[1, 1, 1, 1], end=[3, 3, 5, 3])
+    y = IRanges(start=[4, 6, 3, 1], end=[6, 8, 8, 3])
+    assert x.distance(y).tolist() == [1, 3, 0, 0]
