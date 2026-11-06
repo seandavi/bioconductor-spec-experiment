@@ -61,3 +61,29 @@ and is documented in `_overlaps.py`. Notable points:
 - `select="arbitrary"` returns the first hit.
 - Hypothesis brute-force test caught a kernel bug (candidate bound for
   `type="end"` with empty subjects); fixed.
+
+## 2026-11-06 00:40 — implementer: stages 7–9 (+11 folded in): nearest, coverage, Seqinfo, GRanges core
+
+- IRanges `nearest` follows the R source exactly (maxgap=0 overlap first, else
+  closer of precede/follow, ties go to the follow side; `select="all"` keeps
+  both). GRanges `nearest` uses a *different* R rule on ties (lower subject
+  index wins); to be reproduced in the GRanges stage.
+- `distance` is the gap width (0 for overlapping *or adjacent*): read from the R
+  source, not the docs prose.
+- `coverage`: default length = max end (an only-empty input still gives `end`
+  zeros), ranges clipped to [1, length]; implemented as a sparse event sweep.
+- GRanges storage deviates from PLAN.md: strand codes are `0=+, 1=-, 2=*` (R's
+  level order) rather than +1/-1/0, so sorting by code sorts like R.
+- Seqlevels default to *first appearance* (R 4.6/GenomicRanges 1.65 behaviour;
+  checked with `c("chr2","chr10","chr1")`), not sorted order.
+- GRanges ctor recycles length-1 seqnames/ranges/strand like R (length-1 `ranges`
+  with several seqnames is valid).
+- Out-of-bound ranges (known, non-circular length) warn with `OutOfBoundWarning`
+  at construction/concat/shift/resize/flank/promoters/narrow, not on subsetting.
+  Message text differs from R's.
+- `trim`: start clipped into [1, len+1], end into [0, len]: (150,160) on len 100
+  -> (101,100); (-5,-2) -> (1,0). Circular / unknown-length sequences untouched.
+- `Seqinfo.merge` warns only when *both* sides have levels missing from the other
+  (R wording differs).
+- `with_seqinfo` errors if the new seqinfo drops a level in use (R's `seqinfo<-`
+  has more modes: pruning, renaming). Not reproduced.
