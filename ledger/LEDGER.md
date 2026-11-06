@@ -91,3 +91,42 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
   The UNVERIFIED list is a ready-made target list for differential testing.
   Whether E0b is actually less faithful than E0 waits for the pooled
   evaluation.
+
+## 2026-11-06 — E4 primitive cases done (harness v2)
+
+| Stage | Wall time |
+|---|---|
+| plan | 4.9 min |
+| implement | 33.5 min |
+| review | 3.6 min |
+| revise | 3.6 min |
+| **total** | **46 min** |
+
+- ~1,900 lines src, ~1,230 lines tests, ~220 lines of runners (R + Python),
+  ~4,000 lines of case YAML, 240 KB of R-generated JSON goldens.
+  715 cases, 305 clauses (`clauses.md`), 11 ADRs, 29 commits.
+- Verified by me: `uv run pytest` 2308 passed, 6 skipped;
+  `Rscript runners/r/run_cases.R --check` → goldens up to date (this is
+  the upstream-drift detector: rerun after an R upgrade). Isolation audit
+  0 findings; reviewer wrote only /tmp probe + its output.
+- The case format stayed primitive, but **"no serialization" still had a
+  cross-language parsing gotcha**: R's yaml reads unquoted `y`/`n`/`Y`
+  as logicals, PyYAML doesn't (an input named `y` became TRUE). Also ints
+  beyond int32 become NA in R yaml. Fixed with yaml handlers + a quoting
+  rule. Small, but even primitives need a written convention.
+- R runner is ~generic: `do.call(op, args)` with R names verbatim, no op
+  table in R. The op mapping lives only on the Python side.
+- ADRs (11) are mostly API conventions (0-based indices, masked-array NA,
+  no negative subscripts, errors compared by class, recycle-from-one) plus
+  real semantic calls: `oneof` comparator for `select="arbitrary"` and
+  nearest ties (ADR-0005), and **R defects not ported** (ADR-0010: gaps/
+  setdiff/disjoin at end = 2^31−1, maxgap = 2^31−1, zero-length
+  precede/follow returning Hits). E4 found R edge-case defects.
+- Independent confirmation of the Zulip seqlevel claim: E4's planner,
+  probing R, recorded "GRanges seqlevels follow order of appearance".
+  That matches what Sean's ADR example said about R (not yet checked
+  against BiocPy here).
+- Review: 4 major + 3 minor, all fixed. Best finding was about the
+  *harness*, not the port: "exact" comparison applied float tolerance to
+  integers, so an off-by-one coordinate would pass. A conformance suite's
+  comparator is itself code that needs review and tests.

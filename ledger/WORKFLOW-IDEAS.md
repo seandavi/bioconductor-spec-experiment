@@ -68,3 +68,12 @@ Try: every implement stage must emit a machine-readable uncertainty list
 (operation, argument combo, what it assumed). A differential or red-team
 stage takes that list as its first targets. Cheap, and it points adversarial
 effort where the author's knowledge is weakest.
+
+## 9. Review the oracle, not just the subject
+
+Seen: E4's worst defect was in its comparator (integer "exact" match with
+float tolerance). Every green case was weaker than it looked.
+Try: a review checklist item for any experiment with a harness: mutate
+one golden / one Python result and confirm the harness fails ("mutation
+smoke"). E4's implementer did this for golden drift; nobody did it for the
+comparator until the reviewer.
