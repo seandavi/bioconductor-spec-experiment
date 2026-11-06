@@ -5,7 +5,7 @@
     "GenomicRanges": "1.65.1",
     "S4Vectors": "0.51.6",
     "Seqinfo": "1.3.0",
-    "generated": "2026-11-05T23:36:45-0500"
+    "generated": "2026-11-06T00:20:54-0500"
   },
   "cases": {
     "gr.ctor.basic": {
@@ -1479,6 +1479,81 @@
           "nrow": 6,
           "columns": {
             "k": {"$int": [1, 2, 1, 2, 1, 2]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.c.mcols.int-then-dbl": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2", "chr1"]},
+        "start": {"$int": [1, 5, 9]},
+        "width": {"$int": [2, 2, 2]},
+        "strand": {"$chr": ["*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [1.0, 2.75, 3.5]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.c.mcols.dbl-then-int": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr2", "chr1", "chr1"]},
+        "start": {"$int": [5, 9, 1]},
+        "width": {"$int": [2, 2, 2]},
+        "strand": {"$chr": ["*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [2.75, 3.5, 1.0]}
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+          "seqlengths": {"$int": [1000, 500, 16]},
+          "isCircular": {"$lgl": [false, false, true]},
+          "genome": {"$chr": ["hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.c.mcols.na-fill-then-dbl": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr2", "chr2", "chr1", "chrM", "chr2", "chr1"]},
+        "start": {"$int": [10, 20, 5, 100, 50, 1, 5, 9]},
+        "width": {"$int": [5, 3, 10, 20, 4, 8, 2, 2]},
+        "strand": {"$chr": ["+", "-", "+", "*", "*", "+", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 8,
+          "columns": {
+            "score": {"$dbl": [null, null, null, null, null, null, 2.75, 3.5]}
           }
         },
         "seqinfo": {

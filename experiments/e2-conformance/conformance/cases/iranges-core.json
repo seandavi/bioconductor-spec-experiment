@@ -1,6 +1,7 @@
 {
   "group": "iranges-core",
   "clauses": {
+    "IR.C.MCOLS.TYPES": "c() widens metadata column types to a common type (integer + double -> double, in either argument order); values are never truncated",
     "IR.CTOR.SW": "IRanges(start, width) builds ranges with end = start + width - 1",
     "IR.CTOR.SE": "IRanges(start, end) derives width = end - start + 1; the second positional argument is end",
     "IR.CTOR.EW": "IRanges(end, width) derives start = end - width + 1",
@@ -26,7 +27,9 @@
     "ym": {"$type": "IRanges", "start": [100, 200], "width": [10, 1],
            "mcols": {"$type": "DFrame", "columns": {"score": [9.5, 8.5], "label": ["p", "q"]}}},
     "e": {"$type": "IRanges", "start": {"$int": []}, "width": {"$int": []}},
-    "dm": {"$type": "DFrame", "columns": {"k": [10, 20, 30]}}
+    "dm": {"$type": "DFrame", "columns": {"k": [10, 20, 30]}},
+    "mi": {"$type": "IRanges", "start": [1], "width": [2], "mcols": {"$type": "DFrame", "columns": {"score": [1]}}},
+    "md": {"$type": "IRanges", "start": [5, 9], "width": [2, 2], "mcols": {"$type": "DFrame", "columns": {"score": [2.75, 3.5]}}}
   },
   "cases": [
     {"id": "ir.ctor.sw", "clause": "IR.CTOR.SW", "op": "IRanges", "args": [], "kwargs": {"start": [1, 5, 12], "width": [3, 4, 2]}},
@@ -94,6 +97,11 @@
     {"id": "ir.mcols.get", "clause": "IR.MCOLS", "op": "mcols", "args": [{"$ref": "xm"}], "kwargs": {}},
     {"id": "ir.mcols.set", "clause": "IR.MCOLS", "op": "mcols<-", "args": [{"$ref": "x"}], "kwargs": {"value": {"$ref": "dm"}}},
     {"id": "ir.mcols.set.null", "clause": "IR.MCOLS", "op": "mcols<-", "args": [{"$ref": "xm"}], "kwargs": {"value": null}},
-    {"id": "ir.mcols.set.badrows", "clause": "IR.MCOLS", "op": "mcols<-", "args": [{"$ref": "y"}], "kwargs": {"value": {"$ref": "dm"}}}
+    {"id": "ir.mcols.set.badrows", "clause": "IR.MCOLS", "op": "mcols<-", "args": [{"$ref": "y"}], "kwargs": {"value": {"$ref": "dm"}}},
+    {"id": "ir.c.mcols.int-then-dbl", "clause": "IR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "mi"}, {"$ref": "md"}], "kwargs": {}},
+    {"id": "ir.c.mcols.dbl-then-int", "clause": "IR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "md"}, {"$ref": "mi"}], "kwargs": {}},
+    {"id": "ir.c.mcols.int-then-int", "clause": "IR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "mi"}, {"$ref": "mi"}], "kwargs": {}},
+    {"id": "ir.c.mcols.na-fill-then-dbl", "clause": "IR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "y"}, {"$ref": "md"}], "kwargs": {}},
+    {"id": "ir.c.mcols.dbl-then-na-fill", "clause": "IR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "md"}, {"$ref": "y"}], "kwargs": {}}
   ]
 }

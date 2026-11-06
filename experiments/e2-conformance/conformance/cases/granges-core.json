@@ -1,6 +1,7 @@
 {
   "group": "granges-core",
   "clauses": {
+    "GR.C.MCOLS.TYPES": "c() widens metadata column types to a common type (integer + double -> double, in either argument order); values are never truncated",
     "GR.CTOR": "GRanges(seqnames, ranges, strand) builds one range per element; strand defaults to '*'; levels default to the unique seqnames in order of first appearance",
     "GR.CTOR.STRAND": "strand accepts '+', '-', '*' (a length-1 strand recycles); NA becomes '*'; other values are errors",
     "GR.CTOR.SEQINFO": "an explicit seqinfo/seqlengths fixes level order and metadata; a seqname outside the levels is an error; levels may be unused",
@@ -33,7 +34,9 @@
            "strand": ["+", "-", "*", "+", "+", "-", "*"], "seqinfo": {"$ref": "si"}},
     "ge": {"$type": "GRanges", "seqnames": {"$chr": []}, "start": {"$int": []}, "width": {"$int": []}, "seqinfo": {"$ref": "si"}},
     "ir": {"$type": "IRanges", "start": [1, 5, 9], "width": [2, 2, 2]},
-    "irn": {"$type": "IRanges", "start": [1, 5, 9], "width": [2, 2, 2], "names": ["p", "q", "r"]}
+    "irn": {"$type": "IRanges", "start": [1, 5, 9], "width": [2, 2, 2], "names": ["p", "q", "r"]},
+    "gmi": {"$type": "GRanges", "seqnames": ["chr1"], "start": [1], "width": [2], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"score": [1]}}},
+    "gmd": {"$type": "GRanges", "seqnames": ["chr2", "chr1"], "start": [5, 9], "width": [2, 2], "seqinfo": {"$ref": "si"}, "mcols": {"$type": "DFrame", "columns": {"score": [2.75, 3.5]}}}
   },
   "cases": [
     {"id": "gr.ctor.basic", "clause": "GR.CTOR", "op": "GRanges", "args": [], "kwargs": {"seqnames": ["chr1", "chr2", "chr1"], "ranges": {"$ref": "ir"}, "strand": ["+", "-", "*"]}},
@@ -116,6 +119,9 @@
     {"id": "gr.mcols.set", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "g"}], "kwargs": {"value": {"$type": "DFrame", "columns": {"k": [1, 2, 3, 4, 5, 6]}}}},
     {"id": "gr.mcols.set.null", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "gn"}], "kwargs": {"value": null}},
     {"id": "gr.mcols.set.recycles-nondivisor", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "g"}], "kwargs": {"value": {"$type": "DFrame", "columns": {"k": [1, 2, 3, 4]}}}},
-    {"id": "gr.mcols.set.recycles-divisor", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "g"}], "kwargs": {"value": {"$type": "DFrame", "columns": {"k": [1, 2]}}}}
+    {"id": "gr.mcols.set.recycles-divisor", "clause": "GR.MCOLS", "op": "mcols<-", "args": [{"$ref": "g"}], "kwargs": {"value": {"$type": "DFrame", "columns": {"k": [1, 2]}}}},
+    {"id": "gr.c.mcols.int-then-dbl", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "gmi"}, {"$ref": "gmd"}], "kwargs": {}},
+    {"id": "gr.c.mcols.dbl-then-int", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "gmd"}, {"$ref": "gmi"}], "kwargs": {}},
+    {"id": "gr.c.mcols.na-fill-then-dbl", "clause": "GR.C.MCOLS.TYPES", "op": "c", "args": [{"$ref": "g"}, {"$ref": "gmd"}], "kwargs": {}}
   ]
 }

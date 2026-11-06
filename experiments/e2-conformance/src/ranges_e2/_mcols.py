@@ -34,24 +34,28 @@ def take(df: pl.DataFrame | None, idx: IntArray) -> pl.DataFrame | None:
 
 
 def concat(parts: list[tuple[int, pl.DataFrame | None]]) -> pl.DataFrame | None:
-    """Row-bind frames; columns are unioned in order of first appearance, gaps filled with NA."""
-    dtypes: dict[str, pl.DataType] = {}
+    """Row-bind frames; columns are unioned in order of first appearance, gaps filled with NA.
+
+    Column types are widened to a common supertype (integer + double -> double); incompatible
+    types raise rather than truncate.
+    """
+    order: list[str] = []
     for _, df in parts:
         if df is not None:
-            for name, dtype in df.schema.items():
-                dtypes.setdefault(name, dtype)
-    if not dtypes:
+            order.extend(c for c in df.columns if c not in order)
+    if not order:
         return None
     frames = []
     for n, df in parts:
-        cols = []
-        for name, dtype in dtypes.items():
-            if df is not None and name in df.columns:
-                cols.append(df[name].cast(dtype))
-            else:
-                cols.append(pl.Series(name, [None] * n, dtype=dtype))
+        cols = [
+            df[name] if df is not None and name in df.columns else pl.Series(name, [None] * n, dtype=pl.Null)
+            for name in order
+        ]
         frames.append(pl.DataFrame(cols))
-    return pl.concat(frames, how="vertical")
+    try:
+        return pl.concat(frames, how="vertical_relaxed")
+    except (pl.exceptions.PolarsError, TypeError) as e:
+        raise ValueError(f"cannot combine metadata columns with incompatible types: {e}") from None
 
 
 def empty_frame() -> pl.DataFrame:
