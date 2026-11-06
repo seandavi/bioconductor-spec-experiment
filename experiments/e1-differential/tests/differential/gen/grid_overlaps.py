@@ -63,6 +63,14 @@ for typ in ("any", "within", "start", "equal"):
             "inputs": {"x": dup_ir},
             "call": {"fn": "findOverlaps", "args": ["$x"], "kwargs": {"type": typ, **drop}},
         })
+for typ in ("any", "within", "start"):
+    for sel in ("first", "last", "arbitrary"):
+        cases.append({
+            "id": f"grid-fo-self-select-{sel}-{typ}",
+            "tags": ["grid", "findOverlaps", "self", "select", typ],
+            "inputs": {"x": dup_ir},
+            "call": {"fn": "findOverlaps", "args": ["$x"], "kwargs": {"type": typ, "select": sel, "maxgap": 1}},
+        })
 for mg, mo, typ in [(-1, 0, "any"), (2, 0, "within"), (0, 2, "equal")]:
     cases.append({
         "id": f"grid-count-{typ}-g{mg}-o{mo}".replace("-g-1", "-gm1"),

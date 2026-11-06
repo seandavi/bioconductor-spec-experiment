@@ -38,3 +38,8 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-06 01:10 ADR-0003: counts are plain arrays; R's query names stripped by the adapter.
 - 2026-11-06 01:10 drop.redundant: modelled as "drop (i,j), i>j, if (j,i) is also a hit";
   matches R on symmetric (any/equal) and asymmetric (within/start) grids.
+- 2026-11-06 01:50 nearest/precede/follow: ported from R source of the S4 methods (read via
+  `selectMethod`): nearest uses findOverlaps(maxgap=0) first (adjacent counts), then
+  precede(first)/follow(last); a tie goes to the follow side (arbitrary) or keeps both (all).
+  Self mode (`nearest(x)`) uses findOverlaps(drop.self) whose select="arbitrary" is the max
+  subject index (not the engine's first). distance() overflow -> NA (masked) + warning, as R.

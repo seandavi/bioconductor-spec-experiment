@@ -1,0 +1,53 @@
+# IRanges nearest / precede / follow / distance. Exhaustive pools: grid_nearest.yaml.
+empty_def: &E {IRanges: {start: {int: []}, width: {int: []}}}
+cases:
+  - {id: nearest-left-right-tie-arbitrary, tags: [nearest, ties], inputs: {x: {IRanges: {start: [5], width: [1]}}, s: {IRanges: {start: [3, 7], width: [1, 1]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-left-right-tie-arbitrary-swapped, tags: [nearest, ties], inputs: {x: {IRanges: {start: [5], width: [1]}}, s: {IRanges: {start: [7, 3], width: [1, 1]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-left-right-tie-all, tags: [nearest, ties], inputs: {x: {IRanges: {start: [5], width: [1]}}, s: {IRanges: {start: [7, 3, 7], width: [1, 1, 1]}}}, call: {fn: nearest, args: [$x, $s], kwargs: {select: all}}}
+  - {id: nearest-adjacent-counts-as-overlap, tags: [nearest, adjacency], inputs: {x: {IRanges: {start: [5], width: [3]}}, s: {IRanges: {start: [8, 2], width: [2, 3]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-overlap-beats-adjacent, tags: [nearest, adjacency], inputs: {x: {IRanges: {start: [5], width: [3]}}, s: {IRanges: {start: [8, 6], width: [2, 5]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-overlap-all-includes-adjacent, tags: [nearest, adjacency], inputs: {x: {IRanges: {start: [5], width: [3]}}, s: {IRanges: {start: [8, 6, 20], width: [2, 5, 1]}}}, call: {fn: nearest, args: [$x, $s], kwargs: {select: all}}}
+  - {id: nearest-far-both-sides, tags: [nearest], inputs: {x: {IRanges: {start: [10, 50]}, width: [2, 2]}, s: {IRanges: {start: [1, 20], width: [2, 2]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-only-right, tags: [nearest], inputs: {x: {IRanges: {start: [1], width: [2]}}, s: {IRanges: {start: [20, 30], width: [2, 2]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-only-left, tags: [nearest], inputs: {x: {IRanges: {start: [50], width: [2]}}, s: {IRanges: {start: [20, 30], width: [2, 2]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-empty-subject, tags: [nearest, empty], inputs: {e: *E, x: {IRanges: {start: [1, 2], width: [1, 1]}}}, call: {fn: nearest, args: [$x, $e]}}
+  - {id: nearest-empty-subject-all, tags: [nearest, empty], inputs: {e: *E, x: {IRanges: {start: [1, 2], width: [1, 1]}}}, call: {fn: nearest, args: [$x, $e], kwargs: {select: all}}}
+  - {id: nearest-empty-query, tags: [nearest, empty], inputs: {e: *E, s: {IRanges: {start: [1, 2], width: [1, 1]}}}, call: {fn: nearest, args: [$e, $s]}}
+  - {id: nearest-zero-width-query, tags: [nearest, zero-width], inputs: {x: {IRanges: {start: [5, 12], width: [0, 0]}}, s: {IRanges: {start: [1, 5, 9], width: [3, 0, 2]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-zero-width-subject, tags: [nearest, zero-width], inputs: {x: {IRanges: {start: [1, 10]}, width: [3, 3]}, s: {IRanges: {start: [6], width: [0]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-self, tags: [nearest, self], inputs: {x: {IRanges: {start: [1, 5, 9, 30], width: [3, 3, 3, 2]}}}, call: {fn: nearest, args: [$x]}}
+  - {id: nearest-self-single, tags: [nearest, self], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: nearest, args: [$x]}}
+  - {id: nearest-self-all, tags: [nearest, self], inputs: {x: {IRanges: {start: [1, 5, 9, 30], width: [3, 3, 3, 2]}}}, call: {fn: nearest, args: [$x], kwargs: {select: all}}}
+  - {id: nearest-select-first-error, tags: [nearest, error], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: nearest, args: [$x, $x], kwargs: {select: first}}}
+  - {id: nearest-unsorted-subject, tags: [nearest], inputs: {x: {IRanges: {start: [15]}, width: [1]}, s: {IRanges: {start: [30, 1, 12, 20], width: [1, 1, 1, 1]}}}, call: {fn: nearest, args: [$x, $s]}}
+  - {id: nearest-int32-extremes, tags: [nearest, int32], inputs: {x: {IRanges: {start: [-2147483000], width: [1]}}, s: {IRanges: {start: [2147483000], width: [1]}}}, call: {fn: nearest, args: [$x, $s]}}
+
+  - {id: precede-basic, tags: [precede], inputs: {x: {IRanges: {start: [1, 5, 20], width: [2, 2, 2]}}, s: {IRanges: {start: [4, 8, 4, 30], width: [1, 1, 3, 1]}}}, call: {fn: precede, args: [$x, $s]}}
+  - {id: precede-all, tags: [precede], inputs: {x: {IRanges: {start: [1, 5, 20], width: [2, 2, 2]}}, s: {IRanges: {start: [4, 8, 4, 30], width: [1, 1, 3, 1]}}}, call: {fn: precede, args: [$x, $s], kwargs: {select: all}}}
+  - {id: precede-adjacent, tags: [precede, adjacency], inputs: {x: {IRanges: {start: [1], width: [3]}}, s: {IRanges: {start: [4], width: [1]}}}, call: {fn: precede, args: [$x, $s]}}
+  - {id: precede-overlapping-not-preceded, tags: [precede], inputs: {x: {IRanges: {start: [1], width: [3]}}, s: {IRanges: {start: [3], width: [1]}}}, call: {fn: precede, args: [$x, $s]}}
+  - {id: precede-zero-width-x, tags: [precede, zero-width], inputs: {x: {IRanges: {start: [5, 6]}, width: [0, 0]}, s: {IRanges: {start: [5, 6, 7], width: [0, 0, 1]}}}, call: {fn: precede, args: [$x, $s]}}
+  - {id: precede-select-last-error, tags: [precede, error], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: precede, args: [$x, $x], kwargs: {select: last}}}
+  - {id: precede-empty-subject, tags: [precede, empty], inputs: {e: *E, x: {IRanges: {start: [1], width: [3]}}}, call: {fn: precede, args: [$x, $e]}}
+  - {id: precede-empty-subject-all, tags: [precede, empty], inputs: {e: *E, x: {IRanges: {start: [1], width: [3]}}}, call: {fn: precede, args: [$x, $e], kwargs: {select: all}}}
+  - {id: precede-self, tags: [precede, self], inputs: {x: {IRanges: {start: [1, 5, 9, 30], width: [3, 3, 3, 2]}}}, call: {fn: precede, args: [$x]}}
+  - {id: precede-self-empty-range-precedes-itself, tags: [precede, self, zero-width], inputs: {x: {IRanges: {start: [5, 1], width: [0, 2]}}}, call: {fn: precede, args: [$x]}}
+  - {id: follow-basic, tags: [follow], inputs: {x: {IRanges: {start: [10, 5, 1], width: [2, 2, 2]}}, s: {IRanges: {start: [1, 3, 3, 30], width: [1, 1, 1, 1]}}}, call: {fn: follow, args: [$x, $s]}}
+  - {id: follow-all, tags: [follow], inputs: {x: {IRanges: {start: [10, 5, 1], width: [2, 2, 2]}}, s: {IRanges: {start: [1, 3, 3, 30], width: [1, 1, 1, 1]}}}, call: {fn: follow, args: [$x, $s], kwargs: {select: all}}}
+  - {id: follow-adjacent, tags: [follow, adjacency], inputs: {x: {IRanges: {start: [4], width: [3]}}, s: {IRanges: {start: [1], width: [3]}}}, call: {fn: follow, args: [$x, $s]}}
+  - {id: follow-select-first-error, tags: [follow, error], inputs: {x: {IRanges: {start: [1], width: [3]}}}, call: {fn: follow, args: [$x, $x], kwargs: {select: first}}}
+  - {id: follow-empty-subject, tags: [follow, empty], inputs: {e: *E, x: {IRanges: {start: [1], width: [3]}}}, call: {fn: follow, args: [$x, $e]}}
+  - {id: follow-self, tags: [follow, self], inputs: {x: {IRanges: {start: [1, 5, 9, 30], width: [3, 3, 3, 2]}}}, call: {fn: follow, args: [$x]}}
+  - {id: follow-tie-takes-last-index, tags: [follow, ties], inputs: {x: {IRanges: {start: [10], width: [1]}}, s: {IRanges: {start: [1, 1, 1], width: [2, 2, 2]}}}, call: {fn: follow, args: [$x, $s]}}
+  - {id: precede-tie-takes-first-index, tags: [precede, ties], inputs: {x: {IRanges: {start: [1], width: [1]}}, s: {IRanges: {start: [5, 5, 5], width: [2, 1, 3]}}}, call: {fn: precede, args: [$x, $s]}}
+
+  - {id: distance-basic, tags: [distance], inputs: {x: {IRanges: {start: [1, 1, 1, 10]}, width: [3, 3, 3, 3]}, y: {IRanges: {start: [4, 5, 2, 1], width: [3, 3, 5, 3]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-adjacent-is-zero, tags: [distance, adjacency], inputs: {x: {IRanges: {start: [1], width: [3]}}, y: {IRanges: {start: [4], width: [3]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-overlap-is-zero, tags: [distance], inputs: {x: {IRanges: {start: [1], width: [10]}}, y: {IRanges: {start: [4], width: [3]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-zero-width, tags: [distance, zero-width], inputs: {x: {IRanges: {start: [1, 1, 5, 5, 5]}, width: [0, 3, 0, 0, 3]}, y: {IRanges: {start: [2, 2, 5, 6, 4], width: [0, 0, 0, 0, 0]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-recycle-scalar, tags: [distance, recycle], inputs: {x: {IRanges: {start: [1, 10, 20], width: [2, 2, 2]}}, y: {IRanges: {start: [5], width: [2]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-recycle-nonmultiple-warns, tags: [distance, recycle, warning], check_warnings: true, inputs: {x: {IRanges: {start: [1, 10, 20], width: [2, 2, 2]}}, y: {IRanges: {start: [5, 7], width: [2, 2]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-empty-first, tags: [distance, empty], inputs: {e: *E, y: {IRanges: {start: [5, 7], width: [2, 2]}}}, call: {fn: distance, args: [$e, $y]}}
+  - {id: distance-empty-both, tags: [distance, empty], inputs: {e: *E}, call: {fn: distance, args: [$e, $e]}}
+  - {id: distance-negative-coords, tags: [distance], inputs: {x: {IRanges: {start: [-10], width: [2]}}, y: {IRanges: {start: [5], width: [2]}}}, call: {fn: distance, args: [$x, $y]}}
+  - {id: distance-int32-extremes, tags: [distance, int32], inputs: {x: {IRanges: {start: [-2147483000], width: [2]}}, y: {IRanges: {start: [2147483000], width: [2]}}}, call: {fn: distance, args: [$x, $y]}}

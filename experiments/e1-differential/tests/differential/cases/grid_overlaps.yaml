@@ -942,6 +942,78 @@ cases:
     x: *id004
   tags: [grid, findOverlaps, self, equal]
 - call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: first, type: any}
+  id: grid-fo-self-select-first-any
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, any]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: last, type: any}
+  id: grid-fo-self-select-last-any
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, any]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: arbitrary, type: any}
+  id: grid-fo-self-select-arbitrary-any
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, any]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: first, type: within}
+  id: grid-fo-self-select-first-within
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, within]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: last, type: within}
+  id: grid-fo-self-select-last-within
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, within]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: arbitrary, type: within}
+  id: grid-fo-self-select-arbitrary-within
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, within]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: first, type: start}
+  id: grid-fo-self-select-first-start
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, start]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: last, type: start}
+  id: grid-fo-self-select-last-start
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, start]
+- call:
+    args: [$x]
+    fn: findOverlaps
+    kwargs: {maxgap: 1, select: arbitrary, type: start}
+  id: grid-fo-self-select-arbitrary-start
+  inputs:
+    x: *id004
+  tags: [grid, findOverlaps, self, select, start]
+- call:
     args: [$q, $s]
     fn: countOverlaps
     kwargs: {maxgap: -1, minoverlap: 0, type: any}

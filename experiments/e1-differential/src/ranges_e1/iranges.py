@@ -5,11 +5,13 @@ from __future__ import annotations
 from collections.abc import Iterable, Sequence
 from typing import Any, Self
 
+import warnings
+
 import numpy as np
 import polars as pl
 
 from . import _meta
-from ._kernels import inter, intra, overlaps, setops
+from ._kernels import inter, intra, nearest as nearest_kernel, overlaps, setops
 from .hits import Hits
 from ._meta import INT_MAX, Names
 
@@ -371,8 +373,8 @@ class IRanges:
                 keep &= ~((q > s) & mirror)
             q, s = q[keep], s[keep]
         hits = Hits(q, s, len(self), len(subj))
-        if select == "arbitrary" and overlaps.uses_query_nclist(len(self), len(subj)):
-            select = "last"  # R's engine reports the last-seen subject in this mode
+        if select == "arbitrary" and (self_hits or overlaps.uses_query_nclist(len(self), len(subj))):
+            select = "last"  # R's engines report the last-seen subject in these modes
         return hits if select == "all" else hits.select(select)
 
     def count_overlaps(
@@ -397,3 +399,94 @@ class IRanges:
     ) -> Self:
         hit = self.overlaps_any(subject, maxgap, minoverlap, type)
         return self[~hit if invert else hit]
+
+    # -- nearest / precede / follow / distance -------------------------------
+    def _pick(self, q: np.ndarray, s: np.ndarray) -> np.ma.MaskedArray:
+        """Per-query subject index from (q, s) pairs with at most one pair per query."""
+        out = np.zeros(len(self), dtype=np.int64)
+        has = np.zeros(len(self), dtype=bool)
+        out[q], has[q] = s, True
+        return np.ma.masked_array(out, mask=~has)
+
+    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:
+        """Subject(s) starting right after each range ends (smallest start > end)."""
+        if select not in ("first", "all"):
+            raise ValueError("'arg' should be one of \"first\", \"all\"")
+        subj = self if subject is None else subject
+        q, s = nearest_kernel.precede(self.end, subj._start, select == "all")
+        return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick(q, s)
+
+    def follow(self, subject: IRanges | None = None, select: str = "last") -> Hits | np.ma.MaskedArray:
+        """Subject(s) ending right before each range starts (largest end < start)."""
+        if select not in ("last", "all"):
+            raise ValueError("'arg' should be one of \"last\", \"all\"")
+        subj = self if subject is None else subject
+        q, s = nearest_kernel.follow(self._start, subj.end, select == "all")
+        return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick(q, s)
+
+    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | np.ma.MaskedArray:
+        """Nearest subject range: overlapping/adjacent first, else the closer of precede/follow.
+
+        Ties between the two sides go to the follow side (select="arbitrary") or keep both
+        (select="all"), as R does.
+        """
+        if select not in ("arbitrary", "all"):
+            raise ValueError("'arg' should be one of \"arbitrary\", \"all\"")
+        subj = self if subject is None else subject
+        n = len(self)
+        ol = self.find_overlaps(subject, maxgap=0, select=select, drop_self=subject is None)
+        olv = ol.select("first") if isinstance(ol, Hits) else ol
+        miss = np.flatnonzero(np.ma.getmaskarray(olv))
+        sub = self._take(miss)
+        all_ = select == "all"
+        bq, bs = nearest_kernel.precede(sub.end, subj._start, all_)
+        aq, as_ = nearest_kernel.follow(sub._start, subj.end, all_)
+        # first subject on each side, per missing query (NA -> -1 here, internal only)
+        def first_of(q: np.ndarray, s: np.ndarray) -> np.ndarray:
+            out = np.full(len(miss), -1, dtype=np.int64)
+            out[q[::-1]] = s[::-1]
+            return out
+        before, after = first_of(bq, bs), first_of(aq, as_)
+        has_b, has_a = before >= 0, after >= 0
+        big = np.iinfo(np.int64).max // 4
+        if len(subj) == 0:
+            before_dist = after_dist = np.full(len(miss), big, dtype=np.int64)
+        else:
+            before_dist = np.where(has_b, subj._start[np.maximum(before, 0)] - sub.end, big)
+            after_dist = np.where(has_a, sub._start - subj.end[np.maximum(after, 0)], big)
+        both = has_b & has_a
+        left = np.where(both, before_dist < after_dist, ~has_a)
+        if not all_:
+            res = np.ma.getdata(olv).copy()
+            res[miss] = np.where(left, before, after)
+            mask = np.ma.getmaskarray(olv).copy()
+            mask[miss] = ~np.where(left, has_b, has_a)
+            return np.ma.masked_array(res, mask=mask)
+        right = ~left
+        tie = both & (before_dist == after_dist)
+        left = left | tie
+        assert isinstance(ol, Hits)
+        keep_b, keep_a = left[bq], right[aq]
+        qs_ = np.concatenate([ol.query_hits, miss[bq[keep_b]], miss[aq[keep_a]]])
+        ss_ = np.concatenate([ol.subject_hits, bs[keep_b], as_[keep_a]])
+        order = np.lexsort((ss_, qs_))
+        return Hits(qs_[order], ss_[order], n, len(subj))
+
+    def distance(self, other: IRanges) -> np.ma.MaskedArray:
+        """Parallel gap between ranges: 0 when they overlap or touch (R: distance).
+
+        A gap beyond int32 is NA (masked), as R's integer arithmetic overflows to NA.
+        """
+        a, b = len(self), len(other)
+        if a == 0 or b == 0:
+            return np.ma.masked_array(np.empty(0, dtype=np.int64))
+        n = max(a, b)
+        if n % a or n % b:
+            warnings.warn("longer object length is not a multiple of shorter object length", UserWarning, stacklevel=2)
+        xs, xe = np.resize(self._start, n), np.resize(self.end, n)
+        ys, ye = np.resize(other._start, n), np.resize(other.end, n)
+        d = np.maximum(np.maximum(xs, ys) - np.minimum(xe, ye) - 1, 0)
+        over = d > INT_MAX
+        if over.any():
+            warnings.warn("NAs produced by integer overflow", UserWarning, stacklevel=2)
+        return np.ma.masked_array(np.where(over, 0, d), mask=over)
