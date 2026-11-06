@@ -52,12 +52,12 @@ enc <- function(x) {
       start = start(x), width = width(x),
       strand = as.character(strand(x)),
       names = enc_names(x),
-      mcols = enc_mcols(mcols(x)),
+      mcols = enc_mcols(mcols(x, use.names = FALSE)),
       seqinfo = enc_seqinfo(seqinfo(x))))
   }
   if (is(x, "IRanges")) {
     return(list(class = u("IRanges"), start = start(x), width = width(x),
-      names = enc_names(x), mcols = enc_mcols(mcols(x))))
+      names = enc_names(x), mcols = enc_mcols(mcols(x, use.names = FALSE))))
   }
   if (is(x, "Seqinfo")) return(enc_seqinfo(x))
   if (is(x, "Hits")) {

@@ -55,6 +55,8 @@ def decode(v: Any) -> Any:
     if isinstance(v, dict):
         k = next(iter(v))
         body = v[k]
+        if k == "NULL":
+            return None
         if k in _TYPED or k == "chr":
             return decode_vec(body, k)
         if k == "IRanges":

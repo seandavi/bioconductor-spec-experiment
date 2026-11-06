@@ -385,6 +385,13 @@
     "warnings": []
    }
   },
+  "ir-mcols-accessor-na-names": {
+   "hash": "2eb4403a5e754bfbf0dfae7390fa0ae4d43307968ed5e1d2eeb0eafa8b7d5068",
+   "result": {
+    "error": "missing values not allowed in rownames",
+    "warnings": []
+   }
+  },
   "ir-mcols-none": {
    "hash": "557331e6cd0d823a7eb950398dbb624672176da9bf93dfd23f3a879eab780b96",
    "result": {
@@ -506,6 +513,70 @@
       "b"
      ],
      "names": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-na-then-set-mcols": {
+   "hash": "e3e7c5098b48f8b2412a29a66b5789b7b692e4702d979f8645d9611fd8ed51dd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "a": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "ir-names-na-with-mcols": {
+   "hash": "397299674dd991f65667dbc452b83ce96046abc05507d7de9c7e3548cf173046",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
     },
     "warnings": []
    }
@@ -633,6 +704,38 @@
      ],
      "names": null,
      "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "ir-set-names-na-with-mcols": {
+   "hash": "740413272e241460262bb6367a57fa2225b946268dcfec78cf89fc42a287e9ab",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      null
+     ],
+     "mcols": {
+      "m": {
+       "class": "vector",
+       "type": "int",
+       "values": [
+        1,
+        2
+       ],
+       "names": null
+      }
+     }
     },
     "warnings": []
    }

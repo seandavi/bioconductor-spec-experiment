@@ -244,3 +244,21 @@ cases:
       x: {IRanges: {start: [1], width: [3]}}
       y: {IRanges: {start: {int: []}, width: {int: []}}}
     call: {fn: c, args: [$x, $y]}
+  - id: ir-names-na-with-mcols
+    tags: [construct, names, mcols, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null], mcols: {m: [1, 2]}}}}
+    call: {fn: identity, args: [$x]}
+  - id: ir-names-na-then-set-mcols
+    tags: [mcols, names, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null]}}, m: {DataFrame: {a: [1, 2]}}}
+    call: {fn: mcols<-, args: [$x], kwargs: {value: $m}}
+  - id: ir-set-names-na-with-mcols
+    tags: [mcols, names, na]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], mcols: {m: [1, 2]}}}}
+    call: {fn: names<-, args: [$x], kwargs: {value: [a, null]}}
+  - id: ir-mcols-accessor-na-names
+    # R's mcols() getter builds rownames from names(x) and fails if any name is NA. ADR-0006.
+    tags: [mcols, names, na, divergence]
+    inputs: {x: {IRanges: {start: [1, 5], width: [3, 2], names: [a, null], mcols: {m: [1, 2]}}}}
+    call: {fn: mcols, args: [$x]}
+    divergence: {adr: "0006", python: {class: DataFrame, columns: {m: {class: vector, type: int, values: [1, 2], names: null}}, nrow: 2}}

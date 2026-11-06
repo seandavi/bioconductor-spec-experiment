@@ -25,7 +25,7 @@ cases:
 - Literals: `{IRanges: {start,end,width,names,mcols}}`,
   `{GRanges: {seqnames,start,end,width,strand,names,mcols,seqinfo}}`,
   `{Seqinfo: {seqnames,seqlengths,is_circular,genome}}`, `{DataFrame: {col: [..]}}`,
-  scalars, arrays, `null` = NA. Empty/ambiguous vectors: `{int: []}`, `{num: [..]}`, `{chr: []}`, `{lgl: []}`.
+  scalars, arrays, `null` = NA, `{NULL: []}` = R `NULL` / Python `None` (e.g. `names<-` with `value: {NULL: []}`). Empty/ambiguous vectors: `{int: []}`, `{num: [..]}`, `{chr: []}`, `{lgl: []}`.
   Whole-number JSON numbers are R integers; use `{num: [..]}` for doubles.
 - **Indices are R's (1-based) in cases and in canonical results.** The adapter converts.
 - Escape hatch: `raw: {r: "<R expr>", py: "<Python expr>"}`; inputs are bound as variables

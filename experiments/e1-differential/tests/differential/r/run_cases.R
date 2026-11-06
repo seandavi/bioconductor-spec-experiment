@@ -58,7 +58,7 @@ decode <- function(v) {
     k <- names(v)[1]
     return(switch(k,
       IRanges = iranges_lit(v[[1]]), GRanges = granges_lit(v[[1]]),
-      Seqinfo = seqinfo_lit(v[[1]]), DataFrame = df_lit(v[[1]]),
+      Seqinfo = seqinfo_lit(v[[1]]), DataFrame = df_lit(v[[1]]), NULL = NULL,
       int = vec_lit(v[[1]], "int"), num = vec_lit(v[[1]], "num"),
       chr = vec_lit(v[[1]], "chr"), lgl = vec_lit(v[[1]], "lgl"),
       stop("unknown literal: ", k)))
