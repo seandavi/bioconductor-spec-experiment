@@ -7,8 +7,7 @@
    },
    "inter": {
     "matches_R": 47,
-    "other": 2,
-    "unsupported": 3
+    "unsupported": 5
    },
    "intra": {
     "matches_R": 93,
@@ -205,8 +204,8 @@
   },
   "biocpy": {
    "coverage": {
-    "other": 27,
-    "matches_R": 2
+    "other": 17,
+    "unsupported": 12
    },
    "inter": {
     "matches_R": 34,
@@ -214,8 +213,7 @@
    },
    "intra": {
     "matches_R": 83,
-    "unsupported": 10,
-    "other": 3
+    "unsupported": 13
    },
    "nearest": {
     "other": 24,
@@ -223,15 +221,15 @@
     "matches_R": 5
    },
    "ordering": {
-    "matches_R": 13,
-    "other": 3,
+    "matches_R": 14,
+    "other": 2,
     "unsupported": 6
    },
    "overlaps": {
-    "matches_R_linear": 143,
-    "unsupported": 49,
-    "other": 105,
-    "matches_R": 15
+    "matches_R_linear": 175,
+    "unsupported": 56,
+    "other": 64,
+    "matches_R": 17
    },
    "setops": {
     "other": 92,
