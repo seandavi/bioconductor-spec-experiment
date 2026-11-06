@@ -180,6 +180,8 @@ def resolve_index(i: Any, n: int, names: Names | None) -> np.ndarray:
         raise IndexError("subscript contains NAs")
     a = np.asarray(i)
     if a.size == 0:
+        if a.dtype.kind in "US" and names is None:
+            raise IndexError("cannot subset by name when names are None")
         return np.empty(0, dtype=np.int64)
     if a.dtype.kind == "b":
         if a.ndim != 1:

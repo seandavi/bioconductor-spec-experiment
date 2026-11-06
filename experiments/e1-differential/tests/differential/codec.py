@@ -16,6 +16,8 @@ _TYPED = {"int": np.int64, "num": np.float64, "lgl": np.bool_}
 def decode_vec(v: list[Any], typ: str | None = None) -> Any:
     """Array literal -> ndarray (numeric/logical, masked if NA) or list[str|None]."""
     if typ == "chr" or (typ is None and any(isinstance(e, str) for e in v)):
+        if typ == "chr" and not v:
+            return np.empty(0, dtype="U1")  # typed-empty character vector (distinct from integer(0))
         return [None if e is None else str(e) for e in v]
     if not v:
         return np.empty(0, dtype=_TYPED.get(typ or "int"))

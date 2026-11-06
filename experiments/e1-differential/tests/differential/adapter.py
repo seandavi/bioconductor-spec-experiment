@@ -41,6 +41,8 @@ def r_subscript(i: Any, n: int) -> Any:
     """R `[` subscript (1-based, negative = exclude, 0 dropped) -> Python subscript."""
     if isinstance(i, list):  # character
         return i
+    if isinstance(i, np.ndarray) and i.dtype.kind == "U":  # typed-empty character
+        return i
     a = np.asarray(i)
     if np.ma.isMaskedArray(i) and np.ma.getmaskarray(i).any():
         raise IndexError("subscript contains NAs")

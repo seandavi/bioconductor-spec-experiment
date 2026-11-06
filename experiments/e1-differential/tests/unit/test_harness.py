@@ -49,7 +49,7 @@ def test_decode_vectors() -> None:
     assert codec.decode([1.5, 2]).dtype.kind == "f"
     assert codec.decode([True, False]).dtype == bool
     assert codec.decode([1, None]).mask.tolist() == [False, True]
-    assert codec.decode({"chr": []}) == []
+    assert codec.decode({"chr": []}).dtype.kind == "U"
     assert codec.decode({"int": []}).dtype.kind == "i"
     assert codec.decode({"NULL": []}) is None
 
