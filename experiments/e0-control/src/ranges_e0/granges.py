@@ -15,7 +15,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _order, _validate as V
+from . import _intra, _order, _validate as V
 from .iranges import IRanges
 from .seqinfo import Seqinfo
 
@@ -296,6 +296,60 @@ class GRanges:
             V.concat_mcols([o._mcols for o in objs], [len(o) for o in objs]),
             check_bounds=True,
         )
+
+    # ----- intra-range ------------------------------------------------------
+    def _neg(self, ignore_strand: bool) -> np.ndarray:
+        """Rows treated as minus strand (``*`` behaves like ``+``)."""
+        return np.zeros(len(self), dtype=bool) if ignore_strand else self._strand == MINUS
+
+    def _intra_result(self, start: np.ndarray, width: np.ndarray, use_names: bool) -> GRanges:
+        return self._replace(
+            start=start, width=width, names=None if use_names else None, set_names=not use_names,
+            check_bounds=True,
+        )
+
+    def shift(self, shift: Any, use_names: bool = True) -> GRanges:
+        """R ``shift``: not strand-aware."""
+        return self._intra_result(*_intra.shift_k(self._start, self._width, shift), use_names)
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True) -> GRanges:
+        """R ``narrow``: offsets relative to each range, not strand-aware."""
+        return self._intra_result(*_intra.narrow_k(self._start, self._width, start, end, width), use_names)
+
+    def resize(
+        self,
+        width: Any,
+        fix: str | Sequence[str] = "start",
+        use_names: bool = True,
+        ignore_strand: bool = False,
+    ) -> GRanges:
+        """R ``resize``: ``fix="start"`` anchors the *transcription* start, i.e.
+        the end of minus-strand ranges (``*`` behaves like ``+``)."""
+        fixa = _intra.as_fix(fix, len(self))
+        neg = self._neg(ignore_strand)
+        flipped = np.where(fixa == "start", "end", np.where(fixa == "end", "start", fixa))
+        fixa = np.where(neg, flipped, fixa)
+        return self._intra_result(*_intra.resize_k(self._start, self._width, width, fixa), use_names)
+
+    def flank(
+        self,
+        width: Any,
+        start: bool | Sequence[bool] = True,
+        both: bool = False,
+        use_names: bool = True,
+        ignore_strand: bool = False,
+    ) -> GRanges:
+        """R ``flank``: ``start=True`` is the upstream side (the end of
+        minus-strand ranges)."""
+        at = np.asarray(start, dtype=bool)
+        at = np.repeat(at, len(self)) if at.ndim == 0 or len(at) == 1 else at
+        at = np.where(self._neg(ignore_strand), ~at, at)
+        return self._intra_result(*_intra.flank_k(self._start, self._width, width, at, both), use_names)
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> GRanges:
+        """R ``promoters``: window around the TSS (start of ``+``/``*``, end of ``-`` ranges)."""
+        s, w = _intra.promoters_k(self._start, self._width, upstream, downstream, self._neg(False))
+        return self._intra_result(s, w, use_names)
 
     # ----- ordering ----------------------------------------------------------
     def _order_keys(self, ignore_strand: bool = False) -> list[np.ndarray]:
