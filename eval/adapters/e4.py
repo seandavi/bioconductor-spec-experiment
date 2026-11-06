@@ -455,7 +455,12 @@ class Adapter(AdapterBase):
 
     def op_coverage(self, *, x, shift=MISSING, width=MISSING, weight=MISSING):
         w = _scalar("weight", weight) if isinstance(weight, RVector) and weight.type == "chr" else _np(weight)
-        return self._invoke("coverage", x, "coverage", {"shift": _np(shift), "width": _np(width), "weight": w})
+        if isinstance(x, GRanges) and isinstance(width, RVector) and width.names is not None:
+            # GRanges.coverage documents width as a seqname -> width mapping; unnamed widths stay positional
+            width = dict(zip(width.names, width.list()))
+        else:
+            width = _np(width)
+        return self._invoke("coverage", x, "coverage", {"shift": _np(shift), "width": width, "weight": w})
 
     # ------------------------------------------------------------ ordering
 
