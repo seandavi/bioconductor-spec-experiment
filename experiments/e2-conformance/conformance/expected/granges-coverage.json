@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:40:22-0500"
+  },
+  "cases": {
+    "gr.cov.basic": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2, 0, 1, 0]},
+            "lengths": {"$int": [1, 2, 3, 8, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [1, 0]},
+            "lengths": {"$int": [4, 6]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.no-seqlengths": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "a": {
+            "$type": "Rle",
+            "values": {"$int": [1, 2, 1]},
+            "lengths": {"$int": [2, 1, 2]}
+          },
+          "b": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [1, 2]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.ignores-strand": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "a": {
+            "$type": "Rle",
+            "values": {"$int": [1, 2, 1]},
+            "lengths": {"$int": [2, 1, 2]}
+          },
+          "b": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [1, 2]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.width.scalar": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2, 0]},
+            "lengths": {"$int": [1, 2, 3, 6]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [1, 0]},
+            "lengths": {"$int": [4, 8]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [12]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 0]},
+            "lengths": {"$int": [2, 4, 6]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.width.named": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2]},
+            "lengths": {"$int": [1, 2, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [1, 0]},
+            "lengths": {"$int": [4, 8]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [3]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [2, 3]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.width.named-reordered": {
+      "error": {
+        "message": "when 'width' has names, they must be identical to 'seqlevels(x)'",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.cov.width.unnamed-vector": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2]},
+            "lengths": {"$int": [1, 2, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [1, 0]},
+            "lengths": {"$int": [4, 8]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [3]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [2, 3]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.width.no-seqlengths": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "a": {
+            "$type": "Rle",
+            "values": {"$int": [1, 2, 1, 0]},
+            "lengths": {"$int": [2, 1, 2, 3]}
+          },
+          "b": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 0]},
+            "lengths": {"$int": [1, 2, 5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.width.too-small": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [1, 2]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [1]},
+            "lengths": {"$int": [3]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [3]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [2, 1]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.shift.scalar": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2, 0, 1, 0]},
+            "lengths": {"$int": [3, 2, 3, 8, 3, 1]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 0]},
+            "lengths": {"$int": [2, 4, 4]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [4, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.shift.vector": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2, 1, 0, 1, 0]},
+            "lengths": {"$int": [1, 3, 2, 1, 7, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 0]},
+            "lengths": {"$int": [2, 4, 4]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.shift.no-seqlengths": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "a": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 2, 1]},
+            "lengths": {"$int": [3, 2, 1, 2]}
+          },
+          "b": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1]},
+            "lengths": {"$int": [4, 2]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.weight.vector-int": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 3, 0, 4, 0]},
+            "lengths": {"$int": [1, 2, 3, 8, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [3, 0]},
+            "lengths": {"$int": [4, 6]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 5]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.weight.vector-dbl": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0, 0.5, 2.0, 0.0, 0.5, 0.0]},
+            "lengths": {"$int": [1, 2, 3, 8, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$dbl": [2.5, 0.0]},
+            "lengths": {"$int": [4, 6]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0, 1.5]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.weight.column-int": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0, 1, 3, 0, 4, 0]},
+            "lengths": {"$int": [1, 2, 3, 8, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [3, 0]},
+            "lengths": {"$int": [4, 6]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": [0, 5]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.weight.column-dbl": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0, 0.5, 2.0, 0.0, 0.5, 0.0]},
+            "lengths": {"$int": [1, 2, 3, 8, 3, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$dbl": [2.5, 0.0]},
+            "lengths": {"$int": [4, 6]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$dbl": [0.0, 1.5]},
+            "lengths": {"$int": [2, 4]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.weight.column-character": {
+      "error": {
+        "message": "'weight' must be a numeric vector, a single string, or a list-like object",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "gr.cov.weight.scalar": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "a": {
+            "$type": "Rle",
+            "values": {"$int": [3, 6, 3]},
+            "lengths": {"$int": [2, 1, 2]}
+          },
+          "b": {
+            "$type": "Rle",
+            "values": {"$int": [0, 3]},
+            "lengths": {"$int": [1, 2]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.empty": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [20]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [10]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": []},
+            "lengths": {"$int": []}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.zero-width": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [20]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [10]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": []},
+            "lengths": {"$int": []}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "gr.cov.out-of-bound": {
+      "value": {
+        "$type": "RleList",
+        "elements": {
+          "chr1": {
+            "$type": "Rle",
+            "values": {"$int": [1, 0, 1]},
+            "lengths": {"$int": [5, 12, 3]}
+          },
+          "chr2": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [10]}
+          },
+          "chrX": {
+            "$type": "Rle",
+            "values": {"$int": [0]},
+            "lengths": {"$int": [8]}
+          },
+          "chrU": {
+            "$type": "Rle",
+            "values": {"$int": []},
+            "lengths": {"$int": []}
+          }
+        }
+      },
+      "warnings": []
+    }
+  }
+}
