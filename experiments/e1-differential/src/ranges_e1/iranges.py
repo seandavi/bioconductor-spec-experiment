@@ -98,12 +98,8 @@ class IRanges:
     def _init(
         self, start: np.ndarray, width: np.ndarray, names: Names | None, mcols: pl.DataFrame | None
     ) -> None:
-        start = np.ascontiguousarray(start, dtype=np.int64)
-        width = np.ascontiguousarray(width, dtype=np.int64)
-        start.flags.writeable = False
-        width.flags.writeable = False
-        self._start = start
-        self._width = width
+        self._start = _meta.freeze(start, np.int64)
+        self._width = _meta.freeze(width, np.int64)
         self._names = names
         self._mcols = mcols
 
@@ -129,11 +125,11 @@ class IRanges:
     # -- accessors ---------------------------------------------------------
     @property
     def start(self) -> np.ndarray:
-        return self._start
+        return _meta.readonly_view(self._start)
 
     @property
     def width(self) -> np.ndarray:
-        return self._width
+        return _meta.readonly_view(self._width)
 
     @property
     def end(self) -> np.ndarray:
@@ -147,7 +143,7 @@ class IRanges:
 
     @property
     def mcols(self) -> pl.DataFrame | None:
-        return self._mcols
+        return None if self._mcols is None else self._mcols.clone()
 
     def __len__(self) -> int:
         return len(self._start)

@@ -109,11 +109,8 @@ class GRanges:
         *,
         check: bool = True,
     ) -> None:
-        seq = np.ascontiguousarray(seq, dtype=np.int32)
-        strand = np.ascontiguousarray(strand, dtype=np.int8)
-        seq.flags.writeable = False
-        strand.flags.writeable = False
-        self._seq, self._ranges, self._strand = seq, ranges, strand
+        self._seq, self._ranges = _meta.freeze(seq, np.int32), ranges
+        self._strand = _meta.freeze(strand, np.int8)
         self._names, self._mcols, self._seqinfo = names, mcols, seqinfo
         if check:
             self._warn_out_of_bound()
@@ -185,7 +182,7 @@ class GRanges:
 
     @property
     def mcols(self) -> pl.DataFrame | None:
-        return self._mcols
+        return None if self._mcols is None else self._mcols.clone()
 
     @property
     def seqinfo(self) -> Seqinfo:

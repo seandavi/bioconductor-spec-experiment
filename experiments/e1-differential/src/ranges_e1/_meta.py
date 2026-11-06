@@ -13,6 +13,25 @@ Names = tuple[str | None, ...]
 INT_MAX = 2**31 - 1
 
 
+def freeze(a: Any, dtype: Any) -> np.ndarray:
+    """A read-only array nobody can re-enable for writing.
+
+    It is backed by an immutable `bytes` buffer; arrays already so backed are shared, anything
+    else (including read-only views of someone's writable array) is copied.
+    """
+    arr = np.asarray(a, dtype=dtype)
+    if isinstance(arr.base, bytes) and not arr.flags.writeable and arr.flags.c_contiguous:
+        return arr
+    return np.frombuffer(np.ascontiguousarray(arr, dtype=dtype).tobytes(), dtype=dtype)
+
+
+def readonly_view(a: np.ndarray) -> np.ndarray:
+    """Accessor result: a read-only view, so the stored array cannot be re-enabled for writing."""
+    v = a.view()
+    v.flags.writeable = False
+    return v
+
+
 def as_int_array(x: Any, what: str = "value") -> np.ndarray:
     """Coerce a numeric vector to int64 like R's as.integer: doubles truncate; NA, logical or text is an error."""
     if np.ma.isMaskedArray(x):
@@ -114,7 +133,7 @@ def check_names(names: Any, n: int) -> Names | None:
 def check_mcols(mcols: Any, n: int) -> pl.DataFrame | None:
     if mcols is None:
         return None
-    df = pl.DataFrame(mcols) if not isinstance(mcols, pl.DataFrame) else mcols
+    df = pl.DataFrame(mcols) if not isinstance(mcols, pl.DataFrame) else mcols.clone()  # detach from caller's frame
     if df.width == 0:
         return None
     if df.height != n:

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from ._meta import freeze
+
 
 class Rle:
     """Run-length encoding: `values[i]` repeated `lengths[i]` times."""
@@ -17,9 +19,7 @@ class Rle:
             raise ValueError("values and lengths must be 1-d arrays of equal length")
         if (n <= 0).any():
             raise ValueError("lengths must be positive")
-        v.flags.writeable = False
-        n.flags.writeable = False
-        self._values, self._lengths = v, n
+        self._values, self._lengths = freeze(v, v.dtype), freeze(n, np.int64)
 
     @classmethod
     def encode(cls, x: np.ndarray) -> Rle:

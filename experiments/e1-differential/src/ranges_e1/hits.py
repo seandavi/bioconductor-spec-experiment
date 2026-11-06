@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from ._meta import freeze
+
 
 class Hits:
     """Query/subject index pairs. Indices are 0-based (ADR-0001)."""
@@ -19,8 +21,7 @@ class Hits:
             raise ValueError("hit index out of range")
         order = np.argsort(q, kind="stable")  # R sorts by query only; subject order is the engine's
         q, s = q[order], s[order]
-        q.flags.writeable = False
-        s.flags.writeable = False
+        q, s = freeze(q, np.int64), freeze(s, np.int64)
         self._q, self._s, self._nq, self._ns = q, s, int(query_length), int(subject_length)
 
     @property
