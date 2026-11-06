@@ -7,6 +7,7 @@ a simulated upstream change.
 
 - [TARGET.md](TARGET.md): what gets built, and when it counts as done
 - [PROTOCOL.md](PROTOCOL.md): the experiments, isolation rules, metrics
+- [QUESTIONS.md](QUESTIONS.md): R behaviors that look like accidents, where a person should decide what a port must match
 - `background/`: the Bioconductor Zulip discussion that prompted this
 
 ## Experiments
@@ -42,6 +43,8 @@ tables: `eval/results/report.md`; adjudication: `eval/adjudication/ADJUDICATION.
   *noticed* it without being told. Detection is where process pays.
 - BiocPy sorts seqlevels lexically; R and all six ports use first
   appearance (the Zulip thread's example, confirmed).
+- "R is normative" copies R's accidents along with its contracts. Six
+  places where that needs a human call are in [QUESTIONS.md](QUESTIONS.md).
 
 ## Layout
 
@@ -51,6 +54,11 @@ tables: `eval/results/report.md`; adjudication: `eval/adjudication/ADJUDICATION.
 | `eval/` | fidelity harness, adapters, oracle, results, adjudication; `eval/replay/` replay scoring |
 | `harness/` | workflow scripts, approach briefs, isolation audit, replay patch |
 | `ledger/` | orchestrator's running record, review copies, workflow ideas |
+
+To re-run the evaluation, recreate the worktrees it expects with
+`sh harness/recreate-worktrees.sh`, then `cd eval && just oracle && just selftest && just run e1`
+(`just oracle` regenerates the gitignored `build/` from live R in about 25 s).
+R 4.6 with Bioc 3.24 and uv are required; paths in `eval/ports.toml` are absolute.
 
 Branches `exp/*`, `replay/*`, `eval*`, `ledger` are merged with `--no-ff`.
 Replay merges were reverted on `main` (their ports implement the simulated
