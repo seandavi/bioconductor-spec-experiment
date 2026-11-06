@@ -89,13 +89,18 @@ class Seqinfo:
         lens: list[int | None] = []
         circ: list[bool | None] = []
         gen: list[str | None] = []
+
+        def pick(what: str, name: str, x: Any, y: Any) -> Any:
+            if x is not None and y is not None and x != y:
+                raise ValueError(f"sequence {name} has incompatible {what}:\n  - in 'x': {x}\n  - in 'y': {y}")
+            return x if x is not None else y
+
         for s in names:
-            a = (self.seqlengths[self.index(s)], self.is_circular[self.index(s)], self.genome[self.index(s)]) if s in mine else (None,) * 3
-            b = (other.seqlengths[other.index(s)], other.is_circular[other.index(s)], other.genome[other.index(s)]) if s in theirs else (None,) * 3
-            for what, x, y, out in (("seqlengths", a[0], b[0], lens), ("is_circular", a[1], b[1], circ), ("genome", a[2], b[2], gen)):
-                if x is not None and y is not None and x != y:
-                    raise ValueError(f"sequence {s} has incompatible {what}:\n  - in 'x': {x}\n  - in 'y': {y}")
-                out.append(x if x is not None else y)
+            i = self.index(s) if s in mine else None
+            j = other.index(s) if s in theirs else None
+            lens.append(pick("seqlengths", s, None if i is None else self.seqlengths[i], None if j is None else other.seqlengths[j]))
+            circ.append(pick("is_circular", s, None if i is None else self.is_circular[i], None if j is None else other.is_circular[j]))
+            gen.append(pick("genome", s, None if i is None else self.genome[i], None if j is None else other.genome[j]))
         return Seqinfo(names, lens, circ, gen)
 
     @classmethod

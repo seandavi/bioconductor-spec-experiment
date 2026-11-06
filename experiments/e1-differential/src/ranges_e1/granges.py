@@ -87,10 +87,9 @@ class GRanges:
         elif seqlengths is not None:
             raise ValueError("supply either 'seqinfo' or 'seqlengths', not both")
         index = {s: i for i, s in enumerate(seqinfo.seqnames)}
-        missing = [s for s in sn if s not in index]
-        if missing:
+        if any(s not in index for s in sn):
             raise ValueError("'seqnames' contains sequence names with no entries in 'seqinfo'")
-        codes = np.array([index[s] for s in sn], dtype=np.int32)
+        codes = np.array([index[s] for s in sn if s is not None], dtype=np.int32)
         r_names = ranges.names
         nm = _meta.check_names(names, n) if names is not None else r_names
         flat = IRanges._new(

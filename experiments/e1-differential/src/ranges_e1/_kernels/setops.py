@@ -10,6 +10,7 @@ from . import inter
 
 _SHIFT = 1 << 33
 _OFF = 1 << 32
+_Triple = tuple[np.ndarray, np.ndarray, np.ndarray]
 
 
 def _lift(group: np.ndarray, pos: np.ndarray) -> np.ndarray:
@@ -29,7 +30,7 @@ def combine(
     gx: np.ndarray, sx: np.ndarray, wx: np.ndarray,
     gy: np.ndarray, sy: np.ndarray, wy: np.ndarray,
     op: Callable[[np.ndarray, np.ndarray], np.ndarray],
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> _Triple:
     """Per-group set operation on the positions covered by x and y.
 
     Empty ranges cover nothing and are ignored. `op(in_x, in_y)` picks segments.
@@ -58,16 +59,18 @@ def combine(
     return (ls >> 33), (ls & (_SHIFT - 1)) - _OFF, le - ls
 
 
-def union(*xy: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    return combine(*xy, op=lambda a, b: a | b)  # type: ignore[arg-type]
 
 
-def intersect(*xy: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    return combine(*xy, op=lambda a, b: a & b)  # type: ignore[arg-type]
+def union(gx: np.ndarray, sx: np.ndarray, wx: np.ndarray, gy: np.ndarray, sy: np.ndarray, wy: np.ndarray) -> _Triple:
+    return combine(gx, sx, wx, gy, sy, wy, lambda a, b: a | b)
 
 
-def setdiff(*xy: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    return combine(*xy, op=lambda a, b: a & ~b)  # type: ignore[arg-type]
+def intersect(gx: np.ndarray, sx: np.ndarray, wx: np.ndarray, gy: np.ndarray, sy: np.ndarray, wy: np.ndarray) -> _Triple:
+    return combine(gx, sx, wx, gy, sy, wy, lambda a, b: a & b)
+
+
+def setdiff(gx: np.ndarray, sx: np.ndarray, wx: np.ndarray, gy: np.ndarray, sy: np.ndarray, wy: np.ndarray) -> _Triple:
+    return combine(gx, sx, wx, gy, sy, wy, lambda a, b: a & ~b)
 
 
 # ---- parallel versions ------------------------------------------------------
