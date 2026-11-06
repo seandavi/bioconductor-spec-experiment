@@ -42,6 +42,18 @@ def recycle(arr: np.ndarray, n: int, name: str) -> np.ndarray:
     raise ValueError(f"'{name}' has length {len(arr)} but {n} was expected")
 
 
+def as_bool_flags(x: Any, n: int, name: str) -> np.ndarray:
+    """Coerce a bool / sequence of bool to a length-``n`` bool array (length-1 recycles)."""
+    arr = np.asarray(x)
+    if arr.ndim == 0:
+        arr = arr.reshape(1)
+    if arr.ndim != 1 or (arr.size and arr.dtype != np.bool_):
+        raise TypeError(f"'{name}' must be a bool or a one-dimensional sequence of bool")
+    if n == 0:
+        return np.zeros(0, dtype=bool)
+    return recycle(arr, n, name)
+
+
 def as_names(names: Iterable[str | None] | None, n: int) -> np.ndarray | None:
     """Coerce names to an object array of str (``None`` entries become ``""``)."""
     if names is None:

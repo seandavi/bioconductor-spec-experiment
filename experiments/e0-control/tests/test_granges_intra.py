@@ -84,3 +84,10 @@ def test_vector_arguments():
     g = make()
     assert ivs(g.resize([1, 2, 3, 1]))[:3] == [(10, 10), (19, 20), (10, 12)]
     assert ivs(g.shift([0, 1, 2, 3]))[0] == (10, 20)
+
+
+def test_flank_start_argument_must_be_recyclable():
+    g = make()
+    with pytest.raises(ValueError, match="start"):
+        g.flank(2, start=[True, False])
+    assert len(g.flank(2, start=[True, False, True, False])) == 4

@@ -151,8 +151,7 @@ class IRanges:
     def flank(self, width: Any, start: bool | Sequence[bool] = True, both: bool = False, use_names: bool = True) -> IRanges:
         """R ``flank``: ranges adjacent to the start (or end) of each range.
         Negative ``width`` flanks inside the range."""
-        at = np.asarray(start, dtype=bool)
-        at = np.repeat(at, len(self)) if at.ndim == 0 or len(at) == 1 else at
+        at = V.as_bool_flags(start, len(self), "start")
         s, w = _intra.flank_k(self._start, self._width, width, at, both)
         return self._like(s, w, use_names)
 

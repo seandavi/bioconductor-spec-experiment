@@ -112,3 +112,16 @@ def test_promoters():
 def test_empty_input():
     e = IRanges.empty()
     assert len(e.shift(1)) == len(e.narrow(start=1)) == len(e.resize(1)) == len(e.flank(1)) == len(e.promoters()) == 0
+
+
+def test_flank_start_argument_must_be_recyclable():
+    # review finding 4: a wrong-length `start` used to yield ragged start/width arrays
+    x = IRanges([10, 20], width=5)
+    with pytest.raises(ValueError, match="start"):
+        IRanges(10, 20).flank(2, start=[True, False])
+    with pytest.raises(ValueError, match="start"):
+        x.flank(2, start=[True, False, True])
+    with pytest.raises(TypeError):
+        x.flank(2, start=[[True, False]])
+    assert x.flank(2, start=[True, False]).to_tuples() == [(8, 9), (25, 26)]
+    assert x.flank(2, start=[False]).to_tuples() == [(15, 16), (25, 26)]

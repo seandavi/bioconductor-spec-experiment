@@ -343,8 +343,7 @@ class GRanges:
     ) -> GRanges:
         """R ``flank``: ``start=True`` is the upstream side (the end of
         minus-strand ranges)."""
-        at = np.asarray(start, dtype=bool)
-        at = np.repeat(at, len(self)) if at.ndim == 0 or len(at) == 1 else at
+        at = V.as_bool_flags(start, len(self), "start")
         at = np.where(self._neg(ignore_strand), ~at, at)
         return self._intra_result(*_intra.flank_k(self._start, self._width, width, at, both), use_names)
 
