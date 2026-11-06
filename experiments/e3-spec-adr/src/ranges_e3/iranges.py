@@ -8,7 +8,7 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from ranges_e3 import _mcols, _subscript
+from ranges_e3 import _kernels, _mcols, _subscript
 from ranges_e3._types import IntArray
 
 
@@ -154,6 +154,47 @@ class IRanges:
     def _take(self, pos: IntArray) -> Self:
         names = None if self._names is None else [self._names[i] for i in pos]
         return self._new(self._start[pos], self._width[pos], names, _mcols.take(self._mcols, pos))
+
+    # --- intra-range (spec 20-intra.md) ---
+
+    def _like(self, start: IntArray, width: IntArray) -> Self:
+        """Same names/mcols, new coordinates."""
+        return self._new(start, width, self._names, self._mcols)
+
+    def shift(self, shift: Any) -> Self:
+        """INTRA.1."""
+        return self._like(*_kernels.shift(self._start, self._width, per_range(shift, len(self), "shift")))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        """INTRA.2 (positions relative to each range)."""
+        n = len(self)
+        args = [None if v is None else per_range(v, n, k) for k, v in (("start", start), ("end", end), ("width", width))]
+        return self._like(*_kernels.narrow(self._start, self._width, *args))
+
+    def resize(self, width: Any, fix: str = "start") -> Self:
+        """INTRA.3."""
+        code = {"start": _kernels.FIX_START, "end": _kernels.FIX_END, "center": _kernels.FIX_CENTER}
+        if fix not in code:
+            raise ValueError("fix must be 'start', 'end' or 'center'")
+        n = len(self)
+        fixes = np.full(n, code[fix], dtype=np.int64)
+        return self._like(*_kernels.resize(self._start, self._width, per_range(width, n, "width"), fixes))
+
+    def flank(self, width: Any, start: Any = True, both: bool = False) -> Self:
+        """INTRA.4."""
+        n = len(self)
+        at_start = np.broadcast_to(np.asarray(start, dtype=np.bool_), n)
+        return self._like(*_kernels.flank(self._start, self._width, per_range(width, n, "width"), at_start, both))
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200) -> Self:
+        """INTRA.5."""
+        n = len(self)
+        mirror = np.zeros(n, dtype=np.bool_)
+        return self._like(
+            *_kernels.promoters(
+                self._start, self._width, per_range(upstream, n, "upstream"), per_range(downstream, n, "downstream"), mirror
+            )
+        )
 
     def __repr__(self) -> str:
         shown = ", ".join(f"[{s},{e}]" for s, e in zip(self._start[:6], self.end[:6]))
