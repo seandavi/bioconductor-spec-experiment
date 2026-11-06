@@ -19,6 +19,8 @@ Translations (representation only, see e1.md):
 
 from __future__ import annotations
 
+import inspect
+
 import numpy as np
 import polars as pl
 
@@ -26,6 +28,7 @@ from adapter_base import (
     MISSING,
     AdapterBase,
     RVector,
+    UnknownArgument,
     Unsupported,
     p_dataframe,
     p_factor,
@@ -175,11 +178,20 @@ def _attr(x, name: str, op: str):
 def _send(x, method: str, *args, **kw):
     """x.method(*args, **kw) with R values converted and MISSING arguments left out."""
     fn = _attr(x, method, method)
-    return fn(*[_arg(a) for a in args], **{k: _arg(v) for k, v in kw.items() if v is not MISSING})
+    given = {k: v for k, v in kw.items() if v is not MISSING}
+    params = inspect.signature(fn).parameters
+    for k in given:  # an R argument this class's method lacks (e.g. IRanges has no ignore_strand)
+        if k not in params:
+            raise UnknownArgument(k)
+    return fn(*[_arg(a) for a in args], **{k: _arg(v) for k, v in given.items()})
 
 
-def _named_vector(kind: str, values: dict) -> RVector:
-    return RVector(kind, list(values.values()), list(values.keys()))
+def _named_vector(kind: str, x, attr: str) -> RVector:
+    """Per-seqlevel field -> named R vector: GRanges gives a dict keyed by seqlevel, Seqinfo a tuple."""
+    values = _attr(x, attr, attr)
+    if isinstance(values, dict):
+        return RVector(kind, list(values.values()), list(values.keys()))
+    return RVector(kind, list(values), list(_attr(x, "seqnames", attr)))
 
 
 # ---------------------------------------------------------------- projection helpers
@@ -300,7 +312,8 @@ class Adapter(AdapterBase):
         return RVector("int", [len(x)])
 
     def op_seqnames(self, *, x):
-        return _attr(x, "seqnames", "seqnames")
+        names = _attr(x, "seqnames", "seqnames")
+        return RVector("chr", list(names)) if isinstance(names, tuple) else names  # Seqinfo: its seqlevels
 
     def op_strand(self, *, x):
         return _attr(x, "strand", "strand")
@@ -323,16 +336,17 @@ class Adapter(AdapterBase):
         return _attr(x, "seqinfo", "seqinfo")
 
     def op_seqlevels(self, *, x):
-        return RVector("chr", list(_attr(x, "seqlevels", "seqlevels")))
+        attr = "seqnames" if isinstance(x, Seqinfo) else "seqlevels"
+        return RVector("chr", list(_attr(x, attr, "seqlevels")))
 
     def op_seqlengths(self, *, x):
-        return _named_vector("int", _attr(x, "seqlengths", "seqlengths"))
+        return _named_vector("int", x, "seqlengths")
 
     def op_isCircular(self, *, x):
-        return _named_vector("lgl", _attr(x, "is_circular", "isCircular"))
+        return _named_vector("lgl", x, "is_circular")
 
     def op_genome(self, *, x):
-        return _named_vector("chr", _attr(x, "genome", "genome"))
+        return _named_vector("chr", x, "genome")
 
     def op_set_seqinfo(self, *, x, value):
         return _send(x, "set_seqinfo", value)
