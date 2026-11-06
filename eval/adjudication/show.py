@@ -18,6 +18,23 @@ def picks(ids: list[str], k: int = 3) -> list[str]:
     return ids if len(ids) <= k else [ids[i * len(ids) // k] for i in range(k)]
 
 
+def _compact(c: dict) -> str:
+    """Inputs summarised to their fields (lengths for long vectors), then the call."""
+    def lit(v):
+        if isinstance(v, dict) and v.get("kind") in ("IRanges", "GRanges"):
+            keys = ("seqnames", "start", "width", "strand", "names")
+            body = {k: v[k] for k in keys if k in v and v[k] is not None}
+            if v.get("mcols"):
+                body["mcols"] = [n for n, _ in v["mcols"]]
+            if "seqinfo" in v:
+                si = v["seqinfo"]
+                body["si"] = [si["seqnames"], si["seqlengths"], si["isCircular"]]
+            return f"{v['kind']}{json.dumps(body)}"
+        return json.dumps(v)
+    ins = "; ".join(f"{k}={lit(v)}" for k, v in c["inputs"].items())
+    return f"{ins}\n     CALL {json.dumps(c['call'])}"
+
+
 def _short(o, n: int) -> str:
     s = json.dumps(o)
     return s if len(s) < n else s[:n] + "..."
@@ -42,7 +59,7 @@ def main() -> None:
         for cid in picks([r["id"] for r in rs], k):
             c, e, p = resolved[cid], expected[cid], raw[port][cid]
             print("--", cid, scored[port][cid].get("detail"))
-            print("  IN", _short({"inputs": c["inputs"], "call": c["call"]}, 1400))
+            print("  IN", _short(_compact(c), 1400))
             print("  R ", _short(e["result"], 800))
             print("  P ", _short(p.get("result") or p.get("error"), 800))
 
