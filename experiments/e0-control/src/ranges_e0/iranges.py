@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _validate as V
+from . import _intra, _validate as V
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -125,6 +125,39 @@ class IRanges:
     def _like(self, start: np.ndarray, width: np.ndarray, keep_names: bool = True) -> IRanges:
         """New IRanges, same length, keeping names (optional) and mcols."""
         return IRanges._make(start, width, self._names if keep_names else None, self._mcols)
+
+    # ----- intra-range ------------------------------------------------------
+    def shift(self, shift: Any, use_names: bool = True) -> IRanges:
+        """R ``shift``: move every range by ``shift`` (scalar or per-range)."""
+        s, w = _intra.shift_k(self._start, self._width, shift)
+        return self._like(s, w, use_names)
+
+    def narrow(
+        self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True
+    ) -> IRanges:
+        """R ``narrow``: ``start``/``end`` are positions relative to each range
+        (1 = first base; negative counts from the end). Supply ``start``
+        and/or ``end``, or exactly one of them with ``width``."""
+        s, w = _intra.narrow_k(self._start, self._width, start, end, width)
+        return self._like(s, w, use_names)
+
+    def resize(self, width: Any, fix: str | Sequence[str] = "start", use_names: bool = True) -> IRanges:
+        """R ``resize``: set widths, anchoring at ``fix`` = start / end / center."""
+        s, w = _intra.resize_k(self._start, self._width, width, _intra.as_fix(fix, len(self)))
+        return self._like(s, w, use_names)
+
+    def flank(self, width: Any, start: bool | Sequence[bool] = True, both: bool = False, use_names: bool = True) -> IRanges:
+        """R ``flank``: ranges adjacent to the start (or end) of each range.
+        Negative ``width`` flanks inside the range."""
+        at = np.asarray(start, dtype=bool)
+        at = np.repeat(at, len(self)) if at.ndim == 0 or len(at) == 1 else at
+        s, w = _intra.flank_k(self._start, self._width, width, at, both)
+        return self._like(s, w, use_names)
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> IRanges:
+        """R ``promoters``: ``[start - upstream, start + downstream - 1]``."""
+        s, w = _intra.promoters_k(self._start, self._width, upstream, downstream)
+        return self._like(s, w, use_names)
 
     # ----- subsetting / combining ----------------------------------------
     def __getitem__(self, index: Any) -> IRanges:
