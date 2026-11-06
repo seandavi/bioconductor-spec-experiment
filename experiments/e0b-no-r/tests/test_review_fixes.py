@@ -64,3 +64,28 @@ def test_with_mcols_copies() -> None:
     assert x.mcols["v"].to_list() == [1, 2]
 
 
+# --- finding 3: with_seqinfo can drop unused levels --------------------------------
+
+
+def test_with_seqinfo_drops_unused_level() -> None:
+    x = GRanges("chr1", IRanges(start=1, width=3), seqinfo=Seqinfo(["chr1", "chr2"]))
+    y = x.with_seqinfo(Seqinfo(["chr1"]))
+    assert y.seqlevels == ["chr1"] and y.seqnames == ["chr1"]
+
+
+def test_with_seqinfo_drops_level_unused_after_subsetting() -> None:
+    x = GRanges(["a", "b"], IRanges(start=[1, 2], width=1))
+    y = x[[1]].with_seqinfo(Seqinfo(["b"]))
+    assert y.seqnames == ["b"] and y.seqlevels == ["b"]
+    with pytest.raises(ValueError):
+        x[[1]].with_seqinfo(Seqinfo(["a"]))
+
+
+def test_with_seqinfo_empty_object_and_used_level_removed() -> None:
+    e = GRanges([], IRanges(), seqinfo=Seqinfo(["a", "b"]))
+    assert e.with_seqinfo(Seqinfo(["z"])).seqlevels == ["z"]
+    x = GRanges(["a", "b"], IRanges(start=[1, 2], width=1))
+    with pytest.raises(ValueError, match="lacks used seqlevels"):
+        x.with_seqinfo(Seqinfo(["a"]))
+
+

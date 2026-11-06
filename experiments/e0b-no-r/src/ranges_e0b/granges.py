@@ -31,8 +31,13 @@ _STRAND_CODE = {"+": PLUS, "-": MINUS, "*": STAR}
 def _remap(codes: IntArray, old: Seqinfo, new: Seqinfo) -> IntArray:
     if old is new or old.seqnames == new.seqnames:
         return codes
-    mapping = np.array([new.index(n) for n in old.seqnames], dtype=np.int64)
-    return mapping[codes] if len(codes) else codes
+    if len(codes) == 0:
+        return codes
+    # only levels actually used need a home in `new`; unused ones may be dropped
+    mapping = np.zeros(len(old), dtype=np.int64)
+    for u in np.unique(codes):
+        mapping[u] = new.index(old.seqnames[u])
+    return mapping[codes]
 
 
 def _strand_codes(strand: Any, n: int) -> IntArray:
