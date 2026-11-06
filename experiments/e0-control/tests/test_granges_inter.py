@@ -64,7 +64,8 @@ def test_range():
 def test_range_with_other_pools_and_merges_seqinfo():
     a = GRanges("chr1", IRanges(1, 5), "+")
     b = GRanges("chr2", IRanges(7, 9), "+")
-    r = a.range(b)
+    with pytest.warns(UserWarning, match="not in the other"):
+        r = a.range(b)
     assert r.to_tuples() == [("chr1", 1, 5, "+"), ("chr2", 7, 9, "+")] and r.seqlevels == ("chr1", "chr2")
 
 

@@ -282,7 +282,7 @@ class GRanges:
         si = objs[0]._seqinfo
         for o in objs[1:]:
             si = si.merge(o._seqinfo)
-        seq = np.concatenate([_recode(o._seq, o._seqinfo, si) for o in objs]) if len(objs) else None
+        seq = np.concatenate([_recode(o._seq, o._seqinfo, si) for o in objs])
         names = None
         if any(o._names is not None for o in objs):
             names = np.concatenate(
@@ -409,7 +409,8 @@ class GRanges:
     ) -> GRanges:
         """R ``reduce``, per (seqlevel, strand) group; ``revmap`` holds 0-based
         indices into this object."""
-        parts, revs = [], []
+        parts: list[tuple[int, np.ndarray, np.ndarray]] = []
+        revs: list[np.ndarray] = []
         for key, idx in self._groups(ignore_strand).items():
             st, w, rev = _inter.reduce_k(
                 self._start[idx], self._width[idx], min_gapwidth, drop_empty_ranges, with_revmap
@@ -421,7 +422,8 @@ class GRanges:
 
     def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> GRanges:
         """R ``disjoin``, per (seqlevel, strand) group."""
-        parts, revs = [], []
+        parts: list[tuple[int, np.ndarray, np.ndarray]] = []
+        revs: list[np.ndarray] = []
         for key, idx in self._groups(ignore_strand).items():
             st, w, rev = _inter.disjoin_k(self._start[idx], self._width[idx], with_revmap)
             parts.append((key, st, w))
@@ -774,7 +776,7 @@ class GRanges:
         sub = self if subject is None else subject
         n = len(self)
         if len(sub) == 0:
-            return Hits([], [], n, 0) if select == "all" else np.full(n, NO_MATCH, dtype=I64)
+            return Hits(_EMPTY_PAIRS[0], _EMPTY_PAIRS[1], n, 0) if select == "all" else np.full(n, NO_MATCH, dtype=I64)
         oq, os_ = self._overlap_pairs(sub, 0, 0, "any", ignore_strand)
         if subject is None:
             keep = oq != os_

@@ -87,14 +87,18 @@ def overlap_pairs(
         lo = np.searchsorted(ss_sorted, qs - gg, side="left")
         hi = np.searchsorted(ss_sorted, qs + gg, side="right")
     else:
+        # upper bound on the subject start; lower bound from the running maximum of
+        # subject ends (subjects before it all end too early to qualify)
+        cum_end = np.maximum.accumulate(se[order])
         if type == "any":
-            bound = qe + maxgap + 1
+            bound, need_end = qe + maxgap + 1, qs - maxgap - 1
         elif type == "end":
-            bound = qe + gg + 1  # ss <= se + 1 (empty subjects) <= qe + gg + 1
+            bound, need_end = qe + gg + 1, qe - gg  # ss <= se + 1 (empty subjects)
         else:  # within
-            bound = qs
-        lo = np.zeros(nq, dtype=I64)
+            bound, need_end = qs, qe
+        lo = np.searchsorted(cum_end, need_end, side="left")
         hi = np.searchsorted(ss_sorted, bound, side="right")
+        hi = np.maximum(hi, lo)
     counts = (hi - lo).astype(I64)
     qi_parts: list[np.ndarray] = []
     si_parts: list[np.ndarray] = []
