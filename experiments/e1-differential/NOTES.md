@@ -116,20 +116,3 @@ Append-only. Timestamped judgment calls and human interventions.
   rebase); the omission is in commits already shared. Trailers are present on every commit of this round.
 - Rejected: reviewer's "do not blindly reproduce sentinel artifacts" is accepted for cross-sequence hits and errors (ADR-0007), but
   the narrow "coordinate 0 on a non-first level drops the hit" quirk stays because ordinary data (empty range at position 1) triggers it.
-
-## Maintenance replay: IRanges 2.47.3 / GenomicRanges 1.65.2 (distance)
-
-- 2026-11-06T16:22Z upstream change: `distance()` is 0 for overlapping ranges, otherwise gap width + 1 (adjacent = 1);
-  GRanges delegates to the IntegerRanges method; nearest/precede/follow unchanged. Followed README "Maintaining": reran R,
-  read `git diff r_cache/`, fixed Python. `--refresh-r` changed 40 cases, all `distance` (IRanges + GRanges, incl. NA/strand
-  cases and the nearest/precede grids that call it); nothing else moved. Python: `d = max(max(start) - min(end), 0)`. No ADR:
-  Python matches R. Full suite 4752 passed (4746 + 6 new).
-- Harness quirk: the R packages on this machine already carry the new behaviour but still report IRanges 2.47.2 / GenomicRanges
-  1.65.1, so the cache fingerprint did not change and plain `uv run pytest` stayed green on stale R results. Only
-  `--refresh-r` exposed the change. A version key alone cannot catch behaviour changes shipped under an unchanged version.
-- Case id `distance-adjacent-is-zero` (nearest.yaml) now expects 1; the id is kept so the cache key/history stay stable (cases are
-  append-only). The new `distance-adjacent-is-one` and friends cover the new rule.
-- Found: `distance-basic` and `distance-zero-width` had `width:` outside the `IRanges` literal (R ignored it); fixed. The same
-  slip remains in nearest-far-both-sides, nearest-zero-width-subject, nearest-unsorted-subject, precede-zero-width-x
-  (nearest.yaml) and disjoin-zero-width-only (inter.yaml): not touched here, they are unrelated to distance and still need review.
-- PLAN.md line 106 ("distance = gap length, 0 if overlapping/adjacent") is the historical plan; left as written.

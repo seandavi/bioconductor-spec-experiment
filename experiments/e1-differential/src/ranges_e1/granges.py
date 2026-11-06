@@ -892,7 +892,7 @@ class GRanges:
 
     @flags("ignore_strand")
     def distance(self, other: GRanges, ignore_strand: bool = False) -> np.ma.MaskedArray:
-        """Parallel distance (see IRanges.distance); NA when seqnames differ or strands are "+" vs "-" (unless ignored)."""
+        """Parallel gap; NA when seqnames differ or strands are "+" vs "-" (unless ignored)."""
         d = self._ranges.distance(other._ranges)
         n = len(d)
         if n == 0:

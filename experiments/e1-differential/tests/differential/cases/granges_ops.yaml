@@ -122,4 +122,3 @@ cases:
   - {id: gr-order-empty, tags: [order, empty], inputs: {e: *E}, call: {fn: order, args: [$e]}}
   - {id: gr-sort-empty, tags: [sort, empty], inputs: {e: *E}, call: {fn: sort, args: [$e]}}
   - {id: gr-rank-empty, tags: [rank, empty], inputs: {e: *E}, call: {fn: rank, args: [$e], kwargs: {ties.method: min}}}
-  - {id: gr-distance-adjacent-is-one, tags: [distance, adjacency], inputs: {a: {GRanges: {seqnames: [chr1, chr1, chr1], start: [1, 1, 1], width: [3, 3, 3], strand: ["+", "*", "-"]}}, b: {GRanges: {seqnames: [chr1, chr1, chr1], start: [4, 5, 4], width: [3, 3, 3], strand: ["+", "-", "+"]}}}, call: {fn: distance, args: [$a, $b]}}

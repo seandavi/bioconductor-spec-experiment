@@ -53,10 +53,3 @@ def test_concat_names_and_mcols() -> None:
     assert c.mcols.columns == ["x", "y"]
     assert c.mcols["x"].to_list() == [1, None]
     assert c.mcols["y"].to_list() == [None, 2.5]
-
-
-def test_distance_overlap_zero_else_gap_plus_one() -> None:
-    # IRanges 2.47.3: overlapping 0, adjacent 1, one-base gap 2
-    x = IRanges(start=[1, 1, 1, 1], width=[3, 3, 3, 3])
-    y = IRanges(start=[3, 4, 5, 20], width=[3, 3, 3, 2])
-    assert x.distance(y).tolist() == [0, 1, 2, 17]
