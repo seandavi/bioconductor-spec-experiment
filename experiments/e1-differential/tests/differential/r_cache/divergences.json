@@ -1,0 +1,86 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; harness f9ba2de9bb40",
+ "entries": {
+  "div-circ-end-maxgap-alone": {
+   "hash": "e7aa6d85d6c83b97c5af443a01601312c5a76e3d4a173373fb1563070a1ec6a9",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 1,
+     "nRnode": 1
+    },
+    "warnings": []
+   }
+  },
+  "div-circ-end-maxgap-context": {
+   "hash": "1b11d2b532e9c560bdbbf56f7be54372f56b51e025626069e7939f2256df37ad",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "to": [
+      1,
+      3,
+      4,
+      5
+     ],
+     "nLnode": 1,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  },
+  "div-circ-end-maxgap-same-pair-other-context": {
+   "hash": "8e8333295a9c42bbbb91c711956cd734773fe17d5dc4628828e5ff719f670ae3",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5
+     ],
+     "to": [
+      2,
+      3,
+      5,
+      2,
+      3,
+      5,
+      2,
+      3,
+      5,
+      2,
+      3,
+      5,
+      2,
+      3,
+      5
+     ],
+     "nLnode": 5,
+     "nRnode": 5
+    },
+    "warnings": []
+   }
+  }
+ }
+}

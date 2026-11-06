@@ -775,8 +775,8 @@ class GRanges:
             qi, si = nearest_kernel.follow(self.start[qpos] + qa[qpos] * L, subject.end[spool] + sb[spool] * L, True)
         q, s = qpos[qi], spool[si]
         same = qa[q] == sb[s]
-        # R quirk: it offsets each seqlevel by k*maxend and uses k*maxend as sentinels, so a subject
-        # coordinate of 0 (an empty range at 1 for "follow", start 0 for "precede") on any seqlevel
+        # R quirk (kept, ADR-0007): it offsets each seqlevel by k*maxend and uses k*maxend as sentinels, so a
+        # subject coordinate of 0 (an empty range at 1 for "follow", start 0 for "precede") on any seqlevel
         # but the first collides with a sentinel and the whole hit is dropped.
         coord = subject.start[s] if precede_geometry else subject.end[s]
         same &= ~((coord == 0) & (sb[s] >= 1))

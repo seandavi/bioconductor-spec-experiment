@@ -1,0 +1,25 @@
+# Accepted divergences from R that are not tied to a generated red-team case. Each pins Python's value (ADR-linked).
+si_def: &SI {seqnames: [c], seqlengths: [10], is_circular: [true]}
+cases:
+  - id: div-circ-end-maxgap-alone
+    # ADR-0008: with maxgap > 0, R's circular start/end/equal/within hits depend on which engine path runs.
+    tags: [circular, divergence]
+    inputs:
+      q: {GRanges: {seqnames: [c], start: [2], width: [0], seqinfo: *SI}}
+      s: {GRanges: {seqnames: [c], start: [29], width: [1], seqinfo: *SI}}
+    call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: end, maxgap: 3}}
+    divergence: {adr: "0008", python: {"class": "Hits", "from": [1], "to": [1], "nLnode": 1, "nRnode": 1}}
+  - id: div-circ-end-maxgap-context
+    tags: [circular, divergence]
+    inputs:
+      q: {GRanges: {seqnames: [c], start: [2], width: [0], seqinfo: *SI}}
+      s: {GRanges: {seqnames: [c, c, c, c, c], start: [29, 24, 22, -10, 17], width: [1, 1, 1, 0, 8], seqinfo: *SI}}
+    call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: end, maxgap: 3}}
+    divergence: {adr: "0008", python: {"class": "Hits", "from": [1, 1, 1, 1, 1], "to": [1, 2, 3, 4, 5], "nLnode": 1, "nRnode": 5}}
+  - id: div-circ-end-maxgap-same-pair-other-context
+    tags: [circular, divergence]
+    inputs:
+      q: {GRanges: {seqnames: [c, c, c, c, c], start: [2, 2, 2, 2, 2], width: [0, 0, 0, 0, 0], seqinfo: *SI}}
+      s: {GRanges: {seqnames: [c, c, c, c, c], start: [29, 24, 22, -10, 17], width: [1, 1, 1, 0, 8], seqinfo: *SI}}
+    call: {fn: findOverlaps, args: [$q, $s], kwargs: {type: end, maxgap: 3}}
+    divergence: {adr: "0008", python: {"class": "Hits", "from": [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5], "to": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5], "nLnode": 5, "nRnode": 5}}

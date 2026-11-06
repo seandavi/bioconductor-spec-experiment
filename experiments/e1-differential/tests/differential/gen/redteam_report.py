@@ -71,11 +71,13 @@ def main() -> None:
             if bool(failure) != bool(case.spec.get("xfail")):
                 raise RuntimeError(f"{case.id}: stale xfail status: {failure}")
             failures += bool(failure)
-            verdict = ("ADR judgment" if case.spec.get("xfail", "").startswith("Judgment") else "Bug") if failure else "Agrees"
-            p = summary(py) if failure else "same" if "value" in r else "also errors"
+            div = case.spec.get("divergence")
+            verdict = (f"Accepted divergence (ADR-{div['adr']})" if div else
+                       "ADR judgment" if case.spec.get("xfail", "").startswith("Judgment") else "Bug") if (failure or div) else "Agrees"
+            p = summary(py) if (failure or div) else "same" if "value" in r else "also errors"
             rows.append(f"| `{case.id}` | {summary(r)} | {p} | {verdict} |".replace("\n", " "))
         text = f"# Red team: {group}\n\n"
-        text += f"{len(cases)} cases: {len(cases) - failures} agree, {failures} strict expected failures. No accepted differences.\n\n"
+        text += f"{len(cases)} cases: {len(cases) - failures} agree, {failures} strict expected failures. Accepted divergences are pinned to an ADR.\n\n"
         text += "Legend: coordinates are start/width; hits/indices are R's 1-based values; NA is missing.\n"
         text += "Tables abbreviate outputs; the comparator checks complete metadata, strand, and seqinfo.\n"
         text += "'Agrees' includes matching errors. 'ADR judgment' is unresolved, not permission to diverge.\n\n"
