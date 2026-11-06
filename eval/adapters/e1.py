@@ -121,14 +121,15 @@ def _mcols_from_projection(pairs: list) -> pl.DataFrame | None:
     return _frame([(n, _column_from_projection(c)) for n, c in pairs])
 
 
-_KIND_OF_DTYPE = {"b": "lgl", "i": "int", "u": "int", "f": "dbl"}
+_KIND_OF_DTYPE = {"b": "lgl", "i": "int", "u": "int", "f": "dbl", "O": "chr", "U": "chr", "S": "chr"}
 
 
 def _subscript(i, n: int):
     """R `[` subscript (RVector or a nested call's ndarray) -> the port's 0-based Python-style subscript.
 
     The port's subscripts are Python-style (negatives wrap, 0 is an index), so only forms with
-    the same meaning in R are passed: positive integers (shifted) and full-length logicals.
+    the same meaning in R are passed: positive integers (shifted), full-length logicals, and
+    names (the port matches them against `names`; invalid names are its own error).
     """
     if isinstance(i, RVector):
         kind, arr = i.type, _array(i)
@@ -137,7 +138,9 @@ def _subscript(i, n: int):
     else:
         raise Unsupported("subscript:non-vector")
     if kind is None:
-        raise Unsupported("subscript:name")
+        raise Unsupported("subscript:dtype")
+    if kind == "chr":
+        return arr
     if np.ma.getmaskarray(arr).any():
         raise Unsupported("subscript:logical NA" if kind == "lgl" else "subscript:NA")
     arr = np.ma.getdata(arr)
