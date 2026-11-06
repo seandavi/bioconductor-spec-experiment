@@ -212,7 +212,6 @@ class Adapter(AdapterBase):
     port = "biocpy"
     port_packages = ("iranges", "genomicranges", "biocframe", "biocutils", "compressed_lists")
     unsupported_ops = {
-        "seqlevels<-": "no public SeqInfo/GenomicRanges setter with R's match-by-name / drop / add semantics",
         "overlapsAny": "no public overlapsAny equivalent (only find_overlaps / count_overlaps / subset_by_overlaps)",
         "punion": "no public parallel union",
         "psetdiff": "no public parallel set difference",
@@ -407,20 +406,27 @@ class Adapter(AdapterBase):
             raise UnknownArgument(rname)
         return x.set_seqinfo(value)
 
-    def _set_seqinfo_column(self, x: Any, setter: str, value: Any) -> Any:
-        arg = None if value is None else _named_or_val(value)
+    def _set_seqinfo_column(self, x: Any, setter: str, arg: Any) -> Any:
         if isinstance(x, SeqInfo):
             return getattr(x, setter)(arg)
         return x.set_seqinfo(getattr(x.get_seqinfo(), setter)(arg))
 
+    def op_set_seqlevels(self, *, x, value, **kw):
+        # only the port's positional rename (`SeqInfo.set_seqnames`); it has no match-by-name / drop / add form
+        for rname in kw:  # pruning.mode
+            raise UnknownArgument(rname)
+        if not isinstance(value, RVector) or value.names is not None:
+            raise Unsupported("seqlevels<-: only an unnamed character value maps to SeqInfo.set_seqnames")
+        return self._set_seqinfo_column(x, "set_seqnames", value.list())
+
     def op_set_seqlengths(self, *, x, value):
-        return self._set_seqinfo_column(x, "set_seqlengths", value)
+        return self._set_seqinfo_column(x, "set_seqlengths", None if value is None else _named_or_val(value))
 
     def op_set_isCircular(self, *, x, value):
-        return self._set_seqinfo_column(x, "set_is_circular", value)
+        return self._set_seqinfo_column(x, "set_is_circular", None if value is None else _named_or_val(value))
 
     def op_set_genome(self, *, x, value):
-        return self._set_seqinfo_column(x, "set_genome", value)
+        return self._set_seqinfo_column(x, "set_genome", None if value is None else _named_or_val(value))
 
     def op_merge(self, *dots, x, y=MISSING):
         objects = [x] + ([] if y is MISSING else [y]) + list(dots)
