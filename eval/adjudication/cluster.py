@@ -61,6 +61,8 @@ R_ERROR_BUCKETS: list[tuple[str, str]] = [
 PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
     ("rejects_names_padding", r"'names' has length \d+ but \d+ was expected"),
     ("rejects_scalar_genome", r"genome has length 1, expected"),
+    # BiocPy's find_overlaps query_type choices lack R's type="equal"
+    ("type_equal_unavailable", r"'(query_type|equal)' must be one of any, start, end, within"),
     ("rejects_names_padding", r"names has length \d+, expected \d+"),
     # pintersect(resolve.empty=<invalid>) where no empty intersection arises; 'start' is a valid partial match
     ("resolve_empty_validation", r"unknown resolve_empty (?!'start')|'?resolve_empty'? must be"),
@@ -172,6 +174,14 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
             b = "build"
         detail = b or f"{err.get('type')}:{_msg(err.get('message', ''))}"
         cls = f"port_error:{rec.get('phase')}"
+        kw = case["call"]["kwargs"]
+        if op == "coverage" and any(isinstance(kw.get(k), str) for k in ("weight", "shift")):
+            detail = "mcols_column_name_arg"  # weight/shift given as an mcols column name
+        if op == "c" and any(isinstance(a, dict) and any(t in a for t in ("int", "dbl", "chr", "lgl"))
+                             for a in case["call"]["args"]):
+            detail = "c_atomic_operand"  # c(<ranges>, ..., <atomic vector>): R coerces the atomic operand
+        if detail == "type_equal_unavailable" and case["call"]["kwargs"].get("type") != "equal":
+            detail = f"{err.get('type')}:{_msg(err.get('message', ''))}"  # not 'equal': an ordinary choice error
         if detail == "resolve_empty_validation" and _valid_resolve_empty(case["call"]["kwargs"].get("resolve.empty")):
             detail = "rejects_valid_resolve_empty"  # R accepts this value (or its unique partial match) anyway
         if err.get("origin") == "timeout":
@@ -179,6 +189,8 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
     elif scored["rule"] == "row4":
         cls = "r_error_port_value"
         detail = _bucket(exp["result"]["message"], R_ERROR_BUCKETS) or f"other:{_msg(exp['result']['message'])}"
+    elif exp["result"]["kind"] == "vector" and rec["result"].get("kind") == "Hits" and op in ("findOverlaps", "nearest"):
+        cls, detail = "mismatch", "select_result_as_hits"  # R's select= gives a vector; the port value is Hits
     elif scored["rule"] == "R3":
         cls, detail = "mismatch", "R3:" + ",".join(scored["detail"]["kinds"])
         if _equals_linear(case["id"], rec["result"]):

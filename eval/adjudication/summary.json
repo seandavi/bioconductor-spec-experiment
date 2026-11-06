@@ -1,17 +1,17 @@
 {
  "e0": {
   "classes": {
-   "port_bug": 493,
-   "declared_divergence": 503,
+   "port_bug": 492,
+   "declared_divergence": 502,
    "r_accident": 281,
-   "adapter_fault": 72,
+   "adapter_fault": 74,
    "harness_fault": 37
   },
   "classes_heldout": {
-   "port_bug": 120,
+   "port_bug": 119,
    "declared_divergence": 22,
    "r_accident": 35,
-   "adapter_fault": 10,
+   "adapter_fault": 11,
    "harness_fault": 0
   },
   "outcomes": {
@@ -26,8 +26,8 @@
    "supported": 8973,
    "raw_fidelity": 0.7862,
    "supported_fidelity": 0.8455,
-   "adjusted_denominator": 8080,
-   "adjusted_fidelity": 0.939
+   "adjusted_denominator": 8079,
+   "adjusted_fidelity": 0.9391
   },
   "heldout": {
    "pass": 2781,
@@ -35,24 +35,24 @@
    "supported": 2968,
    "raw_fidelity": 0.7923,
    "supported_fidelity": 0.937,
-   "adjusted_denominator": 2901,
-   "adjusted_fidelity": 0.9586
+   "adjusted_denominator": 2900,
+   "adjusted_fidelity": 0.959
   },
   "clusters": 86
  },
  "e0b": {
   "classes": {
-   "port_bug": 1082,
+   "port_bug": 1073,
    "declared_divergence": 459,
    "r_accident": 165,
-   "adapter_fault": 2,
+   "adapter_fault": 11,
    "harness_fault": 60
   },
   "classes_heldout": {
-   "port_bug": 207,
+   "port_bug": 206,
    "declared_divergence": 15,
    "r_accident": 33,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "outcomes": {
@@ -67,8 +67,8 @@
    "supported": 8324,
    "raw_fidelity": 0.6794,
    "supported_fidelity": 0.7876,
-   "adjusted_denominator": 7638,
-   "adjusted_fidelity": 0.8583
+   "adjusted_denominator": 7629,
+   "adjusted_fidelity": 0.8594
   },
   "heldout": {
    "pass": 2510,
@@ -76,24 +76,24 @@
    "supported": 2767,
    "raw_fidelity": 0.7151,
    "supported_fidelity": 0.9071,
-   "adjusted_denominator": 2717,
-   "adjusted_fidelity": 0.9238
+   "adjusted_denominator": 2716,
+   "adjusted_fidelity": 0.9242
   },
-  "clusters": 117
+  "clusters": 116
  },
  "e1": {
   "classes": {
-   "port_bug": 182,
+   "port_bug": 181,
    "declared_divergence": 83,
    "r_accident": 229,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 39,
+   "port_bug": 38,
    "declared_divergence": 41,
    "r_accident": 5,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "outcomes": {
@@ -108,8 +108,8 @@
    "supported": 9115,
    "raw_fidelity": 0.8932,
    "supported_fidelity": 0.9456,
-   "adjusted_denominator": 8801,
-   "adjusted_fidelity": 0.9793
+   "adjusted_denominator": 8800,
+   "adjusted_fidelity": 0.9794
   },
   "heldout": {
    "pass": 2987,
@@ -117,24 +117,24 @@
    "supported": 3074,
    "raw_fidelity": 0.851,
    "supported_fidelity": 0.9717,
-   "adjusted_denominator": 3026,
-   "adjusted_fidelity": 0.9871
+   "adjusted_denominator": 3025,
+   "adjusted_fidelity": 0.9874
   },
   "clusters": 38
  },
  "e2": {
   "classes": {
-   "port_bug": 793,
+   "port_bug": 790,
    "declared_divergence": 178,
    "r_accident": 255,
-   "adapter_fault": 2,
+   "adapter_fault": 5,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 96,
+   "port_bug": 95,
    "declared_divergence": 30,
    "r_accident": 8,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "outcomes": {
@@ -149,8 +149,8 @@
    "supported": 8916,
    "raw_fidelity": 0.7967,
    "supported_fidelity": 0.8623,
-   "adjusted_denominator": 8481,
-   "adjusted_fidelity": 0.9065
+   "adjusted_denominator": 8478,
+   "adjusted_fidelity": 0.9068
   },
   "heldout": {
    "pass": 2896,
@@ -158,17 +158,17 @@
    "supported": 3032,
    "raw_fidelity": 0.8251,
    "supported_fidelity": 0.9551,
-   "adjusted_denominator": 2992,
-   "adjusted_fidelity": 0.9679
+   "adjusted_denominator": 2991,
+   "adjusted_fidelity": 0.9682
   },
-  "clusters": 90
+  "clusters": 89
  },
  "e3": {
   "classes": {
-   "port_bug": 660,
+   "port_bug": 659,
    "declared_divergence": 397,
    "r_accident": 57,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "classes_heldout": {
@@ -190,8 +190,8 @@
    "supported": 8111,
    "raw_fidelity": 0.7249,
    "supported_fidelity": 0.8624,
-   "adjusted_denominator": 7655,
-   "adjusted_fidelity": 0.9138
+   "adjusted_denominator": 7654,
+   "adjusted_fidelity": 0.9139
   },
   "heldout": {
    "pass": 2573,
@@ -202,21 +202,21 @@
    "adjusted_denominator": 2731,
    "adjusted_fidelity": 0.9421
   },
-  "clusters": 85
+  "clusters": 86
  },
  "e4": {
   "classes": {
-   "port_bug": 896,
+   "port_bug": 893,
    "declared_divergence": 147,
    "r_accident": 271,
-   "adapter_fault": 2,
+   "adapter_fault": 5,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 104,
+   "port_bug": 103,
    "declared_divergence": 21,
    "r_accident": 29,
-   "adapter_fault": 2,
+   "adapter_fault": 3,
    "harness_fault": 0
   },
   "outcomes": {
@@ -231,8 +231,8 @@
    "supported": 8488,
    "raw_fidelity": 0.7432,
    "supported_fidelity": 0.845,
-   "adjusted_denominator": 8068,
-   "adjusted_fidelity": 0.8889
+   "adjusted_denominator": 8065,
+   "adjusted_fidelity": 0.8893
   },
   "heldout": {
    "pass": 2645,
@@ -240,24 +240,24 @@
    "supported": 2801,
    "raw_fidelity": 0.7536,
    "supported_fidelity": 0.9443,
-   "adjusted_denominator": 2749,
-   "adjusted_fidelity": 0.9622
+   "adjusted_denominator": 2748,
+   "adjusted_fidelity": 0.9625
   },
-  "clusters": 86
+  "clusters": 85
  },
  "biocpy": {
   "classes": {
-   "port_bug": 0,
+   "port_bug": 2476,
    "declared_divergence": 0,
-   "r_accident": 239,
-   "adapter_fault": 0,
+   "r_accident": 271,
+   "adapter_fault": 337,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 0,
+   "port_bug": 525,
    "declared_divergence": 0,
-   "r_accident": 7,
-   "adapter_fault": 0,
+   "r_accident": 30,
+   "adapter_fault": 56,
    "harness_fault": 0
   },
   "outcomes": {
@@ -272,8 +272,8 @@
    "supported": 8192,
    "raw_fidelity": 0.5293,
    "supported_fidelity": 0.6235,
-   "adjusted_denominator": 7953,
-   "adjusted_fidelity": 0.6423
+   "adjusted_denominator": 7584,
+   "adjusted_fidelity": 0.6735
   },
   "heldout": {
    "pass": 2160,
@@ -281,9 +281,9 @@
    "supported": 2771,
    "raw_fidelity": 0.6154,
    "supported_fidelity": 0.7795,
-   "adjusted_denominator": 2764,
-   "adjusted_fidelity": 0.7815
+   "adjusted_denominator": 2685,
+   "adjusted_fidelity": 0.8045
   },
-  "clusters": 4
+  "clusters": 201
  }
 }

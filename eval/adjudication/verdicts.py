@@ -48,8 +48,20 @@ AF_SEQINFO_CHR = ("GRanges(seqinfo=<character>) is valid R (seqlevels given as n
                   "Seqinfo object only, and the adapters pass the R character vector through (adapters/e0.py, e0b.py, "
                   "e1.py, e2.py, e3.py, biocpy.py op_GRanges), so the port dereferences .seqnames on a str/RVector")
 
+AF_COLUMN_ARG = ("R's coverage(weight=, shift=) accept an mcols column name; the port's coverage takes numbers only for "
+                 "that class (e0 README API table; e0b iranges.py:374 / granges.py:595; e2 iranges.py:358 IRanges weight "
+                 "and both shifts; e4 shift; BiocPy coverage), yet the adapters forward the string instead of raising "
+                 "Unsupported")
+AF_C_ATOMIC = ("R's c(<IRanges>, <IRanges>, 1L) coerces the integer operand to a range; no port's concat accepts a "
+               "non-ranges operand, and the adapters pass the R vector straight in (TypeError / AttributeError inside "
+               "the port's concat)")
+
 RULES: list[tuple[str, str, str, str]] = [
-    (r"\|construct\|port_error:(call|project)\|AttributeError:'(str|RVector)' object has no attribute '(seqnames|_lengths)'", AF,
+    (r"\|coverage\|port_error:call\|mcols_column_name_arg", AF, AF_COLUMN_ARG,
+     "adapter forwards a column-name weight/shift the port API does not take"),
+    (r"\|subset_concat\|port_error:call\|c_atomic_operand", AF, AF_C_ATOMIC,
+     "adapter forwards an atomic c() operand the port API does not take"),
+    (r"\|construct\|port_error:(call|project)\|AttributeError:'(str|RVector)' object has no attribute '(seqnames|_lengths|get_seqnames)'", AF,
      AF_SEQINFO_CHR, "adapter forwards a character seqinfo the port API cannot take (should build a Seqinfo or raise Unsupported)"),
     # ------------------------------------------------------------------ cross-port R accidents
     (r"\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA,
@@ -655,4 +667,49 @@ RULES: list[tuple[str, str, str, str]] = [
      "R GRanges nearest(select='all') keeps only the precede side of an exact tie (e2:NOTES GR.NEAREST.TIE)", "nearest tie rule"),
     (r"^e4\|coverage\|port_error:call\|(TypeError|ValueError)", PB,
      "R accepts coverage(shift=1.5) (truncated), weight/shift as mcols column names", "coverage argument forms"),
+
+    # ------------------------------------------------------------------ biocpy (iranges 0.7.3, genomicranges 0.9.0)
+    (r"^biocpy\|overlaps\|mismatch\|select_result_as_hits", AF,
+     "adapters/biocpy.py:292-296 `_search` projects every BiocFrame result as Hits; for findOverlaps(select='first'|"
+     "'last'|'arbitrary') the port's frame already holds one subject per query, so R's integer vector is a pure "
+     "representation change (adapters/biocpy.md documents projecting it as Hits)", "select= result projected as Hits"),
+    (r"^biocpy\|(overlaps|\*)\|port_error:call\|type_equal_unavailable", AF,
+     "BiocPy find_overlaps/count_overlaps/subset_by_overlaps document query_type in {any, start, end, within}; R's "
+     "type='equal' is a form the port API lacks, so the adapter should raise Unsupported (ADAPTERS.md) instead of "
+     "passing it (adapters/biocpy.py `_OVERLAP_ARGS` type -> query_type)", "type='equal' passed to a port without it"),
+    (r"^biocpy\|(overlaps|nearest|coverage|setops|seqinfo|subset_concat|inter|ordering)\|mismatch\|equals_R_linear\|circular$", PB,
+     R_CIRCULAR_PROBE + "; BiocPy documents no circular limitation", "circular sequences treated as linear"),
+    (r"^biocpy\|nearest\|(mismatch\|diff\|(r_translation_dependent|int32_edge)|port_error:call\|IndexError:only integers.*\|r_translation_dependent)", RA,
+     "probe_translate.py: R's answer moves with the coordinates / overflows near 2^31. " + R_SENTINEL,
+     "R's GRanges sentinel collisions"),
+    (r"^biocpy\|nearest\|r_error_port_value\|na_in_logic\|coord_le0$", RA, R_SENTINEL, "R fails on valid input"),
+    (r"^biocpy\|(overlaps|setops|inter)\|mismatch\|diff\|int32_edge$", RA, R_INT32, "R's int32 arithmetic gives a wrong answer"),
+    (r"^biocpy\|intra\|mismatch\|diff\|int32_edge$", RA, R_INT32_NA + " (BiocPy wraps to negative int32, also wrong)",
+     "R's overflow result is not a contract"),
+    (r"^biocpy\|\*\|r_error_port_value\|length_validation\|int32_edge$", RA, R_INT32, "R errors on valid input at 2^31-1"),
+    (r"^biocpy\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY, "lazy R validation"),
+    (r"^biocpy\|coverage\|mismatch\|num_type", PB,
+     "BiocPy coverage returns float64 arrays for integer coverage (R integer Rle); adapter projects dtype faithfully",
+     "coverage is double"),
+    (r"^biocpy\|overlaps\|mismatch\|(num_type|num_type\+names|nan_as_na)\|-$", PB,
+     "BiocPy count_overlaps returns float64 (R integer) and NaN/names differ", "countOverlaps type"),
+    (r"^biocpy\|nearest\|port_error:call\|IndexError:only integers", PB,
+     "GenomicRanges.precede/follow crash inside the port (genomicranges/GenomicRanges.py:2578, 2658 `ret_result[q]`); "
+     "reproduced directly in the port venv", "GRanges precede/follow crash"),
+    (r"^biocpy\|\*\|port_error:call\|rejects_recycling", PB,
+     "R recycles start/width/names/mcols (and NA-pads names); BiocPy requires equal lengths, undocumented", "no recycling"),
+    (r"^biocpy\|(seqinfo|setops|subset_concat|inter|overlaps|ordering)\|mismatch\|(seqinfo_fields|seqinfo|seqinfo\+mcols)", PB,
+     "BiocPy merge_SeqInfo / set ops / c() drop seqlengths, isCircular and genome that R merges (seqinfo-merge-basic: "
+     "R lengths 1,5,7; port 1,NA,7) and return an empty Seqinfo for empty results", "Seqinfo merge loses fields"),
+    (r"^biocpy\|(seqinfo|setops|subset_concat|inter|overlaps|nearest)\|r_error_port_value\|seqinfo_incompatible", PB,
+     "R errors on incompatible seqlengths/circularity/genome; BiocPy merges silently (keeps NA)", "no seqinfo conflict check"),
+    (r"^biocpy\|coverage\|port_error:call\|TypeError:int\(\) argument", PB,
+     "the adapter passes NA weights as None (faithful); BiocPy coverage crashes converting None to int", "NA weights crash"),
+    (r"^biocpy\|coverage\|mismatch\|diff\|na_arg$", PB, "BiocPy counts masked (NA) weights as 0; R's local answer is NA",
+     "NA weights treated as 0"),
+    (r"^biocpy\|", PB,
+     "BiocPy's READMEs promise the Bioconductor semantics ('Python implementation of the IRanges Bioconductor package'; "
+     "inclusive ends 'to be consistent with Bioconductor') and declare no divergence; the examined cases show the "
+     "port's own behaviour (validation, crashes, metadata, strand/zero-width rules) differing from R",
+     "BiocPy behaviour differs from R (no declared reason)"),
 ]
