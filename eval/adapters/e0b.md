@@ -2,10 +2,10 @@
 
 Port: `ranges_e0b` (frozen). Index base: 0-based positional indices, `NO_HIT = -1` for NA; coordinates 1-based.
 
-## Unsupported ops (4 of 56 whole-op; counts below are ops.json ops)
+## Unsupported ops (4 of 57 in ops.json)
 
 `seqlevels<-`, `seqlengths<-`, `isCircular<-`, `genome<-`: the port has no setters, only `GRanges.with_seqinfo`.
-The other 52 ops have an `op_*`.
+The other 53 ops have an `op_*`.
 
 ## Unsupported arguments / forms (per case, `unsupported`)
 
