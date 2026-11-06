@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:31:25-0500"
+  },
+  "cases": {
+    "ir.union.basic": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20, 30]},
+        "width": {"$int": [8, 5, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.reversed": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20, 30]},
+        "width": {"$int": [8, 5, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.self": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.adjacent": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [7, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.drops-names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [7, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.basic": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12]},
+        "width": {"$int": [3, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.reversed": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12]},
+        "width": {"$int": [3, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.self": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.disjoint": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4]},
+        "width": {"$int": [2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.touching": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4, 7]},
+        "width": {"$int": [2, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.multi-to-one": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4, 7]},
+        "width": {"$int": [2, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.basic": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 14, 20]},
+        "width": {"$int": [2, 2, 1, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.reversed": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [6, 30]},
+        "width": {"$int": [3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.self": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.split": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [3, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.minus-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.empty-left": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12, 30]},
+        "width": {"$int": [6, 2, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.empty-both": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.empty-left": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.zero-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.union.zero-width-with-x": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.intersect.zero-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.setdiff.zero-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.overlap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.pairs": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20, 5, 7]},
+        "width": {"$int": [8, 5, 14, 3, 6]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.gap-error": {
+      "error": {
+        "message": "some pair of ranges have a gap within the 2 members of the pair.\n  Use 'fill.gap=TRUE' to enforce their union by filling the gap.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.punion.fill-gap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [8, 5, 14]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.adjacent": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4]},
+        "width": {"$int": [4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.keeps-names": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [5, 5]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.overlap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12, 20]},
+        "width": {"$int": [3, 2, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.default-nonoverlap": {
+      "error": {
+        "message": "some intersections produce ambiguous empty ranges.\n  Use argument 'resolve.empty' to resolve them.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.pintersect.max-start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12, 30]},
+        "width": {"$int": [3, 2, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.self": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.zero-width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 12, 20, 5, 11]},
+        "width": {"$int": [3, 2, 0, 0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.adjacent": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4]},
+        "width": {"$int": [4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.pintersect.keeps-names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [5, 5]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.psetdiff.single": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4]},
+        "width": {"$int": [0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.psetdiff.pairs": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 10, 12, 10, 10, 10, 10, 10]},
+        "width": {"$int": [3, 2, 3, 3, 0, 0, 5, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 8,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.psetdiff.strictly-inside": {
+      "error": {
+        "message": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.psetdiff.zero-width-inside": {
+      "error": {
+        "message": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.psetdiff.x-vs-y-error": {
+      "error": {
+        "message": "some ranges in 'y' have their end points strictly inside\n  the range in 'x' that they need to be subtracted from.\n  Cannot subtract them.",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.psetdiff.empty-result": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 10]},
+        "width": {"$int": [0, 0]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.punion.no-recycle-right": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.psetdiff.no-recycle": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.pintersect.no-recycle-left": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.punion.len-mismatch": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.pintersect.len-mismatch": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.psetdiff.len-mismatch": {
+      "error": {
+        "message": "'x' and 'y' must have the same length",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.punion.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    }
+  }
+}
