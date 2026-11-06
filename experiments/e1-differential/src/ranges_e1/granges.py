@@ -251,15 +251,19 @@ class GRanges:
         return self._copy(mcols=_meta.check_mcols(mcols, len(self)))
 
     def set_seqinfo(self, seqinfo: Seqinfo) -> Self:
-        """Replace seqinfo; the new one must contain every sequence in use (same names)."""
+        """Replace seqinfo wholesale (R's `seqinfo<-` without `new2old`).
+
+        The new seqlevels must start with the current ones, in the same order; levels may only be
+        appended. Reordering, dropping or renaming levels is an error (use a new GRanges).
+        """
         if not isinstance(seqinfo, Seqinfo):
             raise TypeError("'seqinfo' must be a Seqinfo")
-        index = {s: i for i, s in enumerate(seqinfo.seqnames)}
-        used = {self._seqinfo.seqnames[i] for i in self._seq}
-        if not used <= set(index):
-            raise ValueError("the supplied seqinfo lacks sequences in use")
-        remap = np.array([index.get(s, -1) for s in self._seqinfo.seqnames], dtype=np.int32)
-        return self._copy(seq=remap[self._seq], seqinfo=seqinfo, check=True)
+        old = self._seqinfo.seqnames
+        if seqinfo.seqnames[: len(old)] != old:
+            if set(old) == set(seqinfo.seqnames):
+                raise ValueError("The seqlevels in the supplied Seqinfo object are not in the same order as the seqlevels in 'x'.")
+            raise ValueError("The seqlevels in the supplied Seqinfo object are not the same as the seqlevels in 'x'.")
+        return self._copy(seqinfo=seqinfo, check=True)
 
     def _with_seqinfo_fields(self, what: str, value: Any) -> Self:
         si = self._seqinfo
@@ -607,7 +611,7 @@ class GRanges:
 
     def _pairs(
         self, subject: GRanges, maxgap: int, minoverlap: int, type_: str, ignore_strand: bool
-    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray | None]:
         """Overlap pairs plus, per query, whether R's engine walked an NCList built on the query.
 
         R runs the engine per seqlevel and builds the NCList on the shorter side of each group
@@ -617,12 +621,84 @@ class GRanges:
         n_lev = len(si)
         nq = np.bincount(qa, minlength=n_lev)
         ns = np.bincount(sb, minlength=n_lev)
-        q, s = overlaps.find(
-            self.start + qa * self._LIFT, self.width, subject.start + sb * self._LIFT, subject.width,
-            maxgap, minoverlap, type_, ncl_order=(nq >= ns)[sb],
-        )
+        ncl = (nq >= ns)[sb]
+        circ = np.array([c is True and l is not None and l > 0 for c, l in zip(si.is_circular, si.seqlengths)] or [False])
+        circ_len = np.array([l if k else 0 for l, k in zip(si.seqlengths, circ)] or [0], dtype=np.int64)
+        found: np.ndarray | None = None
+        if circ[qa].any() or circ[sb].any():
+            q, s, found = self._circular_pairs(subject, qa, sb, circ_len, maxgap, minoverlap, type_, ncl)
+        else:
+            q, s = overlaps.find(
+                self.start + qa * self._LIFT, self.width, subject.start + sb * self._LIFT, subject.width,
+                maxgap, minoverlap, type_, ncl_order=ncl,
+            )
         ok = self._strand_ok(subject._strand, q, s, ignore_strand)
-        return q[ok], s[ok], (nq < ns)[qa]
+        return q[ok], s[ok], (nq < ns)[qa], None if found is None else found[ok]
+
+    def _circular_pairs(
+        self, subject: GRanges, qa: np.ndarray, sb: np.ndarray, circ_len: np.ndarray,
+        maxgap: int, minoverlap: int, type_: str, ncl: np.ndarray,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Overlaps where circular sequences repeat with period L: q hits s if it hits any copy s + k*L.
+
+        Both sides are first moved into the first circle (start in 1..L, as R does) so that only a
+        few copies need testing; hits from all copies are merged and ordered like the linear engine.
+        """
+        Lq, Ls = circ_len[qa], circ_len[sb]
+
+        def first_circle(start: np.ndarray, L: np.ndarray) -> np.ndarray:
+            safe = np.where(L > 0, L, 1)
+            return np.where(L > 0, start - ((start - 1) // safe) * safe, start)
+
+        qs, ss = first_circle(self.start, Lq), first_circle(subject.start, Ls)
+        qlift, slift = qs + qa * self._LIFT, ss + sb * self._LIFT
+        widest = int(max(self.width.max(initial=0), subject.width.max(initial=0)))
+        minL = int(circ_len[circ_len > 0].min())
+        reach = (widest + max(maxgap, 0) + 1) // minL + 2
+        all_q: list[np.ndarray] = []
+        all_s: list[np.ndarray] = []
+        all_c: list[np.ndarray] = []
+        copy_order = sorted(range(-reach, reach + 1), key=lambda k: (abs(k), k))  # 0 first, then -1, +1, ...
+        for k in copy_order:
+            use = np.flatnonzero(Ls > 0) if k else np.arange(len(ss))
+            if len(use) == 0:
+                continue
+            q, s = overlaps.find(qlift, self.width, slift[use] + k * Ls[use], subject.width[use], maxgap, minoverlap, type_)
+            all_q.append(q)
+            all_s.append(use[s])
+            all_c.append(np.full(len(q), copy_order.index(k), dtype=np.int64))
+        q = np.concatenate(all_q) if all_q else np.empty(0, dtype=np.int64)
+        s = np.concatenate(all_s) if all_s else np.empty(0, dtype=np.int64)
+        if type_ == "equal" and maxgap <= 0:
+            # R compares both ends modulo L independently, so "equal" tolerates widths that differ by a multiple of L
+            qi, si_ = np.meshgrid(np.arange(len(qs)), np.arange(len(ss)), indexing="ij")
+            same_level = (qa[qi] == sb[si_]) & (Lq[qi] > 0)
+            sq, ssub = qi[same_level], si_[same_level]
+            L = Lq[sq]
+            res = ((self.start[sq] - subject.start[ssub]) % L == 0) & ((self.end[sq] - subject.end[ssub]) % L == 0)
+            extra_q, extra_s = sq[res], ssub[res]
+            if minoverlap > 0:  # keep only pairs some copy overlaps by enough
+                have = set(zip(q.tolist(), s.tolist()))
+                keep_extra = np.array([(a_, b_) in have for a_, b_ in zip(extra_q.tolist(), extra_s.tolist())], dtype=bool)
+                extra_q, extra_s = extra_q[keep_extra], extra_s[keep_extra]
+            q, s = np.concatenate([q, extra_q]), np.concatenate([s, extra_s])
+            c = np.concatenate([np.concatenate(all_c) if all_c else np.empty(0, dtype=np.int64), np.zeros(len(extra_q), dtype=np.int64)])
+        else:
+            c = np.concatenate(all_c) if all_c else np.empty(0, dtype=np.int64)
+        key = q * (len(subject) + 1) + s
+        first = np.lexsort((c, key))  # earliest copy that produced each pair
+        key, c = key[first], c[first]
+        keep = np.concatenate([[True], key[1:] != key[:-1]]) if len(key) else np.zeros(0, dtype=bool)
+        key, c = key[keep], c[keep]
+        q, s = key // (len(subject) + 1), key % (len(subject) + 1)
+        # circular groups report hits by subject index; linear ones keep the NCList order
+        engine = ncl[s] & (Ls[s] == 0)
+        order = np.lexsort((s, np.where(engine, -subject.width[s], 0), np.where(engine, subject.start[s], 0), q))
+        # "found first" rank (copy order, then NCList order) decides select="arbitrary" on circular sequences
+        found = np.lexsort((s, -subject.width[s], ss[s], c, q))
+        rank = np.empty(len(q), dtype=np.int64)
+        rank[found] = np.arange(len(q))
+        return q[order], s[order], rank[order]
 
     @flags("ignore_strand", "drop_self", "drop_redundant")
     def find_overlaps(
@@ -639,11 +715,24 @@ class GRanges:
         """Overlaps with `subject` (None = self); same seqname and compatible strand required."""
         type, select, gap, minov = overlaps.normalize_args(type, select, maxgap, minoverlap)
         subj = self if subject is None else subject
-        q, s, shorter = self._pairs(subj, gap, minov, type, ignore_strand)
-        return overlap_result(
+        q, s, shorter, found = self._pairs(subj, gap, minov, type, ignore_strand)
+        result = overlap_result(
             q, s, len(self), len(subj), select=select, self_hits=subject is None,
             drop_self=drop_self, drop_redundant=drop_redundant, query_is_shorter=shorter,
         )
+        if select == "arbitrary" and found is not None and subject is not None:
+            order = np.lexsort((found, q))  # on circular queries the first-found hit wins
+            first = order[np.concatenate([[True], q[order][1:] != q[order][:-1]])] if len(q) else order
+            pick = np.ma.getdata(result).copy()
+            circular_q = self._circular_query_mask(subj) & ~shorter  # query-shorter groups keep the last-seen rule
+            pick[q[first][circular_q[q[first]]]] = s[first][circular_q[q[first]]]
+            result = np.ma.masked_array(pick, mask=np.ma.getmaskarray(result))
+        return result
+
+    def _circular_query_mask(self, subject: GRanges) -> np.ndarray:
+        si, qa, _ = self._merged_with(subject)
+        circ = np.array([c is True and l is not None and l > 0 for c, l in zip(si.is_circular, si.seqlengths)] or [False])
+        return circ[qa]
 
     @flags("ignore_strand")
     def count_overlaps(

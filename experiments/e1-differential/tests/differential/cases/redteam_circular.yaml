@@ -49,7 +49,6 @@ cases:
     - $y
     kwargs:
       type: any
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-start
   tags:
   - redteam
@@ -80,7 +79,6 @@ cases:
     - $y
     kwargs:
       type: end
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-within
   tags:
   - redteam
@@ -125,7 +123,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-overlapsAny
   tags:
   - redteam
@@ -140,7 +137,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-subsetByOverlaps
   tags:
   - redteam
@@ -155,7 +151,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-nearest
   tags:
   - redteam
@@ -275,7 +270,6 @@ cases:
     - $y
     kwargs:
       select: all
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-nearest-origin-adjacent
   tags:
   - redteam
@@ -322,7 +316,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-invert
   tags:
   - redteam
@@ -338,7 +331,6 @@ cases:
     - $y
     kwargs:
       invert: true
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-minoverlap
   tags:
   - redteam
@@ -354,7 +346,6 @@ cases:
     - $y
     kwargs:
       minoverlap: 2
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-opposite
   tags:
   - redteam
@@ -414,7 +405,6 @@ cases:
     - $y
     kwargs:
       ignore.strand: true
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-linear-control
   tags:
   - redteam
@@ -577,7 +567,6 @@ cases:
     - $y
     kwargs:
       type: equal
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-shift-start
   tags:
   - redteam
@@ -608,7 +597,6 @@ cases:
     - $y
     kwargs:
       type: start
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-shift-within
   tags:
   - redteam
@@ -639,7 +627,6 @@ cases:
     - $y
     kwargs:
       type: within
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-zero-interior
   tags:
   - redteam
@@ -669,7 +656,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-zero-boundary
   tags:
   - redteam
@@ -743,7 +729,6 @@ cases:
     - $x
     - $y
     kwargs: {}
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-self-drops
   tags:
   - redteam
@@ -774,7 +759,6 @@ cases:
     - $x
     kwargs:
       drop.self: true
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-self-redundant
   tags:
   - redteam
@@ -806,7 +790,6 @@ cases:
     kwargs:
       drop.self: true
       drop.redundant: true
-  xfail: 'Bug: GRanges overlap search ignores circular seqinfo; origin/periodic hits are lost.'
 - id: rt-circ-origin-coverage
   tags:
   - redteam

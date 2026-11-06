@@ -1175,7 +1175,6 @@ cases:
           - 20
           - 10
   check_warnings: true
-  xfail: 'Judgment/ADR needed: Python implicitly remaps or drops unused levels; R requires explicit mapping.'
 - id: rt-meta-gr-set-seqinfo-drop-unused
   tags:
   - redteam
@@ -1195,7 +1194,6 @@ cases:
           seqlengths:
           - 10
   check_warnings: true
-  xfail: 'Judgment/ADR needed: Python implicitly remaps or drops unused levels; R requires explicit mapping.'
 - id: rt-meta-gr-set-seqinfo-drop-used
   tags:
   - redteam
