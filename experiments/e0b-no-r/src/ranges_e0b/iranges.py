@@ -6,9 +6,10 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import intra, ordering
+from . import inter, intra, ordering
 from ._sew import (
     IntArray,
+    empty_int,
     concat_mcols,
     concat_names,
     normalize_mcols,
@@ -203,3 +204,56 @@ class IRanges:
     def unique(self) -> Self:
         """Drop repeats, keeping first occurrences in original order."""
         return self[~self.duplicated()]
+
+    # --- inter-range ---------------------------------------------------------
+    # Results carry no names or mcols.
+
+    def _group0(self) -> IntArray:
+        return np.zeros(len(self), dtype=np.int64)
+
+    @classmethod
+    def _from_ends(cls, s: IntArray, e: IntArray) -> Self:
+        return cls._new(s, e - s + 1)
+
+    def range(self) -> Self:
+        """Single range [min start, max end] (empty input -> empty)."""
+        s, e, _ = inter.range_kernel(self._start, self.end, self._group0())
+        return self._from_ends(s, e)
+
+    def reduce(
+        self,
+        min_gapwidth: int = 1,
+        drop_empty_ranges: bool = False,
+        with_revmap: bool = False,
+    ) -> Any:
+        """Merge overlapping ranges and ranges separated by a gap < `min_gapwidth`.
+
+        With `with_revmap=True` returns `(IRanges, list[ndarray])`; the lists hold
+        0-based indices of the input ranges merged into each output range.
+        """
+        s, e, _, revmap = inter.reduce_kernel(
+            self._start, self.end, self._group0(), min_gapwidth, drop_empty_ranges, with_revmap
+        )
+        out = self._from_ends(s, e)
+        return (out, revmap) if with_revmap else out
+
+    def gaps(self, start: int | None = None, end: int | None = None) -> Self:
+        """Positions in [start, end] not covered; default bounds are min start / max end."""
+        lo = start if start is not None else (int(self._start.min()) if len(self) else None)
+        hi = end if end is not None else (int(self.end.max()) if len(self) else None)
+        if lo is None or hi is None:
+            return self._from_ends(empty_int(), empty_int())
+        s, e, _ = inter.gaps_kernel(
+            self._start,
+            self.end,
+            self._group0(),
+            np.zeros(1, dtype=np.int64),
+            np.array([lo], dtype=np.int64),
+            np.array([hi], dtype=np.int64),
+        )
+        return self._from_ends(s, e)
+
+    def disjoin(self) -> Self:
+        """Disjoint pieces, split wherever any range starts or ends."""
+        s, e, _ = inter.disjoin_kernel(self._start, self.end, self._group0())
+        return self._from_ends(s, e)
