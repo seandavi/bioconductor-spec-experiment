@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _inter, _intra, _order, _validate as V
+from . import _inter, _intra, _order, _setops, _validate as V
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -192,6 +192,40 @@ class IRanges:
         if rev is not None:
             mcols = pl.DataFrame({"revmap": pl.Series("revmap", [r.tolist() for r in rev], dtype=pl.List(pl.Int64))})
         return IRanges._make(s, w, None, mcols)
+
+    # ----- set operations ---------------------------------------------------
+    def union(self, other: IRanges) -> IRanges:
+        """R ``union``: reduced ranges covering positions in either input."""
+        return IRanges._make(*_setops.union_k(self._start, self._width, other._start, other._width))
+
+    def intersect(self, other: IRanges) -> IRanges:
+        """R ``intersect``: reduced ranges covering positions in both inputs."""
+        return IRanges._make(*_setops.intersect_k(self._start, self._width, other._start, other._width))
+
+    def setdiff(self, other: IRanges) -> IRanges:
+        """R ``setdiff``: reduced ranges covering positions in self but not other."""
+        return IRanges._make(*_setops.setdiff_k(self._start, self._width, other._start, other._width))
+
+    def _pnames(self, other: IRanges) -> np.ndarray | None:
+        return self._names if self._names is not None else other._names
+
+    def punion(self, other: IRanges, fill_gap: bool = False) -> IRanges:
+        """R ``punion``: elementwise union; a gap inside a pair is an error
+        unless ``fill_gap``."""
+        s, w = _setops.punion_k(self._start, self._width, other._start, other._width, fill_gap)
+        return IRanges._make(s, w, self._pnames(other))
+
+    def pintersect(self, other: IRanges, resolve_empty: str = "none") -> IRanges:
+        """R ``pintersect``: elementwise intersection. Disjoint non-adjacent
+        pairs are ambiguous: error with ``"none"``; ``"max.start"`` /
+        ``"start.x"`` pick the position of the resulting empty range."""
+        s, w = _setops.pintersect_k(self._start, self._width, other._start, other._width, resolve_empty)
+        return IRanges._make(s, w, self._pnames(other))
+
+    def psetdiff(self, other: IRanges) -> IRanges:
+        """R ``psetdiff``: elementwise difference; error if it would split a range."""
+        s, w = _setops.psetdiff_k(self._start, self._width, other._start, other._width)
+        return IRanges._make(s, w, self._pnames(other))
 
     # ----- ordering ---------------------------------------------------------
     def _order_keys(self) -> list[np.ndarray]:

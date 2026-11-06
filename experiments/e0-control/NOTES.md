@@ -16,3 +16,30 @@ Format: `## YYYY-MM-DD HH:MM — topic`.
 - R's `rank()` on IRanges errors unless `ties.method` is given explicitly
   (checked ad hoc); plan sets the Python default to `"first"`.
 - No human intervention so far.
+
+## 2026-11-05 23:20 — implementer: stages 1–5 findings and deviations from PLAN.md
+
+- Constructor: `IRanges(5)` (start only) = width 1 (R behaviour); inconsistent
+  start/end/width errors; only length-1 args are recycled (R also recycles
+  other lengths with a warning — not reproduced). Fractional floats rejected.
+- Zero-column polars frames have no height, so "no mcols" is `pl.DataFrame()`
+  and `take_rows` is a no-op for it.
+- `narrow`: offsets are relative to each range and never widen it (R's
+  `allow.nonnarrowing=FALSE`); `width` needs exactly one of start/end.
+- `resize(fix="center")`: `start + floor((w - new_w)/2)` (checked odd/even/zero-width).
+- **PLAN.md was wrong** about `reduce(with_revmap=True)`: revmap entries come
+  in (start, end, index) sweep order, not ascending index (R: `IRanges(c(5,1,3),c(6,2,8))`
+  -> revmap `2 3 1`). `disjoin` revmap *is* ascending.
+- `reduce`: default `drop_empty_ranges=FALSE`; empty ranges join the sweep, so
+  an isolated one survives and one touching/inside a real range is absorbed.
+  Merge rule `start <= running_max_end + min_gapwidth`.
+- `gaps`: missing bounds default to the first start / last end of the
+  *non-empty* reduced ranges; only-empty input with a missing bound -> no gaps.
+- `disjoin`: empty ranges contribute a breakpoint at their start (R splits
+  `1-4` at an empty `3-2`) but are never covered.
+- Set ops (`union/intersect/setdiff`) are position-set algebra returning
+  reduced non-empty ranges; no names/mcols. `p*` ops copy R's rules (checked
+  from the R source for the formulae, adjacent pairs give a definite empty
+  `pintersect`).
+- `rank` default `ties_method="first"` (R: must be specified); `order(decreasing=True)`
+  keeps ties in original order, like R.
