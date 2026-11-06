@@ -1,0 +1,18 @@
+{
+ "port": "e0b",
+ "tag": "replay/e0b-no-r",
+ "sha_before": "ae37705",
+ "sha_after": "ae37705",
+ "clean_before": true,
+ "clean_after": true,
+ "adapter_sha256": "7c767f2273df5d6be78c476d76239f0739c0d8f70d01d1dcc10ce4a4f7deefe1",
+ "lock_sha256": "7bcba68bac4070bdb6cff417467bddfd6a54763c0cf4de69ebea4369eb8a7069",
+ "run_seconds": 4.5,
+ "oracle_versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6; Seqinfo 1.3.0; BiocGenerics 0.59.12; jsonlite 2.0.0",
+ "outcomes": {
+  "pass": 6539,
+  "port_error_unexpected": 627,
+  "mismatch": 950,
+  "unsupported": 1534
+ }
+}
