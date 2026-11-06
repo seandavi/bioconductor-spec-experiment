@@ -90,3 +90,29 @@ Append-only. Timestamped judgment calls and human interventions.
   Fresh-R new-case run: 67 passed, 52 xfailed. Cache-only full run: 3888 passed,
   52 xfailed. Unmasked origin-overlap case fails as expected. Regeneration and
   compileall pass. No source edits or accepted ADRs; independent review pending.
+
+## Review round (independent review + red team)
+
+- 2026-11-06 findings 1-12 handled; commits reference finding numbers. Tests: 4746 pass, 0 xfail.
+- Finding 1 (cache fingerprint): one fingerprint = R versions + digest of the R scripts, persisted and compared;
+  offline mode checks the script digest. Unit tests in `tests/unit/test_cache_lifecycle.py`.
+- Finding 2 (immutability): arrays are backed by immutable `bytes` buffers; accessors return unwritable views; mcols are cloned at
+  every public boundary. Tests in `tests/unit/test_immutability.py`.
+- Findings 4/5/8/9/10/11/7: short mcols recycle (warning when not a multiple), recycled GRanges coordinates recycle names, flank
+  rejects masked logicals, literal strand "NA"/numeric circularity/numeric Seqinfo names are errors, `IRanges()`/`GRanges()` are
+  empty, blank names never match a subscript, pintersect replaces an existing `hit` column.
+- Finding 6 (coverage NA): reviewer suggested local NA effects; R does not do that. Reverse-engineered on 4000 random layouts:
+  R has two engines ("sort" iff width >= 4 * length(x), else "hash") and NA stays local only if the ranges form a partition of
+  1..width, otherwise everything from the first NA range's start is NA. Implemented exactly (0/4000 mismatches) rather than the
+  reviewer's local-NA suggestion; it is what R does.
+- Finding 3 (circular): hits on any copy s + kL after moving both sides to the first circle; circular hits are ordered by
+  subject index; `equal` is start and end modulo L independently; `arbitrary` = first found by (copy order 0,-1,+1,.., then
+  NCList order), or last-seen when the query side is shorter. Remaining engine-path-dependent maxgap behaviour: ADR-0008.
+- Finding 12: `seqinfo<-` now follows R (levels may only be appended; no ADR needed). Negative-coordinate nearest family: ADR-0007.
+- Harness bugs found while fixing: (a) R literal decoder always passed strand "*" so every empty GRanges input errored in R and
+  ~30 cases were vacuous (both sides erred); (b) `grid_seqinfo` called nearest with select="first" (R error, 30 vacuous cases).
+  Both fixed; GRanges precede/follow with an empty side return empty Hits and nearest an all-NA logical vector, as R.
+- Rejected: "four historical stage commits omit the attribution trailer" -- history may not be rewritten (PROTOCOL: no amend, no
+  rebase); the omission is in commits already shared. Trailers are present on every commit of this round.
+- Rejected: reviewer's "do not blindly reproduce sentinel artifacts" is accepted for cross-sequence hits and errors (ADR-0007), but
+  the narrow "coordinate 0 on a non-first level drops the hit" quirk stays because ordinary data (empty range at position 1) triggers it.

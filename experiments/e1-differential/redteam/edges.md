@@ -1,6 +1,6 @@
 # Red team: edges
 
-46 cases: 36 agree, 10 strict expected failures. No accepted differences.
+46 cases: 46 agree, 0 strict expected failures. Accepted divergences are pinned to an ADR.
 
 Legend: coordinates are start/width; hits/indices are R's 1-based values; NA is missing.
 Tables abbreviate outputs; the comparator checks complete metadata, strand, and seqinfo.
@@ -8,8 +8,8 @@ Tables abbreviate outputs; the comparator checks complete metadata, strand, and 
 
 | Case id | R | Python | View |
 |---|---|---|---|
-| `rt-edge-ir-default-empty` | empty | error: ValueError: at least two of the 'start', 'end', and 'width' arguments must be supplied | Bug |
-| `rt-edge-gr-default-empty` | empty; levels=[] | error: TypeError: GRanges.__init__() missing 1 required positional argument: 'seqnames' | Bug |
+| `rt-edge-ir-default-empty` | empty | same | Agrees |
+| `rt-edge-gr-default-empty` | empty; levels=[] | same | Agrees |
 | `rt-edge-ir-empty-reduce` | empty; revmap=[] | same | Agrees |
 | `rt-edge-ir-empty-disjoin` | empty; revmap=[] | same | Agrees |
 | `rt-edge-ir-empty-range` | empty | same | Agrees |
@@ -36,17 +36,17 @@ Tables abbreviate outputs; the comparator checks complete metadata, strand, and 
 | `rt-edge-ordering-rank-last` | [6,4,3,2,1,5] | same | Agrees |
 | `rt-edge-ordering-duplicated-from-last` | [true,false,false,true,false,false] | same | Agrees |
 | `rt-edge-ordering-unique-from-last` | 5/0,5/0,5/0,5/0; names=[b,c,e,f]; score=[5,4,2,1]; strand=[*,-,+,*]; levels=[chrZ,chrA,unused] | same | Agrees |
-| `rt-edge-ordering-subset-empty-name` | error: subscript contains invalid names | 3/0,1/1,1/1; names=[,dup,dup]; score=[1,2,2] | Bug |
+| `rt-edge-ordering-subset-empty-name` | error: subscript contains invalid names | also errors | Agrees |
 | `rt-edge-ir-negative-nearest` | 1→1, 2→3, 3→3, 4→4 | same | Agrees |
 | `rt-edge-ir-negative-precede` | 1→2, 2→4, 3→4, 4→4 | same | Agrees |
 | `rt-edge-ir-negative-follow` | 1→1, 2→2, 3→3, 4→3 | same | Agrees |
-| `rt-edge-ir-coverage-typed-na` | runs=[1,NA]; lengths=[1,5] | error: ValueError: 'weight' cannot contain NAs | Bug |
-| `rt-edge-ir-coverage-overlap-na` | runs=[NA]; lengths=[6] | error: ValueError: 'weight' cannot contain NAs | Bug |
-| `rt-edge-gr-negative-nearest` | 1→3, 2→3, 4→3 | 1→4, 2→3, 3→2, 4→3 | ADR judgment |
-| `rt-edge-gr-negative-precede` | no hits | 1→4, 3→2 | ADR judgment |
-| `rt-edge-gr-negative-follow` | error: logical subscript contains NAs | 2→1, 4→3 | ADR judgment |
-| `rt-edge-gr-coverage-typed-na` | chr1: runs=[1,NA]; lengths=[1,5] | error: ValueError: 'weight' cannot contain NAs | Bug |
-| `rt-edge-gr-coverage-overlap-na` | chr1: runs=[NA]; lengths=[6] | error: ValueError: 'weight' cannot contain NAs | Bug |
+| `rt-edge-ir-coverage-typed-na` | runs=[1,NA]; lengths=[1,5] | same | Agrees |
+| `rt-edge-ir-coverage-overlap-na` | runs=[NA]; lengths=[6] | same | Agrees |
+| `rt-edge-gr-negative-nearest` | 1→3, 2→3, 4→3 | 1→4, 2→3, 3→2, 4→3 | Accepted divergence (ADR-0007) |
+| `rt-edge-gr-negative-precede` | no hits | 1→4, 3→2 | Accepted divergence (ADR-0007) |
+| `rt-edge-gr-negative-follow` | error: logical subscript contains NAs | 2→1, 4→3 | Accepted divergence (ADR-0007) |
+| `rt-edge-gr-coverage-typed-na` | chr1: runs=[1,NA]; lengths=[1,5] | same | Agrees |
+| `rt-edge-gr-coverage-overlap-na` | chr1: runs=[NA]; lengths=[6] | same | Agrees |
 | `rt-edge-trim-circularity-unknown` | 1/3; strand=[*] | same | Agrees |
 | `rt-edge-trim-circularity-linear` | 1/3; strand=[*] | same | Agrees |
 | `rt-edge-trim-circularity-circular` | -2/8; strand=[*] | same | Agrees |

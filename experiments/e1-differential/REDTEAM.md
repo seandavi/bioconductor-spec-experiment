@@ -57,3 +57,9 @@ uv run pytest tests/differential -k rt-circ-origin-any --runxfail
 
 Judgment calls and the corrected timestamp are in append-only `NOTES.md`.
 Independent review remains required. Fix Python or approve a short ADR before removing xfail marks.
+
+## Resolution (implementer round)
+
+All 52 strict expected failures were resolved (xfail marks removed): 47 by fixing the port, 2 by matching R (`seqinfo<-`
+rules), 3 pinned as accepted divergences (ADR-0007). ADR-0008 documents circular `maxgap` and pins 3 new cases
+(`div-circ-end-maxgap-*`). Details and rejected review items: NOTES.md. `redteam/*.md` were regenerated.

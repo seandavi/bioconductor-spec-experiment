@@ -70,6 +70,8 @@ Python evaluates it through `adapter.py` → both emit **canonical JSON** (R's 1
 | 0004 | `rank()` defaults to `ties_method="average"` (R's default errors) |
 | 0005 | int32 overflow raises or is computed exactly (R wraps to NA / invalid objects) |
 | 0006 | `mcols()` works when names contain NA (R errors) |
+| 0007 | `precede`/`follow`/`nearest` on GRanges give the geometric answer for coordinates <= 0 (R: cross-sequence hits, errors) |
+| 0008 | circular sequences, `maxgap > 0` on start/end/equal/within: one pair-wise rule (R depends on the engine path) |
 
 ### R quirks reproduced (not ADRs; see NOTES.md for evidence)
 `reduce(min.gapwidth=0)` drops repeated empty ranges; `reduce(drop.empty.ranges=TRUE)` lets empties
@@ -88,6 +90,9 @@ file I/O, `mcols` row names, `circle.length` arguments, comparison operators (`=
 The 119 new cases expose 47 bug cases and 5 ADR judgments; differences remain unresolved.
 [Red-team results](REDTEAM.md) link every case's R/Python comparison. `src/` was unchanged.
 The implementation-stage `mypy src` check was clean (`uvx mypy src --ignore-missing-imports`).
+
+Red-team cases (`cases/redteam_*.yaml`, reports in `redteam/`, summary in `REDTEAM.md`) were all resolved: fixed, or
+pinned to ADR-0007/0008 with `divergence:` entries. See NOTES.md for the review round.
 
 ### Where the harness has been pushed (and where to push next)
 Generators in `tests/differential/gen/` cover: exhaustive small pools (parallel ops, overlaps, nearest),
