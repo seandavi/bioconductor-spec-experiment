@@ -10,8 +10,8 @@
     "GR.SETOPS.SEQINFO": "set operations merge seqinfo of x and y (incompatible seqinfo is an error); results keep the merged levels",
     "GR.SETOPS.EDGE": "empty arguments",
     "GR.PUNION": "punion(x, y) is parallel; pairs must have equal seqnames and compatible strands, else error; fill.gap as for IRanges",
-    "GR.PINTERSECT": "pintersect(x, y) is parallel and adds a logical mcols column `hit`: FALSE for pairs on different seqnames or incompatible strands (zero-width range at x's start), TRUE otherwise; drop.nohit.ranges=TRUE removes the FALSE pairs and the column; ignore.strand=TRUE ignores strand",
-    "GR.PSETDIFF": "psetdiff(x, y) is parallel; incompatible pairs return x unchanged",
+    "GR.PINTERSECT": "pintersect(x, y) is parallel and adds a logical mcols column `hit`: FALSE for pairs on different seqnames, with incompatible strands, or without overlap (zero-width range at x's start; see GR.PINTERSECT.NOHIT), TRUE otherwise; drop.nohit.ranges=TRUE removes the FALSE pairs and the column; ignore.strand=TRUE ignores strand",
+    "GR.PSETDIFF": "psetdiff(x, y) is parallel; incompatible pairs keep x's range unchanged (strand: see GR.PSETDIFF.STRAND)",
     "GR.PSETOPS.LEN": "punion and psetdiff require equal lengths; pintersect recycles a length-1 y but otherwise requires equal lengths"
   },
   "fixtures": {

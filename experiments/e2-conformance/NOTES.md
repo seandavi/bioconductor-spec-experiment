@@ -126,3 +126,18 @@ missed 6 behaviours; each was found within minutes by random generation. Cases-a
 promotion trivial: the fuzz case JSON is already in the suite's format. A suite built *only* from
 hand-picked cases would have shipped these as hidden divergences.
 Cost of fuzzing: ~150 lines of generator (`fuzz.py`) + one R call per batch.
+
+## 2026-11-06 — review round (HEAD 834896a): 3 major, 2 minor; all accepted, none rejected
+
+| Finding | Fix (commit subject starts "Review finding N") | Why it escaped before |
+|---|---|---|
+| 1 major: accessors alias mutable state (`x.width[0] = -5`, `x.mcols.replace_column`) | objects own read-only copies of arrays (`_util.frozen`), mcols frames are cloned on the way in and out; Hits/Rle/Factor arrays read-only too; 4 aliasing tests | the immutability test only tried attribute assignment; the suite is R-vs-Python values, it cannot see ownership |
+| 2 major: `c()` truncated mcols (int `[1]` + dbl `[2.75]` -> `[1, 2]`) | `pl.concat(how="vertical_relaxed")` widens to a common type; clauses IR.C.MCOLS.TYPES / GR.C.MCOLS.TYPES, 8 cases both orders + NA-fill | my authored `c()` cases used same-typed columns; the fuzzer never generates mcols |
+| 3 major: only a column named `revmap` could be a list column; Factor columns rejected | IntegerList/Factor columns round-trip by type (Factor -> `pl.Enum`); only `revmap` keeps the 0/1-based shift. Clauses IR.MCOLS.LISTFACTOR / GR.MCOLS.LISTFACTOR (8 cases), Python codec tests, R selftest fixture | goldens only ever contained revmap list columns |
+| 4 minor: R runner ignored `compare` | `compare_trees()` / `group_hits()` in codec.R, used by `check`; selftest asserts reorder accepted, query-order change rejected | R-vs-R check never needed it, so the gap was invisible |
+| 5 minor: clause statements contradicted cases (GR.NEAREST.ALL, GR.PINTERSECT, IR.OV.SELECT; also GR.PSETDIFF, GR.NEAREST.SELF) | statements reconciled; goldens regenerated (diff = timestamp only, as it must be); REPORT.md rebuilt | clauses were written before the fuzz-found behaviors were pinned |
+
+Totals now: 921 cases / 155 clauses; R 921/921; Python 917 pass + 4 xfail; pytest 2037 passed, 4 xfailed.
+Lesson: ownership/immutability and type-widening are properties of the *Python* API; a conformance suite
+generated from R pins values, so these need hand-written Python tests (now in test_api.py).
+Not changed: the previously documented limits (positions <= 0 in GRanges precede/follow/nearest; O(nq*ns)).

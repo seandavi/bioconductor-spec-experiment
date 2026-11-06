@@ -7,7 +7,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Group | Cases | Clauses | R pass | Py pass | Py xfail | Py fail |
 |---|---:|---:|---:|---:|---:|---:|
-| granges-core | 81 | 11 | 81 | 81 | 0 | 0 |
+| granges-core | 87 | 13 | 87 | 87 | 0 | 0 |
 | granges-coverage | 21 | 5 | 21 | 21 | 0 | 0 |
 | granges-inter | 38 | 8 | 38 | 38 | 0 | 0 |
 | granges-intra | 57 | 8 | 57 | 57 | 0 | 0 |
@@ -15,7 +15,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | granges-order | 26 | 8 | 26 | 26 | 0 | 0 |
 | granges-overlaps | 62 | 11 | 62 | 62 | 0 | 0 |
 | granges-setops | 57 | 12 | 57 | 57 | 0 | 0 |
-| iranges-core | 66 | 15 | 66 | 66 | 0 | 0 |
+| iranges-core | 76 | 17 | 76 | 76 | 0 | 0 |
 | iranges-coverage | 30 | 6 | 30 | 30 | 0 | 0 |
 | iranges-inter | 63 | 9 | 63 | 63 | 0 | 0 |
 | iranges-intra | 69 | 8 | 69 | 69 | 0 | 0 |
@@ -24,7 +24,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | iranges-overlaps | 133 | 14 | 133 | 133 | 0 | 0 |
 | iranges-setops | 50 | 8 | 50 | 50 | 0 | 0 |
 | seqinfo | 45 | 6 | 45 | 45 | 0 | 0 |
-| **total** | **905** | **151** | **905** | **901** | **4** | **0** |
+| **total** | **921** | **155** | **921** | **917** | **4** | **0** |
 
 ## Clauses
 
@@ -32,6 +32,8 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `GR.MCOLS.LISTFACTOR` | 3 | 3 | 3 | IntegerList and factor metadata columns survive GRanges subsetting and combining |
+| `GR.C.MCOLS.TYPES` | 3 | 3 | 3 | c() widens metadata column types to a common type (integer + double -> double, in either argument order); values are never truncated |
 | `GR.CTOR` | 8 | 8 | 8 | GRanges(seqnames, ranges, strand) builds one range per element; strand defaults to '*'; levels default to the unique seqnames in order of first appearance |
 | `GR.CTOR.STRAND` | 4 | 4 | 4 | strand accepts '+', '-', '*' (a length-1 strand recycles); NA becomes '*'; other values are errors |
 | `GR.CTOR.SEQINFO` | 6 | 6 | 6 | an explicit seqinfo/seqlengths fixes level order and metadata; a seqname outside the levels is an error; levels may be unused |
@@ -86,8 +88,8 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 |---|---:|---:|---:|---|
 | `GR.NEAREST.TIE` | 5 | 5 | 5 | nearest(select='all'): subjects within gap 0 win; otherwise the nearer of the precede/follow candidates wins; on an exact distance tie only the precede side is returned (R quirk) |
 | `GR.NEAREST` | 4 | 4 | 4 | nearest(x, subject) considers only subjects on the same seqname and a compatible strand ('*' matches any); overlaps are distance 0; NA if no candidate; ignore.strand=TRUE ignores strand |
-| `GR.NEAREST.ALL` | 2 | 2 | 2 | nearest(select='all') returns Hits with every tied candidate |
-| `GR.NEAREST.SELF` | 3 | 3 | 3 | nearest(x) with no subject excludes the range itself |
+| `GR.NEAREST.ALL` | 2 | 2 | 2 | nearest(select='all') returns Hits with every candidate on the winning side at the minimum distance (all overlapping/adjacent subjects, or all tied precede or follow subjects); when the precede and follow sides tie, only the precede side is returned (GR.NEAREST.TIE) |
+| `GR.NEAREST.SELF` | 3 | 3 | 3 | nearest(x) with no subject excludes the range itself from the overlap step (precede/follow without a subject do not exclude self) |
 | `GR.PRECEDE` | 4 | 4 | 4 | precede(x, subject) is strand-aware: for '+'/'*' x the subject must start after end(x) on the same seqname with compatible strand; for '-' x it must end before start(x) (direction flips); ignore.strand=TRUE treats all as '+' |
 | `GR.FOLLOW` | 4 | 4 | 4 | follow(x, subject) is the mirror of precede: for '+'/'*' the subject ends before start(x); for '-' it starts after end(x) |
 | `GR.DISTANCE` | 5 | 5 | 5 | distance(x, y) is parallel; NA when seqnames differ or strands are incompatible ('+' vs '-'); '*' is compatible with anything; ignore.strand=TRUE only checks seqnames; the shorter argument recycles |
@@ -135,14 +137,16 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | `GR.SETOPS.SEQINFO` | 5 | 5 | 5 | set operations merge seqinfo of x and y (incompatible seqinfo is an error); results keep the merged levels |
 | `GR.SETOPS.EDGE` | 5 | 5 | 5 | empty arguments |
 | `GR.PUNION` | 5 | 5 | 5 | punion(x, y) is parallel; pairs must have equal seqnames and compatible strands, else error; fill.gap as for IRanges |
-| `GR.PINTERSECT` | 7 | 7 | 7 | pintersect(x, y) is parallel and adds a logical mcols column `hit`: FALSE for pairs on different seqnames or incompatible strands (zero-width range at x's start), TRUE otherwise; drop.nohit.ranges=TRUE removes the FALSE pairs and the column; ignore.strand=TRUE ignores strand |
-| `GR.PSETDIFF` | 5 | 5 | 5 | psetdiff(x, y) is parallel; incompatible pairs return x unchanged |
+| `GR.PINTERSECT` | 7 | 7 | 7 | pintersect(x, y) is parallel and adds a logical mcols column `hit`: FALSE for pairs on different seqnames, with incompatible strands, or without overlap (zero-width range at x's start; see GR.PINTERSECT.NOHIT), TRUE otherwise; drop.nohit.ranges=TRUE removes the FALSE pairs and the column; ignore.strand=TRUE ignores strand |
+| `GR.PSETDIFF` | 5 | 5 | 5 | psetdiff(x, y) is parallel; incompatible pairs keep x's range unchanged (strand: see GR.PSETDIFF.STRAND) |
 | `GR.PSETOPS.LEN` | 5 | 5 | 5 | punion and psetdiff require equal lengths; pintersect recycles a length-1 y but otherwise requires equal lengths |
 
 ### iranges-core
 
 | Clause | Cases | R | Py | Statement |
 |---|---:|---:|---:|---|
+| `IR.MCOLS.LISTFACTOR` | 5 | 5 | 5 | metadata columns may be an IntegerList (values kept as written) or a factor (levels and NA kept); both survive mcols<-, mcols, [ and c |
+| `IR.C.MCOLS.TYPES` | 5 | 5 | 5 | c() widens metadata column types to a common type (integer + double -> double, in either argument order); values are never truncated |
 | `IR.CTOR.SW` | 1 | 1 | 1 | IRanges(start, width) builds ranges with end = start + width - 1 |
 | `IR.CTOR.SE` | 3 | 3 | 3 | IRanges(start, end) derives width = end - start + 1; the second positional argument is end |
 | `IR.CTOR.EW` | 2 | 2 | 2 | IRanges(end, width) derives start = end - width + 1 |
@@ -232,7 +236,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | `IR.OV.EQUAL` | 3 | 3 | 3 | type='equal': same start and same end |
 | `IR.OV.MAXGAP` | 21 | 21 | 21 | maxgap=k admits hits whose gap (distance between non-overlapping ranges) is <= k; maxgap=0 admits adjacent ranges; applies to every type per R |
 | `IR.OV.MINOVERLAP` | 22 | 22 | 22 | minoverlap=m requires at least m shared positions (type any/within/equal/start/end per R); incompatible with maxgap>=0 per R |
-| `IR.OV.SELECT` | 17 | 17 | 17 | select='first'/'last' return, per query, the lowest/highest-index hit subject or NA; 'arbitrary' is only pinned where the hit is unique; 'all' returns Hits sorted by (query, subject) |
+| `IR.OV.SELECT` | 17 | 17 | 17 | select='first'/'last' return, per query, the lowest/highest-index hit subject or NA; 'arbitrary' is only pinned where the hit is unique; 'all' returns Hits grouped by ascending query; subject order within a query is unspecified and compared as a set (compare mode hits-query-grouped) |
 | `IR.OV.ZEROWIDTH` | 18 | 18 | 18 | zero-width ranges: a zero-width query/subject at position p overlaps a range that strictly contains the boundary around p per R; pinned by example |
 | `IR.OV.EMPTY` | 10 | 10 | 10 | empty query or subject gives an empty Hits (select=all) or all-NA / zeros; Hits records nLnode/nRnode |
 | `IR.OV.COUNT` | 9 | 9 | 9 | countOverlaps(q, s, ...) = per-query number of hits findOverlaps would return; keeps query names |

@@ -9,7 +9,7 @@
     "IR.OV.EQUAL": "type='equal': same start and same end",
     "IR.OV.MAXGAP": "maxgap=k admits hits whose gap (distance between non-overlapping ranges) is <= k; maxgap=0 admits adjacent ranges; applies to every type per R",
     "IR.OV.MINOVERLAP": "minoverlap=m requires at least m shared positions (type any/within/equal/start/end per R); incompatible with maxgap>=0 per R",
-    "IR.OV.SELECT": "select='first'/'last' return, per query, the lowest/highest-index hit subject or NA; 'arbitrary' is only pinned where the hit is unique; 'all' returns Hits sorted by (query, subject)",
+    "IR.OV.SELECT": "select='first'/'last' return, per query, the lowest/highest-index hit subject or NA; 'arbitrary' is only pinned where the hit is unique; 'all' returns Hits grouped by ascending query; subject order within a query is unspecified and compared as a set (compare mode hits-query-grouped)",
     "IR.OV.ZEROWIDTH": "zero-width ranges: a zero-width query/subject at position p overlaps a range that strictly contains the boundary around p per R; pinned by example",
     "IR.OV.EMPTY": "empty query or subject gives an empty Hits (select=all) or all-NA / zeros; Hits records nLnode/nRnode",
     "IR.OV.COUNT": "countOverlaps(q, s, ...) = per-query number of hits findOverlaps would return; keeps query names",

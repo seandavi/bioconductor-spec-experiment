@@ -4,8 +4,8 @@
   "clauses": {
     "GR.NEAREST.TIE": "nearest(select='all'): subjects within gap 0 win; otherwise the nearer of the precede/follow candidates wins; on an exact distance tie only the precede side is returned (R quirk)",
     "GR.NEAREST": "nearest(x, subject) considers only subjects on the same seqname and a compatible strand ('*' matches any); overlaps are distance 0; NA if no candidate; ignore.strand=TRUE ignores strand",
-    "GR.NEAREST.ALL": "nearest(select='all') returns Hits with every tied candidate",
-    "GR.NEAREST.SELF": "nearest(x) with no subject excludes the range itself",
+    "GR.NEAREST.ALL": "nearest(select='all') returns Hits with every candidate on the winning side at the minimum distance (all overlapping/adjacent subjects, or all tied precede or follow subjects); when the precede and follow sides tie, only the precede side is returned (GR.NEAREST.TIE)",
+    "GR.NEAREST.SELF": "nearest(x) with no subject excludes the range itself from the overlap step (precede/follow without a subject do not exclude self)",
     "GR.PRECEDE": "precede(x, subject) is strand-aware: for '+'/'*' x the subject must start after end(x) on the same seqname with compatible strand; for '-' x it must end before start(x) (direction flips); ignore.strand=TRUE treats all as '+'",
     "GR.FOLLOW": "follow(x, subject) is the mirror of precede: for '+'/'*' the subject ends before start(x); for '-' it starts after end(x)",
     "GR.DISTANCE": "distance(x, y) is parallel; NA when seqnames differ or strands are incompatible ('+' vs '-'); '*' is compatible with anything; ignore.strand=TRUE only checks seqnames; the shorter argument recycles",
