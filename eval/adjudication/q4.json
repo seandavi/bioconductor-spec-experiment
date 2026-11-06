@@ -1,0 +1,523 @@
+{
+ "circular": {
+  "e0": {
+   "coverage": {
+    "matches_R_linear": 27,
+    "unsupported": 2
+   },
+   "inter": {
+    "matches_R": 47,
+    "other": 2,
+    "unsupported": 3
+   },
+   "intra": {
+    "matches_R": 93,
+    "other": 3
+   },
+   "nearest": {
+    "matches_R_linear": 28,
+    "other": 3,
+    "matches_R": 13
+   },
+   "ordering": {
+    "matches_R": 21,
+    "unsupported": 1
+   },
+   "overlaps": {
+    "matches_R_linear": 275,
+    "other": 10,
+    "matches_R": 27
+   },
+   "setops": {
+    "matches_R": 138,
+    "other": 14
+   }
+  },
+  "e0b": {
+   "coverage": {
+    "matches_R_linear": 23,
+    "other": 5,
+    "matches_R": 1
+   },
+   "inter": {
+    "matches_R": 25,
+    "unsupported": 23,
+    "other": 4
+   },
+   "intra": {
+    "matches_R": 86,
+    "unsupported": 10
+   },
+   "nearest": {
+    "other": 7,
+    "matches_R_linear": 23,
+    "matches_R": 14
+   },
+   "ordering": {
+    "matches_R": 13,
+    "unsupported": 9
+   },
+   "overlaps": {
+    "matches_R_linear": 245,
+    "other": 16,
+    "unsupported": 20,
+    "matches_R": 31
+   },
+   "setops": {
+    "matches_R": 102,
+    "other": 47,
+    "unsupported": 3
+   }
+  },
+  "e1": {
+   "coverage": {
+    "matches_R": 29
+   },
+   "inter": {
+    "matches_R": 49,
+    "unsupported": 3
+   },
+   "intra": {
+    "matches_R": 96
+   },
+   "nearest": {
+    "matches_R": 44
+   },
+   "ordering": {
+    "matches_R": 21,
+    "unsupported": 1
+   },
+   "overlaps": {
+    "other": 3,
+    "matches_R": 309
+   },
+   "setops": {
+    "matches_R": 146,
+    "other": 6
+   }
+  },
+  "e2": {
+   "coverage": {
+    "matches_R_linear": 29
+   },
+   "inter": {
+    "matches_R": 30,
+    "unsupported": 22
+   },
+   "intra": {
+    "matches_R": 88,
+    "unsupported": 6,
+    "other": 2
+   },
+   "nearest": {
+    "matches_R_linear": 27,
+    "other": 3,
+    "matches_R": 14
+   },
+   "ordering": {
+    "matches_R": 21,
+    "unsupported": 1
+   },
+   "overlaps": {
+    "matches_R_linear": 233,
+    "other": 10,
+    "unsupported": 39,
+    "matches_R": 30
+   },
+   "setops": {
+    "matches_R": 140,
+    "other": 9,
+    "unsupported": 3
+   }
+  },
+  "e3": {
+   "coverage": {
+    "matches_R_linear": 17,
+    "unsupported": 10,
+    "other": 1,
+    "matches_R": 1
+   },
+   "inter": {
+    "matches_R": 28,
+    "unsupported": 22,
+    "other": 2
+   },
+   "intra": {
+    "matches_R": 82,
+    "unsupported": 12,
+    "other": 2
+   },
+   "nearest": {
+    "other": 7,
+    "matches_R_linear": 23,
+    "matches_R": 14
+   },
+   "ordering": {
+    "matches_R": 13,
+    "unsupported": 9
+   },
+   "overlaps": {
+    "matches_R_linear": 233,
+    "other": 10,
+    "unsupported": 39,
+    "matches_R": 30
+   },
+   "setops": {
+    "matches_R": 123,
+    "other": 26,
+    "unsupported": 3
+   }
+  },
+  "e4": {
+   "coverage": {
+    "matches_R": 29
+   },
+   "inter": {
+    "matches_R": 29,
+    "unsupported": 22,
+    "other": 1
+   },
+   "intra": {
+    "matches_R": 90,
+    "unsupported": 4,
+    "other": 2
+   },
+   "nearest": {
+    "other": 7,
+    "matches_R_linear": 23,
+    "matches_R": 14
+   },
+   "ordering": {
+    "matches_R": 13,
+    "unsupported": 9
+   },
+   "overlaps": {
+    "matches_R_linear": 251,
+    "other": 10,
+    "unsupported": 20,
+    "matches_R": 31
+   },
+   "setops": {
+    "matches_R": 125,
+    "other": 24,
+    "unsupported": 3
+   }
+  },
+  "biocpy": {
+   "coverage": {
+    "other": 27,
+    "matches_R": 2
+   },
+   "inter": {
+    "matches_R": 34,
+    "other": 18
+   },
+   "intra": {
+    "matches_R": 83,
+    "unsupported": 10,
+    "other": 3
+   },
+   "nearest": {
+    "other": 24,
+    "matches_R_linear": 15,
+    "matches_R": 5
+   },
+   "ordering": {
+    "matches_R": 13,
+    "other": 3,
+    "unsupported": 6
+   },
+   "overlaps": {
+    "matches_R_linear": 143,
+    "unsupported": 49,
+    "other": 105,
+    "matches_R": 15
+   },
+   "setops": {
+    "other": 92,
+    "matches_R": 25,
+    "unsupported": 33,
+    "matches_R_linear": 2
+   }
+  }
+ },
+ "seqlevels": {
+  "chr-mixed": {
+   "call": {
+    "op": "GRanges",
+    "args": [],
+    "kwargs": {
+     "seqnames": {
+      "chr": [
+       "chr2",
+       "chr10",
+       "chr1",
+       "chr2",
+       "chrX",
+       "chr1"
+      ]
+     },
+     "ranges": {
+      "$ref": "r"
+     }
+    }
+   },
+   "R": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e0": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e0b": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e1": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e2": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e3": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "e4": [
+    "chr2",
+    "chr10",
+    "chr1",
+    "chrX"
+   ],
+   "biocpy": [
+    "chr1",
+    "chr10",
+    "chr2",
+    "chrX"
+   ]
+  },
+  "letters": {
+   "call": {
+    "op": "GRanges",
+    "args": [],
+    "kwargs": {
+     "seqnames": {
+      "chr": [
+       "b",
+       "a",
+       "c",
+       "a"
+      ]
+     },
+     "ranges": {
+      "$ref": "r"
+     }
+    }
+   },
+   "R": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e0": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e0b": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e1": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e2": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e3": [
+    "b",
+    "a",
+    "c"
+   ],
+   "e4": [
+    "b",
+    "a",
+    "c"
+   ],
+   "biocpy": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  "factor-levels": {
+   "call": {
+    "op": "GRanges",
+    "args": [],
+    "kwargs": {
+     "seqnames": {
+      "$ref": "f"
+     },
+     "ranges": {
+      "$ref": "r"
+     }
+    }
+   },
+   "R": [
+    "z",
+    "a",
+    "q"
+   ],
+   "e0": [
+    "a",
+    "z"
+   ],
+   "e0b": [
+    "a",
+    "z"
+   ],
+   "e1": [
+    "a",
+    "z"
+   ],
+   "e2": [
+    "z",
+    "a",
+    "q"
+   ],
+   "e3": [
+    "a",
+    "z"
+   ],
+   "e4": [
+    "a",
+    "z"
+   ],
+   "biocpy": [
+    "a",
+    "z"
+   ]
+  },
+  "seqlengths-names": {
+   "call": {
+    "op": "GRanges",
+    "args": [],
+    "kwargs": {
+     "seqnames": {
+      "chr": [
+       "a",
+       "b"
+      ]
+     },
+     "ranges": {
+      "$ref": "r"
+     },
+     "seqlengths": {
+      "int": [
+       100,
+       200
+      ],
+      "names": [
+       "b",
+       "a"
+      ]
+     }
+    }
+   },
+   "R": [
+    "b",
+    "a"
+   ],
+   "e0": [
+    "b",
+    "a"
+   ],
+   "e0b": "argument:seqlengths",
+   "e1": [
+    "a",
+    "b"
+   ],
+   "e2": [
+    "b",
+    "a"
+   ],
+   "e3": "argument:seqlengths",
+   "e4": "argument:seqlengths",
+   "biocpy": "argument:seqlengths"
+  },
+  "c-merge": {
+   "call": {
+    "op": "c",
+    "args": [
+     {
+      "$ref": "x"
+     },
+     {
+      "$ref": "y"
+     }
+    ],
+    "kwargs": {}
+   },
+   "R": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e0": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e0b": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e1": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e2": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e3": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "e4": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ],
+   "biocpy": [
+    "chr2",
+    "chr1",
+    "chr10"
+   ]
+  }
+ }
+}

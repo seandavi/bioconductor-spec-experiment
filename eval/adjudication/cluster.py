@@ -75,7 +75,8 @@ PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
                           r"must have length \d+ or the length|has \d+ rows but object has length|"
                           r"lengths? (.* )?(differ|must match)|"
                           r"not a multiple|must have the same length|recycl"),
-    ("rejects_double_arg", r"whole numbers|must be integer|integer-valued|not integral|fraction|non-integer value"),
+    ("rejects_double_arg", r"whole numbers|must be integer|integer-valued|not integral|fraction|non-integer value|"
+                           r"incompatible function arguments"),
     ("int32_overflow", r"2\^31|overflow|int32|integer bounds"),
     ("mcols_column_name_arg", r"could not convert string to float|mcols column|column .* not found"),
     ("na_arg_crash", r"cannot convert float NaN to integer|NaN|masked"),
