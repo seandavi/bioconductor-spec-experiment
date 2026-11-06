@@ -17,7 +17,7 @@ from ._kernels import nearest as nearest_kernel
 from ._kernels import order as order_kernel
 from ._meta import Names
 from .hits import Hits, overlap_result
-from .iranges import IRanges
+from .iranges import IRanges, mcol_if_single_string
 from .rle import Rle
 from .seqinfo import Seqinfo
 
@@ -818,12 +818,13 @@ class GRanges:
 
     # -- coverage -------------------------------------------------------------------
     def coverage(self, shift: Any = 0, width: Any = None, weight: Any = 1) -> dict[str, Rle]:
-        """Per-seqlevel coverage (strand ignored); width defaults to seqlengths, else the max end."""
-        if isinstance(weight, str):
-            if self._mcols is None or weight not in self._mcols.columns:
-                raise ValueError(f"no mcols column named {weight!r}")
-            weight = self._mcols[weight].to_numpy()
-        start, wt = self._ranges._coverage_inputs(shift, weight)
+        """Per-seqlevel coverage (strand ignored); width defaults to seqlengths, else the max end.
+
+        `shift` / `weight` may name an mcols column.
+        """
+        start, wt = self._ranges._coverage_inputs(
+            mcol_if_single_string(self._mcols, shift, "shift"), mcol_if_single_string(self._mcols, weight, "weight")
+        )
         levels = self._seqinfo.seqnames
         widths = self._per_seqlevel(width, "width") if width is not None else list(self._seqinfo.seqlengths)
         if np.ma.isMaskedArray(width) or (width is not None and not isinstance(width, (int, np.integer, dict, list, tuple, np.ndarray))):
@@ -841,7 +842,7 @@ class GRanges:
             circ_len = self._seqinfo.seqlengths[code] if self._seqinfo.is_circular[code] else None
             if circ_len:
                 if width is not None and total > circ_len:
-                    raise ValueError(f"'width' cannot be greater than the length of the underlying circular sequence")
+                    raise ValueError("'width' cannot be greater than the length of the underlying circular sequence")
                 st, wd, w_ = self._wrap_circular(st, wd, w_, circ_len)
             vals, lens = coverage_kernel.coverage(st, wd, w_, int(total))
             out[name] = Rle(vals, lens)

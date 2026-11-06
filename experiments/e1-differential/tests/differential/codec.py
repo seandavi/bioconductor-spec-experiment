@@ -24,8 +24,8 @@ def decode_vec(v: list[Any], typ: str | None = None) -> Any:
     has_na = any(e is None for e in v)
     non_na = [e for e in v if e is not None]
     if typ is None:
-        if all(isinstance(e, bool) for e in non_na) and non_na:
-            typ = "lgl"
+        if not non_na or (all(isinstance(e, bool) for e in non_na) and non_na):
+            typ = "lgl"  # an all-null literal is R's logical NA vector
         elif any(isinstance(e, float) for e in non_na):
             typ = "num"
         else:

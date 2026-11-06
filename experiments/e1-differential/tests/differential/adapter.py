@@ -238,7 +238,8 @@ def encode(v: Any) -> Any:
             "nLnode": v.query_length, "nRnode": v.subject_length,
         }
     if isinstance(v, Rle):
-        return {"class": "Rle", "values": v.values.tolist(), "lengths": v.lengths.tolist()}
+        vals = [None if isinstance(x, float) and x != x else x for x in v.values.tolist()]  # NaN = NA
+        return {"class": "Rle", "values": vals, "lengths": v.lengths.tolist()}
     if isinstance(v, pl.DataFrame):
         return {"class": "DataFrame", "columns": enc_mcols(v), "nrow": v.height}
     if isinstance(v, dict) and all(isinstance(x, Rle) for x in v.values()) and v:

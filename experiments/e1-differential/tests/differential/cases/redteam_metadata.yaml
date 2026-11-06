@@ -304,7 +304,6 @@ cases:
     kwargs:
       weight: score
   check_warnings: true
-  xfail: 'Bug: coverage must resolve the requested metadata column.'
 - id: rt-meta-gr-construct-mcols-scalar
   tags:
   - redteam
@@ -935,7 +934,6 @@ cases:
     kwargs:
       shift: offset
   check_warnings: true
-  xfail: 'Bug: coverage must resolve the requested metadata column.'
 - id: rt-meta-gr-coverage-na-column
   tags:
   - redteam
@@ -972,7 +970,6 @@ cases:
     kwargs:
       weight: score
   check_warnings: true
-  xfail: 'Bug: R coverage propagates missing weights into NA runs; Python rejects them.'
 - id: rt-meta-gr-strand-text-na
   tags:
   - redteam

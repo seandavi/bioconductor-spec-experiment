@@ -637,7 +637,6 @@ cases:
         - null
         - 3
   check_warnings: true
-  xfail: 'Bug: typed missing numeric coverage weights are valid in R and produce NA runs.'
 - id: rt-edge-ir-coverage-overlap-na
   tags:
   - redteam
@@ -657,7 +656,6 @@ cases:
         - 2
         - 3
   check_warnings: true
-  xfail: 'Bug: typed missing numeric coverage weights are valid in R and produce NA runs.'
 - id: rt-edge-gr-negative-nearest
   tags:
   - redteam
@@ -792,7 +790,6 @@ cases:
         - null
         - 3
   check_warnings: true
-  xfail: 'Bug: typed missing numeric coverage weights are valid in R and produce NA runs.'
 - id: rt-edge-gr-coverage-overlap-na
   tags:
   - redteam
@@ -812,7 +809,6 @@ cases:
         - 2
         - 3
   check_warnings: true
-  xfail: 'Bug: typed missing numeric coverage weights are valid in R and produce NA runs.'
 - id: rt-edge-trim-circularity-unknown
   tags:
   - redteam

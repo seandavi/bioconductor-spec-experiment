@@ -21,6 +21,19 @@ from .rle import Rle
 from ._meta import INT_MAX, Names
 
 
+def mcol_if_single_string(mcols: pl.DataFrame | None, v: Any, what: str) -> Any:
+    """R's replace_with_mcol_if_single_string: a lone string names an mcols column."""
+    if isinstance(v, (str, np.str_)) or (isinstance(v, (list, tuple)) and len(v) == 1 and isinstance(v[0], str)):
+        col = v if isinstance(v, (str, np.str_)) else v[0]
+        if mcols is None or col not in mcols.columns:
+            raise ValueError(f"'{what}' names no metadata column: {col!r}")
+        series = mcols[col]
+        if series.null_count():
+            return np.ma.masked_array(series.fill_null(0).to_numpy(), mask=series.is_null().to_numpy())
+        return series.to_numpy()
+    return v
+
+
 def _solve_sew(
     start: Any, end: Any, width: Any
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -228,7 +241,8 @@ class IRanges:
         def sew(v: Any, what: str) -> np.ndarray:
             if v is None:
                 return np.full(n, intra.NA, dtype=np.int64)
-            if np.asarray(v).dtype.kind not in "iuf":
+            logical_na = np.ma.isMaskedArray(v) and np.asarray(v).dtype.kind == "b" and bool(np.ma.getmaskarray(v).all())
+            if np.asarray(v).dtype.kind not in "iuf" and not logical_na:  # a bare NA is a logical vector
                 raise ValueError(f"'{what}' must be a vector of integers")
             if np.ma.isMaskedArray(v):
                 arr = np.where(np.ma.getmaskarray(v), intra.NA, np.ma.getdata(v)).astype(np.int64)
@@ -494,27 +508,31 @@ class IRanges:
         return np.ma.masked_array(np.where(over, 0, d), mask=over)
 
     # -- coverage ------------------------------------------------------------
-    def _coverage_inputs(
-        self, shift: Any, weight: Any
-    ) -> tuple[np.ndarray, np.ndarray]:
-        """Shifted starts and weights, recycled to len(self) (warn if not a divisor)."""
+    def _coverage_inputs(self, shift: Any, weight: Any) -> tuple[np.ndarray, np.ndarray]:
+        """Shifted starts and weights (float with NaN when any is missing), recycled to len(self)."""
         n = len(self)
-        sh = self._int_arg(shift, "shift", longer="truncate")
+        sh = self._int_arg(mcol_if_single_string(self._mcols, shift, "shift"), "shift", longer="error")
+        weight = mcol_if_single_string(self._mcols, weight, "weight")
+        miss: np.ndarray | None = None
         if np.ma.isMaskedArray(weight):
-            raise ValueError("'weight' cannot contain NAs")
+            miss = np.atleast_1d(np.ma.getmaskarray(weight))
+            weight = np.ma.getdata(weight)
         wt = np.atleast_1d(np.asarray(weight))
         if wt.dtype.kind not in "iuf":
             raise ValueError("'weight' must be an integer or numeric vector")
-        if wt.dtype.kind == "f" and np.isnan(wt).any():
-            raise ValueError("'weight' cannot contain NAs")
+        if wt.dtype.kind == "f" and miss is None and np.isnan(wt).any():
+            pass  # NaN already marks a missing weight
+        if miss is not None and miss.any():
+            wt = np.where(miss, np.nan, wt.astype(np.float64))
         wt = wt.astype(np.int64) if wt.dtype.kind in "iu" else wt.astype(np.float64)
-        wt = _meta.recycle_arg(wt, n, "weight", longer="truncate")
+        wt = _meta.recycle_arg(wt, n, "weight", longer="error")
         return self._start + sh, wt
 
     def coverage(self, shift: Any = 0, width: int | None = None, weight: Any = 1) -> Rle:
         """Depth of coverage over positions 1..width as an Rle.
 
-        Default width is the largest end after shifting (0 if none).
+        `shift` / `weight` may name an mcols column. Default width is the largest end after
+        shifting (0 if none). Missing weights follow R's engine (see the coverage kernel).
         """
         start, wt = self._coverage_inputs(shift, weight)
         w = _args.scalar_int(width, "width", allow_na=True) if width is not None else None
