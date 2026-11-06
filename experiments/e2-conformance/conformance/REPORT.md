@@ -92,7 +92,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | `GR.NEAREST.SELF` | 3 | 3 | 3 | nearest(x) with no subject excludes the range itself from the overlap step (precede/follow without a subject do not exclude self) |
 | `GR.PRECEDE` | 4 | 4 | 4 | precede(x, subject) is strand-aware: for '+'/'*' x the subject must start after end(x) on the same seqname with compatible strand; for '-' x it must end before start(x) (direction flips); ignore.strand=TRUE treats all as '+' |
 | `GR.FOLLOW` | 4 | 4 | 4 | follow(x, subject) is the mirror of precede: for '+'/'*' the subject ends before start(x); for '-' it starts after end(x) |
-| `GR.DISTANCE` | 5 | 5 | 5 | distance(x, y) is parallel; NA when seqnames differ or strands are incompatible ('+' vs '-'); '*' is compatible with anything; ignore.strand=TRUE only checks seqnames; the shorter argument recycles |
+| `GR.DISTANCE` | 5 | 5 | 5 | distance(x, y) is parallel and uses the IRanges rule (0 if overlapping, else gap width plus one, so adjacent is 1; GenomicRanges 1.65.2); NA when seqnames differ or strands are incompatible ('+' vs '-'); '*' is compatible with anything; ignore.strand=TRUE only checks seqnames; the shorter argument recycles |
 | `GR.NEAREST.EMPTY` | 5 | 5 | 2 (+3 xfail) | empty query or subject |
 
 ### granges-order
@@ -212,7 +212,7 @@ R = `Rscript conformance/r/run.R check` (drift detector). Python = `python -m ra
 | `IR.NEAREST.SELF` | 3 | 3 | 3 | nearest(x) with no subject finds the nearest other range in x (never itself) |
 | `IR.PRECEDE` | 9 | 9 | 9 | precede(x, subject) returns the subject starting strictly after end(x) with the smallest start; select='first' (default) picks lowest index among ties, 'all' returns all, 'last' is an error; NA if none |
 | `IR.FOLLOW` | 9 | 9 | 9 | follow(x, subject) returns the subject ending strictly before start(x) with the largest end; select='last' (default) picks highest index among ties, 'all' returns all, 'first' is an error |
-| `IR.DISTANCE` | 8 | 8 | 8 | distance(x, y) is parallel: 0 for overlapping or adjacent ranges, otherwise the number of positions strictly between them; the shorter argument recycles to the longer length (warning if not a multiple); names are dropped |
+| `IR.DISTANCE` | 8 | 8 | 8 | distance(x, y) is parallel: 0 for overlapping ranges, otherwise the number of positions strictly between them plus one (so adjacent ranges are 1; IRanges 2.47.3); the shorter argument recycles to the longer length (warning if not a multiple); names are dropped |
 
 ### iranges-order
 
