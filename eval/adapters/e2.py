@@ -311,7 +311,8 @@ class Adapter(AdapterBase):
         return None if x.names is None else RVector("chr", x.names)
 
     def op_length(self, *, x):
-        return RVector("int", [len(x)])
+        # R length(DataFrame) is the column count
+        return RVector("int", [x.frame.width if isinstance(x, _DF) else len(x)])
 
     def op_seqnames(self, *, x):
         _need_granges(x, "seqnames")
