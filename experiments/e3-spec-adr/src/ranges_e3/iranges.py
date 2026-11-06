@@ -10,6 +10,7 @@ import polars as pl
 
 from ranges_e3 import _kernels, _mcols, _subscript
 from ranges_e3._types import IntArray
+from ranges_e3.rle import Rle
 
 
 def as_int_array(values: Any, what: str) -> IntArray:
@@ -195,6 +196,94 @@ class IRanges:
                 self._start, self._width, per_range(upstream, n, "upstream"), per_range(downstream, n, "downstream"), mirror
             )
         )
+
+    # --- inter-range (spec 30-inter.md) ---
+
+    @property
+    def _end(self) -> IntArray:
+        return self._start + self._width - 1
+
+    def range(self) -> Self:
+        """INTER.1."""
+        bounds = _kernels.span(self._start, self._end)
+        if bounds is None:
+            return self._new(_mcols.empty_int(), _mcols.empty_int())
+        return self._new(np.array([bounds[0]], dtype=np.int64), np.array([bounds[1] - bounds[0] + 1], dtype=np.int64))
+
+    def reduce(self, min_gapwidth: int = 1, drop_empty_ranges: bool = False, with_revmap: bool = False) -> Self:
+        """INTER.2-5."""
+        gs, ge, order, bounds = _kernels.reduce_scan(self._start, self._end, int(min_gapwidth), drop_empty_ranges)
+        out = self._new(gs, ge - gs + 1)
+        if with_revmap:
+            out = out.with_mcols(pl.DataFrame([_mcols.revmap_series(_kernels.split_groups(order, bounds))]))
+        return out
+
+    def gaps(self, start: int | None = None, end: int | None = None) -> Self:
+        """INTER.6."""
+        bounds = _kernels.span(self._start, self._end)
+        lo = start if start is not None else (None if bounds is None else bounds[0])
+        hi = end if end is not None else (None if bounds is None else bounds[1])
+        if lo is None or hi is None:
+            return self._new(_mcols.empty_int(), _mcols.empty_int())
+        gs, ge = _kernels.gaps(self._start, self._end, int(lo), int(hi))
+        return self._new(gs, ge - gs + 1)
+
+    def disjoin(self, with_revmap: bool = False) -> Self:
+        """INTER.7-8."""
+        ps, pe, revmap = _kernels.disjoin(self._start, self._end, with_revmap)
+        out = self._new(ps, pe - ps + 1)
+        if with_revmap:
+            out = out.with_mcols(pl.DataFrame([_mcols.revmap_series(revmap)]))
+        return out
+
+    # --- set operations (spec 40-setops.md) ---
+
+    def _set_op(self, y: IRanges, op: str) -> Self:
+        s, e = _kernels.set_operation(self._start, self._end, y._start, y._end, op)
+        return self._new(s, e - s + 1)
+
+    def union(self, y: IRanges) -> Self:
+        """SET.1."""
+        return self._set_op(y, "union")
+
+    def intersect(self, y: IRanges) -> Self:
+        """SET.1."""
+        return self._set_op(y, "intersect")
+
+    def setdiff(self, y: IRanges) -> Self:
+        """SET.1."""
+        return self._set_op(y, "setdiff")
+
+    def _parallel(self, y: IRanges) -> tuple[IntArray, IntArray, IntArray, IntArray]:
+        if len(self) != len(y):
+            raise ValueError("parallel operations need equal lengths (SET.2)")
+        return self._start, self._end, y._start, y._end
+
+    def _parallel_result(self, s: IntArray, e: IntArray) -> Self:
+        return self._new(s, e - s + 1, self._names)
+
+    def punion(self, y: IRanges, fill_gap: bool = False) -> Self:
+        """SET.3."""
+        return self._parallel_result(*_kernels.punion(*self._parallel(y), fill_gap))
+
+    def pintersect(self, y: IRanges, resolve_empty: str = "none") -> Self:
+        """SET.4."""
+        return self._parallel_result(*_kernels.pintersect(*self._parallel(y), resolve_empty))
+
+    def psetdiff(self, y: IRanges) -> Self:
+        """SET.5."""
+        return self._parallel_result(*_kernels.psetdiff(*self._parallel(y)))
+
+    # --- coverage (spec 50-coverage.md) ---
+
+    def coverage(self, shift: Any = 0, width: int | None = None) -> Rle:
+        """COV.1-3."""
+        if width is not None and width < 0:
+            raise ValueError("width must be non-negative")
+        lengths, values = _kernels.coverage_runs(
+            self._start, self._end, per_range(shift, len(self), "shift"), width
+        )
+        return Rle(lengths, values)
 
     def __repr__(self) -> str:
         shown = ", ".join(f"[{s},{e}]" for s, e in zip(self._start[:6], self.end[:6]))
