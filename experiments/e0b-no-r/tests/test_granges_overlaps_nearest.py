@@ -114,10 +114,10 @@ def test_nearest_self() -> None:
 def test_distance() -> None:
     a = g(["a", "a", "a", "b"], [1, 1, 1, 1], [5, 5, 5, 5], ["+", "+", "+", "*"])
     b = g(["a", "a", "b", "b"], [10, 3, 10, 10], [12, 4, 12, 12], ["+", "+", "+", "-"])
-    assert a.distance(b).tolist() == [4, 0, NO_HIT, 4]
+    assert a.distance(b).tolist() == [5, 0, NO_HIT, 5]
     c = g(["a"], [10], [12], ["-"])
     assert a[[0]].distance(c).tolist() == [NO_HIT]
-    assert a[[0]].distance(c, ignore_strand=True).tolist() == [4]
+    assert a[[0]].distance(c, ignore_strand=True).tolist() == [5]
     with pytest.raises(ValueError):
         a.distance(c)
 
