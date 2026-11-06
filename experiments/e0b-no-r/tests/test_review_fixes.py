@@ -38,3 +38,29 @@ def test_promoters_ignore_strand_matches_iranges() -> None:
     assert coords(x.promoters(10, 5, ignore_strand=True)) == [(90, 104)] * 2
 
 
+# --- finding 2: mcols ownership ---------------------------------------------------
+
+
+@pytest.mark.parametrize("make", [
+    lambda m: IRanges(start=[1], width=2, mcols=m),
+    lambda m: GRanges("c", IRanges(start=[1], width=2), mcols=m),
+])
+def test_mcols_not_aliased_to_caller_or_accessor(make) -> None:  # type: ignore[no-untyped-def]
+    m = pl.DataFrame({"score": [1]})
+    x = make(m)
+    y = x.shift(5)
+    m.replace_column(0, pl.Series("score", [99]))  # caller mutates their frame
+    assert x.mcols["score"].to_list() == [1] and y.mcols["score"].to_list() == [1]
+    x.mcols.insert_column(1, pl.Series("extra", [0]))  # mutating the accessor result
+    x.mcols.replace_column(0, pl.Series("score", [7]))
+    assert x.mcols.columns == ["score"]
+    assert x.mcols["score"].to_list() == [1] and y.mcols["score"].to_list() == [1]
+
+
+def test_with_mcols_copies() -> None:
+    m = pl.DataFrame({"v": [1, 2]})
+    x = IRanges(start=[1, 2], width=1).with_mcols(m)
+    m.replace_column(0, pl.Series("v", [0, 0]))
+    assert x.mcols["v"].to_list() == [1, 2]
+
+

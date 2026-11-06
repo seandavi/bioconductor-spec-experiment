@@ -125,7 +125,7 @@ def resolve_index(i: Any, n: int, names: Sequence[str] | None) -> IntArray:
 def normalize_mcols(mcols: pl.DataFrame | Mapping[str, Any] | None, n: int) -> pl.DataFrame:
     if mcols is None:
         return pl.DataFrame()
-    df = mcols if isinstance(mcols, pl.DataFrame) else pl.DataFrame(mcols)
+    df = mcols.clone() if isinstance(mcols, pl.DataFrame) else pl.DataFrame(mcols)
     if df.width and df.height != n:
         raise ValueError(f"mcols has {df.height} rows, expected {n}")
     return df

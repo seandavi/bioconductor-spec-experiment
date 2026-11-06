@@ -171,7 +171,7 @@ class GRanges:
 
     @property
     def mcols(self) -> pl.DataFrame:
-        return self._mcols
+        return self._mcols.clone()  # callers cannot mutate our metadata
 
     @property
     def seqinfo(self) -> Seqinfo:
