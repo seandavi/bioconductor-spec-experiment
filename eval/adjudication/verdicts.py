@@ -26,6 +26,10 @@ R_RESIZE_FIX = ("resize(GRanges('chr1', IRanges(c(28,14), width=c(8,12)), '+'), 
                 "ignore.strand=TRUE) starts 33 23; ignore.strand=FALSE (same, all '+') and IRanges resize give 33 18")
 R_RESIZE_EMPTY = ("resize(<empty GRanges>, 12, fix=c('start','bogus')) returns; the same fix on a non-empty "
                   "GRanges errors: validation depends on length(x)")
+R_INT32_NA = ("R wraps int32 overflow to NA and returns objects its own validity check rejects: "
+              "validObject(promoters(IRanges(2147483642, width=3), 0, 100)) and flank(IRanges(2147483638, width=10), 5, "
+              "start=FALSE) fail \"'start(x)', 'end(x)', and 'width(x)' cannot contain NAs\"; shift(GRanges('chr1:10-14'), "
+              "2147483647) silently has start NA while the same IRanges shift errors")
 R_EMPTY_TYPE = ("GRanges precede/follow return SortedByQueryHits when the query or subject is empty (integer "
                 "otherwise; IRanges: integer either way) and GRanges nearest returns logical NA for an empty "
                 "subject (IRanges: integer NA): R's return type depends on emptiness")
@@ -48,7 +52,7 @@ RULES: list[tuple[str, str, str, str]] = [
      "empty query/subject: R's GRanges result class (Hits / logical) differs from its own non-empty and IRanges answers"),
     (r"^(e0|e0b|e2|e3|e4|biocpy)\|intra\|mismatch\|diff\|strand$", RA, R_RESIZE_FIX,
      "R's ignore.strand=TRUE resize ignores the per-range fix vector"),
-    (r"^(e0|e0b|e2|e3|e4|biocpy)\|intra\|port_error:call\|ValueError:'fix' must", RA, R_RESIZE_EMPTY,
+    (r"^(e0|e0b|e2|e3|e4|biocpy)\|intra\|port_error:call\|ValueError:'?fix'? must", RA, R_RESIZE_EMPTY,
      "R skips fix validation on empty input only"),
     # ------------------------------------------------------------------ e1
     (r"^e1\|coverage\|.*\|r_nonlocal_na$", RA, R_COV_NA,
@@ -202,7 +206,7 @@ RULES: list[tuple[str, str, str, str]] = [
     (r"^e0\|setops\|mismatch\|names\|-$", PB, "R: punion on unnamed x takes y's names", "p* op drops y's names"),
     (r"^(e0|e0b)\|setops\|port_error:call\|(resolve_empty_validation|ValueError:The truth value)", RA, R_RESOLVE_EMPTY,
      "R validates resolve.empty only when an empty intersection occurs"),
-    (r"^e0\|(setops|inter|overlaps|nearest|intra)\|mismatch\|diff\|int32_edge$", DD,
+    (r"^e0\|(setops|inter|overlaps|nearest|intra)\|mismatch\|diff\|int32_edge(_distance)?$", DD,
      "e0:README.md Storage 'int64 (R: int32, so R's overflow errors are not reproduced)'. " + R_INT32,
      "int64 arithmetic near 2^31 (declared)"),
     (r"^e0\|(intra|construct)\|r_error_port_value\|int32_overflow", DD,
@@ -385,4 +389,92 @@ RULES: list[tuple[str, str, str, str]] = [
      "take the subject's strand direction, zero-width self queries, GRanges nearest(all) keeps only the precede side "
      "of a tie; e0b NOTES mark its strand rules UNVERIFIED", "nearest-family tie/strand rules differ from R"),
     (r"^e0b\|intra\|r_error_port_value\|other:solving row", PB, "R narrow(width=) alone errors", "accepts width-only narrow"),
+
+    # ------------------------------------------------------------------ e2
+    (r"^e2\|(overlaps|nearest|coverage)\|mismatch\|(equals_R_linear|diff)\|circular$", PB,
+     R_CIRCULAR_PROBE + "; e2 documents no circular limitation (README Known limits lists only coordinates <= 0 "
+     "and select ties)", "circular sequences treated as linear (undeclared)"),
+    (r"^e2\|\*\|r_error_port_value\|length_validation\|circular$", PB,
+     "R errors when coverage width exceeds a circular sequence's length; e2 has no circular handling (undeclared)",
+     "circular coverage-width check missing"),
+    (r"^e2\|coverage\|port_error:call\|(TypeError:weight must be numeric|ValueError:weight cannot contain NAs)\|na_weight_(int|dbl)$", DD,
+     "e2:NOTES.md:27 'coverage: ... NA weight gives garbage (not pinned)'; the IRanges path refuses NA weights",
+     "NA weights refused (R's NA-weight coverage judged garbage and deliberately not matched)"),
+    (r"^e2\|coverage\|mismatch\|(nan_as_na\|na_weight_dbl|diff\|na_arg|diff\|strand)$", DD,
+     "e2:NOTES.md:27 'NA weight gives garbage (not pinned)'; the GRanges path turns NA weights into NaN",
+     "NA weights not matched to R (declared not pinned)"),
+    (r"^e2\|nearest\|mismatch\|diff\|(r_translation_dependent|coord_le0)$", DD,
+     "e2:README.md:109-112 'GRanges precede/follow/nearest with a range whose start or end is <= 0 ... can differ "
+     "from R ... ranges_e2 implements the documented semantics'. " + R_SENTINEL, "geometric answer for coordinates <= 0 (declared)"),
+    (r"^e2\|nearest\|r_error_port_value\|na_in_logic\|coord_le0$", DD, "e2:README.md:109-112 (coordinates <= 0)",
+     "geometric answer where R errors (declared)"),
+    (r"^e2\|nearest\|mismatch\|diff\|int32_edge$", RA, "probe/inputs: coordinates near -2^31 on one seqlevel; R's "
+     "sentinel offsets overflow and return hits across seqnames (heldout/nearest/GRanges/117: chrM queries -> chrY subjects). "
+     + R_SENTINEL, "R cross-sequence hits from int32 sentinel overflow"),
+    (r"^e2\|nearest\|mismatch\|diff\|int32_edge_distance$", PB,
+     "R distance() returns NA (with a warning) when the gap exceeds int32 (e1:NOTES.md 'distance() overflow -> NA'); "
+     "e2 returns the int64 value, no doc", "distance overflow not NA"),
+    (r"^e2\|nearest\|mismatch\|diff\|coord_le0_r_invariant$", PB,
+     "probe_translate.py: R translation-invariant here (IRanges self nearest with zero-width ranges); e2 differs",
+     "self-nearest with zero-width ranges"),
+    (r"^e2\|ordering\|r_error_port_value\|rank_default_ties", DD, "e2:conformance/xfail.json 'ir.rank.default-is-error'; NOTES.md:104. "
+     + R_RANK, "rank() default 'average' (declared)"),
+    (r"^e2\|(setops|inter|overlaps)\|mismatch\|diff\|int32_edge$", RA, R_INT32, "R's int32 arithmetic gives a wrong answer"),
+    (r"^e2\|\*\|r_error_port_value\|length_validation\|int32_edge$", RA, R_INT32, "R errors on valid input at 2^31-1"),
+    (r"^e2\|intra\|(port_error:call\|int32_overflow|mismatch\|diff\|int32_edge)", RA, R_INT32_NA,
+     "R returns NA coordinates its own validity check rejects; e2 raises / computes"),
+    (r"^e2\|(intra|construct)\|r_error_port_value\|int32_overflow", PB,
+     "R errors when a coordinate leaves int32 (IRanges constructor / IRanges shift); e2 builds the out-of-range object "
+     "(its check_int32 is not applied there; no doc)", "no int32 bound check"),
+    (r"^e2\|setops\|port_error:call\|resolve_empty_validation", RA, R_RESOLVE_EMPTY,
+     "R validates resolve.empty only when an empty intersection occurs"),
+    (r"^e2\|\*\|r_error_port_value\|(flag_validation|scalar_validation|type_validation)", PB,
+     "R validates flags/scalars/types; e2 coerces (TRUE as width 1, NA flags as FALSE); no doc", "missing argument validation"),
+    (r"^e2\|(intra|construct)\|r_error_port_value\|other:'(start|width|upstream|downstream|start' and 'width)", PB,
+     "R requires numeric (not logical) start/width/upstream/downstream", "logical accepted as numbers"),
+    (r"^e2\|intra\|r_error_port_value\|other:'(length\(shift\)|width' is longer|start', 'end' or 'width' is longer)", PB,
+     "R errors when shift/width/narrow args are longer than x; e2 truncates", "over-long arguments accepted"),
+    (r"^e2\|\*\|r_error_port_value\|length_validation\|-$", PB,
+     "R errors when isCircular is shorter than seqnames (Seqinfo / isCircular<-); e2 recycles", "lenient Seqinfo lengths"),
+    (r"^e2\|(nearest|overlaps)\|r_error_port_value\|na_in_logic\|na_arg$", PB, "R errors on NA ignore.strand/invert", "NA flag accepted"),
+    (r"^e2\|\*\|port_error:call\|rejects_recycling", PB,
+     "R recycles to zero length (IRanges(start=integer(0), width=1:3) is empty); e2 'cannot recycle a zero-length "
+     "argument', no doc", "zero-length recycling rejected"),
+    (r"^e2\|construct\|port_error:call\|ValueError:seqnames must have the length", PB,
+     "R recycles a length-1 ranges over seqnames (GRanges(c('chr1','chr2'), IRanges(1, width=5)))", "length-1 ranges not recycled"),
+    (r"^e2\|construct\|port_error:call\|ValueError:at least two", PB, "R: IRanges(start=<int|lgl>) alone is the run form",
+     "start-only constructor raises"),
+    (r"^e2\|construct\|port_error:call\|AttributeError", PB, "R: GRanges(seqinfo=<character>) is accepted", "crash"),
+    (r"^e2\|construct\|mismatch\|names\|-$", PB, "R names whole doubles '2', logicals 'TRUE'", "str() of names"),
+    (r"^e2\|intra\|port_error:call\|ValueError:(start|end|width) cannot contain NAs", PB,
+     "R narrow(start=NA)/end=NA/width=NA means 'not given'; e2 rejects NA", "NA narrow arguments rejected"),
+    (r"^e2\|nearest\|port_error:call\|ValueError:sequence chr\w+ has incompatible", PB,
+     "R precede/follow/distance do not merge seqinfo and return values; e2 raises", "seqinfo merge check R does not do here"),
+    (r"^e2\|seqinfo\|port_error:call\|ValueError:seqlevels to be dropped", PB,
+     "R seqlevels<- with a same-length value renames positionally (chr2 -> chr2_r); e2 NOTES 'rename if nothing in "
+     "common' misses partial renames", "seqlevels<- partial rename"),
+    (r"^e2\|seqinfo\|r_error_port_value\|other:The seqlevels", PB, "R refuses a reordered Seqinfo in seqinfo<-", "accepted"),
+    (r"^e2\|(nearest|overlaps|ordering)\|port_error:call\|ValueError:(select|type|ties_method) must be", PB,
+     "R match.arg partial matching ('a' -> 'all'/'any'/'average')", "no partial matching"),
+    (r"^e2\|overlaps\|mismatch\|diff\|plain$", PB, "R truncates fractional minoverlap (5.5 -> 5)", "fractional minoverlap not truncated"),
+    (r"^e2\|overlaps\|mismatch\|names\|-$", PB, "R names countOverlaps by names(query); no e2 doc", "drops query names"),
+    (r"^e2\|subset_concat\|mismatch\|mcols\|-$", PB, "R as.character(double) uses 15 significant digits", "double->chr formatting"),
+    (r"^e2\|subset_concat\|mismatch\|mcol_types", PB, "R: column only in an empty object is logical NA", "takes the empty object's type"),
+    (r"^e2\|subset_concat\|port_error:call\|TypeError", PB, "R: c(<IRanges>, <IRanges>, 1L) coerces 1L", "c() rejects integer"),
+    (r"^e2\|subset_concat\|r_error_port_value\|other:subscript contains invalid names", PB, "R: '' never matches a name",
+     "empty-string name subscript matches"),
+    (r"^e2\|setops\|mismatch\|(seqinfo|names|mcols)\|-$", PB,
+     "R: GRanges pintersect keeps x's seqlevels only and replaces an existing `hit` column; IRanges p* take y's names "
+     "when x has none", "p* metadata rules"),
+    (r"^e2\|accessors\|mismatch\|names\|-$", PB, "R mcols(x) has rownames = names(x); no e2 doc", "mcols() without rownames"),
+    (r"^e2\|accessors\|mismatch\|diff\|", PB, "R: mcols(<IRanges without columns>) is NULL; e2 returns an empty frame",
+     "mcols() of an IRanges without columns"),
+    (r"^e2\|accessors\|r_error_port_value\|na_input_rejected", PB, "R mcols(x) errors when names(x) has NA", "no error"),
+    (r"^e2\|inter\|mismatch\|mcols\|-$", PB, "R reduce(min.gapwidth=0) drops repeated empties from revmap (e1:NOTES 00:20)",
+     "revmap keeps repeated empties"),
+    (r"^e2\|inter\|mismatch\|diff\|zero_width$", PB, "R truncates min.gapwidth=1.5 to 1", "fractional min.gapwidth"),
+    (r"^e2\|coverage\|port_error:call\|(TypeError:'float'|TypeError:shift must|TypeError:weight must be numeric\|-)", PB,
+     "R accepts coverage(width=1.5) (truncated) and shift/weight as an mcols column name", "coverage argument forms"),
+    (r"^e2\|coverage\|r_error_port_value\|other:", PB, "R rejects width=NA/TRUE, over-long shift, reordered named width",
+     "missing coverage validation"),
 ]

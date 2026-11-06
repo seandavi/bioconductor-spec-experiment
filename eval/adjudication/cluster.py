@@ -62,7 +62,7 @@ PORT_ERROR_BUCKETS: list[tuple[str, str]] = [
     ("rejects_names_padding", r"'names' has length \d+ but \d+ was expected"),
     ("rejects_names_padding", r"names has length \d+, expected \d+"),
     # pintersect(resolve.empty=<invalid>) where no empty intersection arises; 'start' is a valid partial match
-    ("resolve_empty_validation", r"unknown resolve_empty (?!'start')|'resolve_empty' must be"),
+    ("resolve_empty_validation", r"unknown resolve_empty (?!'start')|'?resolve_empty'? must be"),
     ("mcols_type_conflict_crash", r"SchemaError|cannot combine: mcols columns differ"),
     ("rejects_recycling", r"has length \d+ but \d+ was expected|must be a single value or have the length|"
                           r"must have length \d+ or \d+, got \d+|incompatible lengths:|requires equal lengths|"
@@ -200,6 +200,8 @@ def signature(port: str, case: dict, exp: dict, rec: dict, scored: dict) -> dict
             feature = "min_gapwidth_0"  # R's empty-range rules differ by min.gapwidth / drop.empty.ranges
         elif op == "reduce" and kw.get("drop.empty.ranges") is True:
             feature = "drop_empty_ranges"
+        elif op == "distance" and feature == "int32_edge":
+            feature = "int32_edge_distance"  # R documents NA for distances beyond int32; no sentinel involved
     if cls == "r_error_port_value":
         # an NA flag R rejects vs an R failure on valid input: the input decides
         feature = "-" if detail not in ("na_in_logic", "length_validation") else next(

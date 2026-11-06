@@ -2,8 +2,8 @@
  "e0": {
   "classes": {
    "port_bug": 494,
-   "declared_divergence": 501,
-   "r_accident": 284,
+   "declared_divergence": 503,
+   "r_accident": 282,
    "adapter_fault": 70,
    "harness_fault": 37
   },
@@ -38,20 +38,20 @@
    "adjusted_denominator": 2903,
    "adjusted_fidelity": 0.958
   },
-  "clusters": 84
+  "clusters": 85
  },
  "e0b": {
   "classes": {
    "port_bug": 1084,
    "declared_divergence": 459,
-   "r_accident": 164,
+   "r_accident": 165,
    "adapter_fault": 0,
    "harness_fault": 60
   },
   "classes_heldout": {
    "port_bug": 209,
    "declared_divergence": 15,
-   "r_accident": 32,
+   "r_accident": 33,
    "adapter_fault": 0,
    "harness_fault": 0
   },
@@ -67,8 +67,8 @@
    "supported": 8324,
    "raw_fidelity": 0.6794,
    "supported_fidelity": 0.7876,
-   "adjusted_denominator": 7641,
-   "adjusted_fidelity": 0.858
+   "adjusted_denominator": 7640,
+   "adjusted_fidelity": 0.8581
   },
   "heldout": {
    "pass": 2510,
@@ -76,10 +76,10 @@
    "supported": 2767,
    "raw_fidelity": 0.7151,
    "supported_fidelity": 0.9071,
-   "adjusted_denominator": 2720,
-   "adjusted_fidelity": 0.9228
+   "adjusted_denominator": 2719,
+   "adjusted_fidelity": 0.9231
   },
-  "clusters": 115
+  "clusters": 117
  },
  "e1": {
   "classes": {
@@ -124,16 +124,16 @@
  },
  "e2": {
   "classes": {
-   "port_bug": 0,
-   "declared_divergence": 0,
-   "r_accident": 238,
+   "port_bug": 794,
+   "declared_divergence": 178,
+   "r_accident": 256,
    "adapter_fault": 0,
    "harness_fault": 0
   },
   "classes_heldout": {
-   "port_bug": 0,
-   "declared_divergence": 0,
-   "r_accident": 6,
+   "port_bug": 98,
+   "declared_divergence": 30,
+   "r_accident": 8,
    "adapter_fault": 0,
    "harness_fault": 0
   },
@@ -149,8 +149,8 @@
    "supported": 8916,
    "raw_fidelity": 0.7967,
    "supported_fidelity": 0.8623,
-   "adjusted_denominator": 8678,
-   "adjusted_fidelity": 0.8859
+   "adjusted_denominator": 8482,
+   "adjusted_fidelity": 0.9064
   },
   "heldout": {
    "pass": 2896,
@@ -158,10 +158,10 @@
    "supported": 3032,
    "raw_fidelity": 0.8251,
    "supported_fidelity": 0.9551,
-   "adjusted_denominator": 3026,
-   "adjusted_fidelity": 0.957
+   "adjusted_denominator": 2994,
+   "adjusted_fidelity": 0.9673
   },
-  "clusters": 5
+  "clusters": 89
  },
  "e3": {
   "classes": {
