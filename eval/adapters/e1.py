@@ -326,7 +326,9 @@ class Adapter(AdapterBase):
         return None if names is None else RVector("chr", list(names))
 
     def op_length(self, *, x):
-        if not isinstance(x, (IRanges, GRanges, Seqinfo, Hits, Rle, RVector)):
+        if isinstance(x, pl.DataFrame):  # R: length(DataFrame) is the number of columns
+            return RVector("int", [x.width])
+        if not isinstance(x, (IRanges, GRanges, Seqinfo, Hits, Rle, RVector, np.ndarray, pl.Series)):
             raise Unsupported(f"length on {type(x).__name__}")
         return RVector("int", [len(x)])
 
