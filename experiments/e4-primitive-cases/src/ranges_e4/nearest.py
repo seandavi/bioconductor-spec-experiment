@@ -1,10 +1,8 @@
 """nearest / precede / follow / distance kernels over start/width arrays.
 
-gap(x, y) = max(0, max(xs, ys) - min(xe, ye) - 1): 0 for overlapping or
+distance(x, y) = max(0, max(xs, ys) - min(xe, ye) - 1): 0 for overlapping or
 adjacent ranges. ``nearest`` minimises it over all subjects, so overlapping
-and adjacent subjects tie. The public ``distance`` (IRanges 2.47.3 /
-GenomicRanges 1.65.2) is 0 for overlapping ranges and gap + 1 otherwise, so
-adjacent ranges are 1. ``precede`` takes subjects with start > end(x) and
+and adjacent subjects tie. ``precede`` takes subjects with start > end(x) and
 the smallest start; ``follow`` takes subjects with end < start(x) and the
 largest end. Ties are all returned, sorted by (query, subject); callers pick
 first/last/all. Zero-width ranges use their ``[s, s-1]`` coordinates.
@@ -18,21 +16,9 @@ Pairs = tuple[np.ndarray, np.ndarray]
 EMPTY_PAIRS: Pairs = (np.zeros(0, np.int64), np.zeros(0, np.int64))
 
 
-def _raw_gap(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -> np.ndarray:
-    """max(xs, ys) - min(xe, ye) - 1: negative when overlapping, 0 when adjacent."""
-    xe, ye = xs + xw - 1, ys + yw - 1
-    return np.maximum(xs, ys) - np.minimum(xe, ye) - 1
-
-
-def gap(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -> np.ndarray:
-    """Distance as used by nearest: 0 for overlapping and adjacent ranges."""
-    return np.maximum(0, _raw_gap(xs, xw, ys, yw))
-
-
 def distance(xs: np.ndarray, xw: np.ndarray, ys: np.ndarray, yw: np.ndarray) -> np.ndarray:
-    """R distance(): 0 if overlapping, else gap width + 1 (adjacent ranges give 1)."""
-    g = _raw_gap(xs, xw, ys, yw)
-    return np.where(g >= 0, g + 1, 0)
+    xe, ye = xs + xw - 1, ys + yw - 1
+    return np.maximum(0, np.maximum(xs, ys) - np.minimum(xe, ye) - 1)
 
 
 def mask_int32_overflow(d: np.ndarray) -> np.ma.MaskedArray:
@@ -52,7 +38,7 @@ def nearest_pairs(qs: np.ndarray, qw: np.ndarray, ss: np.ndarray, sw: np.ndarray
         return EMPTY_PAIRS
     out = []
     for i in range(len(qs)):
-        d = gap(qs[i], qw[i], ss, sw)
+        d = distance(qs[i], qw[i], ss, sw)
         out.append(np.flatnonzero(d == d.min()))
     return _collect(out)
 

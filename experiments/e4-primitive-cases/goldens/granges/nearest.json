@@ -129,35 +129,35 @@
     "gr-distance-parallel": {
       "kind": "vector",
       "type": "integer",
-      "values": [17, 8, 9, 4, 33, 97],
+      "values": [16, 7, 8, 3, 32, 96],
       "names": null,
       "warnings": []
     },
     "gr-distance-strand-incompatible-na": {
       "kind": "vector",
       "type": "integer",
-      "values": [17, null, 9, null, 14],
+      "values": [16, null, 8, null, 13],
       "names": null,
       "warnings": []
     },
     "gr-distance-ignore-strand": {
       "kind": "vector",
       "type": "integer",
-      "values": [17, 8, 9, null, 14],
+      "values": [16, 7, 8, null, 13],
       "names": null,
       "warnings": []
     },
     "gr-distance-different-seqnames-na": {
       "kind": "vector",
       "type": "integer",
-      "values": [null, 8],
+      "values": [null, 7],
       "names": null,
       "warnings": []
     },
     "gr-distance-recycle-x": {
       "kind": "vector",
       "type": "integer",
-      "values": [17, 8, 9, null, 14],
+      "values": [16, 7, 8, null, 13],
       "names": null,
       "warnings": []
     },
