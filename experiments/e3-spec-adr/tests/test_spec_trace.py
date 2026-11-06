@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CLAUSE = re.compile(r"^\*\*([A-Z]+\.\d+)\*\*(.*)$", re.M)
 
 # Areas whose implementation has not landed yet (shrinks each stage; empty at close-out).
-PENDING_AREAS: set[str] = {"SEQI", "GR"}
+PENDING_AREAS: set[str] = {"GR"}
 
 
 def spec_clauses() -> dict[str, bool]:

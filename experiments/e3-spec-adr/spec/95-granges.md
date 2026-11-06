@@ -6,7 +6,7 @@ in 10–80 applies per range; this file states what changes. Strand codes
 
 ## Core
 
-**GR.1** `GRanges(seqnames, ranges, strand=None, seqinfo=None, names=None, mcols=None)`. `seqnames`: one string per range. `ranges`: an `IRanges` of length `n` (a length-1 input is recycled to `n`; its names/mcols are ignored). `strand`: one of `+ - *` (scalar recycled, or per range); default `*`. `names` default: none. Lengths must otherwise agree, else refused.
+**GR.1** `GRanges(seqnames, ranges, strand=None, seqinfo=None, names=None, mcols=None)`. `seqnames`: one string per range. `ranges`: an `IRanges` of length `n` (a length-1 input is recycled to `n`; its mcols are ignored). `names` default to the names of `ranges`. `strand`: one of `+ - *` (scalar recycled, or per range); default `*`. Lengths must otherwise agree, else refused.
 
 **GR.2** `strand` values other than `+`, `-`, `*` are refused. Seqnames absent from an explicit `Seqinfo` are refused (SEQI.4).
 
