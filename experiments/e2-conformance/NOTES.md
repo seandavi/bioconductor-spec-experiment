@@ -21,3 +21,8 @@
   - `names` shorter than ranges is NA-padded; longer is an error.
   - `x[integer(0)]` keeps `names = character(0)` (not NULL).
   - `c()` of named + unnamed pads names with `""`; of mcols + no-mcols pads columns with NA.
+- findOverlaps: Hits for one query come out in NCList traversal order (e.g. `3-7 3-3 3-4`), not ascending subject index. Not a contract → compare mode `hits-query-grouped` (queries exact, subjects per query as a set). `select=first/last` is index-based and exact.
+- nearest(select="arbitrary") breaks ties unspecifiably; fixtures avoid ties for it. `follow` takes select last|all, `precede` first|all (opposite pick errors).
+- p* set ops do not recycle length-1 (error); `distance` does (warns on fractional). `psetdiff` errors whenever y lies strictly inside x.
+- coverage: positions < 1 silently dropped; NA weight gives garbage (not pinned).
+- reduce/disjoin `revmap` order = indices sorted by (start, end), ties by index.
