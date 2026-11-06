@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:35:08-0500"
+  },
+  "cases": {
+    "si.ctor.names-only": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["a", "b", "c"]},
+        "seqlengths": {"$int": [null, null, null]},
+        "isCircular": {"$lgl": [null, null, null]},
+        "genome": {"$chr": [null, null, null]}
+      },
+      "warnings": []
+    },
+    "si.ctor.full": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["a", "b"]},
+        "seqlengths": {"$int": [10, 20]},
+        "isCircular": {"$lgl": [true, false]},
+        "genome": {"$chr": ["g1", "g2"]}
+      },
+      "warnings": []
+    },
+    "si.ctor.scalar-genome": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["a", "b"]},
+        "seqlengths": {"$int": [null, null]},
+        "isCircular": {"$lgl": [null, null]},
+        "genome": {"$chr": ["hg19", "hg19"]}
+      },
+      "warnings": []
+    },
+    "si.ctor.partial-na": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["a", "b"]},
+        "seqlengths": {"$int": [5, null]},
+        "isCircular": {"$lgl": [null, true]},
+        "genome": {"$chr": [null, null]}
+      },
+      "warnings": []
+    },
+    "si.ctor.double-lengths": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["a", "b"]},
+        "seqlengths": {"$int": [5, 6]},
+        "isCircular": {"$lgl": [null, null]},
+        "genome": {"$chr": [null, null]}
+      },
+      "warnings": []
+    },
+    "si.ctor.empty": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": []},
+        "seqlengths": {"$int": []},
+        "isCircular": {"$lgl": []},
+        "genome": {"$chr": []}
+      },
+      "warnings": []
+    },
+    "si.ctor.err.dup": {
+      "error": {
+        "message": "supplied 'seqlevels' cannot contain duplicated sequence names",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.ctor.err.na-name": {
+      "error": {
+        "message": "supplied 'seqlevels' cannot contain NAs or empty strings (\"\")",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.ctor.err.neg-length": {
+      "error": {
+        "message": "the supplied 'seqlengths' vector contains negative values",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.ctor.err.length-mismatch": {
+      "error": {
+        "message": "the length of the supplied 'seqlengths' vector must be equal to the number of\n  sequences",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.acc.seqnames": {
+      "value": {"$chr": ["chr1", "chr2", "chrM"]},
+      "warnings": []
+    },
+    "si.acc.seqlevels": {
+      "value": {"$chr": ["chr1", "chr2", "chrM"]},
+      "warnings": []
+    },
+    "si.acc.seqlengths": {
+      "value": {"$int": [1000, 500, 16], "names": ["chr1", "chr2", "chrM"]},
+      "warnings": []
+    },
+    "si.acc.isCircular": {
+      "value": {"$lgl": [false, false, true], "names": ["chr1", "chr2", "chrM"]},
+      "warnings": []
+    },
+    "si.acc.genome": {
+      "value": {"$chr": ["hg", "hg", "hg"], "names": ["chr1", "chr2", "chrM"]},
+      "warnings": []
+    },
+    "si.acc.length": {
+      "value": {"$int": [3]},
+      "warnings": []
+    },
+    "si.acc.na-fields": {
+      "value": {"$int": [500, 300, null], "names": ["chr2", "chr3", "chr1"]},
+      "warnings": []
+    },
+    "si.acc.na-genome": {
+      "value": {"$chr": [null, "hg", "hg"], "names": ["chr2", "chr3", "chr1"]},
+      "warnings": []
+    },
+    "si.acc.na-circular": {
+      "value": {"$lgl": [null, false, null], "names": ["chr2", "chr3", "chr1"]},
+      "warnings": []
+    },
+    "si.acc.plain-all-na": {
+      "value": {"$lgl": [null, null], "names": ["x", "y"]},
+      "warnings": []
+    },
+    "si.acc.empty-length": {
+      "value": {"$int": [0]},
+      "warnings": []
+    },
+    "si.subset.names": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chrM", "chr1"]},
+        "seqlengths": {"$int": [16, 1000]},
+        "isCircular": {"$lgl": [true, false]},
+        "genome": {"$chr": ["hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.subset.err.int": {
+      "error": {
+        "message": "a Seqinfo object can be subsetted only by name",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.subset.err.lgl": {
+      "error": {
+        "message": "a Seqinfo object can be subsetted only by name",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.subset.unknown-name-adds-level": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["nope"]},
+        "seqlengths": {"$int": [null]},
+        "isCircular": {"$lgl": [null]},
+        "genome": {"$chr": [null]}
+      },
+      "warnings": []
+    },
+    "si.merge.a-b": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrM", "chr3"]},
+        "seqlengths": {"$int": [1000, 500, 16, 300]},
+        "isCircular": {"$lgl": [false, false, true, false]},
+        "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+      },
+      "warnings": ["Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chrM\n  - in 'y': chr3\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."]
+    },
+    "si.merge.b-a": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr2", "chr3", "chr1", "chrM"]},
+        "seqlengths": {"$int": [500, 300, 1000, 16]},
+        "isCircular": {"$lgl": [false, false, false, true]},
+        "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+      },
+      "warnings": ["Each of the 2 combined objects has sequence levels not in the other:\n  - in 'x': chr3\n  - in 'y': chrM\n  Make sure to always combine/compare objects based on the same reference\n  genome (use suppressWarnings() to suppress this warning)."]
+    },
+    "si.merge.disjoint": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrM", "x", "y"]},
+        "seqlengths": {"$int": [1000, 500, 16, null, null]},
+        "isCircular": {"$lgl": [false, false, true, null, null]},
+        "genome": {"$chr": ["hg", "hg", "hg", null, null]}
+      },
+      "warnings": ["The 2 combined objects have no sequence levels in common. (Use\n  suppressWarnings() to suppress this warning.)"]
+    },
+    "si.merge.self": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+        "seqlengths": {"$int": [1000, 500, 16]},
+        "isCircular": {"$lgl": [false, false, true]},
+        "genome": {"$chr": ["hg", "hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.merge.with-empty": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrM"]},
+        "seqlengths": {"$int": [1000, 500, 16]},
+        "isCircular": {"$lgl": [false, false, true]},
+        "genome": {"$chr": ["hg", "hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.merge.fills-na": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1"]},
+        "seqlengths": {"$int": [999]},
+        "isCircular": {"$lgl": [null]},
+        "genome": {"$chr": [null]}
+      },
+      "warnings": []
+    },
+    "si.merge.genome-na-with-set": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1"]},
+        "seqlengths": {"$int": [null]},
+        "isCircular": {"$lgl": [null]},
+        "genome": {"$chr": ["mm"]}
+      },
+      "warnings": []
+    },
+    "si.merge.err.seqlength": {
+      "error": {
+        "message": "sequence chr1 has incompatible seqlengths:\n  - in 'x': 1000\n  - in 'y': 999",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.merge.err.genome": {
+      "error": {
+        "message": "sequence chr1 has incompatible genomes:\n  - in 'x': hg\n  - in 'y': mm",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.merge.err.circular": {
+      "error": {
+        "message": "sequence chr1 has incompatible circularity flags:\n  - in 'x': FALSE\n  - in 'y': TRUE",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.merge.err.circular-m": {
+      "error": {
+        "message": "sequence chrM has incompatible circularity flags:\n  - in 'x': TRUE\n  - in 'y': FALSE",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.replace.seqlengths": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["x", "y"]},
+        "seqlengths": {"$int": [10, 20]},
+        "isCircular": {"$lgl": [null, null]},
+        "genome": {"$chr": [null, null]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlengths.named": {
+      "error": {
+        "message": "the names on the supplied 'seqlengths' vector must be identical to the\n  seqnames",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "si.replace.isCircular": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["x", "y"]},
+        "seqlengths": {"$int": [null, null]},
+        "isCircular": {"$lgl": [true, false]},
+        "genome": {"$chr": [null, null]}
+      },
+      "warnings": []
+    },
+    "si.replace.genome": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["x", "y"]},
+        "seqlengths": {"$int": [null, null]},
+        "isCircular": {"$lgl": [null, null]},
+        "genome": {"$chr": ["hg38", "hg38"]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlevels.rename": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["c1", "c2", "cM"]},
+        "seqlengths": {"$int": [1000, 500, 16]},
+        "isCircular": {"$lgl": [false, false, true]},
+        "genome": {"$chr": ["hg", "hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlevels.reorder": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chrM", "chr1", "chr2"]},
+        "seqlengths": {"$int": [16, 1000, 500]},
+        "isCircular": {"$lgl": [true, false, false]},
+        "genome": {"$chr": ["hg", "hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlevels.drop": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chrM"]},
+        "seqlengths": {"$int": [1000, 16]},
+        "isCircular": {"$lgl": [false, true]},
+        "genome": {"$chr": ["hg", "hg"]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlevels.add": {
+      "value": {
+        "$type": "Seqinfo",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrM", "chrX"]},
+        "seqlengths": {"$int": [1000, 500, 16, null]},
+        "isCircular": {"$lgl": [false, false, true, null]},
+        "genome": {"$chr": ["hg", "hg", "hg", null]}
+      },
+      "warnings": []
+    },
+    "si.replace.seqlengths.err.badlen": {
+      "error": {
+        "message": "the length of the supplied 'seqlengths' vector must be equal to the number of\n  sequences",
+        "class": ["simpleError", "error", "condition"]
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "group": "iranges-order",
+  "clauses": {
+    "IR.ORDER": "order(x) sorts by start, then width (ascending); ties keep input order (stable); decreasing=TRUE reverses the key order but ties still keep input order",
+    "IR.SORT": "sort(x) = x[order(x)]: names and mcols travel with their ranges; decreasing=TRUE supported",
+    "IR.RANK": "rank(x, ties.method=m) ranks ranges in the order of IR.ORDER; ties follow base R (average gives doubles, others integers); names are dropped",
+    "IR.DUP": "duplicated(x) flags ranges identical in start and width to an earlier one (fromLast flips); names and mcols are ignored",
+    "IR.UNIQUE": "unique(x) keeps the first (fromLast: last) of each distinct (start, width), in input order, keeping names/mcols of the kept element",
+    "IR.ORDER.ERR": "rank(x) without an explicit ties.method is an error for IRanges (R quirk); unsupported ties.method values are errors"
+  },
+  "fixtures": {
+    "x": {"$type": "IRanges", "start": [10, 3, 10, 3, 7, 10, 3, 5], "width": [2, 4, 5, 4, 0, 2, 1, 0],
+          "names": ["a", "b", "c", "d", "e", "f", "g", "h"],
+          "mcols": {"$type": "DFrame", "columns": {"i": [1, 2, 3, 4, 5, 6, 7, 8]}}},
+    "y": {"$type": "IRanges", "start": [10, 3, 10, 3, 7, 10, 3, 5], "width": [2, 4, 5, 4, 0, 2, 1, 0]},
+    "e": {"$type": "IRanges", "start": {"$int": []}, "width": {"$int": []}},
+    "u": {"$type": "IRanges", "start": [5, 1, 9], "width": [1, 1, 1]},
+    "neg": {"$type": "IRanges", "start": [-5, 0, 5, -5], "width": [3, 2, 1, 1]}
+  },
+  "cases": [
+    {"id": "ir.order.basic", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "y"}], "kwargs": {}},
+    {"id": "ir.order.decreasing", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "y"}], "kwargs": {"decreasing": true}},
+    {"id": "ir.order.unique-keys", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "u"}], "kwargs": {}},
+    {"id": "ir.order.negative-starts", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "neg"}], "kwargs": {}},
+    {"id": "ir.order.empty", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "e"}], "kwargs": {}},
+    {"id": "ir.order.two-keys", "clause": "IR.ORDER", "op": "order", "args": [{"$ref": "u"}, {"$ref": "u"}], "kwargs": {}},
+    {"id": "ir.sort.basic", "clause": "IR.SORT", "op": "sort", "args": [{"$ref": "x"}], "kwargs": {}},
+    {"id": "ir.sort.decreasing", "clause": "IR.SORT", "op": "sort", "args": [{"$ref": "x"}], "kwargs": {"decreasing": true}},
+    {"id": "ir.sort.empty", "clause": "IR.SORT", "op": "sort", "args": [{"$ref": "e"}], "kwargs": {}},
+    {"id": "ir.sort.sorted-input", "clause": "IR.SORT", "op": "sort", "args": [{"$ref": "u"}], "kwargs": {}},
+    {"id": "ir.rank.default-is-error", "clause": "IR.ORDER.ERR", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {}},
+    {"id": "ir.rank.average", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "average"}},
+    {"id": "ir.rank.min", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "min"}},
+    {"id": "ir.rank.max", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "max"}},
+    {"id": "ir.rank.first", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "first"}},
+    {"id": "ir.rank.last", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "last"}},
+    {"id": "ir.rank.unique-keys", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "u"}], "kwargs": {"ties.method": "min"}},
+    {"id": "ir.rank.empty", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "e"}], "kwargs": {"ties.method": "min"}},
+    {"id": "ir.rank.names", "clause": "IR.RANK", "op": "rank", "args": [{"$ref": "x"}], "kwargs": {"ties.method": "min"}},
+    {"id": "ir.rank.bad-method", "clause": "IR.ORDER.ERR", "op": "rank", "args": [{"$ref": "y"}], "kwargs": {"ties.method": "dense"}},
+    {"id": "ir.dup.basic", "clause": "IR.DUP", "op": "duplicated", "args": [{"$ref": "y"}], "kwargs": {}},
+    {"id": "ir.dup.from-last", "clause": "IR.DUP", "op": "duplicated", "args": [{"$ref": "y"}], "kwargs": {"fromLast": true}},
+    {"id": "ir.dup.ignores-names-mcols", "clause": "IR.DUP", "op": "duplicated", "args": [{"$ref": "x"}], "kwargs": {}},
+    {"id": "ir.dup.none", "clause": "IR.DUP", "op": "duplicated", "args": [{"$ref": "u"}], "kwargs": {}},
+    {"id": "ir.dup.empty", "clause": "IR.DUP", "op": "duplicated", "args": [{"$ref": "e"}], "kwargs": {}},
+    {"id": "ir.dup.zero-width-same-start", "clause": "IR.DUP", "op": "duplicated", "args": [{"$type": "IRanges", "start": [4, 4, 4], "width": [0, 0, 1]}], "kwargs": {}},
+    {"id": "ir.unique.basic", "clause": "IR.UNIQUE", "op": "unique", "args": [{"$ref": "x"}], "kwargs": {}},
+    {"id": "ir.unique.no-names", "clause": "IR.UNIQUE", "op": "unique", "args": [{"$ref": "y"}], "kwargs": {}},
+    {"id": "ir.unique.from-last", "clause": "IR.UNIQUE", "op": "unique", "args": [{"$ref": "x"}], "kwargs": {"fromLast": true}},
+    {"id": "ir.unique.all-distinct", "clause": "IR.UNIQUE", "op": "unique", "args": [{"$ref": "u"}], "kwargs": {}},
+    {"id": "ir.unique.empty", "clause": "IR.UNIQUE", "op": "unique", "args": [{"$ref": "e"}], "kwargs": {}}
+  ]
+}

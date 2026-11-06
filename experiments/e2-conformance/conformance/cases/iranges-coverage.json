@@ -1,0 +1,52 @@
+{
+  "group": "iranges-coverage",
+  "clauses": {
+    "IR.COV.BASIC": "coverage(x) returns an integer Rle over 1..max(end(x)): per-position count of ranges covering it; zero-width ranges contribute nothing",
+    "IR.COV.SHIFT": "shift moves every range by shift (recycled) before counting; positions below 1 are silently dropped (output always starts at position 1)",
+    "IR.COV.WIDTH": "width sets the output length: longer pads with zeros, shorter truncates",
+    "IR.COV.WEIGHT": "weight multiplies each range's contribution; integer weights give an integer Rle, double weights a numeric Rle; weight recycles",
+    "IR.COV.EDGE": "empty input, all zero-width input, adjacent and duplicate ranges",
+    "IR.COV.ERR": "negative width and a weight longer than x are errors"
+  },
+  "fixtures": {
+    "x": {"$type": "IRanges", "start": [1, 3, 3, 10, 12, 20], "width": [5, 2, 4, 3, 0, 1]},
+    "xn": {"$type": "IRanges", "start": [2, 4], "width": [3, 3], "names": ["a", "b"]},
+    "adj": {"$type": "IRanges", "start": [1, 4, 7], "width": [3, 3, 3]},
+    "dup": {"$type": "IRanges", "start": [2, 2, 2], "width": [3, 3, 3]},
+    "z": {"$type": "IRanges", "start": [3, 5], "width": [0, 0]},
+    "e": {"$type": "IRanges", "start": {"$int": []}, "width": {"$int": []}},
+    "neg": {"$type": "IRanges", "start": [-2, 3], "width": [4, 2]}
+  },
+  "cases": [
+    {"id": "ir.cov.basic", "clause": "IR.COV.BASIC", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {}},
+    {"id": "ir.cov.names-ignored", "clause": "IR.COV.BASIC", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {}},
+    {"id": "ir.cov.single", "clause": "IR.COV.BASIC", "op": "coverage", "args": [{"$type": "IRanges", "start": [4], "width": [1]}], "kwargs": {}},
+    {"id": "ir.cov.adjacent", "clause": "IR.COV.BASIC", "op": "coverage", "args": [{"$ref": "adj"}], "kwargs": {}},
+    {"id": "ir.cov.duplicates", "clause": "IR.COV.BASIC", "op": "coverage", "args": [{"$ref": "dup"}], "kwargs": {}},
+    {"id": "ir.cov.shift.pos", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"shift": 2}},
+    {"id": "ir.cov.shift.neg-valid", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"shift": -1}},
+    {"id": "ir.cov.shift.vector", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"shift": [0, 5]}},
+    {"id": "ir.cov.shift.rescues-negative", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "neg"}], "kwargs": {"shift": 3}},
+    {"id": "ir.cov.negative-start-clipped", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "neg"}], "kwargs": {}},
+    {"id": "ir.cov.shift.below-one-clipped", "clause": "IR.COV.SHIFT", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"shift": -5}},
+    {"id": "ir.cov.width.longer", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 30}},
+    {"id": "ir.cov.width.shorter", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 11}},
+    {"id": "ir.cov.width.cuts-range", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 4}},
+    {"id": "ir.cov.width.exact", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 20}},
+    {"id": "ir.cov.width.zero", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 0}},
+    {"id": "ir.cov.width.with-shift", "clause": "IR.COV.WIDTH", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": 10, "shift": 3}},
+    {"id": "ir.cov.weight.int", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"weight": 3}},
+    {"id": "ir.cov.weight.dbl", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"weight": 0.5}},
+    {"id": "ir.cov.weight.vector-int", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"weight": [2, -1]}},
+    {"id": "ir.cov.weight.vector-dbl", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"weight": [1.5, 2.5, 0, 1, 1, 1]}},
+    {"id": "ir.cov.weight.zero", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"weight": 0}},
+    {"id": "ir.cov.weight.whole-double", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "xn"}], "kwargs": {"weight": 2.0}},
+    {"id": "ir.cov.weight.recycle", "clause": "IR.COV.WEIGHT", "op": "coverage", "args": [{"$ref": "adj"}], "kwargs": {"weight": [1, 10]}},
+    {"id": "ir.cov.empty", "clause": "IR.COV.EDGE", "op": "coverage", "args": [{"$ref": "e"}], "kwargs": {}},
+    {"id": "ir.cov.empty.width", "clause": "IR.COV.EDGE", "op": "coverage", "args": [{"$ref": "e"}], "kwargs": {"width": 5}},
+    {"id": "ir.cov.zero-width-only", "clause": "IR.COV.EDGE", "op": "coverage", "args": [{"$ref": "z"}], "kwargs": {}},
+    {"id": "ir.cov.zero-width-only.width", "clause": "IR.COV.EDGE", "op": "coverage", "args": [{"$ref": "z"}], "kwargs": {"width": 6}},
+    {"id": "ir.cov.err.width-neg", "clause": "IR.COV.ERR", "op": "coverage", "args": [{"$ref": "x"}], "kwargs": {"width": -1}},
+    {"id": "ir.cov.err.weight-len", "clause": "IR.COV.ERR", "op": "coverage", "args": [{"$ref": "adj"}], "kwargs": {"weight": [1, 2, 3, 4]}}
+  ]
+}

@@ -1,0 +1,963 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:56:42-0500"
+  },
+  "cases": {
+    "gr.range.default": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 30, 12, 5, 5, 3]},
+        "width": {"$int": [32, 40, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.range.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr2", "chrU"]},
+        "start": {"$int": [8, 5, 3]},
+        "width": {"$int": [62, 5, 4]},
+        "strand": {"$chr": ["*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.range.single-group": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1"]},
+        "start": {"$int": [1]},
+        "width": {"$int": [22]},
+        "strand": {"$chr": ["+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.range.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.range.no-seqinfo": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["a", "b"]},
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["a", "b"]},
+          "seqlengths": {"$int": [null, null]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": [null, null]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.default": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 40, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [9, 0, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 8,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.simple": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1"]},
+        "start": {"$int": [1, 20]},
+        "width": {"$int": [10, 3]},
+        "strand": {"$chr": ["+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.strand-order": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1"]},
+        "start": {"$int": [1, 12, 10, 20]},
+        "width": {"$int": [5, 3, 5, 2]},
+        "strand": {"$chr": ["+", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.no-seqinfo": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["a", "b"]},
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [4, 2]},
+        "strand": {"$chr": ["+", "-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["a", "b"]},
+          "seqlengths": {"$int": [null, null]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": [null, null]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chrU"]},
+        "start": {"$int": [8, 30, 40, 60, 5, 3]},
+        "width": {"$int": [9, 5, 0, 10, 5, 4]},
+        "strand": {"$chr": ["*", "*", "*", "*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.ignore-strand.gs": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1"]},
+        "start": {"$int": [1, 10, 20]},
+        "width": {"$int": [5, 5, 2]},
+        "strand": {"$chr": ["*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.mingap": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 40, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [9, 0, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 8,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.mingap0": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1"]},
+        "start": {"$int": [1, 6, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "strand": {"$chr": ["+", "+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.drop-empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [9, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 7,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.revmap": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 40, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [9, 0, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 8,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [6, 2, 3],
+                [7],
+                [4],
+                [10],
+                [5],
+                [1],
+                [8],
+                [9]
+              ],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.revmap.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chrU"]},
+        "start": {"$int": [8, 30, 40, 60, 5, 3]},
+        "width": {"$int": [9, 5, 0, 10, 5, 4]},
+        "strand": {"$chr": ["*", "*", "*", "*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [6, 2, 5, 3],
+                [4],
+                [7],
+                [10],
+                [1, 8],
+                [9]
+              ],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.revmap.mingap": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1"]},
+        "start": {"$int": [1]},
+        "width": {"$int": [22]},
+        "strand": {"$chr": ["+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2, 3]
+              ],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.reduce.revmap.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.default": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU"]},
+        "start": {"$int": [1, 17, 1, 35, 70, 1, 16, 1, 10, 1, 10, 1, 1, 1, 1, 1]},
+        "width": {"$int": [7, 84, 29, 25, 31, 11, 85, 4, 41, 4, 41, 50, 30, 30, 30, 2]},
+        "strand": {"$chr": ["+", "+", "-", "-", "-", "*", "*", "+", "+", "-", "-", "*", "+", "-", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 16,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.simple": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX"]},
+        "start": {"$int": [11, 23, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [9, 78, 100, 100, 50, 50, 50, 30, 30, 30]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 10,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.strand-mix": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX"]},
+        "start": {"$int": [6, 15, 1, 15, 1, 22, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [6, 86, 9, 86, 19, 79, 50, 50, 50, 30, 30, 30]},
+        "strand": {"$chr": ["+", "+", "-", "-", "*", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 12,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX"]},
+        "start": {"$int": [1, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [100, 100, 100, 50, 50, 50, 30, 30, 30]},
+        "strand": {"$chr": ["+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 9,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.no-seqlengths": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["b"]},
+        "start": {"$int": [1]},
+        "width": {"$int": [4]},
+        "strand": {"$chr": ["-"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["a", "b"]},
+          "seqlengths": {"$int": [null, null]},
+          "isCircular": {"$lgl": [null, null]},
+          "genome": {"$chr": [null, null]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.start": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX"]},
+        "start": {"$int": [11, 23, 3, 3, 3, 3, 3, 3, 3, 3]},
+        "width": {"$int": [9, 78, 98, 98, 48, 48, 48, 28, 28, 28]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 10,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.end": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU", "chrU", "chrU"]},
+        "start": {"$int": [11, 23, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [9, 3, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 13,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.start-end": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU", "chrU", "chrU"]},
+        "start": {"$int": [11, 23, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]},
+        "width": {"$int": [9, 3, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 13,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.end-named": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU", "chrU", "chrU"]},
+        "start": {"$int": [11, 23, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [9, 28, 50, 50, 20, 20, 20, 10, 10, 10, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 13,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.end-unnamed-vector": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU", "chrU", "chrU"]},
+        "start": {"$int": [11, 23, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [9, 28, 50, 50, 20, 20, 20, 10, 10, 10, 5, 5, 5]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 13,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.end-unnamed-short": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX", "chrU", "chrU", "chrU"]},
+        "start": {"$int": [11, 23, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+        "width": {"$int": [9, 28, 50, 50, 20, 20, 20, 50, 50, 50, 20, 20, 20]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 13,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.start-vector": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chr2", "chrX", "chrX", "chrX"]},
+        "start": {"$int": [11, 23, 1, 1, 5, 5, 5, 10, 10, 10]},
+        "width": {"$int": [9, 78, 100, 100, 46, 46, 46, 21, 21, 21]},
+        "strand": {"$chr": ["+", "+", "-", "*", "+", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 10,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.gaps.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr2", "chrX"]},
+        "start": {"$int": [6, 15, 22, 1, 1]},
+        "width": {"$int": [4, 5, 79, 50, 30]},
+        "strand": {"$chr": ["*", "*", "*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.default": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 10, 12, 14, 15, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [2, 2, 2, 1, 2, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "+", "+", "+", "+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 11,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.simple": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1"]},
+        "start": {"$int": [1, 6, 20]},
+        "width": {"$int": [5, 5, 3]},
+        "strand": {"$chr": ["+", "+", "+"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chrU"]},
+        "start": {"$int": [8, 10, 12, 14, 15, 16, 30, 60, 5, 3]},
+        "width": {"$int": [2, 2, 2, 1, 1, 1, 5, 10, 5, 4]},
+        "strand": {"$chr": ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 10,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.revmap": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chr2", "chrU"]},
+        "start": {"$int": [8, 10, 12, 14, 15, 30, 60, 12, 5, 5, 3]},
+        "width": {"$int": [2, 2, 2, 1, 2, 5, 10, 4, 5, 5, 4]},
+        "strand": {"$chr": ["+", "+", "+", "+", "+", "-", "-", "*", "+", "-", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 11,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [6],
+                [2, 6],
+                [2],
+                [2, 3],
+                [3],
+                [4],
+                [10],
+                [5],
+                [1],
+                [8],
+                [9]
+              ],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.revmap.ignore-strand": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": ["chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr1", "chr2", "chrU"]},
+        "start": {"$int": [8, 10, 12, 14, 15, 16, 30, 60, 5, 3]},
+        "width": {"$int": [2, 2, 2, 1, 1, 1, 5, 10, 5, 4]},
+        "strand": {"$chr": ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 10,
+          "columns": {
+            "revmap": {
+              "$type": "IntegerList",
+              "elements": [
+                [6],
+                [2, 6],
+                [2, 5],
+                [2, 3, 5],
+                [3, 5],
+                [3],
+                [4],
+                [10],
+                [1, 8],
+                [9]
+              ],
+              "names": null
+            }
+          }
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    },
+    "gr.disjoin.empty": {
+      "value": {
+        "$type": "GRanges",
+        "seqnames": {"$chr": []},
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "strand": {"$chr": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        },
+        "seqinfo": {
+          "$type": "Seqinfo",
+          "seqnames": {"$chr": ["chr1", "chr2", "chrX", "chrU"]},
+          "seqlengths": {"$int": [100, 50, 30, null]},
+          "isCircular": {"$lgl": [false, false, false, false]},
+          "genome": {"$chr": ["hg", "hg", "hg", "hg"]}
+        }
+      },
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,996 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-06T00:21:18-0500"
+  },
+  "cases": {
+    "ir.ctor.sw": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.sw.positional-is-start-end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [3, 7]},
+        "width": {"$int": [2, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.sw.positional-end-lt-start": {
+      "error": {
+        "message": "each range must have an end that is greater or equal to its start minus one",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ctor.se": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 9]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.se.single-point": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4]},
+        "width": {"$int": [1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.ew": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 9]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.ew.negative-start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-2, -2]},
+        "width": {"$int": [5, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.zero.width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 1]},
+        "width": {"$int": [0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.zero.end": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 7]},
+        "width": {"$int": [0, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.zero.ew": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [6]},
+        "width": {"$int": [0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.names": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [2, 2]},
+        "names": {"$chr": ["a", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.names.na": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [2, 2]},
+        "names": {"$chr": ["a", null]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.names.dup": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [2, 2]},
+        "names": {"$chr": ["a", "a"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.names.short": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [2, 2]},
+        "names": {"$chr": ["a", null]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.names.long": {
+      "error": {
+        "message": "attempt to set too many names (3) on IRanges object of length 2",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ctor.recycle.width": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 9]},
+        "width": {"$int": [2, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.recycle.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 1, 1]},
+        "width": {"$int": [2, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.double.input": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5]},
+        "width": {"$int": [2, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.empty.vectors": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.empty.length": {
+      "value": {"$int": [0]},
+      "warnings": []
+    },
+    "ir.ctor.err.negwidth": {
+      "error": {
+        "message": "each range must have a non-negative width",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ctor.err.endlt": {
+      "error": {
+        "message": "each range must have an end that is greater or equal to its start minus one",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ctor.err.inconsistent": {
+      "error": {
+        "message": "In range 1: the supplied 'width' (2) doesn't match the width\n  inferred from the supplied 'start' and 'end' (5).",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ctor.frac.start": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1]},
+        "width": {"$int": [2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.frac.negative": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [-1]},
+        "width": {"$int": [2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ctor.err.na": {
+      "error": {
+        "message": "'start' or 'width' cannot contain NAs",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.acc.start": {
+      "value": {"$int": [1, 5, 12]},
+      "warnings": []
+    },
+    "ir.acc.end": {
+      "value": {"$int": [3, 8, 11]},
+      "warnings": []
+    },
+    "ir.acc.width": {
+      "value": {"$int": [3, 4, 0]},
+      "warnings": []
+    },
+    "ir.acc.names.none": {
+      "value": null,
+      "warnings": []
+    },
+    "ir.acc.names": {
+      "value": {"$chr": ["a", "b", "c"]},
+      "warnings": []
+    },
+    "ir.acc.length": {
+      "value": {"$int": [3]},
+      "warnings": []
+    },
+    "ir.acc.names.set": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 0]},
+        "names": {"$chr": ["p", "q", "r"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.acc.names.clear": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 1]},
+        "width": {"$int": [2, 3]},
+        "names": {"$chr": ["c", "a"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.repeat": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 5, 5]},
+        "width": {"$int": [4, 4, 4]},
+        "names": {"$chr": ["b", "b", "b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.neg": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 12]},
+        "width": {"$int": [3, 2]},
+        "names": {"$chr": ["a", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.zero": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5]},
+        "width": {"$int": [4]},
+        "names": {"$chr": ["b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": {"$chr": []},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.double": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5]},
+        "width": {"$int": [4]},
+        "names": {"$chr": ["b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.int.oob": {
+      "error": {
+        "message": "subscript contains out-of-bounds indices",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.subset.int.mixed-sign": {
+      "error": {
+        "message": "only 0's may be mixed with negative subscripts",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.subset.lgl": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 12]},
+        "width": {"$int": [3, 2]},
+        "names": {"$chr": ["a", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.lgl.none": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": {"$chr": []},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.lgl.recycle": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 12]},
+        "width": {"$int": [3, 2]},
+        "names": {"$chr": ["a", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.lgl.toolong": {
+      "error": {
+        "message": "subscript is a logical vector with out-of-bounds TRUE values",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.subset.names": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 1]},
+        "width": {"$int": [2, 3]},
+        "names": {"$chr": ["c", "a"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.names.unknown": {
+      "error": {
+        "message": "subscript contains invalid names",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.subset.names.unnamed": {
+      "error": {
+        "message": "cannot subset by character when names are NULL",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.subset.mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 1]},
+        "width": {"$int": [0, 3]},
+        "names": {"$chr": ["c", "a"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "score": {"$dbl": [3.5, 1.5]},
+            "label": {"$chr": ["w", "u"]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.mcols.lgl": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5]},
+        "width": {"$int": [4]},
+        "names": {"$chr": ["b"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "score": {"$dbl": [2.5]},
+            "label": {"$chr": ["v"]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.subset.mcols.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": {"$chr": []},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "score": {"$dbl": []},
+            "label": {"$chr": []}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.two": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 100, 200]},
+        "width": {"$int": [3, 4, 0, 10, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.three": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [100, 200, 1, 5, 12, 100, 200]},
+        "width": {"$int": [10, 1, 3, 4, 0, 10, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 7,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.names.both": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 1, 5, 12]},
+        "width": {"$int": [3, 4, 2, 3, 4, 2]},
+        "names": {"$chr": ["a", "b", "c", "a", "b", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.names.one-side": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 100, 200]},
+        "width": {"$int": [3, 4, 2, 10, 1]},
+        "names": {"$chr": ["a", "b", "c", "", ""]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 100, 200]},
+        "width": {"$int": [3, 4, 0, 10, 1]},
+        "names": {"$chr": ["a", "b", "c", "", ""]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, 9.5, 8.5]},
+            "label": {"$chr": ["u", "v", "w", "p", "q"]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols.one-side": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 100, 200]},
+        "width": {"$int": [3, 4, 0, 10, 1]},
+        "names": {"$chr": ["a", "b", "c", "", ""]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5, null, null]},
+            "label": {"$chr": ["u", "v", "w", null, null]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [100, 200]},
+        "width": {"$int": [10, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.single": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.none": {
+      "value": null,
+      "warnings": []
+    },
+    "ir.mcols.get": {
+      "value": {
+        "$type": "DFrame",
+        "nrow": 3,
+        "columns": {
+          "score": {"$dbl": [1.5, 2.5, 3.5]},
+          "label": {"$chr": ["u", "v", "w"]}
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.set": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "k": {"$int": [10, 20, 30]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.set.null": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 0]},
+        "names": {"$chr": ["a", "b", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.set.badrows": {
+      "error": {
+        "message": "trying to set a metadata column of length 3 on an object of length 2",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.c.mcols.int-then-dbl": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 9]},
+        "width": {"$int": [2, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [1.0, 2.75, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols.dbl-then-int": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 9, 1]},
+        "width": {"$int": [2, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [2.75, 3.5, 1.0]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols.int-then-int": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 1]},
+        "width": {"$int": [2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "score": {"$int": [1, 1]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols.na-fill-then-dbl": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [100, 200, 5, 9]},
+        "width": {"$int": [10, 1, 2, 2]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [null, null, 2.75, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.c.mcols.dbl-then-na-fill": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [5, 9, 100, 200]},
+        "width": {"$int": [2, 2, 10, 1]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {
+            "score": {"$dbl": [2.75, 3.5, null, null]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.listfactor.set": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12]},
+        "width": {"$int": [3, 4, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "groups": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2],
+                [],
+                [3]
+              ],
+              "names": null
+            },
+            "f": {
+              "$type": "Factor",
+              "levels": {"$chr": ["lo", "hi"]},
+              "codes": {"$int": [1, 2, null]}
+            },
+            "n": {"$dbl": [1.5, 2.5, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.listfactor.get": {
+      "value": {
+        "$type": "DFrame",
+        "nrow": 3,
+        "columns": {
+          "groups": {
+            "$type": "IntegerList",
+            "elements": [
+              [1, 2],
+              [],
+              [3]
+            ],
+            "names": null
+          },
+          "f": {
+            "$type": "Factor",
+            "levels": {"$chr": ["lo", "hi"]},
+            "codes": {"$int": [1, 2, null]}
+          },
+          "n": {"$dbl": [1.5, 2.5, 3.5]}
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.listfactor.subset": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [12, 1]},
+        "width": {"$int": [0, 3]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {
+            "groups": {
+              "$type": "IntegerList",
+              "elements": [
+                [3],
+                [1, 2]
+              ],
+              "names": null
+            },
+            "f": {
+              "$type": "Factor",
+              "levels": {"$chr": ["lo", "hi"]},
+              "codes": {"$int": [null, 1]}
+            },
+            "n": {"$dbl": [3.5, 1.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.listfactor.subset-empty": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {
+            "groups": {
+              "$type": "IntegerList",
+              "elements": [],
+              "names": null
+            },
+            "f": {
+              "$type": "Factor",
+              "levels": {"$chr": ["lo", "hi"]},
+              "codes": {"$int": []}
+            },
+            "n": {"$dbl": []}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.mcols.listfactor.c": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 5, 12, 1, 5, 12]},
+        "width": {"$int": [3, 4, 0, 3, 4, 0]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {
+            "groups": {
+              "$type": "IntegerList",
+              "elements": [
+                [1, 2],
+                [],
+                [3],
+                [1, 2],
+                [],
+                [3]
+              ],
+              "names": null
+            },
+            "f": {
+              "$type": "Factor",
+              "levels": {"$chr": ["lo", "hi"]},
+              "codes": {"$int": [1, 2, null, 1, 2, null]}
+            },
+            "n": {"$dbl": [1.5, 2.5, 3.5, 1.5, 2.5, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-05T23:33:54-0500"
+  },
+  "cases": {
+    "ir.cov.basic": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3, 2, 1, 0, 1, 0, 1]},
+        "lengths": {"$int": [2, 2, 1, 1, 3, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.names-ignored": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 1, 2, 1]},
+        "lengths": {"$int": [1, 2, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.single": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 1]},
+        "lengths": {"$int": [3, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.adjacent": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1]},
+        "lengths": {"$int": [9]}
+      },
+      "warnings": []
+    },
+    "ir.cov.duplicates": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 3]},
+        "lengths": {"$int": [1, 3]}
+      },
+      "warnings": []
+    },
+    "ir.cov.shift.pos": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 1, 3, 2, 1, 0, 1, 0, 1]},
+        "lengths": {"$int": [2, 2, 2, 1, 1, 3, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.shift.neg-valid": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3, 2, 1, 0, 1, 0, 1]},
+        "lengths": {"$int": [1, 2, 1, 1, 3, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.shift.vector": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 1, 0, 1]},
+        "lengths": {"$int": [1, 3, 4, 3]}
+      },
+      "warnings": []
+    },
+    "ir.cov.shift.rescues-negative": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 0, 1]},
+        "lengths": {"$int": [4, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.negative-start-clipped": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 0, 1]},
+        "lengths": {"$int": [1, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.shift.below-one-clipped": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 0, 1, 0, 1]},
+        "lengths": {"$int": [1, 3, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.longer": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3, 2, 1, 0, 1, 0, 1, 0]},
+        "lengths": {"$int": [2, 2, 1, 1, 3, 3, 7, 1, 10]}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.shorter": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3, 2, 1, 0, 1]},
+        "lengths": {"$int": [2, 2, 1, 1, 3, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.cuts-range": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3]},
+        "lengths": {"$int": [2, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.exact": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 3, 2, 1, 0, 1, 0, 1]},
+        "lengths": {"$int": [2, 2, 1, 1, 3, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.zero": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": []},
+        "lengths": {"$int": []}
+      },
+      "warnings": []
+    },
+    "ir.cov.width.with-shift": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 1, 3, 2, 1, 0]},
+        "lengths": {"$int": [3, 2, 2, 1, 1, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.int": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 3, 6, 3]},
+        "lengths": {"$int": [1, 2, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.dbl": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$dbl": [0.0, 0.5, 1.0, 0.5]},
+        "lengths": {"$int": [1, 2, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.vector-int": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0, 2, 1, -1]},
+        "lengths": {"$int": [1, 2, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.vector-dbl": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$dbl": [1.5, 4.0, 1.5, 0.0, 1.0, 0.0, 1.0]},
+        "lengths": {"$int": [2, 2, 1, 4, 3, 7, 1]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.zero": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0]},
+        "lengths": {"$int": [6]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.whole-double": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$dbl": [0.0, 2.0, 4.0, 2.0]},
+        "lengths": {"$int": [1, 2, 1, 2]}
+      },
+      "warnings": []
+    },
+    "ir.cov.weight.recycle": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [1, 10, 1]},
+        "lengths": {"$int": [3, 3, 3]}
+      },
+      "warnings": ["'weight' length is not a divisor of 'x' length"]
+    },
+    "ir.cov.empty": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": []},
+        "lengths": {"$int": []}
+      },
+      "warnings": []
+    },
+    "ir.cov.empty.width": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0]},
+        "lengths": {"$int": [5]}
+      },
+      "warnings": []
+    },
+    "ir.cov.zero-width-only": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0]},
+        "lengths": {"$int": [4]}
+      },
+      "warnings": []
+    },
+    "ir.cov.zero-width-only.width": {
+      "value": {
+        "$type": "Rle",
+        "values": {"$int": [0]},
+        "lengths": {"$int": [6]}
+      },
+      "warnings": []
+    },
+    "ir.cov.err.width-neg": {
+      "error": {
+        "message": "'width' cannot be negative",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.cov.err.weight-len": {
+      "error": {
+        "message": "'weight' is longer than 'x'",
+        "class": ["simpleError", "error", "condition"]
+      }
+    }
+  }
+}

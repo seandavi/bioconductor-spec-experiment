@@ -1,0 +1,1114 @@
+{
+  "meta": {
+    "R": "R version 4.6.0 (2026-04-24)",
+    "IRanges": "2.47.2",
+    "GenomicRanges": "1.65.1",
+    "S4Vectors": "0.51.6",
+    "Seqinfo": "1.3.0",
+    "generated": "2026-11-06T00:22:15-0500"
+  },
+  "cases": {
+    "ir.ov.any.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.any.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 4, 4, 7, 7]},
+        "to": {"$int": [1, 2, 1, 2, 6, 3, 6, 3, 6, 3]},
+        "nLnode": 7,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "ir.ov.any.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6, 7, 7, 7, 7]},
+        "to": {"$int": [1, 2, 1, 2, 7, 7, 3, 4, 7, 3, 4, 5, 6, 2, 7, 3, 4]},
+        "nLnode": 7,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.start.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 3]},
+        "to": {"$int": [3, 4]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.start.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 4]},
+        "to": {"$int": [3, 3]},
+        "nLnode": 7,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "ir.ov.start.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3, 4, 4, 5, 6, 7]},
+        "to": {"$int": [1, 2, 3, 4, 3, 4, 5, 6, 7]},
+        "nLnode": 7,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.end.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3]},
+        "to": {"$int": [1, 1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.end.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 3, 7]},
+        "to": {"$int": [1, 2, 3, 3]},
+        "nLnode": 7,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "ir.ov.end.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3, 4, 5, 6, 7, 7]},
+        "to": {"$int": [1, 2, 7, 3, 4, 5, 6, 7, 3]},
+        "nLnode": 7,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.within.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.within.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 4, 4]},
+        "to": {"$int": [1, 3, 6, 3]},
+        "nLnode": 7,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "ir.ov.within.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3, 4, 4, 4, 5, 6, 7]},
+        "to": {"$int": [1, 2, 7, 3, 7, 3, 4, 5, 6, 7]},
+        "nLnode": 7,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.equal.default": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.equal.swapped": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 7,
+        "nRnode": 6
+      },
+      "warnings": []
+    },
+    "ir.ov.equal.self": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 5, 6, 7]},
+        "to": {"$int": [1, 2, 3, 4, 5, 6, 7]},
+        "nLnode": 7,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.default-type-is-any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap0.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 4, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 5, 2, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap1.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 7, 1, 2, 7, 3, 4, 7, 5, 2, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap3.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 6, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 7, 1, 2, 7, 2, 3, 4, 7, 5, 1, 2, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap100.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap0.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 3]},
+        "to": {"$int": [3, 4]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap1.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 2, 3, 3, 4, 6]},
+        "to": {"$int": [1, 2, 3, 4, 5, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap3.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 2, 2, 3, 3, 3, 4, 6, 6, 6, 6]},
+        "to": {"$int": [1, 1, 2, 7, 3, 4, 7, 5, 2, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap100.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap0.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3]},
+        "to": {"$int": [1, 1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap1.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3, 6, 6, 6]},
+        "to": {"$int": [1, 1, 3, 7, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap3.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 4, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 5, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap100.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap0.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap1.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3]},
+        "to": {"$int": [1, 3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap3.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap100.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap0.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap1.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 6]},
+        "to": {"$int": [1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap3.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 2, 3, 3, 3, 4, 6, 6, 6]},
+        "to": {"$int": [1, 1, 2, 3, 4, 7, 5, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap100.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6]},
+        "to": {"$int": [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.maxgap.neg2": {
+      "error": {
+        "message": "'maxgap' must be >= -1",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.minoverlap1.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap2.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3, 6, 6]},
+        "to": {"$int": [1, 1, 3, 7, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap3.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap6.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap1.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 3]},
+        "to": {"$int": [3, 4]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap2.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap3.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap6.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap1.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3]},
+        "to": {"$int": [1, 1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap2.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 3]},
+        "to": {"$int": [1, 1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap3.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 3]},
+        "to": {"$int": [1, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap6.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap1.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap2.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3, 3, 6]},
+        "to": {"$int": [1, 3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap3.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 3, 6]},
+        "to": {"$int": [3, 7, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap6.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap1.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap2.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap3.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap6.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.minoverlap.with-maxgap": {
+      "error": {
+        "message": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.minoverlap.with-maxgap0": {
+      "error": {
+        "message": "when 'type' is \"any\", at least one of 'maxgap' and 'minoverlap' must be set to its default value",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.select.first.any": {
+      "value": {"$int": [1, 1, 3, null, null, 3]},
+      "warnings": []
+    },
+    "ir.ov.select.first.start": {
+      "value": {"$int": [null, null, 3, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.first.end": {
+      "value": {"$int": [1, 1, 3, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.first.within": {
+      "value": {"$int": [null, 1, 3, null, null, 7]},
+      "warnings": []
+    },
+    "ir.ov.select.first.equal": {
+      "value": {"$int": [null, null, 3, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.first.maxgap": {
+      "value": {"$int": [1, 1, 2, 5, null, 1]},
+      "warnings": []
+    },
+    "ir.ov.select.first.minoverlap": {
+      "value": {"$int": [1, 1, 3, null, null, 3]},
+      "warnings": []
+    },
+    "ir.ov.select.last.any": {
+      "value": {"$int": [2, 2, 7, null, null, 7]},
+      "warnings": []
+    },
+    "ir.ov.select.last.start": {
+      "value": {"$int": [null, null, 4, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.last.end": {
+      "value": {"$int": [1, 1, 7, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.last.within": {
+      "value": {"$int": [null, 1, 7, null, null, 7]},
+      "warnings": []
+    },
+    "ir.ov.select.last.equal": {
+      "value": {"$int": [null, null, 3, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.select.last.maxgap": {
+      "value": {"$int": [7, 7, 7, 5, null, 7]},
+      "warnings": []
+    },
+    "ir.ov.select.last.minoverlap": {
+      "value": {"$int": [1, 1, 7, null, null, 7]},
+      "warnings": []
+    },
+    "ir.ov.select.all": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 3, 6, 6, 6]},
+        "to": {"$int": [1, 2, 1, 2, 3, 4, 7, 3, 4, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.select.arbitrary.unique": {
+      "value": {"$int": [1, 1, 2, null]},
+      "warnings": []
+    },
+    "ir.ov.select.first.unique": {
+      "value": {"$int": [1, 1, 2, null]},
+      "warnings": []
+    },
+    "ir.ov.select.badvalue": {
+      "error": {
+        "message": "'arg' should be one of “all”, “first”, “last”, “arbitrary”",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.type.badvalue": {
+      "error": {
+        "message": "'arg' should be one of “any”, “start”, “end”, “within”, “equal”",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.maxgap.na": {
+      "error": {
+        "message": "'maxgap' must be a single integer",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.minoverlap.neg": {
+      "error": {
+        "message": "'minoverlap' cannot be negative",
+        "class": ["simpleError", "error", "condition"]
+      }
+    },
+    "ir.ov.zero.query.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 3, 4, 5, 5, 6, 6]},
+        "to": {"$int": [1, 2, 7, 3, 7, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.subject.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 2, 3, 3, 6]},
+        "to": {"$int": [1, 5, 1, 5, 3, 4, 3]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.both.any": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 5, 6]},
+        "to": {"$int": [1, 3, 3]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 4, 4]},
+        "to": {"$int": [2, 1, 3, 4]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.subject.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.both.start": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 2, 3, 4, 6]},
+        "to": {"$int": [5, 1, 2, 3, 4]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 5]},
+        "to": {"$int": [1, 4]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.subject.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 1, 2, 2, 2, 3, 6]},
+        "to": {"$int": [1, 5, 2, 1, 5, 2, 3, 4]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.both.end": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 3, 3, 6]},
+        "to": {"$int": [1, 5, 2, 4]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6]},
+        "to": {"$int": [1, 2, 1, 1, 2, 3, 4, 7, 3, 4, 7, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.subject.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [2, 3]},
+        "to": {"$int": [1, 3]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.both.within": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 3, 3, 3, 4, 5, 6, 6]},
+        "to": {"$int": [1, 5, 1, 1, 5, 2, 3, 3, 3, 4]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.subject.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3]},
+        "to": {"$int": [3]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.both.equal": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [3, 6]},
+        "to": {"$int": [2, 4]},
+        "nLnode": 6,
+        "nRnode": 5
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.maxgap0": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": [1, 1, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6]},
+        "to": {"$int": [1, 2, 1, 1, 2, 3, 4, 7, 3, 4, 7, 3, 7]},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.minoverlap1": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.zero.query.first": {
+      "value": {"$int": [1, null, 2, 7, 3, 3]},
+      "warnings": []
+    },
+    "ir.ov.empty.query": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 0,
+        "nRnode": 7
+      },
+      "warnings": []
+    },
+    "ir.ov.empty.subject": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 6,
+        "nRnode": 0
+      },
+      "warnings": []
+    },
+    "ir.ov.empty.both": {
+      "value": {
+        "$type": "Hits",
+        "from": {"$int": []},
+        "to": {"$int": []},
+        "nLnode": 0,
+        "nRnode": 0
+      },
+      "warnings": []
+    },
+    "ir.ov.empty.subject.first": {
+      "value": {"$int": [null, null, null, null, null, null]},
+      "warnings": []
+    },
+    "ir.ov.empty.query.first": {
+      "value": {"$int": []},
+      "warnings": []
+    },
+    "ir.ov.empty.count.subject": {
+      "value": {"$int": [0, 0, 0, 0, 0, 0]},
+      "warnings": []
+    },
+    "ir.ov.empty.count.query": {
+      "value": {"$int": []},
+      "warnings": []
+    },
+    "ir.ov.empty.any.subject": {
+      "value": {"$lgl": [false, false, false, false, false, false]},
+      "warnings": []
+    },
+    "ir.ov.empty.subset": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": []},
+        "width": {"$int": []},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 0,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.empty.subset.invert": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 20, 30, 8]},
+        "width": {"$int": [5, 2, 3, 1, 5, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 6,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.count.any": {
+      "value": {"$int": [2, 2, 3, 0, 0, 3]},
+      "warnings": []
+    },
+    "ir.ov.count.start": {
+      "value": {"$int": [0, 0, 2, 0, 0, 0]},
+      "warnings": []
+    },
+    "ir.ov.count.end": {
+      "value": {"$int": [1, 1, 2, 0, 0, 0]},
+      "warnings": []
+    },
+    "ir.ov.count.within": {
+      "value": {"$int": [0, 1, 2, 0, 0, 1]},
+      "warnings": []
+    },
+    "ir.ov.count.equal": {
+      "value": {"$int": [0, 0, 1, 0, 0, 0]},
+      "warnings": []
+    },
+    "ir.ov.count.maxgap": {
+      "value": {"$int": [3, 3, 4, 1, 0, 5]},
+      "warnings": []
+    },
+    "ir.ov.count.minoverlap": {
+      "value": {"$int": [1, 1, 2, 0, 0, 2]},
+      "warnings": []
+    },
+    "ir.ov.count.zero": {
+      "value": {"$int": [1, 0, 0, 0, 1, 1]},
+      "warnings": []
+    },
+    "ir.ov.count.names": {
+      "value": {"$int": [2, 2, 3, 0], "names": ["a", "b", "c", "d"]},
+      "warnings": []
+    },
+    "ir.ov.anyq.any": {
+      "value": {"$lgl": [true, true, true, false, false, true]},
+      "warnings": []
+    },
+    "ir.ov.anyq.start": {
+      "value": {"$lgl": [false, false, true, false, false, false]},
+      "warnings": []
+    },
+    "ir.ov.anyq.end": {
+      "value": {"$lgl": [true, true, true, false, false, false]},
+      "warnings": []
+    },
+    "ir.ov.anyq.within": {
+      "value": {"$lgl": [false, true, true, false, false, true]},
+      "warnings": []
+    },
+    "ir.ov.anyq.equal": {
+      "value": {"$lgl": [false, false, true, false, false, false]},
+      "warnings": []
+    },
+    "ir.ov.anyq.maxgap": {
+      "value": {"$lgl": [true, true, true, true, false, true]},
+      "warnings": []
+    },
+    "ir.ov.anyq.minoverlap": {
+      "value": {"$lgl": [true, false, true, false, false, true]},
+      "warnings": []
+    },
+    "ir.ov.anyq.zero": {
+      "value": {"$lgl": [true, false, false, false, true, true]},
+      "warnings": []
+    },
+    "ir.ov.anyq.names": {
+      "value": {"$lgl": [true, true, true, false]},
+      "warnings": []
+    },
+    "ir.ov.subset.default": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 8]},
+        "width": {"$int": [5, 2, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.invert": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [20, 30]},
+        "width": {"$int": [1, 5]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 2,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.keeps-names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10]},
+        "width": {"$int": [5, 2, 3]},
+        "names": {"$chr": ["a", "b", "c"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {
+            "score": {"$dbl": [1.5, 2.5, 3.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.invert.names-mcols": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [20]},
+        "width": {"$int": [1]},
+        "names": {"$chr": ["d"]},
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 1,
+          "columns": {
+            "score": {"$dbl": [4.5]}
+          }
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.type-within": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [4, 10, 8]},
+        "width": {"$int": [2, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 3,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.maxgap": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 20, 8]},
+        "width": {"$int": [5, 2, 3, 1, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 5,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    },
+    "ir.ov.subset.kw-ranges": {
+      "value": {
+        "$type": "IRanges",
+        "start": {"$int": [1, 4, 10, 8]},
+        "width": {"$int": [5, 2, 3, 4]},
+        "names": null,
+        "mcols": {
+          "$type": "DFrame",
+          "nrow": 4,
+          "columns": {}
+        }
+      },
+      "warnings": []
+    }
+  }
+}

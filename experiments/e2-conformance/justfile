@@ -1,0 +1,35 @@
+# Tasks for the E2 conformance suite. R is normative; Python is checked against it.
+
+default:
+    @just --list
+
+# Validate case files (clause/case linkage, unique ids, refs).
+validate:
+    Rscript conformance/r/run.R validate
+    uv run python -m ranges_e2.conformance.runner --validate-only
+
+# (Re)generate R goldens. Review the diff of conformance/expected/ before committing.
+generate *groups:
+    Rscript conformance/r/run.R generate {{groups}}
+
+# R drift detector: re-run R against stored goldens, write reports/r.json.
+check-r:
+    Rscript conformance/r/run.R check
+
+# Run Python against the goldens, write reports/python.json.
+check-py:
+    uv run python -m ranges_e2.conformance.runner --report conformance/reports/python.json
+
+# Rebuild conformance/REPORT.md.
+report: check-r check-py
+    uv run python -m ranges_e2.conformance.report
+
+test:
+    uv run pytest
+
+types:
+    uv run --with mypy mypy --strict src
+
+# Random R-vs-Python differential run (throw-away cases). Example: just fuzz --seed 3 --n 3000
+fuzz *args:
+    uv run python -m ranges_e2.conformance.fuzz {{args}}

@@ -1,0 +1,6 @@
+{
+  "ir.rank.default-is-error": "R bug: rank(<IRanges>) with no ties.method errors (default vector is not matched to one value). ranges_e2 defaults to 'average'.",
+  "gr.precede.empty-subject": "R quirk: precede(<GRanges>, <empty GRanges>) returns a Hits object, while a non-empty subject returns an integer vector. ranges_e2 returns the integer (all-NA) vector.",
+  "gr.follow.empty-subject": "R quirk: follow(<GRanges>, <empty GRanges>) returns a Hits object, while a non-empty subject returns an integer vector. ranges_e2 returns the integer (all-NA) vector.",
+  "gr.nearest.empty-subject": "R quirk: nearest(<GRanges>, <empty GRanges>) returns a logical NA vector, not integer. ranges_e2 returns an integer NA vector (the IRanges method also does)."
+}
