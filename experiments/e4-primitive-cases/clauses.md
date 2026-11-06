@@ -304,7 +304,7 @@ Every clause needs >=1 case (checked by `tests/test_case_inventory.py`).
 | IR-EDGE-7 | `""` and NA names never match a character subscript; duplicate names match first; `c()` pads names | `?"[,Vector-method"` |
 | IR-EDGE-8 | all-zero-width inputs for order, rank, duplicated, overlaps, nearest, coverage, reduce | `?IRanges` |
 | IR-EDGE-9 | single-range inputs for reduce, gaps, disjoin, nearest, precede, rank | `?IRanges` |
-| GR-EDGE-1 | circular seqlevels: no wrapping in intra-range ops, reduce, coverage; only `trim` skips them | `?GRanges` |
+| GR-EDGE-1 | circular seqlevels: no wrapping in intra-range ops or reduce; `trim` skips them (coverage does wrap: see GR-EDGE-6; statement corrected after review) | `?GRanges` |
 | GR-EDGE-2 | seqnames: empty string is an error; spaces and unicode are fine; repeats keep first-appearance order | `?GRanges` |
 | GR-EDGE-3 | seqlength 0 is valid; NA in names is carried through | `?GRanges` |
 | GR-EDGE-4 | every operation accepts zero-length GRanges and keeps seqinfo | `?GRanges` |

@@ -16,3 +16,13 @@
 - 2026-11-05 impl: R behaviours worth knowing (all pinned by cases): `findOverlaps` within + `maxgap=0` means no slack limit (only `maxgap>0` limits); `gaps()` on GRanges visits every seqlevel x strand with start=1,end=seqlength; `coverage()` wraps ranges on circular sequences; psetdiff on GRanges drops mcols while pintersect keeps them and adds `hit`; `*` is not a wildcard in sequence set ops but is in overlaps/nearest.
 - 2026-11-05 impl: R probes were run ad hoc in /tmp scripts (not committed) and only the resulting behaviours were turned into clauses + cases. Recommendation for a next iteration: keep a `probes/` dir of those scripts so clause provenance is reproducible.
 - 2026-11-05 impl: stage 16 close-out: removed STAGE_DONE escape hatch from the inventory test; TARGET operation coverage is now strict, and checked per class (cases) and per API (test_public_api.py).
+- 2026-11-06 impl: review round 1 (HEAD 59de392). Fixed all seven findings, one commit each (F1+F5 share a commit):
+  - F1 exact compare: numeric tolerance removed; `exact` is `==` (R doubles are written at full precision, no case needed tolerance). Regression tests in tests/test_compare.py.
+  - F2 int32: `IRanges._init` now checks start, end and width bounds (zero-width shift past max, end = -2^31, inferred width > int32). tests/test_bounds.py; case ir-edge-shift-zero-width-overflow (R errors too).
+  - F3 GRanges.coverage weight: validated against the whole input first (shared `weight_vector`). Mismatch lengths raise (ADR-0007); cases gr-cov-weight-cyclic (R warns, Python errors), gr-cov-weight-too-long (both error).
+  - F4 distance: zero-length input always gives zero-length output (R returns integer(0) for (0,2), (2,0), (0,1)); cases ir-/gr-distance-empty-*.
+  - F5 set/multiset: `set` keeps outer row order; `multiset` fails on row-field length mismatch. Neither mode is used by a shared case yet; covered only by comparator unit tests.
+  - F6 GR-EDGE-1 statement corrected in place (it wrongly said coverage does not wrap). Judgement: clauses.md says append-only, but retiring would leave the correct intra-range/reduce assertions without a clause, so the statement was edited and cross-references GR-EDGE-6.
+  - F7 empty coverage: op table carries a result-kind hint; case gr-edge-empty-coverage-no-seqlevels plus named-vector accessors with no seqlevels (they stay `vector`).
+  - Reviewer scope note (nearest/precede/follow need an explicit subject in IRanges too): accepted, README limit now says both classes.
+- Rejected: none.

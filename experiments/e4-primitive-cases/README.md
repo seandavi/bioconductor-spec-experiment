@@ -45,8 +45,8 @@ goldens/.../<group>.json     build objects natively -> run op -> project -> comp
   runner adds 1 when projecting index fields (`ops.py` `index` flag, `Hits`,
   `revmap`) and subtracts 1 from `int` subscript inputs (ADR-0001).
 
-Size at close-out: 701 cases (389 IRanges, 312 GRanges), 305 clauses, 11 ADRs,
-2250 passing tests, 6 skipped (ADR-0010).
+Size at close-out: 715 cases (393 IRanges, 322 GRanges), 305 clauses, 11 ADRs,
+2308 passing tests, 6 skipped (ADR-0010).
 
 ## Package design
 
@@ -98,7 +98,7 @@ ordering) and Python-only behavior (`test_edge.py`).
 
 ## Known limits
 
-- `GRanges` `nearest`/`precede`/`follow` need an explicit subject (R's no-subject form is not ported).
+- `nearest`/`precede`/`follow` need an explicit subject in both classes (R's no-subject form is not ported; R behaves oddly with zero-width self queries).
 - Candidate search is O(n*m) worst case per overlap/nearest call (correctness first).
 - `Rle` is only the coverage result; `RleList` is a `dict[str, Rle]`.
 - Not ported: R exclusion subscripts (ADR-0004), cyclic recycling (ADR-0007), lone-`start` `IRanges` form (ADR-0011).
