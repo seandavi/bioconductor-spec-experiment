@@ -59,3 +59,12 @@ Seen: review outputs and receipts live in temp/retention-managed
 directories.
 Try: the orchestrator copies them into the repo (here, `ledger/reviews/`,
 `ledger/runs/`) as soon as a stage finishes.
+
+## 8. Ask implementers to tag their uncertainty, then aim tests at it
+
+Seen: E0b (no R) tagged 21 expectations `UNVERIFIED` and listed its riskiest
+semantics. E0 (with R) checked ad hoc and left no such list.
+Try: every implement stage must emit a machine-readable uncertainty list
+(operation, argument combo, what it assumed). A differential or red-team
+stage takes that list as its first targets. Cheap, and it points adversarial
+effort where the author's knowledge is weakest.

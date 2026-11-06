@@ -60,3 +60,34 @@ Workflow and agent-loop ideas live in [WORKFLOW-IDEAS.md](WORKFLOW-IDEAS.md).
 - E1–E4 briefs are short on purpose; planners choose harness/format/spec
   design (Sean: "allow the planner to do its thing").
 - Run ids: e0b 756556f2, e1 447d7fce, e2 206d6ce4, e3 7b277843, e4 01fcc0b8.
+
+## 2026-11-05 — E0b no-R done (harness v2)
+
+| Stage | Wall time |
+|---|---|
+| plan | 4.2 min |
+| implement | 16.1 min |
+| review | 3.5 min |
+| revise | 1.4 min |
+| **total** | **25 min** |
+
+- ~2,070 lines src, ~1,850 lines tests, 24 commits, 211 tests passing
+  (re-run by me). Worktree clean.
+- Isolation audit with `--no-r`: 0 findings. No R use at all. Reviewer's
+  only writes were its own output artifact.
+- Faster than E0 (16 vs 27.5 min implement): no R round trips. Smaller
+  suite (211 vs 306), but the planner wrote down the R rules from memory
+  for every operation (PLAN §4) and tagged doubtful ones `UNVERIFIED`;
+  21 such tags in tests/src/NOTES. Listed risks: zero-width overlaps,
+  `resize(fix="center")` rounding, `narrow(width=)`, GRanges `gaps` with NA
+  seqlengths, strand in `type=start/end` and precede/follow, `pintersect`
+  on adjacent ranges, `within` + `maxgap`.
+- Review: 3 major + 1 minor, all fixed, none rejected. The majors were
+  design and completeness issues (no `ignore_strand` on resize/flank/
+  promoters, which TARGET requires; mutable shared mcols despite a
+  documented immutable design; `with_seqinfo` couldn't drop unused levels),
+  not R semantics.
+- Early read: without R the agent becomes *explicit about its uncertainty*.
+  The UNVERIFIED list is a ready-made target list for differential testing.
+  Whether E0b is actually less faithful than E0 waits for the pooled
+  evaluation.
