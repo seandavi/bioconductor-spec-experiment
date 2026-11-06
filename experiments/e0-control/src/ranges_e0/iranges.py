@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _inter, _intra, _order, _overlaps, _setops, _validate as V
+from . import _inter, _intra, _nearest, _order, _overlaps, _setops, _validate as V
 from .hits import Hits
 
 NO_MATCH: int = -1
@@ -295,6 +295,41 @@ class IRanges:
         hit = self.overlaps_any(ranges, maxgap, minoverlap, type)
         return self._take(np.flatnonzero(~hit if invert else hit))
 
+    # ----- nearest ----------------------------------------------------------
+    def _nearest_result(self, res: Any, n_subject: int) -> Hits | np.ndarray:
+        if isinstance(res, tuple):
+            return Hits(res[0], res[1], len(self), n_subject)
+        return res
+
+    def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ndarray:
+        """R ``precede``: for each range the subject range it directly precedes
+        (smallest start > end(x)); ties: lowest index (``first``) or all."""
+        _check_select(select, ("first", "all"))
+        sub = self if subject is None else subject
+        return self._nearest_result(_nearest.precede_k(self._start, self._width, sub._start, select), len(sub))
+
+    def follow(self, subject: IRanges | None = None, select: str = "last") -> Hits | np.ndarray:
+        """R ``follow``: the subject range each range directly follows
+        (largest end < start(x)); ties: highest index (``last``) or all."""
+        _check_select(select, ("last", "all"))
+        sub = self if subject is None else subject
+        return self._nearest_result(_nearest.follow_k(self._start, sub._start, sub._width, select), len(sub))
+
+    def nearest(self, subject: IRanges | None = None, select: str = "arbitrary") -> Hits | np.ndarray:
+        """R ``nearest``: overlapping/adjacent subject if any, else the closer
+        of precede/follow. ``arbitrary`` returns the first of the candidates."""
+        _check_select(select, ("arbitrary", "all"))
+        sub = self if subject is None else subject
+        res = _nearest.nearest_k(
+            self._start, self._width, sub._start, sub._width, select, drop_self=subject is None
+        )
+        return self._nearest_result(res, len(sub))
+
+    def distance(self, other: IRanges) -> np.ndarray:
+        """R ``distance(x, y)``: gap width between paired ranges (0 if overlapping
+        or adjacent). Length-1 arguments are recycled."""
+        return _nearest.distance_k(self._start, self._width, other._start, other._width)
+
     # ----- ordering ---------------------------------------------------------
     def _order_keys(self) -> list[np.ndarray]:
         return [self._start, self._width]
@@ -370,6 +405,11 @@ class IRanges:
 def _pool(first: IRanges, others: tuple[IRanges, ...]) -> tuple[np.ndarray, np.ndarray]:
     objs = (first, *others)
     return np.concatenate([o._start for o in objs]), np.concatenate([o._width for o in objs])
+
+
+def _check_select(select: str, allowed: tuple[str, ...]) -> None:
+    if select not in allowed:
+        raise ValueError(f"'select' must be one of {allowed}")
 
 
 def _ro(a: np.ndarray) -> np.ndarray:
