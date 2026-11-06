@@ -168,6 +168,56 @@ class GRanges:
             _mcols.take(self._mcols, pos),
         )
 
+    # --- intra-range (GR.7-8) ---
+
+    def _like(self, start: IntArray, width: IntArray) -> Self:
+        return self._rebuild(ranges=IRanges._new(start, width))
+
+    def _mirrored(self, ignore_strand: bool) -> BoolArray:
+        """Ranges whose start/end roles swap: ``-`` strand unless strands are ignored."""
+        n = len(self)
+        return np.zeros(n, dtype=np.bool_) if ignore_strand else self._strand == MINUS
+
+    def shift(self, shift: Any) -> Self:
+        """GR.7."""
+        r = self._ranges
+        return self._like(*_kernels.shift(r._start, r._width, per_range(shift, len(self), "shift")))
+
+    def narrow(self, start: Any = None, end: Any = None, width: Any = None) -> Self:
+        """GR.7."""
+        r = self._ranges.narrow(start, end, width)
+        return self._rebuild(ranges=r)
+
+    def resize(self, width: Any, fix: str = "start", ignore_strand: bool = False) -> Self:
+        """GR.8."""
+        if fix not in ("start", "end", "center"):
+            raise ValueError("fix must be 'start', 'end' or 'center'")
+        n, r = len(self), self._ranges
+        if fix == "center":
+            codes = np.full(n, _kernels.FIX_CENTER, dtype=np.int64)
+        else:
+            plain, flipped = (
+                (_kernels.FIX_START, _kernels.FIX_END) if fix == "start" else (_kernels.FIX_END, _kernels.FIX_START)
+            )
+            codes = np.where(self._mirrored(ignore_strand), flipped, plain).astype(np.int64)
+        return self._like(*_kernels.resize(r._start, r._width, per_range(width, n, "width"), codes))
+
+    def flank(self, width: Any, start: Any = True, both: bool = False, ignore_strand: bool = False) -> Self:
+        """GR.8."""
+        n, r = len(self), self._ranges
+        at_start = np.broadcast_to(np.asarray(start, dtype=np.bool_), n) ^ self._mirrored(ignore_strand)
+        return self._like(*_kernels.flank(r._start, r._width, per_range(width, n, "width"), at_start, both))
+
+    def promoters(self, upstream: Any = 2000, downstream: Any = 200, ignore_strand: bool = False) -> Self:
+        """GR.8."""
+        n, r = len(self), self._ranges
+        return self._like(
+            *_kernels.promoters(
+                r._start, r._width, per_range(upstream, n, "upstream"), per_range(downstream, n, "downstream"),
+                self._mirrored(ignore_strand),
+            )
+        )
+
     # --- trim (GR.9) ---
 
     def trim(self) -> Self:
