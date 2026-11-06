@@ -1,0 +1,55 @@
+# Port registry. `project` is relative to WORKTREES unless it starts with "eval/".
+# The run stage refuses to start unless the worktree HEAD == `sha` and `git status` is clean.
+WORKTREES = "/Users/davsean/Documents/git/bioconductor-spec-experiment.worktrees"
+
+[ports.e0]
+import = ["ranges_e0"]
+project = "e0-control/experiments/e0-control"
+tag = "frozen/e0-control"
+sha = "18042e1"
+
+[ports.e0b]
+import = ["ranges_e0b"]
+project = "e0b-no-r/experiments/e0b-no-r"
+tag = "frozen/e0b-no-r"
+sha = "3615722"
+
+[ports.e1]
+import = ["ranges_e1"]
+project = "e1-differential/experiments/e1-differential"
+tag = "frozen/e1-differential"
+sha = "c5fa8df"
+
+[ports.e2]
+import = ["ranges_e2"]
+project = "e2-conformance/experiments/e2-conformance"
+tag = "frozen/e2-conformance"
+sha = "70f0c0b"
+
+[ports.e3]
+import = ["ranges_e3"]
+project = "e3-spec-adr/experiments/e3-spec-adr"
+tag = "frozen/e3-spec-adr"
+sha = "e0e4b41"
+
+[ports.e4]
+import = ["ranges_e4"]
+project = "e4-primitive-cases/experiments/e4-primitive-cases"
+tag = "frozen/e4-primitive-cases"
+sha = "9e2fa35"
+
+[ports.biocpy]
+import = ["iranges", "genomicranges"]
+project = "eval/ports/biocpy"
+pins = ["iranges==0.7.3", "genomicranges==0.9.0"]
+
+# Self-tests: run in the eval's own uv project.
+[ports.r_echo]
+import = []
+project = "eval"
+selftest = true
+
+[ports.mutant]
+import = ["fakeport"]
+project = "eval"
+selftest = true
