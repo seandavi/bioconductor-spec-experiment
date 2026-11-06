@@ -6,6 +6,8 @@ from collections.abc import Callable
 
 import numpy as np
 
+from .. import _args
+
 from . import inter
 
 _SHIFT = 1 << 33
@@ -98,13 +100,12 @@ def pintersect(
     w = np.minimum(ex, ey) - s + 1
     amb = w < 0
     if amb.any():
+        resolve_empty = _args.match_arg(resolve_empty, ("none", "max.start", "start.x"), "resolve.empty")
         if resolve_empty == "none":
             raise ValueError(
                 "some intersections produce ambiguous empty ranges. "
                 "Use argument 'resolve.empty' to resolve them."
             )
-        if resolve_empty not in ("max.start", "start.x"):
-            raise ValueError("'arg' should be one of \"none\", \"max.start\", \"start.x\"")
         s = np.where(amb & (resolve_empty == "start.x"), sx, s)
         w = np.where(amb, 0, w)
     return s, w

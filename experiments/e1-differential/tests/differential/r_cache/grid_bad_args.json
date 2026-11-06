@@ -1,0 +1,7064 @@
+{
+ "versions": "R 4.6.0; IRanges 2.47.2; GenomicRanges 1.65.1; S4Vectors 0.51.6",
+ "entries": {
+  "bad-gr-count-maxgap-NA": {
+   "hash": "d0357ab40a0ee7ec6e3f02be72406664da5c0c663fcc3189fcbba0af35bcc204",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-dbl": {
+   "hash": "059c71146e25762a566f945db5620f9642094be8283c78a15c5e922fb6907eae",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      0,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-empty": {
+   "hash": "f19baebf65baefd1de69d642e9feafd3c1f2556d37abc10baac012c80120a008",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-len2": {
+   "hash": "eafdb069c64456c8555c4f37c86e079e2bc21c61a00b8a6fb94c83e3cfa4741e",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-lgl": {
+   "hash": "8a428dfc570acd4d466bc75f261fbb76d1b0c164243b40b5aa080ee28415437e",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-neg": {
+   "hash": "b0aaa5d6496e0f4f28e555b2bb82b4b64b55001b3163eb6529ece48df9d3cbd2",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      0,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-count-maxgap-str": {
+   "hash": "532ca38cd250b2e5fc809eb7b60c29c004755d50429e7cd09907508b01163b9b",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-NA": {
+   "hash": "53d999c1ba914c0c6ce3f75f0c35c8b50d75bda6703bad02b880dae40303fd15",
+   "result": {
+    "error": "'shift' must be a numeric vector, a single string, or a list-like object",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-dbl": {
+   "hash": "ad6056008809271a8ed60b5c49cf3a0747f262e979e8a387f7eecd92bbfaadd2",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        1,
+        3,
+        96
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        9,
+        2,
+        89
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-empty": {
+   "hash": "348c4d6de87a4132eda3b789681b88c3889be141385b23e4c200d1b0b07a41ae",
+   "result": {
+    "error": "'NROW(shift)' is 0 but 'length(x)' is not",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-len2": {
+   "hash": "cde07b6f8e990118f9ea3c5c93ad8bac621c9792eba4e5fecb8e4fa0e8ef3eb2",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        1,
+        3,
+        96
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        9,
+        2,
+        89
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "'length(x)' is not a multiple of 'NROW(shift)'"
+    ]
+   }
+  },
+  "bad-gr-coverage-shift-lgl": {
+   "hash": "84b06740345ac68794b287157c9b7d2265b9e42a9728ede238de4c52bd4a5571",
+   "result": {
+    "error": "'shift' must be a numeric vector, a single string, or a list-like object",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-neg": {
+   "hash": "0926921e5fc2a8b91f3de488fa4980dfdc3103c681e72181f4121aafce9a5e5e",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0
+       ],
+       "lengths": [
+        2,
+        98
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        7,
+        2,
+        91
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-shift-str": {
+   "hash": "072780e9e4a25f4c95f06bb7fef8dea33c0e18220175036ba4a38d890396409a",
+   "result": {
+    "error": "'mcols(x)' has no \"a\" column",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-NA": {
+   "hash": "41372afda5fb500d38a0d56add1531cf27177f4b71b4b4720d0a8ab42666376a",
+   "result": {
+    "error": "'weight' must be a numeric vector, a single string, or a list-like object",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-dbl": {
+   "hash": "b7bf21233ef96867159106f1ae9a765f108b2b24aa6a11c1e7f80124a8c09850",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1.5,
+        0
+       ],
+       "lengths": [
+        3,
+        97
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1.5,
+        0
+       ],
+       "lengths": [
+        8,
+        2,
+        90
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-empty": {
+   "hash": "51c6701a1ba2207930016b7a9fde5e6d8ada5cbf1c261fdc877c2d9f724abe2a",
+   "result": {
+    "error": "'NROW(weight)' is 0 but 'length(x)' is not",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-len2": {
+   "hash": "1d90006f8da9cadc01655f3523fa5b9dfbbd2bb6f03c35772b8f3a57cc520b4a",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1,
+        0
+       ],
+       "lengths": [
+        3,
+        97
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        1,
+        0
+       ],
+       "lengths": [
+        8,
+        2,
+        90
+       ]
+      }
+     ]
+    },
+    "warnings": [
+     "'length(x)' is not a multiple of 'NROW(weight)'"
+    ]
+   }
+  },
+  "bad-gr-coverage-weight-lgl": {
+   "hash": "634356ca1cd20cc685e8d16493c06a76ee9f98eae32dc978adab13bd8b87a727",
+   "result": {
+    "error": "'weight' must be a numeric vector, a single string, or a list-like object",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-neg": {
+   "hash": "1bcbe08eff545129000a5241bb5b4347c93a021c8f7a33b53691956a568293f5",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        -1,
+        0
+       ],
+       "lengths": [
+        3,
+        97
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0,
+        -1,
+        0
+       ],
+       "lengths": [
+        8,
+        2,
+        90
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-weight-str": {
+   "hash": "09e1064c4a52f1ac72754f78cc6d6475aea1cde35dbb6d65052f76001afcda99",
+   "result": {
+    "error": "'mcols(x)' has no \"a\" column",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-NA": {
+   "hash": "34d4cbdd03f48bb737a6ab5fa7015664abdfe0e1d12ced1601574d2f930c591c",
+   "result": {
+    "error": "'width' must be NULL or an integer vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-dbl": {
+   "hash": "00fcdbe67e8616b25dea7704aac8b581f3b3f815bcb55af5ce91a4c77d259391",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1
+       ],
+       "lengths": [
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        1
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-empty": {
+   "hash": "816fec85f94cd30b6d29bb1f15f0655979d64ef7b6daa951c7dc1a8c8b550340",
+   "result": {
+    "error": "cannot recycle zero-length 'width' to the length of 'x'",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-len2": {
+   "hash": "a5d8b3df7bf24baa1a1f1621218f0d36bac5b0cf2b44a33f8503335f503b208c",
+   "result": {
+    "value": {
+     "class": "RleList",
+     "names": [
+      "chr1",
+      "chr2"
+     ],
+     "elements": [
+      {
+       "class": "Rle",
+       "values": [
+        1
+       ],
+       "lengths": [
+        1
+       ]
+      },
+      {
+       "class": "Rle",
+       "values": [
+        0
+       ],
+       "lengths": [
+        2
+       ]
+      }
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-lgl": {
+   "hash": "ce77bd776ca63a0f5580e9492f7e61035288297a5fbd684e62ca400d03fa41c4",
+   "result": {
+    "error": "'width' must be NULL or an integer vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-neg": {
+   "hash": "b43e55c5c6058a1bae335b3e01fee46cc9a2c87a3337e42caf7a4597a88c7aea",
+   "result": {
+    "error": "'width[1]' cannot be negative",
+    "warnings": []
+   }
+  },
+  "bad-gr-coverage-width-str": {
+   "hash": "ca15956f2ec3aed27fe01aeacacf193732cb70a3261fda22e8fa5c7fc1702fcb",
+   "result": {
+    "error": "'width' must be NULL or an integer vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-NA": {
+   "hash": "1c3a2dcbce505e52d3bdb29ba3cbe88f16d28c4a63c2fe32ed02e1d6ae3f3292",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-dbl": {
+   "hash": "f95ab97c956e9a91ed931359a7e7746063a85b65222c787092b7c6a961b930e0",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-empty": {
+   "hash": "4ff000631366dc8834ef7328029022959187ad8cdfe417dc1911910b240545e2",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-len2": {
+   "hash": "b394d1923a547992a64ebb88800d7f15aee3b9b56712d140386b6164b701da79",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-lgl": {
+   "hash": "1d7c15f1586ce452f93e5e7e8db5ef03703b41885d4426eadb9d9f812d7b4c6b",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-neg": {
+   "hash": "9f0b8645fc3763b91b9b79063d348b3cc6d6de37f5f025b68186b86b10191763",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-disjoin-revmap-str": {
+   "hash": "2dc5b7798162a186f2abe2787543d81d0d3b88d34d21679c538a5fb16cd1d2d4",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-NA": {
+   "hash": "4bc3b19fb61d8960760985f4a6e338c3f003e1286d5b7e7520ffecd5f7ca0751",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-dbl": {
+   "hash": "19f832eef0880f50a8c019ab31be6751d3d7b38b394af843bcc8ddcd91379092",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-empty": {
+   "hash": "7a0d16d55846aa2b13f0f457a265eac55708373c52c0c5cb198df963bac9ced8",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-len2": {
+   "hash": "fb22b4ea8b8efec8fbce1d651456cdc26bbfe7c46bc1f5d1f31753ab55616eb2",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-lgl": {
+   "hash": "aa3fde55a66aae7d002c1a9053da653c02ee598326b21317cc4d318df68993a9",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      0,
+      0,
+      0
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-neg": {
+   "hash": "6bbb7bae6a8aa68f23c91e6a9208dfb87d43f8d64f45dcc15c742a498efa2685",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-distance-ignore-str": {
+   "hash": "525a17627f2ab15aa48a7bcb9bcd342bc6a0a2cb8feb034738665b33b8316e6b",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-NA": {
+   "hash": "5d79c8e5ebbb941684695c452acc4ac6ae6d6eb8dcc4b7b177691a3438a4080a",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-dbl": {
+   "hash": "b13f9ea4e63f488d94a487a3189db671ab88e3a69963e04d0f0578dd38249344",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-empty": {
+   "hash": "ae28a3f1059148fe3c4df9ae2c4acf2e5f481b370bfede91562a6d464b9dbccd",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-len2": {
+   "hash": "46b007c71394aca1f7944a8ed2b26307dd9f7c649f94eb885ace8feef7fde46d",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-lgl": {
+   "hash": "092ff1c507fc84fce7e2be887c43dbc8d3b02654157dfa227f58782e38c9c72d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-neg": {
+   "hash": "5389021288dfcf8d6963889a89f67536249e55e3c3979e8c778b88e6d8373cee",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-duplicated-fromLast-str": {
+   "hash": "5d17bcbf7af86b57f0cb12a06430fc6d8a1c650b52762de9f827598c1df4ecf5",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-NA": {
+   "hash": "a5cc8ab315ff580dea1362f9ed632186a91440e810e4444ef5e4927a886c3140",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-dbl": {
+   "hash": "3bb6cdf9f4db9d66b72e971b59f5c325405ca79d0b799ccd2391909f02a4cc37",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-empty": {
+   "hash": "10d8ec2605c24a967238f028f697410c505c94a0ff25b4d3d30ec64838e603d9",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-len2": {
+   "hash": "8b4b909219f4c6123edba712a5e4ac672911a96f5593cc614805ae494081e444",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-lgl": {
+   "hash": "08b01e836045d1444ca09a7bbed33cce3072e5d5a8785b17784b180c8bea199e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      -1,
+      3,
+      7
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-flank-both-neg": {
+   "hash": "58c3a333b47f6fc046cfa5bde6ebb19a17e577179404a7f98c71922756d26abb",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-both-str": {
+   "hash": "dbf5f0ea696701a6bd403beddb2a77e79a590f8cb01bb2f2b7441518ed944411",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-NA": {
+   "hash": "e84ca002d98ba915074cbb323ee2651d4618c2b23c0e84f8c5c8f3d4a47d8857",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-dbl": {
+   "hash": "60768b4b9e1c7b3b9459e7758924ea2d0392436a81dd32315d36b13e084b782f",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-empty": {
+   "hash": "8cbbefb535a7f975269d2153e7e3e520ea80e8295059916c73c8b8161f211170",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-len2": {
+   "hash": "ee6fb4dc0cc066560a9968d9f7e649ce067e21b920aa13a827eadffabf096ffc",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-lgl": {
+   "hash": "18e4c39b3cd135f561189da4e315fc1ac78128bcfa9404ffeb18180d11d810bb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      -1,
+      5,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-flank-start-neg": {
+   "hash": "c252a120566b388aa9f2417c3f76f074ebb34ae9b8ed9a610898b3aa4b08949c",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-start-str": {
+   "hash": "abff7888b475b0048d942f2060196ea43886b74646d8e1c1d42c8a96ebf84d05",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-width-NA": {
+   "hash": "dae3a452ab7270b2dd8338fd6011d1d379bad0e86817015edc6d977f5be37cf3",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-width-dbl": {
+   "hash": "b3c4f6e41736eb9bb437d5ed5023e9337304f27c2b65a33056444f0065e595f1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      5,
+      8
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-flank-width-empty": {
+   "hash": "af21a9ae26a16a93a970974181b9fffd3277c6d1d7b5b524cf08e08d56d8ea88",
+   "result": {
+    "error": "'width' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-width-len2": {
+   "hash": "f0486b9bfc5808d6b14f2a4730d1af239a51e30e1c91e9684655a10d910585b2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      5,
+      8
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length",
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-flank-width-lgl": {
+   "hash": "7234dfc6647b14385bdcd1a57099890f9849eebf6634856275ccd2bd4cc924df",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-width-neg": {
+   "hash": "c13afe3db6f8898d8c4f5a922d933ac4efc5f70579f907aee55c06c2402fca11",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      4,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-flank-width-str": {
+   "hash": "0e144c20f4b945d74b8e9a9f027fe438c95452b6a9c59f62b6baba9a14926ae3",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-NA": {
+   "hash": "068aa8b8c2ee3fc137a35adb5d014cd0e7ee43d79494973cb8bd427c93f02da5",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-dbl": {
+   "hash": "1d824fb7c1af257ca7629423b9df5b501aece033d733a4f56518f35627af8263",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-empty": {
+   "hash": "93fe4c8830b2dbf829f878e133bfa9d6c1a0c4d65f9b47f965752015d583fedf",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-len2": {
+   "hash": "a27b205c8bb58f84835bcf048341bdf9275f5ca0cd2809840cc04701049d78b5",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-lgl": {
+   "hash": "2c164943bacf2e3acdca31b773db83de057e26bb3b7d65b0632a91e43a4d96d7",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-neg": {
+   "hash": "2ff59c39659dd009f3cc22eafc0e7588b0831f94c147a3970bb106396cc38922",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-ignore-str": {
+   "hash": "4a544f44c2dae56be7b3b848686e359cc37a6fa91d7e30a89e23ab723badc25d",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-NA": {
+   "hash": "313cbd2b6139b0f1cac6a6d0346b68aa14b2bdcf30a8351f4a2979a9873825a4",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-dbl": {
+   "hash": "610fc8c82c8db365bb79e386fe33da4e5c2ffcd78c80348a432aa85683355665",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-empty": {
+   "hash": "72179382d2c4f9f35daa9a13a0b64d92cd6772838cb0676014acd4ce6a4a17ec",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-len2": {
+   "hash": "3a331c368c0b705a460ccec62f5b9f76288f34710b94666edbef74d5f3a90f91",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-lgl": {
+   "hash": "47d4879f6fe60c4992d8f409b2574cfe1044f4c95a675fa2ebbfed7b2e4c31ad",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-neg": {
+   "hash": "c9c50a74661ee6f15bcd9657cb947bcf036ab3f21dc616d34ab3152eb5b4a2d0",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-maxgap-str": {
+   "hash": "f6544bd80c1b6a80137db29ec75b6d5b1cd87e26a148a2feacf2ea41a2efe019",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-NA": {
+   "hash": "e92beae1dbb30bebbbac277c31c693b9f422ed795a6ca4ad4d9a2c58b295c753",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-dbl": {
+   "hash": "3d5554e60e6919369c8bf1b3ae1b8a01a52b5b6cdd148b075a552c7aceea0df5",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-empty": {
+   "hash": "86ec1a859a300fed817928d02b37c9eb618de4bfdabd6ac2be818223c3940fad",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-len2": {
+   "hash": "674d4b527837a5effb1467e6675e3fe08bdb97a10e5c79c429f3143242f51c42",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-lgl": {
+   "hash": "c783f6fa6ebd2c592ede926810c9943a30c235412bc4e7d7cbcc3c3a88858888",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-neg": {
+   "hash": "b76262a1b3471e6753d394db5c3961758a08c0175c6b4cf84330315ccdc59501",
+   "result": {
+    "error": "'minoverlap' cannot be negative",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-minoverlap-str": {
+   "hash": "032f699915852a404592ae90fb31a7e4dcd74b801beebfc4ef5301b264fc3768",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-NA": {
+   "hash": "3526f5ad367227fef957f85d6e0a7df2a335a8eac3b7341265aece8f914b37d1",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-dbl": {
+   "hash": "8cc41e695256a01af0afbbbbab12e07bfbe9d16514e8d87ebfe721d4f32fd357",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-empty": {
+   "hash": "b7969ed223bbcee9d37d379cd6374327cca204630bc6fe3f4d56c936a2c8da8f",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-len2": {
+   "hash": "e5997b6f76ef1cb7d1c8928ede4f67b8d1b6ee3d9df12a9f2e98b391c71a1ca5",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-lgl": {
+   "hash": "8096244403ec72500500f7e001e897b1a7eadf0f29384e0761b019b5ac035658",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-neg": {
+   "hash": "2b43d430389e51d2f247eaf3f7c38202840c53c79ee7d94f9ee02ee0d607921a",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-select-str": {
+   "hash": "ecdf1ced2305b107c0b4dacb05b1e769cc03411c79c08d7bc37c399ecaa35c01",
+   "result": {
+    "error": "'arg' should be one of \u201call\u201d, \u201cfirst\u201d, \u201clast\u201d, \u201carbitrary\u201d",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-NA": {
+   "hash": "931368e294467d9e06f9db19d40664ff949de5c64b8f433709c46d95152756db",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-dbl": {
+   "hash": "fe7d41d215233ccee90d1531b62da28673d7472fda968293a2bfb736a400718a",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-empty": {
+   "hash": "1c5d28cc6629d16305e91064d944b31a4e44c31c470bd26ef7dac25c2e1c90c7",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-len2": {
+   "hash": "8c3b1334d4f94b4d17fe51a41c66332da48fca504aa7501ba85a37abddf3f348",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-lgl": {
+   "hash": "0c04762be37a41a79ccdadb42e064fc8af4a590d73937e9796f4ca94a51f4e8e",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-neg": {
+   "hash": "35283082720e269556fbd54c03db3588c2e1d798cd5b71bd6cc4aa8ca07a3d6c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-fo-type-str": {
+   "hash": "77c1c4dda0dfdab96ca1b830b69cdd3fc480c6a5ce93480dd370ec9bf6907ee6",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1
+     ],
+     "to": [
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-NA": {
+   "hash": "0ae2ae5bda4187e9d90b0b203b71d8b0359160bce7594f8a99b15b34e16a0cd8",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-dbl": {
+   "hash": "190275fc63266a6afe1a9c4c1c8368dc05eb36495aac78150d8e9c6f2de79a93",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-empty": {
+   "hash": "e6c54ceb38705fa85fd166e4232efafb1654df47cc23575cdf69f05262cae2e0",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-len2": {
+   "hash": "2f974722496ad8e0bff4a92c1ca79f46eacff1d6d7f71ca99d38a3b92652a066",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-lgl": {
+   "hash": "809fe8f1ce05415a195e2730d4fb2cb9cc80b05559a08b169aa4516470f1e19b",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-neg": {
+   "hash": "dffadc1171f1977bf8e4a4e9ed9562c6c0503cd308bff08754d83eed98bf643a",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-follow-select-str": {
+   "hash": "7f98ff5854e6256608929c5903947b714429a04092726eb9e9aa202035867a2e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      3
+     ],
+     "to": [
+      2
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-NA": {
+   "hash": "75eb69cbe3872250b203c1b7ee7798106771e2e80c99742f2f1ad9496e5233b8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr2"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      8
+     ],
+     "strand": [
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-dbl": {
+   "hash": "5ecc04c9b6d2bcaec469f7fdfd2c009da1eecc1fa9555d934c8dbdfe2261e3ea",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-empty": {
+   "hash": "46463e9c965358ebff9defa632e72fff922185f06806e9e742a9b1c32f9ab011",
+   "result": {
+    "error": "replacement has length zero",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-len2": {
+   "hash": "64e78a9c2fd408e4740ba40e1d4885c5e30ae994f42ab7fdec9d11058e0a0de7",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "width": [
+      1,
+      1,
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "-",
+      "*",
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-lgl": {
+   "hash": "a508c8811290f84496de4c3da73442bdefe228f8d28c255348fe708c9154c90a",
+   "result": {
+    "error": "'end' must be an integer vector or NA",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-neg": {
+   "hash": "b313fb543ddf931822afce72122ca85d9dd9f72d286696f85ff0e8c421b99fb1",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-end-str": {
+   "hash": "bd427ccccb09ca39125623126d03e7dd05bba9a5c4f1a25b45bab9d63d4cf9ab",
+   "result": {
+    "error": "'end' must be an integer vector or NA",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-NA": {
+   "hash": "06aca6402c13d024d65c59b6598641207f690d3a22c3b4989b7f02990ae9bfae",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-dbl": {
+   "hash": "5c9e286476c50ab53e65305da1380b483166a14f44daf337beef0362f592514f",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-empty": {
+   "hash": "bafdaa615445870a4c5a650e7b8dbfc6743e5c24a4bfc08cf9aed79e84b14a24",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-len2": {
+   "hash": "9a7d360e69ae4134f5ffcafd39ae7734c4e15c03b3fb81d2f2ed3bcdb252c2dd",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-lgl": {
+   "hash": "1dafa5e228954afa05461a4c74575f48a1f3d14fa2cb40858fbfb883d80c2453",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      4,
+      1,
+      11
+     ],
+     "width": [
+      97,
+      8,
+      90
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-neg": {
+   "hash": "270c74dfddbc39fad9fd0a9c91399eee3e8f0d6eab884719b0ce058c51abbd81",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-ignore-str": {
+   "hash": "22648812939540d65d75f300d619fe6a498a65bfc90a7ac2fa5b32a929f429ca",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-NA": {
+   "hash": "c0d91fd2c83c56270679d70442f06b4477d614cdac157b5ec214f453533cc505",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      4,
+      11
+     ],
+     "width": [
+      97,
+      90
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-dbl": {
+   "hash": "3fa694effc81a1d871397c63144a70b5005bdb03df16ea514276e5773a8603bf",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr2",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      11
+     ],
+     "width": [
+      97,
+      100,
+      100,
+      100,
+      100,
+      8,
+      90
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-empty": {
+   "hash": "affc915e462aa647fac29ffbde9314165fd7564e5ab47826baca724a1f68d138",
+   "result": {
+    "error": "replacement has length zero",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-len2": {
+   "hash": "b35655534a0053af7ed803c89adc585364b499db7883ce3e811199901c675491",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr2",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      4,
+      1,
+      1,
+      2,
+      2,
+      2,
+      11
+     ],
+     "width": [
+      97,
+      100,
+      100,
+      99,
+      99,
+      7,
+      90
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-lgl": {
+   "hash": "7ce4b0e95ea84212567a560f5172f7e78919dfad3b12df1b86571f12f86ddaf9",
+   "result": {
+    "error": "'start' must be an integer vector or NA",
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-neg": {
+   "hash": "c6589df927d582bef4691ff45000b9c8d56048c789ed7942033ed3d11565b6be",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr1",
+      "chr2",
+      "chr2",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      -1,
+      4,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      11
+     ],
+     "width": [
+      2,
+      97,
+      102,
+      102,
+      102,
+      102,
+      10,
+      90
+     ],
+     "strand": [
+      "+",
+      "+",
+      "-",
+      "*",
+      "+",
+      "-",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-gaps-start-str": {
+   "hash": "e4413585fe84b1a9eec4cbbb0c1cce4c88e66c476df987771d3708ecec7ec209",
+   "result": {
+    "error": "'start' must be an integer vector or NA",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-NA": {
+   "hash": "3307b7c498817588949e017c2fd17b5a31c21832ebbc225ddc436e237e27251e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-dbl": {
+   "hash": "294130ad2056719a5632329fafbade2f4761efe69b2fd0e509ad2ee6d45d040f",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied end (1) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-empty": {
+   "hash": "36ded34291684b6bcf8b37498e751b51ddc9cec3237447b65c7da9c0daa92618",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-len2": {
+   "hash": "efb2bd513f08af2fb08616427927329cf517ddd78e6fbe4386472348e3d1cd48",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied end (2) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-lgl": {
+   "hash": "835eb822b7f3c78fa12c61bb30e2319219ebb77d3800ba3b7120a0cc29f57f3c",
+   "result": {
+    "error": "'end' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-neg": {
+   "hash": "39c90fe1b88c409076aa9a47677381afc8dc55daac34ceba661ee2e244d292dc",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-end-str": {
+   "hash": "ba58744b663738513824d329ab9360749072672f82a21cdacf68e394870f3d5d",
+   "result": {
+    "error": "'end' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-NA": {
+   "hash": "a3353579722deb55cbbf909d5053b6c6d5dd7f5a6c936cc4f03d9dc1a4eef7cd",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-dbl": {
+   "hash": "0390d09cc9998ae228f2dc007f42d4af592c2210383f45811ce655cdac20b843",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-empty": {
+   "hash": "4b6c99489ddf15ca8e34cb2fa63f88d4baa858e0354d361f8460dc0f2abd0357",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-len2": {
+   "hash": "b17e9b5c25a1ad0f6329bf8b1f40e2f143066cfb2b1a8162f4db503838348a97",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied start (2) is > refwidth + 1",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-lgl": {
+   "hash": "de75d5141e657dfc430964cee9dfa5d6d890a3d542c5571e388366343d9c11c5",
+   "result": {
+    "error": "'start' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-neg": {
+   "hash": "5a60a4ce87bab19538bc4f1dc28ef004b37a7177e5ebb117a983f41edf5d67d1",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied start (0) is < 1",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-start-str": {
+   "hash": "79e18aa144465ecd50581db69b857d33bfee39626a9ce0da252663e0f314eb9d",
+   "result": {
+    "error": "'start' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-NA": {
+   "hash": "841f7cfd2e365f99a72c238beabb288e1926e38b42516091381a05dfadeda8ed",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-dbl": {
+   "hash": "38e06f4d5375cf6700a128e71302184db95fb7ddb61dd5a001e760401b23726b",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the solved end (1) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-empty": {
+   "hash": "4612ea74302f011c1686d90dbe3339dac0741dfa4903d3d20adfff9188a2948c",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-len2": {
+   "hash": "02213b6836f3a44e945075f6bc7059a2c17a1a23ea7cfea144d3ee7d62b259ee",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the solved end (2) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-lgl": {
+   "hash": "4df0b08b505a5dee8a476e1ac07a223e6028741d54806f6d1d20adc720da8de3",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-neg": {
+   "hash": "17beb4fc676b390af436f4b8c8652bdd3ad60749dee2f2d624d815fda342ddd9",
+   "result": {
+    "error": "solving row 1: negative values are not allowed in 'width'",
+    "warnings": []
+   }
+  },
+  "bad-gr-narrow-width-str": {
+   "hash": "369f21793318649b617a17cb5646f61b6c483fd5b11cd25e75ecaeac71ba1edb",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-NA": {
+   "hash": "6fcb335bea7fa04d20cf4cfcb4ea3e6a4742f753b86cad74fe88bfc1bd4791dd",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-dbl": {
+   "hash": "515dc0b1286be98de3b414064df23ed1e475b2e00284cf5fafa0a4d3f9032619",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-empty": {
+   "hash": "309f8f3dda8a4a0391ccdab0896651af65e18a9f591a5557aff43cdf533f9b2e",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-len2": {
+   "hash": "ab51a13f5e332aa789436b6675a978e14e13e6fd7631b898d5e9e3e6d45a8ccf",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-lgl": {
+   "hash": "f8e793a6307aa72841c9f5e8c91611beea9eead61efcb0f29c8b1d1688553592",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      2
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-neg": {
+   "hash": "2efce9111c35df275fe747500c960009017ad765adfb9be0f7d406370663723f",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-ignore-str": {
+   "hash": "e2824f930c58c4c74a35341a84ef1e3da248c8ebedaeadf83e7b84633383e7b8",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-NA": {
+   "hash": "347f44b20bf238d390dd3189c4ca0df7098e5bdc859b464f7ea8a21a540f2f37",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-dbl": {
+   "hash": "586d366182fe1336c02a284361bee2b183f59f711ed6d746ddbbbddd02166574",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-empty": {
+   "hash": "a5edfb1c1befa08deb63541daa58ac145d7db42d8015f9bf09c96fff92671b57",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-len2": {
+   "hash": "4608b07954dd7844e299c576fd92515173e3ca45c583a9abbce75fbc26a5d63d",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-lgl": {
+   "hash": "d5b796edb3e7cf863bcfceeebc03c648af08a23aa4a6d51fcd3a38e0c8184ef4",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-neg": {
+   "hash": "d8d4f31fb9eeb044e6b51d214cf96e264c4a2a6ac73a8da1addf55a0ae4ada01",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-nearest-select-str": {
+   "hash": "4030be8d0f351e965287d1602c1c14f8bd6a7a54dc3f2171a45e22f46160a082",
+   "result": {
+    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-NA": {
+   "hash": "e0d483d5af04369d7576d00b35d4e870bc173d238912edce205140fdc94a278d",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-dbl": {
+   "hash": "27940013e3b672b702e9c64eec7a6239c022ff64f56a5b6c3052d308563f3537",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-empty": {
+   "hash": "70b8e055f38838955bc1c3db6f14fe1ab717a3a2ed3ea2fb7b19bfcc56fc084e",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-len2": {
+   "hash": "e5e287cb7d936e48020de367b216c3b0bb60bccddaa37c493ee84880f61d0999",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-lgl": {
+   "hash": "38a6788cdd296bd83d1762ae552517d2bf52fa34d55aad100d7abc480bbd5238",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      2,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-neg": {
+   "hash": "59dc682b4085f70d09f56285712e686809f70e49844a7ef1c314caa4b1e89570",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-order-decreasing-str": {
+   "hash": "164f5f351ad6fa544fea3f99024b29bcf20d5b9e3decdc8f4fb7c81a20231da1",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-NA": {
+   "hash": "b690743fd3dcbaf76510efb919fa171763036d63920a3bfe7fa286f7b5ea3862",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-dbl": {
+   "hash": "880b14f875886db122f29f0ab9d7dd66fd8cb6bd8af0aae05011ee122698a0ba",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-empty": {
+   "hash": "6543a869c9c0de80223c50a92154b9bd987c124594042fbdbcfcd35cbbbaa3fc",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-len2": {
+   "hash": "ae0c8bd04eaa20264897c15ed6ea6410146fa4b77bf6cc0fc1c0fce35ecc1bb8",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-lgl": {
+   "hash": "f9cc1cbb8a06bdbbf82255a71cec8548eae45400da4f2cba68783a867f730ef6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-neg": {
+   "hash": "7de6b79a82533a7af141beafc1bcd9a83c05cf2aa04acbad06c2b20fcfec15a7",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-pintersect-drop-str": {
+   "hash": "500e8160449251e1ae1bffb80d31eb3b19c3782d945c990f5b23b2d97d9d424d",
+   "result": {
+    "error": "'drop.nohit.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-NA": {
+   "hash": "4a7fc956a2f6928ef0b03d87745a190b111905f4bea8a706b0474c14b076116c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-dbl": {
+   "hash": "27576205dec5c1b393b9ab3284a72fdf65ddb9d91a78194ec6499bba26701c06",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-empty": {
+   "hash": "a30c1e98954474c2289902687944780d38fb71ac93b9fd73490c74fa183c6b83",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-len2": {
+   "hash": "4797802ed4ed49d6ee430834f6a8cce91c1ffad920916c9ea80ab2bc4116084c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-lgl": {
+   "hash": "2a76699172a531ba7b93125829e75274384c64322c941f7af1b56686e2b538b3",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-neg": {
+   "hash": "a8f57e2ff9bea5c0aceebb659f9b15edff223ba62ad63939e7badde9d8b469ad",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-precede-select-str": {
+   "hash": "cc692ecf7ad3cfd244d93e408dd0e39e1dc743213304b208775d71a1de2624b2",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-down-NA": {
+   "hash": "1ddd41b2d3b713f4c81bf8c79340beaef860928efacb5850b27ff16ff7ee8a03",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-down-dbl": {
+   "hash": "3afcfeef312b87721bc6bf8ba516c7ff4d5a31fb8b1ac899a6716ecf54555a45",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-promoters-down-empty": {
+   "hash": "67cb0b0d75e5f294f2706654d17418f5a2ad92ac5c8034c328e7d7988c91822d",
+   "result": {
+    "error": "'downstream' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-down-len2": {
+   "hash": "4a8de0c848758c28d5c3a771df076d8aebb326a456978e75e7f72dd04db37f5a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      3,
+      8
+     ],
+     "width": [
+      2,
+      3,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length",
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-promoters-down-lgl": {
+   "hash": "4d5f068f7f181c74e8c136a2681ef1090a209cba22c6a1d5ed2a084c0fff2001",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-down-neg": {
+   "hash": "c2322dc87db7aaf5752672ef07eb4d90f8db9574b73ca3b789cb8674d577a0f7",
+   "result": {
+    "error": "'upstream' and 'downstream' must be integers >= 0",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-down-str": {
+   "hash": "902a29083ffda99f461030d6cc6672c9b2f3a155fd189bdb4fbd329e58949c88",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-up-NA": {
+   "hash": "0ed9285af2d94bd36176adf8360d47991e54dedb072c4471f0e410187d78ad32",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-up-dbl": {
+   "hash": "0a913d5fe3f0182e73ea4c1e58f2d490a5411d9ad1bcbee46c419a453aa567a0",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-promoters-up-empty": {
+   "hash": "4bee4fb36215ac1ebcca57bb7f41cf8cb4154e01e49bae1db97ffcd8eb07601c",
+   "result": {
+    "error": "'upstream' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-up-len2": {
+   "hash": "3137b8bf19cfe1aa14ca9217594b4a84fadef52b7b026fd91e4964bbd5d6684d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      3,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length",
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-promoters-up-lgl": {
+   "hash": "2956af05e419bd21ad8e1cad579674b12e31075f07ffe9593d01c04b7b516153",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-up-neg": {
+   "hash": "005dba30970309f71a03a19f4062010c71a7de403ec9fe849389ec549c0fe312",
+   "result": {
+    "error": "'upstream' and 'downstream' must be integers >= 0",
+    "warnings": []
+   }
+  },
+  "bad-gr-promoters-up-str": {
+   "hash": "e84e624ff21230d2aed982e848e314870f7c4b7b6340b8b4243ec385ffb4b225",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-NA": {
+   "hash": "b91e7556346af306b20ed089d438ad0ba1b14344dfc0c8653f2fd997530c21e1",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-dbl": {
+   "hash": "5ed9c27dd7bc7d2b7de935fe637f0cdcf80253c930917fa8d505f9555a048b1d",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-empty": {
+   "hash": "2aa2f6b962bb0d3f36166e806cec8ab234ccce685d8b8465fcf467efe1614dd9",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-len2": {
+   "hash": "80e875ec9cc37c6d0aa317d7c779f64f7521de0c78eb62a4ac848afc354d2c32",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-lgl": {
+   "hash": "d287fbfe215e655a22232da133481dbc4436673d04057d5044a0810c1973a004",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-neg": {
+   "hash": "f0729a590cc4cc638533f31ef4df24a50f339b2c89a1edb4f4e5e11d459a12f8",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-punion-fillgap-str": {
+   "hash": "e1bb28f870aec8d67168d13600c087643ed5a22d219b1dca3457bfd4c103a376",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-NA": {
+   "hash": "a8f970f462c11d83b66ed845de4872993b8e69ec8872426c99d9373a8ba6b42c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-dbl": {
+   "hash": "2d701e60a0e54a63e3054a50d153f2419f975e4befdafbeb61a56bca73a7ae56",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-empty": {
+   "hash": "ac622e1aae8445e842b1f5f58270254ff0eccc0b84d96e1f751a51ce785676f6",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-len2": {
+   "hash": "da6d62eeef18d277a29acb1a43bac5f35b18f88ea3a31e27a473c6f15fe0392b",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-lgl": {
+   "hash": "3d72130eb97a96ab9670074c5462ce9f87cfd60696e8538c51be3633748bcb39",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-neg": {
+   "hash": "7e71019b9eae47bafed517e5e9f1badf3a2f126fabd17e22161eb7d8dfca2d16",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-rank-ties-str": {
+   "hash": "bc55df98c62fe773d134bf5fcc85f9c1c2fc9af4c8c38e450803c43f6b2af257",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "num",
+     "values": [
+      1,
+      2,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-NA": {
+   "hash": "0ddc21acc0bcd63ea906c81b177fe047d2926de336ef74d8b07aea65306bb184",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-dbl": {
+   "hash": "71bc561a179c2cfd4352c7f5a86448649f8fbe35c7324422c620623f6e1c4e09",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-empty": {
+   "hash": "989a1e13f76e46f1b3f79297547b922c73dc707cebd70e0bcd0e0353f5d73f36",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-len2": {
+   "hash": "bda72b5825eae7d8ba98e186f6fcaa0686b8bdf06760c6c103b73db798d0d41c",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-lgl": {
+   "hash": "99482db85a62a879259e411fa7bc367de63c4c66f3af36a15b50c17f9cafd65e",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "strand": [
+      "+",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-neg": {
+   "hash": "6c77d8134a45fee0080d932450aead256776a4605ea66d4b9fc45841e7b4b8e8",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-drop-str": {
+   "hash": "87812e90a21bde076224057cda43ab76425d5b4ed79583bbeff9d5d431d155cc",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-NA": {
+   "hash": "9f96cba4d6ba450e0afc51b91f5149877ee9108b737583abf3b752801499eb18",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-dbl": {
+   "hash": "92440a46b1f4e172c90ff3dd20bbfe97f114760461e3ad3fd8271d237f274bab",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-empty": {
+   "hash": "49798b0625c11ae62bb284e1c63190c1c773d3b52c9d69caab7735970f283653",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-len2": {
+   "hash": "b7fc40b16d00a8efb1162fc65e03965a65fc0dd792426f90e21019cb922c5f21",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-lgl": {
+   "hash": "64d305e1003d01bc3d2d1e33a10b9b014eb7ab55298cbe38a895397289ebb572",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-neg": {
+   "hash": "b237dad213ee5e05e8c41931e4eb55c4639896a3cdfefb6eb7da709c60390586",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-ignore-str": {
+   "hash": "93a32ab8d268f9988035b3c267b0bc89ccead18bebb87c1cbfd92b5dfa14f7d8",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-NA": {
+   "hash": "2e19caa0a241be40fb9deb5639a0fc5c972aa6736f133703bfe89a55bfae6c3d",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-dbl": {
+   "hash": "aa74b45e9eca9b2269a59d858461d7fbd491694506421a4b85aeda3abf45bd7d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-empty": {
+   "hash": "ea56a5e229bcaf5762972161ce0aa6148f094f7bf863161394f10393afac76d3",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-len2": {
+   "hash": "b94a6df758bae95cee648c0088568bd1a577aa185292f98ea3ff228d04eba17e",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-lgl": {
+   "hash": "b9932f983b75d1727ae547f171067ffeea8ff626e3634e4f4f6d47b13377c9c6",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-neg": {
+   "hash": "c42b0412148c239bb0660ce931bda30707ec080ce671abae8400ef5e09d9fc18",
+   "result": {
+    "error": "'min.gapwidth' must be non-negative",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-mingap-str": {
+   "hash": "c0f324f9266d8b724def32625e4b2dca2abc1ff721e46c6c30689a02d3162bb8",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-NA": {
+   "hash": "a59ad601a05c1ba164cf35cb0bcd657c3f349f6745d104bab82060af5739302e",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-dbl": {
+   "hash": "f776ca823d4b4b74e795d1225d91ae02f744070dec15c87ff4dafbb7b8544905",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-empty": {
+   "hash": "94b4400c0bbf47d6ddff53ab0a8f97839a7ea4c2c9ffd8ad27be8af0f8233a22",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-len2": {
+   "hash": "701c7bf1ce58818fffd9f406746035bf16d339e111e2c4696d8196656620e795",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-lgl": {
+   "hash": "4cc478fa21b8f8f5dea4908ed4c9a0e1161a6e09163bcaaac4f8b9ab882919b6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         2
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     },
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-neg": {
+   "hash": "6def52dd187670d6e606f47d1d20a96943063160de12a23d983225b1eb136855",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-reduce-revmap-str": {
+   "hash": "b3b14eb303f3df861ce47273d8410a49f4128f4ace718e27d293da9e44094d9d",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-NA": {
+   "hash": "9c17a5aaae29a9eb83f430e605c4a416d31845f30eb34fc884c34a3d59769672",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-dbl": {
+   "hash": "02109333ba93467767ea0857c0c5bd888f39aefa48efcfdff76644e71e9b8518",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-empty": {
+   "hash": "f066cb6ca36ce3a0ba4e76ae62a6bf02009f42034bc7fdc0373cd18a887097ad",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-len2": {
+   "hash": "142de85c48b2029b1eeda8f6231fd2373d2e05ff561629684c47d09d1c881f7d",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-lgl": {
+   "hash": "ebf1e2228ea9d528046069d5b483ebc93560c9ddcfa4c5f330bd83c8788b9787",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-neg": {
+   "hash": "a688c30a27eab25622045670877d818fa3aad6fb79104446da1ca88d898ce8f5",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-ignore-str": {
+   "hash": "44698674c026efcacf66c4622446fcb2fd0a350d3c8469659cb9565fefd950b6",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-NA": {
+   "hash": "783dc9927e6be8184c3d1d39a14dcfb41a88bb10dcb9a211ae18ffa77a097ff4",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-dbl": {
+   "hash": "f78adcfe99de518c489bf91308d6cef19783e0988cf2898734b3ab47ba871192",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      4,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-empty": {
+   "hash": "d449792e9ab37492459763944eaa75c809bdbe8e75340c085aaf2d3ddccf7e40",
+   "result": {
+    "error": "replacement has length zero",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-len2": {
+   "hash": "fbddf212c899cf9eec54ffe01c39ec8ea2549ee3c5301e9c5fbf9319a48bf9f2",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      3,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "bad-gr-resize-width-lgl": {
+   "hash": "44f801fcaf1c3d0fd71ec3c568bb06c69553dd6d78ed207f48d3616fc794801c",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-neg": {
+   "hash": "8ce223b9befa6fdd92a428c02f868a0e78cf6770331bb0fb7b6fc819ce2228b5",
+   "result": {
+    "error": "'width' values must be non-negative",
+    "warnings": []
+   }
+  },
+  "bad-gr-resize-width-str": {
+   "hash": "06a35f4f26887d759bafbf7623e0b274a63a879ebdaa601f7f52a9cb6d78ee22",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-gr-shift-NA": {
+   "hash": "634e93908f0f9e583138b8a52f5a12e8edf840ebe50243700e6e75c20c7ffbe8",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-shift-dbl": {
+   "hash": "303c750f4780b0b2b8eaad5c3859ca2b7598c637421ddf468b1c7fb9070c885d",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      2,
+      6,
+      10
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-shift-empty": {
+   "hash": "efe8d08e9ce8fabcc92a92292498d23be83797d3b728ce504014f4d530f0acce",
+   "result": {
+    "error": "'length(shift)' is 0 but 'length(x)' is not",
+    "warnings": []
+   }
+  },
+  "bad-gr-shift-len2": {
+   "hash": "931a0aa55cc02280ef9b856f7c69b9c84efb3d1e276de49551518eeb1102e7a6",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      2,
+      7,
+      10
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "'length(x)' is not a multiple of 'length(shift)'"
+    ]
+   }
+  },
+  "bad-gr-shift-lgl": {
+   "hash": "921eb90073c9504a1ffe6ede800e08fc9ffb8593a0f1a8e90ce1171566d31080",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-shift-neg": {
+   "hash": "a1584bec0390e21889eb889a25d3aa89f4675ebf905b365aa1d140e904414760",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": [
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information.",
+     "GRanges object contains 1 out-of-bound range located on sequence chr1. Note\n  that ranges located on a sequence whose length is unknown (NA) or on a\n  circular sequence are not considered out-of-bound (use seqlengths() and\n  isCircular() to get the lengths and circularity flags of the underlying\n  sequences). You can use trim() to trim these ranges. See\n  ?`trim,GenomicRanges-method` for more information."
+    ]
+   }
+  },
+  "bad-gr-shift-str": {
+   "hash": "f3acefff895151067a71872eb3aa9227e5e131ff1ab434fae083f053a2d0aaf5",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-NA": {
+   "hash": "54a77a2065cd8314ad9b27b62310bb00ab24a125c19f8c6f30e3d207382e9e31",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-dbl": {
+   "hash": "b63fe07335c72b9224654babc58a918344fa916b99833134877a5d6c71af8c49",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-empty": {
+   "hash": "cd14b17815d7f0ecd0766f8bcbe863087c96fa6bc97851230478f47d044123e7",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-len2": {
+   "hash": "2cf251039f92a1cf7985d3c5864e05c1760e7252b2acd860b3ba69a910dd20af",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-lgl": {
+   "hash": "c692dde401194d918c914c0a84650156e59b363871124f5b610b656e516fee69",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr2",
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      9,
+      5,
+      1
+     ],
+     "width": [
+      2,
+      0,
+      3
+     ],
+     "strand": [
+      "*",
+      "-",
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-neg": {
+   "hash": "95d4baf8aae43193d426b77bbb3bc8ee7343fb2e916591fde406d5bc96dc9f34",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-sort-decreasing-str": {
+   "hash": "0c9746b282766737208b51ccf5079de4da9591dcac67fa8ff939f807e0db770c",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-NA": {
+   "hash": "8fca438175c3e0d31e8b188b15bd1de2817aaeab512e14c42d538e68d011bfd7",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-dbl": {
+   "hash": "c96517658156a462bc300925866b4537528783a181f0f281a6fa252bba632046",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1"
+     ],
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "strand": [
+      "+"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-empty": {
+   "hash": "e1ec88fe704d10ed39f314349d2c3548acdf2f1e1b70c30aafc74faf0c4e1948",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [],
+     "start": [],
+     "width": [],
+     "strand": [],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-len2": {
+   "hash": "acd5e7dc86ad2c31f2c6492b276b76c4ac4178a081a6a25772183c620e00242a",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1"
+     ],
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "strand": [
+      "+",
+      "-"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-lgl": {
+   "hash": "9e88e3d74f5041a21f0bcc54a742efcdfadf3cb963aa5b29b58b0b7c34e090d8",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-neg": {
+   "hash": "f7c605ab3e0bf29dc5435de83855dea7481315fe3be905f2bfe012aa5b7771fb",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      5,
+      9
+     ],
+     "width": [
+      0,
+      2
+     ],
+     "strand": [
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-subset-str": {
+   "hash": "0495ae7e46ed234317330a55d0107d148d766c67f0c90cca1727d28010ac761a",
+   "result": {
+    "error": "cannot subset by character when names are NULL",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-NA": {
+   "hash": "3259bb667eb81dc0694799afb48357aaeceda9b69c9f81dedee9c0e4a29e4344",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-dbl": {
+   "hash": "f861d9632c22ff65a99a26d61f1ad7af8b1cad71518b9bdb84bfc08f623fbe4a",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-empty": {
+   "hash": "61da01df36debbf4612caf2add7825c1dbfd5f40b930493954d6500b15d8ca28",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-len2": {
+   "hash": "200797dec32b0c0227d552bb1321ab8ae85f84febc1b8846d636596ee777edbb",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-lgl": {
+   "hash": "28a054f51233149bb09e2350fd6bc97e4da72b6c9baee3ff0cd4fd4e55d588ee",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr2",
+      "chr2"
+     ],
+     "start": [
+      1,
+      6,
+      9
+     ],
+     "width": [
+      5,
+      1,
+      2
+     ],
+     "strand": [
+      "*",
+      "*",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-neg": {
+   "hash": "41e6e3f40663cde97b2f70e23b2c26d1cc13393e0cc02b4bf99e203150f1b44e",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-union-ignore-str": {
+   "hash": "5058b486ce5fba959016b996bd2305a79dc3e59f3b05b445f664d80bb1c06439",
+   "result": {
+    "error": "'ignore.strand' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-NA": {
+   "hash": "9c7bdad7a6c9ed8ca7a338a82f374a47c7e0246c9bf9adfdc6e997ab77b29488",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-dbl": {
+   "hash": "78a31cab12c90d52b50a9ae7c41198bb80d2d16383557697ecb2c9cd465bc3f1",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-empty": {
+   "hash": "779aedc358df65dbfc6c9a10e2e90ed09fb32296f4e0bc0baf709a23d7526fad",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-len2": {
+   "hash": "041bd57f804bb054f42876a1fb33d180d60704a0d8e02bdd1122b6304be04b9d",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-lgl": {
+   "hash": "13cefac1ca1d46bbd6bee51c278867f91781d1cb23b043a86b2ab7d6b047c566",
+   "result": {
+    "value": {
+     "class": "GRanges",
+     "seqnames": [
+      "chr1",
+      "chr1",
+      "chr2"
+     ],
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "strand": [
+      "+",
+      "-",
+      "*"
+     ],
+     "names": null,
+     "mcols": null,
+     "seqinfo": {
+      "class": "Seqinfo",
+      "seqnames": [
+       "chr1",
+       "chr2"
+      ],
+      "seqlengths": [
+       100,
+       100
+      ],
+      "is_circular": [
+       null,
+       null
+      ],
+      "genome": [
+       null,
+       null
+      ]
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-neg": {
+   "hash": "fdb82592cc2bca57a78f697e1dd890b0da4730544635ce968612c2d6c1c5a01d",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-gr-unique-fromLast-str": {
+   "hash": "b478abbddaa4475b81ec3992f51774074c5806a09d38daca1ebc5facdff9bf3d",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-NA": {
+   "hash": "7f6567aff53e686a32f48a301af8cb45c722c1125cb155e0d07bdddb4c1391b9",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-dbl": {
+   "hash": "17b4458b56f094d362dbcd70b69bd3df6d9baf4cd3a893eb96f2b02f40b97638",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      2,
+      0
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-empty": {
+   "hash": "fab138d23b2cc7479cb23d12bd8c76da5ad24bcce31f56e83bb83b7cc1cce562",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-len2": {
+   "hash": "58d0d1e13b1a5e114b67a04178166fcf2aa451a24c992ad9931cccfdbc760b65",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-lgl": {
+   "hash": "a1ac5477629b3857635e6a4bbd1dae029589b1d3617668ff197545e3ac2c32da",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-neg": {
+   "hash": "f29a3726a1d69d101b571ec1b93cc2d8fbd32124f6bfb9e50e7bd91d63ca1c51",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      1,
+      1,
+      0
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-count-maxgap-str": {
+   "hash": "f5dbc971ed75bad10b3a5e5abba14d7627a48683dc339a298b1206e31a01faa7",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-NA": {
+   "hash": "de7f0bed0f8a0d8fea94aa11c311784ac07f82447ef15d32c13752fffb4543e2",
+   "result": {
+    "error": "'shift' must be an integer or numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-dbl": {
+   "hash": "f1c165893128e73b9c84a1d6348298c51f0619e96ef41260f8225947438f41a3",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      1,
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-empty": {
+   "hash": "25b39b54f6ecdfd1ec331f2d52aed3e27cba1ac634cd991f26af3e8dada0d00a",
+   "result": {
+    "error": "cannot recycle zero-length 'shift' to the length of 'x'",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-len2": {
+   "hash": "6a7b8408bb97c5badc85b4fbd9181fc6126e113b293b813b032a35f8231bb83f",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      0,
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      1,
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": [
+     "'shift' length is not a divisor of 'x' length"
+    ]
+   }
+  },
+  "bad-ir-coverage-shift-lgl": {
+   "hash": "2567493bfc9f42896c35a8c7993e4da6c25439e31c904eace0381e3ef70e9ba3",
+   "result": {
+    "error": "'shift' must be an integer or numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-neg": {
+   "hash": "2565e41b4623b575789aaf3943a8d9ef05eca39e63b3c8de9ad07133e1eb8715",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      2,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-shift-str": {
+   "hash": "48431b0ce3cf7f2c7e1d3045f8eecdf20a01e46ba1b226740555aa23735523c3",
+   "result": {
+    "error": "'mcols(x)' has no \"a\" column",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-NA": {
+   "hash": "f6c2d55cc011dd1bfe828422f61bd6aa18ba5ac4acaf8ac8a5ce13023a3b2c45",
+   "result": {
+    "error": "'weight' must be an integer or numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-dbl": {
+   "hash": "a5ad70f01dd0b940cb7bad7bcb3c8384bd658d79091212e243223f426a81a593",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1.5,
+      0,
+      1.5
+     ],
+     "lengths": [
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-empty": {
+   "hash": "4851a4106c9319ac3ef27b1d058e6965fff2d0846f31508bbdfdab0817ff3f3e",
+   "result": {
+    "error": "cannot recycle zero-length 'weight' to the length of 'x'",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-len2": {
+   "hash": "9cc5d771dc3a66bb44cc847052d2a66d370a262bb6fa5f2dddad776e1f83ffc5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": [
+     "'weight' length is not a divisor of 'x' length"
+    ]
+   }
+  },
+  "bad-ir-coverage-weight-lgl": {
+   "hash": "f91fa11a4a21a1471062da90682043cfdb455e9eaa39c14940a704c2059759b9",
+   "result": {
+    "error": "'weight' must be an integer or numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-neg": {
+   "hash": "7a85b546880b955942569ecfc5e0af642274884346376620998ec32b7b041aad",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      -1,
+      0,
+      -1
+     ],
+     "lengths": [
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-weight-str": {
+   "hash": "d2a423c9854afc3aadd9e6333f652422497dbe5b386a7d1ec41d472445b25a63",
+   "result": {
+    "error": "'mcols(x)' has no \"a\" column",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-NA": {
+   "hash": "978e733f21f184ff376bc48078e308295b53e7f8ee8c0b0059db562197bf9be5",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1,
+      0,
+      1
+     ],
+     "lengths": [
+      3,
+      5,
+      2
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-dbl": {
+   "hash": "1f44c6d7476ff5a5a138e8b0ae683e844e24b0a35fd67a4fa8633249eeae9163",
+   "result": {
+    "value": {
+     "class": "Rle",
+     "values": [
+      1
+     ],
+     "lengths": [
+      1
+     ]
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-empty": {
+   "hash": "f3775702aec9eeb242d1556086ea4cb9ba4d6b99ed4a68e07e986f4fca271f7e",
+   "result": {
+    "error": "'width' must be NULL or a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-len2": {
+   "hash": "f62d03e520d2b4b0f6c3330f0efba214ac9ec6724dedf2b9158c4b1ea23ef45a",
+   "result": {
+    "error": "'width' must be NULL or a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-lgl": {
+   "hash": "811fda61c4e15d064679b5ae813d20609a31e1dedfad51cf226cea79b94e8821",
+   "result": {
+    "error": "'width' must be NULL or a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-neg": {
+   "hash": "5eb4953ab9b1f0ecbf5ce8d93ebd034f3a30c130b4019bda66bae16cc5adcc05",
+   "result": {
+    "error": "'width' cannot be negative",
+    "warnings": []
+   }
+  },
+  "bad-ir-coverage-width-str": {
+   "hash": "fc556696aef9d54d572654bb855447920964ad301db75f538c46dd7685812bfe",
+   "result": {
+    "error": "'width' must be NULL or a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-NA": {
+   "hash": "0e1a423257ceacdf0fc4dad7b1c330d119160ee3bc1f4edef69099fed2976f5a",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-dbl": {
+   "hash": "cb453cd31e6ef1aa6aba2edd77bbb6f8095623b20aeb8974ddf2b739f512935e",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-empty": {
+   "hash": "f77e0d66a5748242e98a790135077be2160294ced02fd366f2debfb39c3fcba1",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-len2": {
+   "hash": "3bb7a59c0199bcdd9963c7923384d2751da2e4e455e6ed7b27f88dd6479825dd",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-lgl": {
+   "hash": "dfeb98e85f11c00bfa195609cffa75ba422d51f8cb868dd5c3ce125f9634fc16",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-neg": {
+   "hash": "907ecb88546ba0fc523b3c1211dcd154f182609b677cf700a7dfaec4e3f6ce48",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-disjoin-revmap-str": {
+   "hash": "bf86e0108e099e4362f826ac8a51641e65798609a909053400d39265f3f9e2f6",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-NA": {
+   "hash": "b4d1eaac70ec14a924e210c01adcfbf7cc69a9f008d4c89fb5ba6c327634bdea",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-dbl": {
+   "hash": "97d62887296346088944be6ee4790afa74549d4868b43d41573f7efb609a8950",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-empty": {
+   "hash": "5f7d46187772acd484c259dd927749d34a1ac557e4b94637b2d2cf7ba56b5c61",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-len2": {
+   "hash": "01e4793f750a15e1761fd79a4de9478aadced8f0bee828d993cd7ede31afed01",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-lgl": {
+   "hash": "a19223c8d1046d924948f998ceaebdecc8130369b2f5c60084675247c70fb97a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "lgl",
+     "values": [
+      false,
+      false,
+      false
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-neg": {
+   "hash": "f3be9a473f19671c5d47c7799f27efbb531a62cd305b140b783fd1b4ea5d8d29",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-duplicated-fromLast-str": {
+   "hash": "bc0021d149a888d32be8de5fd92a37f9820efa86ad1a39754aa0fcc2a4842b25",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-NA": {
+   "hash": "412dfa9da5ffd1edc0f85d74c4865cb70dd11b321b5e6c602c6257366a0a6f20",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-dbl": {
+   "hash": "1d8f62283a209eb9f926142ad7479c78f7f877cac45c65c881206d7b94635afa",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-empty": {
+   "hash": "2107d1ab759d70021d6fc7f9355afc2aecd1abfc58aae63b8a19d8754425649a",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-len2": {
+   "hash": "2bf0f48373a9e48225e118d92edb508cbca4586a7299539ab0ab636e2a564554",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-lgl": {
+   "hash": "846772e0cae50ffde72649f2ee4ed46d6c5589e0c956b4e47d60f1143a8cad94",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      3,
+      7
+     ],
+     "width": [
+      4,
+      4,
+      4
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-neg": {
+   "hash": "3e7b170501fe12524a1e4fc022692a16fa1c16a0d78945cf385efd42e6dcc271",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-both-str": {
+   "hash": "53a308a859766f1e2b2a7a04f43131abe9d656b4f917a1bc6ec42f693541c43d",
+   "result": {
+    "error": "'both' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-NA": {
+   "hash": "d50ca081c7bb6ce99bd8b67c980cda02bfe2a6bf4b1086d7743d29888310eb2d",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-dbl": {
+   "hash": "f290d4cb5749d74a5afa82c0fd637b3e7d763947cb0a855c4d02012c3c135e0d",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-empty": {
+   "hash": "45b99431d5864d62566e657c345bca3fb897540d1f3c03b3b77db11aefe6beb2",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-len2": {
+   "hash": "6faf1b3ec722b35cd8ada7d1f218e6681971459881d3e6500ea599ac19dc096d",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-lgl": {
+   "hash": "7c9fc0bebd2ecf8628d7b3149389f516a37573c887779466d5c18b400e7ac5ca",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      3,
+      7
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-neg": {
+   "hash": "586d21a4c270d14915b4a978a4e465efb8b21929ac2c6dd98392257dcf5c87a1",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-start-str": {
+   "hash": "fb760c71b2f16b8c44690a1ea67b2e04672f9c982da68423758cdf8c420c5d8f",
+   "result": {
+    "error": "'start' must be logical without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-NA": {
+   "hash": "1387f9edc5b371de7cf0948579f11ccd1a686d01002b566b9bb6f601a3223893",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-dbl": {
+   "hash": "c91a7e5121242163278857b5d0b2bb45276545c7cfe97fb4ebf55ebdc1674a20",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-empty": {
+   "hash": "b4c58657456b5985d10788600725d9a4b3a9b3a35c3b72b4658daf67ce325696",
+   "result": {
+    "error": "'width' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-len2": {
+   "hash": "b53232a66a53852034e816f17cc9a9de459bccba8e30a3368da548610efe5e96",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      3,
+      8
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "bad-ir-flank-width-lgl": {
+   "hash": "bea124ad390c89fb56451a20f3719bb51186f02aa264b2eaf4a81d3f9d84bde7",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-neg": {
+   "hash": "feb58d1200ed4699d7f2edd18b7103c586687a31bcb02b36f54ddf562490bbd6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-flank-width-str": {
+   "hash": "b79e20d761bb56c3c5e454f543391e188cb37723b533523fd9306e62505366f8",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-NA": {
+   "hash": "718bf27cb2cc88e867f5615bed780b2e3a462565153eebf0d4d32ed6f1f2a280",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-dbl": {
+   "hash": "1a933943b9895f6e5bcccff6501f44bc924e590a7cc2e6826568f92f3bbe9fe9",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2,
+      2
+     ],
+     "to": [
+      1,
+      1,
+      2
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-empty": {
+   "hash": "4144fde16f9f5d6cb34dddbe8e573bd20f4f9127b896f960ce92f5ad5220b14e",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-len2": {
+   "hash": "3831fe1014f0205dd7ef0d6ca096c0951a8efcf4f9941356d85f12d4dd77282d",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-lgl": {
+   "hash": "cc79300363d78b39b0241a613059dad583ad0f4cc3df41a1c8a2184f87fccbd3",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-neg": {
+   "hash": "cd666e61989adb4a6cb5f2bb6acdd8108aab94a1ed61caf8e8bdd4710e8e27d2",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-maxgap-str": {
+   "hash": "7cb40a1faeab8dcaf181df76d92c5cb2f38f6d44205c6b6dbd73d608110c7197",
+   "result": {
+    "error": "'maxgap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-NA": {
+   "hash": "555b69a4c6ac5413a7e1a278fec725ef51f68f5b5cf3063b6a71997034e6d2d5",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-dbl": {
+   "hash": "317bd4f5a2193e94b70b3faa3da5b89c6bb658e730a96ebda79068c2cca1af7e",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [],
+     "to": [],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-empty": {
+   "hash": "441e8e35fd6489f90eb5e5601fd916002e8a072c5184cbcb79f7a5a2a494c7a8",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-len2": {
+   "hash": "d6064052e850a3a9e0526e739e092359595911bf13dc8f47e4693428177c3826",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-lgl": {
+   "hash": "651494e7052673173964b6c6ca02670413264c34b0de9795e7960ca5e404b202",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-neg": {
+   "hash": "bb18b91f9d592f3ac8fe703aae0d9391b48412decbc75e66b559c0c15cdb8f3e",
+   "result": {
+    "error": "'minoverlap' cannot be negative",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-minoverlap-str": {
+   "hash": "d9b38a3cbdb7c141db9af0723959f8c802d4a394c0476035d52eb9d347d2f42d",
+   "result": {
+    "error": "'minoverlap' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-NA": {
+   "hash": "03adf84b8dc138816cf1537790f2de0a5fa12263cef21eaba483bcc0d7504429",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-dbl": {
+   "hash": "e0a4abd595821581b7395db92d421897f6afb3b2c5fb4899075f6cd1456ed00c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-empty": {
+   "hash": "ec2faa61040131099cbf0248d349b8bb75e770ef66b40309211db1cd3bfce4c8",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-len2": {
+   "hash": "e677d88a10994eacdb87074ba7d0c2145c420817599873afe1dd21b43657f18d",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-lgl": {
+   "hash": "15e16f9e7d38b46cc0da35df78b84fa849663e6ec019bb7d8d5fac2b63fa6654",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-neg": {
+   "hash": "fb8b5a1c961524e99b7de866a8c0352774e0b6e94926eeb56d7849a8c313df94",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-select-str": {
+   "hash": "c7b6962cf385c5d831621413ba02fd2b31809e8e6760501577b24f3abfd0514a",
+   "result": {
+    "error": "'arg' should be one of \u201call\u201d, \u201cfirst\u201d, \u201clast\u201d, \u201carbitrary\u201d",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-NA": {
+   "hash": "b327f03e5eb7ffa50eaeb48617c7d3745b12c422bd689dc6a9ab0fff4455cf70",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-dbl": {
+   "hash": "838cfe46c6f6913c0b930861604458db3c208530f193ff8a6e2bee15e7720ad3",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-empty": {
+   "hash": "087dd51e731edf8643a09a05f7f77d9b152be894da794f3bcc26c4a7c35c4598",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-len2": {
+   "hash": "4b50098a9f14a1ca62914a658d9a1086948e5c0792480f2e60fc6c57aebde291",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-lgl": {
+   "hash": "86fa7a27656d5de7a69ac2c06efc3557b991e69d3df9e737baae89e04e800066",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-neg": {
+   "hash": "082bc8f1f10dc69fd4a3c5863ad90687c560decaa61564feb0a9da72482b83fb",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-fo-type-str": {
+   "hash": "044899ac5a6148ee5ce7b18741d60cab1df452161887e0f5a892dd3cc8bf805b",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2
+     ],
+     "to": [
+      1,
+      1
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-NA": {
+   "hash": "e9c0807e76e37bac0baad2c7c8ec568e3c2d59f091c5ea5012317fd61653b538",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-dbl": {
+   "hash": "756f39bc0cc6bc1c2292fb54d62c40289c9c14397d22eab9dffff0d6aa29a93a",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-empty": {
+   "hash": "730cc3a5cde91f92a1c840f3f7e84dc4effda3a2623377d6b5b9d204bde3b130",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-len2": {
+   "hash": "a9526be84430e637d5f8c6f4099547fdeac092bea098682c10fa065b8d5f8e02",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-lgl": {
+   "hash": "c47b13c844303c37704369b80c47b7cbcd0ac2b73b68685b85eb73987d30ef5e",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-neg": {
+   "hash": "9df3f8c10eb499b86afb0d39e119cf6c88ae8387d783df3d92cd453adbe7eb81",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-follow-select-str": {
+   "hash": "c2c856a0585d9a1f7fef050396280aca39a4a734dd165a900e6342e245bebcb5",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      3
+     ],
+     "to": [
+      2
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-NA": {
+   "hash": "ff53c723f367c1c28550691e83e25dd4dca9157bbb1c05e26355c564a1be579e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-dbl": {
+   "hash": "a02d1c7d30713e813bc97911506889c1f3435d901c7ab3624c39e5ed79d6cfe7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-empty": {
+   "hash": "bf8fef2a6248db222aa20fea304d527220998f1f8eb2c70573ff0974af539999",
+   "result": {
+    "error": "'end' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-len2": {
+   "hash": "cbf3af2086f2ede4cb24acb08f1a350175a7891c0cd425cdbf4b515495876193",
+   "result": {
+    "error": "'end' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-lgl": {
+   "hash": "f93a1dbcdd638f2bfc124399fea0c61d1d748495faf4c4bb3441d9a30a9fcb20",
+   "result": {
+    "error": "'end' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-neg": {
+   "hash": "00facef2ee9127b3111c55ca151e39f72adea76a72417af7efedc11280fcbca2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-end-str": {
+   "hash": "d9f268bdafec54fcb8d1c926f19afdfbace4003e9fda26e08b67112acd87d47d",
+   "result": {
+    "error": "'end' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-NA": {
+   "hash": "b809ddd530b982fd6d2338fb9ca2ed8089cfc61adbd373917d2277c837bc2062",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-dbl": {
+   "hash": "70fa775ec4f991d6ed4b81d260815143a24426f4d258e2d2f96650120927d654",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      4
+     ],
+     "width": [
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-empty": {
+   "hash": "63ea6dce482798345765b60fc6c02d4a473563134e9ce47d0eb85ac954e7d5a3",
+   "result": {
+    "error": "'start' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-len2": {
+   "hash": "9b2ad8a1ddd3f0f3b917ce048e0a84d1be038904b42a3d4014a06a5e9b97e119",
+   "result": {
+    "error": "'start' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-lgl": {
+   "hash": "6eb9bef15a3065ebd21a34b7654f3b1265edcbe5d4c432cc71004522b9b21151",
+   "result": {
+    "error": "'start' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-neg": {
+   "hash": "a7bf5e1d8d0c3ba3bf9006988d6619dec41d7cd456810f755de7a72c5995972c",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      -1,
+      4
+     ],
+     "width": [
+      2,
+      5
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-gaps-start-str": {
+   "hash": "3236c9288a5601408e14b67d871a01b78b5ac6c00f12442b3937187ee7c534cd",
+   "result": {
+    "error": "'start' must be a single integer or NA",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-NA": {
+   "hash": "b0de0f56213c2400227263579e3ca4f33525911a4e047ad620eebbbe6168d477",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-dbl": {
+   "hash": "8eb2e8a70e938ec6830dc3d2e0ac1c6a21abd1bf2f0b150e0d8299dc7346c6ba",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied end (1) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-empty": {
+   "hash": "28635cf3e9be194d9fade91c975074ea60c5161bff57dd5819f16014d93647fb",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-len2": {
+   "hash": "fdf2c1658dcc2774e3ecbbc9911d68fc6194f538463c1354433e5681f43da084",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied end (2) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-lgl": {
+   "hash": "9ea4c859dc187071b1c4f2474eea57f33c5a81ab4335e154b51991ed44c7bba3",
+   "result": {
+    "error": "'end' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-neg": {
+   "hash": "61ff8d33d208c13e750370a8f81fd4ea9d8ada76b220b66c28eddee6b2946f44",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-end-str": {
+   "hash": "a0af07806450b66f27e4a7024ec30f7f6211b1c3f28476de0f937957fdd21dc7",
+   "result": {
+    "error": "'end' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-NA": {
+   "hash": "4cdfb83f26bd583a48fa8b4d56e0063407645c4bb67e1912a945e6401a8a8dcf",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-dbl": {
+   "hash": "fab1c6c5be62fb53d86765c8365846f2dda209c6ce9c1955af307df9a5da93d5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-empty": {
+   "hash": "63dfa176f970c32f3f863ae772887b975d52dad0bb176ee1c2dee53780612039",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-len2": {
+   "hash": "c685141b28fb418b2a26ebcd8004c9ef5c7580677853fee5b3a32741609d8687",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied start (2) is > refwidth + 1",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-lgl": {
+   "hash": "a3f91676250afd998191b8f5e31e553356b7d60624849407a06ffc0b281f88d6",
+   "result": {
+    "error": "'start' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-neg": {
+   "hash": "9491da001083faff5bb60f82d19a9606995490afb1ce71ac7b90a6f5252cc101",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the supplied start (0) is < 1",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-start-str": {
+   "hash": "143400650a27c0f767d82eb967b6e8ef6aa56a14802fe9e60a31dc40d28de4b5",
+   "result": {
+    "error": "'start' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-NA": {
+   "hash": "100e74b93b97844b8158ea0fc466a6f50d6cae7ada1280848ca6d231bc5bd053",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-dbl": {
+   "hash": "f34bb743346833cdc24980a02925727ec1a8693c6d9fdbdbd9832ab631cf34fe",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the solved end (1) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-empty": {
+   "hash": "2f747f658d4edf921c59777791dbd1101c0e6139db705a8fc9c892dcf64b2f50",
+   "result": {
+    "error": "cannot recycle empty 'start', 'end' or 'width'",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-len2": {
+   "hash": "50819f5cad4648286dfffacae74976d57cfaab2a77cbb9357f661cf0a6688846",
+   "result": {
+    "error": "solving row 2: 'allow.nonnarrowing' is FALSE and the solved end (2) is > refwidth",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-lgl": {
+   "hash": "922f058422e0df5d2ccb0c077b5f76b719387f908a16353a7ecf4bd31304f17e",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-neg": {
+   "hash": "3c3dc90226d7abc5da44701bc21191f34a0690e3d847b52ef57006699b91707b",
+   "result": {
+    "error": "solving row 1: negative values are not allowed in 'width'",
+    "warnings": []
+   }
+  },
+  "bad-ir-narrow-width-str": {
+   "hash": "424fb71650573646c789cacd2fbfb1123228b37f4916ae65b36d0b893370855c",
+   "result": {
+    "error": "'width' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-NA": {
+   "hash": "52539fb6237c21f03133b0abf4b212721d5d2940fe1b3daded8221ff50886533",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-dbl": {
+   "hash": "27da230a7a0eaa5015308f5c9bdad478d290f045925e40e751b5356d69e5f3ae",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-empty": {
+   "hash": "08baa72f21269edcbf9f9ca8ba72c6962ce95a81ab8d7e65ee362e863221e66e",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-len2": {
+   "hash": "43cafcd5d9b643c3a3d90f288998ca4ccc018ecb4c935c10f3fc46c8663121ad",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-lgl": {
+   "hash": "1f67e435a1f9ea2c45dfc34a405b85b52eacf8b6d31c1950fbd7fddc7cc29429",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-neg": {
+   "hash": "6a8ff358888457ab49fe3dff47d036c57d4964cad6588ff7e19df87b1b28e35b",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-nearest-select-str": {
+   "hash": "68a5d2f504fe1b8673527af4b7a4d4cca65512a9630fb27c1e30987386329e78",
+   "result": {
+    "error": "'arg' should be one of \u201carbitrary\u201d, \u201call\u201d",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-NA": {
+   "hash": "b1dee3457495058abbaa98f6db4b69596fc6c5e305d6a7401de1d131c1aca5a0",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-dbl": {
+   "hash": "4bfe7067054603c65e0f3e789942978797bfc73ec446d8869530f022d61bcb1b",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-empty": {
+   "hash": "750da1982043012091038f929840c5d95ac7d1a78aa22fca5a97f8668e974a91",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-len2": {
+   "hash": "28692a5aebd87df76b3051cb6fdaf2e77dbccd173c373da85e90fe927ae7391a",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-lgl": {
+   "hash": "3d1d3c88422104c9ed5698d2ff5052e041f4ab1d6e13d7492dc7804c105dfa5d",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "int",
+     "values": [
+      3,
+      2,
+      1
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-neg": {
+   "hash": "26edc223a1a0ce68381cd312a21bc725a1ec4d34f128676a94786a0d3cfc2de0",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-order-decreasing-str": {
+   "hash": "c676f5a0a5d34808759fd033da4b1de5e612530dfbb985d6fdc2e442540ba03e",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-NA": {
+   "hash": "70256569bbc24731c58035029b9209166fb135f39f3f2f15a2de5c10081f66bd",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-dbl": {
+   "hash": "9e5ee536fb96ed6361a9358d2298899a061c2b07dbf29c35c54c3a8db8985ab7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-empty": {
+   "hash": "9155af61255d6c43d7511b87127609d8e05bc0abac04128085b629f1d9d222c5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-len2": {
+   "hash": "dd33e8c70d5bea2d96b9b1ebfe1800fd7ac34a48cb7d6e268eb660100f539055",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-lgl": {
+   "hash": "803df6716a20c1c6c94e33aab334288457d8102aefae721956c93aae5d4972de",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-neg": {
+   "hash": "9e42187f8b05181ce669a1cffe87882c0cc965463b3d39e5856d58cc6f691a12",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-pintersect-resolve-str": {
+   "hash": "2da9bc5ad7fac8a9a83df86f123efae360be09d77de363956a121eefdb154d43",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-NA": {
+   "hash": "a8f1b1a77ce2dd143741155dc0f78e9ede447c128f3508708c3d67861fb2fbbb",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-dbl": {
+   "hash": "2dfa1202c84e86d107fb7e9385f237372b547b4c2e5d8d2d8f4b31f0da7adee4",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-empty": {
+   "hash": "58033a3a9e410fcdb6b72ce55aefd15463b96894975d1adffaf37137d7a8d067",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-len2": {
+   "hash": "702f7181e1e714e2d78ade6e180a78a7944c676b20205c474917b50119ae41d4",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-lgl": {
+   "hash": "ca2aa8d4f26c2b225224c84ccdf86f060b8416a2dffe526fd7eabc83b0f495a4",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-neg": {
+   "hash": "38680ed0cea1ff3bf0f9d9ad05c08513b76f5f7784349f76ba9d027e22efdf80",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-precede-select-str": {
+   "hash": "baaf88727cfec91e1fe060a91b0c2e715febf7ff7b52824d16273b59db0d517c",
+   "result": {
+    "value": {
+     "class": "Hits",
+     "from": [
+      1,
+      2
+     ],
+     "to": [
+      2,
+      2
+     ],
+     "nLnode": 3,
+     "nRnode": 2
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-NA": {
+   "hash": "8d7bcf73bbcca63f320650af9657fcc78020d710ac03948396e27f0be911aba0",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-dbl": {
+   "hash": "e95951f87ec99c808cc900d73017721d683b8680f8b768a8d11574aa9285c74e",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-empty": {
+   "hash": "2d28a7d087e0ce9234e50187aa033e149221410f71887a60bee3e675e583cdae",
+   "result": {
+    "error": "'downstream' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-len2": {
+   "hash": "30fcc9eca2f3b23104910781868a0e88293424de1cd16a21ad72132de470adb2",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "bad-ir-promoters-down-lgl": {
+   "hash": "eec7cbee4f8f88d7c24f007975865529f9038b9b7b6f024b83cd869c69c94c43",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-neg": {
+   "hash": "c8014f695a3baa78c04672fb7b7f704012844548ec760d48149c64ba6ad30c6f",
+   "result": {
+    "error": "'upstream' and 'downstream' must be integers >= 0",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-down-str": {
+   "hash": "d2aafdbfcc141bf1063bab5bc503d13ad147336cccb284fde9b580127f4a3528",
+   "result": {
+    "error": "'downstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-NA": {
+   "hash": "86c992c4c840170d2a20cdc8402beb9c67867c1e0bdca2f60f33e87193c5ae22",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-dbl": {
+   "hash": "227448c44f1aa6fe5d20270a1df708c611f6a205b53c9874bc12192bcf6c9ee0",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      2,
+      2,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-empty": {
+   "hash": "1aca35a071b5e21c900faaf844553626f24ed502adda94089add6eec0b09a6b4",
+   "result": {
+    "error": "'upstream' has no elements",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-len2": {
+   "hash": "be9cd296597322f88a791663efdca91d6e08c7461da782f62c97dbf44ee273b5",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      3,
+      8
+     ],
+     "width": [
+      2,
+      3,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "bad-ir-promoters-up-lgl": {
+   "hash": "5e055457dd1f3414f45ec002963c5368b578130b0a99c10d3f506d023f2f766f",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-neg": {
+   "hash": "5f332ef0a2c2c8a86ae2694972d9809a04852c345bf761cd63f959d4f49b7a95",
+   "result": {
+    "error": "'upstream' and 'downstream' must be integers >= 0",
+    "warnings": []
+   }
+  },
+  "bad-ir-promoters-up-str": {
+   "hash": "a8cbcadc612a6207528b7d5e4d3a02e685d628e480c2c64b2729afe956e4f498",
+   "result": {
+    "error": "'upstream' must be a vector of integers",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-NA": {
+   "hash": "1db8d89e47a8a19e4cefb938402eb2d15fd6456998831211ad3eb7d45ea886fd",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-dbl": {
+   "hash": "0671ac999f3c35c0ece87473cf73d4ff4f63169a32ded287a2214c7b630a914d",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-empty": {
+   "hash": "5ae65785abb5ed0276632c2c85074d855302cec3948059f579f1f461e8a71827",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-len2": {
+   "hash": "42e8ed5da0b168067f276e6b0e0c752969ad467acfe3661f390a3f5bda83198e",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-lgl": {
+   "hash": "47ad4b8dcc1cf6f29f4da2fbf44b90f82375f5e43156b3681264c8f8051d3724",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-neg": {
+   "hash": "2de9e188afa9eb80e7541f878b421e57b94b8e872c9869e098f3ec35026d6a2c",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-punion-fillgap-str": {
+   "hash": "af6a6e1c0d9cde10236b253da81e783a5ad372fec97f802f724e2dc952644fc2",
+   "result": {
+    "error": "'fill.gap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-NA": {
+   "hash": "48c3205c43171ccfa07ade3694ac65ee0f7256dbfa547a8e56468932610253b6",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-dbl": {
+   "hash": "5c19cae834606ff62393ce51bf12f7df92ae3c4ac1d94f0ffb4d1244a253b287",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-empty": {
+   "hash": "27dabd1048f3f4d3533ebafe7ea8677e93206b7a02778fc806f77bd3a9f8ed77",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-len2": {
+   "hash": "c042c1c1858a5caa27cc934e1ef07dfa1841e6a24dd2a9f1323f5026d2144d6c",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-lgl": {
+   "hash": "60df003af5db92c4618a7aaebcd331e1124239b05308c0919e1654a04d0efc06",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-neg": {
+   "hash": "398d1b0cf3384b7dbc6910ff6e2eac4dd9c083aa39bc8d717437330a5380956b",
+   "result": {
+    "error": "'arg' must be NULL or a character vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-rank-ties-str": {
+   "hash": "75b3f959d068da7a0061a65e913b0502f84f346a8658f5fff66012f5364ad35a",
+   "result": {
+    "value": {
+     "class": "vector",
+     "type": "num",
+     "values": [
+      1,
+      2,
+      3
+     ],
+     "names": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-NA": {
+   "hash": "4a224dcc4a5fc36fe421d54e58956be52cf4d09744056e558f87e41a22476876",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-dbl": {
+   "hash": "4bca06068ce99f44b41d0fd8a59ba14395fc113a5279cf3fa10a6592f2063758",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-empty": {
+   "hash": "00e64726a6d2e9ec0c1da8c15f475e987749e742913ef4376664f6c95c99e021",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-len2": {
+   "hash": "7bd76999bd5f92324dd364bff64770d73e07a60300056541f6809f1a33508ec3",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-lgl": {
+   "hash": "ad35c667442843cc007c490454c868183606478c7c6f68edcbe3bcac74248288",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      9
+     ],
+     "width": [
+      3,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-neg": {
+   "hash": "ae2e1f786fc1cbc10b79a58f8d5400bd6507acc6a12c6cf19a689d76e3c86ef3",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-drop-str": {
+   "hash": "c533bfa0644893d830ed2f9f362c2c1203fa41de91f566be2680a68c979209b2",
+   "result": {
+    "error": "'drop.empty.ranges' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-NA": {
+   "hash": "fdf38a193f4f65f02065aff5cc2a47f7de295bda980d71354981a00f54cb2ae1",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-dbl": {
+   "hash": "8d6fabdfcdf9aa41cb13cf831698c8d48196ce5a6bd37fb3a95e8f74e2da01a7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": null,
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-empty": {
+   "hash": "cdbf02cba6284889a9e41dd41207e572c6ee0836036d87bb6a9f1dad3ce3e803",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-len2": {
+   "hash": "1e9536ea4810d02ed635995ebc29606bbb533e4b89a9a990ad94484fdc743922",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-lgl": {
+   "hash": "2c9a461fb74f83c0b39cb6bdb50a9f772da722c451e3633453578a88603313f0",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-neg": {
+   "hash": "496ce21f3e860fe709e7d0930c8601dada67cce9a655ae809f65abb179c1a541",
+   "result": {
+    "error": "'min.gapwidth' must be non-negative",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-mingap-str": {
+   "hash": "6d62f8b32d36d754c460b5de6c4d8e5acad952c5844cdd7e56537dc2a2234699",
+   "result": {
+    "error": "'min.gapwidth' must be a single integer",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-NA": {
+   "hash": "c84d9b54535258a70c59cb1842442ba16aecdf6e25b9e9edfb6c97c7e10b86a5",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-dbl": {
+   "hash": "04fd043f6be413e1fd3bd10d46b5b7a71b963ca0e1219c66eff20fa1a337512c",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-empty": {
+   "hash": "c9d882464ebc1f39452a2c5b91091ebfe0c53bff4732f5b5d42bab603180ebf4",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-len2": {
+   "hash": "f593cf3c7e791c75de19015b7eec5e3b85aaede42fd5d3d11e82645c8c8a570a",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-lgl": {
+   "hash": "c49bb0c0d682d068c1fb296da30c9d5916d15105c5df153f165a87c094bcb29a",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": null,
+     "mcols": {
+      "revmap": {
+       "class": "List",
+       "elements": [
+        [
+         1
+        ],
+        [
+         2
+        ],
+        [
+         3
+        ]
+       ]
+      }
+     }
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-neg": {
+   "hash": "9aec2350b47922cb7654e39ffb04df49f157d9c83d0912216fd230323d28d214",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-reduce-revmap-str": {
+   "hash": "74d5bd61b02b7e8ef98504781e0e7e8b829cff445a0b758e1f8ad6147aaf3e7c",
+   "result": {
+    "error": "'with.revmap' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-NA": {
+   "hash": "0c1c603964b76a3b35f46607764e41166a760af593289a7d3d70a792976963e9",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-dbl": {
+   "hash": "4456b57c0c85ce0587836ff24a17b6a8872c23c42cbeee24c134fdaeb7b64b5b",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      1,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-empty": {
+   "hash": "71de28ea10257b5790ae52d726f71ddfb9a5bcc01d57e281f732df09eea2f877",
+   "result": {
+    "error": "replacement has length zero",
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-len2": {
+   "hash": "bb1207276616f81530e444ad33abecd0e35d8794768fabc6618d0d290fa7bb2d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      1,
+      2,
+      1
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": [
+     "number of items to replace is not a multiple of replacement length"
+    ]
+   }
+  },
+  "bad-ir-resize-width-lgl": {
+   "hash": "37269642810d2a9e00cde43b400ed288fcc4d9c87943d45f7fcc659822a65e4e",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-neg": {
+   "hash": "a6d4221b82d47121d7a9fc3001b6cc01c552506fb9ec42184103fb5bb83bf3ab",
+   "result": {
+    "error": "'width' values must be non-negative",
+    "warnings": []
+   }
+  },
+  "bad-ir-resize-width-str": {
+   "hash": "2ef89e4ce03b95210b6ef76f6d5b534dcf804fe5492b2055c4f9dd0b81c1c858",
+   "result": {
+    "error": "'width' must be a numeric vector without NA's",
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-NA": {
+   "hash": "75f05cc073e4229cadde28bdc42dbdd63c10f1ebd9fa016f65f42420beab7bea",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-dbl": {
+   "hash": "416044521a186b2749d8e4e736c18e2c49af4cc00c2216ed650065a86a541542",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      6,
+      10
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-empty": {
+   "hash": "41ea086bb455f615777e54f83c0a69f715781bd0363f56e252da6eafea51938f",
+   "result": {
+    "error": "'length(shift)' is 0 but 'length(x)' is not",
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-len2": {
+   "hash": "538f22cf3ae3c7acaf81f54a03020810294ea8b320df4aeb07c4cefaa7778d85",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      2,
+      7,
+      10
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": [
+     "'length(x)' is not a multiple of 'length(shift)'"
+    ]
+   }
+  },
+  "bad-ir-shift-lgl": {
+   "hash": "83d13c5462df0fc2b70dfec2f835e4fba70dd8402c4f91418246fcf7114272b5",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-neg": {
+   "hash": "a4ea3aa6d76da671bccde3b2e0ba42b1ea172e4c1f5d12440712bd6e0b040507",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      0,
+      4,
+      8
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-shift-str": {
+   "hash": "edbd1c37183b26ff4dc041da227f80d9e704df3276e6298a0b85af8f3881962f",
+   "result": {
+    "error": "'shift' must be a numeric vector",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-NA": {
+   "hash": "99a07689e9affccc25b9183430cd7bbbfafb1a20bea1cc193d0821d71cff6091",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-dbl": {
+   "hash": "a64a1a56a8c0f441581cab3c48ae4c95debf702ccb39eb2265c5876ccd8af4c9",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-empty": {
+   "hash": "76b205711bb98c04ec27971e0efcc2e010d58b1f22060c895cb4381d965e3723",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-len2": {
+   "hash": "39f32d7e27887ff4bb86626af9c90e04336eff3457b161ec5578a86d872eb5cf",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-lgl": {
+   "hash": "5409d823b2b2906449cd9a2b33c403bc481e3afe9b28d7e8de81464eb75971ff",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      9,
+      5,
+      1
+     ],
+     "width": [
+      2,
+      0,
+      3
+     ],
+     "names": [
+      "c",
+      "b",
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-neg": {
+   "hash": "787acc03223274853645889c7be17f86c46dd2e0d33e01e02e35b762be98fb61",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-sort-decreasing-str": {
+   "hash": "14e476e224bcf31b222c09a07d727c163721143b1810e7592771539d27823ed5",
+   "result": {
+    "error": "'decreasing' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-NA": {
+   "hash": "a6c1ed987f1b8c63b714090eb878d58e6d082f3821a5599d22c8708ee44e58db",
+   "result": {
+    "error": "logical subscript contains NAs",
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-dbl": {
+   "hash": "43824f7cbf44a303e7f99b0fdb5655b1b828b1b513041c5a24d720b3e915718d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": [
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-empty": {
+   "hash": "35ac6884a5e00934df1d98cedfcadad5eff555f27c3bff51a83ff93485298edc",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [],
+     "width": [],
+     "names": [],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-len2": {
+   "hash": "ffb258b485dbd0e430837641d7e897feb2f166141652019e3a72672a3391dc06",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5
+     ],
+     "width": [
+      3,
+      0
+     ],
+     "names": [
+      "a",
+      "b"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-lgl": {
+   "hash": "08b098e47863883c2c1f05814af00eccb779bd639bb6f22d0ddc8560065f86c6",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-neg": {
+   "hash": "5bd8d8cbfce7110152cdef5af17b3d52091bd055d70a8c22f2d92209235c358d",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      5,
+      9
+     ],
+     "width": [
+      0,
+      2
+     ],
+     "names": [
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-subset-str": {
+   "hash": "53383859126b9b219bf734e870c347933dc131e4527f87bf1caced6af301dbc7",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1
+     ],
+     "width": [
+      3
+     ],
+     "names": [
+      "a"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-NA": {
+   "hash": "3ff96a51b4a1bc11a0e8590a9b734190986f68532382d918c562d705b2ee8edb",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-dbl": {
+   "hash": "60ceeb2d7d5817a9dde61db7f2880dced032a8a5ff9c2b339c3816a83ba35e0e",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-empty": {
+   "hash": "b1bfdfe5c7187525c79a90f725d15843b970d31e564759ae810048f424cc3558",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-len2": {
+   "hash": "ccf36eee0e54defbb69b3c3f7500f7ee5120f4307b6361ec11561eda7090dff2",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-lgl": {
+   "hash": "21f360493798f7bc200c029f7339f00ab703839e7c457f9f764622ff0e696a97",
+   "result": {
+    "value": {
+     "class": "IRanges",
+     "start": [
+      1,
+      5,
+      9
+     ],
+     "width": [
+      3,
+      0,
+      2
+     ],
+     "names": [
+      "a",
+      "b",
+      "c"
+     ],
+     "mcols": null
+    },
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-neg": {
+   "hash": "aee222bd13c92a47304d3955f22295bb325f4302d27834f105fe5ae69ee5c629",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  },
+  "bad-ir-unique-fromLast-str": {
+   "hash": "361235a72b19f3b75ec366dbaeb0f7e75dde50fb3bc5c799a809d3cc91f5f78f",
+   "result": {
+    "error": "'fromLast' must be TRUE or FALSE",
+    "warnings": []
+   }
+  }
+ }
+}

@@ -68,7 +68,7 @@ Python evaluates it through `adapter.py` → both emit **canonical JSON** (R's 1
 |---|---|
 | 0003 | `countOverlaps` returns a plain array (R carries query names) |
 | 0004 | `rank()` defaults to `ties_method="average"` (R's default errors) |
-| 0005 | coordinate overflow in `GRanges.shift` raises (R returns NA coordinates) |
+| 0005 | int32 overflow raises or is computed exactly (R wraps to NA / invalid objects) |
 | 0006 | `mcols()` works when names contain NA (R errors) |
 
 ### R quirks reproduced (not ADRs; see NOTES.md for evidence)

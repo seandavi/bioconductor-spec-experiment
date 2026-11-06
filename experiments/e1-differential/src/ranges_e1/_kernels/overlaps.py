@@ -2,10 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
+
+from .. import _args
 
 TYPES = ("any", "start", "end", "within", "equal")
 _CELLS = 4_000_000  # max query-chunk x subject matrix cells
+
+
+def normalize_args(type_: Any, select: Any, maxgap: Any, minoverlap: Any) -> tuple[str, str, int, int]:
+    """Validate and normalise findOverlaps arguments (partial strings allowed, as match.arg)."""
+    t = _args.match_arg(type_, TYPES, "type")
+    sel = _args.match_arg(select, ("all", "first", "last", "arbitrary"), "select")
+    gap, minov = _args.scalar_int(maxgap, "maxgap"), _args.scalar_int(minoverlap, "minoverlap")
+    assert gap is not None and minov is not None
+    check_args(t, gap, minov)
+    return t, sel, gap, minov
 
 
 def check_args(type_: str, maxgap: int, minoverlap: int) -> None:

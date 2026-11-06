@@ -168,9 +168,12 @@ def resolve_index(i: Any, n: int, names: Names | None) -> np.ndarray:
     if a.size == 0:
         return np.empty(0, dtype=np.int64)
     if a.dtype.kind == "b":
-        if a.ndim != 1 or len(a) != n:
-            raise IndexError(f"logical subscript has length {a.size}, expected {n}")
-        return np.flatnonzero(a).astype(np.int64)
+        if a.ndim != 1:
+            raise IndexError("logical subscript must be 1-dimensional")
+        if len(a) > n and a[n:].any():
+            raise IndexError("subscript is a logical vector with out-of-bounds TRUE values")
+        mask = np.resize(a, n) if 0 < len(a) < n else a[:n]  # R recycles short logical subscripts
+        return np.flatnonzero(mask).astype(np.int64)
     if a.dtype.kind in "US" or a.dtype == object and any(isinstance(v, str) for v in a.ravel()):
         if names is None:
             raise IndexError("cannot subset by name when names are None")

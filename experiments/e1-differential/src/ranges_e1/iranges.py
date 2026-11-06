@@ -10,7 +10,8 @@ import warnings
 import numpy as np
 import polars as pl
 
-from . import _meta
+from . import _args, _meta
+from ._args import flags
 from ._kernels import coverage as coverage_kernel
 from ._kernels import inter, intra, overlaps, setops
 from ._kernels import order as order_kernel
@@ -205,6 +206,8 @@ class IRanges:
     def _int_arg(self, v: Any, what: str, **kw: Any) -> np.ndarray:
         """Integer-valued argument recycled to len(self); doubles truncate like as.integer."""
         a = np.asarray(v)
+        if a.dtype.kind == "b":
+            raise ValueError(f"'{what}' must be a numeric vector")
         if a.dtype.kind == "f" and not np.ma.isMaskedArray(v):
             if np.isnan(a).any():
                 raise ValueError(f"'{what}' must be a numeric vector without NA's")
@@ -213,11 +216,13 @@ class IRanges:
             raise ValueError(f"'{what}' must be a numeric vector")
         return _meta.recycle_arg(_meta.as_int_array(a if not np.ma.isMaskedArray(v) else v, f"'{what}'"), len(self), what, **kw)
 
+    @flags("use_names")
     def shift(self, shift: Any = 0, use_names: bool = True) -> Self:
         by = self._int_arg(shift, "shift")
         s, w = intra.shift(self._start, self._width, by)
         return self._new(s, w, *self._meta_kept(use_names))
 
+    @flags("use_names")
     def narrow(self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True) -> Self:
         """Narrow relative to each range; negative start/end count from the end (R)."""
         n = len(self)
@@ -225,6 +230,8 @@ class IRanges:
         def sew(v: Any, what: str) -> np.ndarray:
             if v is None:
                 return np.full(n, intra.NA, dtype=np.int64)
+            if np.asarray(v).dtype.kind not in "iuf":
+                raise ValueError(f"'{what}' must be a vector of integers")
             if np.ma.isMaskedArray(v):
                 arr = np.where(np.ma.getmaskarray(v), intra.NA, np.ma.getdata(v)).astype(np.int64)
             else:
@@ -235,6 +242,7 @@ class IRanges:
         s, w = intra.narrow(self._start, self._width, sew(start, "start"), sew(end, "end"), sew(width, "width"))
         return self._new(s, w, *self._meta_kept(use_names))
 
+    @flags("use_names")
     def resize(self, width: Any, fix: Any = "start", use_names: bool = True) -> Self:
         new_w = self._int_arg(width, "width", longer="truncate")
         if (new_w < 0).any():
@@ -250,6 +258,7 @@ class IRanges:
         codes = np.array([table[v] for v in values], dtype=np.int64)
         return _meta.recycle_arg(codes, len(self), "fix", longer="truncate")
 
+    @flags("both", "use_names")
     def flank(self, width: Any, start: Any = True, both: bool = False, use_names: bool = True) -> Self:
         by = self._int_arg(width, "width")
         flags = np.asarray(start)
@@ -259,6 +268,7 @@ class IRanges:
         s, w = intra.flank(self._start, self._width, by, at_start, bool(both))
         return self._new(s, w, *self._meta_kept(use_names))
 
+    @flags("use_names")
     def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
         up = self._int_arg(upstream, "upstream", longer="truncate")
         down = self._int_arg(downstream, "downstream", longer="truncate")
@@ -275,17 +285,21 @@ class IRanges:
         red = inter.range_(x._group0(), x._start, x._width)
         return self._new(red.start, red.width)
 
+    @flags("drop_empty_ranges", "with_revmap")
     def reduce(
         self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False
     ) -> Self:
-        if min_gapwidth < 0:
+        gap = _args.scalar_int(min_gapwidth, "min.gapwidth")
+        assert gap is not None
+        if gap < 0:
             raise ValueError("'min.gapwidth' must be non-negative")
-        red = inter.reduce(self._group0(), self._start, self._width, int(min_gapwidth), bool(drop_empty_ranges))
+        red = inter.reduce(self._group0(), self._start, self._width, gap, drop_empty_ranges)
         mc = _meta.revmap_frame(red.members) if with_revmap else None
         return self._new(red.start, red.width, None, mc)
 
     def gaps(self, start: int | None = None, end: int | None = None) -> Self:
         """Uncovered stretches within [start, end]; defaults to the extent of non-empty ranges."""
+        start, end = _args.scalar_int(start, "start", allow_na=True), _args.scalar_int(end, "end", allow_na=True)
         ne = self._width > 0
         have = bool(ne.any())
         lo = start if start is not None else (int(self._start[ne].min()) if have else None)
@@ -297,6 +311,7 @@ class IRanges:
         )
         return self._new(s, w)
 
+    @flags("with_revmap")
     def disjoin(self, with_revmap: bool = False) -> Self:
         red = inter.disjoin(self._group0(), self._start, self._width, with_revmap)
         mc = _meta.revmap_frame(red.members) if with_revmap else None
@@ -324,6 +339,7 @@ class IRanges:
         """p* results keep x's names; mcols are dropped."""
         return self._new(s, w, self._names, None)
 
+    @flags("fill_gap")
     def punion(self, other: IRanges, fill_gap: bool = False) -> Self:
         self._check_parallel(other)
         if not isinstance(fill_gap, (bool, np.bool_)):
@@ -345,6 +361,7 @@ class IRanges:
         """Hit pairs for (self as query, subject); subclasses add compatibility filters."""
         return overlaps.find(self._start, self._width, subject._start, subject._width, maxgap, minoverlap, type_)
 
+    @flags("drop_self", "drop_redundant")
     def find_overlaps(
         self,
         subject: IRanges | None = None,
@@ -360,9 +377,9 @@ class IRanges:
         select="all" -> Hits; "first" / "last" / "arbitrary" -> masked array of 0-based
         subject indices (masked = no hit).
         """
-        overlaps.check_args(type, int(maxgap), int(minoverlap))
+        type, select, gap, minov = overlaps.normalize_args(type, select, maxgap, minoverlap)
         subj = self if subject is None else subject
-        q, s = self._pairs(subj, int(maxgap), int(minoverlap), type)
+        q, s = self._pairs(subj, gap, minov, type)
         return overlap_result(
             q, s, len(self), len(subj), select=select, self_hits=subject is None,
             drop_self=drop_self, drop_redundant=drop_redundant,
@@ -381,6 +398,7 @@ class IRanges:
     ) -> np.ndarray:
         return self.count_overlaps(subject, maxgap, minoverlap, type) > 0
 
+    @flags("invert")
     def subset_by_overlaps(
         self,
         subject: IRanges,
@@ -402,16 +420,14 @@ class IRanges:
 
     def precede(self, subject: IRanges | None = None, select: str = "first") -> Hits | np.ma.MaskedArray:
         """Subject(s) starting right after each range ends (smallest start > end)."""
-        if select not in ("first", "all"):
-            raise ValueError("'arg' should be one of \"first\", \"all\"")
+        select = _args.match_arg(select, ("first", "all"))
         subj = self if subject is None else subject
         q, s = nearest_kernel.precede(self.end, subj._start, select == "all")
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick(q, s)
 
     def follow(self, subject: IRanges | None = None, select: str = "last") -> Hits | np.ma.MaskedArray:
         """Subject(s) ending right before each range starts (largest end < start)."""
-        if select not in ("last", "all"):
-            raise ValueError("'arg' should be one of \"last\", \"all\"")
+        select = _args.match_arg(select, ("last", "all"))
         subj = self if subject is None else subject
         q, s = nearest_kernel.follow(self._start, subj.end, select == "all")
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick(q, s)
@@ -422,8 +438,7 @@ class IRanges:
         Ties between the two sides go to the follow side (select="arbitrary") or keep both
         (select="all"), as R does.
         """
-        if select not in ("arbitrary", "all"):
-            raise ValueError("'arg' should be one of \"arbitrary\", \"all\"")
+        select = _args.match_arg(select, ("arbitrary", "all"))
         subj = self if subject is None else subject
         n = len(self)
         ol = self.find_overlaps(subject, maxgap=0, select=select, drop_self=subject is None)
@@ -489,17 +504,15 @@ class IRanges:
     ) -> tuple[np.ndarray, np.ndarray]:
         """Shifted starts and weights, recycled to len(self) (warn if not a divisor)."""
         n = len(self)
-        sh = np.atleast_1d(np.asarray(shift))
-        if sh.dtype.kind == "f":
-            sh = np.trunc(sh)
-        sh = _meta.as_int_array(sh, "'shift'")
-        wt = np.atleast_1d(np.asarray(weight))
-        if wt.dtype.kind not in "iufb":
-            raise ValueError("'weight' must be an integer or numeric vector")
-        if np.ma.isMaskedArray(weight) or (wt.dtype.kind == "f" and np.isnan(wt).any()):
+        sh = self._int_arg(shift, "shift", longer="truncate")
+        if np.ma.isMaskedArray(weight):
             raise ValueError("'weight' cannot contain NAs")
-        wt = wt.astype(np.int64) if wt.dtype.kind in "iub" else wt.astype(np.float64)
-        sh = _meta.recycle_arg(sh, n, "shift", longer="truncate")
+        wt = np.atleast_1d(np.asarray(weight))
+        if wt.dtype.kind not in "iuf":
+            raise ValueError("'weight' must be an integer or numeric vector")
+        if wt.dtype.kind == "f" and np.isnan(wt).any():
+            raise ValueError("'weight' cannot contain NAs")
+        wt = wt.astype(np.int64) if wt.dtype.kind in "iu" else wt.astype(np.float64)
         wt = _meta.recycle_arg(wt, n, "weight", longer="truncate")
         return self._start + sh, wt
 
@@ -509,10 +522,11 @@ class IRanges:
         Default width is the largest end after shifting (0 if none).
         """
         start, wt = self._coverage_inputs(shift, weight)
-        if width is None:
+        w = _args.scalar_int(width, "width", allow_na=True) if width is not None else None
+        if w is None:
             total = int(max((start + self._width - 1).max(initial=0), 0))
         else:
-            total = int(width)
+            total = w
             if total < 0:
                 raise ValueError("'width' cannot be negative")
         vals, lens = coverage_kernel.coverage(start, self._width, wt, total)
@@ -529,10 +543,12 @@ class IRanges:
             raise ValueError(f"'{what}' must be TRUE or FALSE")
         return bool(v)
 
+    @flags("decreasing")
     def order(self, decreasing: bool = False) -> np.ndarray:
         """0-based permutation sorting by (start, width); ties keep input order."""
-        return order_kernel.order(self._order_keys(), self._flag(decreasing, "decreasing"))
+        return order_kernel.order(self._order_keys(), decreasing)
 
+    @flags("decreasing")
     def sort(self, decreasing: bool = False) -> Self:
         return self._take(self.order(decreasing))
 
@@ -541,10 +557,12 @@ class IRanges:
 
         R's own default fails to match its ties.method choices; Python defaults to "average" (ADR-0004).
         """
-        return order_kernel.rank(self._order_keys(), ties_method)
+        return order_kernel.rank(self._order_keys(), _args.match_arg(ties_method, order_kernel.TIES, "ties.method"))
 
+    @flags("from_last")
     def duplicated(self, from_last: bool = False) -> np.ndarray:
-        return order_kernel.duplicated(self._order_keys(), self._flag(from_last, "fromLast"))
+        return order_kernel.duplicated(self._order_keys(), from_last)
 
+    @flags("from_last")
     def unique(self, from_last: bool = False) -> Self:
         return self[~self.duplicated(from_last)]

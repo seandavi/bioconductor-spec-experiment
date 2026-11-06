@@ -49,3 +49,10 @@ Append-only. Timestamped judgment calls and human interventions.
 - 2026-11-05 23:53 correction: NOTES timestamps from the stage-4 entry to the ordering entry
   were estimated and ran ahead of the wall clock (real time at end of stage 9: 23:53, started
   23:26). Later entries use `date`.
+- 2026-11-06 00:35 argument validation: a generated "bad args" grid (every op x NA/str/len2/neg/
+  double/lgl/empty) showed 200/616 mismatches, almost all validation parity. Added `_args.py`
+  (isTRUEorFALSE, isSingleNumber, match.arg with partial matching) + `@flags` decorator; also
+  logical subscripts recycle, logical vectors are rejected where R wants numbers. 0 left except
+  int32-overflow territory (ADR-0005 generalised; 2147483647 dropped from the generator).
+- 2026-11-06 00:35 deviation from PLAN: psetdiff returns IRanges (R does too), so no list-return
+  ADR; `compare: arbitrary` machinery exists in the harness but no case needs it (engine pick is modelled).

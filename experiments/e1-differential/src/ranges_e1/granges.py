@@ -9,7 +9,8 @@ from typing import Any, Self
 import numpy as np
 import polars as pl
 
-from . import _meta
+from . import _args, _meta
+from ._args import flags
 from ._kernels import coverage as coverage_kernel
 from ._kernels import inter, intra, overlaps, setops
 from ._kernels import nearest as nearest_kernel
@@ -293,6 +294,7 @@ class GRanges:
         )
 
     # -- trim ----------------------------------------------------------------
+    @flags("use_names")
     def trim(self, use_names: bool = True) -> Self:
         """Clip ranges to [1, seqlength] on sequences with a known, non-circular length."""
         lens = np.array([-1 if (l is None or c) else l for l, c in zip(self._seqinfo.seqlengths, self._seqinfo.is_circular)] or [-1], dtype=np.int64)
@@ -314,14 +316,17 @@ class GRanges:
         """Same sequences/strands/mcols with new coordinates; warns if out of bounds."""
         return self._copy(ranges=ranges.set_names(None).set_mcols(None), names=self._names if use_names else None, check=True)
 
+    @flags("use_names")
     def shift(self, shift: Any = 0, use_names: bool = True) -> Self:
         """Shift along the genome; strand is ignored (R)."""
         return self._moved(self._ranges.shift(shift), use_names)
 
+    @flags("use_names")
     def narrow(self, start: Any = None, end: Any = None, width: Any = None, use_names: bool = True) -> Self:
         """Narrow relative to each range's left end; strand is ignored (R)."""
         return self._moved(self._ranges.narrow(start, end, width), use_names)
 
+    @flags("use_names", "ignore_strand")
     def resize(self, width: Any, fix: Any = "start", use_names: bool = True, ignore_strand: bool = False) -> Self:
         """Resize keeping the `fix` end; "start"/"end" refer to the transcript sense, so they swap on "-"."""
         r = self._ranges
@@ -334,6 +339,7 @@ class GRanges:
         s, w = intra.resize(r.start, r.width, new_w, np.where(neg, swapped, codes))
         return self._moved(IRanges._new(s, w), use_names)
 
+    @flags("both", "use_names", "ignore_strand")
     def flank(
         self, width: Any, start: Any = True, both: bool = False, use_names: bool = True, ignore_strand: bool = False
     ) -> Self:
@@ -347,6 +353,7 @@ class GRanges:
         s, w = intra.flank(r.start, r.width, by, at_start ^ self._neg(ignore_strand), bool(both))
         return self._moved(IRanges._new(s, w), use_names)
 
+    @flags("use_names")
     def promoters(self, upstream: Any = 2000, downstream: Any = 200, use_names: bool = True) -> Self:
         """Promoter windows around the start of each range, strand-aware."""
         r = self._ranges
@@ -368,22 +375,27 @@ class GRanges:
             seqinfo if seqinfo is not None else self._seqinfo, check=False,
         )
 
+    @flags("ignore_strand")
     def range(self, *others: GRanges, ignore_strand: bool = False) -> Self:
         """Smallest range per (seqname, strand) group present."""
         x = self.concat([self, *others]) if others else self
         red = inter.range_(x._gid(ignore_strand), x.start, x.width)
         return x._from_groups(red.group, red.start, red.width)
 
+    @flags("drop_empty_ranges", "with_revmap", "ignore_strand")
     def reduce(
         self, drop_empty_ranges: bool = False, min_gapwidth: int = 1, with_revmap: bool = False,
         ignore_strand: bool = False,
     ) -> Self:
-        if min_gapwidth < 0:
+        gap = _args.scalar_int(min_gapwidth, "min.gapwidth")
+        assert gap is not None
+        if gap < 0:
             raise ValueError("'min.gapwidth' must be non-negative")
-        red = inter.reduce(self._gid(ignore_strand), self.start, self.width, int(min_gapwidth), bool(drop_empty_ranges))
+        red = inter.reduce(self._gid(ignore_strand), self.start, self.width, gap, drop_empty_ranges)
         mc = _meta.revmap_frame(red.members) if with_revmap else None
         return self._from_groups(red.group, red.start, red.width, mc)
 
+    @flags("with_revmap", "ignore_strand")
     def disjoin(self, with_revmap: bool = False, ignore_strand: bool = False) -> Self:
         red = inter.disjoin(self._gid(ignore_strand), self.start, self.width, with_revmap)
         mc = _meta.revmap_frame(red.members) if with_revmap else None
@@ -407,8 +419,11 @@ class GRanges:
             if len(levels) % len(vals):
                 warnings.warn(f"'{what}' length is not a multiple of the number of seqlevels", UserWarning, stacklevel=3)
             vals = [vals[i % len(vals)] for i in range(len(levels))]  # R recycles
+        if any(isinstance(x, (bool, np.bool_, str)) for x in vals):
+            raise ValueError(f"'{what}' must be a vector of integers")
         return [None if (x is None or (isinstance(x, float) and x != x)) else int(x) for x in vals]
 
+    @flags("ignore_strand")
     def gaps(self, start: Any = 1, end: Any = "seqlengths", ignore_strand: bool = False) -> Self:
         """Uncovered stretches per (seqlevel, strand) within [start, end].
 
@@ -460,12 +475,15 @@ class GRanges:
         g, s, w = fn(sa * 3 + st_a, self.start, self.width, sb * 3 + st_b, other.start, other.width)
         return self._from_groups(g, s, w, None, si)
 
+    @flags("ignore_strand")
     def union(self, other: GRanges, ignore_strand: bool = False) -> Self:
         return self._set_op(other, setops.union, ignore_strand)
 
+    @flags("ignore_strand")
     def intersect(self, other: GRanges, ignore_strand: bool = False) -> Self:
         return self._set_op(other, setops.intersect, ignore_strand)
 
+    @flags("ignore_strand")
     def setdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
         return self._set_op(other, setops.setdiff, ignore_strand)
 
@@ -495,6 +513,7 @@ class GRanges:
             return self._strand
         return np.where(ok & (self._strand == STAR), st_b, self._strand).astype(np.int8)
 
+    @flags("fill_gap", "ignore_strand")
     def punion(self, other: GRanges, fill_gap: bool = False, ignore_strand: bool = False) -> Self:
         si, ys, yw, st_b, ok = self._pair_with(other, recycle_other=False, ignore_strand=ignore_strand)
         if not ok.all():
@@ -507,6 +526,7 @@ class GRanges:
         index = {s: i for i, s in enumerate(si.seqnames)}
         return np.array([index[s] for s in self._seqinfo.seqnames], dtype=np.int32)[self._seq]
 
+    @flags("drop_nohit_ranges", "ignore_strand", "strict_strand")
     def pintersect(
         self, other: GRanges, drop_nohit_ranges: bool = False, ignore_strand: bool = False, strict_strand: bool = False
     ) -> Self:
@@ -531,6 +551,7 @@ class GRanges:
         mc = hit_col if mcols is None else pl.concat([mcols, hit_col], how="horizontal")
         return self._new(self._seq_in(si), start, width, strand, names, mc, si, check=True)
 
+    @flags("ignore_strand")
     def psetdiff(self, other: GRanges, ignore_strand: bool = False) -> Self:
         si, ys, yw, st_b, ok = self._pair_with(other, recycle_other=False, ignore_strand=ignore_strand)
         start, width = self.start.copy(), self.width.copy()
@@ -577,6 +598,7 @@ class GRanges:
         ok = self._strand_ok(subject._strand, q, s, ignore_strand)
         return q[ok], s[ok], (nq < ns)[qa]
 
+    @flags("ignore_strand", "drop_self", "drop_redundant")
     def find_overlaps(
         self,
         subject: GRanges | None = None,
@@ -589,14 +611,15 @@ class GRanges:
         drop_redundant: bool = False,
     ) -> Hits | np.ma.MaskedArray:
         """Overlaps with `subject` (None = self); same seqname and compatible strand required."""
-        overlaps.check_args(type, int(maxgap), int(minoverlap))
+        type, select, gap, minov = overlaps.normalize_args(type, select, maxgap, minoverlap)
         subj = self if subject is None else subject
-        q, s, shorter = self._pairs(subj, int(maxgap), int(minoverlap), type, bool(ignore_strand))
+        q, s, shorter = self._pairs(subj, gap, minov, type, ignore_strand)
         return overlap_result(
             q, s, len(self), len(subj), select=select, self_hits=subject is None,
             drop_self=drop_self, drop_redundant=drop_redundant, query_is_shorter=shorter,
         )
 
+    @flags("ignore_strand")
     def count_overlaps(
         self, subject: GRanges | None = None, maxgap: int = -1, minoverlap: int = 0,
         type: str = "any", ignore_strand: bool = False,  # noqa: A002
@@ -605,12 +628,14 @@ class GRanges:
         assert isinstance(hits, Hits)
         return hits.count_by_query()
 
+    @flags("ignore_strand")
     def overlaps_any(
         self, subject: GRanges | None = None, maxgap: int = -1, minoverlap: int = 0,
         type: str = "any", ignore_strand: bool = False,  # noqa: A002
     ) -> np.ndarray:
         return self.count_overlaps(subject, maxgap, minoverlap, type, ignore_strand) > 0
 
+    @flags("invert", "ignore_strand")
     def subset_by_overlaps(
         self, subject: GRanges, maxgap: int = -1, minoverlap: int = 0, type: str = "any",  # noqa: A002
         invert: bool = False, ignore_strand: bool = False,
@@ -683,26 +708,26 @@ class GRanges:
             has[q] = True
         return np.ma.masked_array(out, mask=~has)
 
+    @flags("ignore_strand")
     def precede(self, subject: GRanges | None = None, select: str = "first", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
-        if select not in ("first", "all"):
-            raise ValueError("'arg' should be one of \"first\", \"all\"")
+        select = _args.match_arg(select, ("first", "all"))
         subj = self if subject is None else subject
-        q, s = self._precede_follow(subj, "precede", bool(ignore_strand))
+        q, s = self._precede_follow(subj, "precede", ignore_strand)
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=False)
 
+    @flags("ignore_strand")
     def follow(self, subject: GRanges | None = None, select: str = "last", ignore_strand: bool = False) -> Hits | np.ma.MaskedArray:
-        if select not in ("last", "all"):
-            raise ValueError("'arg' should be one of \"last\", \"all\"")
+        select = _args.match_arg(select, ("last", "all"))
         subj = self if subject is None else subject
-        q, s = self._precede_follow(subj, "follow", bool(ignore_strand))
+        q, s = self._precede_follow(subj, "follow", ignore_strand)
         return Hits(q, s, len(self), len(subj)) if select == "all" else self._pick_one(q, s, last=True)
 
+    @flags("ignore_strand")
     def nearest(
         self, subject: GRanges | None = None, select: str = "arbitrary", ignore_strand: bool = False
     ) -> Hits | np.ma.MaskedArray:
         """Overlap (maxgap 0) first, else the nearer of precede/follow; ties favour the lower index."""
-        if select not in ("arbitrary", "all"):
-            raise ValueError("'arg' should be one of \"arbitrary\", \"all\"")
+        select = _args.match_arg(select, ("arbitrary", "all"))
         subj = self if subject is None else subject
         all_ = select == "all"
         ol = self.find_overlaps(subject, maxgap=0, select=select, ignore_strand=ignore_strand, drop_self=subject is None)
@@ -744,6 +769,7 @@ class GRanges:
         order = np.lexsort((ss, qs))
         return Hits(qs[order], ss[order], len(self), len(subj))
 
+    @flags("ignore_strand")
     def distance(self, other: GRanges, ignore_strand: bool = False) -> np.ma.MaskedArray:
         """Parallel gap; NA when seqnames differ or strands are "+" vs "-" (unless ignored)."""
         d = self._ranges.distance(other._ranges)
@@ -811,18 +837,22 @@ class GRanges:
             keys.append(self._strand.astype(np.int64))
         return [*keys, self.start, self.width]
 
+    @flags("decreasing")
     def order(self, decreasing: bool = False) -> np.ndarray:
-        return order_kernel.order(self._order_keys(), IRanges._flag(decreasing, "decreasing"))
+        return order_kernel.order(self._order_keys(), decreasing)
 
+    @flags("decreasing", "ignore_strand")
     def sort(self, decreasing: bool = False, ignore_strand: bool = False) -> Self:
-        decreasing = IRanges._flag(decreasing, "decreasing")
-        return self._take(order_kernel.order(self._order_keys(bool(ignore_strand)), decreasing))
+        return self._take(order_kernel.order(self._order_keys(ignore_strand), decreasing))
 
+    @flags("ignore_strand")
     def rank(self, ties_method: str = "average", ignore_strand: bool = False) -> np.ndarray:
-        return order_kernel.rank(self._order_keys(bool(ignore_strand)), ties_method)
+        return order_kernel.rank(self._order_keys(ignore_strand), _args.match_arg(ties_method, order_kernel.TIES, "ties.method"))
 
+    @flags("from_last")
     def duplicated(self, from_last: bool = False) -> np.ndarray:
-        return order_kernel.duplicated(self._order_keys(), IRanges._flag(from_last, "fromLast"))
+        return order_kernel.duplicated(self._order_keys(), from_last)
 
+    @flags("from_last")
     def unique(self, from_last: bool = False) -> Self:
         return self[~self.duplicated(from_last)]
