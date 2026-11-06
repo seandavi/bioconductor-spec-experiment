@@ -8,8 +8,9 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from . import _inter, _intra, _nearest, _order, _overlaps, _setops, _validate as V
+from . import _coverage, _inter, _intra, _nearest, _order, _overlaps, _setops, _validate as V
 from .hits import Hits
+from .rle import Rle
 
 NO_MATCH: int = -1
 """Marker for "no match" in index-valued results (0-based indices otherwise).
@@ -329,6 +330,12 @@ class IRanges:
         """R ``distance(x, y)``: gap width between paired ranges (0 if overlapping
         or adjacent). Length-1 arguments are recycled."""
         return _nearest.distance_k(self._start, self._width, other._start, other._width)
+
+    # ----- coverage ---------------------------------------------------------
+    def coverage(self, shift: Any = 0, width: int | None = None, weight: Any = 1) -> Rle:
+        """R ``coverage``: depth at positions 1..width as an ``Rle`` (default
+        width: largest end). Ranges are clipped to 1..width."""
+        return _coverage.coverage_k(self._start, self._width, shift, width, weight)
 
     # ----- ordering ---------------------------------------------------------
     def _order_keys(self) -> list[np.ndarray]:
