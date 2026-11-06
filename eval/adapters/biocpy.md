@@ -25,6 +25,8 @@ Header of `biocpy.py` lists the docs used and every translation; this file is th
 - `[` subscripts whose R and Python meanings differ: zero / negative integers, NA, doubles, logical not of full length.
   Positive integers (shifted to 0-based), full-length logicals and names are passed.
 - `order()` of more than one object.
+- `findOverlaps` / `countOverlaps` / `subsetByOverlaps` with `type = "equal"` (the port documents any / start / end / within).
+- `coverage(weight=, shift=)` given a character column name; `GRanges(seqinfo=<character>)`; `c(<ranges>, <atomic>)`.
 
 ## Convention translations
 
@@ -34,8 +36,9 @@ Header of `biocpy.py` lists the docs used and every translation; this file is th
 
 - R `findOverlaps(query, subject)` -> `subject.find_overlaps(query)` (the port's `self` is the subject); same for
   `countOverlaps`, `nearest`, `precede`, `follow`. `subsetByOverlaps(x, ranges)` -> `x.subset_by_overlaps(ranges)`.
-- Hits: BiocFrame `query_hits` / `self_hits` (0-based) -> Hits from / to (+1); `select = "first" | "last" | "arbitrary"`
-  in findOverlaps also returns that BiocFrame in the port, so it is projected as Hits (not an integer vector).
+- Hits: BiocFrame `query_hits` / `self_hits` (0-based) -> Hits from / to (+1). With `select = "first" | "last" | "arbitrary"`
+  the port returns the same frame (one row per matched query); it is projected as R's integer vector of length n_query
+  (subject + 1, NA for a query without a row). The rows are not recomputed; a frame that is not one integer pair per query stays Hits.
 - 0-based -> 1-based: `order`, nearest / precede / follow integer results (no hit -> NA), `revmap` (only with `with.revmap = TRUE`).
 - `[`: positive integer subscripts -> 0-based.
 - `seqlengths` / `isCircular` / `genome` accessors: names = seqlevels attached (R returns named vectors).

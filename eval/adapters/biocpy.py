@@ -289,11 +289,26 @@ class Adapter(AdapterBase):
         flag = kw.get("with_revmap")
         return _Revmap(result) if isinstance(flag, RVector) and flag.values == [True] else result
 
-    def _search(self, res: Any, n_query: int, n_subject: int) -> Any:
+    def _search(self, res: Any, n_query: int, n_subject: int, kw: dict | None = None) -> Any:
         """Result of a find_overlaps / nearest / precede / follow call."""
         if isinstance(res, BiocFrame):
+            select = (kw or {}).get("select")
+            if isinstance(select, RVector) and select.type == "chr" and select.values in (["first"], ["last"], ["arbitrary"]):
+                return self._selected_hits(res, n_query) or _Hits(res, n_query, n_subject)
             return _Hits(res, n_query, n_subject)
         return _index_vector(res)
+
+    @staticmethod
+    def _selected_hits(frame: BiocFrame, n_query: int) -> RVector | None:
+        """`select != "all"`: the port's frame holds one subject per matched query; R's result is the integer vector
+        of length n_query (1-based subject, NA = no hit). None when the frame is not a list of integer pairs with one
+        row per query (nothing to project to)."""
+        out: list = [None] * n_query
+        for q, s in zip(frame.get_column("query_hits").tolist(), frame.get_column("self_hits").tolist()):
+            if not (isinstance(q, int) and isinstance(s, int)) or out[q] is not None:
+                return None
+            out[q] = s + 1
+        return RVector("int", out)
 
     # ---------------------------------------------------------------- construct
 
@@ -316,6 +331,8 @@ class Adapter(AdapterBase):
                    seqlengths=MISSING, _mcols=()):
         if seqlengths is not MISSING:
             raise UnknownArgument("seqlengths")
+        if isinstance(seqinfo, RVector):
+            raise Unsupported("argument:seqinfo as a character vector; the port takes a SeqInfo")
         if all(v is MISSING for v in (seqnames, ranges, strand, seqinfo)) and not _mcols:
             return GenomicRanges.empty()  # the port's documented factory for the no-argument form
         _require(seqnames=seqnames, ranges=ranges)  # GenomicRanges.__init__ has no defaults for these
@@ -460,6 +477,8 @@ class Adapter(AdapterBase):
         return ut.combine_sequences(x, *dots)  # GenomicRanges registers with biocutils; it has no combine method
 
     def op_c(self, *dots, x):
+        if any(isinstance(d, RVector) for d in dots):
+            raise Unsupported("c: atomic operand")
         return self._combine(x, dots)
 
     # ---------------------------------------------------------------- intra-range
@@ -526,20 +545,30 @@ class Adapter(AdapterBase):
     _OVERLAP_ARGS = {"maxgap": "max_gap", "minoverlap": "min_overlap", "type": "query_type",
                      "ignore_strand": "ignore_strand"}
 
+    @staticmethod
+    def _overlap_type(kw: dict) -> None:
+        """BiocPy documents query_type any / start / end / within only."""
+        t = kw.get("type")
+        if isinstance(t, RVector) and t.values == ["equal"]:
+            raise Unsupported("type=equal")
+
     def op_findOverlaps(self, *, query, subject=MISSING, **kw):
+        self._overlap_type(kw)
         if subject is MISSING:  # R: missing subject = self overlaps of `query`
             subject = query
         argmap = {**self._OVERLAP_ARGS, "select": "select", "nthread": "num_threads"}
         res = self._invoke(subject, "find_overlaps", kw, argmap, query)
-        return self._search(res, len(query), len(subject))
+        return self._search(res, len(query), len(subject), kw)
 
     def op_countOverlaps(self, *, query, subject=MISSING, **kw):
+        self._overlap_type(kw)
         if subject is MISSING:  # as findOverlaps: missing subject = the query itself
             subject = query
         argmap = {**self._OVERLAP_ARGS, "nthread": "num_threads"}
         return self._invoke(subject, "count_overlaps", kw, argmap, query)
 
     def op_subsetByOverlaps(self, *, x, ranges=MISSING, **kw):
+        self._overlap_type(kw)
         _require(ranges=ranges)
         return self._invoke(x, "subset_by_overlaps", kw, self._OVERLAP_ARGS, ranges)
 
@@ -549,7 +578,7 @@ class Adapter(AdapterBase):
         if subject is MISSING:
             raise Unsupported("subject missing: the port has no self-search form")
         res = self._invoke(subject, method, kw, {"select": "select", "ignore_strand": "ignore_strand"}, x)
-        return self._search(res, len(x), len(subject))
+        return self._search(res, len(x), len(subject), kw)
 
     def op_nearest(self, *, x, subject=MISSING, **kw):
         return self._search_op("nearest", x, subject, kw)
@@ -567,6 +596,9 @@ class Adapter(AdapterBase):
     # ---------------------------------------------------------------- coverage
 
     def op_coverage(self, *, x, **kw):
+        for name in ("weight", "shift"):
+            if isinstance(kw.get(name), RVector) and kw[name].type == "chr":
+                raise Unsupported(f"coverage: {name} as an mcols column name")  # the port takes numbers only
         # IRanges.coverage documents array-valued shift / weight; GenomicRanges.coverage documents scalars.
         conv = {"shift": _arr, "weight": _arr} if isinstance(x, IRanges) else {}
         res = self._invoke(x, "coverage", kw, {"shift": "shift", "width": "width", "weight": "weight",
