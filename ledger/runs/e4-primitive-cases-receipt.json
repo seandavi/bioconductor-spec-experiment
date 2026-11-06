@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "workflowRunId": "01fcc0b8-e4c7-4d9f-9439-c9991ce0476e",
+  "state": "complete",
+  "createdAt": 1793941611154,
+  "entries": {
+    "plan": {
+      "key": "plan",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "b508ac4d-e153-4f04-b95b-17ab05e055e9"
+        ]
+      },
+      "latestRunId": "b508ac4d-e153-4f04-b95b-17ab05e055e9",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "implement": {
+      "key": "implement",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "e51719d7-b7b8-4ae8-94fb-11f8474f0731"
+        ]
+      },
+      "latestRunId": "e51719d7-b7b8-4ae8-94fb-11f8474f0731",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "review": {
+      "key": "review",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "outputReference": "/Users/davsean/.pi/agent/sessions/--Users-davsean-Documents-git-bioconductor-spec-experiment--/subagent-artifacts/outputs/01fcc0b8-e4c7-4d9f-9439-c9991ce0476e/reviews/e4-primitive-cases-review.md",
+      "continuation": {
+        "runIds": [
+          "c6fc02a4-3917-4e93-9c69-552a4d1f8642"
+        ]
+      },
+      "latestRunId": "c6fc02a4-3917-4e93-9c69-552a4d1f8642",
+      "resumability": {
+        "state": "resumable"
+      }
+    },
+    "revise": {
+      "key": "revise",
+      "agent": "worker",
+      "resolvedContext": "fresh",
+      "continuation": {
+        "runIds": [
+          "e51719d7-b7b8-4ae8-94fb-11f8474f0731",
+          "bcb73435-8aa7-4eda-8820-23d6adfc7b9c"
+        ]
+      },
+      "latestRunId": "bcb73435-8aa7-4eda-8820-23d6adfc7b9c",
+      "resumability": {
+        "state": "resumable"
+      }
+    }
+  },
+  "argsDigest": "82fbc57ff0a4404435579700e2e7c5a95b738c07a3d625904f6d52ebbb39d652",
+  "workflowChildren": {
+    "version": 1,
+    "parentToolCallId": "toolu_01TQNWjcLChyfpp4kenNUCye",
+    "workflowRunId": "01fcc0b8-e4c7-4d9f-9439-c9991ce0476e",
+    "inventoryComplete": true,
+    "workflowState": "completed",
+    "children": [
+      {
+        "childId": "plan",
+        "state": "completed",
+        "runId": "b508ac4d-e153-4f04-b95b-17ab05e055e9",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "claude-bridge/claude-opus-5-5:high"
+      },
+      {
+        "childId": "implement",
+        "state": "completed",
+        "runId": "e51719d7-b7b8-4ae8-94fb-11f8474f0731",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "claude-bridge/claude-sonnet-5-5:high"
+      },
+      {
+        "childId": "review",
+        "state": "completed",
+        "runId": "c6fc02a4-3917-4e93-9c69-552a4d1f8642",
+        "agent": "worker",
+        "sessionName": "worker: You are part of a controlled experiment comparing process...",
+        "model": "openai-codex/gpt-6.1-sol:high"
+      },
+      {
+        "childId": "revise",
+        "state": "completed",
+        "runId": "bcb73435-8aa7-4eda-8820-23d6adfc7b9c",
+        "agent": "worker",
+        "sessionName": "worker: You are reviving a previous subagent conversation. Origin...",
+        "model": "claude-bridge/claude-sonnet-5-5:high"
+      }
+    ]
+  }
+}
