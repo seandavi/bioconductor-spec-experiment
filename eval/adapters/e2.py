@@ -117,7 +117,15 @@ def _seqinfo_of(x: Any, what: str) -> Seqinfo:
     raise Unsupported(f"{what} on {type(x).__name__}")
 
 
+def _enum_series(name: str, levels: Any, codes0: list) -> pl.Series:
+    """Factor (0-based codes, negative / None = NA) -> Enum column."""
+    lv = list(levels)
+    return pl.Series(name, [None if c is None or c < 0 else lv[c] for c in codes0], dtype=pl.Enum(lv))
+
+
 def _column(name: str, v: Any) -> pl.Series:
+    if isinstance(v, Factor):
+        return _enum_series(name, v.levels, v.codes.tolist())
     if not isinstance(v, RVector):
         raise Unsupported(f"mcols value {type(v).__name__}")
     return pl.Series(name, v.list(), dtype=_POLARS_DTYPE[v.type])
