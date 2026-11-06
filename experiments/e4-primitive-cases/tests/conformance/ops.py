@@ -20,6 +20,7 @@ class Op:
     fn: Callable[..., Any]
     index: Callable[[dict[str, Any]], bool] = lambda kw: False
     dec_args: tuple[int, ...] = ()
+    kind: str | None = None  # expected result kind when it cannot be inferred from the value (empty dicts)
 
 
 def _prop(name: str) -> Op:
@@ -51,8 +52,9 @@ OPS: dict[str, Op] = {
         "shift", "narrow", "resize", "flank", "promoters", "range", "reduce",
         "gaps", "disjoin", "union", "intersect", "setdiff", "punion",
         "pintersect", "psetdiff", "unique", "duplicated", "sort", "rank",
-        "coverage", "distance", "trim",
+        "distance", "trim",
     )},
+    "coverage": Op(lambda x, *a, **kw: x.coverage(*a, **kw), kind="coverage"),
     "order": _method("order", lambda kw: True),
     "findOverlaps": _method("find_overlaps", _select_index("all")),
     "countOverlaps": _method("count_overlaps"),
@@ -67,6 +69,10 @@ OPS: dict[str, Op] = {
 def _snake(r_name: str) -> str:
     """R argument name -> Python: `.` -> `_`, camelCase -> snake_case."""
     return re.sub(r"(?<=[a-z])([A-Z])", lambda m: "_" + m.group(1).lower(), r_name.replace(".", "_"))
+
+
+def result_kind(call: dict[str, Any]) -> str | None:
+    return OPS[call["op"]].kind
 
 
 def run_op(call: dict[str, Any], inputs: dict[str, Any]) -> tuple[Any, bool]:

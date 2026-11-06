@@ -43,7 +43,7 @@ def _seqinfo(si: Any) -> dict[str, Any]:
     }
 
 
-def project(x: Any, is_index: bool = False) -> dict[str, Any]:
+def project(x: Any, is_index: bool = False, kind_hint: str | None = None) -> dict[str, Any]:
     kind = type(x).__name__
     if kind == "GRanges":
         return {
@@ -69,7 +69,9 @@ def project(x: Any, is_index: bool = False) -> dict[str, Any]:
         return {"kind": "Rle", "values": _vec(x.values), "lengths": _vec(x.lengths)}
     if kind == "Seqinfo":
         return {"kind": "Seqinfo"} | _seqinfo(x)
-    if isinstance(x, dict) and x and all(type(v).__name__ == "Rle" for v in x.values()):
+    # an empty dict is ambiguous (RleList vs named vector): the op says which
+    is_rle_list = isinstance(x, dict) and all(type(v).__name__ == "Rle" for v in x.values()) and (x or kind_hint == "coverage")
+    if is_rle_list:
         return {
             "kind": "RleList", "names": list(x),
             "elements": [{"values": _vec(r.values), "lengths": _vec(r.lengths)} for r in x.values()],

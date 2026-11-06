@@ -227,3 +227,28 @@ cases:
     call: {op: follow, args: [x, z]}
     adr: ADR-0010
     python: {skip: "R returns a (zero-hit) Hits object for a zero-length query; Python returns the select-shaped vector"}
+  - id: gr-edge-empty-coverage-no-seqlevels
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: coverage, args: [x]}
+  - id: gr-edge-empty-seqlengths-no-seqlevels
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: seqlengths, args: [x]}
+  - id: gr-edge-empty-seqlevels-no-seqlevels
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: seqlevels, args: [x]}
+  - id: gr-edge-empty-iscircular-no-seqlevels
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: isCircular, args: [x]}
+  - id: gr-edge-empty-genome-no-seqlevels
+    clause: GR-EDGE-4
+    inputs:
+      x: {GRanges: {seqnames: [], start: [], width: []}}
+    call: {op: genome, args: [x]}

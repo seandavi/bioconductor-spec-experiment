@@ -9,7 +9,7 @@ import pytest
 from conformance.build import build_inputs
 from conformance.compare import compare
 from conformance.loader import Case, load_cases
-from conformance.ops import run_op
+from conformance.ops import result_kind, run_op
 from conformance.project import project
 
 CASES = load_cases()
@@ -18,7 +18,7 @@ CASES = load_cases()
 def _run(spec: dict[str, Any]) -> dict[str, Any]:
     inputs = build_inputs(spec["inputs"])
     result, is_index = run_op(spec["call"], inputs)
-    return project(result, is_index)
+    return project(result, is_index, result_kind(spec["call"]))
 
 
 @pytest.mark.parametrize("case", CASES, ids=[c.id for c in CASES])

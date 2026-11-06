@@ -551,6 +551,40 @@
       "query_length": 0,
       "subject_length": 1,
       "warnings": []
+    },
+    "gr-edge-empty-coverage-no-seqlevels": {
+      "kind": "RleList",
+      "names": [],
+      "elements": [],
+      "warnings": []
+    },
+    "gr-edge-empty-seqlengths-no-seqlevels": {
+      "kind": "vector",
+      "type": "integer",
+      "values": [],
+      "names": [],
+      "warnings": []
+    },
+    "gr-edge-empty-seqlevels-no-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": [],
+      "names": null,
+      "warnings": []
+    },
+    "gr-edge-empty-iscircular-no-seqlevels": {
+      "kind": "vector",
+      "type": "logical",
+      "values": [],
+      "names": [],
+      "warnings": []
+    },
+    "gr-edge-empty-genome-no-seqlevels": {
+      "kind": "vector",
+      "type": "character",
+      "values": [],
+      "names": [],
+      "warnings": []
     }
   }
 }
