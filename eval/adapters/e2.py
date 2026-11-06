@@ -102,6 +102,13 @@ def _need_granges(x: Any, what: str) -> None:
         raise Unsupported(f"{what} on {type(x).__name__}")
 
 
+def _mapping(v: RVector) -> dict:
+    """Named R vector -> {name: value}; duplicated names would silently drop entries, so they are unsupported."""
+    if len(set(v.names)) != len(v.names):
+        raise Unsupported("argument:duplicated names in a named vector")
+    return dict(zip(v.names, v.list()))
+
+
 def _seqinfo_of(x: Any, what: str) -> Seqinfo:
     if isinstance(x, GRanges):
         return x.seqinfo
@@ -277,7 +284,7 @@ class Adapter(AdapterBase):
         if seqlengths is not MISSING:
             if seqlengths is None or seqlengths.names is None:
                 raise Unsupported("argument:seqlengths unnamed")  # the port takes a {seqlevel: length} mapping
-            kw["seqlengths"] = dict(zip(seqlengths.names, seqlengths.list()))
+            kw["seqlengths"] = _mapping(seqlengths)
         return GRanges(**kw, mcols=_frame_from(list(_mcols)))
 
     def op_Seqinfo(self, *, seqnames=MISSING, seqlengths=MISSING, isCircular=MISSING, genome=MISSING):
@@ -433,7 +440,7 @@ class Adapter(AdapterBase):
             if v is MISSING or v is None or not isinstance(x, GRanges):
                 return _sc(v)
             # GRanges.gaps documents a {seqlevel: bound} mapping, a sequence, or a scalar
-            return dict(zip(v.names, v.list())) if v.names is not None else v.list()
+            return _mapping(v) if v.names is not None else v.list()
 
         return _call(x, "gaps", start=bound(start), end=bound(end), ignore_strand=_sc(ignore_strand))
 
@@ -515,7 +522,7 @@ class Adapter(AdapterBase):
         def width_arg(v: Any) -> Any:
             if v is MISSING or v is None or not isinstance(x, GRanges):
                 return _sc(v)
-            return dict(zip(v.names, v.list())) if v.names is not None else _sc(v)
+            return _mapping(v) if v.names is not None else _sc(v)
 
         def weight_arg(v: Any) -> Any:
             # GRanges.coverage documents a string weight as an mcols column name
