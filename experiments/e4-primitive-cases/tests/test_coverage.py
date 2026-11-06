@@ -33,3 +33,31 @@ def test_rle_encode_decode_roundtrip() -> None:
 def test_rle_encode_empty() -> None:
     r = Rle.encode(np.zeros(0, dtype=np.int64))
     assert len(r) == 0 and r.values.size == 0
+
+
+def _two_seq_granges(circular: bool = False) -> "GRanges":
+    from ranges_e4 import GRanges, Seqinfo
+
+    si = Seqinfo(["a", "b"], [10, 10], [circular, circular])
+    return GRanges(["a", "b"], start=[1, 2], width=[3, 3], seqinfo=si)
+
+
+@pytest.mark.parametrize("circular", [False, True])
+@pytest.mark.parametrize("weight", [[1, 2, 3], [1, 2, 3, 4], []])
+def test_granges_coverage_weight_length_mismatch_raises(circular: bool, weight: list[int]) -> None:
+    with pytest.raises(ValueError):
+        _two_seq_granges(circular).coverage(weight=weight)
+
+
+@pytest.mark.parametrize("circular", [False, True])
+def test_granges_coverage_valid_weight_vector_is_split_per_seqlevel(circular: bool) -> None:
+    cov = _two_seq_granges(circular).coverage(weight=[5, 7])
+    assert cov["a"].decode().tolist() == [5, 5, 5] + [0] * 7
+    assert cov["b"].decode().tolist() == [0, 7, 7, 7] + [0] * 6
+
+
+def test_iranges_coverage_weight_length_mismatch_raises() -> None:
+    x = IRanges(start=[1, 2], width=[1, 1])
+    for bad in ([1, 2, 3], []):
+        with pytest.raises(ValueError):
+            x.coverage(weight=bad)

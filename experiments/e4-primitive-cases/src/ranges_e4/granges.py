@@ -495,7 +495,7 @@ class GRanges:
             if weight not in self._mcols.columns:
                 raise ValueError(f"no mcols column named {weight!r}")
             weight = self._mcols[weight].to_numpy()
-        w_arr = np.asarray(weight)
+        w_arr = _coverage.weight_vector(weight, n)  # validated against the whole input, then split by seqlevel
         shift_arr = intra.arg_vector(shift, n, "shift") if n else np.zeros(0, np.int64)
         if isinstance(width, dict):
             widths: list[int | None] = [width.get(s) for s in self._seqinfo.seqnames]
@@ -512,7 +512,7 @@ class GRanges:
         for c, name in enumerate(self._seqinfo.seqnames):
             idx = np.flatnonzero(self._seqcodes == c)
             seqlen = self._seqinfo._seqlengths[c]
-            wc = w_arr if w_arr.ndim == 0 or len(w_arr) == 1 else w_arr[idx]
+            wc = w_arr[idx]
             if self._seqinfo._is_circular[c] and seqlen:
                 # circular: ranges wrap around the sequence; `width` can only truncate
                 keep = widths[c]

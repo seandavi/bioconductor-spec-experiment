@@ -74,3 +74,15 @@ cases:
     inputs:
       x: {GRanges: {seqnames: [a, a, b, b, a], start: [2, 4, 3, 8, 6], width: [3, 2, 4, 5, 0], strand: ["+", "-", "+", "*", "+"], mcols: {w: [1, 2, 3, 4, 5]}, seqinfo: {seqnames: [b, a, c], seqlengths: [10, null, 8]}}}
     call: {op: coverage, args: [x], kwargs: {weight: w}}
+  - id: gr-cov-weight-cyclic
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, b, a], start: [1, 2, 3], width: [2, 2, 2]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2]}}
+    adr: ADR-0007
+    python: {expect_error: true}
+  - id: gr-cov-weight-too-long
+    clause: GR-COV-7
+    inputs:
+      x: {GRanges: {seqnames: [a, b], start: [1, 2], width: [2, 2]}}
+    call: {op: coverage, args: [x], kwargs: {weight: [1, 2, 3]}}

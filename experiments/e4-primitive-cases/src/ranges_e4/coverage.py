@@ -10,19 +10,25 @@ from ._arrays import as_int
 from .intra import arg_vector
 
 
+def weight_vector(weight: Any, n: int) -> np.ndarray:
+    """Numeric weight as a length-``n`` array: a scalar recycles, any other length must be ``n``."""
+    w = np.asarray(weight)
+    if w.dtype.kind not in "iuf":
+        raise TypeError("'weight' must be numeric")
+    if w.ndim == 0 or len(w) == 1:
+        return np.repeat(w.reshape(-1)[:1], n)
+    if len(w) != n:
+        raise ValueError(f"'weight' has length {len(w)}, expected 1 or {n}")
+    return w
+
+
 def coverage_dense(
     start: np.ndarray, width: np.ndarray, shift: Any, length: int | None, weight: Any
 ) -> np.ndarray:
     """Depth at positions 1..L. L is ``length`` or max(end + shift) (zero-width ranges count)."""
     n = len(start)
     sh = arg_vector(shift, n, "shift") if n else np.zeros(0, np.int64)
-    w = np.asarray(weight)
-    if w.ndim == 0 or len(w) == 1:
-        w = np.repeat(w.reshape(-1)[:1], n)
-    elif len(w) != n:
-        raise ValueError(f"'weight' has length {len(w)}, expected 1 or {n}")
-    if w.dtype.kind not in "iuf":
-        raise TypeError("'weight' must be numeric")
+    w = weight_vector(weight, n)
     dtype = np.float64 if w.dtype.kind == "f" else np.int64
     s = start + sh
     e = s + width - 1
@@ -55,11 +61,7 @@ def coverage_circular(start: np.ndarray, width: np.ndarray, shift: Any, length: 
     """
     n = len(start)
     sh = arg_vector(shift, n, "shift") if n else np.zeros(0, np.int64)
-    w = np.asarray(weight)
-    if w.ndim == 0 or len(w) == 1:
-        w = np.repeat(w.reshape(-1)[:1], n)
-    elif len(w) != n:
-        raise ValueError(f"'weight' has length {len(w)}, expected 1 or {n}")
+    w = weight_vector(weight, n)
     dtype = np.float64 if w.dtype.kind == "f" else np.int64
     w = w.astype(dtype)
     pos = width > 0

@@ -262,6 +262,26 @@
         }
       ],
       "warnings": ["GRanges object contains 1 out-of-bound range located on sequence b. Note that\n  ranges located on a sequence whose length is unknown (NA) or on a circular\n  sequence are not considered out-of-bound (use seqlengths() and isCircular()\n  to get the lengths and circularity flags of the underlying sequences). You\n  can use trim() to trim these ranges. See ?`trim,GenomicRanges-method` for\n  more information."]
+    },
+    "gr-cov-weight-cyclic": {
+      "kind": "RleList",
+      "names": ["a", "b"],
+      "elements": [
+        {
+          "values": [1],
+          "lengths": [4]
+        },
+        {
+          "values": [0, 2],
+          "lengths": [1, 2]
+        }
+      ],
+      "warnings": ["'length(x)' is not a multiple of 'NROW(weight)'"]
+    },
+    "gr-cov-weight-too-long": {
+      "kind": "error",
+      "message": "'NROW(weight)' is greater than 'length(x)'",
+      "warnings": []
     }
   }
 }
