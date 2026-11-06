@@ -148,17 +148,23 @@ def run_all(groups: list[str] | None = None) -> dict[str, tuple[str, str]]:
 
 def main(argv: list[str]) -> int:
     report_path = None
+    validate_only = False
     groups: list[str] = []
     it = iter(argv)
     for a in it:
         if a == "--report":
             report_path = Path(next(it))
+        elif a == "--validate-only":
+            validate_only = True
         else:
             groups.append(a)
     errs = validate()
     if errs:
         print("INVALID:", *errs, sep="\n  ")
         return 2
+    if validate_only:
+        print("valid:", len(load_cases()), "cases")
+        return 0
     results = run_all(groups or None)
     counts: dict[str, int] = {}
     for cid, (st, detail) in results.items():
