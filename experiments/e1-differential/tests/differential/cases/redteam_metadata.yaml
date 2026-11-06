@@ -29,7 +29,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-set-mcols-scalar
   tags:
   - redteam
@@ -59,7 +58,6 @@ cases:
         DataFrame:
           score: *id001
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-construct-mcols-divisor
   tags:
   - redteam
@@ -93,7 +91,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-set-mcols-divisor
   tags:
   - redteam
@@ -126,7 +123,6 @@ cases:
         DataFrame:
           score: *id002
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-construct-mcols-nondivisor
   tags:
   - redteam
@@ -157,7 +153,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-set-mcols-nondivisor
   tags:
   - redteam
@@ -187,7 +182,6 @@ cases:
         DataFrame:
           score: *id003
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-ir-construct-mcols-zero
   tags:
   - redteam
@@ -345,7 +339,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-set-mcols-scalar
   tags:
   - redteam
@@ -379,7 +372,6 @@ cases:
         DataFrame:
           score: *id005
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-construct-mcols-divisor
   tags:
   - redteam
@@ -417,7 +409,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-set-mcols-divisor
   tags:
   - redteam
@@ -454,7 +445,6 @@ cases:
         DataFrame:
           score: *id006
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-construct-mcols-nondivisor
   tags:
   - redteam
@@ -489,7 +479,6 @@ cases:
     - $x
     kwargs: {}
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-set-mcols-nondivisor
   tags:
   - redteam
@@ -523,7 +512,6 @@ cases:
         DataFrame:
           score: *id007
   check_warnings: true
-  xfail: 'Bug: short metadata rows must recycle as in R, including non-divisor lengths.'
 - id: rt-meta-gr-construct-mcols-zero
   tags:
   - redteam
@@ -1246,4 +1234,3 @@ cases:
     r: GRanges(c("a", "b"), IRanges(1L, width=2L, names="only"))
     py: GRanges(["a", "b"], IRanges([1], width=[2], names=["only"]))
   check_warnings: true
-  xfail: 'Bug: GRanges recycles the input range but fails to recycle its names.'

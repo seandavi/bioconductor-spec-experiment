@@ -136,9 +136,17 @@ def check_mcols(mcols: Any, n: int) -> pl.DataFrame | None:
     df = pl.DataFrame(mcols) if not isinstance(mcols, pl.DataFrame) else mcols.clone()  # detach from caller's frame
     if df.width == 0:
         return None
-    if df.height != n:
+    if df.height == n:
+        return df
+    if df.height == 0 or df.height > n:
         raise ValueError(f"mcols has {df.height} rows but object has length {n}")
-    return df
+    if n % df.height:
+        warnings.warn(
+            f"You supplied a metadata column of length {df.height} to set on an object of length {n}. "
+            "However please note that the latter is not a multiple of the former.",
+            UserWarning, stacklevel=4,
+        )
+    return df[(np.arange(n) % df.height).tolist()]  # R recycles short metadata rows
 
 
 def take_names(names: Names | None, pos: np.ndarray) -> Names | None:

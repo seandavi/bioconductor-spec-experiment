@@ -92,7 +92,12 @@ class GRanges:
             raise ValueError("'seqnames' contains sequence names with no entries in 'seqinfo'")
         codes = np.array([index[s] for s in sn if s is not None], dtype=np.int32)
         r_names = ranges.names
-        nm = _meta.check_names(names, n) if names is not None else r_names
+        if names is not None:
+            nm = _meta.check_names(names, n)
+        elif r_names is not None and len(r_names) != n and n > 0:
+            nm = tuple(r_names[i % len(r_names)] for i in range(n))  # names recycle with their ranges
+        else:
+            nm = r_names
         flat = IRanges._new(
             np.resize(ranges.start, n), np.resize(ranges.width, n), validate=False
         )

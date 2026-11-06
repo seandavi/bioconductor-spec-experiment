@@ -94,3 +94,20 @@ def test_na_results_are_masked_not_sentinels() -> None:
     sel = q.find_overlaps(s, select="first")
     assert np.ma.isMaskedArray(sel) and sel.tolist() == [0, None]
     assert np.ma.isMaskedArray(q.nearest(IRanges(start=[], width=[])))
+
+
+def test_recycled_coordinates_recycle_their_names_and_subset_works() -> None:
+    g = GRanges(["a", "b"], IRanges([1], width=[2], names=["only"]))
+    assert g.names == ("only", "only") and len(g) == 2
+    assert g[1].names == ("only",)  # review finding 5: used to raise IndexError
+
+
+def test_short_mcols_recycle_and_zero_rows_are_rejected() -> None:
+    x = IRanges(start=[1, 3, 5], width=1)
+    assert x.set_mcols(pl.DataFrame({"m": [7]})).mcols["m"].to_list() == [7, 7, 7]
+    with pytest.warns(UserWarning):
+        assert x.set_mcols(pl.DataFrame({"m": [7, 8]})).mcols["m"].to_list() == [7, 8, 7]
+    with pytest.raises(ValueError):
+        x.set_mcols(pl.DataFrame({"m": []}, schema={"m": pl.Int64}))
+    with pytest.raises(ValueError):
+        x.set_mcols(pl.DataFrame({"m": [1, 2, 3, 4]}))
