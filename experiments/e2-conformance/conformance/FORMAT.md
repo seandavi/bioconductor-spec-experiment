@@ -55,7 +55,12 @@ See `cases/*.json`. Per file: `group`, `clauses` {ID: statement},
   functions such as `"names<-"` (pass `value=` as kwarg).
 - `kwargs` use R names. Python's adapter maps them; unknown kwargs error.
 - `{"$ref": "name"}` → file-level fixture (fixtures may ref earlier ones).
-- Optional `compare`: `exact` (default) or `hits-unordered` (set of pairs).
+- Optional `compare` (per case, or per file as the default): `exact`
+  (default) or `hits-query-grouped`. The latter applies only to Hits values:
+  `from`, `nLnode`, `nRnode` must match exactly (hits sorted by query) but the
+  `to` values within one query are compared as a set. Used because R's
+  subject order within a query is an NCList traversal artifact, not a contract
+  (see NOTES).
 - Validator rules: unique ids across all groups; each case names exactly one
   declared clause; each clause has ≥1 case; refs resolve.
 
