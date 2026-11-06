@@ -13,4 +13,4 @@ Ex: levels `(b,a,c)`, lengths `(100,200,None)`.
 **SEQI.4** Default `Seqinfo` for a `GRanges` built from seqnames only: levels are the distinct seqnames in order of first appearance, all attributes absent. An explicit `Seqinfo` fixes the level order; a seqname not among its levels is refused.
 Ex: seqnames `(chr2,chr1,chr10,chr1)` → levels `(chr2,chr1,chr10)`.
 
-**SEQI.5** Levels with no ranges are kept by subsetting, sorting, and all operations; the `Seqinfo` of a result equals the input's unless stated (concat: SEQI.2).
+**SEQI.5** Levels with no ranges are kept by subsetting, sorting, and all operations; the `Seqinfo` of a result equals the input's unless stated: `concat` (GR.5) and two-operand set operations (GR.19) merge per SEQI.2.

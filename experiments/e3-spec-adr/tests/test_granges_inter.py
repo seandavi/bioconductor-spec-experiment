@@ -193,3 +193,32 @@ def test_parallel_result_strand_rules() -> None:
     assert gs(star.psetdiff(gr(("a", 5, 12, "+")))) == [("a", 1, 4, "+")]
     assert gs(star.psetdiff(gr(("b", 5, 9, "+")))) == [("a", 1, 8, "+")]
     assert gs(gr(("a", 1, 8, "+")).psetdiff(gr(("b", 5, 9, "-")))) == [("a", 1, 8, "+")]
+
+
+@pytest.mark.spec("GR.19", "SEQI.5")
+@pytest.mark.parametrize("op", ["union", "intersect", "setdiff", "punion", "pintersect", "psetdiff"])
+def test_two_operand_ops_merge_seqinfo(op: str) -> None:
+    x = gr(("a", 1, 5, "+"), seqinfo=Seqinfo(["a", "z"], [10, None], [None, True], ["g", None]))
+    y = gr(("a", 4, 9, "+"), seqinfo=Seqinfo(["q", "a"], [7, None], [None, False], [None, "g"]))
+    out = getattr(x, op)(y)
+    assert out.seqlevels == ["a", "z", "q"]
+    assert out.seqlengths == [10, None, 7]
+    assert out.is_circular == [False, True, None]
+    assert out.genome == ["g", None, None]
+
+
+@pytest.mark.spec("GR.19")
+@pytest.mark.parametrize("op", ["union", "intersect", "setdiff", "punion", "pintersect", "psetdiff"])
+def test_two_operand_ops_keep_unused_levels_and_refuse_conflicts(op: str) -> None:
+    x = gr(("a", 1, 5, "+"))
+    y = gr(("a", 7, 9, "-"), seqinfo=Seqinfo(["a", "b"]))
+    if op == "punion":
+        y = gr(("a", 4, 9, "+"), seqinfo=Seqinfo(["a", "b"]))
+    out = getattr(x, op)(y)
+    assert out.seqlevels == ["a", "b"]
+    empty = x.intersect(gr(("a", 7, 9, "-"), seqinfo=Seqinfo(["a", "b"])))
+    assert len(empty) == 0 and empty.seqlevels == ["a", "b"]
+    bad = gr(("a", 1, 5, "+"), seqinfo=Seqinfo(["a"], [11]))
+    ok = gr(("a", 1, 5, "+"), seqinfo=Seqinfo(["a"], [10]))
+    with pytest.raises(ValueError):
+        getattr(ok, op)(bad)
