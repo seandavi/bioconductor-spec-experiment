@@ -3,20 +3,21 @@
 Port: `iranges` 0.7.3 + `genomicranges` 0.9.0. Index base: 0-based row indices, coordinates as given (1-based, inclusive).
 Header of `biocpy.py` lists the docs used and every translation; this file is the short version.
 
-## Unsupported ops (`unsupported_ops`, 6 of 57)
+## Unsupported ops (`unsupported_ops`, 3 of 57)
 
 | Op | Reason |
 |---|---|
-| `seqlevels<-` | no public setter with R's match-by-name / drop / add semantics (`SeqInfo.set_seqnames` renames positionally) |
 | `overlapsAny` | no public equivalent |
 | `punion`, `psetdiff` | no public parallel union / set difference |
-| `duplicated`, `unique` | no public equivalent |
 
 ## Unsupported per class or argument (runtime `Unsupported` / `UnknownArgument`)
 
+- `seqlevels<-` maps to the positional `SeqInfo.set_seqnames` only: an unnamed value with as many names as current levels
+  (GRanges: `get_seqinfo` -> `set_seqnames` -> `set_seqinfo`). Named values, `pruning.mode`, and add / drop forms are unsupported.
 - IRanges has no `rank`, `pintersect`, `ranges`; `GenomicRanges` has no `rank` ties argument (`ties.method`, `na.last`).
 - `IRanges(end=)`: the constructor takes `start` / `width` only.
-- `GRanges(seqlengths=)`, `GRanges()` / `Seqinfo()` with no `seqnames` / `ranges` (the port requires them).
+- `GRanges(seqlengths=)`; `GRanges(...)` / `Seqinfo(...)` lacking `seqnames` / `ranges` (the port requires them). The no-argument forms use
+  `GenomicRanges.empty()` / `SeqInfo.empty()`.
 - `nearest` / `precede` / `follow` with a missing `subject` (R's self-search excludes self; the port has no such form).
 - `c(ignore.mcols=, recursive=)`, `range(na.rm=)`, `reduce(with.inframe.attrib=)`, `subsetByOverlaps(invert=)`,
   `findOverlaps(drop.self=, drop.redundant=)`, `seqinfo<-(new2old=, pruning.mode=)`, `use.names` anywhere,
@@ -26,6 +27,10 @@ Header of `biocpy.py` lists the docs used and every translation; this file is th
 - `order()` of more than one object.
 
 ## Convention translations
+
+- `duplicated` / `unique` call `biocutils.duplicated` / `biocutils.unique` (the port's public generics; `fromLast` -> `from_last`); results are projected as returned.
+- A nested call's ndarray / masked-array result is passed on as an R vector (NA kept), so `x[order(x)]` and `IRanges(start(x), width(x))` work.
+- Constructor `...` columns become typed numpy columns (masked when NA is present).
 
 - R `findOverlaps(query, subject)` -> `subject.find_overlaps(query)` (the port's `self` is the subject); same for
   `countOverlaps`, `nearest`, `precede`, `follow`. `subsetByOverlaps(x, ranges)` -> `x.subset_by_overlaps(ranges)`.

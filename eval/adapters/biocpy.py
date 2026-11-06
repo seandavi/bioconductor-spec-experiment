@@ -316,6 +316,8 @@ class Adapter(AdapterBase):
                    seqlengths=MISSING, _mcols=()):
         if seqlengths is not MISSING:
             raise UnknownArgument("seqlengths")
+        if all(v is MISSING for v in (seqnames, ranges, strand, seqinfo)) and not _mcols:
+            return GenomicRanges.empty()  # the port's documented factory for the no-argument form
         _require(seqnames=seqnames, ranges=ranges)  # GenomicRanges.__init__ has no defaults for these
         kw: dict[str, Any] = {"seqnames": seqnames.list() if isinstance(seqnames, RVector) else seqnames,
                               "ranges": ranges}
@@ -328,6 +330,8 @@ class Adapter(AdapterBase):
         return GenomicRanges(**kw)
 
     def op_Seqinfo(self, *, seqnames=MISSING, seqlengths=MISSING, isCircular=MISSING, genome=MISSING):
+        if all(v is MISSING for v in (seqnames, seqlengths, isCircular, genome)):
+            return SeqInfo.empty()  # the port's documented factory for the no-argument form
         _require(seqnames=seqnames)  # SeqInfo.__init__ has no default for seqnames
         kw: dict[str, Any] = {"seqnames": seqnames.list()}
         if seqlengths is not MISSING:
